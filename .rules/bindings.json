@@ -855,9 +855,8 @@
     },
     "179": {
       "status": "active",
-      "mechanism": "none",
-      "where": ".github/workflows/ci.yml",
-      "why": "до него не дошли руки: группа concurrency названа по ссылке (ci-github.ref) и отменяет прогон; коммит в имя группы не входит, поэтому прогоны на разных коммитах одной ветки вытесняют друг друга"
+      "mechanism": "gate",
+      "where": ".github/workflows/ci.yml — группа concurrency включает голову изменения; tests/test_workflow_guardrails.py не даёт вернуть отмену без коммита в имени группы"
     },
     "180": {
       "status": "not-applicable",

@@ -43,6 +43,13 @@ repos:
         pass_filenames: false
         files: ^data/glossary\.json$
 
+      - id: rules-bindings
+        name: Ответ каталогу правил
+        entry: pytest tests/test_rules_bindings.py -q
+        language: system
+        pass_filenames: false
+        files: ^(\.rules/.*\.json|tests/test_rules_bindings\.py)$
+
       - id: glossary-build-check
         name: Витрина синхронна с данными
         entry: python -m glossary build --check

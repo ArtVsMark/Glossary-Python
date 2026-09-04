@@ -123,6 +123,23 @@ class ValidationReport:
 # --------------------------------------------------------------------------- #
 
 
+def rule_non_empty(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Пустой глоссарий — отсутствие проверки, а не её успех.
+
+    У гейта два разных состояния успеха, и их легко перепутать: «проверил, и
+    нарушений нет» и «проверять было нечего». Второе не успех: без этого
+    правила переименованный или обнулившийся файл данных проходил бы всю
+    проверку зелёным.
+    """
+    if not g.entries:
+        yield Issue(
+            Severity.ERROR,
+            "non-empty",
+            "глоссарий не содержит ни одной карточки — проверять нечего, "
+            "это ошибка входа, а не успешная проверка",
+        )
+
+
 def rule_required_fields(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Все текстовые поля карточки заполнены."""
     for entry in g.entries:
@@ -284,6 +301,7 @@ def rule_group_size(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
 
 
 RULES: Final[tuple[Rule, ...]] = (
+    rule_non_empty,
     rule_required_fields,
     rule_id_format,
     rule_unique_id,

@@ -45,7 +45,7 @@ HTML. Замечания к содержанию едут обратно пис�
 | [`/Glossary-Python/glossary.json`](https://artvsmark.github.io/Glossary-Python/glossary.json) | Снимок карточек обычным HTTP — без клона и без токена |
 | [`badges/.github/badges/facts.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/facts.json) | Числа о проекте: карточки, разделы, замечания, состав ответа каталогу |
 | [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию: правило, уровень, область, полный список карточек |
-| [`badges/.github/badges/coverage.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/coverage.json) | Покрытие официального Python: чего в глоссарии нет вовсе |
+| [`badges/.github/badges/completeness-report.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/completeness-report.json) | Полнота относительно официального Python: чего в глоссарии нет вовсе |
 | [`badges/.github/badges/whatsnew.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/whatsnew.json) | Что появилось и исчезло между версиями Python — и что из нового не описано |
 
 Это контракты, а не удобство. Глоссарий забирают выгрузкой, а не копированием
@@ -120,7 +120,7 @@ glossary build --check                  # витрина синхронна с �
 glossary export -f markdown -o out.md   # экспорт: html, json, markdown, csv
 glossary objections                     # замечания к содержанию — письмом в источник
 glossary objections --format json       # тот же список контрактом для машины
-glossary coverage                       # чего в глоссарии нет вовсе
+glossary completeness                   # чего в глоссарии нет вовсе
 ```
 
 Пакет запускается и как модуль: `python -m glossary …`. Runtime-зависимостей нет —
@@ -156,7 +156,7 @@ glossary coverage                       # чего в глоссарии нет 
 
 ## Полнота: чего нет вовсе
 
-Валидатор судит написанные карточки. Ненаписанные считает `make coverage`:
+Валидатор судит написанные карточки. Ненаписанные считает `make completeness`:
 инвентарь языка снимается **интроспекцией работающего интерпретатора** — без
 сети и без разбора документации, — и сопоставляется с карточками точным
 совпадением полного имени (`functools.reduce`, `str.split`).
@@ -184,6 +184,12 @@ Python 3.15 снимается отдельным прогоном с право
 Граница названа прямо: интроспекция видит объекты, а не текст. Синтаксис
 (`match`, walrus, спецификаторы f-строк), устаревания и удаления в неё не
 попадают — эти пласты не измеряются, и это записано, а не умолчано.
+
+**Это не «покрытие».** Покрытием называют покрытие кода тестами — его считает
+`pytest --cov` и показывает одноимённый значок. Два разных числа под одним
+именем однажды уже столкнулись файлами, поэтому здесь полнота, и значок у неё
+свой. Планку держит `tests/completeness_floor.json`: неописанного не становится
+больше, и число может вырасти без единой правки карточек — язык прирастает сам.
 
 Текущее состояние: **<!--m:errors-->0<!--/m:errors--> ошибок, <!--m:warnings-->739<!--/m:warnings--> предупреждения**. Число предупреждений
 зафиксировано в `tests/quality_baseline.json` — храповик не даёт замечаниям

@@ -8,6 +8,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
@@ -131,4 +132,72 @@ def test_data_matches_json_schema(real_data_path: Path):
     )
     assert not errors, "\n".join(
         f"{'.'.join(str(p) for p in e.absolute_path)}: {e.message}" for e in errors[:20]
+    )
+
+
+FLOOR_PATH = Path(__file__).parent / "completeness_floor.json"
+
+
+def _published_completeness() -> dict[str, int]:
+    """Полнота, снятая тем же способом, каким она публикуется.
+
+    Отдельным процессом, а не вызовом здесь. Инвентарь читает живые объекты, а
+    прогон тестов их подменяет: pytest ставит свои обработчики в
+    ``sys.unraisablehook`` и ``threading.excepthook``, и они перестают быть
+    функциями. Измеренная изнутри полнота расходилась с публикуемой на две
+    сущности — то есть гейт сторожил не то число, которое уезжает потребителю.
+    """
+    result = subprocess.run(
+        [sys.executable, "-m", "glossary", "completeness", "--format", "json"],
+        capture_output=True,
+        text=True,
+        check=True,
+        cwd=project_root(),
+    )
+    payload = json.loads(result.stdout)
+    return {c["name"]: len(c["missing"]) for c in payload["categories"]}
+
+
+@pytest.mark.skipif(
+    sys.version_info[:2] != RATCHET_PYTHON,
+    reason="инвентарь языка меняется от версии к версии; планка снята на опорной",
+)
+def test_completeness_does_not_regress():
+    """Храповик полноты: неописанного не становится больше.
+
+    Планка полноты отдельна от планки качества, потому что отвечает на другой
+    вопрос. Качество — про написанные карточки, полнота — про ненаписанные, и
+    смешав их, мы получили бы одно число, по которому нельзя понять, что
+    ухудшилось.
+
+    Число может вырасти без единой правки карточек: язык прирастает сам. Это и
+    есть повод узнать об этом — новая возможность Python без карточки такой же
+    пробел, как и старая.
+    """
+    raw: dict[str, object] = json.loads(FLOOR_PATH.read_text(encoding="utf-8"))
+    floor: dict[str, int] = {
+        k: v for k, v in raw.items() if not k.startswith("_") and isinstance(v, int)
+    }
+    current = _published_completeness()
+
+    assert floor.keys() == current.keys(), (
+        f"разрезы полноты разошлись с планкой: {sorted(current.keys() ^ floor.keys())}"
+    )
+
+    grown = {
+        name: (count, floor[name])
+        for name, count in current.items()
+        if count > floor[name]
+    }
+    assert not grown, (
+        "неописанного стало больше, чем в tests/completeness_floor.json: "
+        + ", ".join(f"{n}: {now} > {was}" for n, (now, was) in sorted(grown.items()))
+    )
+
+    improved = {
+        name: (current[name], was) for name, was in floor.items() if current[name] < was
+    }
+    assert not improved, (
+        "карточек стало больше — опустите планку в tests/completeness_floor.json: "
+        + ", ".join(f"{n}: {now} < {was}" for n, (now, was) in sorted(improved.items()))
     )

@@ -35,8 +35,8 @@ from itertools import pairwise
 from pathlib import Path
 from typing import Any, Final
 
+from glossary.completeness import known_names
 from glossary.contracts import envelope
-from glossary.coverage import known_names
 from glossary.loader import default_data_path, load_glossary
 
 SCHEMA_OF: Final = "что появилось и исчезло между версиями Python"

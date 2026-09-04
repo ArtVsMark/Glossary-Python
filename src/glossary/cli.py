@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__, contracts, coverage, inventory, objections
+from glossary import __version__, completeness, contracts, inventory, objections
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, load_glossary, project_root
@@ -172,8 +172,8 @@ def build_parser() -> argparse.ArgumentParser:
     p_obj.set_defaults(handler=_cmd_objections)
 
     p_cov = sub.add_parser(
-        "coverage",
-        help="покрытие официального Python карточками глоссария",
+        "completeness",
+        help="полнота глоссария относительно официального Python",
         parents=[common],
     )
     p_cov.add_argument(
@@ -185,7 +185,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_cov.add_argument(
         "--limit",
         type=int,
-        default=coverage.DEFAULT_LIMIT,
+        default=completeness.DEFAULT_LIMIT,
         metavar="N",
         help="сколько имён показывать в разрезе markdown (0 — все); "
         "в json список всегда полный",
@@ -198,7 +198,7 @@ def build_parser() -> argparse.ArgumentParser:
         metavar="PATH",
         help="файл результата (по умолчанию — stdout)",
     )
-    p_cov.set_defaults(handler=_cmd_coverage)
+    p_cov.set_defaults(handler=_cmd_completeness)
 
     p_inv = sub.add_parser(
         "inventory",
@@ -358,27 +358,30 @@ def _cmd_objections(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     return EXIT_OK
 
 
-def _cmd_coverage(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+def _cmd_completeness(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     """Показать, чего в глоссарии нет вовсе.
 
     Валидатор судит написанные карточки; здесь считаются ненаписанные. Эталон —
     сам язык, снятый интроспекцией работающего интерпретатора, поэтому ответ
     зависит от версии Python и она названа в отчёте.
+
+    Не «покрытие»: этим словом называют покрытие кода тестами, и два разных
+    числа под одним именем уже однажды столкнулись файлами.
     """
     glossary = load_glossary(args.data)
     rendered = (
-        coverage.as_json(glossary)
+        completeness.as_json(glossary)
         if args.format == "json"
-        else coverage.as_markdown(glossary, limit=args.limit)
+        else completeness.as_markdown(glossary, limit=args.limit)
     )
     if args.output is None:
         out.write(rendered)
     else:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(rendered, encoding="utf-8")
-        report = coverage.build_coverage(glossary)
+        report = completeness.build_completeness(glossary)
         print(
-            f"Покрытие Python {report.python_version}: "
+            f"Полнота на Python {report.python_version}: "
             f"{report.covered}/{report.total} → {args.output}",
             file=out,
         )

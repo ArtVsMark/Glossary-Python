@@ -34,6 +34,7 @@ from typing import TYPE_CHECKING, Any, Final
 
 import yaml
 
+from glossary.completeness import build_completeness
 from glossary.contracts import envelope
 from glossary.loader import load_glossary
 from glossary.validation import Severity, validate
@@ -52,7 +53,23 @@ COVERAGE: Final = ROOT / "coverage.xml"
 
 FACTS_SCHEMA_OF: Final = "факты о проекте-витрине глоссария"
 GOOD_COVERAGE: Final = 90.0
-"""С какого покрытия значок зеленеет. Совпадает с порогом --cov-fail-under в CI."""
+"""С какого покрытия тестами значок зеленеет. Совпадает с --cov-fail-under в CI."""
+
+BADGE_NAMES: Final = ("cards", "rules", "warnings", "coverage", "completeness")
+"""Имена, занятые значками, — заповедник, а не перечень написанного.
+
+Значок покрытия появляется только при наличии ``coverage.xml``, поэтому список
+того, что записалось в конкретном прогоне, неполон. Сторож, сверяющийся с ним,
+пропустил бы столкновение имён ровно там, где его нет: локально, без отчёта о
+покрытии. Имя занято всегда, независимо от того, дошло ли до записи.
+"""
+
+GOOD_COMPLETENESS: Final = 90.0
+"""С какой полноты глоссария значок зеленеет.
+
+Величина ориентировочная и к гейту отношения не имеет: планку полноты держит
+``tests/completeness_floor.json``, и она движется только вверх.
+"""
 
 MARKER: Final = re.compile(
     r"<!--m:(?P<name>[a-z0-9_]+)-->(?P<value>.*?)<!--/m:(?P=name)-->", re.DOTALL
@@ -60,16 +77,26 @@ MARKER: Final = re.compile(
 """Именованный маркер вокруг числа. Форма та же, что у каталога правил."""
 
 
-def _glossary_facts() -> dict[str, int]:
-    """Числа о самом глоссарии — из файла-источника, а не из витрины."""
+def _glossary_facts() -> dict[str, Any]:
+    """Числа о самом глоссарии — из файла-источника, а не из витрины.
+
+    Полнота считается здесь же и **не называется покрытием**: покрытием зовут
+    покрытие кода тестами, и два разных числа под одним именем однажды уже
+    столкнулись файлами. Она зависит от версии интерпретатора, поэтому версия
+    едет вместе с числом — иначе его не с чем сравнить.
+    """
     glossary = load_glossary(ROOT / "data" / "glossary.json")
     report = validate(glossary)
     stats = glossary.stats()
+    filled = build_completeness(glossary)
     return {
         "cards": stats.total,
         "groups": len(stats.sections),
         "errors": sum(1 for i in report.issues if i.severity is Severity.ERROR),
         "warnings": sum(1 for i in report.issues if i.severity is Severity.WARNING),
+        "completeness_percent": round(filled.ratio * 100, 1),
+        "completeness_missing": len(filled.missing),
+        "completeness_python": filled.python_version,
     }
 
 
@@ -137,7 +164,14 @@ def build_facts() -> dict[str, Any]:
 
 
 def marker_values(facts: dict[str, Any]) -> dict[str, str]:
-    """Значения маркеров документации, выведенные из фактов."""
+    """Значения маркеров документации, выведенные из фактов.
+
+    Выборка, а не все факты подряд. Полноты здесь намеренно нет: она зависит от
+    версии интерпретатора, а гейт на маркеры запускается и у контрибьютора, и в
+    прогоне на разных версиях — число в тексте расходилось бы само по себе, без
+    единой правки. Полноту показывает значок, который собирается, а не
+    коммитится, и её планку держит ``tests/completeness_floor.json``.
+    """
     glossary = facts["glossary"]
     rules = facts["rules"]
     return {
@@ -216,6 +250,9 @@ def write_badges(facts: dict[str, Any], target: Path) -> list[Path]:
             "color": "yellow" if glossary["warnings"] else "brightgreen",
         },
     }
+    # Значок «покрытие» — про тесты и только про тесты. Полнота глоссария
+    # стоит рядом под своим именем: одно имя на два разных числа уже однажды
+    # затёрло чужой значок молча.
     if "coverage_percent" in facts:
         percent = facts["coverage_percent"]
         badges["coverage"] = {
@@ -223,6 +260,12 @@ def write_badges(facts: dict[str, Any], target: Path) -> list[Path]:
             "message": f"{percent}%",
             "color": "brightgreen" if percent >= GOOD_COVERAGE else "yellow",
         }
+    filled = glossary["completeness_percent"]
+    badges["completeness"] = {
+        "label": f"полнота ({glossary['completeness_python']})",
+        "message": f"{filled}%",
+        "color": "brightgreen" if filled >= GOOD_COMPLETENESS else "yellow",
+    }
 
     target.mkdir(parents=True, exist_ok=True)
     written: list[Path] = []

@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate rules build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -41,6 +41,9 @@ cov: ## Прогнать тесты с отчётом о покрытии
 validate: ## Проверить качество данных глоссария
 	$(BIN)/python -m glossary validate
 
+rules: ## Проверить ответ проекта каталогу правил
+	$(BIN)/pytest tests/test_rules_bindings.py -q
+
 build: ## Пересобрать HTML-витрину из данных
 	$(BIN)/python -m glossary build
 
@@ -53,7 +56,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test validate build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test validate rules build-check ## Полный набор проверок (как в CI)
 
 clean: ## Удалить артефакты сборки и кэши
 	rm -rf build dist dist-export *.egg-info src/*.egg-info

@@ -1,0 +1,34 @@
+# Входящие правила каталога ArtVsMark/Engineering-Incidents-Playbook.
+#
+# Собрано `scripts/onboard_consumer.py` каталога — руками не правится целиком,
+# но закрепление тега и расписание менять можно и нужно осознанно.
+#
+# Своего скрипта здесь нет намеренно: реализация одна и живёт у автора
+# каталога. Копия генератора в каждом проекте — это N реализаций одного
+# алгоритма, и первая же правка разведёт их.
+name: rules-inbox
+
+on:
+  schedule:
+    # Не в 0 и не в 30: минута выбрана так, чтобы не совпадать с пиком.
+    - cron: "17 6 * * *"
+  # У события всегда есть ручная кнопка.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: rules-inbox
+  cancel-in-progress: true
+
+jobs:
+  inbox:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ArtVsMark/Engineering-Incidents-Playbook@v1.2.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

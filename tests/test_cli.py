@@ -130,6 +130,15 @@ def test_validate_min_description_is_configurable(data_file: Path):
     assert "description-length" in result.err
 
 
+def test_validate_fails_on_empty_data_file(tmp_path: Path):
+    """Файл без карточек не должен проходить проверку зелёным."""
+    empty = tmp_path / "glossary.json"
+    empty.write_text('{"schema_version": 1, "entries": []}', encoding="utf-8")
+    result = run("--data", str(empty), "validate")
+    assert result.code == EXIT_FAILED
+    assert "non-empty" in result.err
+
+
 # --------------------------- build ---------------------------
 
 

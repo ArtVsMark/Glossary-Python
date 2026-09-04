@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__, objections
+from glossary import __version__, coverage, objections
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, load_glossary, project_root
@@ -171,6 +171,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_obj.set_defaults(handler=_cmd_objections)
 
+    p_cov = sub.add_parser(
+        "coverage",
+        help="покрытие официального Python карточками глоссария",
+        parents=[common],
+    )
+    p_cov.add_argument(
+        "--format",
+        choices=("markdown", "json"),
+        default="markdown",
+        help="отчёт для человека (markdown) или публикуемый контракт (json)",
+    )
+    p_cov.add_argument(
+        "--limit",
+        type=int,
+        default=coverage.DEFAULT_LIMIT,
+        metavar="N",
+        help="сколько имён показывать в разрезе markdown (0 — все); "
+        "в json список всегда полный",
+    )
+    p_cov.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        metavar="PATH",
+        help="файл результата (по умолчанию — stdout)",
+    )
+    p_cov.set_defaults(handler=_cmd_coverage)
+
     return parser
 
 
@@ -310,6 +339,33 @@ def _cmd_objections(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
         totals = objections.collect(glossary)["totals"]
         print(
             f"Замечаний: {totals['errors'] + totals['warnings']} → {args.output}",
+            file=out,
+        )
+    return EXIT_OK
+
+
+def _cmd_coverage(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Показать, чего в глоссарии нет вовсе.
+
+    Валидатор судит написанные карточки; здесь считаются ненаписанные. Эталон —
+    сам язык, снятый интроспекцией работающего интерпретатора, поэтому ответ
+    зависит от версии Python и она названа в отчёте.
+    """
+    glossary = load_glossary(args.data)
+    rendered = (
+        coverage.as_json(glossary)
+        if args.format == "json"
+        else coverage.as_markdown(glossary, limit=args.limit)
+    )
+    if args.output is None:
+        out.write(rendered)
+    else:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered, encoding="utf-8")
+        report = coverage.build_coverage(glossary)
+        print(
+            f"Покрытие Python {report.python_version}: "
+            f"{report.covered}/{report.total} → {args.output}",
             file=out,
         )
     return EXIT_OK

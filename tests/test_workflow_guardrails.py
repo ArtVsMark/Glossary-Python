@@ -180,6 +180,18 @@ def test_badges_publish_objections(badges: dict[str, Any]):
     assert "objections.json" in commands
 
 
+def test_badges_publish_coverage(badges: dict[str, Any]):
+    """Покрытие публикуется рядом с замечаниями.
+
+    Оно отвечает на другой вопрос — не «эту карточку поправить», а «эту
+    карточку написать», — и без публикации остаётся числом в консоли,
+    которое никто не увидит.
+    """
+    commands = " ".join(step.get("run", "") for step in _steps(badges))
+    assert "glossary coverage" in commands
+    assert "coverage.json" in commands
+
+
 def test_badges_publish_facts_next_to_objections(badges: dict[str, Any]):
     """Оба контракта уезжают одним прогоном и лежат в одном месте."""
     commands = " ".join(step.get("run", "") for step in _steps(badges))

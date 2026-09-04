@@ -60,6 +60,13 @@ jobs:
           python -m glossary objections --format json
           -o .github/badges/objections.json
 
+      # Ответ зависит от версии интерпретатора, и она названа внутри файла:
+      # сравнивать покрытие, снятое на разных версиях, как одно число нельзя.
+      - name: Собрать покрытие официального Python
+        run: >
+          python -m glossary coverage --format json
+          -o .github/badges/coverage.json
+
       - name: Опубликовать веткой badges
         run: |
           git config user.name "github-actions[bot]"

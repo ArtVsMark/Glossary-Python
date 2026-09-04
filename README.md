@@ -44,7 +44,8 @@ HTML. Замечания к содержанию едут обратно пис�
 | [`/Glossary-Python/`](https://artvsmark.github.io/Glossary-Python/) | Витрина: поиск, фильтры, тёмная тема |
 | [`/Glossary-Python/glossary.json`](https://artvsmark.github.io/Glossary-Python/glossary.json) | Снимок карточек обычным HTTP — без клона и без токена |
 | [`badges/.github/badges/facts.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/facts.json) | Числа о проекте: карточки, разделы, замечания, состав ответа каталогу |
-| [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию для источника: правило, уровень, полный список карточек |
+| [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию: правило, уровень, область, полный список карточек |
+| [`badges/.github/badges/coverage.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/coverage.json) | Покрытие официального Python: чего в глоссарии нет вовсе |
 
 Это контракты, а не удобство. Глоссарий забирают выгрузкой, а не копированием
 файла из репозитория. А `objections.json` — обратный поток: карточки правятся
@@ -118,6 +119,7 @@ glossary build --check                  # витрина синхронна с �
 glossary export -f markdown -o out.md   # экспорт: html, json, markdown, csv
 glossary objections                     # замечания к содержанию — письмом в источник
 glossary objections --format json       # тот же список контрактом для машины
+glossary coverage                       # чего в глоссарии нет вовсе
 ```
 
 Пакет запускается и как модуль: `python -m glossary …`. Runtime-зависимостей нет —
@@ -150,6 +152,21 @@ glossary objections --format json       # тот же список контра�
 Все замечания адресованы источнику: карточки правятся там. `make objections`
 собирает их в готовый к отправке отчёт — правило, сколько карточек задето и
 какие именно.
+
+## Полнота: чего нет вовсе
+
+Валидатор судит написанные карточки. Ненаписанные считает `make coverage`:
+инвентарь языка снимается **интроспекцией работающего интерпретатора** — без
+сети и без разбора документации, — и сопоставляется с карточками точным
+совпадением полного имени (`functools.reduce`, `str.split`).
+
+Ответ зависит от версии Python и потому назван в отчёте: **версия здесь ось
+измерения, а не настройка**. Разность двух инвентарей отвечает на вопрос «что
+появилось в 3.14», не открывая документацию.
+
+Граница названа прямо: интроспекция видит объекты, а не текст. Синтаксис
+(`match`, walrus, спецификаторы f-строк), устаревания и удаления в неё не
+попадают — эти пласты не измеряются, и это записано, а не умолчано.
 
 Текущее состояние: **<!--m:errors-->0<!--/m:errors--> ошибок, <!--m:warnings-->746<!--/m:warnings--> предупреждения**. Число предупреждений
 зафиксировано в `tests/quality_baseline.json` — храповик не даёт замечаниям

@@ -1,0 +1,43 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- Виртуальные окружения ---
+.venv/
+venv/
+env/
+
+# --- Тесты и покрытие ---
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# --- Типизация и линтеры ---
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+
+# --- Артефакты экспорта ---
+# data/glossary.json — источник истины, он версионируется.
+# python_glossary.html собирается из него и коммитится для GitHub Pages.
+dist-export/
+
+# --- Редакторы и ОС ---
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+.DS_Store
+Thumbs.db

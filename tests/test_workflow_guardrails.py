@@ -15,7 +15,9 @@ import yaml
 
 from glossary.loader import project_root
 
-CI_PATH = project_root() / ".github" / "workflows" / "ci.yml"
+WORKFLOWS = project_root() / ".github" / "workflows"
+CI_PATH = WORKFLOWS / "ci.yml"
+PAGES_PATH = WORKFLOWS / "pages.yml"
 
 REQUIRED_CHECK_NAME = "check PR"
 """Имя, записанное в ruleset «Protect main» как обязательная проверка.
@@ -117,9 +119,27 @@ def test_cancelling_concurrency_group_names_the_commit(ci: dict[str, Any]):
     )
 
 
+def test_pages_does_not_depend_on_an_out_of_tree_setting():
+    """Публикация витрины не должна зависеть от переключателя в настройках.
+
+    Репозиторий с выключенным Pages даёт «Get Pages site failed: Not Found»,
+    и прогон краснеет молча: у него нет ни обязательного статуса, ни адресата.
+    Красным он простоял четыре запуска подряд, пока бейдж в README утверждал,
+    что витрина публикуется.
+    """
+    pages = yaml.safe_load(PAGES_PATH.read_text(encoding="utf-8"))
+    steps = pages["jobs"]["deploy"]["steps"]
+    configure = [s for s in steps if "configure-pages" in str(s.get("uses", ""))]
+    assert configure, "шаг configure-pages не найден — публиковать нечем"
+    assert configure[0].get("with", {}).get("enablement") is True, (
+        "configure-pages обязан нести enablement: true, иначе прогон зависит "
+        "от настройки, которой нет в дереве и которую никто не проверяет"
+    )
+
+
 def test_every_workflow_has_a_manual_button():
     """События теряются: у автоматики обязана быть ручная кнопка (правило 104)."""
-    workflows = sorted((project_root() / ".github" / "workflows").glob("*.yml"))
+    workflows = sorted(WORKFLOWS.glob("*.yml"))
     assert workflows, "прогонов не найдено — проверять нечего"
     without: list[str] = []
     for path in workflows:

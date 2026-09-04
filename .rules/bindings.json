@@ -520,8 +520,8 @@
     },
     "111": {
       "status": "active",
-      "mechanism": "document",
-      "where": "src/glossary/cli.py — команда build --check не советует пересобрать витрину, а называет точную команду; сама сборка выполняется build"
+      "mechanism": "gate",
+      "where": ".github/workflows/pages.yml — configure-pages включает Pages сам, а не советует сделать это руками; src/glossary/cli.py называет точную команду пересборки; держит tests/test_workflow_guardrails.py"
     },
     "112": {
       "status": "not-applicable",

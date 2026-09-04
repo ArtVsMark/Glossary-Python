@@ -136,12 +136,17 @@ jobs:
           python -m glossary objections --format json
           -o .github/badges/objections.json
 
+      # НЕ coverage.json. Под этим именем лежит shields-эндпоинт покрытия
+      # кода тестами, который читают соседи; однажды файл полноты уже был
+      # опубликован туда и затёр его молча — значок сломался, а прогон
+      # остался зелёным.
+      #
       # Ответ зависит от версии интерпретатора, и она названа внутри файла:
-      # сравнивать покрытие, снятое на разных версиях, как одно число нельзя.
-      - name: Собрать покрытие официального Python
+      # сравнивать полноту, снятую на разных версиях, как одно число нельзя.
+      - name: Собрать полноту относительно официального Python
         run: >
-          python -m glossary coverage --format json
-          -o .github/badges/coverage.json
+          python -m glossary completeness --format json
+          -o .github/badges/completeness-report.json
 
       - name: Свести разность версий
         run: >

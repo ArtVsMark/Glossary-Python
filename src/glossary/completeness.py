@@ -1,12 +1,18 @@
-"""Покрытие официального Python карточками глоссария.
+"""Полнота глоссария относительно официального Python.
 
 Сопоставляет инвентарь языка (:mod:`glossary.inventory`) с тем, что описано,
 и отвечает на вопрос, которого не задаёт ни одно правило валидации: **чего в
 глоссарии нет вовсе**. Валидатор судит написанные карточки; здесь считаются
 ненаписанные.
 
+**Слово «покрытие» здесь не употребляется намеренно.** Оно уже занято покрытием
+кода тестами — тем, что считает ``pytest --cov`` и показывает одноимённый значок.
+Два разных числа под одним именем однажды уже столкнулись: файл полноты был
+опубликован под именем ``coverage.json`` и затёр shields-эндпоинт покрытия
+тестами, отчего значок соседа сломался молча. Здесь это **полнота**.
+
 Отсюда и отдельный контракт: находка валидатора говорит «эту карточку надо
-поправить», находка покрытия — «эту карточку надо написать». Разные действия,
+поправить», находка полноты — «эту карточку надо написать». Разные действия,
 разный объём, разная частота изменений — смешивать их в одном файле значило бы
 утопить сотню замечаний по содержанию в тысячах ненаписанных.
 
@@ -36,21 +42,21 @@ if TYPE_CHECKING:
 __all__ = [
     "CATEGORIES",
     "SCHEMA_OF",
-    "CategoryCoverage",
-    "CoverageReport",
+    "CategoryCompleteness",
+    "CompletenessReport",
     "as_json",
     "as_markdown",
-    "build_coverage",
+    "build_completeness",
     "collect",
     "known_names",
 ]
 
 CATEGORIES: Final[tuple[str, ...]] = ("builtins", "methods", "exceptions", "stdlib")
-"""Разрезы покрытия в порядке, в котором их читают.
+"""Разрезы полноты в порядке, в котором их читают.
 
-Разрезы не равнозначны по цене пробела: непокрытая встроенная функция задевает
-каждого, непокрытый член модуля — только тех, кто до него дошёл. Общее число
-покрытия усреднило бы это в одно ничего не значащее число.
+Разрезы не равнозначны по цене пробела: неописанная встроенная функция задевает
+каждого, неописанный член модуля — только тех, кто до него дошёл. Одно общее
+число усреднило бы это в ничего не значащую величину.
 """
 
 _KIND_TO_CATEGORY: Final[Mapping[str, str]] = {
@@ -88,8 +94,8 @@ def known_names(glossary: Glossary) -> frozenset[str]:
 
 
 @dataclass(frozen=True, slots=True)
-class CategoryCoverage:
-    """Покрытие одного разреза."""
+class CategoryCompleteness:
+    """Полнота одного разреза."""
 
     name: str
     total: int
@@ -102,7 +108,7 @@ class CategoryCoverage:
 
     @property
     def ratio(self) -> float:
-        """Доля покрытия от нуля до единицы; пустой разрез — единица.
+        """Доля описанного от нуля до единицы; пустой разрез — единица.
 
         Пустой разрез не «не покрыт»: покрывать в нём нечего. Ноль здесь читался
         бы как провал, а это разные вещи.
@@ -111,18 +117,20 @@ class CategoryCoverage:
 
 
 @dataclass(frozen=True, slots=True)
-class CoverageReport:
-    """Покрытие языка карточками на одной версии Python."""
+class CompletenessReport:
+    """Полнота глоссария относительно языка на одной версии Python."""
 
     python_version: str
-    categories: tuple[CategoryCoverage, ...]
-    _by_name: dict[str, CategoryCoverage] = field(init=False, repr=False, compare=False)
+    categories: tuple[CategoryCompleteness, ...]
+    _by_name: dict[str, CategoryCompleteness] = field(
+        init=False, repr=False, compare=False
+    )
 
     def __post_init__(self) -> None:
         """Построить индекс по имени разреза."""
         object.__setattr__(self, "_by_name", {c.name: c for c in self.categories})
 
-    def __getitem__(self, name: str) -> CategoryCoverage:
+    def __getitem__(self, name: str) -> CategoryCompleteness:
         """Разрез по имени."""
         return self._by_name[name]
 
@@ -143,13 +151,13 @@ class CoverageReport:
 
     @property
     def ratio(self) -> float:
-        """Общая доля покрытия."""
+        """Общая доля описанного."""
         return 1.0 if not self.total else self.covered / self.total
 
 
-def build_coverage(
+def build_completeness(
     glossary: Glossary, inventory: Inventory | None = None
-) -> CoverageReport:
+) -> CompletenessReport:
     """Сопоставить глоссарий с инвентарём языка.
 
     Инвентарь передаётся параметром, а не снимается всегда сам: тест обязан
@@ -167,10 +175,10 @@ def build_coverage(
         if item.qualname.lower() not in known:
             missing[category].append(item.qualname)
 
-    return CoverageReport(
+    return CompletenessReport(
         python_version=snapshot.python_version,
         categories=tuple(
-            CategoryCoverage(
+            CategoryCompleteness(
                 name=name,
                 total=totals[name],
                 missing=tuple(sorted(missing[name])),
@@ -184,7 +192,7 @@ def build_coverage(
 # Контракт наружу
 # --------------------------------------------------------------------------- #
 
-SCHEMA_OF: Final = "покрытие официального Python карточками глоссария"
+SCHEMA_OF: Final = "полнота глоссария относительно официального Python"
 """Чего именно эта версия (правило каталога 164)."""
 
 DEFAULT_LIMIT: Final = 20
@@ -192,13 +200,13 @@ DEFAULT_LIMIT: Final = 20
 
 
 def collect(glossary: Glossary, inventory: Inventory | None = None) -> dict[str, Any]:
-    """Собрать покрытие в машиночитаемый вид.
+    """Собрать полноту в машиночитаемый вид.
 
     ``python_version`` вынесена наверх, а не спрятана в разрезы: это ось
     измерения. Один и тот же глоссарий на разных версиях языка даёт разные
     ответы, и файл без версии нечем сравнить со вчерашним.
     """
-    report = build_coverage(glossary, inventory)
+    report = build_completeness(glossary, inventory)
     return {
         **envelope(SCHEMA_OF),
         "python_version": report.python_version,
@@ -223,7 +231,7 @@ def collect(glossary: Glossary, inventory: Inventory | None = None) -> dict[str,
 
 
 def as_json(glossary: Glossary, inventory: Inventory | None = None) -> str:
-    """Покрытие как публикуемый контракт."""
+    """Полнота как публикуемый контракт."""
     return json.dumps(collect(glossary, inventory), ensure_ascii=False, indent=2) + "\n"
 
 
@@ -233,11 +241,11 @@ def as_markdown(
     *,
     limit: int = DEFAULT_LIMIT,
 ) -> str:
-    """Покрытие как письмо: что описать следующим."""
+    """Полнота как письмо: что описать следующим."""
     data = collect(glossary, inventory)
     totals = data["totals"]
     lines = [
-        "# Покрытие официального Python",
+        "# Полнота глоссария относительно Python",
         "",
         f"Python **{data['python_version']}**, карточек **{data['snapshot']['cards']}**. "
         f"Описано **{totals['covered']}** из **{totals['known']}** "

@@ -17,7 +17,7 @@
 документации: то, чего в 3.13 не было, а в 3.14 есть.
 
 Модуль — лист: он не знает ни о карточках, ни о валидаторе, ни об остальном
-пакете. Сопоставлением занимается :mod:`glossary.coverage`, и эта граница
+пакете. Сопоставлением занимается :mod:`glossary.completeness`, и эта граница
 держит инвентарь пригодным к переносу — он ничей.
 """
 
@@ -271,6 +271,19 @@ def _method_items(types: tuple[type, ...]) -> list[Item]:
     return items
 
 
+def _belongs(cls: type, module: str) -> bool:
+    """Класс действительно лежит в модуле, на который ссылается.
+
+    ``__module__`` — это заявление, а не факт: его можно выставить любым.
+    Проверяется наличие под тем же именем в самом модуле.
+    """
+    try:
+        home = importlib.import_module(module)
+    except ImportError:
+        return False
+    return getattr(home, cls.__name__, None) is cls
+
+
 def _exception_items(names: frozenset[str]) -> list[Item]:
     """Исключения, достижимые обходом иерархии ``BaseException``.
 
@@ -283,6 +296,13 @@ def _exception_items(names: frozenset[str]) -> list[Item]:
     исключений сторонних пакетов, оказавшихся в окружении). Публично они
     называются иначе или не называются вовсе, и требовать на них карточку
     значило бы требовать описания того, чего в языке нет.
+
+    Имени модуля мало: исключение может объявить себя принадлежащим
+    ``builtins``, там не находясь. Так делает pytest — его ``Skipped``,
+    ``Failed`` и ``Interrupted`` попадали в инвентарь, и снимок зависел от
+    того, что ещё импортировал процесс. Контракт, который меняется от
+    постороннего импорта, не контракт, поэтому сущность обязана **находиться**
+    в своём модуле, а не только на него ссылаться.
     """
     allowed = names | {"builtins"}
     seen: dict[str, Item] = {}
@@ -294,7 +314,11 @@ def _exception_items(names: frozenset[str]) -> list[Item]:
             continue
         visited.add(current)
         module = getattr(current, "__module__", "builtins")
-        if module in allowed and _is_public(current.__name__):
+        if (
+            module in allowed
+            and _is_public(current.__name__)
+            and _belongs(current, module)
+        ):
             qualname = (
                 current.__name__
                 if module == "builtins"

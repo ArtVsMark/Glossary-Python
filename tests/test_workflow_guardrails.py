@@ -8,6 +8,9 @@
 
 from __future__ import annotations
 
+import re
+import tempfile
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -180,16 +183,16 @@ def test_badges_publish_objections(badges: dict[str, Any]):
     assert "objections.json" in commands
 
 
-def test_badges_publish_coverage(badges: dict[str, Any]):
-    """Покрытие публикуется рядом с замечаниями.
+def test_badges_publish_completeness(badges: dict[str, Any]):
+    """Полнота публикуется рядом с замечаниями.
 
-    Оно отвечает на другой вопрос — не «эту карточку поправить», а «эту
+    Она отвечает на другой вопрос — не «эту карточку поправить», а «эту
     карточку написать», — и без публикации остаётся числом в консоли,
     которое никто не увидит.
     """
     commands = " ".join(step.get("run", "") for step in _steps(badges))
-    assert "glossary coverage" in commands
-    assert "coverage.json" in commands
+    assert "glossary completeness" in commands
+    assert "completeness-report.json" in commands
 
 
 def test_badges_publish_facts_next_to_objections(badges: dict[str, Any]):
@@ -241,3 +244,52 @@ def test_prerelease_is_allowed_only_where_it_is_expected(badges: dict[str, Any])
     assert not [s for s in required if s.get("with", {}).get("allow-prereleases")]
     preview = _steps({"jobs": {"preview": badges["jobs"]["preview"]}})
     assert [s for s in preview if s.get("with", {}).get("allow-prereleases")]
+
+
+def _published_by_workflow(workflow: dict[str, Any]) -> set[str]:
+    """Имена файлов, которые прогон кладёт в каталог значков сам."""
+    written: set[str] = set()
+    for step in _steps(workflow):
+        for match in re.finditer(r"\.github/badges/([\w.-]+)\.json", step.get("run", "")):
+            written.add(match.group(1))
+    return written
+
+
+def test_contract_names_never_collide_with_badge_names(badges: dict[str, Any]):
+    """Контракт не смеет называться так же, как значок.
+
+    Это уже случилось: файл полноты глоссария опубликовали под именем
+    `coverage.json`, где лежит shields-эндпоинт покрытия кода тестами. Файл
+    затёрся, значок соседа сломался, прогон остался зелёным — потому что
+    записать файл поверх другого ошибкой не является.
+
+    Слово «покрытие» в экосистеме занято тестами; полнота глоссария — другое
+    число, и имя у неё другое.
+
+    Сверка идёт с заповедником имён, а не со списком записанного: значок
+    покрытия появляется только при наличии ``coverage.xml``, и сторож,
+    смотрящий на результат прогона, пропустил бы столкновение там, где отчёта
+    о покрытии нет. Ровно это он и сделал при первой проверке красным.
+    """
+    facts = pytest.importorskip("facts")
+    collisions = set(facts.BADGE_NAMES) & _published_by_workflow(badges)
+    assert not collisions, "прогон пишет поверх значка: " + ", ".join(sorted(collisions))
+
+
+def test_test_coverage_badge_survives_publication(badges: dict[str, Any]):
+    """Значок покрытия тестами — стандартный, его читают снаружи."""
+    assert "coverage" not in _published_by_workflow(badges)
+
+
+def test_badge_namespace_covers_everything_written():
+    """Заповедник имён не должен отставать от того, что пишется.
+
+    Иначе новый значок появится вне списка, и сторож перестанет видеть
+    столкновение с ним — тихо, потому что сравнивать будет не с чем.
+    """
+    facts = pytest.importorskip("facts")
+    with tempfile.TemporaryDirectory() as tmp:
+        written = {
+            path.stem for path in facts.write_badges(facts.build_facts(), Path(tmp))
+        }
+    assert written - {"facts"} <= set(facts.BADGE_NAMES)

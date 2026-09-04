@@ -1,8 +1,9 @@
 {
-  "schema": 1,
+  "schema": "1.0",
   "schema_of": "замечания витрины к содержанию глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Stepik-Python-Grader",
+  "generated_at": "2026-09-04T13:38:23+00:00",
   "snapshot": {
     "cards": 1349,
     "schema_version": 2,
@@ -10,8 +11,8 @@
   },
   "totals": {
     "errors": 0,
-    "warnings": 746,
-    "cards_affected": 421
+    "warnings": 739,
+    "cards_affected": 414
   },
   "findings": [
     {
@@ -333,11 +334,11 @@
       ]
     },
     {
-      "rule": "example-indent",
+      "rule": "example-compiles",
       "severity": "warning",
       "scope": "card",
-      "message": "пример открывает блок, но ни одна строка не имеет отступа — код не запустится",
-      "count": 97,
+      "message": "пример не компилируется: IndentationError — expected an indented block after function definition on line 1",
+      "count": 90,
       "cards": [
         "бинарный-поиск",
         "битовые-операции",
@@ -357,7 +358,6 @@
         "literal-v1-v2",
         "namedtuple",
         "typeddict",
-        "input",
         "callable",
         "delattr",
         "dir",
@@ -382,7 +382,6 @@
         "dataclasses.fields",
         "dataclasses.replace",
         "field",
-        "dt-utcfromtimestamp",
         ".name-.value",
         "auto",
         "enum",
@@ -392,13 +391,9 @@
         "итерация-и-сравнение-enum",
         "functools.total_ordering",
         "functools.wraps",
-        "io.textiowrapper",
-        "logging-Handler",
         "os-scandir",
         "os.walk",
         ".iterdir",
-        "random.random",
-        "random.shuffle",
         "re.finditer",
         "threading-lock",
         "threading-rlock",
@@ -413,7 +408,6 @@
         "атрибуты-экземпляра-и-класса",
         "методы-экземпляра",
         "множественное-наследование-mro",
-        "dict-merge",
         "строки-в-памяти-интернирование-неизменяе",
         "тройные-кавычки",
         "match-case",

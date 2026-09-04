@@ -1,8 +1,9 @@
 {
-  "schema": 1,
+  "schema": "1.0",
   "schema_of": "покрытие официального Python карточками глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Stepik-Python-Grader",
+  "generated_at": "2026-09-04T13:38:24+00:00",
   "python_version": "3.14",
   "snapshot": {
     "cards": 1349,

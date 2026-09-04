@@ -1,0 +1,93 @@
+"""Тесты доменных моделей."""
+
+from __future__ import annotations
+
+import pytest
+
+from glossary.models import SCHEMA_VERSION, Entry, Glossary
+from tests.factories import make_entry, make_glossary
+
+
+def test_entry_is_immutable():
+    entry = make_entry()
+    with pytest.raises(AttributeError):
+        entry.name = "другое"  # type: ignore[misc]
+
+
+def test_from_dict_ignores_unknown_keys():
+    entry = Entry.from_dict({**make_entry().to_dict(), "лишнее": "значение"})
+    assert entry.id == "sample"
+
+
+def test_from_dict_fills_missing_fields():
+    entry = Entry.from_dict({"id": "x", "name": "x()"})
+    assert entry.description == ""
+    assert entry.version is None
+
+
+def test_to_dict_preserves_field_order():
+    assert list(make_entry().to_dict()) == [
+        "id",
+        "name",
+        "group",
+        "subcat",
+        "cg",
+        "description",
+        "syntax",
+        "examples",
+        "version",
+        "docs",
+    ]
+
+
+def test_roundtrip_dict():
+    entry = make_entry(version="3.12+")
+    assert Entry.from_dict(entry.to_dict()) == entry
+
+
+def test_example_lines_splits_source_string():
+    assert make_entry(examples="a\nb\nc").example_lines == ["a", "b", "c"]
+
+
+def test_groups_keep_first_appearance_order(sample_glossary: Glossary):
+    assert sample_glossary.groups == ("Первый", "Второй")
+
+
+def test_in_group_filters_entries(sample_glossary: Glossary):
+    assert [e.id for e in sample_glossary.in_group("Первый")] == ["alpha", "beta"]
+
+
+def test_get_returns_none_for_unknown_id(sample_glossary: Glossary):
+    assert sample_glossary.get("alpha") is not None
+    assert sample_glossary.get("нет-такого") is None
+
+
+def test_len_and_iteration(sample_glossary: Glossary):
+    assert len(sample_glossary) == 4
+    assert [e.id for e in sample_glossary] == ["alpha", "beta", "gamma", "delta"]
+
+
+def test_index_uses_first_entry_for_duplicate_ids():
+    first = make_entry(id="dup", name="первая")
+    second = make_entry(id="dup", name="вторая")
+    glossary = make_glossary(first, second)
+    assert glossary.get("dup") is first
+
+
+def test_stats_aggregates(sample_glossary: Glossary):
+    stats = sample_glossary.stats()
+    assert stats.total == 4
+    assert stats.groups["Первый"] == 2
+    assert stats.color_groups["module"] == 2
+    assert stats.versioned == 0
+    assert stats.avg_description > 0
+
+
+def test_stats_on_empty_glossary():
+    stats = Glossary(entries=()).stats()
+    assert stats.total == 0
+    assert stats.avg_description == 0.0
+
+
+def test_default_schema_version():
+    assert Glossary(entries=()).schema_version == SCHEMA_VERSION

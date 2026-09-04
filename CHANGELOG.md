@@ -28,6 +28,9 @@
 - **CI на GitHub Actions**: линтер и типы, тесты на Python 3.11–3.13, проверка
   качества данных и синхронности витрины, отчёт в сводке запуска.
 - **Публикация витрины** на GitHub Pages при изменении `python_glossary.html`.
+  Витрина доступна по адресу https://artvsmark.github.io/Glossary-Python/,
+  источник данных — по `/glossary.json` там же: контракт для потребителей,
+  которым нужен глоссарий выгрузкой, а не копией файла.
 - **Шаблоны issue и pull request**, `CODEOWNERS`, Dependabot.
 - **Документация**: README, `CONTRIBUTING.md`, `docs/architecture.md`,
   `CLAUDE.md`, лицензия MIT.

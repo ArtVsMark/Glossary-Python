@@ -345,14 +345,40 @@ def rule_related_resolves(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]
     Оборванная ссылка не видна глазами: она просто не отрисуется, и читатель
     не узнает, что рядом было что-то полезное.
     """
-    known = {e.id for e in g.entries}
     for entry in g.entries:
         for target in entry.related:
-            if target not in known:
+            if g.resolve(target) is None:
                 yield Issue(
                     Severity.WARNING,
                     "related-resolves",
                     f"связь ведёт на {target!r}, которого в снимке нет",
+                    entry.id,
+                )
+
+
+def rule_related_errors_resolve(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Названная в карточке ошибка соответствует карточке-исключению.
+
+    Источник хранит здесь имена (``IndexError``), а не идентификаторы, поэтому
+    разрешение идёт через :meth:`Glossary.resolve` — без учёта регистра. Имя,
+    не соответствующее ни одной карточке, читателю не поможет: блок «частые
+    ошибки» его просто не отрисует, и связь пропадёт молча.
+    """
+    for entry in g.entries:
+        for target in entry.related_errors:
+            found = g.resolve(target)
+            if found is None:
+                yield Issue(
+                    Severity.WARNING,
+                    "related-errors-resolve",
+                    f"названа ошибка {target!r}, карточки с таким именем в снимке нет",
+                    entry.id,
+                )
+            elif found.kind != "exception":
+                yield Issue(
+                    Severity.WARNING,
+                    "related-errors-resolve",
+                    f"{target!r} — карточка вида {found.kind!r}, а не исключение",
                     entry.id,
                 )
 
@@ -400,6 +426,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_examples,
     rule_example_indent,
     rule_related_resolves,
+    rule_related_errors_resolve,
     rule_duplicate_title,
     rule_section_size,
 )

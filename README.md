@@ -43,9 +43,31 @@ HTML. Замечания к содержанию едут обратно пис�
 | --- | --- |
 | [`/Glossary-Python/`](https://artvsmark.github.io/Glossary-Python/) | Витрина: поиск, фильтры, тёмная тема |
 | [`/Glossary-Python/glossary.json`](https://artvsmark.github.io/Glossary-Python/glossary.json) | Снимок карточек обычным HTTP — без клона и без токена |
+| [`badges/.github/badges/facts.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/facts.json) | Числа о проекте: карточки, разделы, замечания, состав ответа каталогу |
+| [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию для источника: правило, уровень, полный список карточек |
 
-Второй адрес — контракт для потребителей данных: глоссарий можно забирать
-выгрузкой, а не копированием файла из репозитория.
+Это контракты, а не удобство. Глоссарий забирают выгрузкой, а не копированием
+файла из репозитория. А `objections.json` — обратный поток: карточки правятся
+в источнике, замечания находятся здесь, и переносить руками список из
+четырёхсот идентификаторов бессмысленно — источник читает его сам.
+
+```jsonc
+{
+  "schema": 1,
+  "producer": "ArtVsMark/Glossary-Python",
+  "source": "ArtVsMark/Stepik-Python-Grader",
+  "snapshot": { "cards": 1349, "schema_version": 2 },
+  "totals": { "errors": 0, "warnings": 746, "cards_affected": 421 },
+  "findings": [
+    { "rule": "example-indent", "severity": "warning",
+      "message": "пример открывает блок, но ни одна строка не имеет отступа…",
+      "count": 97, "cards": ["бинарный-поиск", "…"] }
+  ]
+}
+```
+
+Отметки времени в файле нет намеренно: она меняла бы его на каждом прогоне, и
+ветка копила бы коммиты «ничего не изменилось». Дата есть у самого коммита.
 
 ## Откуда берутся данные
 
@@ -95,6 +117,7 @@ glossary build                          # пересобрать python_glossary
 glossary build --check                  # витрина синхронна с данными? (для CI)
 glossary export -f markdown -o out.md   # экспорт: html, json, markdown, csv
 glossary objections                     # замечания к содержанию — письмом в источник
+glossary objections --format json       # тот же список контрактом для машины
 ```
 
 Пакет запускается и как модуль: `python -m glossary …`. Runtime-зависимостей нет —

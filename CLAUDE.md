@@ -86,6 +86,7 @@ make test       # pytest
 | Новая команда CLI | Подпарсер в `cli.py` + функция `_cmd_*` |
 | Новое поле карточки | Сначала в источнике; здесь — `models.Entry`, `glossary.schema.json`, `schema_version` |
 | Замечание к содержанию | Правило в `validation.py`; отчёт даёт `make objections` |
+| Новый контракт наружу | Модуль рядом с `objections.py` + шаг в `badges.yml` + сторож |
 | Новое число в README | `marker_values()` в `scripts/facts.py` + маркер в тексте |
 | Запись в журнал | Файл `changelog.d/<slug>.<секция>.md`, одна строка |
 | Новая роль | Раздел в `docs/agent/roles.md`: вопрос, артефакт, возражение |

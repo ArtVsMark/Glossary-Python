@@ -20,6 +20,7 @@ from glossary.validation import (
     rule_id_format,
     rule_kind,
     rule_non_empty,
+    rule_related_errors_resolve,
     rule_related_resolves,
     rule_required_fields,
     rule_section_size,
@@ -219,6 +220,32 @@ def test_related_resolves_accepts_existing_link():
     assert list(rule_related_resolves(glossary, CFG)) == []
 
 
+def test_related_errors_resolve_ignores_case():
+    """Источник хранит имя ``IndexError``, id карточки-исключения — в нижнем."""
+    glossary = make_glossary(
+        make_entry(id="a", related_errors=("IndexError",)),
+        make_entry(id="indexerror", title="IndexError", kind="exception"),
+    )
+    assert list(rule_related_errors_resolve(glossary, CFG)) == []
+
+
+def test_related_errors_resolve_flags_unknown_name():
+    glossary = make_glossary(make_entry(id="a", related_errors=("НетТакойОшибки",)))
+    issues = list(rule_related_errors_resolve(glossary, CFG))
+    assert issues[0].severity is Severity.WARNING
+    assert "НетТакойОшибки" in issues[0].message
+
+
+def test_related_errors_resolve_flags_non_exception():
+    """Ссылка на не-исключение обещает читателю не то, что покажет."""
+    glossary = make_glossary(
+        make_entry(id="a", related_errors=("len",)),
+        make_entry(id="len", title="len()", kind="function"),
+    )
+    issues = list(rule_related_errors_resolve(glossary, CFG))
+    assert issues and "не исключение" in issues[0].message
+
+
 def test_duplicate_title_reports_all_locations():
     glossary = make_glossary(
         make_entry(id="a", title="len()", section="Первый"),
@@ -253,6 +280,7 @@ def test_all_rules_are_registered():
         rule_id_format,
         rule_kind,
         rule_non_empty,
+        rule_related_errors_resolve,
         rule_related_resolves,
         rule_required_fields,
         rule_section_size,
@@ -286,6 +314,7 @@ def test_rule_names_are_unique_and_stable():
         "examples",
         "id-format",
         "kind",
+        "related-errors-resolve",
         "related-resolves",
         "required-fields",
         "section-size",

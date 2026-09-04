@@ -259,6 +259,12 @@ a{color:inherit}
   transition:border-color .16s,color .16s;
 }
 .related a:hover{border-color:var(--accent);color:var(--accent)}
+.related.errs{margin-top:2px}
+.related.errs a{
+  border-color:color-mix(in srgb,var(--c-exc) 32%,transparent);
+  color:color-mix(in srgb,var(--c-exc) 88%,var(--text));
+}
+.related.errs a:hover{border-color:var(--c-exc);color:var(--c-exc)}
 .tok-kw{color:var(--kw)}.tok-str{color:var(--str)}.tok-num{color:var(--num)}
 .tok-com{color:var(--com);font-style:italic}.tok-bi{color:var(--bi)}.tok-fn{color:var(--fn)}
 .tok-com b{color:var(--text);font-style:normal;font-weight:600}
@@ -378,7 +384,7 @@ const I18N = {
     all:"Все", shown:"Показано", of:"из",
     term:"понятие", function:"функция", exception:"исключение", construct:"конструкция",
     syntax:"Синтаксис", examples:"Примеры", copy:"Копировать", copied:"Скопировано",
-    details:"Подробнее", collapse:"Свернуть", seeAlso:"См. также",
+    details:"Подробнее", collapse:"Свернуть", seeAlso:"См. также", commonErrors:"Частые ошибки",
     noTranslation:"Нет перевода на этот язык — показан русский текст",
     emptyTitle:"Ничего не найдено", emptyHint:"Попробуйте другой запрос или снимите фильтры.",
     stats:(n,s)=>`${n} карточек · ${s} разделов`
@@ -391,7 +397,7 @@ const I18N = {
     all:"All", shown:"Showing", of:"of",
     term:"term", function:"function", exception:"exception", construct:"construct",
     syntax:"Syntax", examples:"Examples", copy:"Copy", copied:"Copied",
-    details:"Details", collapse:"Collapse", seeAlso:"See also",
+    details:"Details", collapse:"Collapse", seeAlso:"See also", commonErrors:"Common errors",
     noTranslation:"No translation for this language — showing Russian",
     emptyTitle:"Nothing found", emptyHint:"Try another query or clear the filters.",
     stats:(n,s)=>`${n} entries · ${s} sections`
@@ -444,6 +450,11 @@ const highlightPy = code => code.split("\n").map(hlLine).join("\n");
 
 /* ---------- индекс ---------- */
 const BY_ID = new Map(DATA.map(d => [d.id, d]));
+/* Источник хранит в related_errors имена (`IndexError`), а идентификаторы
+   карточек-исключений приведены к нижнему регистру. Разрешение общее для всех
+   ссылок — иначе оно разъедется между блоками. */
+const BY_LOWER = new Map(DATA.map(d => [d.id.toLowerCase(), d]));
+const resolve = ref => BY_ID.get(ref) || BY_LOWER.get(String(ref).toLowerCase());
 const SECTIONS = [];
 DATA.forEach(d => { if(!SECTIONS.includes(d.section)) SECTIONS.push(d.section); });
 const SECTION_COUNT = Object.create(null);
@@ -513,7 +524,10 @@ function cardHtml(d){
     ? `<div class="field-label">${t("syntax")}</div><div class="syntax">${highlightPy(d.syntax)}</div>` : "";
   const hint = isTranslated(d) ? ""
     : `<div class="untranslated">⚑ ${t("noTranslation")}</div>`;
-  const hasDetails = txtOr(d.body) || (d.examples && d.examples.length) || (d.related && d.related.length);
+  const hasDetails = txtOr(d.body)
+    || (d.examples && d.examples.length)
+    || (d.related && d.related.length)
+    || (d.related_errors && d.related_errors.length);
   return `<article class="card" id="${esc(d.id)}" style="--cg:${cgv}">
   <div class="card-top">
     <div class="card-name">${mark(d.title)}</div>
@@ -545,10 +559,15 @@ function detailsHtml(d){
       <button class="copy-btn" type="button">${ICON_COPY}<span>${t("copy")}</span></button></div>
       <pre class="examples"><code>${highlightPy(d.examples.join("\n"))}</code></pre>`);
   }
-  const links = (d.related || []).filter(id => BY_ID.has(id));
+  const links = (d.related || []).map(resolve).filter(Boolean);
   if(links.length){
     parts.push(`<div class="field-label">${t("seeAlso")}</div><div class="related">` +
-      links.map(id => `<a href="#${esc(id)}">${esc(BY_ID.get(id).title)}</a>`).join("") + "</div>");
+      links.map(e => `<a href="#${esc(e.id)}">${esc(e.title)}</a>`).join("") + "</div>");
+  }
+  const errs = (d.related_errors || []).map(resolve).filter(Boolean);
+  if(errs.length){
+    parts.push(`<div class="field-label">${t("commonErrors")}</div><div class="related errs">` +
+      errs.map(e => `<a href="#${esc(e.id)}">${esc(e.title)}</a>`).join("") + "</div>");
   }
   return parts.join("");
 }
@@ -644,6 +663,24 @@ document.addEventListener("click", () => {
   const m = $("#ddMenu"); if(m) m.classList.remove("open");
 });
 
+/* Прокрутка к карточке, которой на экране ещё нет.
+
+   Два подвоха, и оба не видны глазами. Первый: карточка может быть за
+   границей отрисованного — её надо дорисовать, иначе прокручивать не к чему.
+   Второй: сразу после вставки раскладка ещё не пересчитана, и позиция,
+   вычисленная в тот же кадр, устаревает — прокрутка уезжает в пустоту ниже
+   сетки. Отсюда ожидание кадра и мгновенный переход: плавная анимация через
+   сто тысяч пикселей не помогает читателю, а мешает. */
+function scrollToIndex(idx, block){
+  if(idx < 0) return;
+  while(drawn <= idx) drawChunk();
+  const id = visible[idx].id;
+  requestAnimationFrame(() => {
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({block, behavior:"instant"});
+  });
+}
+
 /* ---------- буквенная рельса ---------- */
 /* Алфавит собирается из самих карточек: в глоссарии соседствуют латинские
    имена API и русские названия понятий, и жёсткая латиница просто спрятала
@@ -658,10 +695,7 @@ function updateRail(){
   $("#azRail").querySelectorAll("button").forEach((b,i) => {
     b.onclick = () => {
       const idx = visible.findIndex(d => initial(d) === RAIL[i]);
-      if(idx < 0) return;
-      while(drawn <= idx) drawChunk();
-      const el = document.getElementById(visible[idx].id);
-      if(el) el.scrollIntoView({block:"start"});
+      if(idx >= 0) scrollToIndex(idx, "start");
     };
   });
 }
@@ -702,10 +736,7 @@ function revealHash(){
     $("#search").value = "";
     buildKindFilters(); buildGroupFilters(); render();
   }
-  const idx = visible.findIndex(d => d.id === id);
-  while(drawn <= idx) drawChunk();
-  const el = document.getElementById(id);
-  if(el) el.scrollIntoView({block:"center"});
+  scrollToIndex(visible.findIndex(d => d.id === id), "center");
 }
 
 /* ---------- панель ---------- */

@@ -178,15 +178,19 @@ class Glossary:
     entries: tuple[Entry, ...]
     schema_version: int = SCHEMA_VERSION
     _by_id: dict[str, Entry] = field(init=False, repr=False, compare=False)
+    _by_lower: dict[str, Entry] = field(init=False, repr=False, compare=False)
 
     def __post_init__(self) -> None:
         """Построить индекс по идентификатору."""
         # Дубликаты id — находка валидатора, а не отказ загрузки: индекс
         # строится по первому вхождению, чтобы отчёт вышел полным.
         index: dict[str, Entry] = {}
+        lowered: dict[str, Entry] = {}
         for entry in self.entries:
             index.setdefault(entry.id, entry)
+            lowered.setdefault(entry.id.lower(), entry)
         object.__setattr__(self, "_by_id", index)
+        object.__setattr__(self, "_by_lower", lowered)
 
     def __len__(self) -> int:
         """Количество карточек."""
@@ -199,6 +203,21 @@ class Glossary:
     def get(self, entry_id: str) -> Entry | None:
         """Найти карточку по идентификатору."""
         return self._by_id.get(entry_id)
+
+    def resolve(self, reference: str) -> Entry | None:
+        """Найти карточку по ссылке из другой карточки.
+
+        Точное совпадение, затем совпадение без учёта регистра. Второй проход
+        нужен из-за конвенции источника: ``related_errors`` хранит имена
+        исключений (``IndexError``), а идентификаторы карточек-исключений
+        приведены к нижнему регистру. Конвенция нигде не записана, поэтому
+        разрешение общее для всех видов ссылок — иначе оно разъедется по
+        экспортёрам и витрине.
+        """
+        found = self._by_id.get(reference)
+        if found is not None:
+            return found
+        return self._by_lower.get(reference.lower())
 
     @property
     def sections(self) -> tuple[str, ...]:
@@ -220,6 +239,7 @@ class Glossary:
             versioned=sum(1 for e in self.entries if e.version),
             translated=sum(1 for e in self.entries if e.summary.en and e.body.en),
             with_related=sum(1 for e in self.entries if e.related),
+            with_errors=sum(1 for e in self.entries if e.related_errors),
             avg_summary=(
                 sum(len(e.summary.ru) for e in self.entries) / total if total else 0.0
             ),
@@ -237,4 +257,5 @@ class GlossaryStats:
     versioned: int
     translated: int
     with_related: int
+    with_errors: int
     avg_summary: float

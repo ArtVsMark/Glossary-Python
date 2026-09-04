@@ -80,6 +80,27 @@ def test_in_section_filters_entries(sample_glossary: Glossary):
     assert [e.id for e in sample_glossary.in_section("Первый")] == ["alpha", "beta"]
 
 
+def test_resolve_falls_back_to_case_insensitive_match():
+    """Источник хранит имя ``IndexError``, id карточки-исключения — в нижнем.
+
+    Конвенция нигде не записана, поэтому разрешение общее для всех ссылок:
+    иначе оно разъедется между валидатором, экспортёрами и витриной.
+    """
+    entry = make_entry(id="indexerror", title="IndexError")
+    glossary = make_glossary(entry)
+    assert glossary.resolve("IndexError") is entry
+    assert glossary.resolve("indexerror") is entry
+    assert glossary.resolve("нет-такого") is None
+
+
+def test_resolve_prefers_exact_match():
+    """Точное совпадение выигрывает: регистр может различать карточки."""
+    exact = make_entry(id="Ref", title="точная")
+    lowered = make_entry(id="ref", title="в нижнем")
+    glossary = make_glossary(lowered, exact)
+    assert glossary.resolve("Ref") is exact
+
+
 def test_get_returns_none_for_unknown_id(sample_glossary: Glossary):
     assert sample_glossary.get("alpha") is not None
     assert sample_glossary.get("нет-такого") is None
@@ -105,6 +126,7 @@ def test_stats_aggregates(sample_glossary: Glossary):
     assert stats.kinds["function"] == 4
     assert stats.versioned == 0
     assert stats.translated == 4
+    assert stats.with_errors == 0
     assert stats.avg_summary > 0
 
 

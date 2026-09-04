@@ -149,3 +149,39 @@ def test_every_workflow_has_a_manual_button():
         if "workflow_dispatch" not in triggers:
             without.append(path.name)
     assert not without, "прогоны без ручного запуска: " + ", ".join(without)
+
+
+BADGES_PATH = WORKFLOWS / "badges.yml"
+
+
+@pytest.fixture(scope="module")
+def badges() -> dict[str, Any]:
+    """Разобранный публикующий прогон."""
+    document: dict[str, Any] = yaml.safe_load(BADGES_PATH.read_text(encoding="utf-8"))
+    return document
+
+
+def _steps(workflow: dict[str, Any]) -> list[dict[str, Any]]:
+    return [step for job in workflow["jobs"].values() for step in job["steps"]]
+
+
+def test_badges_publish_objections(badges: dict[str, Any]):
+    """Обратный поток к источнику держится прогоном, а не обещанием.
+
+    Замечания публикуются рядом со значками: список из четырёхсот
+    идентификаторов, перенесённый руками, не выживает ни одной итерации.
+    Если шаг исчезнет, потребитель будет читать вчерашний файл и не узнает
+    об этом — поэтому шаг сторожится.
+    """
+    commands = " ".join(step.get("run", "") for step in _steps(badges))
+    assert "glossary objections" in commands, (
+        "badges.yml перестал собирать замечания — источнику нечего читать"
+    )
+    assert "objections.json" in commands
+
+
+def test_badges_publish_facts_next_to_objections(badges: dict[str, Any]):
+    """Оба контракта уезжают одним прогоном и лежат в одном месте."""
+    commands = " ".join(step.get("run", "") for step in _steps(badges))
+    assert "facts.py --badges" in commands
+    assert ".github/badges" in commands

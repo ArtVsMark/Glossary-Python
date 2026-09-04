@@ -85,10 +85,13 @@ jobs:
           cache-dependency-path: pyproject.toml
 
       - name: Установка пакета
-        run: python -m pip install -e .
+        run: python -m pip install -e ".[dev]"
 
       - name: Валидация данных
         run: python -m glossary validate
+
+      - name: Ответ каталогу правил
+        run: pytest tests/test_rules_bindings.py -q
 
       - name: Витрина собрана из текущих данных
         run: python -m glossary build --check

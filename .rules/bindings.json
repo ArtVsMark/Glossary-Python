@@ -1,546 +1,869 @@
 {
-  "schema": "1.0",
+  "schema": "1.1",
   "project": "ArtVsMark/Glossary-Python",
   "catalogue": "https://github.com/ArtVsMark/Engineering-Incidents-Playbook",
   "_": "Ответ ЭТОГО проекта по каждому правилу каталога. Статус — active, rejected, not-applicable или unreviewed; у двух отрицательных обязательна причина в поле why, у active — mechanism и where.",
   "_зачем": "Ответ живёт здесь, а не в каталоге, потому что здесь живёт механизм: одно правило в разных проектах держится по-разному.",
   "rules": {
     "001": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md — раздел «Каталог правил»",
+      "why": "до него не дошли руки: своего транспорта к GitHub API у проекта нет, прогоны ходят готовыми действиями; предмет остаётся у агентских окон, и запрета на дорогой вызов в репозитории не записано"
     },
     "002": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "pipeline",
+      "where": "Makefile — цель check — линтер, типы, тесты, валидация и синхронность витрины исполняются командой, а не чек-листом; те же шаги в .pre-commit-config.yaml и .github/workflows/ci.yml"
     },
     "003": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "автоматика по префиксу веток разработки не настроена: прогоны фильтруют только основную ветку, PR открывается вручную"
     },
     "004": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/validation.py — валидатор обходит все карточки и собирает полный отчёт, а не падает на первом нарушении; закреплено в tests/test_validation.py"
     },
     "005": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "README.md",
+      "why": "до него не дошли руки: числа о составе глоссария и о проверках вписаны в README руками, сборки и значков нет"
     },
     "006": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "предмет чужой: срок жизни агентского окна ведёт разработчик, репозиторий об окнах ничего не знает"
     },
     "007": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "предмет чужой: реестр сессий ведётся вне репозитория"
     },
     "008": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "предмета нет: <details> в действующих документах не встречается. Единственное вхождение — экспорт в Markdown (src/glossary/exporters/markdown.py), и это названная самим правилом законная зона: справочник, где читатель кликает и ищет конкретное"
     },
     "009": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/validation.py — правило unique-id сворачивает карточки по идентификатору прежде, чем считать; счётчики в stats считают карточки, а не записи"
     },
     "010": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/validation.py — правило non-empty: пустой вход объявлен ошибкой входа, а не успехом; оба отказа закреплены в tests/test_data_integrity.py и tests/test_validation.py"
     },
     "011": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "наблюдения за внешним API у проекта нет: прогоны запускаются событием и расписанием, циклов опроса не заведено"
     },
     "012": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md — раздел «Чего не делать»",
+      "why": "требует суждения: гейт различает имена веток, но не намерения; правило само относит себя к машинно непроверяемым"
     },
     "013": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "до него не дошли руки: запрета на heredoc с экранированием в своде нет, хука вроде pre_tool_use.py в проекте не заведено"
     },
     "014": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "CONTRIBUTING.md — раздел «Правка кода»: новое поведение сопровождается тестом"
     },
     "015": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "параллельных исполнителей в проекте нет: работа идёт одним окном, общего дерева никто не делит"
     },
     "016": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "предмета нет: ни один механизм проекта не обрезает вывод по пределу — валидатор печатает все замечания, экспортёры отдают материал целиком"
     },
     "017": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "квотируемых ресурсов у проекта нет: собственных обращений к внешним API ни в коде, ни в прогонах"
     },
     "018": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/workflows/ci.yml",
+      "why": "до него не дошли руки: прогоны идут только на ubuntu-latest, хотя аудитория справочника работает и на Windows, и на macOS"
     },
     "019": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "аудитов в проекте пока не проводилось: предмет появится вместе с первой ревизией"
     },
     "020": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "волн и пакетных прогонов в проекте нет"
     },
     "021": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "README.md — витрина, CONTRIBUTING.md — контрибьютор, CLAUDE.md — агентское окно, docs/architecture.md — решения и долг: документы разведены по читателю"
     },
     "022": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "docs/architecture.md — канон архитектурных решений, README.md и CLAUDE.md ссылаются на него, а не пересказывают"
     },
     "023": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "README.md — состав, команды и порядок правки; история в CHANGELOG.md, решения в docs/architecture.md"
     },
     "024": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "CHANGELOG.md — журнал вынесен из README, где он лежал до перестройки проекта"
     },
     "025": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "трекера у проекта пока нет: ссылок на задачи нет ни в одном документе"
     },
     "026": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "ревизий с находками пока не было; предмет появится вместе с первым аудитом"
     },
     "027": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": ".rules/proposals.json — пустой список объявлен значением, а не пробелом; та же форма у tests/quality_baseline.json с полем _описание"
     },
     "028": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "трекера у проекта пока нет"
     },
     "029": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "CLAUDE.md — компактные триггеры с отсылкой к docs/architecture.md и CONTRIBUTING.md вместо пересказа"
     },
     "030": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CHANGELOG.md",
+      "why": "до него не дошли руки: журнал ведётся одним файлом, фрагментов нет — при параллельных ветках это конфликт на каждом втором изменении"
     },
     "031": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "параллельных исполнителей нет"
     },
     "032": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "docs/architecture.md",
+      "why": "до него не дошли руки: витрина ни разу не проверялась запуском в браузере автоматически; её JavaScript не покрыт ничем"
     },
     "033": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "длинных работ под квотой у проекта нет"
     },
     "034": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "параллельных исполнителей нет"
     },
     "035": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "pyproject.toml",
+      "why": "до него не дошли руки: версия задана руками в pyproject.toml и повторена в src/glossary/__init__.py — два источника, оба ручные"
     },
     "036": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "двух окружений разной цены у проекта нет"
     },
     "037": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "проверок на подделках у проекта нет: тесты идут на настоящих данных и на фабриках собственного формата"
     },
     "038": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "предмет чужой: имя агентского окна задаётся вне репозитория"
     },
     "039": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "src/glossary/cli.py — модульный docstring объявляет три исхода: успех, проверка не пройдена, повреждённые данные или аргументы"
     },
     "040": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "условных пропусков в наборе нет: единственный skipif снят с прогонов и заменён pytest.importorskip для необязательной проверки по JSON Schema"
     },
     "041": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "метрик с недоступной в точке измерения частью у проекта нет"
     },
     "042": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "docs/architecture.md — раздел «Принятые решения»: у каждого решения названа его цена и отвергнутая альтернатива"
     },
     "043": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "docs/architecture.md",
+      "why": "до него не дошли руки: отдельного журнала решений нет, ADR не заведены — решения живут одним живым документом и правятся на месте"
     },
     "044": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "находок и внешних отчётов у проекта пока нет"
     },
     "045": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/exporters/html.py — сборка пустой витрины отклоняется вместо тихой записи; src/glossary/loader.py — повреждённые данные дают DataFormatError, а не пустой глоссарий; закреплено в tests/test_validation.py и tests/test_loader.py"
     },
     "046": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "мультиплатформенных гарантий проект не даёт: прогоны идут на одной ОС, и это записано отдельным ответом по правилу 018"
     },
     "047": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "предмет чужой: перезапуск окон делает разработчик"
     },
     "048": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "скрытых порогов по внешнему индикатору проект не выводит"
     },
     "049": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "pipeline",
+      "where": ".github/workflows/rules-inbox.yml — состояние по правилам вычисляется прогоном из .rules/bindings.json и выгрузки каталога, отдельного реестра руками не ведётся"
     },
     "050": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/quality_baseline.json — потолок замечаний; tests/test_data_integrity.py не даёт числу расти и требует опустить планку, когда данные стали чище"
     },
     "051": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "src/glossary/validation.py — разделение на ERROR и WARNING: ошибки ломают прогон, предупреждения нет; обоснование в docs/architecture.md"
     },
     "052": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "очереди слияний у проекта нет"
     },
     "053": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "очереди слияний у проекта нет"
     },
     "054": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "длинных прогонов по внешнему материалу у проекта нет"
     },
     "055": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "data/glossary.schema.json и поле docs каждой карточки — внешний арбитр для содержимого глоссария — документация Python, а не наше ожидание"
     },
     "056": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "src/glossary/cli.py",
+      "why": "до него не дошли руки: коды возврата описаны тем, что они означают, но не тем, чего они не означают"
     },
     "057": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": ".rules/bindings.json — правило без механизма отвечает mechanism none и называет причину, а не пропускается"
     },
     "058": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "квот у проекта нет"
     },
     "059": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "исчерпаемых ресурсов у проекта нет"
     },
     "060": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "параллельных волн нет"
     },
     "061": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "исполнителей, запускающих продукт в общей среде, нет"
     },
     "062": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "до него не дошли руки: ролей в проекте не заведено вовсе — ни одной, поэтому и критерия приёмки роли нет"
     },
     "063": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "автоматики, правящей чужое, у проекта нет"
     },
     "064": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/ISSUE_TEMPLATE/*.yml",
+      "why": "до него не дошли руки: шаблоны задач проставляют метки «контент», «баг», «новая карточка», «зависимости», «ci», но в репозитории этих меток не заведено — классификация не доезжает"
     },
     "065": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "аудитория проекта одноязычна: и глоссарий, и документы на русском"
     },
     "066": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "атомарной подмены файлов под блокировкой в проекте нет"
     },
     "067": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "операций с временным состоянием у проекта нет: экспортёры возвращают строку и не трогают файловую систему"
     },
     "068": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/validation.py — правило color-group принимает цветовые группы по списку разрешённого (COLOR_GROUPS), а не отсекает запрещённые; тот же приём у data/glossary.schema.json через enum"
     },
     "069": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "хранилищ с несколькими писателями у проекта нет"
     },
     "070": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "многослойной эвристической защиты у проекта нет"
     },
     "071": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "намеренных дублей в коде нет"
     },
     "072": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "tests/test_validation.py",
+      "why": "до него не дошли руки: платформозависимых нарушений проект не ловит — прогоны идут на одной ОС, фикстуры второй платформы нет"
     },
     "073": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "pyproject.toml — версии ruff, mypy и pytest заданы одним местом в extra dev; .pre-commit-config.yaml закрепляет ruff и mypy тегами. Верхней границы нет — это остаток, названный отдельно"
     },
     "074": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "необратимых шагов у проекта нет: публикации пакета и релизного конвейера не заведено"
     },
     "075": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/validation.py — правило non-empty; src/glossary/exporters/html.py отказывается собирать витрину без карточек; закреплено в tests/test_validation.py и tests/test_data_integrity.py"
     },
     "076": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/loader.py — сообщения об ошибках называют путь к файлу данных, который есть у читателя, а не путь внутри репозитория автора"
     },
     "077": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "локализации у проекта нет"
     },
     "078": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "прерываемых пользователем работ у проекта нет"
     },
     "079": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "реестров фоновых задач у проекта нет"
     },
     "080": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "CLAUDE.md — раздел «Каталог правил»: правило, родившееся здесь, едет в каталог через .rules/proposals.json как инцидент"
     },
     "081": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "чужой код проект не запускает"
     },
     "082": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "docs/architecture.md",
+      "why": "до него не дошли руки: карты направлений нет. У продукта различимы пласты — данные, витрина, инструменты, документация, — но владельца ни у одного не названо"
     },
     "083": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "недетерминированных компонентов у проекта нет: сборка витрины детерминирована и закреплена тестом"
     },
     "084": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "необязательных каналов у продукта нет"
     },
     "085": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "обращений к модели из кода проекта нет"
     },
     "086": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "аудитов с находками пока не было"
     },
     "087": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "повторных аудитов пока не было"
     },
     "088": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "многофазных аудитов пока не было"
     },
     "089": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "README.md — ссылки ведут из витрины в источник (каталог правил, документация Python), обратных ссылок из источника в копию нет"
     },
     "090": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "src/glossary/exporters/base.py — общий контракт экспортёров поднят на уровень выше конкретных форматов, форматы друг друга не импортируют"
     },
     "091": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "источник работы у проекта один"
     },
     "092": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "крупных аудитов пока не было"
     },
     "093": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "docs/architecture.md — швы заведены заранее: реестр правил RULES и реестр форматов _FACTORIES принимают новый элемент одной строкой"
     },
     "094": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "миграций с переходным слоем у проекта нет: перенос данных из HTML выполнен целиком, второго пути не оставлено"
     },
     "095": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "сбора пользовательских данных у продукта нет: витрина работает офлайн и наружу не ходит"
     },
     "096": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "docs/architecture.md — данные глоссария и производная витрина разведены по жизненному циклу: источник правится, витрина пересобирается"
     },
     "097": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_validation.py — у правил валидации закреплены обе стороны: и что правило срабатывает на нарушении, и что молчит на исправном входе"
     },
     "098": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "data/glossary.schema.json — единица дробления глоссария определена употреблением: одна карточка это один термин, который ищут"
     },
     "099": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "data/glossary.json",
+      "why": "требует суждения: 14 имён встречаются в двух разделах сразу, и правило разрешения конфликта не сформулировано — валидатор их только показывает предупреждением duplicate-name"
     },
     "100": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "порождения процессов и сетевых вызовов у проекта нет"
     },
     "101": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "повторяемых отказов у проекта нет"
     },
     "102": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "сравнения с послаблениями у проекта нет"
     },
     "103": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "сторожей побочных эффектов у проекта нет"
     },
     "104": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "pipeline",
+      "where": ".github/workflows/*.yml — у каждого прогона объявлен workflow_dispatch: ci.yml, pages.yml и rules-inbox.yml"
     },
     "105": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "аудитов пока не было"
     },
     "106": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "README.md",
+      "why": "требует суждения: витрина опубликована на GitHub Pages, но настоящего прогона сценария читателя никто не делал"
     },
     "107": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "заимствованных инструментов у проекта нет: пакет обходится стандартной библиотекой"
     },
     "108": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CHANGELOG.md",
+      "why": "до него не дошли руки: окна у журнала нет, архива нет — предмет появится, когда записей станет много"
     },
     "109": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "переходных состояний у продукта нет"
     },
     "110": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "подмены глобального состояния в коде нет"
     },
     "111": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "src/glossary/cli.py — команда build --check не советует пересобрать витрину, а называет точную команду; сама сборка выполняется build"
     },
     "112": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "накоплений, заведённых продуктом на машине пользователя, нет: витрина ничего не пишет за пределы браузера"
     },
     "113": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "data/glossary.schema.json",
+      "why": "до него не дошли руки: схема перечисляет поля и несёт schema_version, но правил собственной эволюции — что стабильно, что расширяемо, как добавляют новое — не описывает"
     },
     "114": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "мигратора у проекта нет: версия схемы одна"
     },
     "115": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "src/glossary/loader.py — поиск корня останавливается на маркере проекта (pyproject.toml или .git), а не уходит до корня файловой системы"
     },
     "116": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "сборщиков результатов параллельной работы у проекта нет"
     },
     "117": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "заданий исполнителям у проекта нет"
     },
     "118": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_data_integrity.py — производная витрина хранится рядом с источником data/glossary.json, и тест не даёт им разойтись"
     },
     "119": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": ".gitattributes и .pre-commit-config.yaml — производная витрина названа генерируемой и исключена из хуков, правящих исходники"
     },
     "120": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "своего каталога правил проект не ведёт: он потребитель общего"
     },
     "121": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "контейнеров работ у проекта нет"
     },
     "122": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/cli.py — команды validate и stats отдают машиночитаемый JSON рядом с человеческим текстом, а не только отформатированный вывод"
     },
     "123": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "до него не дошли руки: список согласованных имён авторства в проекте не заведён и до слияния ничем не сверяется"
     },
     "124": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/workflows/ci.yml",
+      "why": "до него не дошли руки: перезапуск подмножества прогонов не настроен, нестабильность никуда не записывается"
     },
     "125": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_data_integrity.py — генератор витрины читает только data/glossary.json; тест test_showcase_matches_data не даёт производному стать источником"
     },
     "126": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "замораживающей автоматики у проекта нет"
     },
     "127": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "README.md",
+      "why": "до него не дошли руки: числа в README стоят без маркеров, сборки по ним нет и падать при пропаже маркера нечему"
     },
     "128": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "pipeline",
+      "where": ".github/workflows/rules-inbox.yml — прогон каталога проверяет полноту ответа по всем правилам, а не непустоту файла"
     },
     "129": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "своего каталога проект не ведёт: контракт потребления — предмет каталога, проект отвечает по нему файлом .rules/bindings.json"
     },
     "130": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "своего каталога проект не ведёт"
     },
     "131": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "предмет чужой: подмена учётных данных на записи — свойство окна, а не репозитория; проверить её можно только записью"
     },
     "132": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "CONTRIBUTING.md — раздел «Оформление коммитов»: одно изменение одна тема, Conventional Commits"
     },
     "133": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CONTRIBUTING.md",
+      "why": "до него не дошли руки: границу изменения задаёт тема, а пересечение файлов между ветками ничем не считается"
     },
     "134": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "CLAUDE.md — свод, команды и точки расширения лежат в репозитории, окно читает их, а не память предшественника"
     },
     "135": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "предмет чужой: личность окна на записи не объявлена нигде и узнаётся только записью"
     },
     "136": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": ".rules/bindings.json — вердикт по каждому правилу вынесен после перечисления предметов правила в этом проекте, причина названа в why"
     },
     "137": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "публикации измеренного у проекта нет: значков и панелей не заведено"
     },
     "138": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "предмет чужой: эстафета между окнами ведётся вне репозитория"
     },
     "139": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "pipeline",
+      "where": ".github/workflows/ci.yml — механизмы подтверждены живым прогоном: сборка витрины, валидация и тесты отработали на настоящих данных, а не только прочитаны"
     },
     "140": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_validation.py — каждое правило валидации прогоняется и через то, что оно обязано отвергнуть, и через исправный вход, который обязано пропустить"
     },
     "141": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/exporters/html.py — плейсхолдер данных сверяется целой строкой, а отсутствие его в шаблоне отклоняет сборку"
     },
     "142": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/workflows/rules-inbox.yml",
+      "why": "до него не дошли руки: у прогона по расписанию адресат есть — он ведёт задачу-входящие; у остальных прогонов расписания нет, но и адресата при красноте тоже"
     },
     "144": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "машинного разбора прозы у проекта нет"
     },
     "145": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_validation.py и tests/test_cli.py — у команд CLI прогоняется каждый объявленный исход, а не только успешный: успех, отказ проверки, повреждённые данные"
     },
     "146": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "tests/test_validation.py",
+      "why": "требует суждения: гейты подтверждают, что механизм работает как объявлен; истинность утверждений о самих данных глоссария проверяется человеком"
     },
     "147": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/exporters/html.py — несовпадение отменяет сборку не молча, а отказом ExportError с названной причиной"
     },
     "148": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "чтения состояния изменения из агрегированной записи в проекте нет"
     },
     "149": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "сторожей, шумящих из-за общего ресурса, у проекта нет"
     },
     "150": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_validation.py — тест зовёт правило валидации и сверяет его вердикт, а не пересказывает условие правила в утверждении"
     },
     "151": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/workflows/ci.yml",
+      "why": "до него не дошли руки: след упавшего прогона лежит в логах площадки; канала, доступного тому, кто чинит, не заведено"
     },
     "152": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": ".github/workflows/rules-inbox.yml — стороннее действие каталога закреплено тегом v1.2.0"
     },
     "153": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "README.md — устройство каталога правил дано ссылкой на его CONNECT.md и START.md, а не пересказано у себя"
     },
     "154": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": ".rules/bindings.json — у каждого ответа mechanism none названа причина в поле why"
     },
     "155": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "заготовок наружу проект не раздаёт"
     },
     "156": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CLAUDE.md",
+      "why": "до него не дошли руки: трейлеры коммитов проект не разбирает машинно"
     },
     "157": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": ".rules/bindings.json — ответы записаны по контракту 1.1, а не по 1.0, который отдал генератор подключения; расхождение названо отдельно"
     },
     "158": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "src/glossary/cli.py",
+      "why": "до него не дошли руки: третий исход называет причину, но не всегда предмет — какой именно источник не отработал"
     },
     "159": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "src/glossary/validation.py — вердикт выносится после обхода всех карточек: правила копят находки в список и читают его после последнего случая, раннего выхода нет"
     },
     "160": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "производных, пересобираемых чаще изменений, у проекта нет: витрина меняется ровно вместе с данными, значков и отчётов по живым данным не заведено"
     },
     "161": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CHANGELOG.md",
+      "why": "до него не дошли руки: истории поворотов проект не ведёт — журнал описывает ход работ, а не развороты направления"
     },
     "162": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "pipeline",
+      "where": ".github/workflows/rules-inbox.yml — прогон каталога приносит раздел «У соседей это уже решено» с адресом чужого механизма"
     },
     "163": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "механизмов наружу проект не отдаёт"
     },
     "164": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "data/glossary.schema.json — поле schema_version названо тем, чего оно версия; в .rules/bindings.json ключ schema относится к формату ответа"
     },
     "165": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "списка путей из git по NUL проект не читает: скриптов, открывающих файлы по выводу git, нет"
     },
     "166": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "README.md",
+      "why": "до него не дошли руки: проверки ссылок между документами нет, битая ссылка ничем не ловится"
     },
     "167": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": ".github/workflows/ci.yml — имена переменных в шагах прогона состоят из ASCII (PYTHONUNBUFFERED, FORCE_COLOR, GITHUB_STEP_SUMMARY); русский язык остаётся в названиях шагов, а не в именах переменных"
     },
     "168": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/workflows/ci.yml",
+      "why": "до него не дошли руки: защита основной ветки не настроена, обязательных проверок по имени нет; имена задач матрицы при этом меняются вместе с составом версий"
     },
     "169": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/workflows/rules-inbox.yml",
+      "why": "предмет чужой: расписание площадки остаётся пожеланием; механизмов с коротким сроком, которые оно страхует, у проекта нет"
     },
     "170": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "подделок чужих интерфейсов у проекта нет"
     },
     "171": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_data_integrity.py — эталон берётся из дерева самого изменения: тест сравнивает витрину со сборкой из данных этого же коммита"
     },
     "172": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "заглушек, которые держит площадка, у проекта нет"
     },
     "173": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "CONTRIBUTING.md",
+      "why": "до него не дошли руки: трекера у проекта нет, связи изменения с задачей ничем не проверяется"
     },
     "174": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "README.md",
+      "why": "до него не дошли руки: числа об устройстве проекта — состав тестов, матрица версий — машиночитаемым файлом не публикуются"
     },
     "175": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".rules/bindings.json",
+      "why": "до него не дошли руки: ответов «предмета нет» здесь много, и часть из них опровергается одной командой поиска; гейта на них не заведено"
     },
     "176": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": "src/glossary/loader.py",
+      "why": "до него не дошли руки: кодировка задана явно всюду (encoding=utf-8), но гейта, который бы это держал, нет"
     },
     "177": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "document",
+      "where": "CLAUDE.md — раздел «Каталог правил»: незакрытая работа по правилам идёт впереди новой; этот файл и есть первый заход"
     },
     "178": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "двух источников об одной величине у проекта нет"
     },
     "179": {
-      "status": "unreviewed"
+      "status": "active",
+      "mechanism": "none",
+      "where": ".github/workflows/ci.yml",
+      "why": "до него не дошли руки: группа concurrency названа по ссылке (ci-github.ref) и отменяет прогон; коммит в имя группы не входит, поэтому прогоны на разных коммитах одной ветки вытесняют друг друга"
     },
     "180": {
-      "status": "unreviewed"
+      "status": "not-applicable",
+      "why": "статических гейтов по вызовам конкретной библиотеки у проекта нет"
     }
-  }
+  },
+  "schema_of": "формат ЭТОГО файла — ответа потребителя каталогу (templates/bindings.json). Не путать с номерами рядом: выгрузка правил каталога — 1.4, предложение правила (.rules/proposals.json) — 1.0 (правило 164)."
 }

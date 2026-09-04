@@ -4,11 +4,14 @@
 [![Публикация витрины](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Карточек](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json)
+[![Замечаний](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](#качество-данных)
+[![Правил без механизма](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Frules.json)](#правила-проекта)
 
 ### → [Открыть глоссарий](https://artvsmark.github.io/Glossary-Python/)
 
-Справочник стандартной библиотеки Python на русском языке: **581 карточка**
-в **43 разделах**. Каждая карточка — описание, синтаксис, исполняемые примеры,
+Справочник стандартной библиотеки Python на русском языке: **<!--m:cards-->581<!--/m:cards--> карточка**
+в **<!--m:groups-->43<!--/m:groups--> разделах**. Каждая карточка — описание, синтаксис, исполняемые примеры,
 минимальная версия Python и ссылка на официальную документацию.
 
 Репозиторий — это витрина и инструменты вокруг неё. Живой глоссарий ведётся как
@@ -89,7 +92,7 @@ glossary export -f markdown -o out.md   # экспорт: html, json, markdown, 
 | `duplicate-name` | предупреждение | Одинаковые имена в разных разделах |
 | `group-size` | предупреждение | Раздел не состоит из одной карточки |
 
-Текущее состояние: **0 ошибок, 93 предупреждения**. Число предупреждений
+Текущее состояние: **<!--m:errors-->0<!--/m:errors--> ошибок, <!--m:warnings-->93<!--/m:warnings--> предупреждения**. Число предупреждений
 зафиксировано в `tests/quality_baseline.json` — храповик не даёт замечаниям
 расти и напоминает опустить планку, когда данные становятся чище.
 
@@ -109,15 +112,15 @@ glossary export -f markdown -o out.md   # экспорт: html, json, markdown, 
 Набор собран командой каталога `onboard_consumer.py`, а не перенесён руками:
 копия генератора в каждом проекте — это N реализаций одного алгоритма.
 
-Разобраны все **179** правил каталога, `unreviewed` не осталось:
+Разобраны все **<!--m:rules_total-->179<!--/m:rules_total-->** правил каталога, `unreviewed` не осталось:
 
 | Ответ | Сколько | Что означает |
 | --- | --- | --- |
-| `active` + механизм | 59 | Правило действует и держится гейтом (26), документом (28) или конвейером (5) |
-| `active` + `none` | 41 | Правило действует, но здесь ничем не держится — у каждого названа причина |
-| `not-applicable` | 79 | Предмета правила в этом проекте нет — с объяснением, почему |
+| `active` + механизм | <!--m:rules_mechanised-->64<!--/m:rules_mechanised--> | Правило действует и держится гейтом (<!--m:rules_gate-->31<!--/m:rules_gate-->), документом (<!--m:rules_document-->27<!--/m:rules_document-->) или конвейером (<!--m:rules_pipeline-->6<!--/m:rules_pipeline-->) |
+| `active` + `none` | <!--m:rules_none-->38<!--/m:rules_none--> | Правило действует, но здесь ничем не держится — у каждого названа причина |
+| `not-applicable` | <!--m:rules_na-->77<!--/m:rules_na--> | Предмета правила в этом проекте нет — с объяснением, почему |
 
-**41 — это метрика, и она должна уменьшаться.** Потолок зафиксирован в
+**<!--m:rules_none-->38<!--/m:rules_none--> — это метрика, и она должна уменьшаться.** Потолок зафиксирован в
 `tests/test_rules_bindings.py` и двигается только вниз, как и храповик качества
 данных. Растворённая в тексте метрика выглядит отсутствующей.
 

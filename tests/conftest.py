@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import pytest
 
-from glossary.loader import default_data_path, load_glossary
+from glossary.loader import default_data_path, load_glossary, project_root
 from glossary.models import Glossary
 from tests.factories import make_entry, make_glossary
+
+# scripts/ — инструменты репозитория, а не часть пакета: пакет ставится
+# в окружение, а скрипты живут рядом с ним и импортируются по пути.
+sys.path.insert(0, str(project_root() / "scripts"))
 
 
 @pytest.fixture(scope="session")

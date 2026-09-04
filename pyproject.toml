@@ -57,7 +57,7 @@ include = ["src/glossary", "data", "tests", "README.md", "CHANGELOG.md", "LICENS
 [tool.ruff]
 line-length = 90
 target-version = "py311"
-src = ["src", "tests"]
+src = ["src", "tests", "scripts"]
 
 [tool.ruff.lint]
 select = [
@@ -101,6 +101,8 @@ ignore = [
 # В тестах assert и литералы-ожидания уместны, docstring на каждый тест — шум,
 # а блоки TYPE_CHECKING ради фикстур — чистая церемония.
 "tests/**" = ["ANN", "D", "S101", "PLR2004", "TC"]
+# Скрипт репозитория печатает результат — это его работа.
+"scripts/**" = ["T20"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
@@ -116,7 +118,8 @@ docstring-code-format = true
 # --------------------------------------------------------------------------- #
 [tool.mypy]
 python_version = "3.11"
-files = ["src", "tests"]
+files = ["src", "tests", "scripts"]
+mypy_path = "scripts"
 strict = true
 warn_unreachable = true
 warn_no_return = true

@@ -1,0 +1,81 @@
+# Значки и факты о проекте: считает издатель, читает потребитель.
+#
+# ПОЧЕМУ ОТДЕЛЬНАЯ ВЕТКА, А НЕ `main`. Причина та же, что у соседнего проекта
+# (ArtVsMark/Stepik-Python-Grader, issue #1235), и здесь она действует буквально:
+# `main` защищён обязательной проверкой «check PR», поэтому прямой push из
+# прогона туда невозможен. Плюс каждый коммит со значком запускал бы ещё один
+# прогон. Отдельная ветка снимает оба противоречия, а заодно выполняет правило
+# каталога 160: производное, пересобираемое чаще изменений, в общей ветке
+# не хранят.
+#
+# ПОЧЕМУ ОТДЕЛЬНЫЙ ПРОГОН, А НЕ ШАГ В `ci.yml`. Разные права и разные предметы:
+# здесь нужен `contents: write` и не нужен PR-гейт. Смешав их, мы дали бы
+# обязательной проверке право писать в репозиторий, которое ей не нужно.
+name: Значки и факты
+
+on:
+  push:
+    branches: [main]
+  # У событийной автоматики всегда есть ручная кнопка: события теряются.
+  workflow_dispatch:
+
+concurrency:
+  # Голова входит в имя группы: см. тот же довод в ci.yml.
+  group: badges-${{ github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    name: Опубликовать значки и факты
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Установка зависимостей
+        run: python -m pip install -e ".[dev]"
+
+      - name: Покрытие — источник для одноимённого значка
+        run: pytest --cov=glossary --cov-report=xml -q
+
+      - name: Собрать значки и факты
+        run: python scripts/facts.py --badges
+
+      - name: Опубликовать веткой badges
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          publish="${RUNNER_TEMP:-/tmp}/badges-publish"
+          rm -rf "$publish"
+          if git fetch --depth=1 origin badges 2>/dev/null; then
+            git worktree add -B badges "$publish" FETCH_HEAD >/dev/null
+          else
+            # Ветки ещё нет: заводим сиротскую. История main значкам не нужна —
+            # они артефакт сборки, а не исходник.
+            git worktree add --detach "$publish" HEAD >/dev/null
+            git -C "$publish" switch --orphan badges
+            git -C "$publish" rm -rq --cached . 2>/dev/null || true
+            find "$publish" -mindepth 1 -maxdepth 1 -not -name .git -exec rm -rf {} +
+          fi
+          mkdir -p "$publish/.github/badges"
+          cp .github/badges/*.json "$publish/.github/badges/"
+          git -C "$publish" add .github/badges
+          # --cached, а не обычный diff: при первом прогоне файлы ещё не
+          # отслеживаются, и обычный `git diff --quiet` не увидел бы добавления.
+          if git -C "$publish" diff --cached --quiet; then
+            echo "Значки не изменились."
+          else
+            git -C "$publish" commit -q -m "chore(ci): обновить значки и факты [skip ci]"
+            git -C "$publish" push origin badges
+            echo "Значки опубликованы в ветку badges."
+          fi
+          git worktree remove --force "$publish"

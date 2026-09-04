@@ -99,6 +99,9 @@ jobs:
       - name: Ответ каталогу правил
         run: pytest tests/test_rules_bindings.py -q
 
+      - name: Числа в документации совпадают с источниками
+        run: python scripts/facts.py --check
+
       - name: Витрина собрана из текущих данных
         run: python -m glossary build --check
 

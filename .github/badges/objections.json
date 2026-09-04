@@ -1,10 +1,12 @@
 {
   "schema": 1,
+  "schema_of": "замечания витрины к содержанию глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Stepik-Python-Grader",
   "snapshot": {
     "cards": 1349,
-    "schema_version": 2
+    "schema_version": 2,
+    "digest": "36d919be0a57"
   },
   "totals": {
     "errors": 0,
@@ -15,6 +17,7 @@
     {
       "rule": "translated",
       "severity": "warning",
+      "scope": "card",
       "message": "тело карточки не заполнено на языке 'ru'",
       "count": 618,
       "cards": [
@@ -332,6 +335,7 @@
     {
       "rule": "example-indent",
       "severity": "warning",
+      "scope": "card",
       "message": "пример открывает блок, но ни одна строка не имеет отступа — код не запустится",
       "count": 97,
       "cards": [
@@ -437,6 +441,7 @@
     {
       "rule": "summary-length",
       "severity": "warning",
+      "scope": "card",
       "message": "сводка короче 30 символов (27)",
       "count": 29,
       "cards": [
@@ -474,9 +479,14 @@
     {
       "rule": "section-size",
       "severity": "warning",
+      "scope": "glossary",
       "message": "раздел 'Встроенные типы' содержит 1 карточк(и) — тема покрыта не полностью",
       "count": 2,
-      "cards": []
+      "cards": [],
+      "details": [
+        "раздел 'Встроенные типы' содержит 1 карточк(и) — тема покрыта не полностью",
+        "раздел 'Модуль ctypes' содержит 1 карточк(и) — тема покрыта не полностью"
+      ]
     }
   ]
 }

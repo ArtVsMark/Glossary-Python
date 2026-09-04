@@ -1,0 +1,592 @@
+{
+  "schema": 1,
+  "schema_of": "что появилось и исчезло между версиями Python",
+  "producer": "ArtVsMark/Glossary-Python",
+  "versions": [
+    "3.11",
+    "3.12",
+    "3.13",
+    "3.14",
+    "3.15"
+  ],
+  "releases": [
+    {
+      "version": "3.12",
+      "since": "3.11",
+      "added": [
+        {
+          "qualname": "collections.abc.Buffer",
+          "module": "collections.abc",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "int.is_integer",
+          "module": "builtins",
+          "kind": "method",
+          "documented": true
+        },
+        {
+          "qualname": "itertools.batched",
+          "module": "itertools",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "logging.getHandlerByName",
+          "module": "logging",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "logging.getHandlerNames",
+          "module": "logging",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "math.sumprod",
+          "module": "math",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.path.isjunction",
+          "module": "os.path",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.path.splitroot",
+          "module": "os.path",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.setns",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.unshare",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "random.binomialvariate",
+          "module": "random",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "sys.activate_stack_trampoline",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sys.deactivate_stack_trampoline",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sys.getunicodeinternedsize",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sys.is_stack_trampoline_active",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "threading.setprofile_all_threads",
+          "module": "threading",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "threading.settrace_all_threads",
+          "module": "threading",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "typing.TypeAliasType",
+          "module": "typing",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "typing.override",
+          "module": "typing",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "uuid.main",
+          "module": "uuid",
+          "kind": "function",
+          "documented": false
+        }
+      ],
+      "removed": [
+        "sqlite3.enable_shared_cache"
+      ],
+      "totals": {
+        "added": 20,
+        "removed": 1,
+        "undocumented": 9
+      }
+    },
+    {
+      "version": "3.13",
+      "since": "3.12",
+      "added": [
+        {
+          "qualname": "PythonFinalizationError",
+          "module": "builtins",
+          "kind": "exception",
+          "documented": true
+        },
+        {
+          "qualname": "copy.replace",
+          "module": "copy",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "enum.EnumDict",
+          "module": "enum",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "math.fma",
+          "module": "math",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.grantpt",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.path.isdevdrive",
+          "module": "os.path",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.posix_openpt",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.ptsname",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.timerfd_create",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.timerfd_gettime",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.timerfd_gettime_ns",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.timerfd_settime",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.timerfd_settime_ns",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.unlockpt",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "re.PatternError",
+          "module": "re",
+          "kind": "exception",
+          "documented": true
+        },
+        {
+          "qualname": "statistics.kde",
+          "module": "statistics",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "statistics.kde_random",
+          "module": "statistics",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "typing.get_protocol_members",
+          "module": "typing",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "typing.is_protocol",
+          "module": "typing",
+          "kind": "function",
+          "documented": true
+        }
+      ],
+      "removed": [
+        "re.error",
+        "re.template",
+        "typing.Annotated",
+        "unittest.findTestCases",
+        "unittest.getTestCaseNames",
+        "unittest.makeSuite"
+      ],
+      "totals": {
+        "added": 19,
+        "removed": 6,
+        "undocumented": 1
+      }
+    },
+    {
+      "version": "3.14",
+      "since": "3.13",
+      "added": [
+        {
+          "qualname": "bytearray.resize",
+          "module": "builtins",
+          "kind": "method",
+          "documented": true
+        },
+        {
+          "qualname": "complex.from_number",
+          "module": "builtins",
+          "kind": "method",
+          "documented": true
+        },
+        {
+          "qualname": "concurrent.futures.InterpreterPoolExecutor",
+          "module": "concurrent.futures",
+          "kind": "class",
+          "documented": false
+        },
+        {
+          "qualname": "decimal.IEEEContext",
+          "module": "decimal",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "float.from_number",
+          "module": "builtins",
+          "kind": "method",
+          "documented": true
+        },
+        {
+          "qualname": "heapq.heapify_max",
+          "module": "heapq",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "heapq.heappop_max",
+          "module": "heapq",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "heapq.heappush_max",
+          "module": "heapq",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "heapq.heappushpop_max",
+          "module": "heapq",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "heapq.heapreplace_max",
+          "module": "heapq",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "io.Reader",
+          "module": "io",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "io.Writer",
+          "module": "io",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "operator.is_none",
+          "module": "operator",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "operator.is_not_none",
+          "module": "operator",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.readinto",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "os.reload_environ",
+          "module": "os",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "pathlib.UnsupportedOperation",
+          "module": "pathlib",
+          "kind": "exception",
+          "documented": true
+        },
+        {
+          "qualname": "sys.is_remote_debug_enabled",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sys.remote_exec",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "typing.Union",
+          "module": "typing",
+          "kind": "class",
+          "documented": false
+        },
+        {
+          "qualname": "typing.evaluate_forward_ref",
+          "module": "typing",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "uuid.uuid6",
+          "module": "uuid",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "uuid.uuid7",
+          "module": "uuid",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "uuid.uuid8",
+          "module": "uuid",
+          "kind": "function",
+          "documented": false
+        }
+      ],
+      "removed": [
+        "shutil.ExecError"
+      ],
+      "totals": {
+        "added": 24,
+        "removed": 1,
+        "undocumented": 13
+      }
+    },
+    {
+      "version": "3.15",
+      "since": "3.14",
+      "added": [
+        {
+          "qualname": "ImportCycleError",
+          "module": "builtins",
+          "kind": "exception",
+          "documented": false
+        },
+        {
+          "qualname": "bytearray.take_bytes",
+          "module": "builtins",
+          "kind": "method",
+          "documented": false
+        },
+        {
+          "qualname": "enum.bin",
+          "module": "enum",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "enum.show_flag_values",
+          "module": "enum",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "frozendict",
+          "module": "builtins",
+          "kind": "class",
+          "documented": false
+        },
+        {
+          "qualname": "hashlib.scrypt",
+          "module": "hashlib",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "math.fmax",
+          "module": "math",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "math.fmin",
+          "module": "math",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "math.isnormal",
+          "module": "math",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "math.issubnormal",
+          "module": "math",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "math.signbit",
+          "module": "math",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "os.statx",
+          "module": "os",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "os.statx_result",
+          "module": "os",
+          "kind": "class",
+          "documented": false
+        },
+        {
+          "qualname": "re.prefixmatch",
+          "module": "re",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sentinel",
+          "module": "builtins",
+          "kind": "class",
+          "documented": false
+        },
+        {
+          "qualname": "sys.get_lazy_imports",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sys.get_lazy_imports_filter",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sys.set_lazy_imports",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "sys.set_lazy_imports_filter",
+          "module": "sys",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "threading.concurrent_tee",
+          "module": "threading",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "threading.serialize_iterator",
+          "module": "threading",
+          "kind": "class",
+          "documented": false
+        },
+        {
+          "qualname": "threading.synchronized_iterator",
+          "module": "threading",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "typing.disjoint_base",
+          "module": "typing",
+          "kind": "function",
+          "documented": false
+        }
+      ],
+      "removed": [
+        "collections.abc.ByteString",
+        "typing.no_type_check_decorator"
+      ],
+      "totals": {
+        "added": 23,
+        "removed": 2,
+        "undocumented": 23
+      }
+    }
+  ]
+}

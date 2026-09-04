@@ -9,11 +9,11 @@
   },
   "rules": {
     "total": 179,
-    "gate": 31,
+    "gate": 34,
     "document": 27,
     "pipeline": 6,
-    "mechanised": 64,
-    "none": 38,
+    "mechanised": 67,
+    "none": 35,
     "not_applicable": 77
   },
   "python_versions": [

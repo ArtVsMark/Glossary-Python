@@ -1,0 +1,160 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "glossary-python"
+version = "0.1.0"
+description = "Витрина и экспорт глоссария Python: валидация данных, сборка HTML, экспорт в JSON/Markdown/CSV"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [{ name = "ArtVsMark", email = "arvs.markitanov@gmail.com" }]
+keywords = ["python", "glossary", "reference", "education", "documentation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Russian",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "mypy>=1.11",
+    "pytest-cov>=5.0",
+    "pytest>=8.2",
+    "ruff>=0.6",
+]
+schema = ["jsonschema>=4.23"]
+
+[project.scripts]
+glossary = "glossary.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/ArtVsMark/Glossary-Python"
+Repository = "https://github.com/ArtVsMark/Glossary-Python"
+Issues = "https://github.com/ArtVsMark/Glossary-Python/issues"
+Changelog = "https://github.com/ArtVsMark/Glossary-Python/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/glossary"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/glossary", "data", "tests", "README.md", "CHANGELOG.md", "LICENSE"]
+
+# --------------------------------------------------------------------------- #
+# Ruff: линтер и форматтер
+# --------------------------------------------------------------------------- #
+[tool.ruff]
+line-length = 90
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "A",    # flake8-builtins
+    "ANN",  # flake8-annotations
+    "ARG",  # flake8-unused-arguments
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "D",    # pydocstyle
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "PERF", # perflint
+    "PL",   # pylint
+    "PTH",  # flake8-use-pathlib
+    "RET",  # flake8-return
+    "RUF",  # ruff-specific
+    "S",    # flake8-bandit
+    "SIM",  # flake8-simplify
+    "T20",  # flake8-print
+    "TCH",  # flake8-type-checking
+    "UP",   # pyupgrade
+    "W",    # pycodestyle warnings
+]
+ignore = [
+    "D203",   # конфликтует с D211 (пустая строка перед docstring класса)
+    "D213",   # конфликтует с D212 (сводка на первой строке)
+    "RUF001", # кириллица в строках — норма для этого проекта
+    "RUF002",
+    "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+# CLI печатает результат — это его работа; обработчики команд имеют единую
+# сигнатуру (args, out, err), поэтому часть из них не использует поток ошибок.
+"src/glossary/cli.py" = ["T20", "ARG001"]
+# Все правила валидации имеют единую сигнатуру (glossary, config) ради реестра
+# RULES; правилам без порогов аргумент config не нужен, но убрать его нельзя.
+"src/glossary/validation.py" = ["ARG001"]
+# В тестах assert и литералы-ожидания уместны, docstring на каждый тест — шум,
+# а блоки TYPE_CHECKING ради фикстур — чистая церемония.
+"tests/**" = ["ANN", "D", "S101", "PLR2004", "TC"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.flake8-annotations]
+mypy-init-return = true
+
+[tool.ruff.format]
+docstring-code-format = true
+
+# --------------------------------------------------------------------------- #
+# mypy: строгая типизация
+# --------------------------------------------------------------------------- #
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "tests"]
+strict = true
+warn_unreachable = true
+warn_no_return = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+pretty = true
+
+# Тесты типизируются по сигнатурам фикстур; требовать `-> None` на каждой
+# тестовой функции — шум, который ничего не проверяет.
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+# --------------------------------------------------------------------------- #
+# pytest
+# --------------------------------------------------------------------------- #
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "-ra",
+]
+markers = [
+    "data: тесты, проверяющие содержимое data/glossary.json",
+]
+
+[tool.coverage.run]
+source = ["glossary"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    'if __name__ == "__main__":',
+    # Тела методов Protocol и заглушек — только многоточие, они не исполняются.
+    '^\s*\.\.\.$',
+]

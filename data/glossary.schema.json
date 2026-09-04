@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ArtVsMark/Glossary-Python/blob/main/data/glossary.schema.json",
+  "title": "Python Glossary",
+  "description": "Источник истины витрины глоссария Python. Каждая запись — одна карточка.",
+  "type": "object",
+  "required": ["schema_version", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Ссылка на схему для автодополнения в IDE."
+    },
+    "schema_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Версия формата данных. Увеличивается при несовместимых изменениях."
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "entry": {
+      "type": "object",
+      "required": [
+        "id", "name", "group", "subcat", "cg",
+        "description", "syntax", "examples", "version", "docs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^[^\\s#/?&=%\"'<>]+$",
+          "description": "Уникальный стабильный идентификатор карточки. Используется как якорь URL, поэтому не должен содержать пробелов и символов, ломающих фрагмент адреса. Алфавит свободный: допустимы и латиница, и кириллица."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Отображаемое имя термина, например `list.append()`."
+        },
+        "group": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Раздел глоссария, например `Строки (str)`."
+        },
+        "subcat": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Подкатегория внутри раздела, используется для фасетной навигации."
+        },
+        "cg": {
+          "type": "string",
+          "enum": [
+            "builtin", "str", "seq", "mapset", "oop",
+            "exc", "module", "iter", "op", "typing"
+          ],
+          "description": "Цветовая группа карточки в витрине."
+        },
+        "description": {
+          "type": "string",
+          "minLength": 60,
+          "description": "Описание термина: что делает и зачем нужен. Минимум 60 символов."
+        },
+        "syntax": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Сигнатура или форма записи."
+        },
+        "examples": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Исполняемые примеры на Python, разделённые переводами строк."
+        },
+        "version": {
+          "type": ["string", "null"],
+          "pattern": "^3\\.[0-9]+\\+?$",
+          "description": "Минимальная версия Python, если возможность появилась не с самого начала. `null` — доступно во всех поддерживаемых версиях."
+        },
+        "docs": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://docs\\.python\\.org/3/",
+          "description": "Ссылка на официальную документацию."
+        }
+      }
+    }
+  }
+}

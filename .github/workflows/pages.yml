@@ -1,0 +1,45 @@
+name: Публикация витрины
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - python_glossary.html
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+# Одновременно выполняется только одна публикация; уже начатую не отменяем,
+# чтобы не оставить Pages в промежуточном состоянии.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    name: GitHub Pages
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Подготовка каталога публикации
+        run: |
+          mkdir -p _site
+          cp python_glossary.html _site/index.html
+          cp data/glossary.json _site/glossary.json
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

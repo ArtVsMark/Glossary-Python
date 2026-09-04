@@ -1,0 +1,89 @@
+name: Новая карточка
+description: Предложить термин, которого нет в глоссарии
+title: "[Карточка]: "
+labels: ["контент", "новая карточка"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Поля ниже повторяют структуру `data/glossary.json` — заполненную заявку
+        можно перенести в данные почти без правок.
+
+  - type: input
+    id: name
+    attributes:
+      label: Имя термина
+      description: Так карточка будет называться в витрине.
+      placeholder: "str.removeprefix()"
+    validations:
+      required: true
+
+  - type: input
+    id: group
+    attributes:
+      label: Раздел
+      description: Существующий раздел глоссария или предложение нового.
+      placeholder: "Строки (str)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cg
+    attributes:
+      label: Цветовая группа
+      options:
+        - builtin — встроенные функции
+        - str — строки
+        - seq — последовательности
+        - mapset — словари и множества
+        - oop — ООП
+        - exc — исключения
+        - module — модули стандартной библиотеки
+        - iter — итераторы и генераторы
+        - op — операторы
+        - typing — аннотации типов
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Описание
+      description: >
+        Не меньше 60 символов. Объясните не только что делает конструкция,
+        но и зачем она нужна на практике.
+    validations:
+      required: true
+
+  - type: input
+    id: syntax
+    attributes:
+      label: Синтаксис
+      placeholder: "str.removeprefix(prefix, /) -> str"
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Примеры
+      description: Исполняемый код с ожидаемым результатом в комментариях.
+      render: python
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Минимальная версия Python
+      description: Канонический вид — `3.9+`. Оставьте пустым, если ограничения нет.
+      placeholder: "3.9+"
+
+  - type: input
+    id: docs
+    attributes:
+      label: Ссылка на документацию
+      description: Конкретный раздел или якорь, а не корень docs.python.org.
+      placeholder: "https://docs.python.org/3/library/stdtypes.html#str.removeprefix"
+    validations:
+      required: true

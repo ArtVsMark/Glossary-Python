@@ -5,6 +5,8 @@
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
+### → [Открыть глоссарий](https://artvsmark.github.io/Glossary-Python/)
+
 Справочник стандартной библиотеки Python на русском языке: **581 карточка**
 в **43 разделах**. Каждая карточка — описание, синтаксис, исполняемые примеры,
 минимальная версия Python и ссылка на официальную документацию.
@@ -25,6 +27,16 @@
 
 Витрина — один самодостаточный HTML-файл: данные встроены в страницу, внешних
 запросов при работе нет.
+
+Опубликованные адреса:
+
+| Адрес | Что отдаёт |
+| --- | --- |
+| [`/Glossary-Python/`](https://artvsmark.github.io/Glossary-Python/) | Витрина: поиск, фильтры, тёмная тема |
+| [`/Glossary-Python/glossary.json`](https://artvsmark.github.io/Glossary-Python/glossary.json) | Источник истины обычным HTTP — без клона и без токена |
+
+Второй адрес — контракт для потребителей данных: глоссарий можно забирать
+выгрузкой, а не копированием файла из репозитория.
 
 ## Быстрый старт
 

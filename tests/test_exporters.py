@@ -9,10 +9,15 @@ import json
 import pytest
 
 from glossary.errors import ExportError
-from glossary.exporters import EXPORTERS, get_exporter
+from glossary.exporters import EXPORTERS, MarkdownExporter, get_exporter
 from glossary.exporters.html import PLACEHOLDER, HtmlExporter, load_template
 from glossary.models import Glossary
-from tests.factories import make_entry, make_glossary
+from tests.factories import (
+    VALID_SUMMARY,
+    VALID_SUMMARY_EN,
+    make_entry,
+    make_glossary,
+)
 
 
 @pytest.mark.parametrize("name", EXPORTERS)
@@ -57,10 +62,10 @@ def test_html_substitutes_data(sample_glossary: Glossary):
 
 def test_html_escapes_closing_tag_in_data():
     """`</script>` внутри данных не должен закрыть блок раньше времени."""
-    glossary = make_glossary(make_entry(examples="print('</script>')"))
+    glossary = make_glossary(make_entry(examples=("print('</script>')",)))
     rendered = HtmlExporter(template=PLACEHOLDER).render(glossary)
     assert "</script>" not in rendered
-    assert json.loads(rendered)[0]["examples"] == "print('</script>')"
+    assert json.loads(rendered)[0]["examples"] == ["print('</script>')"]
 
 
 def test_html_payload_is_compact(sample_glossary: Glossary):
@@ -99,10 +104,10 @@ def test_csv_has_header_and_row_per_entry(sample_glossary: Glossary):
 
 
 def test_csv_preserves_multiline_examples():
-    glossary = make_glossary(make_entry(examples="строка 1\nстрока 2"))
+    glossary = make_glossary(make_entry(examples=("строка 1", "строка 2")))
     rendered = get_exporter("csv").render(glossary)
     rows = list(csv.DictReader(io.StringIO(rendered, newline="")))
-    assert rows[0]["examples"] == "строка 1\nстрока 2"
+    assert rows[0]["examples"] == "['строка 1', 'строка 2']"
 
 
 # ------------------------- Markdown -------------------------
@@ -122,13 +127,30 @@ def test_markdown_anchors_match_headings(sample_glossary: Glossary):
 
 
 def test_markdown_shows_version_badge():
-    glossary = make_glossary(make_entry(version="3.12+"))
-    assert "`3.12+`" in get_exporter("markdown").render(glossary)
+    glossary = make_glossary(make_entry(version="3.12"))
+    assert "`3.12`" in get_exporter("markdown").render(glossary)
 
 
 def test_markdown_omits_examples_block_when_empty():
-    glossary = make_glossary(make_entry(examples="   "))
+    glossary = make_glossary(make_entry(examples=()))
     assert "<details>" not in get_exporter("markdown").render(glossary)
+
+
+def test_markdown_switches_language():
+    """Экспорт двуязычен: язык выбирается, а не зашит в код."""
+    glossary = make_glossary(make_entry())
+    ru = MarkdownExporter().render(glossary)
+    en = MarkdownExporter(language="en").render(glossary)
+    assert VALID_SUMMARY in ru and VALID_SUMMARY not in en
+    assert VALID_SUMMARY_EN in en
+
+
+def test_markdown_links_related_entries():
+    glossary = make_glossary(
+        make_entry(id="a", title="alpha()", related=("b",)),
+        make_entry(id="b", title="beta()"),
+    )
+    assert "См. также: [b](#b)" in get_exporter("markdown").render(glossary)
 
 
 def test_markdown_links_to_docs(sample_glossary: Glossary):

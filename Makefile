@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate rules facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections import import-check rules facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -40,6 +40,15 @@ cov: ## Прогнать тесты с отчётом о покрытии
 
 validate: ## Проверить качество данных глоссария
 	$(BIN)/python -m glossary validate
+
+objections: ## Собрать замечания к содержанию для отправки в источник
+	$(BIN)/python -m glossary objections
+
+import: ## Перечитать карточки из клона Stepik-Python-Grader (SOURCE=путь)
+	$(BIN)/python scripts/import_from_grader.py --source $(SOURCE)
+
+import-check: ## Сверить снимок с источником, ничего не записывая (SOURCE=путь)
+	$(BIN)/python scripts/import_from_grader.py --source $(SOURCE) --check
 
 rules: ## Проверить ответ проекта каталогу правил
 	$(BIN)/pytest tests/test_rules_bindings.py -q

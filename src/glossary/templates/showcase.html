@@ -1,223 +1,296 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="light">
+<html lang="ru" data-theme="light" data-lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Python Glossary — Справочник стандартной библиотеки</title>
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<meta name="color-scheme" content="light dark">
+<title>Python Glossary — справочник стандартной библиотеки</title>
 <style>
+/* Шрифты системные: страницу скачивают и открывают без сети,
+   а веб-шрифт с CDN превратил бы её в наполовину загруженную. */
 :root{
-  --bg:#f4f2ec; --surface:#ffffff; --surface-2:#faf9f5; --border:#e6e2d8; --border-strong:#d8d3c6;
-  --text:#1c2230; --muted:#6b7280; --faint:#9aa1ad;
-  --accent:#2f54eb; --accent-soft:#eaeefe; --accent-ink:#1e3bb0;
-  --code-bg:#f6f4ee; --code-border:#eae6db; --mark-bg:#ffe680; --mark-ink:#5b4a00;
-  --shadow:0 1px 2px rgba(28,34,48,.04), 0 4px 16px rgba(28,34,48,.05);
-  --shadow-lg:0 8px 40px rgba(28,34,48,.12);
-  --radius:14px; --radius-sm:9px;
+  --bg:#f4f2ec; --surface:#fff; --surface-2:#faf9f5; --surface-3:#f2efe7;
+  --border:#e6e2d8; --border-strong:#d6d0c2;
+  --text:#161b26; --muted:#666e7d; --faint:#98a0ad;
+  --accent:#2f54eb; --accent-soft:#e9edfd; --accent-ink:#1c39a8;
+  --code-bg:#f7f5ef; --code-border:#eae5d9; --mark-bg:#ffe27a; --mark-ink:#4d3d00;
+  --ok:#0d9f6e;
+  --shadow:0 1px 2px rgba(22,27,38,.05), 0 3px 12px rgba(22,27,38,.05);
+  --shadow-lg:0 12px 44px rgba(22,27,38,.16);
+  --radius:15px; --radius-sm:10px; --radius-xs:7px;
   --c-builtin:#3b82f6; --c-str:#0d9f6e; --c-seq:#8b5cf6; --c-mapset:#6366f1;
-  --c-oop:#ec4899; --c-exc:#ef4444; --c-module:#e0850b; --c-iter:#06b6d4;
-  --c-op:#64748b; --c-typing:#9173f0;
-  --kw:#a626a4; --str:#0d9f6e; --num:#c18401; --com:#9aa1ad; --bi:#0184bc; --fn:#4078f2; --res:#7a8290;
+  --c-oop:#ec4899;   --c-exc:#ef4444; --c-module:#e0850b; --c-iter:#06b6d4;
+  --c-op:#64748b;    --c-typing:#9173f0;
+  --kw:#a626a4; --str:#0d9f6e; --num:#b8860b; --com:#98a0ad; --bi:#0184bc; --fn:#3f78f0;
 }
 [data-theme="dark"]{
-  --bg:#0e1320; --surface:#161d2e; --surface-2:#1a2236; --border:#283248; --border-strong:#374256;
-  --text:#e6eaf2; --muted:#94a0b4; --faint:#646f86;
-  --accent:#6b8cff; --accent-soft:#1c2747; --accent-ink:#a9bcff;
-  --code-bg:#101725; --code-border:#283248; --mark-bg:#6b5a14; --mark-ink:#ffe680;
-  --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 18px rgba(0,0,0,.35);
-  --shadow-lg:0 10px 44px rgba(0,0,0,.5);
+  --bg:#0d1220; --surface:#151c2c; --surface-2:#1a2234; --surface-3:#202a3e;
+  --border:#273148; --border-strong:#394764;
+  --text:#e7ebf3; --muted:#95a1b6; --faint:#65718a;
+  --accent:#6b8cff; --accent-soft:#1b2646; --accent-ink:#adc0ff;
+  --code-bg:#0f1626; --code-border:#273148; --mark-bg:#6a5713; --mark-ink:#ffe27a;
+  --ok:#34d399;
+  --shadow:0 1px 2px rgba(0,0,0,.32), 0 3px 14px rgba(0,0,0,.36);
+  --shadow-lg:0 14px 48px rgba(0,0,0,.55);
   --c-builtin:#60a5fa; --c-str:#34d399; --c-seq:#a78bfa; --c-mapset:#818cf8;
-  --c-oop:#f472b6; --c-exc:#f87171; --c-module:#fbbf24; --c-iter:#22d3ee;
-  --c-op:#94a3b8; --c-typing:#b39cf7;
-  --kw:#c678dd; --str:#98c379; --num:#d19a66; --com:#5c6678; --bi:#56b6c2; --fn:#61afef; --res:#7a8494;
+  --c-oop:#f472b6;   --c-exc:#f87171; --c-module:#fbbf24; --c-iter:#22d3ee;
+  --c-op:#94a3b8;    --c-typing:#b39cf7;
+  --kw:#c678dd; --str:#98c379; --num:#d19a66; --com:#5c6678; --bi:#56b6c2; --fn:#61afef;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
   margin:0; background:var(--bg); color:var(--text);
-  font-family:'Satoshi',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;
-  transition:background .35s ease, color .35s ease;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:15px; line-height:1.58; -webkit-font-smoothing:antialiased;
 }
-code,pre,.mono{font-family:'JetBrains Mono','SF Mono',ui-monospace,monospace}
-::selection{background:var(--accent-soft);color:var(--accent-ink)}
+code,pre,.mono{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
 a{color:inherit}
+::selection{background:var(--accent-soft);color:var(--accent-ink)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
-/* ---------- HEADER ---------- */
+/* ---------- шапка ---------- */
 .site-header{
-  position:sticky; top:0; z-index:50; background:color-mix(in srgb,var(--surface) 88%,transparent);
-  backdrop-filter:blur(14px) saturate(1.4); border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:60;border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--surface) 86%,transparent);
+  backdrop-filter:blur(16px) saturate(1.5);
 }
-.header-inner{max-width:1480px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:20px}
-.brand{display:flex;align-items:center;gap:13px;flex-shrink:0}
+.header-inner{max-width:1520px;margin:0 auto;padding:12px 26px;display:flex;align-items:center;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .logo{
-  width:42px;height:42px;border-radius:11px;background:var(--accent);
-  display:grid;place-items:center;position:relative;box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 40%,transparent);
+  width:40px;height:40px;border-radius:11px;position:relative;display:grid;place-items:center;
+  background:linear-gradient(145deg,var(--accent),color-mix(in srgb,var(--accent) 60%,#7c3aed));
+  box-shadow:0 5px 16px color-mix(in srgb,var(--accent) 38%,transparent);
 }
-.logo b{color:#fff;font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;letter-spacing:-1px}
-.logo i{position:absolute;width:9px;height:9px;border-radius:50%;background:#ffd43b;right:-3px;top:-3px;border:2px solid var(--surface)}
-.brand-text h1{margin:0;font-size:18px;font-weight:900;letter-spacing:-.4px;line-height:1.1}
-.brand-text p{margin:1px 0 0;font-size:12px;color:var(--muted);font-weight:500}
+.logo b{color:#fff;font-family:ui-monospace,monospace;font-weight:700;font-size:17px;letter-spacing:-1px}
+.logo i{position:absolute;right:-3px;top:-3px;width:9px;height:9px;border-radius:50%;background:#ffd43b;border:2px solid var(--surface)}
+.brand h1{margin:0;font-size:17px;font-weight:800;letter-spacing:-.35px;line-height:1.15}
+.brand p{margin:0;font-size:12px;color:var(--muted);letter-spacing:.1px}
 .header-spacer{flex:1}
-.counter{font-size:12.5px;color:var(--muted);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
-.counter b{color:var(--accent);font-weight:800}
-.icon-btn{
-  width:40px;height:40px;border-radius:11px;border:1px solid var(--border-strong);background:var(--surface);
-  color:var(--text);cursor:pointer;display:grid;place-items:center;transition:.18s;flex-shrink:0;
+.counter{font-size:13px;color:var(--muted);white-space:nowrap}
+.counter b{color:var(--text);font-variant-numeric:tabular-nums}
+.hbtn{
+  height:36px;min-width:36px;padding:0 11px;border:1px solid var(--border-strong);
+  background:var(--surface);color:var(--text);border-radius:var(--radius-sm);
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  font:inherit;font-size:13px;font-weight:600;cursor:pointer;
+  transition:background .16s,border-color .16s,transform .16s;
 }
-.icon-btn:hover{background:var(--surface-2);border-color:var(--accent);color:var(--accent)}
-.icon-btn svg{width:19px;height:19px}
-.theme-sun{display:none}
-[data-theme="dark"] .theme-sun{display:block}
-[data-theme="dark"] .theme-moon{display:none}
+.hbtn:hover{background:var(--surface-3);border-color:var(--accent)}
+.hbtn:active{transform:translateY(1px)}
+.hbtn svg{width:17px;height:17px;flex-shrink:0}
+.hbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.hbtn.primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+.hbtn.done{background:var(--ok);border-color:var(--ok);color:#fff}
+.langs{display:inline-flex;border:1px solid var(--border-strong);border-radius:var(--radius-sm);overflow:hidden;height:36px}
+.langs button{
+  border:0;background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:700;
+  letter-spacing:.4px;padding:0 11px;cursor:pointer;transition:background .16s,color .16s;
+}
+.langs button+button{border-left:1px solid var(--border)}
+.langs button[aria-pressed="true"]{background:var(--accent);color:#fff}
+[data-theme="light"] .theme-sun,[data-theme="dark"] .theme-moon{display:none}
 
-/* ---------- TOOLBAR ---------- */
+/* ---------- панель фильтров ---------- */
 .toolbar{
-  position:sticky; top:71px; z-index:40; background:color-mix(in srgb,var(--bg) 90%,transparent);
-  backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+  position:sticky;top:61px;z-index:50;border-bottom:1px solid var(--border);
+  background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(14px);
 }
-.toolbar-inner{max-width:1480px;margin:0 auto;padding:14px 28px 12px;display:flex;flex-direction:column;gap:11px}
-.search-row{display:flex;gap:11px;align-items:center}
-.search-wrap{position:relative;flex:1;min-width:0}
-.search-wrap svg.s-ico{position:absolute;left:15px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--faint);pointer-events:none}
+.toolbar-inner{max-width:1520px;margin:0 auto;padding:12px 26px 13px;display:flex;flex-direction:column;gap:10px}
+.search-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search-wrap{position:relative;flex:1;min-width:230px}
+.search-wrap .s-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--faint);pointer-events:none}
 #search{
-  width:100%;height:46px;padding:0 44px 0 44px;border-radius:12px;border:1.5px solid var(--border-strong);
-  background:var(--surface);color:var(--text);font-size:15px;font-family:inherit;outline:none;transition:.18s;
+  width:100%;height:42px;padding:0 78px 0 40px;border:1px solid var(--border-strong);
+  border-radius:var(--radius-sm);background:var(--surface);color:var(--text);
+  font:inherit;font-size:14.5px;transition:border-color .16s,box-shadow .16s;
 }
-#search:focus{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+#search:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 #search::placeholder{color:var(--faint)}
-.search-clear{position:absolute;right:9px;top:50%;transform:translateY(-50%);width:28px;height:28px;border:none;background:var(--code-bg);border-radius:8px;cursor:pointer;display:none;place-items:center;color:var(--muted)}
-.search-clear.show{display:grid}
-.search-clear:hover{color:var(--text);background:var(--border)}
-.kbd{font-family:'JetBrains Mono',monospace;font-size:11px;padding:2px 6px;border:1px solid var(--border-strong);border-bottom-width:2px;border-radius:5px;background:var(--surface-2);color:var(--muted)}
-.sort-group{display:flex;gap:0;background:var(--surface);border:1.5px solid var(--border-strong);border-radius:12px;overflow:hidden;flex-shrink:0}
-.sort-btn{border:none;background:transparent;padding:0 14px;height:46px;font-family:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:.15s;border-left:1px solid var(--border)}
-.sort-btn:first-child{border-left:none}
-.sort-btn:hover{background:var(--surface-2);color:var(--text)}
-.sort-btn.active{background:var(--accent-soft);color:var(--accent-ink)}
-
-/* filters */
-.filters{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
-.fil{
-  border:1.5px solid var(--border-strong);background:var(--surface);color:var(--muted);
-  padding:7px 13px;border-radius:9px;font-family:inherit;font-size:13px;font-weight:650;cursor:pointer;
-  transition:.15s;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;line-height:1;
+.kbd-hint{
+  position:absolute;right:38px;top:50%;transform:translateY(-50%);pointer-events:none;
+  font-size:11px;color:var(--faint);border:1px solid var(--border);border-radius:5px;
+  padding:1px 5px;background:var(--surface-2);
 }
-.fil:hover{border-color:var(--accent);color:var(--text)}
-.fil.active{background:var(--accent);border-color:var(--accent);color:#fff}
-.fil .dot{width:8px;height:8px;border-radius:50%}
-.fil-sep{width:1px;height:22px;background:var(--border-strong);margin:0 4px}
-.fil-label{font-size:11px;font-weight:700;color:var(--faint);text-transform:uppercase;letter-spacing:.6px;margin-right:2px}
-.ver-pill{padding:6px 11px;font-size:12px}
-.dropdown{position:relative}
+#search:not(:placeholder-shown)~.kbd-hint{display:none}
+.search-clear{
+  position:absolute;right:8px;top:50%;transform:translateY(-50%);width:24px;height:24px;
+  border:0;border-radius:50%;background:var(--surface-3);color:var(--muted);cursor:pointer;
+  display:none;place-items:center;font-size:15px;line-height:1;
+}
+#search:not(:placeholder-shown)~.search-clear{display:grid}
+.seg{display:inline-flex;border:1px solid var(--border-strong);border-radius:var(--radius-sm);overflow:hidden;background:var(--surface)}
+.seg button{
+  border:0;background:transparent;color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;
+  padding:0 13px;height:40px;cursor:pointer;white-space:nowrap;transition:background .16s,color .16s;
+}
+.seg button+button{border-left:1px solid var(--border)}
+.seg button:hover{background:var(--surface-3);color:var(--text)}
+.seg button.active{background:var(--accent-soft);color:var(--accent-ink)}
+.filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.fil-label{font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--faint);margin-right:3px}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;
+  border:1px solid var(--border);border-radius:99px;background:var(--surface);
+  color:var(--muted);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;
+  transition:border-color .16s,color .16s,background .16s;
+}
+.chip:hover{border-color:var(--border-strong);color:var(--text)}
+.chip.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
+.chip .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.chip .cnt{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.chip.active .cnt{color:var(--accent-ink)}
+.dd{position:relative}
 .dd-menu{
-  position:absolute;top:calc(100% + 7px);left:0;z-index:60;background:var(--surface);border:1px solid var(--border-strong);
-  border-radius:12px;box-shadow:var(--shadow-lg);padding:7px;min-width:230px;max-height:340px;overflow-y:auto;
-  display:none;grid-template-columns:1fr;gap:1px;
+  position:absolute;top:calc(100% + 6px);left:0;z-index:70;min-width:265px;max-height:60vh;overflow:auto;
+  background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-lg);padding:5px;display:none;
 }
-.dd-menu.open{display:grid}
-.dd-item{text-align:left;border:none;background:transparent;color:var(--text);padding:8px 11px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:550;cursor:pointer;display:flex;justify-content:space-between;gap:10px;align-items:center}
-.dd-item:hover{background:var(--surface-2)}
-.dd-item.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:700}
-.dd-item span.cnt{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.dd-menu.open{display:block}
+.dd-menu button{
+  display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;
+  border:0;background:transparent;color:var(--text);font:inherit;font-size:13px;
+  padding:7px 9px;border-radius:var(--radius-xs);cursor:pointer;text-align:left;
+}
+.dd-menu button:hover{background:var(--surface-3)}
+.dd-menu button.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:700}
+.dd-menu .cnt{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
 
-/* ---------- LAYOUT ---------- */
-.layout{max-width:1480px;margin:0 auto;padding:22px 28px 90px;display:flex;gap:22px;align-items:flex-start}
+/* ---------- раскладка ---------- */
+.layout{max-width:1520px;margin:0 auto;padding:22px 26px 80px;display:flex;gap:16px;align-items:flex-start}
 .az-rail{
-  position:sticky;top:210px;display:flex;flex-direction:column;gap:1px;flex-shrink:0;
-  padding-top:4px;
+  position:sticky;top:172px;flex-shrink:0;display:flex;flex-direction:column;gap:1px;
+  padding:7px 5px;background:var(--surface);border:1px solid var(--border);border-radius:99px;
+  /* В глоссарии два алфавита сразу, и рельса перерастает экран.
+     Прокрутка внутри неё дешевле, чем спрятанные буквы. */
+  max-height:calc(100vh - 196px);overflow-y:auto;scrollbar-width:none;
 }
-.az-rail a{
-  width:22px;height:19px;display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--faint);
-  border-radius:5px;text-decoration:none;transition:.12s;cursor:pointer;font-family:'JetBrains Mono',monospace;
+.az-rail::-webkit-scrollbar{display:none}
+.az-rail button{
+  width:21px;height:19px;border:0;background:transparent;color:var(--faint);
+  font:inherit;font-size:10.5px;font-weight:700;cursor:pointer;border-radius:5px;
 }
-.az-rail a:hover{background:var(--accent);color:#fff}
-.az-rail a.dis{opacity:.28;pointer-events:none}
+.az-rail button:hover:not(:disabled){background:var(--accent-soft);color:var(--accent-ink)}
+.az-rail button:disabled{opacity:.28;cursor:default}
 .main{flex:1;min-width:0}
+.sec-head{
+  grid-column:1/-1;display:flex;align-items:baseline;gap:11px;
+  margin:18px 2px 2px;padding-bottom:7px;border-bottom:1px solid var(--border);
+}
+.sec-head:first-child{margin-top:0}
+.sec-head h2{margin:0;font-size:15.5px;font-weight:800;letter-spacing:-.2px}
+.sec-head span{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(345px,1fr));gap:13px;align-items:start}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(430px,100%),1fr));gap:16px}
-.empty{padding:80px 20px;text-align:center;color:var(--muted);display:none}
-.empty.show{display:block}
-.empty .big{font-size:46px;margin-bottom:10px}
-.empty h3{margin:0 0 6px;font-size:19px;color:var(--text)}
-
-/* ---------- CARD ---------- */
+/* ---------- карточка ---------- */
 .card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:17px 18px 14px;
-  box-shadow:var(--shadow);transition:border-color .18s, transform .18s, box-shadow .18s;
-  display:flex;flex-direction:column;position:relative;scroll-margin-top:200px;border-left:3px solid var(--cardc);
+  position:relative;display:flex;flex-direction:column;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:15px 16px 14px 19px;box-shadow:var(--shadow);
+  overflow:hidden;transition:border-color .18s,box-shadow .18s,transform .18s;
 }
-.card:hover{border-color:var(--border-strong);transform:translateY(-2px);box-shadow:var(--shadow-lg);border-left-color:var(--cardc)}
-.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:9px}
-.card-name{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:17.5px;letter-spacing:-.5px;color:var(--text);word-break:break-word;line-height:1.25}
-.badges{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
-.badge{font-size:10.5px;font-weight:750;padding:3.5px 9px;border-radius:20px;white-space:nowrap;letter-spacing:.2px;
-  color:var(--cardc);background:color-mix(in srgb,var(--cardc) 13%,transparent)}
-.ver-badge{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;padding:2.5px 7px;border-radius:5px;background:var(--accent-soft);color:var(--accent-ink);white-space:nowrap}
-.subcat{font-size:11px;color:var(--faint);font-weight:600;margin-bottom:11px;text-transform:lowercase;letter-spacing:.2px}
-.subcat::before{content:"#";opacity:.6;margin-right:1px}
-
-.field-label{font-size:10px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;color:var(--faint);margin:0 0 5px}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cg,var(--c-op))}
+.card:hover{border-color:var(--border-strong);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card:target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow-lg)}
+.card-top{display:flex;align-items:flex-start;gap:9px;margin-bottom:3px}
+.card-name{
+  flex:1;min-width:0;font-family:ui-monospace,monospace;font-size:15.5px;font-weight:700;
+  letter-spacing:-.3px;word-break:break-word;
+}
+.badges{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;flex-shrink:0}
+.badge{
+  font-size:10.5px;font-weight:700;letter-spacing:.25px;padding:2px 7px;border-radius:99px;
+  background:var(--surface-3);color:var(--muted);white-space:nowrap;
+}
+.badge.cg{background:color-mix(in srgb,var(--cg) 14%,transparent);color:var(--cg)}
+.badge.ver{background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--accent-ink)}
+.subcat{font-size:11.5px;color:var(--faint);margin-bottom:9px}
+.summary{font-size:14px;color:var(--text);margin-bottom:11px}
+.field-label{
+  font-size:10px;font-weight:800;letter-spacing:.85px;text-transform:uppercase;
+  color:var(--faint);margin-bottom:4px;
+}
 .syntax{
-  font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.5;color:var(--text);
-  background:var(--code-bg);border:1px solid var(--code-border);border-radius:var(--radius-sm);
-  padding:9px 12px;margin-bottom:12px;white-space:pre-wrap;word-break:break-word;font-weight:500;
+  font-family:ui-monospace,monospace;font-size:12.5px;background:var(--code-bg);
+  border:1px solid var(--code-border);border-radius:var(--radius-xs);padding:7px 10px;
+  overflow-x:auto;white-space:pre;margin-bottom:11px;
 }
-.desc{font-size:14px;line-height:1.55;color:var(--text);margin:0 0 13px}
-.desc mark,.card-name mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0 1px;font-weight:inherit}
-
-.ex-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
-.copy-btn{border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);font-family:inherit;font-size:11px;font-weight:650;padding:4px 9px;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:.15s}
-.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
-.copy-btn.done{color:var(--c-str);border-color:var(--c-str)}
-.copy-btn svg{width:13px;height:13px}
-pre.examples{
-  margin:0 0 12px;background:var(--code-bg);border:1px solid var(--code-border);border-radius:var(--radius-sm);
-  padding:11px 13px;overflow-x:auto;font-size:12.5px;line-height:1.65;white-space:pre;tab-size:4;
+.untranslated{
+  display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--faint);
+  border:1px dashed var(--border-strong);border-radius:var(--radius-xs);padding:3px 8px;margin-bottom:11px;
 }
-pre.examples code{font-family:'JetBrains Mono',monospace}
-.tok-kw{color:var(--kw);font-weight:600}
-.tok-str{color:var(--str)}
-.tok-num{color:var(--num)}
-.tok-com{color:var(--com);font-style:italic}
-.tok-bi{color:var(--bi)}
-.tok-fn{color:var(--fn)}
-.tok-res{color:var(--res)}
-.tok-res b{color:var(--text);font-weight:600;font-style:normal}
-
-.card-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:4px;border-top:1px solid var(--border);margin-top:2px;padding-top:11px}
-.docs-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:650;color:var(--accent);text-decoration:none}
-.docs-link:hover{text-decoration:underline}
+.card-foot{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding-top:10px;border-top:1px solid var(--border)}
+.expand{
+  border:1px solid var(--border-strong);background:var(--surface);color:var(--muted);
+  font:inherit;font-size:12px;font-weight:600;height:28px;padding:0 11px;border-radius:var(--radius-xs);
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:background .16s,color .16s,border-color .16s;
+}
+.expand:hover{background:var(--surface-3);color:var(--text);border-color:var(--accent)}
+.expand svg{width:13px;height:13px;transition:transform .2s}
+.card.open .expand svg{transform:rotate(180deg)}
+.docs-link{
+  margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-size:12px;
+  color:var(--muted);text-decoration:none;transition:color .16s;
+}
+.docs-link:hover{color:var(--accent)}
 .docs-link svg{width:13px;height:13px}
-.related{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.details{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.card.open .details{display:block}
+.body-text{font-size:13.5px;color:var(--text);margin-bottom:13px;white-space:pre-wrap}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:4px}
+.copy-btn{
+  border:1px solid var(--border);background:var(--surface);color:var(--muted);font:inherit;
+  font-size:11px;font-weight:600;height:24px;padding:0 8px;border-radius:6px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.copy-btn.done{border-color:var(--ok);color:var(--ok)}
+.copy-btn svg{width:12px;height:12px}
+.examples{
+  margin:0 0 13px;font-size:12.5px;line-height:1.62;background:var(--code-bg);
+  border:1px solid var(--code-border);border-radius:var(--radius-xs);padding:10px 12px;
+  overflow-x:auto;white-space:pre;
+}
+.related{display:flex;flex-wrap:wrap;gap:5px}
+.related a{
+  font-size:11.5px;font-family:ui-monospace,monospace;text-decoration:none;
+  border:1px solid var(--border);border-radius:99px;padding:2px 9px;color:var(--muted);
+  transition:border-color .16s,color .16s;
+}
+.related a:hover{border-color:var(--accent);color:var(--accent)}
+.related.errs{margin-top:2px}
+.related.errs a{
+  border-color:color-mix(in srgb,var(--c-exc) 32%,transparent);
+  color:color-mix(in srgb,var(--c-exc) 88%,var(--text));
+}
+.related.errs a:hover{border-color:var(--c-exc);color:var(--c-exc)}
+.tok-kw{color:var(--kw)}.tok-str{color:var(--str)}.tok-num{color:var(--num)}
+.tok-com{color:var(--com);font-style:italic}.tok-bi{color:var(--bi)}.tok-fn{color:var(--fn)}
+.tok-com b{color:var(--text);font-style:normal;font-weight:600}
+mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0 1px}
 
-/* group divider when sorted by category */
-.group-head{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:14px 2px 2px;padding-top:8px}
-.group-head:first-child{margin-top:0}
-.group-head h2{margin:0;font-size:15px;font-weight:900;letter-spacing:-.3px;display:flex;align-items:center;gap:9px}
-.group-head .gdot{width:11px;height:11px;border-radius:50%}
-.group-head .gcount{font-size:12px;color:var(--faint);font-weight:600;font-variant-numeric:tabular-nums}
-.group-head .gline{flex:1;height:1px;background:var(--border)}
-
-/* back to top */
-#toTop{position:fixed;right:24px;bottom:24px;width:46px;height:46px;border-radius:13px;border:1px solid var(--border-strong);background:var(--surface);color:var(--accent);cursor:pointer;display:grid;place-items:center;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transform:translateY(12px);transition:.25s;z-index:55}
-#toTop.show{opacity:1;pointer-events:auto;transform:translateY(0)}
-#toTop:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-#toTop svg{width:20px;height:20px}
-
-::-webkit-scrollbar{width:11px;height:11px}
-::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:6px;border:3px solid var(--bg)}
-::-webkit-scrollbar-track{background:transparent}
-
-@media(max-width:1100px){.az-rail{display:none}}
-@media(max-width:680px){
-  .header-inner,.toolbar-inner,.layout{padding-left:15px;padding-right:15px}
-  .brand-text p{display:none}
-  .sort-btn{padding:0 9px;font-size:12px}
-  .toolbar{top:67px}
-  .grid{grid-template-columns:1fr}
+.empty{display:none;text-align:center;padding:80px 20px;color:var(--muted)}
+.empty.show{display:block}
+.empty .big{font-size:44px;margin-bottom:12px;opacity:.55}
+.empty h3{margin:0 0 5px;font-size:17px;color:var(--text)}
+.sentinel{height:1px}
+.site-footer{
+  max-width:1520px;margin:0 auto;padding:26px;border-top:1px solid var(--border);
+  font-size:12.5px;color:var(--faint);display:flex;gap:14px;flex-wrap:wrap;align-items:center;
+}
+.site-footer a{color:var(--muted)}
+@media (max-width:900px){
+  .az-rail{display:none}
+  .header-inner,.toolbar-inner,.layout,.site-footer{padding-left:15px;padding-right:15px}
+  .brand p{display:none}
   .counter{display:none}
+  .grid{grid-template-columns:1fr}
+}
+@media print{
+  .site-header,.toolbar,.az-rail,.card-foot,.site-footer{display:none}
+  .card{break-inside:avoid;box-shadow:none}
+  .card .details{display:block}
 }
 </style>
 </head>
@@ -227,16 +300,24 @@ pre.examples code{font-family:'JetBrains Mono',monospace}
   <div class="header-inner">
     <div class="brand">
       <div class="logo"><b>py</b><i></i></div>
-      <div class="brand-text">
-        <h1>Python Glossary</h1>
-        <p>Справочник стандартной библиотеки · Stepik-издание</p>
+      <div>
+        <h1 data-i18n="title">Python Glossary</h1>
+        <p data-i18n="subtitle">Справочник стандартной библиотеки</p>
       </div>
     </div>
     <div class="header-spacer"></div>
-    <div class="counter" id="counter">Показано: <b>507</b> из 507</div>
-    <button class="icon-btn" id="themeBtn" title="Сменить тему" aria-label="Тема">
+    <div class="counter" id="counter"></div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <button class="hbtn" id="themeBtn" type="button" data-i18n-title="theme" title="Сменить тему">
       <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+    <button class="hbtn primary" id="downloadBtn" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+      <span data-i18n="download">Скачать</span>
     </button>
   </div>
 </header>
@@ -246,354 +327,493 @@ pre.examples code{font-family:'JetBrains Mono',monospace}
     <div class="search-row">
       <div class="search-wrap">
         <svg class="s-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="search" type="text" placeholder="Поиск по имени, описанию, примерам…  (нажми / )" autocomplete="off" spellcheck="false">
-        <button class="search-clear" id="searchClear" aria-label="Очистить">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-        </button>
+        <input id="search" type="search" autocomplete="off" spellcheck="false" placeholder=" ">
+        <span class="kbd-hint">/</span>
+        <button class="search-clear" id="searchClear" type="button" aria-label="clear">×</button>
       </div>
-      <div class="sort-group" id="sortGroup">
-        <button class="sort-btn active" data-sort="az">А→Я</button>
-        <button class="sort-btn" data-sort="za">Я→А</button>
-        <button class="sort-btn" data-sort="cat">По разделам</button>
+      <div class="seg" id="sortGroup">
+        <button type="button" data-sort="az" class="active">A→Z</button>
+        <button type="button" data-sort="za">Z→A</button>
+        <button type="button" data-sort="sec" data-i18n="bySection">По разделам</button>
       </div>
     </div>
-    <div class="filters" id="catFilters"></div>
-    <div class="filters" id="verFilters">
-      <span class="fil-label">Версия</span>
-    </div>
+    <div class="filters" id="kindFilters"></div>
+    <div class="filters" id="groupFilters"></div>
   </div>
 </div>
 
 <div class="layout">
-  <nav class="az-rail" id="azRail"></nav>
+  <nav class="az-rail" id="azRail" aria-label="A-Z"></nav>
   <main class="main">
     <div class="grid" id="grid"></div>
+    <div class="sentinel" id="sentinel"></div>
     <div class="empty" id="empty">
       <div class="big">🔍</div>
-      <h3>Ничего не найдено</h3>
-      <p>Попробуй изменить запрос или сбросить фильтры.</p>
+      <h3 data-i18n="emptyTitle">Ничего не найдено</h3>
+      <p data-i18n="emptyHint">Попробуйте другой запрос или снимите фильтры.</p>
     </div>
   </main>
 </div>
 
-<button id="toTop" title="Наверх" aria-label="Наверх">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-</button>
+<footer class="site-footer">
+  <span id="footStats"></span>
+  <span>·</span>
+  <a href="https://github.com/ArtVsMark/Glossary-Python" target="_blank" rel="noopener">ArtVsMark/Glossary-Python</a>
+</footer>
 
 <script id="glossary-data" type="application/json">{{GLOSSARY_DATA}}</script>
 <script>
 "use strict";
-const DATA = JSON.parse(document.getElementById('glossary-data').textContent);
 
-/* ---------- color groups ---------- */
-const CG_COLOR = {builtin:'var(--c-builtin)',str:'var(--c-str)',seq:'var(--c-seq)',mapset:'var(--c-mapset)',oop:'var(--c-oop)',exc:'var(--c-exc)',module:'var(--c-module)',iter:'var(--c-iter)',op:'var(--c-op)',typing:'var(--c-typing)'};
+/* Чистый снимок страницы — до того, как скрипт что-либо в ней поменяет.
+   Кнопка «Скачать» отдаёт именно его: сохранять текущий DOM значило бы
+   раздавать файл с чужим поиском, открытыми карточками и чужой темой. */
+const PRISTINE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
 
-/* ---------- python highlighter (offline) ---------- */
+const DATA = JSON.parse(document.getElementById("glossary-data").textContent);
+const CG = ["builtin","str","seq","mapset","oop","exc","module","iter","op","typing"];
+const CG_VAR = Object.fromEntries(CG.map(g => [g, "var(--c-" + g + ")"]));
+
+/* ---------- язык интерфейса ---------- */
+const I18N = {
+  ru:{
+    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки",
+    download:"Скачать", downloaded:"Готово", theme:"Сменить тему",
+    search:"Поиск по имени, синонимам, ключевым словам…",
+    bySection:"По разделам", kind:"Вид", group:"Группа", modules:"Модули",
+    all:"Все", shown:"Показано", of:"из",
+    term:"понятие", function:"функция", exception:"исключение", construct:"конструкция",
+    syntax:"Синтаксис", examples:"Примеры", copy:"Копировать", copied:"Скопировано",
+    details:"Подробнее", collapse:"Свернуть", seeAlso:"См. также", commonErrors:"Частые ошибки",
+    noTranslation:"Нет перевода на этот язык — показан русский текст",
+    emptyTitle:"Ничего не найдено", emptyHint:"Попробуйте другой запрос или снимите фильтры.",
+    stats:(n,s)=>`${n} карточек · ${s} разделов`
+  },
+  en:{
+    title:"Python Glossary", subtitle:"Standard library reference",
+    download:"Download", downloaded:"Saved", theme:"Toggle theme",
+    search:"Search by name, alias, keyword…",
+    bySection:"By section", kind:"Kind", group:"Group", modules:"Modules",
+    all:"All", shown:"Showing", of:"of",
+    term:"term", function:"function", exception:"exception", construct:"construct",
+    syntax:"Syntax", examples:"Examples", copy:"Copy", copied:"Copied",
+    details:"Details", collapse:"Collapse", seeAlso:"See also", commonErrors:"Common errors",
+    noTranslation:"No translation for this language — showing Russian",
+    emptyTitle:"Nothing found", emptyHint:"Try another query or clear the filters.",
+    stats:(n,s)=>`${n} entries · ${s} sections`
+  }
+};
+let LANG = "ru";
+const t = k => I18N[LANG][k];
+
+/* Текст карточки на выбранном языке; пустой перевод — не «пусто», а откат
+   на русский с честной пометкой: пустая карточка выглядит сломанной. */
+function txt(field){ return (field && field[LANG]) || ""; }
+function txtOr(field){ return txt(field) || (field && field.ru) || ""; }
+function isTranslated(d){ return LANG === "ru" || Boolean(d.summary && d.summary.en); }
+
+/* ---------- подсветка Python (без сети) ---------- */
 const PY_KW = new Set("False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield match case".split(" "));
-const PY_BI = new Set("print len range int str float bool list dict set tuple type input open sum min max abs round sorted reversed enumerate zip map filter isinstance hasattr getattr setattr id hash repr format next iter super object bytes bytearray frozenset complex divmod pow all any ord chr hex oct bin vars dir help".split(" "));
-function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+const PY_BI = new Set("print len range int str float bool list dict set tuple type input open sum min max abs round sorted reversed enumerate zip map filter isinstance issubclass hasattr getattr setattr delattr id hash repr format next iter super object bytes bytearray frozenset complex divmod pow all any ord chr hex oct bin vars dir help slice memoryview callable".split(" "));
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
 function hlLine(line){
-  // split comment (handle # not in string – simple heuristic)
-  let code=line, comment=null;
-  // find # that's not inside a quote
-  let inS=null;
+  let code = line, comment = null, inS = null;
   for(let i=0;i<line.length;i++){
-    const c=line[i];
-    if(inS){ if(c===inS && line[i-1]!=='\\') inS=null; }
-    else if(c==='"'||c==="'"){ inS=c; }
-    else if(c==='#'){ code=line.slice(0,i); comment=line.slice(i); break; }
+    const c = line[i];
+    if(inS){ if(c === inS && line[i-1] !== "\\") inS = null; }
+    else if(c === '"' || c === "'"){ inS = c; }
+    else if(c === "#"){ code = line.slice(0,i); comment = line.slice(i); break; }
   }
-  // tokenize code part
-  let out='';
-  const re=/("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+\.?\d*(?:[eE][+-]?\d+)?\b|[A-Za-z_]\w*|\s+|[^\sA-Za-z_])/g;
-  let m, prevName=null;
-  while((m=re.exec(code))){
-    const t=m[0];
-    if(/^["']/.test(t)){ out+='<span class="tok-str">'+esc(t)+'</span>'; prevName=null; }
-    else if(/^\d/.test(t)){ out+='<span class="tok-num">'+esc(t)+'</span>'; prevName=null; }
-    else if(/^[A-Za-z_]\w*$/.test(t)){
-      if(PY_KW.has(t)) out+='<span class="tok-kw">'+t+'</span>';
-      else if(PY_BI.has(t)) out+='<span class="tok-bi">'+t+'</span>';
-      else {
-        // function call?  name(
-        const rest=code.slice(re.lastIndex);
-        if(/^\s*\(/.test(rest)) out+='<span class="tok-fn">'+esc(t)+'</span>';
-        else out+=esc(t);
-      }
-      prevName=t;
+  let out = "";
+  const re = /("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+\.?\d*(?:[eE][+-]?\d+)?\b|[A-Za-z_]\w*|\s+|[^\sA-Za-z_])/g;
+  let m;
+  while((m = re.exec(code))){
+    const tok = m[0];
+    if(/^["']/.test(tok)) out += '<span class="tok-str">' + esc(tok) + "</span>";
+    else if(/^\d/.test(tok)) out += '<span class="tok-num">' + esc(tok) + "</span>";
+    else if(/^[A-Za-z_]\w*$/.test(tok)){
+      if(PY_KW.has(tok)) out += '<span class="tok-kw">' + tok + "</span>";
+      else if(PY_BI.has(tok)) out += '<span class="tok-bi">' + tok + "</span>";
+      else if(/^\s*\(/.test(code.slice(re.lastIndex))) out += '<span class="tok-fn">' + esc(tok) + "</span>";
+      else out += esc(tok);
     }
-    else { out+=esc(t); if(!/^\s+$/.test(t))prevName=null; }
+    else out += esc(tok);
   }
-  if(comment!=null){
-    // highlight the result arrow specially
-    const cm = esc(comment).replace(/(#\s*(?:→|-&gt;|->)\s*)(.*)$/,'$1<b>$2</b>');
-    out+='<span class="tok-com tok-res">'+cm+'</span>';
+  if(comment !== null){
+    out += '<span class="tok-com">' +
+      esc(comment).replace(/(#\s*(?:→|-&gt;)\s*)(.*)$/, "$1<b>$2</b>") + "</span>";
   }
   return out;
 }
-function highlightPy(code){
-  return code.split('\n').map(hlLine).join('\n');
+const highlightPy = code => code.split("\n").map(hlLine).join("\n");
+
+/* ---------- индекс ---------- */
+const BY_ID = new Map(DATA.map(d => [d.id, d]));
+/* Источник хранит в related_errors имена (`IndexError`), а идентификаторы
+   карточек-исключений приведены к нижнему регистру. Разрешение общее для всех
+   ссылок — иначе оно разъедется между блоками. */
+const BY_LOWER = new Map(DATA.map(d => [d.id.toLowerCase(), d]));
+const resolve = ref => BY_ID.get(ref) || BY_LOWER.get(String(ref).toLowerCase());
+const SECTIONS = [];
+DATA.forEach(d => { if(!SECTIONS.includes(d.section)) SECTIONS.push(d.section); });
+const SECTION_COUNT = Object.create(null);
+DATA.forEach(d => { SECTION_COUNT[d.section] = (SECTION_COUNT[d.section]||0) + 1; });
+const CG_COUNT = Object.create(null);
+DATA.forEach(d => { CG_COUNT[d.color_group] = (CG_COUNT[d.color_group]||0) + 1; });
+const KIND_COUNT = Object.create(null);
+DATA.forEach(d => { KIND_COUNT[d.kind] = (KIND_COUNT[d.kind]||0) + 1; });
+const MODULE_SECTIONS = SECTIONS.filter(s => /^Модул/i.test(s)).sort((a,b) => a.localeCompare(b,"ru"));
+
+/* Строка поиска считается один раз на карточку и язык: пересборка её на
+   каждое нажатие клавиши превращала бы 1349 карточек в заметную паузу. */
+const HAY = new Map();
+function haystack(d){
+  const key = d.id + "|" + LANG;
+  let s = HAY.get(key);
+  if(s === undefined){
+    s = [d.title, d.id, txtOr(d.summary), ...(d.aliases||[]), ...(d.keywords||[]), d.section, d.subcat]
+      .filter(Boolean).join(" ").toLowerCase();
+    HAY.set(key, s);
+  }
+  return s;
 }
 
-/* ---------- build groups meta ---------- */
-const GROUP_ORDER = [];
-DATA.forEach(d=>{ if(!GROUP_ORDER.includes(d.group)) GROUP_ORDER.push(d.group); });
-const GROUP_CG = {};
-DATA.forEach(d=>{ if(!GROUP_CG[d.group]) GROUP_CG[d.group]=d.cg; });
+/* ---------- состояние ---------- */
+const state = { q:"", kind:"", cg:"", section:"", sort:"az" };
+let visible = [];
+let drawn = 0;
+const CHUNK = 48;
 
-/* quick category filters: label -> predicate */
-const QUICK = [
-  {key:'all', label:'Все', test:()=>true},
-  {key:'cg:builtin', label:'Встроенные', cg:'builtin', test:d=>d.cg==='builtin'},
-  {key:'cg:str', label:'Строки', cg:'str', test:d=>d.cg==='str'},
-  {key:'cg:seq', label:'Списки · кортежи', cg:'seq', test:d=>d.cg==='seq'},
-  {key:'cg:mapset', label:'Словари · множества', cg:'mapset', test:d=>d.cg==='mapset'},
-  {key:'g:Функции', label:'Функции', test:d=>d.group==='Функции'},
-  {key:'cg:oop', label:'ООП', cg:'oop', test:d=>d.cg==='oop'},
-  {key:'cg:exc', label:'Исключения', cg:'exc', test:d=>d.cg==='exc'},
-  {key:'cg:iter', label:'Итераторы · async', cg:'iter', test:d=>d.cg==='iter'},
-  {key:'cg:typing', label:'Typing', cg:'typing', test:d=>d.cg==='typing'},
-];
-const MODULES = GROUP_ORDER.filter(g=>g.startsWith('Модуль'));
+const $ = sel => document.querySelector(sel);
+const grid = $("#grid"), empty = $("#empty"), counter = $("#counter");
 
-/* ---------- state ---------- */
-let state = { q:'', cat:'all', ver:'all', sort:'az' };
-const cards = []; // {el, d, name}
-
-/* ---------- render cards once ---------- */
-const grid = document.getElementById('grid');
-const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
-const DOC_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>';
-
-function buildCard(d){
-  const el=document.createElement('article');
-  el.className='card';
-  el.style.setProperty('--cardc', CG_COLOR[d.cg]||'var(--c-op)');
-  el.id='e-'+d.id;
-  const verBadge = d.version ? `<span class="ver-badge">Python ${d.version}</span>` : '';
-  const syntax = d.syntax ? `<div class="field-label">Синтаксис</div><div class="syntax">${esc(d.syntax)}</div>` : '';
-  const ex = (d.examples||'').trim();
-  const exBlock = ex ? `
-    <div class="ex-head">
-      <div class="field-label">Примеры</div>
-      <button class="copy-btn" type="button">${COPY_ICON}<span>Копировать</span></button>
-    </div>
-    <pre class="examples"><code>${highlightPy(ex)}</code></pre>` : '';
-  el.innerHTML = `
-    <div class="card-top">
-      <div class="card-name" data-name="${esc(d.name)}">${esc(d.name)}</div>
-      <div class="badges">
-        <span class="badge">${esc(d.group.replace('Модуль ','mod · '))}</span>
-        ${verBadge}
-      </div>
-    </div>
-    <div class="subcat">${esc(d.subcat||'')}</div>
-    ${syntax}
-    <div class="field-label">Описание</div>
-    <div class="desc" data-desc="${esc(d.description)}">${esc(d.description)}</div>
-    ${exBlock}
-    <div class="card-foot">
-      <a class="docs-link" href="${d.docs}" target="_blank" rel="noopener">${DOC_ICON} docs.python.org</a>
-    </div>`;
-  // copy
-  const cb=el.querySelector('.copy-btn');
-  if(cb) cb.addEventListener('click',()=>{
-    navigator.clipboard.writeText(ex).then(()=>{
-      cb.classList.add('done'); cb.querySelector('span').textContent='Скопировано';
-      setTimeout(()=>{cb.classList.remove('done');cb.querySelector('span').textContent='Копировать';},1400);
-    }).catch(()=>{});
-  });
-  return el;
-}
-
-DATA.forEach(d=>{
-  const el=buildCard(d);
-  grid.appendChild(el);
-  cards.push({el, d, name:d.name.toLowerCase(),
-    search:(d.name+' '+d.description+' '+d.examples+' '+d.syntax+' '+d.subcat+' '+d.group).toLowerCase()});
-});
-
-/* ---------- filter UI ---------- */
-const catWrap=document.getElementById('catFilters');
-QUICK.forEach(q=>{
-  const b=document.createElement('button');
-  b.className='fil'+(q.key==='all'?' active':'');
-  b.dataset.key=q.key;
-  b.innerHTML=(q.cg?`<span class="dot" style="background:${CG_COLOR[q.cg]}"></span>`:'')+q.label;
-  b.addEventListener('click',()=>{ setCat(q.key); });
-  catWrap.appendChild(b);
-});
-// modules dropdown
-const dd=document.createElement('div'); dd.className='dropdown';
-const ddBtn=document.createElement('button'); ddBtn.className='fil'; ddBtn.id='modBtn';
-ddBtn.innerHTML='<span class="dot" style="background:var(--c-module)"></span>Модули ▾';
-const ddMenu=document.createElement('div'); ddMenu.className='dd-menu';
-MODULES.forEach(g=>{
-  const cnt=DATA.filter(d=>d.group===g).length;
-  const it=document.createElement('button'); it.className='dd-item'; it.dataset.key='g:'+g;
-  it.innerHTML=`<span>${g}</span><span class="cnt">${cnt}</span>`;
-  it.addEventListener('click',()=>{ setCat('g:'+g); ddMenu.classList.remove('open'); });
-  ddMenu.appendChild(it);
-});
-dd.appendChild(ddBtn); dd.appendChild(ddMenu); catWrap.appendChild(dd);
-ddBtn.addEventListener('click',e=>{ e.stopPropagation(); ddMenu.classList.toggle('open'); });
-document.addEventListener('click',()=>ddMenu.classList.remove('open'));
-
-// version filters
-const verWrap=document.getElementById('verFilters');
-['all','3.8+','3.9+','3.10+','3.11+','3.12+'].forEach(v=>{
-  const b=document.createElement('button'); b.className='fil ver-pill'+(v==='all'?' active':''); b.dataset.ver=v;
-  b.textContent = v==='all'?'Все':v;
-  b.addEventListener('click',()=>{ state.ver=v; verWrap.querySelectorAll('.fil').forEach(x=>x.classList.toggle('active',x.dataset.ver===v)); apply(); });
-  verWrap.appendChild(b);
-});
-
-function setCat(key){
-  state.cat=key;
-  catWrap.querySelectorAll('.fil[data-key]').forEach(b=>b.classList.toggle('active', b.dataset.key===key));
-  // module dropdown active state
-  const isMod = key.startsWith('g:Модуль');
-  ddBtn.classList.toggle('active', isMod);
-  if(isMod){ const g=key.slice(2); ddBtn.innerHTML='<span class="dot" style="background:var(--c-module)"></span>'+g.replace('Модуль ','')+' ▾'; }
-  else ddBtn.innerHTML='<span class="dot" style="background:var(--c-module)"></span>Модули ▾';
-  ddMenu.querySelectorAll('.dd-item').forEach(it=>it.classList.toggle('active',it.dataset.key===key));
-  apply();
-}
-
-/* ---------- predicates ---------- */
-function catTest(d){
-  if(state.cat==='all') return true;
-  if(state.cat.startsWith('cg:')) return d.cg===state.cat.slice(3);
-  if(state.cat.startsWith('g:')) return d.group===state.cat.slice(2);
+function matches(d){
+  if(state.kind && d.kind !== state.kind) return false;
+  if(state.cg && d.color_group !== state.cg) return false;
+  if(state.section && d.section !== state.section) return false;
+  if(state.q && !haystack(d).includes(state.q)) return false;
   return true;
 }
-function verTest(d){
-  if(state.ver==='all') return true;
-  const need=parseInt(state.ver.match(/3\.(\d+)/)[1]);
-  if(!d.version) return false;
-  const has=parseInt(d.version.match(/3\.(\d+)/)[1]);
-  return has>=need;
+
+const collator = new Intl.Collator("ru", {sensitivity:"base", numeric:true});
+function sorted(list){
+  const byTitle = (a,b) => collator.compare(a.title, b.title);
+  if(state.sort === "az") return list.slice().sort(byTitle);
+  if(state.sort === "za") return list.slice().sort((a,b) => byTitle(b,a));
+  return list.slice().sort((a,b) =>
+    SECTIONS.indexOf(a.section) - SECTIONS.indexOf(b.section) || byTitle(a,b));
 }
 
-/* ---------- highlight matches ---------- */
-function escRe(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
-function mark(text,q){
-  if(!q) return esc(text);
-  const re=new RegExp('('+escRe(q)+')','gi');
-  return esc(text).replace(re,'<mark>$1</mark>');
-  // note: esc first then replace – q is plain so safe enough
-}
-function applyHighlight(card,q){
-  const nameEl=card.el.querySelector('.card-name');
-  const descEl=card.el.querySelector('.desc');
-  nameEl.innerHTML = q ? markHtml(nameEl.dataset.name,q) : esc(nameEl.dataset.name);
-  descEl.innerHTML = q ? markHtml(descEl.dataset.desc,q) : esc(descEl.dataset.desc);
-}
-function markHtml(text,q){
-  const re=new RegExp('('+escRe(q)+')','gi');
-  return esc(text).replace(re,'<mark>$1</mark>');
+function mark(text){
+  const safe = esc(text);
+  if(!state.q) return safe;
+  const needle = esc(state.q).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return safe.replace(new RegExp("(" + needle + ")", "gi"), "<mark>$1</mark>");
 }
 
-/* ---------- apply (search + filter + sort) ---------- */
-const empty=document.getElementById('empty');
-function apply(){
-  const q=state.q.trim().toLowerCase();
-  let shown=0;
-  // remove any group heads
-  grid.querySelectorAll('.group-head').forEach(h=>h.remove());
+const ICON_CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+const ICON_DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
+const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
 
-  const visible=[];
-  cards.forEach(c=>{
-    const ok = (!q||c.search.includes(q)) && catTest(c.d) && verTest(c.d);
-    c.visible=ok;
-    if(ok){ c.el.style.display=''; visible.push(c); applyHighlight(c,q); shown++; }
-    else c.el.style.display='none';
-  });
+function cardHtml(d){
+  const cgv = CG_VAR[d.color_group] || "var(--c-op)";
+  const ver = d.version ? `<span class="badge ver">Python ${esc(d.version)}</span>` : "";
+  const section = esc(d.section.replace(/^Модуль /, "mod · "));
+  const syntax = d.syntax
+    ? `<div class="field-label">${t("syntax")}</div><div class="syntax">${highlightPy(d.syntax)}</div>` : "";
+  const hint = isTranslated(d) ? ""
+    : `<div class="untranslated">⚑ ${t("noTranslation")}</div>`;
+  const hasDetails = txtOr(d.body)
+    || (d.examples && d.examples.length)
+    || (d.related && d.related.length)
+    || (d.related_errors && d.related_errors.length);
+  return `<article class="card" id="${esc(d.id)}" style="--cg:${cgv}">
+  <div class="card-top">
+    <div class="card-name">${mark(d.title)}</div>
+    <div class="badges">
+      ${ver}<span class="badge cg">${section}</span><span class="badge">${t(d.kind) || esc(d.kind)}</span>
+    </div>
+  </div>
+  ${d.subcat ? `<div class="subcat">${esc(d.subcat)}</div>` : ""}
+  ${hint}
+  <div class="summary">${mark(txtOr(d.summary))}</div>
+  ${syntax}
+  <div class="card-foot">
+    ${hasDetails ? `<button class="expand" type="button"><span>${t("details")}</span>${ICON_CHEVRON}</button>` : ""}
+    ${d.docs_url ? `<a class="docs-link" href="${esc(d.docs_url)}" target="_blank" rel="noopener">${ICON_DOC} docs.python.org</a>` : ""}
+  </div>
+  <div class="details" data-lazy="1"></div>
+</article>`;
+}
 
-  // sort
-  if(state.sort==='az') visible.sort((a,b)=>a.name.localeCompare(b.name,'ru'));
-  else if(state.sort==='za') visible.sort((a,b)=>b.name.localeCompare(a.name,'ru'));
-  else visible.sort((a,b)=>{
-    const ga=GROUP_ORDER.indexOf(a.d.group), gb=GROUP_ORDER.indexOf(b.d.group);
-    return ga!==gb?ga-gb:a.name.localeCompare(b.name,'ru');
-  });
-
-  // reorder DOM
-  if(state.sort==='cat'){
-    let lastG=null;
-    visible.forEach(c=>{
-      if(c.d.group!==lastG){
-        lastG=c.d.group;
-        const cnt=visible.filter(x=>x.d.group===lastG).length;
-        const h=document.createElement('div'); h.className='group-head';
-        h.innerHTML=`<h2><span class="gdot" style="background:${CG_COLOR[GROUP_CG[lastG]]}"></span>${lastG}</h2><span class="gcount">${cnt}</span><span class="gline"></span>`;
-        grid.appendChild(h);
-      }
-      grid.appendChild(c.el);
-    });
-  } else {
-    visible.forEach(c=>grid.appendChild(c.el));
+/* Тяжёлая часть карточки собирается при раскрытии: подсветка примеров для
+   1349 карточек сразу — это секунды на пустом месте, потому что почти ничего
+   из этого читатель не откроет. */
+function detailsHtml(d){
+  const body = txtOr(d.body);
+  const parts = [];
+  if(body) parts.push(`<div class="body-text">${mark(body)}</div>`);
+  if(d.examples && d.examples.length){
+    parts.push(`<div class="ex-head"><div class="field-label">${t("examples")}</div>
+      <button class="copy-btn" type="button">${ICON_COPY}<span>${t("copy")}</span></button></div>
+      <pre class="examples"><code>${highlightPy(d.examples.join("\n"))}</code></pre>`);
   }
-
-  document.getElementById('counter').innerHTML=`Показано: <b>${shown}</b> из ${DATA.length}`;
-  empty.classList.toggle('show',shown===0);
-  updateAZ(visible);
+  const links = (d.related || []).map(resolve).filter(Boolean);
+  if(links.length){
+    parts.push(`<div class="field-label">${t("seeAlso")}</div><div class="related">` +
+      links.map(e => `<a href="#${esc(e.id)}">${esc(e.title)}</a>`).join("") + "</div>");
+  }
+  const errs = (d.related_errors || []).map(resolve).filter(Boolean);
+  if(errs.length){
+    parts.push(`<div class="field-label">${t("commonErrors")}</div><div class="related errs">` +
+      errs.map(e => `<a href="#${esc(e.id)}">${esc(e.title)}</a>`).join("") + "</div>");
+  }
+  return parts.join("");
 }
 
-/* ---------- search ---------- */
-const searchEl=document.getElementById('search');
-const clearEl=document.getElementById('searchClear');
-let searchT;
-searchEl.addEventListener('input',()=>{
-  state.q=searchEl.value;
-  clearEl.classList.toggle('show', !!searchEl.value);
-  clearTimeout(searchT); searchT=setTimeout(apply,90);
-});
-clearEl.addEventListener('click',()=>{ searchEl.value='';state.q='';clearEl.classList.remove('show');apply();searchEl.focus(); });
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){ if(document.activeElement===searchEl||state.q){ searchEl.value='';state.q='';clearEl.classList.remove('show');apply();searchEl.blur(); } }
-  else if(e.key==='/'&&document.activeElement!==searchEl){ e.preventDefault();searchEl.focus(); }
-});
-
-/* ---------- sort ---------- */
-document.getElementById('sortGroup').addEventListener('click',e=>{
-  const b=e.target.closest('.sort-btn'); if(!b)return;
-  state.sort=b.dataset.sort;
-  document.querySelectorAll('.sort-btn').forEach(x=>x.classList.toggle('active',x===b));
-  apply();
-});
-
-/* ---------- A-Z rail ---------- */
-const azRail=document.getElementById('azRail');
-const AZ="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
-AZ.forEach(L=>{
-  const a=document.createElement('a'); a.textContent=L; a.dataset.l=L;
-  a.addEventListener('click',()=>jumpTo(L));
-  azRail.appendChild(a);
-});
-function firstChar(name){const c=name.replace(/[^A-Za-z]/g,'').charAt(0).toUpperCase();return c;}
-function updateAZ(visible){
-  const present=new Set(visible.map(c=>firstChar(c.name)));
-  azRail.querySelectorAll('a').forEach(a=>a.classList.toggle('dis',!present.has(a.dataset.l)));
-}
-function jumpTo(L){
-  const target=cards.find(c=>c.visible&&firstChar(c.name)===L);
-  if(target){ const y=target.el.getBoundingClientRect().top+window.scrollY-205; window.scrollTo({top:y,behavior:'smooth'}); }
+function drawChunk(){
+  if(drawn >= visible.length) return;
+  const slice = visible.slice(drawn, drawn + CHUNK);
+  let html = "";
+  let prev = drawn > 0 ? visible[drawn-1].section : null;
+  for(const d of slice){
+    if(state.sort === "sec" && d.section !== prev){
+      html += `<div class="sec-head"><h2>${esc(d.section)}</h2><span>${SECTION_COUNT[d.section]}</span></div>`;
+      prev = d.section;
+    }
+    html += cardHtml(d);
+  }
+  grid.insertAdjacentHTML("beforeend", html);
+  drawn += slice.length;
 }
 
-/* ---------- theme ---------- */
-document.getElementById('themeBtn').addEventListener('click',()=>{
-  const cur=document.documentElement.getAttribute('data-theme');
-  document.documentElement.setAttribute('data-theme',cur==='dark'?'light':'dark');
+function render(){
+  visible = sorted(DATA.filter(matches));
+  grid.innerHTML = "";
+  drawn = 0;
+  drawChunk();
+  empty.classList.toggle("show", visible.length === 0);
+  counter.innerHTML = `${t("shown")}: <b>${visible.length}</b> ${t("of")} ${DATA.length}`;
+  updateRail();
+}
+
+new IntersectionObserver(entries => {
+  if(entries.some(e => e.isIntersecting)) drawChunk();
+}, {rootMargin:"600px"}).observe($("#sentinel"));
+
+/* ---------- фильтры ---------- */
+function chip(label, active, count, color){
+  const dot = color ? `<span class="dot" style="background:${color}"></span>` : "";
+  const cnt = count === undefined ? "" : `<span class="cnt">${count}</span>`;
+  return `<button class="chip${active ? " active" : ""}" type="button">${dot}${label}${cnt}</button>`;
+}
+
+function buildKindFilters(){
+  const box = $("#kindFilters");
+  const kinds = Object.keys(KIND_COUNT).sort((a,b) => KIND_COUNT[b] - KIND_COUNT[a]);
+  box.innerHTML = `<span class="fil-label">${t("kind")}</span>` +
+    chip(t("all"), state.kind === "", DATA.length) +
+    kinds.map(k => chip(t(k) || k, state.kind === k, KIND_COUNT[k])).join("");
+  box.querySelectorAll(".chip").forEach((b,i) => {
+    b.onclick = () => { state.kind = i === 0 ? "" : kinds[i-1]; buildKindFilters(); render(); };
+  });
+}
+
+function buildGroupFilters(){
+  const box = $("#groupFilters");
+  const groups = CG.filter(g => CG_COUNT[g]);
+  const modLabel = state.section ? state.section.replace(/^Модуль /, "") : t("modules");
+  box.innerHTML = `<span class="fil-label">${t("group")}</span>` +
+    chip(t("all"), state.cg === "" && state.section === "", DATA.length) +
+    groups.map(g => chip(g, state.cg === g, CG_COUNT[g], CG_VAR[g])).join("") +
+    `<span class="dd"><button class="chip${state.section ? " active" : ""}" id="ddBtn" type="button" aria-expanded="false">
+       <span class="dot" style="background:var(--c-module)"></span>${esc(modLabel)} ▾</button>
+     <div class="dd-menu" id="ddMenu"></div></span>`;
+
+  const plain = Array.from(box.querySelectorAll(".chip")).filter(b => b.id !== "ddBtn");
+  plain.forEach((b,i) => {
+    b.onclick = () => {
+      state.section = "";
+      state.cg = i === 0 ? "" : groups[i-1];
+      buildGroupFilters(); render();
+    };
+  });
+
+  const menu = $("#ddMenu"), btn = $("#ddBtn");
+  menu.innerHTML = MODULE_SECTIONS.map(s =>
+    `<button type="button" class="${state.section === s ? "active" : ""}">
+       <span>${esc(s.replace(/^Модуль /, ""))}</span><span class="cnt">${SECTION_COUNT[s]}</span></button>`).join("");
+  btn.onclick = e => {
+    e.stopPropagation();
+    const open = menu.classList.toggle("open");
+    btn.setAttribute("aria-expanded", String(open));
+  };
+  menu.querySelectorAll("button").forEach((b,i) => {
+    b.onclick = () => {
+      const s = MODULE_SECTIONS[i];
+      state.section = state.section === s ? "" : s;
+      state.cg = "";
+      menu.classList.remove("open");
+      buildGroupFilters(); render();
+    };
+  });
+}
+document.addEventListener("click", () => {
+  const m = $("#ddMenu"); if(m) m.classList.remove("open");
 });
 
-/* ---------- back to top ---------- */
-const toTop=document.getElementById('toTop');
-window.addEventListener('scroll',()=>{ toTop.classList.toggle('show',window.scrollY>400); },{passive:true});
-toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+/* Прокрутка к карточке, которой на экране ещё нет.
 
-/* ---------- init ---------- */
-apply();
+   Два подвоха, и оба не видны глазами. Первый: карточка может быть за
+   границей отрисованного — её надо дорисовать, иначе прокручивать не к чему.
+   Второй: сразу после вставки раскладка ещё не пересчитана, и позиция,
+   вычисленная в тот же кадр, устаревает — прокрутка уезжает в пустоту ниже
+   сетки. Отсюда ожидание кадра и мгновенный переход: плавная анимация через
+   сто тысяч пикселей не помогает читателю, а мешает. */
+function scrollToIndex(idx, block){
+  if(idx < 0) return;
+  while(drawn <= idx) drawChunk();
+  const id = visible[idx].id;
+  requestAnimationFrame(() => {
+    const el = document.getElementById(id);
+    if(el) el.scrollIntoView({block, behavior:"instant"});
+  });
+}
+
+/* ---------- буквенная рельса ---------- */
+/* Алфавит собирается из самих карточек: в глоссарии соседствуют латинские
+   имена API и русские названия понятий, и жёсткая латиница просто спрятала
+   бы вторые. */
+const initial = d => (d.title[0] || "").toUpperCase();
+const RAIL = Array.from(new Set(DATA.map(initial))).filter(ch => /\p{L}/u.test(ch))
+  .sort((a,b) => collator.compare(a,b));
+function updateRail(){
+  const present = new Set(visible.map(initial));
+  $("#azRail").innerHTML = RAIL
+    .map(ch => `<button type="button"${present.has(ch) ? "" : " disabled"}>${ch}</button>`).join("");
+  $("#azRail").querySelectorAll("button").forEach((b,i) => {
+    b.onclick = () => {
+      const idx = visible.findIndex(d => initial(d) === RAIL[i]);
+      if(idx >= 0) scrollToIndex(idx, "start");
+    };
+  });
+}
+
+/* ---------- события карточек ---------- */
+grid.addEventListener("click", e => {
+  const exp = e.target.closest(".expand");
+  if(exp){
+    const card = exp.closest(".card");
+    const box = card.querySelector(".details");
+    if(box.dataset.lazy){ box.innerHTML = detailsHtml(BY_ID.get(card.id)); delete box.dataset.lazy; }
+    const open = card.classList.toggle("open");
+    exp.querySelector("span").textContent = open ? t("collapse") : t("details");
+    return;
+  }
+  const copy = e.target.closest(".copy-btn");
+  if(copy){
+    const code = copy.closest(".details").querySelector(".examples code");
+    navigator.clipboard.writeText(code.textContent).then(() => {
+      copy.classList.add("done");
+      copy.querySelector("span").textContent = t("copied");
+      setTimeout(() => {
+        copy.classList.remove("done");
+        copy.querySelector("span").textContent = t("copy");
+      }, 1400);
+    }).catch(() => {});
+  }
+});
+
+/* Ссылка «см. также» ведёт на карточку, которой может не быть в текущей
+   выборке: фильтр снимается, иначе переход молча никуда не приводит. */
+window.addEventListener("hashchange", revealHash);
+function revealHash(){
+  const id = decodeURIComponent(location.hash.slice(1));
+  if(!id || !BY_ID.has(id)) return;
+  if(!visible.some(d => d.id === id)){
+    state.q = ""; state.kind = ""; state.cg = ""; state.section = "";
+    $("#search").value = "";
+    buildKindFilters(); buildGroupFilters(); render();
+  }
+  scrollToIndex(visible.findIndex(d => d.id === id), "center");
+}
+
+/* ---------- панель ---------- */
+let timer;
+$("#search").addEventListener("input", e => {
+  clearTimeout(timer);
+  const value = e.target.value.trim().toLowerCase();
+  timer = setTimeout(() => { state.q = value; render(); }, 130);
+});
+$("#searchClear").onclick = () => {
+  $("#search").value = ""; state.q = ""; render(); $("#search").focus();
+};
+$("#sortGroup").querySelectorAll("button").forEach(b => {
+  b.onclick = () => {
+    $("#sortGroup").querySelectorAll("button").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    state.sort = b.dataset.sort;
+    render();
+  };
+});
+document.addEventListener("keydown", e => {
+  if(e.key === "/" && document.activeElement !== $("#search")){ e.preventDefault(); $("#search").focus(); }
+  if(e.key === "Escape" && document.activeElement === $("#search")){ $("#searchClear").click(); }
+});
+
+/* ---------- тема ---------- */
+function setTheme(name){
+  document.documentElement.dataset.theme = name;
+  try{ localStorage.setItem("glossary-theme", name); }catch(_){}
+}
+$("#themeBtn").onclick = () =>
+  setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
+
+/* ---------- язык ---------- */
+function applyLang(lang){
+  LANG = lang;
+  document.documentElement.dataset.lang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-title]").forEach(el => { el.title = t(el.dataset.i18nTitle); });
+  document.querySelectorAll(".langs button").forEach(b =>
+    b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+  $("#search").placeholder = t("search");
+  $("#footStats").textContent = I18N[lang].stats(DATA.length, SECTIONS.length);
+  buildKindFilters(); buildGroupFilters(); render();
+  try{ localStorage.setItem("glossary-lang", lang); }catch(_){}
+}
+document.querySelectorAll(".langs button").forEach(b => {
+  b.onclick = () => applyLang(b.dataset.lang);
+});
+
+/* ---------- скачивание страницы ---------- */
+$("#downloadBtn").onclick = () => {
+  const blob = new Blob([PRISTINE], {type:"text/html;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "python-glossary.html";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  const btn = $("#downloadBtn"), label = btn.querySelector("span");
+  btn.classList.add("done"); label.textContent = t("downloaded");
+  setTimeout(() => { btn.classList.remove("done"); label.textContent = t("download"); }, 1600);
+};
+
+/* ---------- старт ---------- */
+try{
+  const savedTheme = localStorage.getItem("glossary-theme");
+  if(savedTheme) document.documentElement.dataset.theme = savedTheme;
+  else if(matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.dataset.theme = "dark";
+}catch(_){}
+let savedLang = "ru";
+try{ savedLang = localStorage.getItem("glossary-lang") || "ru"; }catch(_){}
+applyLang(savedLang === "en" ? "en" : "ru");
+revealHash();
 </script>
 </body>
 </html>

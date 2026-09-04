@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Final
 
-from glossary.models import COLOR_GROUPS, Entry, Glossary
+from glossary.models import COLOR_GROUPS, KINDS, LANGUAGES, Entry, Glossary
 
 __all__ = [
     "RULES",
@@ -34,21 +34,20 @@ __all__ = [
 # ломающих фрагмент URL или CSS-селектор. Алфавит намеренно свободный —
 # в глоссарии соседствуют латинские слаги API и кириллические слаги понятий.
 ID_FORBIDDEN: Final = re.compile(r"""[\s#/?&=%"'<>]""")
-VERSION_PATTERN: Final = re.compile(r"^3\.\d+\+?$")
+VERSION_PATTERN: Final = re.compile(r"^\d+\.\d+$")
 DOCS_PREFIX: Final = "https://docs.python.org/3/"
 DUPLICATE_THRESHOLD: Final = 2
 """Начиная со скольких вхождений имя считается дублирующимся."""
 GENERIC_DOCS: Final = frozenset({DOCS_PREFIX, "https://docs.python.org/3"})
 _REQUIRED_TEXT_FIELDS: Final = (
     "id",
-    "name",
-    "group",
+    "title",
+    "kind",
+    "status",
+    "section",
     "subcat",
-    "cg",
-    "description",
     "syntax",
-    "examples",
-    "docs",
+    "docs_url",
 )
 
 
@@ -82,10 +81,11 @@ class ValidationConfig:
     переписывая правила: сначала предупреждение, затем — ошибка.
     """
 
-    min_description: int = 60
-    max_description: int = 400
-    min_example_lines: int = 2
-    min_group_size: int = 2
+    min_summary: int = 30
+    max_summary: int = 200
+    min_body: int = 60
+    min_examples: int = 1
+    min_section_size: int = 2
 
 
 Rule = Callable[[Glossary, ValidationConfig], Iterator[Issue]]
@@ -124,24 +124,22 @@ class ValidationReport:
 
 
 def rule_non_empty(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Пустой глоссарий — отсутствие проверки, а не её успех.
+    """Пустой снимок — отсутствие проверки, а не её успех.
 
     У гейта два разных состояния успеха, и их легко перепутать: «проверил, и
-    нарушений нет» и «проверять было нечего». Второе не успех: без этого
-    правила переименованный или обнулившийся файл данных проходил бы всю
-    проверку зелёным.
+    нарушений нет» и «проверять было нечего». Второе не успех.
     """
     if not g.entries:
         yield Issue(
             Severity.ERROR,
             "non-empty",
-            "глоссарий не содержит ни одной карточки — проверять нечего, "
+            "снимок не содержит ни одной карточки — проверять нечего, "
             "это ошибка входа, а не успешная проверка",
         )
 
 
 def rule_required_fields(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Все текстовые поля карточки заполнены."""
+    """Обязательные текстовые поля карточки заполнены."""
     for entry in g.entries:
         for name in _REQUIRED_TEXT_FIELDS:
             value = getattr(entry, name)
@@ -149,7 +147,7 @@ def rule_required_fields(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                 yield Issue(
                     Severity.ERROR,
                     "required-fields",
-                    f"поле {name!r} пустое или не является строкой",
+                    f"поле {name!r} пустое",
                     entry.id or None,
                 )
 
@@ -182,65 +180,119 @@ def rule_unique_id(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
             )
 
 
-def rule_color_group(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Цветовая группа входит в поддерживаемый витриной набор."""
+def rule_kind(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Вид карточки известен: от него зависит подача и фильтры."""
     for entry in g.entries:
-        if entry.cg not in COLOR_GROUPS:
+        if entry.kind and entry.kind not in KINDS:
+            yield Issue(
+                Severity.ERROR,
+                "kind",
+                f"неизвестный вид {entry.kind!r}; допустимы: {', '.join(sorted(KINDS))}",
+                entry.id,
+            )
+
+
+def rule_color_group(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Цветовая группа названа и известна витрине.
+
+    Значение приходит из имени файла-источника. Незнакомая группа означает, что
+    в базе знаний появился новый файл, о котором витрина не знает: карточки
+    получат цвет по умолчанию и сольются с чужой рубрикой. Это ошибка импорта,
+    а не свойство карточки, поэтому уровень — ошибка.
+    """
+    for entry in g.entries:
+        if entry.color_group not in COLOR_GROUPS:
             yield Issue(
                 Severity.ERROR,
                 "color-group",
-                f"неизвестная цветовая группа {entry.cg!r}; "
+                f"неизвестная цветовая группа {entry.color_group!r}; "
                 f"допустимы: {', '.join(sorted(COLOR_GROUPS))}",
                 entry.id,
             )
 
 
+def rule_translated(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Обе языковые версии заполнены.
+
+    Совпадение ключей — ещё не перевод: пустая половина даёт карточку, которая
+    на одном из языков выглядит сломанной, а не отсутствующей.
+    """
+    for entry in g.entries:
+        for language in LANGUAGES:
+            if not entry.summary.get(language).strip():
+                yield Issue(
+                    Severity.ERROR,
+                    "translated",
+                    f"сводка не заполнена на языке {language!r}",
+                    entry.id,
+                )
+            if not entry.body.get(language).strip():
+                yield Issue(
+                    Severity.WARNING,
+                    "translated",
+                    f"тело карточки не заполнено на языке {language!r}",
+                    entry.id,
+                )
+
+
 def rule_docs_url(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Ссылка ведёт на официальную документацию и указывает на конкретный раздел."""
     for entry in g.entries:
-        if not entry.docs.startswith(DOCS_PREFIX):
+        if not entry.docs_url.startswith(DOCS_PREFIX):
             yield Issue(
                 Severity.ERROR,
                 "docs-url",
-                f"ссылка должна начинаться с {DOCS_PREFIX}, получено {entry.docs!r}",
+                f"ссылка должна начинаться с {DOCS_PREFIX}, получено {entry.docs_url!r}",
                 entry.id,
             )
-        elif entry.docs.rstrip("/") in {u.rstrip("/") for u in GENERIC_DOCS}:
+        elif entry.docs_url.rstrip("/") in {u.rstrip("/") for u in GENERIC_DOCS}:
             yield Issue(
                 Severity.WARNING,
                 "docs-url",
-                "ссылка ведёт на корень документации — нужен конкретный раздел или якорь",
+                "ссылка ведёт на корень документации — нужен конкретный раздел",
                 entry.id,
             )
 
 
-def rule_description_length(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Описание достаточно содержательно и при этом не превращается в статью."""
+def rule_summary_length(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Сводка коротка настолько, чтобы её прочли, и длинна настолько, чтобы поняли."""
     for entry in g.entries:
-        length = len(entry.description)
-        if 0 < length < cfg.min_description:
-            yield Issue(
-                Severity.ERROR,
-                "description-length",
-                f"описание короче {cfg.min_description} символов ({length})",
-                entry.id,
-            )
-        elif length > cfg.max_description:
+        length = len(entry.summary.ru)
+        if 0 < length < cfg.min_summary:
             yield Issue(
                 Severity.WARNING,
-                "description-length",
-                f"описание длиннее {cfg.max_description} символов ({length}) — "
-                "стоит разбить на несколько карточек",
+                "summary-length",
+                f"сводка короче {cfg.min_summary} символов ({length})",
+                entry.id,
+            )
+        elif length > cfg.max_summary:
+            yield Issue(
+                Severity.WARNING,
+                "summary-length",
+                f"сводка длиннее {cfg.max_summary} символов ({length}) — "
+                "она попадает в список, где место ограничено",
+                entry.id,
+            )
+
+
+def rule_body_length(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Тело карточки объясняет, а не повторяет сводку."""
+    for entry in g.entries:
+        length = len(entry.body.ru)
+        if 0 < length < cfg.min_body:
+            yield Issue(
+                Severity.WARNING,
+                "body-length",
+                f"тело короче {cfg.min_body} символов ({length}) — "
+                "оно не добавляет к сводке ничего",
                 entry.id,
             )
 
 
 def rule_version_format(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Маркер версии записан канонически: ``3.N+`` либо ``null``."""
+    """Маркер версии записан как ``N.N`` либо пуст."""
     for entry in g.entries:
-        if entry.version is None:
-            continue
-        if not VERSION_PATTERN.match(entry.version):
+        if entry.version and not VERSION_PATTERN.match(entry.version):
             yield Issue(
                 Severity.ERROR,
                 "version-format",
@@ -248,54 +300,113 @@ def rule_version_format(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                 f"{VERSION_PATTERN.pattern}",
                 entry.id,
             )
-        elif not entry.version.endswith("+"):
-            yield Issue(
-                Severity.WARNING,
-                "version-format",
-                f"маркер версии {entry.version!r} записан без '+': "
-                f"канонический вид — {entry.version}+",
-                entry.id,
-            )
 
 
-def rule_examples_depth(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """В карточке есть хотя бы несколько строк примеров."""
+def rule_examples(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """У карточки есть хотя бы один пример."""
     for entry in g.entries:
-        lines = [line for line in entry.example_lines if line.strip()]
-        if lines and len(lines) < cfg.min_example_lines:
+        if len(entry.examples) < cfg.min_examples:
             yield Issue(
                 Severity.WARNING,
-                "examples-depth",
-                f"всего {len(lines)} строк(и) примеров, ожидается "
-                f"минимум {cfg.min_example_lines}",
+                "examples",
+                "примеров нет — по одной сводке конструкцию не применить",
                 entry.id,
             )
 
 
-def rule_duplicate_name(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+def rule_example_indent(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Пример, открывающий блок, содержит хотя бы одну строку с отступом.
+
+    Строка, кончающаяся двоеточием, открывает блок: без отступа следующая
+    строка делает пример синтаксически неверным. Читатель копирует его и
+    получает ``IndentationError`` — то есть глоссарий учит неработающему коду.
+
+    Находка адресована источнику: править содержимое здесь нельзя, поток
+    односторонний. Правило существует, чтобы возражение было предъявимым —
+    со списком идентификаторов, а не на словах.
+    """
+    for entry in g.entries:
+        if not entry.examples:
+            continue
+        opens_block = any(line.rstrip().endswith(":") for line in entry.examples)
+        if opens_block and not any(line[:1] in " \t" for line in entry.examples):
+            yield Issue(
+                Severity.WARNING,
+                "example-indent",
+                "пример открывает блок, но ни одна строка не имеет отступа — "
+                "код не запустится",
+                entry.id,
+            )
+
+
+def rule_related_resolves(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Связь «см. также» ведёт на существующую карточку.
+
+    Оборванная ссылка не видна глазами: она просто не отрисуется, и читатель
+    не узнает, что рядом было что-то полезное.
+    """
+    for entry in g.entries:
+        for target in entry.related:
+            if g.resolve(target) is None:
+                yield Issue(
+                    Severity.WARNING,
+                    "related-resolves",
+                    f"связь ведёт на {target!r}, которого в снимке нет",
+                    entry.id,
+                )
+
+
+def rule_related_errors_resolve(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Названная в карточке ошибка соответствует карточке-исключению.
+
+    Источник хранит здесь имена (``IndexError``), а не идентификаторы, поэтому
+    разрешение идёт через :meth:`Glossary.resolve` — без учёта регистра. Имя,
+    не соответствующее ни одной карточке, читателю не поможет: блок «частые
+    ошибки» его просто не отрисует, и связь пропадёт молча.
+    """
+    for entry in g.entries:
+        for target in entry.related_errors:
+            found = g.resolve(target)
+            if found is None:
+                yield Issue(
+                    Severity.WARNING,
+                    "related-errors-resolve",
+                    f"названа ошибка {target!r}, карточки с таким именем в снимке нет",
+                    entry.id,
+                )
+            elif found.kind != "exception":
+                yield Issue(
+                    Severity.WARNING,
+                    "related-errors-resolve",
+                    f"{target!r} — карточка вида {found.kind!r}, а не исключение",
+                    entry.id,
+                )
+
+
+def rule_duplicate_title(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Одинаковые имена в разных разделах — кандидаты на слияние."""
-    by_name: defaultdict[str, list[Entry]] = defaultdict(list)
+    by_title: defaultdict[str, list[Entry]] = defaultdict(list)
     for entry in g.entries:
-        by_name[entry.name].append(entry)
-    for name, group in by_name.items():
+        by_title[entry.title].append(entry)
+    for title, group in by_title.items():
         if len(group) < DUPLICATE_THRESHOLD:
             continue
-        where = ", ".join(f"{e.id} ({e.group})" for e in group)
+        where = ", ".join(f"{e.id} ({e.section})" for e in group)
         yield Issue(
             Severity.WARNING,
-            "duplicate-name",
-            f"имя {name!r} встречается {len(group)} раза: {where}",
+            "duplicate-title",
+            f"имя {title!r} встречается {len(group)} раза: {where}",
         )
 
 
-def rule_group_size(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+def rule_section_size(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Слишком маленький раздел — признак неполного покрытия темы."""
-    for group, count in Counter(e.group for e in g.entries).items():
-        if count < cfg.min_group_size:
+    for section, count in Counter(e.section for e in g.entries).items():
+        if count < cfg.min_section_size:
             yield Issue(
                 Severity.WARNING,
-                "group-size",
-                f"раздел {group!r} содержит {count} карточк(и) — "
+                "section-size",
+                f"раздел {section!r} содержит {count} карточк(и) — "
                 "тема покрыта не полностью",
             )
 
@@ -305,13 +416,19 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_required_fields,
     rule_id_format,
     rule_unique_id,
+    rule_kind,
     rule_color_group,
+    rule_translated,
     rule_docs_url,
-    rule_description_length,
+    rule_summary_length,
+    rule_body_length,
     rule_version_format,
-    rule_examples_depth,
-    rule_duplicate_name,
-    rule_group_size,
+    rule_examples,
+    rule_example_indent,
+    rule_related_resolves,
+    rule_related_errors_resolve,
+    rule_duplicate_title,
+    rule_section_size,
 )
 """Реестр активных правил. Порядок определяет порядок вывода в отчёте."""
 

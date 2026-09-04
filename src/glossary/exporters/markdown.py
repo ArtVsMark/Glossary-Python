@@ -28,9 +28,10 @@ class MarkdownExporter:
     name = "markdown"
     suffix = ".md"
 
-    def __init__(self, *, title: str = "Глоссарий Python") -> None:
-        """Задать заголовок первого уровня в собираемом документе."""
+    def __init__(self, *, title: str = "Глоссарий Python", language: str = "ru") -> None:
+        """Задать заголовок документа и язык текстов карточек."""
         self._title = title
+        self._language = language
 
     def render(self, glossary: Glossary) -> str:
         """Собрать документ целиком."""
@@ -40,40 +41,51 @@ class MarkdownExporter:
         stats = glossary.stats()
         yield f"# {self._title}"
         yield ""
-        yield f"Карточек: **{stats.total}** · разделов: **{len(stats.groups)}**"
+        yield f"Карточек: **{stats.total}** · разделов: **{len(stats.sections)}**"
         yield ""
         yield "## Содержание"
         yield ""
-        for group in glossary.groups:
-            count = stats.groups[group]
-            yield f"- [{group}](#{_anchor(group)}) — {count}"
+        for section in glossary.sections:
+            yield f"- [{section}](#{_anchor(section)}) — {stats.sections[section]}"
         yield ""
-        for group in glossary.groups:
-            yield f"## {group}"
+        for section in glossary.sections:
+            yield f"## {section}"
             yield ""
-            for entry in glossary.in_group(group):
+            for entry in glossary.in_section(section):
                 yield from self._entry_lines(entry)
 
     def _entry_lines(self, entry: Entry) -> Iterator[str]:
         version = f" `{entry.version}`" if entry.version else ""
-        yield f"### {entry.name}{version}"
+        yield f"### {entry.title}{version}"
         yield ""
-        yield f"*{entry.subcat}*"
+        subtitle = " · ".join(part for part in (entry.kind, entry.subcat) if part)
+        if subtitle:
+            yield f"*{subtitle}*"
+            yield ""
+        yield entry.summary.get(self._language)
         yield ""
-        yield entry.description
-        yield ""
-        yield "```python"
-        yield entry.syntax
-        yield "```"
-        yield ""
-        if entry.examples.strip():
+        if entry.syntax:
+            yield "```python"
+            yield entry.syntax
+            yield "```"
+            yield ""
+        body = entry.body.get(self._language).strip()
+        if body:
+            yield body
+            yield ""
+        if entry.examples:
             yield "<details><summary>Примеры</summary>"
             yield ""
             yield "```python"
-            yield entry.examples.rstrip()
+            yield from entry.examples
             yield "```"
             yield ""
             yield "</details>"
             yield ""
-        yield f"[Документация]({entry.docs})"
-        yield ""
+        if entry.related:
+            links = ", ".join(f"[{r}](#{_anchor(r)})" for r in entry.related)
+            yield f"См. также: {links}"
+            yield ""
+        if entry.docs_url:
+            yield f"[Документация]({entry.docs_url})"
+            yield ""

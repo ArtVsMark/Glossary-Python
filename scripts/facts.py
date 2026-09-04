@@ -1,7 +1,8 @@
 """Факты о проекте: считает издатель, читает потребитель.
 
 Число, вписанное в документацию руками, устаревает молча. Здесь оно считается
-из порождающего источника, попадает в README **внутрь именованного маркера** и
+из порождающего источника, попадает в документацию **внутрь именованного
+маркера** и
 проверяется гейтом: пропал маркер — падает сборка, а не тихо остаётся старое
 значение (правила каталога 005, 127, 174).
 
@@ -16,7 +17,7 @@
 
     python scripts/facts.py --json                # факты в stdout
     python scripts/facts.py --badges _site/badges # значки shields.io
-    python scripts/facts.py --render              # переписать маркеры README
+    python scripts/facts.py --render              # переписать маркеры в документах
     python scripts/facts.py --check               # гейт: маркеры на месте и совпадают
 """
 
@@ -29,15 +30,23 @@ import sys
 import xml.etree.ElementTree as ET
 from collections import Counter
 from pathlib import Path
-from typing import Any, Final
+from typing import TYPE_CHECKING, Any, Final
 
 import yaml
 
 from glossary.loader import load_glossary
 from glossary.validation import Severity, validate
 
+if TYPE_CHECKING:
+    from collections.abc import Mapping
+
 ROOT: Final = Path(__file__).resolve().parent.parent
-README: Final = ROOT / "README.md"
+MARKED: Final = (ROOT / "README.md", ROOT / "CLAUDE.md")
+"""Файлы, где числа живут внутри маркеров.
+
+Список, а не один README: правило 005 не различает документы. Число «правил
+без механизма» стояло в CLAUDE.md руками и разошлось с фактом — 38 против 35 —
+ровно тем способом, против которого механизм и заведён."""
 COVERAGE: Final = ROOT / "coverage.xml"
 
 SCHEMA: Final = 1
@@ -58,7 +67,7 @@ def _glossary_facts() -> dict[str, int]:
     stats = glossary.stats()
     return {
         "cards": stats.total,
-        "groups": len(stats.groups),
+        "groups": len(stats.sections),
         "errors": sum(1 for i in report.issues if i.severity is Severity.ERROR),
         "warnings": sum(1 for i in report.issues if i.severity is Severity.WARNING),
     }
@@ -129,7 +138,7 @@ def build_facts() -> dict[str, Any]:
 
 
 def marker_values(facts: dict[str, Any]) -> dict[str, str]:
-    """Значения маркеров README, выведенные из фактов."""
+    """Значения маркеров документации, выведенные из фактов."""
     glossary = facts["glossary"]
     rules = facts["rules"]
     return {
@@ -158,24 +167,31 @@ def render(text: str, values: dict[str, str]) -> str:
     return MARKER.sub(replace, text)
 
 
-def check(text: str, values: dict[str, str]) -> list[str]:
-    """Найти расхождения README с фактами.
+def check(texts: Mapping[str, str], values: dict[str, str]) -> list[str]:
+    """Найти расхождения размеченных файлов с фактами.
 
     Пропавший маркер — тоже расхождение: без третьего условия правила 127
-    механизма нет, есть ручное число с лишним шагом.
+    механизма нет, есть ручное число с лишним шагом. Проверка «маркер пропал»
+    идёт по всем файлам сразу: отдельный документ несёт своё подмножество
+    чисел, и требовать от каждого полный набор значило бы запретить второй
+    файл вовсе.
     """
-    found = {m.group("name"): m.group("value") for m in MARKER.finditer(text)}
     problems: list[str] = []
-    for name, expected in sorted(values.items()):
-        if name not in found:
-            problems.append(f"маркер {name!r} пропал из README — сборке нечего писать")
-        elif found[name] != expected:
-            problems.append(
-                f"маркер {name!r}: в README {found[name]!r}, по источнику {expected!r}"
-            )
+    marked: set[str] = set()
+    for where, text in sorted(texts.items()):
+        found = {m.group("name"): m.group("value") for m in MARKER.finditer(text)}
+        marked |= found.keys()
+        for name in sorted(found):
+            if name not in values:
+                problems.append(f"маркер {name!r} есть в {where}, но фактов для него нет")
+            elif found[name] != values[name]:
+                problems.append(
+                    f"маркер {name!r}: в {where} {found[name]!r}, "
+                    f"по источнику {values[name]!r}"
+                )
     problems.extend(
-        f"маркер {name!r} есть в README, но фактов для него нет"
-        for name in sorted(found.keys() - values.keys())
+        f"маркер {name!r} не стоит ни в одном файле — сборке нечего писать"
+        for name in sorted(values.keys() - marked)
     )
     return problems
 
@@ -242,8 +258,12 @@ def main(argv: list[str] | None = None) -> int:
         metavar="DIR",
         help="куда класть значки и факты (по умолчанию .github/badges)",
     )
-    parser.add_argument("--render", action="store_true", help="переписать README")
-    parser.add_argument("--check", action="store_true", help="гейт на маркеры README")
+    parser.add_argument(
+        "--render", action="store_true", help="переписать числа в документах"
+    )
+    parser.add_argument(
+        "--check", action="store_true", help="гейт на маркеры в документах"
+    )
     args = parser.parse_args(argv)
 
     facts = build_facts()
@@ -256,19 +276,28 @@ def main(argv: list[str] | None = None) -> int:
         for path in write_badges(facts, args.badges):
             print(f"→ {path.relative_to(ROOT) if ROOT in path.parents else path}")
 
-    text = README.read_text(encoding="utf-8")
+    texts = {
+        path.name: path.read_text(encoding="utf-8") for path in MARKED if path.exists()
+    }
 
     if args.render:
-        updated = render(text, values)
-        if updated != text:
-            README.write_text(updated, encoding="utf-8")
-            print("README обновлён")
-        else:
-            print("README уже совпадает с фактами")
-        text = updated
+        touched = []
+        for path in MARKED:
+            if path.name not in texts:
+                continue
+            updated = render(texts[path.name], values)
+            if updated != texts[path.name]:
+                path.write_text(updated, encoding="utf-8")
+                touched.append(path.name)
+            texts[path.name] = updated
+        print(
+            f"обновлено: {', '.join(touched)}"
+            if touched
+            else "числа в документации уже совпадают с фактами"
+        )
 
     if args.check:
-        problems = check(text, values)
+        problems = check(texts, values)
         for problem in problems:
             print(problem, file=sys.stderr)
         if problems:

@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__
+from glossary import __version__, objections
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, load_glossary, project_root
@@ -85,11 +85,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="формат отчёта (по умолчанию text)",
     )
     p_validate.add_argument(
-        "--min-description",
+        "--min-summary",
         type=int,
-        default=_DEFAULTS.min_description,
+        default=_DEFAULTS.min_summary,
         metavar="N",
-        help="минимальная длина описания в символах",
+        help="минимальная длина краткого описания в символах",
     )
     p_validate.set_defaults(handler=_cmd_validate)
 
@@ -142,6 +142,35 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_stats.set_defaults(handler=_cmd_stats)
 
+    p_obj = sub.add_parser(
+        "objections",
+        help="собрать замечания к содержанию для отправки в источник",
+        parents=[common],
+    )
+    p_obj.add_argument(
+        "--format",
+        choices=("markdown", "json"),
+        default="markdown",
+        help="письмо для issue (markdown) или публикуемый контракт (json)",
+    )
+    p_obj.add_argument(
+        "--limit",
+        type=int,
+        default=objections.DEFAULT_LIMIT,
+        metavar="N",
+        help="сколько карточек перечислять в разделе markdown (0 — все); "
+        "в json список всегда полный",
+    )
+    p_obj.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        metavar="PATH",
+        help="файл результата (по умолчанию — stdout)",
+    )
+    p_obj.set_defaults(handler=_cmd_objections)
+
     return parser
 
 
@@ -152,7 +181,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def _cmd_validate(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     glossary = load_glossary(args.data)
-    config = ValidationConfig(min_description=args.min_description)
+    config = ValidationConfig(min_summary=args.min_summary)
     report = validate(glossary, config=config)
 
     if args.format == "json":
@@ -236,22 +265,53 @@ def _cmd_stats(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     if args.format == "json":
         payload = {
             "total": stats.total,
-            "groups": dict(stats.groups),
+            "sections": dict(stats.sections),
+            "kinds": dict(stats.kinds),
             "color_groups": dict(stats.color_groups),
             "versioned": stats.versioned,
-            "avg_description": round(stats.avg_description, 1),
+            "translated": stats.translated,
+            "with_related": stats.with_related,
+            "with_errors": stats.with_errors,
+            "avg_summary": round(stats.avg_summary, 1),
         }
         print(json.dumps(payload, ensure_ascii=False, indent=2), file=out)
         return EXIT_OK
 
     print(f"Карточек:            {stats.total}", file=out)
-    print(f"Разделов:            {len(stats.groups)}", file=out)
+    print(f"Разделов:            {len(stats.sections)}", file=out)
     print(f"Цветовых групп:      {len(stats.color_groups)}", file=out)
     print(f"С маркером версии:   {stats.versioned}", file=out)
-    print(f"Средняя длина опис.: {stats.avg_description:.0f} символов", file=out)
+    print(f"Переведено целиком:  {stats.translated}", file=out)
+    print(f"Со связями:          {stats.with_related}", file=out)
+    print(f"С частыми ошибками:  {stats.with_errors}", file=out)
+    print(f"Средняя длина свод.: {stats.avg_summary:.0f} символов", file=out)
+    print("\nВиды карточек:", file=out)
+    for kind, count in stats.kinds.most_common():
+        print(f"  {count:4d}  {kind}", file=out)
     print("\nРазделы:", file=out)
-    for group, count in stats.groups.most_common():
-        print(f"  {count:4d}  {group}", file=out)
+    for section, count in stats.sections.most_common():
+        print(f"  {count:4d}  {section}", file=out)
+    return EXIT_OK
+
+
+def _cmd_objections(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Собрать замечания к содержанию — письмом в источник, а не в консоль."""
+    glossary = load_glossary(args.data)
+    rendered = (
+        objections.as_json(glossary)
+        if args.format == "json"
+        else objections.as_markdown(glossary, limit=args.limit)
+    )
+    if args.output is None:
+        out.write(rendered)
+    else:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered, encoding="utf-8")
+        totals = objections.collect(glossary)["totals"]
+        print(
+            f"Замечаний: {totals['errors'] + totals['warnings']} → {args.output}",
+            file=out,
+        )
     return EXIT_OK
 
 

@@ -11,6 +11,7 @@ import pytest
 
 from glossary.cli import EXIT_FAILED, EXIT_OK, EXIT_USAGE, main
 from glossary.loader import dump_glossary
+from glossary.models import Text
 from tests.factories import make_entry, make_glossary
 
 
@@ -33,8 +34,8 @@ def run(*argv: str) -> Result:
 def data_file(tmp_path: Path) -> Path:
     """Небольшой валидный файл данных во временном каталоге."""
     glossary = make_glossary(
-        make_entry(id="alpha", name="alpha()", group="Раздел"),
-        make_entry(id="beta", name="beta()", group="Раздел"),
+        make_entry(id="alpha", title="alpha()", section="Раздел"),
+        make_entry(id="beta", title="beta()", section="Раздел"),
     )
     return dump_glossary(glossary, tmp_path / "glossary.json")
 
@@ -95,7 +96,7 @@ def test_validate_passes_on_clean_data(data_file: Path):
 
 def test_validate_fails_on_broken_data(tmp_path: Path):
     broken = dump_glossary(
-        make_glossary(make_entry(id="a", cg="нет"), make_entry(id="b")),
+        make_glossary(make_entry(id="a", color_group="нет"), make_entry(id="b")),
         tmp_path / "glossary.json",
     )
     result = run("--data", str(broken), "validate")
@@ -106,7 +107,8 @@ def test_validate_fails_on_broken_data(tmp_path: Path):
 def test_validate_strict_turns_warnings_into_failure(tmp_path: Path):
     warned = dump_glossary(
         make_glossary(
-            make_entry(id="a", version="3.9"), make_entry(id="b", version="3.9")
+            make_entry(id="a", summary=Text(ru="Коротко", en="Short")),
+            make_entry(id="b", summary=Text(ru="Коротко", en="Short")),
         ),
         tmp_path / "glossary.json",
     )
@@ -124,16 +126,16 @@ def test_validate_json_output_is_machine_readable(data_file: Path):
     assert payload["issues"] == []
 
 
-def test_validate_min_description_is_configurable(data_file: Path):
-    result = run(*with_data(data_file, "validate", "--min-description", "500"))
+def test_validate_min_summary_is_configurable(data_file: Path):
+    result = run(*with_data(data_file, "validate", "--min-summary", "500", "--strict"))
     assert result.code == EXIT_FAILED
-    assert "description-length" in result.err
+    assert "summary-length" in result.out
 
 
 def test_validate_fails_on_empty_data_file(tmp_path: Path):
     """Файл без карточек не должен проходить проверку зелёным."""
     empty = tmp_path / "glossary.json"
-    empty.write_text('{"schema_version": 1, "entries": []}', encoding="utf-8")
+    empty.write_text('{"schema_version": 2, "entries": []}', encoding="utf-8")
     result = run("--data", str(empty), "validate")
     assert result.code == EXIT_FAILED
     assert "non-empty" in result.err
@@ -215,5 +217,57 @@ def test_stats_text_output(data_file: Path):
 def test_stats_json_output(data_file: Path):
     payload = json.loads(run(*with_data(data_file, "stats", "--format", "json")).out)
     assert payload["total"] == 2
-    assert payload["groups"] == {"Раздел": 2}
+    assert payload["sections"] == {"Раздел": 2}
+    assert payload["kinds"] == {"function": 2}
     assert payload["versioned"] == 0
+
+
+# --------------------------- objections ---------------------------
+
+
+def test_objections_reports_findings_grouped_by_rule(tmp_path: Path):
+    """Отчёт адресован источнику: правило, сколько задето, какие карточки."""
+    data = dump_glossary(
+        make_glossary(
+            make_entry(id="a", examples=("for x in y:", "print(x)")),
+            make_entry(id="b", examples=("for x in y:", "print(x)")),
+        ),
+        tmp_path / "glossary.json",
+    )
+    result = run("--data", str(data), "objections")
+    assert result.code == EXIT_OK
+    assert "`example-indent` — 2" in result.out
+    assert "- `a`" in result.out and "- `b`" in result.out
+
+
+def test_objections_counts_cards_not_findings(tmp_path: Path):
+    """Правило даёт по находке на язык — перечислять надо карточки."""
+    data = dump_glossary(
+        make_glossary(make_entry(id="a", body=Text(ru="", en=""))),
+        tmp_path / "glossary.json",
+    )
+    result = run("--data", str(data), "objections")
+    assert "`translated` — 2 (предупреждение), карточек: 1" in result.out
+    assert result.out.count("- `a`") == 1
+
+
+def test_objections_limit_truncates_the_list(tmp_path: Path):
+    entries = [
+        make_entry(id=f"e{n}", examples=("for x in y:", "print(x)")) for n in range(5)
+    ]
+    data = dump_glossary(make_glossary(*entries), tmp_path / "glossary.json")
+    result = run("--data", str(data), "objections", "--limit", "2")
+    assert "…и ещё 3" in result.out
+    assert result.out.count("- `e") == 2
+
+
+def test_objections_says_so_when_there_is_nothing(data_file: Path):
+    result = run(*with_data(data_file, "objections"))
+    assert "Замечаний нет." in result.out
+
+
+def test_objections_writes_file(data_file: Path, tmp_path: Path):
+    target = tmp_path / "отчёт.md"
+    result = run(*with_data(data_file, "objections", "-o", str(target)))
+    assert result.code == EXIT_OK
+    assert target.read_text(encoding="utf-8").startswith("# Замечания")

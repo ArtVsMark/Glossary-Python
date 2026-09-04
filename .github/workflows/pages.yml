@@ -35,7 +35,7 @@ jobs:
           cp python_glossary.html _site/index.html
           cp data/glossary.json _site/glossary.json
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
 
       - uses: actions/upload-pages-artifact@v5
         with:

@@ -4,6 +4,11 @@
 `.rules/bindings.json` через час после правки. Здесь проверяется третье
 условие правила 127 — пропавший маркер роняет сборку, а не оставляет
 последнее записанное значение выглядеть свежим.
+
+Размеченных файлов больше одного, и это меняет форму проверки: каждый несёт
+своё подмножество чисел, поэтому «маркер пропал» считается по всем файлам
+сразу, а «значение разъехалось» — по каждому отдельно, с именем файла в
+сообщении.
 """
 
 from __future__ import annotations
@@ -41,33 +46,58 @@ def test_unmeasured_key_is_absent_not_zero(monkeypatch: pytest.MonkeyPatch):
     assert "coverage_percent" not in facts_module.build_facts()
 
 
-def test_readme_markers_match_sources(facts: dict[str, object]):
-    """README совпадает с источниками, из которых числа порождены."""
+@pytest.fixture(scope="module")
+def texts() -> dict[str, str]:
+    """Содержимое всех размеченных файлов репозитория."""
+    return {p.name: p.read_text(encoding="utf-8") for p in facts_module.MARKED}
+
+
+def test_every_marked_file_is_read(texts: dict[str, str]):
+    """Пустой набор файлов дал бы зелёный гейт без единой проверки."""
+    assert texts, "ни один размеченный файл не прочитан"
+    assert {"README.md", "CLAUDE.md"} <= texts.keys()
+
+
+def test_markers_match_sources(facts: dict[str, object], texts: dict[str, str]):
+    """Документация совпадает с источниками, из которых числа порождены."""
     values = facts_module.marker_values(facts)
-    text = facts_module.README.read_text(encoding="utf-8")
-    problems = facts_module.check(text, values)
+    problems = facts_module.check(texts, values)
     assert not problems, "\n".join(problems)
 
 
-def test_missing_marker_is_a_failure(facts: dict[str, object]):
+def test_missing_marker_is_a_failure(facts: dict[str, object], texts: dict[str, str]):
     """Пропавший маркер — отказ, иначе сборке нечего переписывать."""
     values = facts_module.marker_values(facts)
-    text = facts_module.README.read_text(encoding="utf-8")
-    stripped = text.replace("<!--m:cards-->", "").replace("<!--/m:cards-->", "")
+    stripped = {
+        name: text.replace("<!--m:cards-->", "").replace("<!--/m:cards-->", "")
+        for name, text in texts.items()
+    }
     problems = facts_module.check(stripped, values)
-    assert any("cards" in p and "пропал" in p for p in problems)
+    assert any("cards" in p and "не стоит ни в одном файле" in p for p in problems)
 
 
-def test_stale_number_is_a_failure(facts: dict[str, object]):
-    """Разъехавшееся число — отказ, а не тихо устаревшая проза."""
+def test_marker_surviving_in_another_file_is_not_a_failure(
+    facts: dict[str, object], texts: dict[str, str]
+):
+    """Файл несёт своё подмножество чисел — отсутствие в одном не отказ."""
     values = facts_module.marker_values(facts)
-    text = facts_module.README.read_text(encoding="utf-8")
-    spoiled = text.replace(
-        "<!--m:cards-->" + values["cards"] + "<!--/m:cards-->",
-        "<!--m:cards-->999999<!--/m:cards-->",
-    )
+    problems = facts_module.check({"README.md": texts["README.md"]}, values)
+    assert not any("cards" in p for p in problems)
+
+
+def test_stale_number_in_any_file_is_a_failure(facts: dict[str, object]):
+    """Разъехавшееся число — отказ, а не тихо устаревшая проза; файл назван."""
+    values = facts_module.marker_values(facts)
+    spoiled = {"CLAUDE.md": "<!--m:cards-->999999<!--/m:cards-->"}
     problems = facts_module.check(spoiled, values)
-    assert any("cards" in p and "999999" in p for p in problems)
+    assert any("cards" in p and "999999" in p and "CLAUDE.md" in p for p in problems)
+
+
+def test_unknown_marker_is_a_failure():
+    """Маркер без факта — обещание, которое сборке нечем выполнить."""
+    text = "<!--m:invented-->7<!--/m:invented-->"
+    problems = facts_module.check({"README.md": text}, {})
+    assert any("invented" in p and "фактов для него нет" in p for p in problems)
 
 
 def test_render_repairs_a_stale_number(facts: dict[str, object]):

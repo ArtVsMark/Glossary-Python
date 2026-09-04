@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate rules facts facts-check build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate rules facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -44,6 +44,15 @@ validate: ## Проверить качество данных глоссария
 rules: ## Проверить ответ проекта каталогу правил
 	$(BIN)/pytest tests/test_rules_bindings.py -q
 
+changelog-check: ## Проверить форму записей журнала
+	$(BIN)/python scripts/changelog.py --check
+
+changelog-preview: ## Показать, как соберётся журнал
+	$(BIN)/python scripts/changelog.py --preview
+
+changelog-collect: ## Перенести фрагменты в [Unreleased]
+	$(BIN)/python scripts/changelog.py --collect
+
 facts: ## Переписать числа в README из источников
 	$(BIN)/python scripts/facts.py --render --check
 
@@ -59,7 +68,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test validate rules facts-check build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test validate rules facts-check changelog-check build-check ## Полный набор проверок (как в CI)
 
 facts-check: ## Проверить, что числа в README не разъехались
 	$(BIN)/python scripts/facts.py --check

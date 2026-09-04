@@ -36,13 +36,22 @@ if TYPE_CHECKING:
 __all__ = [
     "BUILTIN_TYPES",
     "INVENTORY_KINDS",
+    "SCHEMA",
+    "SCHEMA_OF",
     "STDLIB_MODULES",
     "Inventory",
     "InventoryKind",
     "Item",
     "build_inventory",
+    "difference",
     "python_version",
 ]
+
+SCHEMA: Final = 1
+"""Версия формата выгрузки инвентаря."""
+
+SCHEMA_OF: Final = "инвентарь официального Python на одной версии интерпретатора"
+"""Чего именно эта версия (правило каталога 164)."""
 
 InventoryKind = Literal["function", "class", "exception", "method"]
 INVENTORY_KINDS: Final[frozenset[str]] = frozenset(get_args(InventoryKind))
@@ -327,3 +336,22 @@ def build_inventory(modules: frozenset[str] | None = None) -> Inventory:
         items=tuple(sorted(unique.values())),
         python_version=python_version(),
     )
+
+
+def difference(before: Inventory, after: Inventory) -> tuple[Item, ...]:
+    """Что есть в ``after`` и чего не было в ``before``.
+
+    Это и есть ответ на «что появилось в 3.14»: разность двух снимков языка,
+    без единого обращения к документации. Обратный порядок аргументов даёт
+    удалённое — та же операция, другой вопрос.
+
+    Сравнение идёт по полному имени, а не по объекту: между версиями объекты
+    разные, а имя — то, что человек ищет в глоссарии.
+
+    Warning:
+        Разность честна только при **одинаковом наборе курируемых модулей**.
+        Расширив :data:`STDLIB_MODULES`, вы получите «новое» там, где на самом
+        деле «раньше не смотрели», — поэтому набор и меняется явным изменением.
+    """
+    known = before.qualnames
+    return tuple(item for item in after if item.qualname not in known)

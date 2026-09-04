@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__, coverage, objections
+from glossary import __version__, coverage, inventory, objections
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, load_glossary, project_root
@@ -200,6 +200,20 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_cov.set_defaults(handler=_cmd_coverage)
 
+    p_inv = sub.add_parser(
+        "inventory",
+        help="выгрузить инвентарь языка для этой версии Python",
+    )
+    p_inv.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        metavar="PATH",
+        help="файл результата (по умолчанию — stdout)",
+    )
+    p_inv.set_defaults(handler=_cmd_inventory)
+
     return parser
 
 
@@ -366,6 +380,38 @@ def _cmd_coverage(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
         print(
             f"Покрытие Python {report.python_version}: "
             f"{report.covered}/{report.total} → {args.output}",
+            file=out,
+        )
+    return EXIT_OK
+
+
+def _cmd_inventory(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Выгрузить инвентарь языка для версии, на которой запущен.
+
+    Снимок сам по себе мало что говорит — его смысл в сравнении. Прогон
+    снимает по инвентарю на каждой версии матрицы, а разность соседних
+    отвечает на «что появилось в 3.14».
+    """
+    snapshot = inventory.build_inventory()
+    payload = {
+        "schema": inventory.SCHEMA,
+        "schema_of": inventory.SCHEMA_OF,
+        "python_version": snapshot.python_version,
+        "count": len(snapshot),
+        "items": [
+            {"qualname": item.qualname, "module": item.module, "kind": item.kind}
+            for item in snapshot
+        ],
+    }
+    rendered = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
+    if args.output is None:
+        out.write(rendered)
+    else:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered, encoding="utf-8")
+        print(
+            f"Инвентарь Python {snapshot.python_version}: "
+            f"{len(snapshot)} сущностей → {args.output}",
             file=out,
         )
     return EXIT_OK

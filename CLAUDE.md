@@ -45,7 +45,7 @@ make build      # пересборка витрины
 make test       # pytest
 ```
 
-Прямые вызовы: `python -m glossary {validate,build,export,stats,objections}`.
+Прямые вызовы: `python -m glossary {validate,build,export,stats,objections,coverage,inventory}`.
 
 ## Роли
 

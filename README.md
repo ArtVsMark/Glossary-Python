@@ -46,6 +46,7 @@ HTML. Замечания к содержанию едут обратно пис�
 | [`badges/.github/badges/facts.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/facts.json) | Числа о проекте: карточки, разделы, замечания, состав ответа каталогу |
 | [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию: правило, уровень, область, полный список карточек |
 | [`badges/.github/badges/coverage.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/coverage.json) | Покрытие официального Python: чего в глоссарии нет вовсе |
+| [`badges/.github/badges/whatsnew.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/whatsnew.json) | Что появилось и исчезло между версиями Python — и что из нового не описано |
 
 Это контракты, а не удобство. Глоссарий забирают выгрузкой, а не копированием
 файла из репозитория. А `objections.json` — обратный поток: карточки правятся
@@ -161,8 +162,24 @@ glossary coverage                       # чего в глоссарии нет 
 совпадением полного имени (`functools.reduce`, `str.split`).
 
 Ответ зависит от версии Python и потому назван в отчёте: **версия здесь ось
-измерения, а не настройка**. Разность двух инвентарей отвечает на вопрос «что
-появилось в 3.14», не открывая документацию.
+измерения, а не настройка**. Инвентарь снимается на каждой версии матрицы, а
+разность соседних отвечает на вопрос «что появилось в 3.14» — тот самый, за
+которым обычно идут в раздел What's New, только вычитанием, без сети и без
+разбора чужой вёрстки:
+
+```bash
+glossary inventory -o inventory-3.13.json   # на 3.13
+glossary inventory -o inventory-3.14.json   # на 3.14
+python scripts/whatsnew.py inventory-*.json # что появилось и что исчезло
+```
+
+Ценность не в списке нового, а в его пересечении с глоссарием: у каждой
+появившейся сущности стоит `documented` — есть ли о ней карточка. Появилось в
+языке и не описано — это очередь на завтра.
+
+Python 3.15 снимается отдельным прогоном с правом упасть: заморозка
+возможностей на нём уже прошла, поэтому список практически финальный, но
+ронять из-за release candidate публикацию незачем.
 
 Граница названа прямо: интроспекция видит объекты, а не текст. Синтаксис
 (`match`, walrus, спецификаторы f-строк), устаревания и удаления в неё не

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Вопрос или идея
+    url: https://github.com/ArtVsMark/Glossary-Python/discussions
+    about: Общие вопросы и обсуждение развития глоссария — в Discussions.
+  - name: Документация Python
+    url: https://docs.python.org/3/
+    about: Первоисточник, на который ссылаются карточки глоссария.

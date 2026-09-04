@@ -1,0 +1,48 @@
+name: Ошибка в инструментах или витрине
+description: CLI, сборка, экспорт или поведение HTML-страницы работают не так
+title: "[Баг]: "
+labels: ["баг"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Где проявляется
+      options:
+        - CLI (validate / build / export / stats)
+        - Сборка витрины
+        - Экспорт (JSON / Markdown / CSV)
+        - Поведение HTML-страницы (поиск, фильтры, тема)
+        - CI и инфраструктура
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Как воспроизвести
+      description: Команда или последовательность действий.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Ожидаемое поведение
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Фактическое поведение
+      description: Приложите вывод команды или сообщение об ошибке целиком.
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Окружение
+      description: Версия Python, ОС, браузер (если проблема в витрине).
+      placeholder: "Python 3.12.3, Ubuntu 24.04, Firefox 129"

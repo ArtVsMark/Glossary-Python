@@ -1,0 +1,43 @@
+name: Правка содержимого
+description: Неточность, опечатка или неполнота в существующей карточке
+title: "[Контент]: "
+labels: ["контент"]
+body:
+  - type: input
+    id: entry_id
+    attributes:
+      label: Идентификатор карточки
+      description: Значение поля `id` из `data/glossary.json`.
+      placeholder: "extend"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Что не так
+      options:
+        - Фактическая ошибка
+        - Неполное или неточное описание
+        - Пример не работает или устарел
+        - Неверная или слишком общая ссылка на документацию
+        - Неверный маркер версии
+        - Дубликат другой карточки
+        - Опечатка или оформление
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Как сейчас
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Как должно быть
+      description: По возможности приложите ссылку на документацию или PEP.
+    validations:
+      required: true

@@ -3,12 +3,15 @@
   "schema_of": "факты о проекте-витрине глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Stepik-Python-Grader",
-  "generated_at": "2026-09-04T13:44:18+00:00",
+  "generated_at": "2026-09-04T17:05:50+00:00",
   "glossary": {
     "cards": 1349,
     "groups": 55,
     "errors": 0,
-    "warnings": 739
+    "warnings": 739,
+    "completeness_percent": 78.9,
+    "completeness_missing": 275,
+    "completeness_python": "3.14"
   },
   "rules": {
     "total": 179,
@@ -25,5 +28,5 @@
     "3.13",
     "3.14"
   ],
-  "coverage_percent": 97.0
+  "coverage_percent": 96.8
 }

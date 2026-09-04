@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import re
+import sys
 from collections import Counter, defaultdict
 from collections.abc import Callable, Iterable, Iterator, Sequence
 from dataclasses import dataclass, field
@@ -314,27 +315,57 @@ def rule_examples(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
             )
 
 
-def rule_example_indent(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Пример, открывающий блок, содержит хотя бы одну строку с отступом.
+def _from_the_future(version: str) -> bool:
+    """Возможность объявлена новее, чем интерпретатор, на котором проверяем."""
+    if not version:
+        return False
+    try:
+        declared = tuple(int(part) for part in version.split("."))
+    except ValueError:
+        return False  # Форму маркера судит rule_version_format, не это правило.
+    return declared > sys.version_info[: len(declared)]
 
-    Строка, кончающаяся двоеточием, открывает блок: без отступа следующая
-    строка делает пример синтаксически неверным. Читатель копирует его и
-    получает ``IndentationError`` — то есть глоссарий учит неработающему коду.
 
-    Находка адресована источнику: править содержимое здесь нельзя, поток
-    односторонний. Правило существует, чтобы возражение было предъявимым —
-    со списком идентификаторов, а не на словах.
+def rule_example_compiles(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Пример карточки — синтаксически верный Python.
+
+    Проверка та же, которой пользуется источник: ``compile`` по склеенным
+    строкам примера. Раньше здесь стояла эвристика «блок открыт, а строки с
+    отступом нет» — она ловила самый частый случай, но не всякий, и давала
+    число, несравнимое с числом источника. Общий инвариант дороже своей мерки:
+    возражение читается без перевода.
+
+    Компилируется, а не исполняется: разбор кода безопасен, запуск чужого
+    примера — нет.
+
+    Карточка, объявившая версию новее работающего интерпретатора, пропускается.
+    ``type X = int`` и ``def f[*Ts]()`` — синтаксис 3.12, и на 3.11 он не
+    разберётся никогда. Требовать этого значило бы требовать невозможного, а
+    находка была бы не о карточке, а о том, чем её проверяли.
+
+    Находка адресована источнику: содержание правится там, поток односторонний.
+    Правило существует, чтобы возражение было предъявимым — со списком
+    идентификаторов, а не на словах.
     """
     for entry in g.entries:
-        if not entry.examples:
+        if not entry.examples or _from_the_future(entry.version):
             continue
-        opens_block = any(line.rstrip().endswith(":") for line in entry.examples)
-        if opens_block and not any(line[:1] in " \t" for line in entry.examples):
+        try:
+            compile("\n".join(entry.examples), f"<{entry.id}>", "exec")
+        except SyntaxError as exc:
             yield Issue(
                 Severity.WARNING,
-                "example-indent",
-                "пример открывает блок, но ни одна строка не имеет отступа — "
-                "код не запустится",
+                "example-compiles",
+                f"пример не компилируется: {type(exc).__name__} — {exc.msg}",
+                entry.id,
+            )
+        except ValueError as exc:
+            # Нулевой байт и подобное: compile() отвергает это ValueError,
+            # и такой пример так же непригоден, как несобирающийся.
+            yield Issue(
+                Severity.WARNING,
+                "example-compiles",
+                f"пример не компилируется: {exc}",
                 entry.id,
             )
 
@@ -424,7 +455,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_body_length,
     rule_version_format,
     rule_examples,
-    rule_example_indent,
+    rule_example_compiles,
     rule_related_resolves,
     rule_related_errors_resolve,
     rule_duplicate_title,

@@ -236,7 +236,7 @@ def test_objections_reports_findings_grouped_by_rule(tmp_path: Path):
     )
     result = run("--data", str(data), "objections")
     assert result.code == EXIT_OK
-    assert "`example-indent` — 2" in result.out
+    assert "`example-compiles` — 2" in result.out
     assert "- `a`" in result.out and "- `b`" in result.out
 
 

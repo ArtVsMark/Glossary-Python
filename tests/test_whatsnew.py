@@ -14,6 +14,7 @@ from typing import Any
 import pytest
 
 import whatsnew
+from glossary import contracts
 from glossary.inventory import Inventory, Item, difference
 
 
@@ -112,8 +113,9 @@ def test_single_dump_is_refused():
 
 def test_contract_names_its_schema():
     payload = whatsnew.build([dump("3.13"), dump("3.14")], frozenset())
-    assert payload["schema"] == whatsnew.SCHEMA
+    assert payload["schema"] == contracts.SCHEMA
     assert payload["schema_of"] == whatsnew.SCHEMA_OF
+    assert payload["generated_at"]
 
 
 # --------------------------- вход ---------------------------

@@ -23,9 +23,9 @@ import json
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Final
 
+from glossary.contracts import envelope
 from glossary.inventory import build_inventory
 from glossary.loader import digest
-from glossary.objections import PRODUCER, SOURCE
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -35,7 +35,6 @@ if TYPE_CHECKING:
 
 __all__ = [
     "CATEGORIES",
-    "SCHEMA",
     "SCHEMA_OF",
     "CategoryCoverage",
     "CoverageReport",
@@ -185,9 +184,6 @@ def build_coverage(
 # Контракт наружу
 # --------------------------------------------------------------------------- #
 
-SCHEMA: Final = 1
-"""Версия формата ``coverage.json``. Растёт при несовместимом изменении."""
-
 SCHEMA_OF: Final = "покрытие официального Python карточками глоссария"
 """Чего именно эта версия (правило каталога 164)."""
 
@@ -204,10 +200,7 @@ def collect(glossary: Glossary, inventory: Inventory | None = None) -> dict[str,
     """
     report = build_coverage(glossary, inventory)
     return {
-        "schema": SCHEMA,
-        "schema_of": SCHEMA_OF,
-        "producer": PRODUCER,
-        "source": SOURCE,
+        **envelope(SCHEMA_OF),
         "python_version": report.python_version,
         "snapshot": {"cards": len(glossary), "digest": digest(glossary)},
         "totals": {

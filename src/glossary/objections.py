@@ -12,13 +12,10 @@
   (правило каталога 174). Ручной перенос списка из 434 идентификаторов не
   выживает ни одной итерации.
 
-В JSON **нет отметки времени**. Она меняла бы файл при каждом прогоне, и ветка
-``badges`` копила бы коммиты «ничего не изменилось»; публикующий прогон именно
-на неизменность файла и смотрит, решая, коммитить ли. Вместо неё стоит
-``snapshot.digest`` — отпечаток самих данных: он отвечает на вопрос «о каком
-снимке речь», меняется ровно тогда, когда меняются карточки, и позволяет
-потребителю понять, что перед ним тот же список, а не новый. Дата же есть у
-коммита ветки ``badges``, и contents-API отдаёт её вместе с файлом.
+Шапка файла — общая для всех публикуемых контрактов, включая отметку времени;
+почему она там есть, написано в :mod:`glossary.contracts`. Рядом с ней стоит
+``snapshot.digest`` — отпечаток самих данных: отметка отвечает на «свежий ли
+файл», отпечаток на «о каком снимке речь». Вопроса два, и ответов тоже два.
 
 Список идентификаторов в JSON **не усекается**: усечённый контракт хуже
 отсутствующего, потому что выглядит полным.
@@ -36,6 +33,7 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING, Any, Final
 
+from glossary.contracts import PRODUCER, envelope
 from glossary.loader import digest
 from glossary.validation import Severity, validate
 
@@ -43,18 +41,7 @@ if TYPE_CHECKING:
     from glossary.models import Glossary
     from glossary.validation import Issue
 
-__all__ = [
-    "PRODUCER",
-    "SCHEMA",
-    "SCHEMA_OF",
-    "SOURCE",
-    "as_json",
-    "as_markdown",
-    "collect",
-]
-
-SCHEMA: Final = 1
-"""Версия формата ``objections.json``. Растёт при несовместимом изменении."""
+__all__ = ["SCHEMA_OF", "as_json", "as_markdown", "collect"]
 
 SCHEMA_OF: Final = "замечания витрины к содержанию глоссария"
 """Чего именно эта версия.
@@ -64,9 +51,6 @@ SCHEMA_OF: Final = "замечания витрины к содержанию г
 своём ответе чужой номер, файл при этом оставался валидным, а гейт зелёным
 (правило каталога 164). Номер, который не говорит, чего он, — не номер.
 """
-
-PRODUCER: Final = "ArtVsMark/Glossary-Python"
-SOURCE: Final = "ArtVsMark/Stepik-Python-Grader"
 
 DEFAULT_LIMIT: Final = 25
 """Сколько идентификаторов перечислять в Markdown.
@@ -107,10 +91,7 @@ def collect(glossary: Glossary) -> dict[str, Any]:
 
     affected = {i.entry_id for i in report.issues if i.entry_id}
     return {
-        "schema": SCHEMA,
-        "schema_of": SCHEMA_OF,
-        "producer": PRODUCER,
-        "source": SOURCE,
+        **envelope(SCHEMA_OF),
         "snapshot": {
             "cards": len(glossary),
             "schema_version": glossary.schema_version,

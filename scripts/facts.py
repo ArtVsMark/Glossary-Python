@@ -34,6 +34,7 @@ from typing import TYPE_CHECKING, Any, Final
 
 import yaml
 
+from glossary.contracts import envelope
 from glossary.loader import load_glossary
 from glossary.validation import Severity, validate
 
@@ -49,8 +50,7 @@ MARKED: Final = (ROOT / "README.md", ROOT / "CLAUDE.md")
 ровно тем способом, против которого механизм и заведён."""
 COVERAGE: Final = ROOT / "coverage.xml"
 
-SCHEMA: Final = 1
-REPO: Final = "ArtVsMark/Glossary-Python"
+FACTS_SCHEMA_OF: Final = "факты о проекте-витрине глоссария"
 GOOD_COVERAGE: Final = 90.0
 """С какого покрытия значок зеленеет. Совпадает с порогом --cov-fail-under в CI."""
 
@@ -125,8 +125,7 @@ def build_facts() -> dict[str, Any]:
         отсутствуют — их не выставляют нулём.
     """
     facts: dict[str, Any] = {
-        "schema": SCHEMA,
-        "repo": REPO,
+        **envelope(FACTS_SCHEMA_OF),
         "glossary": _glossary_facts(),
         "rules": _rules_facts(),
         "python_versions": _python_versions(),

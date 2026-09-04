@@ -36,7 +36,6 @@ if TYPE_CHECKING:
 __all__ = [
     "BUILTIN_TYPES",
     "INVENTORY_KINDS",
-    "SCHEMA",
     "SCHEMA_OF",
     "STDLIB_MODULES",
     "Inventory",
@@ -46,9 +45,6 @@ __all__ = [
     "difference",
     "python_version",
 ]
-
-SCHEMA: Final = 1
-"""Версия формата выгрузки инвентаря."""
 
 SCHEMA_OF: Final = "инвентарь официального Python на одной версии интерпретатора"
 """Чего именно эта версия (правило каталога 164)."""

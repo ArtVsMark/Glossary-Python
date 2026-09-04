@@ -9,9 +9,10 @@ Markdown читает человек, поэтому список усекает
 
 from __future__ import annotations
 
+import datetime as dt
 import json
 
-from glossary import objections
+from glossary import contracts, objections
 from glossary.loader import digest
 from glossary.models import Glossary, Text
 from tests.factories import make_entry, make_glossary
@@ -29,9 +30,14 @@ def test_clean_glossary_reports_nothing(sample_glossary: Glossary):
 def test_contract_names_its_schema_and_both_sides():
     """Потребитель обязан понять, что читает и от кого."""
     data = objections.collect(make_glossary())
-    assert data["schema"] == objections.SCHEMA
-    assert data["producer"] == objections.PRODUCER
-    assert data["source"] == objections.SOURCE
+    assert data["schema"] == contracts.SCHEMA
+    assert data["producer"] == contracts.PRODUCER
+    assert data["source"] == contracts.SOURCE
+
+
+def test_schema_is_a_string():
+    """Числовая форма не различает 1.0 и 1.10 (просьба соседа, #18)."""
+    assert isinstance(objections.collect(make_glossary())["schema"], str)
 
 
 def test_schema_says_what_it_versions():
@@ -78,7 +84,7 @@ def test_card_finding_is_scoped_to_cards():
     finding = next(
         f
         for f in objections.collect(glossary)["findings"]
-        if f["rule"] == "example-indent"
+        if f["rule"] == "example-compiles"
     )
     assert finding["scope"] == "card"
     assert finding["cards"] == ["a"]
@@ -120,29 +126,33 @@ def test_findings_are_ordered_by_weight():
     entries = [make_entry(id=f"e{n}", examples=BROKEN_EXAMPLE) for n in range(4)]
     entries.append(make_entry(id="lone", section="Одинокий"))
     data = objections.collect(make_glossary(*entries))
-    assert data["findings"][0]["rule"] == "example-indent"
+    assert data["findings"][0]["rule"] == "example-compiles"
 
 
 def test_json_list_is_never_truncated():
     """Усечённый контракт выглядит полным — это хуже, чем его отсутствие."""
     entries = [make_entry(id=f"e{n}", examples=BROKEN_EXAMPLE) for n in range(60)]
     payload = json.loads(objections.as_json(make_glossary(*entries)))
-    finding = next(f for f in payload["findings"] if f["rule"] == "example-indent")
+    finding = next(f for f in payload["findings"] if f["rule"] == "example-compiles")
     assert len(finding["cards"]) == 60
 
 
-def test_json_carries_no_timestamp():
-    """Отметка времени меняла бы файл на каждом прогоне.
+def test_json_says_when_it_was_built():
+    """Файл не исчезает, когда прогон ломается, — он остаётся вчерашним.
 
-    Публикующий прогон коммитит только изменившееся; дата сделала бы «ничего
-    не изменилось» неотличимым от изменения, и ветка копила бы пустые коммиты.
+    Сначала отметки времени здесь не было: она меняет файл на каждом прогоне.
+    Довод потребителя оказался сильнее — без неё «данные устарели» и «данные
+    не менялись» снаружи неотличимы, и он показывает прошлое как настоящее
+    сколько угодно долго (Glossary-Python#18).
     """
-    rendered = objections.as_json(make_glossary(make_entry(examples=BROKEN_EXAMPLE)))
-    assert objections.as_json(make_glossary(make_entry(examples=BROKEN_EXAMPLE))) == (
-        rendered
-    )
-    payload = json.loads(rendered)
-    assert not {"generated_at", "timestamp", "date"} & payload.keys()
+    payload = json.loads(objections.as_json(make_glossary(make_entry())))
+    assert dt.datetime.fromisoformat(payload["generated_at"]).tzinfo is not None
+
+
+def test_snapshot_identity_is_not_the_timestamp():
+    """Отпечаток отвечает на другой вопрос и отметкой не заменяется."""
+    payload = json.loads(objections.as_json(make_glossary(make_entry(id="a"))))
+    assert payload["snapshot"]["digest"] == digest(make_glossary(make_entry(id="a")))
 
 
 def test_json_is_valid_utf8_without_escapes():

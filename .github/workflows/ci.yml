@@ -85,10 +85,13 @@ jobs:
           cache-dependency-path: pyproject.toml
 
       - name: Установка пакета
-        run: python -m pip install -e .
+        run: python -m pip install -e ".[dev]"
 
       - name: Валидация данных
         run: python -m glossary validate
+
+      - name: Ответ каталогу правил
+        run: pytest tests/test_rules_bindings.py -q
 
       - name: Витрина собрана из текущих данных
         run: python -m glossary build --check
@@ -111,3 +114,50 @@ jobs:
             echo
             echo '</details>'
           } >> "$GITHUB_STEP_SUMMARY"
+
+  # Единственная обязательная проверка защиты ветки. Имя постоянное и совпадает
+  # с настройкой ruleset дословно: имена работ матрицы в список обязательных
+  # не попадают никогда — они меняются вместе с составом версий.
+  #
+  # if: always() — здесь несущая конструкция, а не украшение. Без него job с
+  # needs: при падении зависимости не краснеет, а ПРОПУСКАЕТСЯ, и защита ветки
+  # засчитывает пропущенное как пройденное: в норме агрегатор зелёный и ничего
+  # не решает, а в аварии разрешает слияние ровно тогда, когда обязан запретить.
+  # Поэтому работа доходит до вердикта при любом исходе соседей и сверяет их
+  # результаты явно.
+  check-pr:
+    name: check PR
+    needs: [quality, tests, data]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Свести вердикты обязательных работ
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+
+          needs = json.loads(os.environ["NEEDS"])
+
+          # Пустой вход — ошибка входа, а не успех: агрегатор без зависимостей
+          # зеленел бы всегда и не проверял бы ничего.
+          if not needs:
+              sys.exit("обязательных работ не найдено — проверять нечего")
+
+          for name, outcome in sorted(needs.items()):
+              print(f"{outcome['result']:>9}  {name}")
+
+          failed = {
+              name: outcome["result"]
+              for name, outcome in needs.items()
+              if outcome["result"] != "success"
+          }
+          if failed:
+              listed = ", ".join(f"{n} → {r}" for n, r in sorted(failed.items()))
+              sys.exit(f"обязательные работы не прошли: {listed}")
+
+          print(f"\nвсе {len(needs)} обязательные работы зелёные")
+          PY

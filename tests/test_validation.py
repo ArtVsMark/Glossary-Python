@@ -18,6 +18,7 @@ from glossary.validation import (
     rule_examples_depth,
     rule_group_size,
     rule_id_format,
+    rule_non_empty,
     rule_required_fields,
     rule_unique_id,
     rule_version_format,
@@ -50,6 +51,21 @@ def test_report_not_ok_with_errors():
 def test_issue_format_uses_placeholder_without_entry():
     assert "<глоссарий>" in Issue(Severity.WARNING, "r", "сообщение").format()
     assert "alpha" in Issue(Severity.ERROR, "r", "сообщение", "alpha").format()
+
+
+def test_non_empty_fires_on_empty_glossary():
+    """Пустой вход — ошибка входа, а не успешная проверка (каталог, 075)."""
+    issues = list(rule_non_empty(Glossary(entries=()), CFG))
+    assert [i.severity for i in issues] == [Severity.ERROR]
+
+
+def test_non_empty_silent_on_real_glossary(sample_glossary: Glossary):
+    assert list(rule_non_empty(sample_glossary, CFG)) == []
+
+
+def test_validate_fails_on_empty_glossary():
+    """Полный прогон на пустых данных обязан быть красным, а не зелёным."""
+    assert not validate(Glossary(entries=())).ok
 
 
 @pytest.mark.parametrize("field", ["name", "group", "subcat", "syntax", "docs"])
@@ -181,6 +197,7 @@ def test_all_rules_are_registered():
         rule_examples_depth,
         rule_group_size,
         rule_id_format,
+        rule_non_empty,
         rule_required_fields,
         rule_unique_id,
         rule_version_format,

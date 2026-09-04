@@ -41,6 +41,12 @@ def test_html_requires_placeholder():
         HtmlExporter(template="<html></html>")
 
 
+def test_html_refuses_empty_glossary():
+    """Пустая витрина выглядит исправной и молча заменила бы рабочую."""
+    with pytest.raises(ExportError, match="пуст"):
+        HtmlExporter(template=PLACEHOLDER).render(Glossary(entries=()))
+
+
 def test_html_substitutes_data(sample_glossary: Glossary):
     exporter = HtmlExporter(template=f"<body>{PLACEHOLDER}</body>")
     rendered = exporter.render(sample_glossary)

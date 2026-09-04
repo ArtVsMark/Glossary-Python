@@ -1,0 +1,546 @@
+{
+  "schema": "1.0",
+  "project": "ArtVsMark/Glossary-Python",
+  "catalogue": "https://github.com/ArtVsMark/Engineering-Incidents-Playbook",
+  "_": "Ответ ЭТОГО проекта по каждому правилу каталога. Статус — active, rejected, not-applicable или unreviewed; у двух отрицательных обязательна причина в поле why, у active — mechanism и where.",
+  "_зачем": "Ответ живёт здесь, а не в каталоге, потому что здесь живёт механизм: одно правило в разных проектах держится по-разному.",
+  "rules": {
+    "001": {
+      "status": "unreviewed"
+    },
+    "002": {
+      "status": "unreviewed"
+    },
+    "003": {
+      "status": "unreviewed"
+    },
+    "004": {
+      "status": "unreviewed"
+    },
+    "005": {
+      "status": "unreviewed"
+    },
+    "006": {
+      "status": "unreviewed"
+    },
+    "007": {
+      "status": "unreviewed"
+    },
+    "008": {
+      "status": "unreviewed"
+    },
+    "009": {
+      "status": "unreviewed"
+    },
+    "010": {
+      "status": "unreviewed"
+    },
+    "011": {
+      "status": "unreviewed"
+    },
+    "012": {
+      "status": "unreviewed"
+    },
+    "013": {
+      "status": "unreviewed"
+    },
+    "014": {
+      "status": "unreviewed"
+    },
+    "015": {
+      "status": "unreviewed"
+    },
+    "016": {
+      "status": "unreviewed"
+    },
+    "017": {
+      "status": "unreviewed"
+    },
+    "018": {
+      "status": "unreviewed"
+    },
+    "019": {
+      "status": "unreviewed"
+    },
+    "020": {
+      "status": "unreviewed"
+    },
+    "021": {
+      "status": "unreviewed"
+    },
+    "022": {
+      "status": "unreviewed"
+    },
+    "023": {
+      "status": "unreviewed"
+    },
+    "024": {
+      "status": "unreviewed"
+    },
+    "025": {
+      "status": "unreviewed"
+    },
+    "026": {
+      "status": "unreviewed"
+    },
+    "027": {
+      "status": "unreviewed"
+    },
+    "028": {
+      "status": "unreviewed"
+    },
+    "029": {
+      "status": "unreviewed"
+    },
+    "030": {
+      "status": "unreviewed"
+    },
+    "031": {
+      "status": "unreviewed"
+    },
+    "032": {
+      "status": "unreviewed"
+    },
+    "033": {
+      "status": "unreviewed"
+    },
+    "034": {
+      "status": "unreviewed"
+    },
+    "035": {
+      "status": "unreviewed"
+    },
+    "036": {
+      "status": "unreviewed"
+    },
+    "037": {
+      "status": "unreviewed"
+    },
+    "038": {
+      "status": "unreviewed"
+    },
+    "039": {
+      "status": "unreviewed"
+    },
+    "040": {
+      "status": "unreviewed"
+    },
+    "041": {
+      "status": "unreviewed"
+    },
+    "042": {
+      "status": "unreviewed"
+    },
+    "043": {
+      "status": "unreviewed"
+    },
+    "044": {
+      "status": "unreviewed"
+    },
+    "045": {
+      "status": "unreviewed"
+    },
+    "046": {
+      "status": "unreviewed"
+    },
+    "047": {
+      "status": "unreviewed"
+    },
+    "048": {
+      "status": "unreviewed"
+    },
+    "049": {
+      "status": "unreviewed"
+    },
+    "050": {
+      "status": "unreviewed"
+    },
+    "051": {
+      "status": "unreviewed"
+    },
+    "052": {
+      "status": "unreviewed"
+    },
+    "053": {
+      "status": "unreviewed"
+    },
+    "054": {
+      "status": "unreviewed"
+    },
+    "055": {
+      "status": "unreviewed"
+    },
+    "056": {
+      "status": "unreviewed"
+    },
+    "057": {
+      "status": "unreviewed"
+    },
+    "058": {
+      "status": "unreviewed"
+    },
+    "059": {
+      "status": "unreviewed"
+    },
+    "060": {
+      "status": "unreviewed"
+    },
+    "061": {
+      "status": "unreviewed"
+    },
+    "062": {
+      "status": "unreviewed"
+    },
+    "063": {
+      "status": "unreviewed"
+    },
+    "064": {
+      "status": "unreviewed"
+    },
+    "065": {
+      "status": "unreviewed"
+    },
+    "066": {
+      "status": "unreviewed"
+    },
+    "067": {
+      "status": "unreviewed"
+    },
+    "068": {
+      "status": "unreviewed"
+    },
+    "069": {
+      "status": "unreviewed"
+    },
+    "070": {
+      "status": "unreviewed"
+    },
+    "071": {
+      "status": "unreviewed"
+    },
+    "072": {
+      "status": "unreviewed"
+    },
+    "073": {
+      "status": "unreviewed"
+    },
+    "074": {
+      "status": "unreviewed"
+    },
+    "075": {
+      "status": "unreviewed"
+    },
+    "076": {
+      "status": "unreviewed"
+    },
+    "077": {
+      "status": "unreviewed"
+    },
+    "078": {
+      "status": "unreviewed"
+    },
+    "079": {
+      "status": "unreviewed"
+    },
+    "080": {
+      "status": "unreviewed"
+    },
+    "081": {
+      "status": "unreviewed"
+    },
+    "082": {
+      "status": "unreviewed"
+    },
+    "083": {
+      "status": "unreviewed"
+    },
+    "084": {
+      "status": "unreviewed"
+    },
+    "085": {
+      "status": "unreviewed"
+    },
+    "086": {
+      "status": "unreviewed"
+    },
+    "087": {
+      "status": "unreviewed"
+    },
+    "088": {
+      "status": "unreviewed"
+    },
+    "089": {
+      "status": "unreviewed"
+    },
+    "090": {
+      "status": "unreviewed"
+    },
+    "091": {
+      "status": "unreviewed"
+    },
+    "092": {
+      "status": "unreviewed"
+    },
+    "093": {
+      "status": "unreviewed"
+    },
+    "094": {
+      "status": "unreviewed"
+    },
+    "095": {
+      "status": "unreviewed"
+    },
+    "096": {
+      "status": "unreviewed"
+    },
+    "097": {
+      "status": "unreviewed"
+    },
+    "098": {
+      "status": "unreviewed"
+    },
+    "099": {
+      "status": "unreviewed"
+    },
+    "100": {
+      "status": "unreviewed"
+    },
+    "101": {
+      "status": "unreviewed"
+    },
+    "102": {
+      "status": "unreviewed"
+    },
+    "103": {
+      "status": "unreviewed"
+    },
+    "104": {
+      "status": "unreviewed"
+    },
+    "105": {
+      "status": "unreviewed"
+    },
+    "106": {
+      "status": "unreviewed"
+    },
+    "107": {
+      "status": "unreviewed"
+    },
+    "108": {
+      "status": "unreviewed"
+    },
+    "109": {
+      "status": "unreviewed"
+    },
+    "110": {
+      "status": "unreviewed"
+    },
+    "111": {
+      "status": "unreviewed"
+    },
+    "112": {
+      "status": "unreviewed"
+    },
+    "113": {
+      "status": "unreviewed"
+    },
+    "114": {
+      "status": "unreviewed"
+    },
+    "115": {
+      "status": "unreviewed"
+    },
+    "116": {
+      "status": "unreviewed"
+    },
+    "117": {
+      "status": "unreviewed"
+    },
+    "118": {
+      "status": "unreviewed"
+    },
+    "119": {
+      "status": "unreviewed"
+    },
+    "120": {
+      "status": "unreviewed"
+    },
+    "121": {
+      "status": "unreviewed"
+    },
+    "122": {
+      "status": "unreviewed"
+    },
+    "123": {
+      "status": "unreviewed"
+    },
+    "124": {
+      "status": "unreviewed"
+    },
+    "125": {
+      "status": "unreviewed"
+    },
+    "126": {
+      "status": "unreviewed"
+    },
+    "127": {
+      "status": "unreviewed"
+    },
+    "128": {
+      "status": "unreviewed"
+    },
+    "129": {
+      "status": "unreviewed"
+    },
+    "130": {
+      "status": "unreviewed"
+    },
+    "131": {
+      "status": "unreviewed"
+    },
+    "132": {
+      "status": "unreviewed"
+    },
+    "133": {
+      "status": "unreviewed"
+    },
+    "134": {
+      "status": "unreviewed"
+    },
+    "135": {
+      "status": "unreviewed"
+    },
+    "136": {
+      "status": "unreviewed"
+    },
+    "137": {
+      "status": "unreviewed"
+    },
+    "138": {
+      "status": "unreviewed"
+    },
+    "139": {
+      "status": "unreviewed"
+    },
+    "140": {
+      "status": "unreviewed"
+    },
+    "141": {
+      "status": "unreviewed"
+    },
+    "142": {
+      "status": "unreviewed"
+    },
+    "144": {
+      "status": "unreviewed"
+    },
+    "145": {
+      "status": "unreviewed"
+    },
+    "146": {
+      "status": "unreviewed"
+    },
+    "147": {
+      "status": "unreviewed"
+    },
+    "148": {
+      "status": "unreviewed"
+    },
+    "149": {
+      "status": "unreviewed"
+    },
+    "150": {
+      "status": "unreviewed"
+    },
+    "151": {
+      "status": "unreviewed"
+    },
+    "152": {
+      "status": "unreviewed"
+    },
+    "153": {
+      "status": "unreviewed"
+    },
+    "154": {
+      "status": "unreviewed"
+    },
+    "155": {
+      "status": "unreviewed"
+    },
+    "156": {
+      "status": "unreviewed"
+    },
+    "157": {
+      "status": "unreviewed"
+    },
+    "158": {
+      "status": "unreviewed"
+    },
+    "159": {
+      "status": "unreviewed"
+    },
+    "160": {
+      "status": "unreviewed"
+    },
+    "161": {
+      "status": "unreviewed"
+    },
+    "162": {
+      "status": "unreviewed"
+    },
+    "163": {
+      "status": "unreviewed"
+    },
+    "164": {
+      "status": "unreviewed"
+    },
+    "165": {
+      "status": "unreviewed"
+    },
+    "166": {
+      "status": "unreviewed"
+    },
+    "167": {
+      "status": "unreviewed"
+    },
+    "168": {
+      "status": "unreviewed"
+    },
+    "169": {
+      "status": "unreviewed"
+    },
+    "170": {
+      "status": "unreviewed"
+    },
+    "171": {
+      "status": "unreviewed"
+    },
+    "172": {
+      "status": "unreviewed"
+    },
+    "173": {
+      "status": "unreviewed"
+    },
+    "174": {
+      "status": "unreviewed"
+    },
+    "175": {
+      "status": "unreviewed"
+    },
+    "176": {
+      "status": "unreviewed"
+    },
+    "177": {
+      "status": "unreviewed"
+    },
+    "178": {
+      "status": "unreviewed"
+    },
+    "179": {
+      "status": "unreviewed"
+    },
+    "180": {
+      "status": "unreviewed"
+    }
+  }
+}

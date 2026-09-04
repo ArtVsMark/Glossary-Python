@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/ArtVsMark/Glossary-Python/blob/main/data/glossary.schema.json",
   "title": "Python Glossary",
-  "description": "Источник истины витрины глоссария Python. Каждая запись — одна карточка.",
+  "description": "Снимок глоссария Python. Содержание ведётся в базе знаний ArtVsMark/Stepik-Python-Grader; сюда оно попадает выгрузкой (scripts/import_from_grader.py) и вручную не правится. Каждая запись — одна карточка.",
   "type": "object",
   "required": ["schema_version", "entries"],
   "additionalProperties": false,
@@ -13,8 +13,8 @@
     },
     "schema_version": {
       "type": "integer",
-      "minimum": 1,
-      "description": "Версия формата данных. Увеличивается при несовместимых изменениях."
+      "const": 2,
+      "description": "Версия формата данных. Версия 1 хранила одноязычную карточку с полями name/group/description; версия 2 приняла форму источника."
     },
     "entries": {
       "type": "array",
@@ -23,11 +23,26 @@
     }
   },
   "$defs": {
+    "text": {
+      "type": "object",
+      "required": ["ru", "en"],
+      "additionalProperties": false,
+      "description": "Двуязычный текст. Пустая половина — не «нет перевода», а карточка, которая на одном из языков выглядит сломанной; витрина в этом случае откатывается на русский и говорит об этом читателю.",
+      "properties": {
+        "ru": { "type": "string" },
+        "en": { "type": "string" }
+      }
+    },
+    "strings": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
     "entry": {
       "type": "object",
       "required": [
-        "id", "name", "group", "subcat", "cg",
-        "description", "syntax", "examples", "version", "docs"
+        "id", "title", "kind", "summary", "body", "syntax", "status",
+        "docs_url", "version", "section", "subcat", "color_group",
+        "aliases", "keywords", "tags", "examples", "related", "related_errors"
       ],
       "additionalProperties": false,
       "properties": {
@@ -37,54 +52,84 @@
           "pattern": "^[^\\s#/?&=%\"'<>]+$",
           "description": "Уникальный стабильный идентификатор карточки. Используется как якорь URL, поэтому не должен содержать пробелов и символов, ломающих фрагмент адреса. Алфавит свободный: допустимы и латиница, и кириллица."
         },
-        "name": {
+        "title": {
           "type": "string",
           "minLength": 1,
           "description": "Отображаемое имя термина, например `list.append()`."
         },
-        "group": {
+        "kind": {
+          "type": "string",
+          "enum": ["term", "function", "exception", "construct"],
+          "description": "Вид карточки: понятие, функция, исключение, синтаксическая конструкция."
+        },
+        "summary": {
+          "$ref": "#/$defs/text",
+          "description": "Краткое описание — то, что видно в списке без раскрытия карточки."
+        },
+        "body": {
+          "$ref": "#/$defs/text",
+          "description": "Развёрнутый разбор: ловушки, границы применимости, связь с соседними темами."
+        },
+        "syntax": {
+          "type": "string",
+          "description": "Сигнатура или форма записи."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ready"],
+          "description": "В снимок попадают только опубликованные карточки; черновики остаются в источнике."
+        },
+        "docs_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://docs\\.python\\.org/3/",
+          "description": "Ссылка на официальную документацию."
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(|[0-9]+\\.[0-9]+)$",
+          "description": "Версия Python, в которой возможность появилась. Пустая строка — доступно во всех поддерживаемых версиях."
+        },
+        "section": {
           "type": "string",
           "minLength": 1,
           "description": "Раздел глоссария, например `Строки (str)`."
         },
         "subcat": {
           "type": "string",
-          "minLength": 1,
           "description": "Подкатегория внутри раздела, используется для фасетной навигации."
         },
-        "cg": {
+        "color_group": {
           "type": "string",
           "enum": [
             "builtin", "str", "seq", "mapset", "oop",
             "exc", "module", "iter", "op", "typing"
           ],
-          "description": "Цветовая группа карточки в витрине."
+          "description": "Цветовая группа карточки в витрине. В источнике выражена именем файла; при склейке файлов в снимок переезжает в поле."
         },
-        "description": {
-          "type": "string",
-          "minLength": 60,
-          "description": "Описание термина: что делает и зачем нужен. Минимум 60 символов."
+        "aliases": {
+          "$ref": "#/$defs/strings",
+          "description": "Синонимы имени: по ним карточка находится поиском."
         },
-        "syntax": {
-          "type": "string",
-          "minLength": 1,
-          "description": "Сигнатура или форма записи."
+        "keywords": {
+          "$ref": "#/$defs/strings",
+          "description": "Ключевые слова для поиска, не являющиеся синонимами имени."
+        },
+        "tags": {
+          "$ref": "#/$defs/strings",
+          "description": "Тематические метки источника (`os`, `collections`, `bytearray`). Цветовую группу не задают."
         },
         "examples": {
-          "type": "string",
-          "minLength": 1,
-          "description": "Исполняемые примеры на Python, разделённые переводами строк."
+          "$ref": "#/$defs/strings",
+          "description": "Исполняемый пример: одна строка кода — один элемент массива."
         },
-        "version": {
-          "type": ["string", "null"],
-          "pattern": "^3\\.[0-9]+\\+?$",
-          "description": "Минимальная версия Python, если возможность появилась не с самого начала. `null` — доступно во всех поддерживаемых версиях."
+        "related": {
+          "$ref": "#/$defs/strings",
+          "description": "Идентификаторы связанных карточек. Витрина строит по ним блок «см. также»."
         },
-        "docs": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https://docs\\.python\\.org/3/",
-          "description": "Ссылка на официальную документацию."
+        "related_errors": {
+          "$ref": "#/$defs/strings",
+          "description": "Идентификаторы карточек-исключений, которые чаще всего возникают при работе с этим объектом."
         }
       }
     }

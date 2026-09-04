@@ -1,4 +1,10 @@
-"""Загрузка и сохранение файла-источника ``data/glossary.json``."""
+"""Загрузка и запись снимка ``data/glossary.json``.
+
+Снимок — производное первого порядка: содержание приходит из базы знаний
+``ArtVsMark/Stepik-Python-Grader`` командой ``scripts/import_from_grader.py``.
+Руками он не правится: правка здесь исчезнет при следующем импорте, а
+расхождение с источником обнаружится не сразу.
+"""
 
 from __future__ import annotations
 
@@ -73,9 +79,15 @@ def load_glossary(path: Path | None = None) -> Glossary:
 
     version = payload.get("schema_version")
     if version != SCHEMA_VERSION:
+        hint = ""
+        if version == 1:
+            hint = (
+                " Снимок версии 1 одноязычен и не несёт синонимов и связей; "
+                "пересоберите его: python scripts/import_from_grader.py"
+            )
         raise DataFormatError(
             f"{source}: несовместимая версия схемы {version!r}, "
-            f"пакет поддерживает {SCHEMA_VERSION}"
+            f"пакет поддерживает {SCHEMA_VERSION}.{hint}"
         )
 
     raw_entries = payload.get("entries")
@@ -95,7 +107,7 @@ def load_glossary(path: Path | None = None) -> Glossary:
 
 
 def dump_glossary(glossary: Glossary, path: Path | None = None) -> Path:
-    """Записать глоссарий обратно в файл-источник и вернуть путь.
+    """Записать снимок и вернуть путь.
 
     Формат фиксирован (``indent=2``, ``ensure_ascii=False``, перевод строки в
     конце), чтобы diff в git отражал смысловые правки, а не переформатирование.

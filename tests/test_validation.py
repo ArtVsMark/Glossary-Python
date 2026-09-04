@@ -4,22 +4,27 @@ from __future__ import annotations
 
 import pytest
 
-from glossary.models import Glossary
+from glossary.models import Glossary, Text
 from glossary.validation import (
     RULES,
     Issue,
     Severity,
     ValidationConfig,
     ValidationReport,
+    rule_body_length,
     rule_color_group,
-    rule_description_length,
     rule_docs_url,
-    rule_duplicate_name,
-    rule_examples_depth,
-    rule_group_size,
+    rule_duplicate_title,
+    rule_example_indent,
+    rule_examples,
     rule_id_format,
+    rule_kind,
     rule_non_empty,
+    rule_related_resolves,
     rule_required_fields,
+    rule_section_size,
+    rule_summary_length,
+    rule_translated,
     rule_unique_id,
     rule_version_format,
     validate,
@@ -68,7 +73,7 @@ def test_validate_fails_on_empty_glossary():
     assert not validate(Glossary(entries=())).ok
 
 
-@pytest.mark.parametrize("field", ["name", "group", "subcat", "syntax", "docs"])
+@pytest.mark.parametrize("field", ["title", "kind", "section", "syntax", "docs_url"])
 def test_required_fields_detects_blank(field: str):
     glossary = make_glossary(make_entry(**{field: "   "}))
     issues = list(rule_required_fields(glossary, CFG))
@@ -101,88 +106,137 @@ def test_unique_id_detects_duplicates():
     assert issues[0].entry_id == "dup"
 
 
-def test_color_group_rejects_unknown_value():
-    issues = list(rule_color_group(make_glossary(make_entry(cg="нет")), CFG))
+def test_kind_rejects_unknown_value():
+    issues = list(rule_kind(make_glossary(make_entry(kind="заклинание")), CFG))
     assert issues and issues[0].severity is Severity.ERROR
 
 
+def test_color_group_rejects_unknown_value():
+    """Незнакомая группа — новый файл в источнике, о котором витрина не знает."""
+    glossary = make_glossary(make_entry(color_group="drafts"))
+    issues = list(rule_color_group(glossary, CFG))
+    assert issues and issues[0].severity is Severity.ERROR
+
+
+def test_translated_errors_on_missing_summary_language():
+    glossary = make_glossary(make_entry(summary=Text(ru="Есть.", en="")))
+    issues = list(rule_translated(glossary, CFG))
+    assert [i.severity for i in issues] == [Severity.ERROR]
+    assert "'en'" in issues[0].message
+
+
+def test_translated_only_warns_on_missing_body():
+    """Тело — не сводка: его отсутствие не делает карточку сломанной."""
+    glossary = make_glossary(make_entry(body=Text(ru="Есть.", en="")))
+    issues = list(rule_translated(glossary, CFG))
+    assert [i.severity for i in issues] == [Severity.WARNING]
+
+
 def test_docs_url_rejects_foreign_host():
-    issues = list(rule_docs_url(make_glossary(make_entry(docs="https://ya.ru")), CFG))
+    glossary = make_glossary(make_entry(docs_url="https://ya.ru"))
+    issues = list(rule_docs_url(glossary, CFG))
     assert issues[0].severity is Severity.ERROR
 
 
 def test_docs_url_warns_on_generic_root():
-    glossary = make_glossary(make_entry(docs="https://docs.python.org/3/"))
+    glossary = make_glossary(make_entry(docs_url="https://docs.python.org/3/"))
     issues = list(rule_docs_url(glossary, CFG))
     assert issues[0].severity is Severity.WARNING
 
 
-def test_description_length_error_when_too_short():
-    issues = list(
-        rule_description_length(make_glossary(make_entry(description="Ко")), CFG)
-    )
-    assert issues[0].severity is Severity.ERROR
-
-
-def test_description_length_warns_when_too_long():
-    glossary = make_glossary(make_entry(description="д" * (CFG.max_description + 1)))
-    issues = list(rule_description_length(glossary, CFG))
+def test_summary_length_warns_when_too_short():
+    glossary = make_glossary(make_entry(summary=Text(ru="Ко", en="Short")))
+    issues = list(rule_summary_length(glossary, CFG))
     assert issues[0].severity is Severity.WARNING
 
 
-def test_description_length_ignores_empty_field():
-    """Пустое описание — забота rule_required_fields, дублировать ошибку не нужно."""
-    assert (
-        list(rule_description_length(make_glossary(make_entry(description="")), CFG))
-        == []
-    )
+def test_summary_length_warns_when_too_long():
+    long_text = "д" * (CFG.max_summary + 1)
+    glossary = make_glossary(make_entry(summary=Text(ru=long_text, en=long_text)))
+    issues = list(rule_summary_length(glossary, CFG))
+    assert issues[0].severity is Severity.WARNING
 
 
-def test_description_threshold_is_configurable():
-    glossary = make_glossary(make_entry(description="д" * 70))
-    assert list(rule_description_length(glossary, ValidationConfig(min_description=100)))
+def test_summary_length_ignores_empty_field():
+    """Пустая сводка — забота rule_translated, дублировать находку не нужно."""
+    glossary = make_glossary(make_entry(summary=Text(ru="", en="")))
+    assert list(rule_summary_length(glossary, CFG)) == []
 
 
-@pytest.mark.parametrize("version", ["3", "4.0+", "3.x", "python3.9"])
+def test_summary_threshold_is_configurable():
+    glossary = make_glossary(make_entry(summary=Text(ru="д" * 70, en="x" * 70)))
+    assert list(rule_summary_length(glossary, ValidationConfig(min_summary=100)))
+
+
+def test_body_length_warns_on_stub():
+    glossary = make_glossary(make_entry(body=Text(ru="Коротко.", en="Short.")))
+    issues = list(rule_body_length(glossary, CFG))
+    assert issues[0].severity is Severity.WARNING
+
+
+@pytest.mark.parametrize("version", ["3", "3.x", "python3.9", "3.12+"])
 def test_version_format_rejects_malformed(version: str):
-    issues = list(rule_version_format(make_glossary(make_entry(version=version)), CFG))
+    glossary = make_glossary(make_entry(version=version))
+    issues = list(rule_version_format(glossary, CFG))
     assert issues[0].severity is Severity.ERROR
 
 
-def test_version_format_warns_without_plus():
-    issues = list(rule_version_format(make_glossary(make_entry(version="3.9")), CFG))
-    assert issues[0].severity is Severity.WARNING
-    assert "3.9+" in issues[0].message
-
-
-def test_version_format_accepts_canonical_and_null():
-    glossary = make_glossary(make_entry(version="3.12+"), make_entry(version=None))
+def test_version_format_accepts_canonical_and_empty():
+    glossary = make_glossary(make_entry(version="3.12"), make_entry(version=""))
     assert list(rule_version_format(glossary, CFG)) == []
 
 
-def test_examples_depth_warns_on_single_line():
-    issues = list(rule_examples_depth(make_glossary(make_entry(examples="x = 1")), CFG))
+def test_examples_warns_when_absent():
+    issues = list(rule_examples(make_glossary(make_entry(examples=())), CFG))
     assert issues[0].severity is Severity.WARNING
 
 
-def test_duplicate_name_reports_all_locations():
+def test_example_indent_flags_block_without_indentation():
+    """Блок без отступа — код, который не запустится (возражение источнику)."""
+    glossary = make_glossary(make_entry(examples=("for x in range(3):", "print(x)")))
+    issues = list(rule_example_indent(glossary, CFG))
+    assert issues[0].severity is Severity.WARNING
+
+
+def test_example_indent_silent_on_indented_block():
+    glossary = make_glossary(make_entry(examples=("for x in range(3):", "    print(x)")))
+    assert list(rule_example_indent(glossary, CFG)) == []
+
+
+def test_example_indent_silent_without_block():
+    assert list(rule_example_indent(make_glossary(make_entry()), CFG)) == []
+
+
+def test_related_resolves_flags_dangling_link():
+    glossary = make_glossary(make_entry(related=("нет-такого",)))
+    issues = list(rule_related_resolves(glossary, CFG))
+    assert issues[0].severity is Severity.WARNING
+    assert "нет-такого" in issues[0].message
+
+
+def test_related_resolves_accepts_existing_link():
+    glossary = make_glossary(make_entry(id="a", related=("b",)), make_entry(id="b"))
+    assert list(rule_related_resolves(glossary, CFG)) == []
+
+
+def test_duplicate_title_reports_all_locations():
     glossary = make_glossary(
-        make_entry(id="a", name="len()", group="Первый"),
-        make_entry(id="b", name="len()", group="Второй"),
+        make_entry(id="a", title="len()", section="Первый"),
+        make_entry(id="b", title="len()", section="Второй"),
     )
-    issues = list(rule_duplicate_name(glossary, CFG))
+    issues = list(rule_duplicate_title(glossary, CFG))
     assert len(issues) == 1
     assert "Первый" in issues[0].message and "Второй" in issues[0].message
 
 
-def test_group_size_warns_on_thin_group():
-    glossary = make_glossary(make_entry(id="a", group="Крошечный"))
-    issues = list(rule_group_size(glossary, CFG))
+def test_section_size_warns_on_thin_section():
+    glossary = make_glossary(make_entry(id="a", section="Крошечный"))
+    issues = list(rule_section_size(glossary, CFG))
     assert issues[0].severity is Severity.WARNING
 
 
 def test_validate_accepts_custom_rule_set():
-    glossary = make_glossary(make_entry(id="плохой id", cg="нет"))
+    glossary = make_glossary(make_entry(id="плохой id", color_group="нет"))
     report = validate(glossary, rules=[rule_color_group])
     assert report.by_rule() == {"color-group": 1}
 
@@ -190,15 +244,20 @@ def test_validate_accepts_custom_rule_set():
 def test_all_rules_are_registered():
     """Каждое правило модуля должно попасть в реестр — иначе оно не работает."""
     expected = {
+        rule_body_length,
         rule_color_group,
-        rule_description_length,
         rule_docs_url,
-        rule_duplicate_name,
-        rule_examples_depth,
-        rule_group_size,
+        rule_duplicate_title,
+        rule_example_indent,
+        rule_examples,
         rule_id_format,
+        rule_kind,
         rule_non_empty,
+        rule_related_resolves,
         rule_required_fields,
+        rule_section_size,
+        rule_summary_length,
+        rule_translated,
         rule_unique_id,
         rule_version_format,
     }
@@ -208,18 +267,30 @@ def test_all_rules_are_registered():
 def test_rule_names_are_unique_and_stable():
     """Имена правил — публичный контракт: по ним фильтруют отчёт в CI."""
     glossary = make_glossary(
-        make_entry(id="a b", cg="нет", docs="https://ya.ru", version="4.0")
+        make_entry(
+            id="a b",
+            kind="ничто",
+            color_group="нет",
+            docs_url="https://ya.ru",
+            version="4.0.1",
+            related=("нет-такого",),
+        )
     )
     names = {i.rule for i in validate(glossary).issues}
     assert names <= {
+        "body-length",
         "color-group",
-        "description-length",
         "docs-url",
-        "duplicate-name",
-        "examples-depth",
-        "group-size",
+        "duplicate-title",
+        "example-indent",
+        "examples",
         "id-format",
+        "kind",
+        "related-resolves",
         "required-fields",
+        "section-size",
+        "summary-length",
+        "translated",
         "unique-id",
         "version-format",
     }

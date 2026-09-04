@@ -37,11 +37,11 @@ def sample_glossary() -> Glossary:
 
     Проходит все правила без единого замечания, поэтому любое сообщение в тесте
     относится к тому, что тест намеренно сломал. В каждом разделе не меньше двух
-    карточек — иначе сработает правило ``group-size``.
+    карточек — иначе сработает правило ``section-size``.
     """
     return make_glossary(
-        make_entry(id="alpha", name="alpha()", group="Первый"),
-        make_entry(id="beta", name="beta()", group="Первый", subcat="другая"),
-        make_entry(id="gamma", name="gamma()", group="Второй", cg="module"),
-        make_entry(id="delta", name="delta()", group="Второй", cg="module"),
+        make_entry(id="alpha", title="alpha()", section="Первый"),
+        make_entry(id="beta", title="beta()", section="Первый", subcat="другая"),
+        make_entry(id="gamma", title="gamma()", section="Второй", color_group="module"),
+        make_entry(id="delta", title="delta()", section="Второй", color_group="module"),
     )

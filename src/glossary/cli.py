@@ -22,7 +22,7 @@ from glossary import __version__
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, load_glossary, project_root
-from glossary.validation import Severity, ValidationConfig, validate
+from glossary.validation import Issue, Severity, ValidationConfig, validate
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
@@ -38,6 +38,12 @@ DEFAULT_SHOWCASE: Final = "python_glossary.html"
 # ``ValidationConfig`` объявлен со ``slots=True``: обращение к полю через класс
 # вернуло бы дескриптор слота, а не значение по умолчанию. Берём его с экземпляра.
 _DEFAULTS: Final = ValidationConfig()
+
+_OBJECTION_LIMIT: Final = 25
+"""Сколько карточек перечислять в разделе отчёта.
+
+Список из шестисот идентификаторов не читают. Полный перечень достаётся
+``--limit 0``, когда его действительно собираются разбирать целиком."""
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -85,11 +91,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="формат отчёта (по умолчанию text)",
     )
     p_validate.add_argument(
-        "--min-description",
+        "--min-summary",
         type=int,
-        default=_DEFAULTS.min_description,
+        default=_DEFAULTS.min_summary,
         metavar="N",
-        help="минимальная длина описания в символах",
+        help="минимальная длина краткого описания в символах",
     )
     p_validate.set_defaults(handler=_cmd_validate)
 
@@ -142,6 +148,28 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_stats.set_defaults(handler=_cmd_stats)
 
+    p_obj = sub.add_parser(
+        "objections",
+        help="собрать замечания к содержанию для отправки в источник",
+        parents=[common],
+    )
+    p_obj.add_argument(
+        "--limit",
+        type=int,
+        default=_OBJECTION_LIMIT,
+        metavar="N",
+        help="сколько карточек перечислять в каждом разделе (0 — все)",
+    )
+    p_obj.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        metavar="PATH",
+        help="файл результата (по умолчанию — stdout)",
+    )
+    p_obj.set_defaults(handler=_cmd_objections)
+
     return parser
 
 
@@ -152,7 +180,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 def _cmd_validate(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     glossary = load_glossary(args.data)
-    config = ValidationConfig(min_description=args.min_description)
+    config = ValidationConfig(min_summary=args.min_summary)
     report = validate(glossary, config=config)
 
     if args.format == "json":
@@ -236,22 +264,87 @@ def _cmd_stats(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     if args.format == "json":
         payload = {
             "total": stats.total,
-            "groups": dict(stats.groups),
+            "sections": dict(stats.sections),
+            "kinds": dict(stats.kinds),
             "color_groups": dict(stats.color_groups),
             "versioned": stats.versioned,
-            "avg_description": round(stats.avg_description, 1),
+            "translated": stats.translated,
+            "with_related": stats.with_related,
+            "avg_summary": round(stats.avg_summary, 1),
         }
         print(json.dumps(payload, ensure_ascii=False, indent=2), file=out)
         return EXIT_OK
 
     print(f"Карточек:            {stats.total}", file=out)
-    print(f"Разделов:            {len(stats.groups)}", file=out)
+    print(f"Разделов:            {len(stats.sections)}", file=out)
     print(f"Цветовых групп:      {len(stats.color_groups)}", file=out)
     print(f"С маркером версии:   {stats.versioned}", file=out)
-    print(f"Средняя длина опис.: {stats.avg_description:.0f} символов", file=out)
+    print(f"Переведено целиком:  {stats.translated}", file=out)
+    print(f"Со связями:          {stats.with_related}", file=out)
+    print(f"Средняя длина свод.: {stats.avg_summary:.0f} символов", file=out)
+    print("\nВиды карточек:", file=out)
+    for kind, count in stats.kinds.most_common():
+        print(f"  {count:4d}  {kind}", file=out)
     print("\nРазделы:", file=out)
-    for group, count in stats.groups.most_common():
-        print(f"  {count:4d}  {group}", file=out)
+    for section, count in stats.sections.most_common():
+        print(f"  {count:4d}  {section}", file=out)
+    return EXIT_OK
+
+
+def _cmd_objections(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Собрать замечания к содержанию — письмом в источник, а не в консоль.
+
+    Карточки здесь не правятся: содержание ведётся в базе знаний
+    Stepik-Python-Grader, поток односторонний. Поэтому находка валидатора
+    бесполезна, пока она не превратилась в предъявимый список: правило,
+    сколько карточек задето, какие именно. Отчёт кладётся в issue источника
+    как есть.
+    """
+    glossary = load_glossary(args.data)
+    report = validate(glossary)
+    grouped: dict[str, list[Issue]] = {}
+    for issue in report.issues:
+        grouped.setdefault(issue.rule, []).append(issue)
+
+    lines = [
+        "# Замечания к содержанию глоссария",
+        "",
+        f"Проверено карточек: **{len(glossary)}**. "
+        f"Ошибок: **{len(report.errors)}**, предупреждений: **{len(report.warnings)}**.",
+        "",
+        "Отчёт собран `glossary objections` в витрине "
+        "([ArtVsMark/Glossary-Python](https://github.com/ArtVsMark/Glossary-Python)). "
+        "Витрина карточки не правит — правки идут в источнике.",
+        "",
+    ]
+    if not grouped:
+        lines += ["Замечаний нет."]
+    for rule, issues in sorted(grouped.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        severity = "ошибка" if issues[0].severity is Severity.ERROR else "предупреждение"
+        # Правило может дать несколько находок на одну карточку (например, по
+        # находке на язык). Список адресуется человеку, который пойдёт править
+        # карточки, — значит, перечисляем карточки, а не находки.
+        named = list(dict.fromkeys(i.entry_id for i in issues if i.entry_id))
+        heading = f"## `{rule}` — {len(issues)} ({severity})"
+        if named and len(named) != len(issues):
+            heading += f", карточек: {len(named)}"
+        lines += [heading, "", issues[0].message, ""]
+        if not named:
+            continue
+        shown = named if args.limit <= 0 else named[: args.limit]
+        lines += [f"- `{entry_id}`" for entry_id in shown]
+        if len(named) > len(shown):
+            hidden = len(named) - len(shown)
+            lines += ["", f"…и ещё {hidden}. Полный список: `--limit 0`."]
+        lines += [""]
+
+    text = "\n".join(lines).rstrip() + "\n"
+    if args.output is None:
+        out.write(text)
+    else:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(text, encoding="utf-8")
+        print(f"Замечаний: {len(report.issues)} → {args.output}", file=out)
     return EXIT_OK
 
 

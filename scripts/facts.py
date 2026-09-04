@@ -58,7 +58,7 @@ def _glossary_facts() -> dict[str, int]:
     stats = glossary.stats()
     return {
         "cards": stats.total,
-        "groups": len(stats.groups),
+        "groups": len(stats.sections),
         "errors": sum(1 for i in report.issues if i.severity is Severity.ERROR),
         "warnings": sum(1 for i in report.issues if i.severity is Severity.WARNING),
     }

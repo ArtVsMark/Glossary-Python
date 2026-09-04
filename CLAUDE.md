@@ -7,14 +7,31 @@
 
 ## Незыблемое правило
 
-`data/glossary.json` — источник истины. `python_glossary.html` **генерируется**
-из него и никогда не правится вручную. После любой правки данных:
+**У содержания один хозяин, и он не здесь.** Карточки ведутся в базе знаний
+`ArtVsMark/Stepik-Python-Grader`. В этом репозитории оба файла с данными —
+производные и вручную не правятся:
 
-```bash
-make validate && make build
+```
+Stepik-Python-Grader ──► scripts/import_from_grader.py ──► data/glossary.json
+                                                                  │
+                                                      glossary build
+                                                                  ▼
+                                                      python_glossary.html
 ```
 
-и коммит обоих файлов. CI проверяет синхронность и отклонит расхождение.
+`data/glossary.json` — **снимок**, а не источник истины. Правка карточки здесь
+живёт до первой выгрузки и молча исчезает; спор о том, чья версия верна, решать
+некому. Поэтому обратного потока нет: замечание к содержанию едет в источник
+письмом, а не правкой на месте.
+
+```bash
+make import SOURCE=/путь/к/Stepik-Python-Grader   # перечитать карточки
+make validate && make build                       # проверить и пересобрать
+make objections                                   # что предъявить источнику
+```
+
+Коммитятся оба файла — снимок и витрина. CI проверяет синхронность витрины со
+снимком и отклоняет расхождение.
 
 ## Команды
 
@@ -22,11 +39,12 @@ make validate && make build
 make check      # полный набор проверок, тот же, что в CI
 make format     # ruff: автоформатирование и автоисправления
 make validate   # правила качества данных
+make objections # замечания к содержанию — письмом в источник
 make build      # пересборка витрины
 make test       # pytest
 ```
 
-Прямые вызовы: `python -m glossary {validate,build,export,stats}`.
+Прямые вызовы: `python -m glossary {validate,build,export,stats,objections}`.
 
 ## Роли
 
@@ -66,14 +84,16 @@ make test       # pytest
 | Новое правило качества | Функция в `validation.py` + строка в `RULES` |
 | Новый формат экспорта | Класс в `exporters/` + строка в `_FACTORIES` |
 | Новая команда CLI | Подпарсер в `cli.py` + функция `_cmd_*` |
-| Новое поле карточки | `models.Entry`, `glossary.schema.json`, `schema_version` |
+| Новое поле карточки | Сначала в источнике; здесь — `models.Entry`, `glossary.schema.json`, `schema_version` |
+| Замечание к содержанию | Правило в `validation.py`; отчёт даёт `make objections` |
 | Новое число в README | `marker_values()` в `scripts/facts.py` + маркер в тексте |
 | Запись в журнал | Файл `changelog.d/<slug>.<секция>.md`, одна строка |
 | Новая роль | Раздел в `docs/agent/roles.md`: вопрос, артефакт, возражение |
 
 ## Чего не делать
 
-- Не править `python_glossary.html` напрямую.
+- Не править `python_glossary.html` и `data/glossary.json` напрямую: оба
+  производные. Содержание меняется в источнике, сюда приезжает импортом.
 - Не менять содержимое карточек в рамках инфраструктурных задач — контент
   и инструменты развиваются отдельными изменениями.
 - Не добавлять runtime-зависимости в пакет без явного обсуждения: ноль

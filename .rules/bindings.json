@@ -487,8 +487,8 @@
     },
     "104": {
       "status": "active",
-      "mechanism": "pipeline",
-      "where": ".github/workflows/*.yml — у каждого прогона объявлен workflow_dispatch: ci.yml, pages.yml и rules-inbox.yml"
+      "mechanism": "gate",
+      "where": "tests/test_workflow_guardrails.py — у каждого прогона в .github/workflows/ проверяется наличие workflow_dispatch"
     },
     "105": {
       "status": "not-applicable",
@@ -798,9 +798,8 @@
     },
     "168": {
       "status": "active",
-      "mechanism": "none",
-      "where": ".github/workflows/ci.yml",
-      "why": "до него не дошли руки: защита основной ветки не настроена, обязательных проверок по имени нет; имена задач матрицы при этом меняются вместе с составом версий"
+      "mechanism": "gate",
+      "where": ".github/workflows/ci.yml — работа check-pr: одно постоянное имя «check PR», без матрицы, с if: always(), потому что пропущенную работу защита ветки засчитывает пройденной; tests/test_workflow_guardrails.py сверяет имя с настройкой и не даёт работе уйти из-под needs"
     },
     "169": {
       "status": "active",

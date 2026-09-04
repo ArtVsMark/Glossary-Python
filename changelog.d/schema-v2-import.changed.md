@@ -1,1 +1,1 @@
-схема данных v2: карточка приняла форму источника — двуязычные `summary` и `body`, `kind`, `aliases`, `keywords`, `related`; `data/glossary.json` перестал быть источником истины и стал снимком базы знаний Stepik-Python-Grader
+схема данных v2: карточка приняла форму источника — двуязычные `summary` и `body`, `kind`, `aliases`, `keywords`, `related`; `data/glossary.json` перестал быть источником истины и стал снимком базы знаний Stepik-Python-Grader (#19)

@@ -100,6 +100,23 @@ def test_aggregator_has_no_matrix(ci: dict[str, Any]):
     )
 
 
+def test_cancelling_concurrency_group_names_the_commit(ci: dict[str, Any]):
+    """Группа, отменяющая прогон, обязана называть проверяемый коммит.
+
+    Без коммита в имени прогоны на разных коммитах одного изменения попадают в
+    одну группу и вытесняют друг друга: результат обязательной проверки для
+    актуальной головы не появляется вовсе, и слияние встаёт при зелёных
+    проверках — отказ, который выглядит как «проверки ещё идут».
+    """
+    concurrency = ci["concurrency"]
+    if not concurrency.get("cancel-in-progress"):
+        return
+    group = str(concurrency["group"])
+    assert "head.sha" in group or "github.sha" in group, (
+        "группа с отменой обязана включать коммит, а не только ссылку: " + group
+    )
+
+
 def test_every_workflow_has_a_manual_button():
     """События теряются: у автоматики обязана быть ручная кнопка (правило 104)."""
     workflows = sorted((project_root() / ".github" / "workflows").glob("*.yml"))

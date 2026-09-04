@@ -14,11 +14,21 @@
 
 В JSON **нет отметки времени**. Она меняла бы файл при каждом прогоне, и ветка
 ``badges`` копила бы коммиты «ничего не изменилось»; публикующий прогон именно
-на неизменность файла и смотрит, решая, коммитить ли. Дата же есть у самого
-коммита — и там она честнее.
+на неизменность файла и смотрит, решая, коммитить ли. Вместо неё стоит
+``snapshot.digest`` — отпечаток самих данных: он отвечает на вопрос «о каком
+снимке речь», меняется ровно тогда, когда меняются карточки, и позволяет
+потребителю понять, что перед ним тот же список, а не новый. Дата же есть у
+коммита ветки ``badges``, и contents-API отдаёт её вместе с файлом.
 
 Список идентификаторов в JSON **не усекается**: усечённый контракт хуже
 отсутствующего, потому что выглядит полным.
+
+У находки есть **область** (``scope``). Не всякое замечание относится к
+карточке: «раздел из одной карточки» — про раздел, «в Python есть, в глоссарии
+нет» — вообще про отсутствующую карточку. Потребитель, который строит задачи
+по ``cards``, такие находки молча терял бы, а пустой список выглядит как
+«замечаний нет». Поэтому область названа явно, а предмет находки, если это не
+карточка, лежит в ``details``.
 """
 
 from __future__ import annotations
@@ -26,16 +36,34 @@ from __future__ import annotations
 import json
 from typing import TYPE_CHECKING, Any, Final
 
+from glossary.loader import digest
 from glossary.validation import Severity, validate
 
 if TYPE_CHECKING:
     from glossary.models import Glossary
     from glossary.validation import Issue
 
-__all__ = ["PRODUCER", "SCHEMA", "SOURCE", "as_json", "as_markdown", "collect"]
+__all__ = [
+    "PRODUCER",
+    "SCHEMA",
+    "SCHEMA_OF",
+    "SOURCE",
+    "as_json",
+    "as_markdown",
+    "collect",
+]
 
 SCHEMA: Final = 1
 """Версия формата ``objections.json``. Растёт при несовместимом изменении."""
+
+SCHEMA_OF: Final = "замечания витрины к содержанию глоссария"
+"""Чего именно эта версия.
+
+В экосистеме соседствуют четыре разных ``schema`` — выгрузка правил каталога,
+ответ потребителя, сводка, факты. Витрина на этом уже обжигалась: держала в
+своём ответе чужой номер, файл при этом оставался валидным, а гейт зелёным
+(правило каталога 164). Номер, который не говорит, чего он, — не номер.
+"""
 
 PRODUCER: Final = "ArtVsMark/Glossary-Python"
 SOURCE: Final = "ArtVsMark/Stepik-Python-Grader"
@@ -60,24 +88,33 @@ def collect(glossary: Glossary) -> dict[str, Any]:
     for issue in report.issues:
         grouped.setdefault(issue.rule, []).append(issue)
 
-    findings = [
-        {
+    findings: list[dict[str, Any]] = []
+    for rule, issues in sorted(grouped.items(), key=lambda kv: (-len(kv[1]), kv[0])):
+        cards = list(dict.fromkeys(i.entry_id for i in issues if i.entry_id))
+        finding: dict[str, Any] = {
             "rule": rule,
             "severity": issues[0].severity.value,
+            "scope": "card" if cards else "glossary",
             "message": issues[0].message,
             "count": len(issues),
-            "cards": list(dict.fromkeys(i.entry_id for i in issues if i.entry_id)),
+            "cards": cards,
         }
-        for rule, issues in sorted(grouped.items(), key=lambda kv: (-len(kv[1]), kv[0]))
-    ]
+        # Предмет находки уровня глоссария — не карточка, и в cards его не
+        # положить. Без details он исчез бы вместе с самой находкой.
+        if not cards:
+            finding["details"] = list(dict.fromkeys(i.message for i in issues))
+        findings.append(finding)
+
     affected = {i.entry_id for i in report.issues if i.entry_id}
     return {
         "schema": SCHEMA,
+        "schema_of": SCHEMA_OF,
         "producer": PRODUCER,
         "source": SOURCE,
         "snapshot": {
             "cards": len(glossary),
             "schema_version": glossary.schema_version,
+            "digest": digest(glossary),
         },
         "totals": {
             "errors": len(report.errors),
@@ -120,7 +157,21 @@ def as_markdown(glossary: Glossary, *, limit: int = DEFAULT_LIMIT) -> str:
         cards: list[str] = finding["cards"]
         if cards and len(cards) != finding["count"]:
             heading += f", карточек: {len(cards)}"
-        lines += [heading, "", finding["message"], ""]
+        lines += [heading, ""]
+
+        # Находка не о карточке: предмет назван в details, и повторять его
+        # заголовком-примером незачем — он там первым же пунктом.
+        details: list[str] = finding.get("details", [])
+        if details:
+            shown_details = details if limit <= 0 else details[:limit]
+            lines += [f"- {text}" for text in shown_details]
+            if len(details) > len(shown_details):
+                hidden = len(details) - len(shown_details)
+                lines += ["", f"…и ещё {hidden}. Полный список: `--limit 0`."]
+            lines += [""]
+            continue
+
+        lines += [finding["message"], ""]
         if not cards:
             continue
         shown = cards if limit <= 0 else cards[:limit]

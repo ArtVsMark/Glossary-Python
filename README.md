@@ -44,7 +44,9 @@ HTML. Замечания к содержанию едут обратно пис�
 | [`/Glossary-Python/`](https://artvsmark.github.io/Glossary-Python/) | Витрина: поиск, фильтры, тёмная тема |
 | [`/Glossary-Python/glossary.json`](https://artvsmark.github.io/Glossary-Python/glossary.json) | Снимок карточек обычным HTTP — без клона и без токена |
 | [`badges/.github/badges/facts.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/facts.json) | Числа о проекте: карточки, разделы, замечания, состав ответа каталогу |
-| [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию для источника: правило, уровень, полный список карточек |
+| [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию: правило, уровень, область, полный список карточек |
+| [`badges/.github/badges/coverage.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/coverage.json) | Покрытие официального Python: чего в глоссарии нет вовсе |
+| [`badges/.github/badges/whatsnew.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/whatsnew.json) | Что появилось и исчезло между версиями Python — и что из нового не описано |
 
 Это контракты, а не удобство. Глоссарий забирают выгрузкой, а не копированием
 файла из репозитория. А `objections.json` — обратный поток: карточки правятся
@@ -118,6 +120,7 @@ glossary build --check                  # витрина синхронна с �
 glossary export -f markdown -o out.md   # экспорт: html, json, markdown, csv
 glossary objections                     # замечания к содержанию — письмом в источник
 glossary objections --format json       # тот же список контрактом для машины
+glossary coverage                       # чего в глоссарии нет вовсе
 ```
 
 Пакет запускается и как модуль: `python -m glossary …`. Runtime-зависимостей нет —
@@ -150,6 +153,37 @@ glossary objections --format json       # тот же список контра�
 Все замечания адресованы источнику: карточки правятся там. `make objections`
 собирает их в готовый к отправке отчёт — правило, сколько карточек задето и
 какие именно.
+
+## Полнота: чего нет вовсе
+
+Валидатор судит написанные карточки. Ненаписанные считает `make coverage`:
+инвентарь языка снимается **интроспекцией работающего интерпретатора** — без
+сети и без разбора документации, — и сопоставляется с карточками точным
+совпадением полного имени (`functools.reduce`, `str.split`).
+
+Ответ зависит от версии Python и потому назван в отчёте: **версия здесь ось
+измерения, а не настройка**. Инвентарь снимается на каждой версии матрицы, а
+разность соседних отвечает на вопрос «что появилось в 3.14» — тот самый, за
+которым обычно идут в раздел What's New, только вычитанием, без сети и без
+разбора чужой вёрстки:
+
+```bash
+glossary inventory -o inventory-3.13.json   # на 3.13
+glossary inventory -o inventory-3.14.json   # на 3.14
+python scripts/whatsnew.py inventory-*.json # что появилось и что исчезло
+```
+
+Ценность не в списке нового, а в его пересечении с глоссарием: у каждой
+появившейся сущности стоит `documented` — есть ли о ней карточка. Появилось в
+языке и не описано — это очередь на завтра.
+
+Python 3.15 снимается отдельным прогоном с правом упасть: заморозка
+возможностей на нём уже прошла, поэтому список практически финальный, но
+ронять из-за release candidate публикацию незачем.
+
+Граница названа прямо: интроспекция видит объекты, а не текст. Синтаксис
+(`match`, walrus, спецификаторы f-строк), устаревания и удаления в неё не
+попадают — эти пласты не измеряются, и это записано, а не умолчано.
 
 Текущее состояние: **<!--m:errors-->0<!--/m:errors--> ошибок, <!--m:warnings-->746<!--/m:warnings--> предупреждения**. Число предупреждений
 зафиксировано в `tests/quality_baseline.json` — храповик не даёт замечаниям

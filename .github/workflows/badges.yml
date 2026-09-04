@@ -1,4 +1,10 @@
-# Значки, факты и замечания к содержанию: считает издатель, читает потребитель.
+# Значки, факты, замечания и полнота: считает издатель, читает потребитель.
+#
+# ПОЧЕМУ ИНВЕНТАРЬ СНИМАЕТСЯ МАТРИЦЕЙ. Полнота глоссария меряется относительно
+# самого языка, а язык у каждой версии свой. Один прогон отвечает на вопрос
+# «чего нет в 3.14»; разность двух соседних отвечает на «что появилось в 3.14»
+# — и это тот же ответ, за которым обычно идут в раздел What's New, только без
+# сети и без разбора чужой вёрстки.
 #
 # ПОЧЕМУ ЗАМЕЧАНИЯ ЗДЕСЬ. Карточки правятся не в этом репозитории, и список
 # из четырёхсот идентификаторов, перенесённый руками в issue, не выживает ни
@@ -16,7 +22,7 @@
 # ПОЧЕМУ ОТДЕЛЬНЫЙ ПРОГОН, А НЕ ШАГ В `ci.yml`. Разные права и разные предметы:
 # здесь нужен `contents: write` и не нужен PR-гейт. Смешав их, мы дали бы
 # обязательной проверке право писать в репозиторий, которое ей не нужно.
-name: Значки, факты и замечания
+name: Значки, факты, замечания и полнота
 
 on:
   push:
@@ -33,16 +39,80 @@ permissions:
   contents: write
 
 jobs:
-  publish:
-    name: Опубликовать значки, факты и замечания
+  inventory:
+    name: Инвентарь языка (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
     steps:
       - uses: actions/checkout@v5
 
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Установка зависимостей
+        run: python -m pip install -e .
+
+      - name: Снять инвентарь
+        run: >
+          python -m glossary inventory
+          -o inventory/inventory-${{ matrix.python-version }}.json
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: inventory-${{ matrix.python-version }}
+          path: inventory/
+          retention-days: 7
+
+  preview:
+    # 3.15 ещё в release candidate: заморозка возможностей уже прошла, поэтому
+    # список нового практически финальный, но сюрпризы на RC ещё бывают. Ронять
+    # из-за них публикацию незачем — работа необязательная и своё падение
+    # показывает сама.
+    name: Инвентарь языка (Python 3.15-rc)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.15"
+          allow-prereleases: true
+
+      - name: Установка зависимостей
+        run: python -m pip install -e .
+
+      - name: Снять инвентарь
+        run: python -m glossary inventory -o inventory/inventory-3.15.json
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: inventory-3.15
+          path: inventory/
+          retention-days: 7
+
+  publish:
+    name: Опубликовать значки, факты, замечания и полноту
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # `preview` объявлен зависимостью намеренно, при continue-on-error: так
+    # публикация дожидается его результата, но не падает вместе с ним. Его
+    # отсутствие видно в whatsnew.json — там просто не будет 3.15.
+    needs: [inventory, preview]
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
           cache: pip
           cache-dependency-path: pyproject.toml
 
@@ -52,6 +122,12 @@ jobs:
       - name: Покрытие — источник для одноимённого значка
         run: pytest --cov=glossary --cov-report=xml -q
 
+      - uses: actions/download-artifact@v7
+        with:
+          pattern: inventory-*
+          path: inventory
+          merge-multiple: true
+
       - name: Собрать значки и факты
         run: python scripts/facts.py --badges
 
@@ -59,6 +135,18 @@ jobs:
         run: >
           python -m glossary objections --format json
           -o .github/badges/objections.json
+
+      # Ответ зависит от версии интерпретатора, и она названа внутри файла:
+      # сравнивать покрытие, снятое на разных версиях, как одно число нельзя.
+      - name: Собрать покрытие официального Python
+        run: >
+          python -m glossary coverage --format json
+          -o .github/badges/coverage.json
+
+      - name: Свести разность версий
+        run: >
+          python scripts/whatsnew.py inventory/inventory-*.json
+          -o .github/badges/whatsnew.json
 
       - name: Опубликовать веткой badges
         run: |
@@ -85,7 +173,7 @@ jobs:
             echo "Опубликованное не изменилось."
           else
             git -C "$publish" commit -q \
-              -m "chore(ci): обновить значки, факты и замечания [skip ci]"
+              -m "chore(ci): обновить значки, факты, замечания и полноту [skip ci]"
             git -C "$publish" push origin badges
             echo "Опубликовано в ветку badges."
           fi

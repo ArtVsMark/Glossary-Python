@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 from typing import Any, Final
@@ -17,13 +18,22 @@ from glossary.models import SCHEMA_VERSION, Entry, Glossary
 
 __all__ = [
     "DATA_FILENAME",
+    "DIGEST_LENGTH",
     "default_data_path",
+    "digest",
     "dump_glossary",
     "load_glossary",
     "project_root",
 ]
 
 DATA_FILENAME: Final = "glossary.json"
+DIGEST_LENGTH: Final = 12
+"""Сколько шестнадцатеричных знаков отпечатка хватает.
+
+Полный sha256 в отчёте не читают, а различать снимки хватает и двенадцати:
+столкновение означало бы два разных глоссария с одинаковым началом хеша, чего
+не бывает на масштабе тысяч карточек.
+"""
 _ROOT_MARKERS: Final = ("pyproject.toml", ".git")
 _SCHEMA_REF: Final = "./glossary.schema.json"
 
@@ -123,3 +133,22 @@ def dump_glossary(glossary: Glossary, path: Path | None = None) -> Path:
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     return target
+
+
+def digest(glossary: Glossary) -> str:
+    """Отпечаток снимка: одни и те же карточки дают один и тот же ответ.
+
+    Считается по каноническому представлению карточек в их порядке — по тому
+    же, что уходит в файл. Порядок значим: снимок детерминирован, и его
+    перестановка это тоже изменение.
+
+    Отпечаток отвечает на вопрос «о каком снимке речь» там, где отметка
+    времени отвечала бы на «когда посчитали» — и менялась бы на каждом
+    прогоне, даже когда карточки те же.
+    """
+    payload = json.dumps(
+        [entry.to_dict() for entry in glossary],
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()[:DIGEST_LENGTH]

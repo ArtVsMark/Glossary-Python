@@ -180,8 +180,64 @@ def test_badges_publish_objections(badges: dict[str, Any]):
     assert "objections.json" in commands
 
 
+def test_badges_publish_coverage(badges: dict[str, Any]):
+    """Покрытие публикуется рядом с замечаниями.
+
+    Оно отвечает на другой вопрос — не «эту карточку поправить», а «эту
+    карточку написать», — и без публикации остаётся числом в консоли,
+    которое никто не увидит.
+    """
+    commands = " ".join(step.get("run", "") for step in _steps(badges))
+    assert "glossary coverage" in commands
+    assert "coverage.json" in commands
+
+
 def test_badges_publish_facts_next_to_objections(badges: dict[str, Any]):
     """Оба контракта уезжают одним прогоном и лежат в одном месте."""
     commands = " ".join(step.get("run", "") for step in _steps(badges))
     assert "facts.py --badges" in commands
     assert ".github/badges" in commands
+
+
+def _versions(workflow: dict[str, Any], job: str) -> list[str]:
+    return [str(v) for v in workflow["jobs"][job]["strategy"]["matrix"]["python-version"]]
+
+
+def test_badges_publish_what_changed_between_versions(badges: dict[str, Any]):
+    """Разность версий публикуется, иначе её никто не увидит."""
+    commands = " ".join(step.get("run", "") for step in _steps(badges))
+    assert "whatsnew.py" in commands
+    assert "whatsnew.json" in commands
+
+
+def test_inventory_is_taken_on_every_tested_version(
+    ci: dict[str, Any], badges: dict[str, Any]
+):
+    """Инвентарь снимается ровно на тех версиях, на которых мы проверяемся.
+
+    Разойдись эти списки — и мы либо мерили бы полноту на версии, которую не
+    тестируем, либо молча теряли бы разность между соседними: пропуск версии
+    в середине превращает «что появилось в 3.13» в «что появилось за две
+    версии», и результат выглядит правдоподобно.
+    """
+    assert _versions(badges, "inventory") == _versions(ci, "tests")
+
+
+def test_preview_version_never_blocks_publication(badges: dict[str, Any]):
+    """Предварительная версия своё падение показывает, но публикацию не роняет.
+
+    Release candidate — не то, ради чего останавливают выпуск. Но зависимость
+    объявлена: публикация дожидается результата, иначе гонка отдала бы
+    whatsnew.json без предварительной версии через раз.
+    """
+    preview = badges["jobs"]["preview"]
+    assert preview["continue-on-error"] is True
+    assert "preview" in badges["jobs"]["publish"]["needs"]
+
+
+def test_prerelease_is_allowed_only_where_it_is_expected(badges: dict[str, Any]):
+    """Обязательная матрица не должна тихо переехать на release candidate."""
+    required = _steps({"jobs": {"inventory": badges["jobs"]["inventory"]}})
+    assert not [s for s in required if s.get("with", {}).get("allow-prereleases")]
+    preview = _steps({"jobs": {"preview": badges["jobs"]["preview"]}})
+    assert [s for s in preview if s.get("with", {}).get("allow-prereleases")]

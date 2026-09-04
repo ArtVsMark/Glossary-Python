@@ -40,11 +40,12 @@ make check      # полный набор проверок, тот же, что 
 make format     # ruff: автоформатирование и автоисправления
 make validate   # правила качества данных
 make objections # замечания к содержанию — письмом в источник
+make coverage   # чего в глоссарии нет вовсе (эталон — сам Python)
 make build      # пересборка витрины
 make test       # pytest
 ```
 
-Прямые вызовы: `python -m glossary {validate,build,export,stats,objections}`.
+Прямые вызовы: `python -m glossary {validate,build,export,stats,objections,coverage,inventory}`.
 
 ## Роли
 
@@ -86,6 +87,7 @@ make test       # pytest
 | Новая команда CLI | Подпарсер в `cli.py` + функция `_cmd_*` |
 | Новое поле карточки | Сначала в источнике; здесь — `models.Entry`, `glossary.schema.json`, `schema_version` |
 | Замечание к содержанию | Правило в `validation.py`; отчёт даёт `make objections` |
+| Новый модуль в измерении полноты | `STDLIB_MODULES` в `inventory.py` — явным изменением, не автоматически |
 | Новый контракт наружу | Модуль рядом с `objections.py` + шаг в `badges.yml` + сторож |
 | Новое число в README | `marker_values()` в `scripts/facts.py` + маркер в тексте |
 | Запись в журнал | Файл `changelog.d/<slug>.<секция>.md`, одна строка |

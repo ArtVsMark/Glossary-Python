@@ -12,6 +12,7 @@ from __future__ import annotations
 import json
 
 from glossary import objections
+from glossary.loader import digest
 from glossary.models import Glossary, Text
 from tests.factories import make_entry, make_glossary
 
@@ -33,10 +34,75 @@ def test_contract_names_its_schema_and_both_sides():
     assert data["source"] == objections.SOURCE
 
 
+def test_schema_says_what_it_versions():
+    """Номер без предмета — не номер (правило каталога 164).
+
+    В экосистеме четыре разных `schema`, и витрина уже держала у себя чужой
+    номер: файл валиден, гейт зелёный, значение неверное.
+    """
+    assert objections.collect(make_glossary())["schema_of"] == objections.SCHEMA_OF
+
+
+def test_digest_changes_only_with_the_cards():
+    """Отпечаток отвечает «о каком снимке речь», а не «когда посчитали».
+
+    Живёт он в загрузчике, а не здесь: потребителей два — контракт замечаний
+    и контракт покрытия, — и вторая копия разъехалась бы с первой.
+    """
+    one = make_glossary(make_entry(id="a"))
+    same = make_glossary(make_entry(id="a"))
+    other = make_glossary(make_entry(id="b"))
+    assert digest(one) == digest(same)
+    assert digest(one) != digest(other)
+
+
+def test_digest_is_sensitive_to_order():
+    """Снимок детерминирован; перестановка карточек — тоже изменение."""
+    a, b = make_entry(id="a"), make_entry(id="b")
+    assert digest(make_glossary(a, b)) != digest(make_glossary(b, a))
+
+
+def test_snapshot_carries_the_digest():
+    data = objections.collect(make_glossary(make_entry(id="a")))
+    assert data["snapshot"]["digest"] == digest(make_glossary(make_entry(id="a")))
+
+
 def test_snapshot_size_travels_with_the_findings():
     """Сто замечаний на сто карточек и на десять тысяч — разные новости."""
     glossary = make_glossary(make_entry(id="a"), make_entry(id="b"))
     assert objections.collect(glossary)["snapshot"]["cards"] == 2
+
+
+def test_card_finding_is_scoped_to_cards():
+    glossary = make_glossary(make_entry(id="a", examples=BROKEN_EXAMPLE))
+    finding = next(
+        f
+        for f in objections.collect(glossary)["findings"]
+        if f["rule"] == "example-indent"
+    )
+    assert finding["scope"] == "card"
+    assert finding["cards"] == ["a"]
+    assert "details" not in finding
+
+
+def test_glossary_finding_keeps_its_subject():
+    """Находка не о карточке потерялась бы: cards пуст, а предмет — в разделе.
+
+    Потребитель, строящий задачи по `cards`, увидел бы пустой список и принял
+    его за «замечаний нет».
+    """
+    glossary = make_glossary(make_entry(id="a", section="Одинокий"))
+    finding = next(
+        f for f in objections.collect(glossary)["findings"] if f["rule"] == "section-size"
+    )
+    assert finding["scope"] == "glossary"
+    assert finding["cards"] == []
+    assert any("Одинокий" in text for text in finding["details"])
+
+
+def test_markdown_shows_the_subject_of_a_glossary_finding():
+    glossary = make_glossary(make_entry(id="a", section="Одинокий"))
+    assert "Одинокий" in objections.as_markdown(glossary)
 
 
 def test_findings_group_by_rule_and_count_cards_once():

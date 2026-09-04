@@ -18,7 +18,7 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__, coverage, inventory, objections
+from glossary import __version__, contracts, coverage, inventory, objections
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, load_glossary, project_root
@@ -394,8 +394,7 @@ def _cmd_inventory(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     """
     snapshot = inventory.build_inventory()
     payload = {
-        "schema": inventory.SCHEMA,
-        "schema_of": inventory.SCHEMA_OF,
+        **contracts.envelope(inventory.SCHEMA_OF),
         "python_version": snapshot.python_version,
         "count": len(snapshot),
         "items": [

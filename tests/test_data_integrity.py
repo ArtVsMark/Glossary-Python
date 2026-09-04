@@ -8,8 +8,10 @@
 from __future__ import annotations
 
 import json
+import sys
 from collections import Counter
 from pathlib import Path
+from typing import Final
 
 import pytest
 
@@ -21,6 +23,14 @@ from glossary.validation import validate
 pytestmark = pytest.mark.data
 
 BASELINE_PATH = Path(__file__).parent / "quality_baseline.json"
+RATCHET_PYTHON: Final = (3, 11)
+"""Версия, на которой считается планка качества.
+
+Часть правил версионно-зависима: пример на синтаксисе 3.12 не разберётся на
+3.11, и число замечаний законно отличается между версиями матрицы. Храповик
+сравнивает вчера с сегодня, а не один интерпретатор с другим, — поэтому у него
+одна опорная версия, та же, на которой прогон проверяет данные.
+"""
 SHOWCASE_PATH = project_root() / "python_glossary.html"
 SCHEMA_PATH = project_root() / "data" / "glossary.schema.json"
 
@@ -70,6 +80,10 @@ def test_every_export_format_runs_on_real_data(real_glossary: Glossary):
         assert get_exporter(name).render(real_glossary)
 
 
+@pytest.mark.skipif(
+    sys.version_info[:2] != RATCHET_PYTHON,
+    reason="планка считается на одной опорной версии: часть правил зависит от неё",
+)
 def test_quality_does_not_regress(real_glossary: Glossary):
     """Храповик качества: число предупреждений по каждому правилу не растёт.
 

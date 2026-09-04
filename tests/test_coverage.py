@@ -8,11 +8,12 @@
 
 from __future__ import annotations
 
+import datetime as dt
 import json
 
 import pytest
 
-from glossary import coverage
+from glossary import contracts, coverage
 from glossary.inventory import (
     BUILTIN_TYPES,
     INVENTORY_KINDS,
@@ -195,7 +196,7 @@ def test_real_glossary_covers_the_builtins(real_glossary: Glossary):
 
 def test_contract_names_its_schema_and_axis():
     data = coverage.collect(make_glossary(), tiny(FN))
-    assert data["schema"] == coverage.SCHEMA
+    assert data["schema"] == contracts.SCHEMA
     assert data["schema_of"] == coverage.SCHEMA_OF
     assert data["python_version"] == "3.11"
 
@@ -218,9 +219,10 @@ def test_json_list_is_never_truncated():
     assert len(stdlib["missing"]) == 50
 
 
-def test_json_carries_no_timestamp():
+def test_json_says_when_it_was_built():
+    """Покрытие устаревает так же молча, как и всё остальное."""
     payload = json.loads(coverage.as_json(make_glossary(), tiny(FN)))
-    assert not {"generated_at", "timestamp", "date"} & payload.keys()
+    assert dt.datetime.fromisoformat(payload["generated_at"]).tzinfo is not None
 
 
 def test_markdown_truncates_and_says_how_to_get_the_rest():

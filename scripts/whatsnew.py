@@ -27,11 +27,10 @@ from itertools import pairwise
 from pathlib import Path
 from typing import Any, Final
 
+from glossary.contracts import envelope
 from glossary.coverage import known_names
 from glossary.loader import default_data_path, load_glossary
-from glossary.objections import PRODUCER
 
-SCHEMA: Final = 1
 SCHEMA_OF: Final = "что появилось и исчезло между версиями Python"
 
 MIN_VERSIONS: Final = 2
@@ -98,9 +97,7 @@ def build(dumps: list[dict[str, Any]], known: frozenset[str]) -> dict[str, Any]:
             }
         )
     return {
-        "schema": SCHEMA,
-        "schema_of": SCHEMA_OF,
-        "producer": PRODUCER,
+        **envelope(SCHEMA_OF),
         "versions": [d["python_version"] for d in ordered],
         "releases": releases,
     }

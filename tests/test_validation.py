@@ -15,7 +15,7 @@ from glossary.validation import (
     rule_color_group,
     rule_docs_url,
     rule_duplicate_title,
-    rule_example_indent,
+    rule_example_compiles,
     rule_examples,
     rule_id_format,
     rule_kind,
@@ -192,20 +192,50 @@ def test_examples_warns_when_absent():
     assert issues[0].severity is Severity.WARNING
 
 
-def test_example_indent_flags_block_without_indentation():
+def test_example_compiles_flags_lost_indentation():
     """Блок без отступа — код, который не запустится (возражение источнику)."""
     glossary = make_glossary(make_entry(examples=("for x in range(3):", "print(x)")))
-    issues = list(rule_example_indent(glossary, CFG))
+    issues = list(rule_example_compiles(glossary, CFG))
     assert issues[0].severity is Severity.WARNING
+    assert "IndentationError" in issues[0].message
 
 
-def test_example_indent_silent_on_indented_block():
+def test_example_compiles_flags_plain_syntax_error():
+    """Прежняя эвристика «блок без отступа» такое не видела вовсе."""
+    glossary = make_glossary(make_entry(examples=("def f(:",)))
+    assert list(rule_example_compiles(glossary, CFG))
+
+
+def test_example_compiles_silent_on_valid_code():
     glossary = make_glossary(make_entry(examples=("for x in range(3):", "    print(x)")))
-    assert list(rule_example_indent(glossary, CFG)) == []
+    assert list(rule_example_compiles(glossary, CFG)) == []
 
 
-def test_example_indent_silent_without_block():
-    assert list(rule_example_indent(make_glossary(make_entry()), CFG)) == []
+def test_example_compiles_silent_without_examples():
+    assert list(rule_example_compiles(make_glossary(make_entry(examples=())), CFG)) == []
+
+
+def test_example_compiles_skips_syntax_from_a_newer_python():
+    """Синтаксис 3.99 на сегодняшнем интерпретаторе не разберётся никогда.
+
+    Находка была бы не о карточке, а о том, чем её проверяли.
+    """
+    glossary = make_glossary(
+        make_entry(version="3.99", examples=("совершенно ((( не питон",))
+    )
+    assert list(rule_example_compiles(glossary, CFG)) == []
+
+
+def test_example_compiles_still_judges_a_current_version():
+    """Пропуск — только для будущего, а не для всякой карточки с версией."""
+    glossary = make_glossary(make_entry(version="3.0", examples=("def f(:",)))
+    assert list(rule_example_compiles(glossary, CFG))
+
+
+def test_example_compiles_ignores_a_malformed_version_marker():
+    """Форму маркера судит другое правило; здесь она не должна глушить проверку."""
+    glossary = make_glossary(make_entry(version="не-версия", examples=("def f(:",)))
+    assert list(rule_example_compiles(glossary, CFG))
 
 
 def test_related_resolves_flags_dangling_link():
@@ -275,7 +305,7 @@ def test_all_rules_are_registered():
         rule_color_group,
         rule_docs_url,
         rule_duplicate_title,
-        rule_example_indent,
+        rule_example_compiles,
         rule_examples,
         rule_id_format,
         rule_kind,
@@ -310,7 +340,7 @@ def test_rule_names_are_unique_and_stable():
         "color-group",
         "docs-url",
         "duplicate-title",
-        "example-indent",
+        "example-compiles",
         "examples",
         "id-format",
         "kind",

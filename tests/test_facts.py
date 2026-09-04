@@ -19,6 +19,7 @@ from pathlib import Path
 import pytest
 
 import facts as facts_module
+from glossary import contracts
 from glossary.loader import project_root
 
 
@@ -30,8 +31,8 @@ def facts() -> dict[str, object]:
 
 def test_facts_are_collected(facts: dict[str, object]):
     """Пустой сбор — ошибка входа, а не «фактов нет»."""
-    assert facts["schema"] == facts_module.SCHEMA
-    assert facts["repo"] == facts_module.REPO
+    assert facts["schema"] == contracts.SCHEMA
+    assert facts["producer"] == contracts.PRODUCER
     glossary = facts["glossary"]
     assert isinstance(glossary, dict)
     assert glossary["cards"] > 0, "карточек ноль — источник не прочитан"

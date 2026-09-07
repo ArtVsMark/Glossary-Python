@@ -42,6 +42,9 @@ from glossary.loader import default_data_path, load_glossary
 SCHEMA_OF: Final = "что появилось и исчезло между версиями Python"
 
 MIN_VERSIONS: Final = 2
+
+NOT_RUN: Final = 2
+"""Разность не посчитана. Не означает «нового нет» — считать было не из чего."""
 """Меньше двух выгрузок вычитать не из чего."""
 
 
@@ -126,12 +129,15 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if len(args.dumps) < MIN_VERSIONS:
+        # Третий исход, а не находка: разности не нашлось не потому, что её нет,
+        # а потому, что считать было не из чего (правила 039, 158).
         print(
-            f"нужно хотя бы {MIN_VERSIONS} выгрузки: разность считается между "
-            "версиями, а не внутри одной",
+            f"не отработало: дано выгрузок {len(args.dumps)}, нужно хотя бы "
+            f"{MIN_VERSIONS} — разность считается между версиями, а не внутри "
+            f"одной. Получено: {', '.join(str(path) for path in args.dumps) or '—'}",
             file=sys.stderr,
         )
-        return 1
+        return NOT_RUN
 
     known = known_names(load_glossary(args.data or default_data_path()))
     payload = build([read_dump(path) for path in args.dumps], known)

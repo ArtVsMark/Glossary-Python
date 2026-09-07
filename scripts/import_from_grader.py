@@ -33,6 +33,9 @@ from glossary.loader import default_data_path, dump_glossary
 from glossary.models import SCHEMA_VERSION, Entry, Glossary
 
 ROOT: Final = Path(__file__).resolve().parent.parent
+
+NOT_RUN: Final = 2
+"""Импорт или сверка не отработали. Не означает «расхождений нет» — их не искали."""
 DATA_SUBPATH: Final = Path("src") / "stepik_grader" / "glossary" / "data"
 PUBLISHED: Final = "ready"
 """Статус карточки, которая доезжает до витрины. Черновики остаются в источнике."""
@@ -103,6 +106,14 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
+    if not args.source.exists():
+        print(
+            f"импорт не отработал: источника {args.source} нет. Это путь к клону "
+            "ArtVsMark/Stepik-Python-Grader, а не к файлу карточек",
+            file=sys.stderr,
+        )
+        return NOT_RUN
+
     cards = read_source(args.source)
     glossary = build(cards)
     skipped = len(cards) - len(glossary)
@@ -110,8 +121,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.check:
         if not target.exists():
-            print(f"снимок отсутствует: {target}", file=sys.stderr)
-            return 1
+            # Третий исход: сверять не с чем. Единица означала бы «разошлось»,
+            # то есть утверждение о снимке, которого нет (правила 039, 158).
+            print(
+                f"сверка не отработала: снимка {target} нет — сверять источник "
+                "не с чем. Соберите его: python scripts/import_from_grader.py "
+                f"--source {args.source}",
+                file=sys.stderr,
+            )
+            return NOT_RUN
         expected = dump_glossary(glossary, ROOT / ".import-check.json")
         same = expected.read_text("utf-8") == target.read_text("utf-8")
         expected.unlink()

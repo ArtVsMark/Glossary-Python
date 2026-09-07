@@ -51,6 +51,9 @@ MARKED: Final = (ROOT / "README.md", ROOT / "CLAUDE.md")
 ровно тем способом, против которого механизм и заведён."""
 COVERAGE: Final = ROOT / "coverage.xml"
 
+NOT_RUN: Final = 2
+"""Факты не посчитаны. Не означает «числа совпадают» — их не с чем было сверять."""
+
 FACTS_SCHEMA_OF: Final = "факты о проекте-витрине глоссария"
 GOOD_COVERAGE: Final = 90.0
 """С какого покрытия тестами значок зеленеет. Совпадает с --cov-fail-under в CI."""
@@ -308,7 +311,18 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
 
-    facts = build_facts()
+    try:
+        facts = build_facts()
+    except (OSError, ValueError) as refusal:
+        # Третий исход: порождающий источник не прочитан. Единица означала бы
+        # «числа разъехались» — утверждение о фактах, которых нет (039, 158).
+        print(
+            f"факты не посчитаны: {refusal}. Источники — {ROOT / 'data'} и "
+            f"{ROOT / '.github' / 'workflows' / 'ci.yml'}",
+            file=sys.stderr,
+        )
+        return NOT_RUN
+
     values = marker_values(facts)
 
     if args.json or not any((args.badges, args.render, args.check)):

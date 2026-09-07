@@ -111,6 +111,9 @@ jobs:
       - name: Умолчания окружения заданы явно
         run: python scripts/check_defaults.py
 
+      - name: У каждой точки входа есть третий исход
+        run: python scripts/check_third_outcome.py
+
       - name: Числа в документации совпадают с источниками
         run: python scripts/facts.py --check
 

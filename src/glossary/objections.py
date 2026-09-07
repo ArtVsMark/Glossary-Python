@@ -35,6 +35,7 @@ from typing import TYPE_CHECKING, Any, Final
 
 from glossary.contracts import PRODUCER, envelope
 from glossary.loader import digest
+from glossary.reporting import truncate
 from glossary.validation import Severity, validate
 
 if TYPE_CHECKING:
@@ -144,22 +145,16 @@ def as_markdown(glossary: Glossary, *, limit: int = DEFAULT_LIMIT) -> str:
         # заголовком-примером незачем — он там первым же пунктом.
         details: list[str] = finding.get("details", [])
         if details:
-            shown_details = details if limit <= 0 else details[:limit]
+            shown_details, note = truncate(details, limit)
             lines += [f"- {text}" for text in shown_details]
-            if len(details) > len(shown_details):
-                hidden = len(details) - len(shown_details)
-                lines += ["", f"…и ещё {hidden}. Полный список: `--limit 0`."]
-            lines += [""]
+            lines += [*note, ""]
             continue
 
         lines += [finding["message"], ""]
         if not cards:
             continue
-        shown = cards if limit <= 0 else cards[:limit]
+        shown, note = truncate(cards, limit)
         lines += [f"- `{card}`" for card in shown]
-        if len(cards) > len(shown):
-            hidden = len(cards) - len(shown)
-            lines += ["", f"…и ещё {hidden}. Полный список: `--limit 0`."]
-        lines += [""]
+        lines += [*note, ""]
 
     return "\n".join(lines).rstrip() + "\n"

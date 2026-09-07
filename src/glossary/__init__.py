@@ -8,31 +8,21 @@
   JSON, Markdown и CSV;
 * :mod:`glossary.cli` — командный интерфейс поверх обоих.
 
-У пакета нет runtime-зависимостей.
+У пакета нет runtime-зависимостей. Версия объявлена один раз, в
+``pyproject.toml``; :data:`__version__` читает её из метаданных
+дистрибутива (:mod:`glossary._version`).
 """
 
 from __future__ import annotations
 
-from importlib.metadata import PackageNotFoundError
-from importlib.metadata import version as _distribution_version
-
+from glossary._version import package_version
 from glossary.errors import DataFormatError, ExportError, GlossaryError
 from glossary.loader import default_data_path, dump_glossary, load_glossary
 from glossary.models import SCHEMA_VERSION, ColorGroup, Entry, Glossary
 from glossary.validation import Issue, Severity, ValidationReport, validate
 
-DISTRIBUTION = "glossary-python"
-
-try:
-    __version__ = _distribution_version(DISTRIBUTION)
-except PackageNotFoundError:  # pragma: no cover - запуск из дерева без установки
-    # Источник версии один — метаданные дистрибутива, собранные из
-    # pyproject.toml (правило каталога 035). Второй записи здесь нет намеренно:
-    # ручной дубль расходится молча и обнаруживается уже после публикации.
-    #
-    # Заглушка НЕ выглядит выпуском: «0+unknown» неотличимо от версии только для
-    # того, кто её не читал, а «0.0.0» читалось бы как измеренный ноль.
-    __version__ = "0+unknown"
+__version__ = package_version()
+"""Версия дистрибутива. Объявлена в ``pyproject.toml`` и только там."""
 
 __all__ = [
     "SCHEMA_VERSION",

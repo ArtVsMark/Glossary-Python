@@ -14,6 +14,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 import check_links
 from check_links import CLEAN, FOUND, REFUSED
 from glossary.loader import project_root
@@ -212,6 +214,7 @@ def test_refusal_is_not_the_same_code_as_a_finding():
 # --------------------------------------------------------------------------- #
 
 
+@pytest.mark.live_surface
 def test_declared_documents_exist():
     """Предмет назван списком, и каждый документ из него есть в дереве."""
     assert check_links.DOCUMENTS, "пустой предмет дал бы зелёный гейт без проверок"
@@ -219,6 +222,7 @@ def test_declared_documents_exist():
         assert (project_root() / name).is_file(), f"{name}: документ предмета отсутствует"
 
 
+@pytest.mark.live_surface
 def test_repository_links_resolve():
     """Ссылки документации разрешаются в файлы дерева прямо сейчас."""
     root = project_root()

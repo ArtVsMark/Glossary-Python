@@ -139,6 +139,7 @@ def test_bad_range_is_the_third_outcome(capsys):
     assert "нет-такой-ревизии" in error
 
 
+@pytest.mark.live_surface
 def test_repository_list_is_declared():
     """У гейта должен быть предмет: списка нет — сверять не с чем (075)."""
     assert attribution.allowed_identities(), "список имён объявлен пустым"
@@ -183,6 +184,7 @@ def available_range(depth: int = 20) -> str | None:
     return f"HEAD~{min(depth, total - 1)}..HEAD"
 
 
+@pytest.mark.live_surface
 def test_recent_history_matches_the_declared_list():
     """Утверждение о живой истории, отдельно от проверки разбора (146).
 

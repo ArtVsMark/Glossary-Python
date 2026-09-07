@@ -35,6 +35,8 @@ __all__ = [
 # ломающих фрагмент URL или CSS-селектор. Алфавит намеренно свободный —
 # в глоссарии соседствуют латинские слаги API и кириллические слаги понятий.
 ID_FORBIDDEN: Final = re.compile(r"""[\s#/?&=%"'<>]""")
+CYRILLIC: Final = re.compile(r"[А-Яа-яЁё]")
+LATIN: Final = re.compile(r"[A-Za-z]")
 VERSION_PATTERN: Final = re.compile(r"^\d+\.\d+$")
 DOCS_PREFIX: Final = "https://docs.python.org/3/"
 DUPLICATE_THRESHOLD: Final = 2
@@ -87,6 +89,12 @@ class ValidationConfig:
     min_body: int = 60
     min_examples: int = 1
     min_section_size: int = 2
+    max_foreign_script: float = 0.15
+    """Доля кириллицы, выше которой английская половина считается непереведённой.
+
+    Не ноль намеренно: английский текст вправе назвать кириллицу примером —
+    так делают карточки о ``string.ascii_letters`` и ``string.printable``.
+    """
 
 
 Rule = Callable[[Glossary, ValidationConfig], Iterator[Issue]]
@@ -236,6 +244,40 @@ def rule_translated(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                 )
 
 
+def rule_language_script(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Английская половина написана латиницей, а не оставлена русской.
+
+    Правило каталога 077: полнота ключей проверяет, что строку не забыли
+    добавить, и ничего не говорит о том, что её **перевели**. Заполненность,
+    которую проверяет :func:`rule_translated`, — тоже свойство ключа, а не
+    текста: скопированная в английское поле русская фраза проходит её зелёной.
+    Здесь проверяется свойство самого текста — письменность.
+
+    ПОРОГ ВЗЯТ ЗАМЕРОМ, А НЕ НА ГЛАЗ. На этом дереве кириллица встречается в
+    английской половине двух карточек — ``string.ascii_letters`` и
+    ``string.printable``, — и там она законна: обе называют кириллицу примером
+    того, чего в константе нет. Их доля — 0.004 и 0.003; у половины, оставшейся
+    русской, доля была бы выше 0.5. Порог отделяет одно от другого с запасом.
+
+    ОБРАТНОЕ НАПРАВЛЕНИЕ НЕ ПРОВЕРЯЕТСЯ, и это измерено, а не забыто:
+    «русская половина написана латиницей» на этом дереве даёт 0.923 у карточки
+    ``string.ascii_lowercase``, которая цитирует алфавит. Признак там шумит, и
+    правило о нём молчит вместо того, чтобы краснеть на верных данных.
+    """
+    for entry in g.entries:
+        for field_name in ("summary", "body"):
+            text = getattr(entry, field_name).get("en").strip()
+            share = _cyrillic_share(text)
+            if share > cfg.max_foreign_script:
+                yield Issue(
+                    Severity.ERROR,
+                    "language-script",
+                    f"английская половина поля {field_name!r} написана кириллицей "
+                    f"на {share:.0%} — похоже, её не перевели, а скопировали",
+                    entry.id,
+                )
+
+
 def rule_docs_url(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Ссылка ведёт на официальную документацию и указывает на конкретный раздел."""
     for entry in g.entries:
@@ -313,6 +355,24 @@ def rule_examples(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                 "примеров нет — по одной сводке конструкцию не применить",
                 entry.id,
             )
+
+
+def _cyrillic_share(text: str) -> float:
+    """Доля кириллицы среди буквенных знаков текста.
+
+    Считается доля, а не наличие: английский текст вправе назвать кириллицу
+    примером, и одна буква не делает половину непереведённой.
+
+    Args:
+        text: Текст половины карточки.
+
+    Returns:
+        Доля от 0 до 1; ноль, если букв в тексте нет вовсе.
+    """
+    cyrillic = len(CYRILLIC.findall(text))
+    latin = len(LATIN.findall(text))
+    letters = cyrillic + latin
+    return cyrillic / letters if letters else 0.0
 
 
 def _from_the_future(version: str) -> bool:
@@ -450,6 +510,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_kind,
     rule_color_group,
     rule_translated,
+    rule_language_script,
     rule_docs_url,
     rule_summary_length,
     rule_body_length,

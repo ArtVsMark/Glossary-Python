@@ -19,7 +19,7 @@ import pytest
 from glossary.exporters import get_exporter
 from glossary.loader import dump_glossary, load_glossary, project_root
 from glossary.models import SCHEMA_VERSION, Glossary
-from glossary.validation import validate
+from glossary.validation import ValidationConfig, _cyrillic_share, validate
 
 pytestmark = pytest.mark.data
 
@@ -44,6 +44,26 @@ def test_data_loads(real_glossary: Glossary):
 def test_data_has_no_validation_errors(real_glossary: Glossary):
     report = validate(real_glossary)
     assert report.ok, "\n".join(i.format() for i in report.errors)
+
+
+def test_language_threshold_keeps_its_margin(real_glossary: Glossary):
+    """Порог письменности отделяет данные с запасом, а не впритык.
+
+    Правило ``language-script`` зелено на снимке — но зелень порога, стоящего
+    вплотную к наблюдаемому максимуму, случайна: следующая карточка, назвавшая
+    кириллицу примером, покраснела бы на верном тексте (правило 051). Запас
+    измеряется здесь, а не подразумевается.
+    """
+    observed = max(
+        _cyrillic_share(getattr(entry, field).get("en"))
+        for entry in real_glossary.entries
+        for field in ("summary", "body")
+    )
+    threshold = ValidationConfig().max_foreign_script
+    assert observed < threshold / 2, (
+        f"наблюдаемая доля кириллицы {observed:.3f} подобралась к порогу "
+        f"{threshold}: запас исчез, и зелень правила стала случайной"
+    )
 
 
 def test_data_file_is_canonically_formatted(real_data_path: Path, tmp_path: Path):

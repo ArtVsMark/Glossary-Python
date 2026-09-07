@@ -11,6 +11,7 @@ from glossary.validation import (
     Severity,
     ValidationConfig,
     ValidationReport,
+    _cyrillic_share,
     rule_body_length,
     rule_color_group,
     rule_docs_url,
@@ -19,6 +20,7 @@ from glossary.validation import (
     rule_examples,
     rule_id_format,
     rule_kind,
+    rule_language_script,
     rule_non_empty,
     rule_related_errors_resolve,
     rule_related_resolves,
@@ -131,6 +133,49 @@ def test_translated_only_warns_on_missing_body():
     glossary = make_glossary(make_entry(body=Text(ru="Есть.", en="")))
     issues = list(rule_translated(glossary, CFG))
     assert [i.severity for i in issues] == [Severity.WARNING]
+
+
+# --------------------------------------------------------------------------- #
+# Свойство текста, а не полнота ключей (правило каталога 077)
+# --------------------------------------------------------------------------- #
+
+
+def test_russian_text_in_the_english_half_is_an_error():
+    """Заполненность обе половины проходят — а перевода нет."""
+    russian = "Возвращает длину объекта, если у него определён метод длины."
+    glossary = make_glossary(make_entry(summary=Text(ru=russian, en=russian)))
+    assert list(rule_translated(glossary, CFG)) == [], (
+        "полнота ключей молчит на скопированном тексте — ровно об этом правило 077"
+    )
+    issues = list(rule_language_script(glossary, CFG))
+    assert [i.severity for i in issues] == [Severity.ERROR]
+    assert "summary" in issues[0].message
+    assert issues[0].entry_id == "sample"
+
+
+def test_cyrillic_named_as_an_example_is_not_a_finding():
+    """Замер: ровно так написаны карточки string.ascii_letters и string.printable."""
+    mention = (
+        "This constant is ASCII and nothing else: Cyrillic letters such as "
+        "«я» never appear in it, whatever the locale says about the alphabet."
+    )
+    glossary = make_glossary(make_entry(summary=Text(ru="Строка букв.", en=mention)))
+    assert list(rule_language_script(glossary, CFG)) == []
+
+
+def test_empty_english_half_is_not_this_rules_business():
+    """Пустую половину судит rule_translated: у каждой находки один хозяин."""
+    glossary = make_glossary(make_entry(body=Text(ru="Есть.", en="")))
+    assert list(rule_language_script(glossary, CFG)) == []
+
+
+@pytest.mark.parametrize(
+    "text, expected",
+    [("", 0.0), ("abc", 0.0), ("абв", 1.0), ("ab вг", 0.5), ("123 !", 0.0)],
+    ids=["пусто", "латиница", "кириллица", "поровну", "без букв"],
+)
+def test_share_counts_letters_only(text: str, expected: float):
+    assert _cyrillic_share(text) == expected
 
 
 def test_docs_url_rejects_foreign_host():
@@ -309,6 +354,7 @@ def test_all_rules_are_registered():
         rule_examples,
         rule_id_format,
         rule_kind,
+        rule_language_script,
         rule_non_empty,
         rule_related_errors_resolve,
         rule_related_resolves,

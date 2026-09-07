@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import tempfile
 from pathlib import Path
@@ -418,3 +419,104 @@ def test_complex_task_is_recomputed_not_hand_edited():
     assert document["permissions"].get("issues") == "write", (
         "прогону входящих нечем писать задачу — пересчёт был бы обещанием"
     )
+
+
+# --------------------------------------------------------------------------- #
+# След отказа лежит в сводке прогона, а не только в логах (правило 151)
+# --------------------------------------------------------------------------- #
+
+AGGREGATOR = re.compile(
+    r"- name: Свести вердикты обязательных работ.*?python3 - <<'PY'\n"
+    r"(?P<body>.*?)\n\s+PY",
+    re.DOTALL,
+)
+INDENT = 10
+"""Насколько встроенный разбор отступлен внутри YAML."""
+
+
+def aggregator_source() -> str:
+    """Тело агрегатора, вынутое из прогона.
+
+    Копия здесь не заводится намеренно: она разошлась бы с оригиналом первой же
+    правкой, и набор стерёг бы текст, которого в конвейере уже нет.
+
+    Returns:
+        Исходник встроенного разбора; пустая строка — его в прогоне нет.
+    """
+    found = AGGREGATOR.search(CI_PATH.read_text(encoding="utf-8"))
+    if found is None:
+        return ""
+    return "\n".join(line[INDENT:] for line in found.group("body").splitlines())
+
+
+def verdict(
+    needs: dict[str, Any], report: Path, monkeypatch: pytest.MonkeyPatch
+) -> tuple[int, str]:
+    """Прогнать агрегатор и вернуть код возврата со следом в сводке.
+
+    Args:
+        needs: Исходы обязательных работ.
+        report: Файл сводки прогона.
+        monkeypatch: Подмена окружения на время прогона.
+
+    Returns:
+        Пара «код возврата, что легло в сводку».
+    """
+    monkeypatch.setenv("NEEDS", json.dumps(needs))
+    monkeypatch.setenv("GITHUB_STEP_SUMMARY", str(report))
+    source = compile(aggregator_source(), "<агрегатор>", "exec")
+    code = 0
+    try:
+        # S102: исполняется собственный конвейер проекта, вынутый из ci.yml, —
+        # копия его текста в наборе разошлась бы с оригиналом (правило 090).
+        exec(source, {"__name__": "__main__"})  # noqa: S102
+    except SystemExit as stop:
+        code = 1 if stop.code else 0
+    return code, report.read_text(encoding="utf-8") if report.exists() else ""
+
+
+@pytest.mark.live_surface
+def test_aggregator_is_embedded_in_the_pipeline():
+    """У гейта есть предмет: разбора нет — стеречь нечего (правило 075)."""
+    assert aggregator_source(), "встроенного разбора в ci.yml не нашлось"
+
+
+def test_failure_names_the_job_in_the_run_summary(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """Тот самый предмет: чинящий узнаёт виновную работу, не открывая логов."""
+    code, written = verdict(
+        {"tests": {"result": "failure"}, "data": {"result": "success"}},
+        tmp_path / "summary.md",
+        monkeypatch,
+    )
+    assert code == 1
+    assert "не прошли" in written
+    assert "`tests` | failure" in written, "сводка не называет виновную работу"
+
+
+def test_skipped_job_is_a_failure_too(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    """Пропущенное засчитывать за пройденное нельзя — ради этого if: always()."""
+    code, written = verdict(
+        {"tests": {"result": "skipped"}}, tmp_path / "summary.md", monkeypatch
+    )
+    assert code == 1
+    assert "skipped" in written
+
+
+def test_green_run_also_leaves_a_trace(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    """След пишется всегда: сводка, появляющаяся лишь на красном, — сигнал сама."""
+    code, written = verdict(
+        {"tests": {"result": "success"}}, tmp_path / "summary.md", monkeypatch
+    )
+    assert code == 0
+    assert "Всё зелено" in written
+
+
+def test_empty_needs_says_so_in_the_summary(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """Пустой вход — ошибка входа, и в сводке это видно (правило 075)."""
+    code, written = verdict({}, tmp_path / "summary.md", monkeypatch)
+    assert code == 1
+    assert "не отработал" in written

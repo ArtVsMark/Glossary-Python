@@ -206,6 +206,9 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      # След отказа кладётся в СВОДКУ ПРОГОНА, а не только в логи (правило 151).
+      # Логи открывает не всякий, кто чинит: у облачного окна доступ к ним
+      # зависит от посредника, а сводку видит всякий, кто открыл прогон.
       - name: Свести вердикты обязательных работ
         env:
           NEEDS: ${{ toJSON(needs) }}
@@ -216,23 +219,36 @@ jobs:
           import sys
 
           needs = json.loads(os.environ["NEEDS"])
+          summary = os.environ.get("GITHUB_STEP_SUMMARY")
+
+          def trace(lines: list[str]) -> None:
+              """Положить след туда, где его увидит чинящий."""
+              print("\n".join(lines))
+              if summary:
+                  with open(summary, "a", encoding="utf-8") as report:
+                      report.write("\n".join(lines) + "\n")
 
           # Пустой вход — ошибка входа, а не успех: агрегатор без зависимостей
           # зеленел бы всегда и не проверял бы ничего.
           if not needs:
+              trace(["### Свод не отработал", "", "обязательных работ не найдено"])
               sys.exit("обязательных работ не найдено — проверять нечего")
-
-          for name, outcome in sorted(needs.items()):
-              print(f"{outcome['result']:>9}  {name}")
 
           failed = {
               name: outcome["result"]
               for name, outcome in needs.items()
               if outcome["result"] != "success"
           }
+          heading = "### Обязательные работы не прошли" if failed else "### Всё зелено"
+          table = ["| Работа | Исход |", "| --- | --- |"] + [
+              f"| `{name}` | {outcome['result']} |"
+              for name, outcome in sorted(needs.items())
+          ]
+          trace([heading, "", *table, ""])
+
           if failed:
               listed = ", ".join(f"{n} → {r}" for n, r in sorted(failed.items()))
               sys.exit(f"обязательные работы не прошли: {listed}")
 
-          print(f"\nвсе {len(needs)} обязательные работы зелёные")
+          print(f"все {len(needs)} обязательные работы зелёные")
           PY

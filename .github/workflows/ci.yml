@@ -84,6 +84,25 @@ jobs:
           path: coverage.xml
           retention-days: 14
 
+  attribution:
+    name: Атрибуция коммитов изменения
+    runs-on: ubuntu-latest
+    steps:
+      # Полная история намеренно: атрибуция проверяется в том, что ляжет в
+      # общую ветку, а при глубине 1 сравнивать не с чем (правило 123).
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Имена авторов сходятся со списком
+        run: |
+          python scripts/check_attribution.py \
+            --range "origin/${{ github.base_ref || 'main' }}..HEAD"
+
   data:
     name: Качество данных и синхронность витрины
     runs-on: ubuntu-latest
@@ -157,7 +176,7 @@ jobs:
   # результаты явно.
   check-pr:
     name: check PR
-    needs: [quality, tests, data]
+    needs: [quality, tests, data, attribution]
     if: always()
     runs-on: ubuntu-latest
     steps:

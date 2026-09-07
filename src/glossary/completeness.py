@@ -32,6 +32,7 @@ from typing import TYPE_CHECKING, Any, Final
 from glossary.contracts import envelope
 from glossary.inventory import build_inventory
 from glossary.loader import digest
+from glossary.reporting import truncate
 
 if TYPE_CHECKING:
     from collections.abc import Mapping
@@ -269,11 +270,9 @@ def as_markdown(
         if not missing:
             continue
         lines += [f"## `{category['name']}` — не описано {len(missing)}", ""]
-        shown = missing if limit <= 0 else missing[:limit]
+        shown, note = truncate(missing, limit)
         lines += [f"- `{name}`" for name in shown]
-        if len(missing) > len(shown):
-            hidden = len(missing) - len(shown)
-            lines += ["", f"…и ещё {hidden}. Полный список: `--limit 0`."]
+        lines += note
         lines.append("")
 
     return "\n".join(lines).rstrip() + "\n"

@@ -170,9 +170,8 @@
     },
     "035": {
       "status": "active",
-      "mechanism": "none",
-      "where": "pyproject.toml",
-      "why": "до него не дошли руки: версия задана руками в pyproject.toml и повторена в src/glossary/__init__.py — два источника, оба ручные"
+      "mechanism": "gate",
+      "where": "pyproject.toml — версия объявлена один раз, полем version секции [project]; src/glossary/_version.py читает её из метаданных установленного дистрибутива, а tests/test_version.py роняет сборку и при расхождении объявленного с установленным, и при возврате литерала в исходники пакета"
     },
     "036": {
       "status": "not-applicable",

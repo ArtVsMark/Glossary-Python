@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults outcomes attribution deadlines journal prlink links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults outcomes attribution decisions deadlines journal prlink links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -77,6 +77,9 @@ outcomes: ## Проверить, что у каждой точки входа е
 attribution: ## Сверить имена авторов коммитов ветки со списком
 	$(BIN)/python scripts/check_attribution.py
 
+decisions: ## Проверить, что запись решения называет отвергнутое
+	$(BIN)/python scripts/check_decisions.py
+
 deadlines: ## Проверить, что у процессов и работ назван срок
 	$(BIN)/python scripts/check_deadlines.py
 
@@ -104,7 +107,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test validate rules exclusives defaults outcomes attribution deadlines journal links facts-check changelog-check build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test validate rules exclusives defaults outcomes attribution decisions deadlines journal links facts-check changelog-check build-check ## Полный набор проверок (как в CI)
 
 facts-check: ## Проверить, что числа в README не разъехались
 	$(BIN)/python scripts/facts.py --check

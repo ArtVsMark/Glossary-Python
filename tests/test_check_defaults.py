@@ -120,6 +120,7 @@ def test_findings_return_one(tmp_path: Path, capsys):
     assert "без encoding=" in capsys.readouterr().err
 
 
+@pytest.mark.live_surface
 def test_repository_names_every_environment_default():
     """Утверждение о живом дереве, отдельно от проверки устройства."""
     findings, seen = check_defaults.scan(project_root())

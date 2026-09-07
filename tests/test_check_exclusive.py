@@ -170,6 +170,7 @@ def test_list_prints_subjects(tree, capsys):
 # --------------------------------------------------------------------------- #
 
 
+@pytest.mark.live_surface
 def test_repository_has_exclusive_claims():
     """У гейта есть предмет: проверка, которой нечего проверять, не гейт (075)."""
     assert check_exclusive.collect(project_root()), (
@@ -179,6 +180,7 @@ def test_repository_has_exclusive_claims():
     )
 
 
+@pytest.mark.live_surface
 def test_repository_documents_are_reconciled():
     problems = check_exclusive.findings(check_exclusive.collect(project_root()))
     assert not problems, "\n".join(problems)

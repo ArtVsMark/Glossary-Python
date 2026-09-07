@@ -147,6 +147,7 @@ addopts = [
 ]
 markers = [
     "data: тесты, проверяющие содержимое data/glossary.json",
+    "live_surface: утверждение о живом дереве, а не о подделке (правило 037)",
 ]
 
 [tool.coverage.run]

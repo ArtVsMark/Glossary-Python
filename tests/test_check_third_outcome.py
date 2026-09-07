@@ -166,6 +166,7 @@ def test_findings_return_one(tmp_path: Path, capsys):
     assert "два исхода вместо трёх" in capsys.readouterr().err
 
 
+@pytest.mark.live_surface
 def test_every_entry_point_of_the_repository_complies():
     """Утверждение о живом дереве, отдельно от проверки устройства (146)."""
     findings, seen = gate.scan(project_root())

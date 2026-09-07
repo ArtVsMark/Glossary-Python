@@ -100,6 +100,7 @@ make test       # pytest
 | Новая проба к «предмета нет» | Поле `refuted_by` у ответа в `.rules/bindings.json` |
 | Новое умолчание окружения | `READERS` или `SPAWNERS` в `scripts/check_defaults.py` |
 | Новое имя третьего исхода | `THIRD_OUTCOME` в `scripts/check_third_outcome.py` — явным изменением |
+| Новый ключ витрины в хранилище браузера | `STORE` в `src/glossary/templates/showcase.html` — запись мимо списка сбросить нечем |
 | Новый гейт дерева | `scripts/check_*.py` + набор с ОБЕИМИ половинами: подделки и живая, помеченная `pytest.mark.live_surface` |
 | Новая личность в истории | Строка в `.github/authors.txt` — список ведёт человек |
 | Новое GraphQL-исключение | Строка таблицы в разделе «Работа с GitHub» — с причиной |

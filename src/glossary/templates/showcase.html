@@ -280,6 +280,11 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
   font-size:12.5px;color:var(--faint);display:flex;gap:14px;flex-wrap:wrap;align-items:center;
 }
 .site-footer a{color:var(--muted)}
+.footer-reset{
+  background:none;border:0;padding:0;font:inherit;color:var(--muted);
+  text-decoration:underline;text-underline-offset:2px;cursor:pointer;
+}
+.footer-reset:hover{color:var(--fg)}
 @media (max-width:900px){
   .az-rail{display:none}
   .header-inner,.toolbar-inner,.layout,.site-footer{padding-left:15px;padding-right:15px}
@@ -359,6 +364,8 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
   <span id="footStats"></span>
   <span>·</span>
   <a href="https://github.com/ArtVsMark/Glossary-Python" target="_blank" rel="noopener">ArtVsMark/Glossary-Python</a>
+  <span>·</span>
+  <button type="button" id="resetBtn" class="footer-reset"></button>
 </footer>
 
 <script id="glossary-data" type="application/json">{{GLOSSARY_DATA}}</script>
@@ -375,6 +382,13 @@ const CG = ["builtin","str","seq","mapset","oop","exc","module","iter","op","typ
 const CG_VAR = Object.fromEntries(CG.map(g => [g, "var(--c-" + g + ")"]));
 
 /* ---------- язык интерфейса ---------- */
+/* ---------- что витрина заводит на машине читателя ---------- */
+/* Список — источник и для записи, и для сброса (правило каталога 112): что
+   продукт создал, он обязан уметь удалить, а «почистите хранилище браузера
+   руками» способом не является. Ключ, записанный мимо STORE, сбросить будет
+   нечем — это находка tests/test_showcase_storage.py. */
+const STORE = { theme:"glossary-theme", lang:"glossary-lang" };
+
 const I18N = {
   ru:{
     title:"Python Glossary", subtitle:"Справочник стандартной библиотеки",
@@ -387,7 +401,9 @@ const I18N = {
     details:"Подробнее", collapse:"Свернуть", seeAlso:"См. также", commonErrors:"Частые ошибки",
     noTranslation:"Нет перевода на этот язык — показан русский текст",
     emptyTitle:"Ничего не найдено", emptyHint:"Попробуйте другой запрос или снимите фильтры.",
-    stats:(n,s)=>`${n} карточек · ${s} разделов`
+    stats:(n,s)=>`${n} карточек · ${s} разделов`,
+    reset:"Сбросить настройки", resetDone:"Настройки удалены",
+    resetHint:"Удалить сохранённые тему и язык"
   },
   en:{
     title:"Python Glossary", subtitle:"Standard library reference",
@@ -400,7 +416,9 @@ const I18N = {
     details:"Details", collapse:"Collapse", seeAlso:"See also", commonErrors:"Common errors",
     noTranslation:"No translation for this language — showing Russian",
     emptyTitle:"Nothing found", emptyHint:"Try another query or clear the filters.",
-    stats:(n,s)=>`${n} entries · ${s} sections`
+    stats:(n,s)=>`${n} entries · ${s} sections`,
+    reset:"Reset preferences", resetDone:"Preferences deleted",
+    resetHint:"Delete the saved theme and language"
   }
 };
 let LANG = "ru";
@@ -763,15 +781,15 @@ document.addEventListener("keydown", e => {
 });
 
 /* ---------- тема ---------- */
-function setTheme(name){
+function setTheme(name, persist = true){
   document.documentElement.dataset.theme = name;
-  try{ localStorage.setItem("glossary-theme", name); }catch(_){}
+  if(persist){ try{ localStorage.setItem(STORE.theme, name); }catch(_){} }
 }
 $("#themeBtn").onclick = () =>
   setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark");
 
 /* ---------- язык ---------- */
-function applyLang(lang){
+function applyLang(lang, persist = true){
   LANG = lang;
   document.documentElement.dataset.lang = lang;
   document.documentElement.lang = lang;
@@ -782,8 +800,22 @@ function applyLang(lang){
   $("#search").placeholder = t("search");
   $("#footStats").textContent = I18N[lang].stats(DATA.length, SECTIONS.length);
   buildKindFilters(); buildGroupFilters(); render();
-  try{ localStorage.setItem("glossary-lang", lang); }catch(_){}
+  $("#resetBtn").textContent = t("reset");
+  $("#resetBtn").title = t("resetHint");
+  if(persist){ try{ localStorage.setItem(STORE.lang, lang); }catch(_){} }
 }
+/* ---------- сброс того, что витрина завела ---------- */
+/* Удаляется ВЕСЬ список, а не выбранный ключ: обещание, выполненное
+   наполовину, оставляет остаток там, куда читатель не заглядывает. Умолчания
+   применяются БЕЗ записи — иначе сброс создал бы ключи заново. */
+function resetPreferences(){
+  try{ Object.values(STORE).forEach(key => localStorage.removeItem(key)); }catch(_){}
+  setTheme(matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light", false);
+  applyLang("ru", false);
+  $("#resetBtn").textContent = t("resetDone");
+}
+$("#resetBtn").onclick = resetPreferences;
+
 document.querySelectorAll(".langs button").forEach(b => {
   b.onclick = () => applyLang(b.dataset.lang);
 });
@@ -806,12 +838,12 @@ $("#downloadBtn").onclick = () => {
 
 /* ---------- старт ---------- */
 try{
-  const savedTheme = localStorage.getItem("glossary-theme");
+  const savedTheme = localStorage.getItem(STORE.theme);
   if(savedTheme) document.documentElement.dataset.theme = savedTheme;
   else if(matchMedia("(prefers-color-scheme: dark)").matches) document.documentElement.dataset.theme = "dark";
 }catch(_){}
 let savedLang = "ru";
-try{ savedLang = localStorage.getItem("glossary-lang") || "ru"; }catch(_){}
+try{ savedLang = localStorage.getItem(STORE.lang) || "ru"; }catch(_){}
 applyLang(savedLang === "en" ? "en" : "ru");
 revealHash();
 </script>

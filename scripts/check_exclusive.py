@@ -71,6 +71,7 @@ DOCUMENTS: Final = (
     "README.md",
     "docs/architecture.md",
     "docs/agent/roles.md",
+    "docs/contracts.md",
 )
 """Документы, которые ИСПОЛНЯЮТ, а не описывают.
 

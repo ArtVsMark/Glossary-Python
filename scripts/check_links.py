@@ -67,6 +67,7 @@ DOCUMENTS: Final[tuple[str, ...]] = (
     "CONTRIBUTING.md",
     "docs/architecture.md",
     "docs/agent/roles.md",
+    "docs/contracts.md",
 )
 """Документы, чьи ссылки держит гейт.
 

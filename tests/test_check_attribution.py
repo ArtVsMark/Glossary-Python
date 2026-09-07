@@ -1,9 +1,11 @@
 """Атрибуция и трейлеры: правила каталога 123 и 156.
 
-Набор держит две разные вещи. **Разбор трейлера** — чистая функция, и её
+Набор держит три разные вещи. **Разбор трейлера** — чистая функция, и её
 проверяют предметом, который она обязана отвергнуть: прозаическим упоминанием
-ключа в теле сообщения. **Утверждение о живой истории** — что имена в ней
-сходятся со списком — проверяется отдельно и своими словами (правило 146).
+ключа в теле сообщения. **Список в силе** — пересечение основы и рабочего
+дерева: личность, объявленная тем же заходом, что и подписанные ею коммиты, в
+силу не входит. **Утверждение о живой истории** — что имена в ней сходятся со
+списком — проверяется отдельно и своими словами (правило 146).
 
 Предмет отказа не выдуман. Правило 156 родилось у каталога ровно на нём: гейт
 принял за соавтора середину фразы «github-actions[bot] в уплотнённый коммит».
@@ -86,7 +88,8 @@ def test_message_without_a_block(message: str):
 # Имя сверяется со списком (правило 123)
 # --------------------------------------------------------------------------- #
 
-KNOWN = {"Свой <свой@тут.рф>", "Соавтор <со@тут.рф>"}
+KNOWN = attribution.InForce(frozenset({"Свой <свой@тут.рф>", "Соавтор <со@тут.рф>"}))
+"""Список, действующий для диапазона: расширений и закрытий в нём нет."""
 
 
 def commit(author: str, message: str = "feat: что-то") -> attribution.Commit:
@@ -121,6 +124,107 @@ def test_prose_mention_does_not_produce_a_finding():
 
 
 # --------------------------------------------------------------------------- #
+# Список в силе: расширение отложено, сужение действует сразу
+# --------------------------------------------------------------------------- #
+
+ROSTER = """# Комментарий и пустая строка пропускаются.
+
+Свой <свой@тут.рф>
+закрыто: Прежний <прежний@тут.рф>
+"""
+
+
+def test_roster_reads_three_states():
+    """Действующая, закрытая и отсутствующая — три разных ответа, а не два."""
+    names = attribution.parse_roster(ROSTER)
+    assert names.active == frozenset({"Свой <свой@тут.рф>"})
+    assert names.retired == frozenset({"Прежний <прежний@тут.рф>"})
+    assert "Прежний <прежний@тут.рф>" in names.declared, (
+        "закрытая личность остаётся ОБЪЯВЛЕННОЙ: она лежит в истории"
+    )
+
+
+def test_retired_mark_tolerates_spacing():
+    names = attribution.parse_roster("закрыто:Плотно <плотно@тут.рф>")
+    assert names.retired == frozenset({"Плотно <плотно@тут.рф>"})
+
+
+def between(base: str, head: str) -> attribution.InForce:
+    """Список в силе для пары «основа — рабочее дерево»."""
+    return attribution.InForce.between(
+        attribution.parse_roster(base), attribution.parse_roster(head)
+    )
+
+
+def test_identity_added_by_the_same_change_is_not_in_force():
+    """ТОТ САМЫЙ ПРЕДМЕТ: сторож не расширяет собственный список своим заходом."""
+    names = between("Свой <свой@тут.рф>", "Свой <свой@тут.рф>\nНовый <новый@там.рф>")
+    assert names.pending == frozenset({"Новый <новый@там.рф>"})
+    problems = attribution.findings([commit("Новый <новый@там.рф>")], names)
+    assert len(problems) == 1
+    assert "этим же изменением" in problems[0], (
+        "находка обязана назвать причину: имя объявлено тем же заходом, "
+        "а не отсутствует вовсе — это разные ответы (правило 039)"
+    )
+
+
+def test_identity_from_the_base_stays_in_force():
+    names = between("Свой <свой@тут.рф>", "Свой <свой@тут.рф>\nНовый <новый@там.рф>")
+    assert attribution.findings([commit("Свой <свой@тут.рф>")], names) == []
+
+
+def test_retired_identity_is_closed_by_this_very_change():
+    """Сужение не откладывается: закрытие действует тем же заходом."""
+    names = between("Свой <свой@тут.рф>", "закрыто: Свой <свой@тут.рф>")
+    problems = attribution.findings([commit("Свой <свой@тут.рф>")], names)
+    assert len(problems) == 1
+    assert "закрытая личность" in problems[0]
+
+
+def test_retired_identity_is_allowed_in_existing_history():
+    """История общей ветки не перезаписывается — закрытие смотрит вперёд."""
+    names = attribution.InForce.as_declared(
+        attribution.parse_roster("закрыто: Прежний <прежний@тут.рф>")
+    )
+    assert attribution.findings([commit("Прежний <прежний@тут.рф>")], names) == []
+
+
+def test_reopening_an_identity_also_waits_for_the_next_change():
+    """Снятие закрытия — расширение, и оно тоже вступает в силу следующим."""
+    names = between("закрыто: Свой <свой@тут.рф>", "Свой <свой@тут.рф>")
+    problems = attribution.findings([commit("Свой <свой@тут.рф>")], names)
+    assert len(problems) == 1
+    assert "этим же изменением" in problems[0]
+
+
+def test_coauthor_is_measured_by_the_same_list():
+    names = between("Свой <свой@тут.рф>", "Свой <свой@тут.рф>\nНовый <новый@там.рф>")
+    message = "feat: что-то\n\nCo-Authored-By: Новый <новый@там.рф>\n"
+    problems = attribution.findings([commit("Свой <свой@тут.рф>", message)], names)
+    assert len(problems) == 1
+    assert "соавтор" in problems[0]
+
+
+@pytest.mark.parametrize(
+    "commit_range",
+    ["HEAD", "..HEAD", "origin/main..", "origin/main...HEAD"],
+)
+def test_range_without_a_base_is_the_third_outcome(commit_range: str):
+    """Диапазон, не называющий основу, — отказ, а не сверка с рабочим деревом.
+
+    Молчаливый откат к списку из рабочего дерева вернул бы ровно ту дыру, ради
+    которой механизм заведён, и не сказал бы об этом ничего.
+    """
+    with pytest.raises(attribution.NotRunError) as refusal:
+        attribution.base_of(commit_range)
+    assert commit_range in str(refusal.value), "третий исход обязан назвать предмет"
+
+
+def test_base_of_a_plain_range():
+    assert attribution.base_of("origin/main..HEAD") == "origin/main"
+
+
+# --------------------------------------------------------------------------- #
 # Исходы и утверждение о живой истории
 # --------------------------------------------------------------------------- #
 
@@ -128,7 +232,7 @@ def test_prose_mention_does_not_produce_a_finding():
 def test_missing_list_is_the_third_outcome(tmp_path: Path):
     absent = tmp_path / "нет.txt"
     with pytest.raises(attribution.NotRunError) as refusal:
-        attribution.allowed_identities(absent)
+        attribution.roster(absent)
     assert str(absent) in str(refusal.value), "третий исход обязан назвать предмет"
 
 
@@ -142,7 +246,24 @@ def test_bad_range_is_the_third_outcome(capsys):
 @pytest.mark.live_surface
 def test_repository_list_is_declared():
     """У гейта должен быть предмет: списка нет — сверять не с чем (075)."""
-    assert attribution.allowed_identities(), "список имён объявлен пустым"
+    assert attribution.roster().active, "действующих личностей объявлено ноль"
+
+
+@pytest.mark.live_surface
+def test_repository_list_is_readable_from_a_revision():
+    """Список в силе берётся из ревизии — значит, путь обязан там разрешаться.
+
+    Утверждение о живом дереве, а не о разборе: имя файла внутри дерева задано
+    константой, и опечатка в ней делает гейт не строгим, а неработающим —
+    третьим исходом на каждом запуске. Сравнивать содержимое ревизии с рабочим
+    деревом здесь нельзя: изменение, правящее список, тем и занято, что их
+    разводит.
+    """
+    assert attribution.roster_at("HEAD").declared, (
+        f"{attribution.IN_TREE} в ревизии HEAD не читается или пуст — путь "
+        "разъехался с константой, и гейт стал бы третьим исходом на каждом "
+        "запуске вместо сверки"
+    )
 
 
 MIN_HISTORY = 2
@@ -204,5 +325,6 @@ def test_recent_history_matches_the_declared_list():
         )
     commits = attribution.read_history(history)
     assert commits, f"в диапазоне {history} нет коммитов — гейт смотрел бы в пустоту"
-    problems = attribution.findings(commits, attribution.allowed_identities())
+    names = attribution.InForce.as_declared(attribution.roster())
+    problems = attribution.findings(commits, names)
     assert not problems, "\n".join(problems)

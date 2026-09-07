@@ -33,8 +33,14 @@ from glossary.loader import project_root
 SVOD = project_root() / "CLAUDE.md"
 SECTION = "## Работа с GitHub"
 
-ROW = re.compile(r"^\|\s*(?P<operation>[^|]+?)\s*\|\s*(?P<why>[^|]*?)\s*\|\s*$")
 HEADER_SEPARATOR = re.compile(r"^\|[\s:|-]+\|$")
+MIN_CELLS = 2
+"""Строка таблицы — это как минимум операция и причина.
+
+Столбцов может быть больше: между ними встал «кто зовёт», когда у дерева
+появился собственный вызов. Разбирать по фиксированному числу столбцов значило
+бы ронять гейт на добавлении колонки — то есть на верной правке.
+"""
 MIN_REASON = 20
 """Короткая причина — это пометка, а не объяснение: «нет в REST» ничего не даёт."""
 
@@ -56,17 +62,14 @@ def exceptions(document: str) -> list[tuple[str, str]]:
     if text is None:
         return []
     rows: list[tuple[str, str]] = []
-    for line in text.splitlines():
-        if HEADER_SEPARATOR.match(line.strip()):
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line.startswith("|") or HEADER_SEPARATOR.match(line):
             continue
-        match = ROW.match(line.strip())
-        if not match:
+        cells = [cell.strip() for cell in line.strip("|").split("|")]
+        if len(cells) < MIN_CELLS or cells[0] == "Операция":
             continue
-        operation = match.group("operation")
-        why = match.group("why")
-        if operation in {"Операция"}:
-            continue
-        rows.append((operation, why))
+        rows.append((cells[0], cells[-1]))
     return rows
 
 

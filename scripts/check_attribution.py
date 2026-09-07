@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Атрибуция проверяется в конечной истории, а трейлер — в хвостовом блоке.
+"""Атрибуция сверяется со списком, действующим НА ОСНОВЕ изменения.
 
 Правило каталога 123: сообщение коммита, которое уедет в общую ветку,
 **пересобирается** при слиянии. Всё, что автор написал в ветке, — лишь вход для
@@ -13,6 +13,28 @@
 это не гипотеза: в собственной истории проекта ``Co-Authored-By`` встречается в
 теле сообщений, а не только в хвосте.
 
+СТОРОЖ НЕ ПРАВИТ СОБСТВЕННЫЙ СПИСОК ТЕМ ЖЕ ЗАХОДОМ. Гейт сверяет имена с
+``.github/authors.txt``, а файл лежит в том же дереве, что и код: заход, который
+подписался чужой личностью, дописывал бы её в список одной строкой — и зеленел
+на собственной подписи. Граница была названа в этом докстринге словами «гейт не
+судит о законности списка» и оказалась живой: 7 сентября окно тринадцать раз
+подписалось личностью, которую само же в список и внесло.
+
+Поэтому список берётся дважды: **как он лежит на основе диапазона** и как он
+лежит в рабочем дереве. В силе — пересечение:
+
+* **расширение** вступает в силу СЛЕДУЮЩИМ заходом. Личность, объявленная тем
+  же изменением, чьи коммиты ею подписаны, в силу не входит: сначала список
+  расширяет человек отдельным изменением, потом под именем подписываются;
+* **сужение** действует ЭТИМ ЖЕ: убрать имя — движение планки вниз, а его
+  откладывать не на что.
+
+ЗАКРЫТАЯ ЛИЧНОСТЬ — третье состояние, а не отсутствие в списке. Строка с
+префиксом ``закрыто:`` говорит: имя лежит в истории и оттуда не переписывается
+(историю общей ветки не перезаписывают), но новых коммитов под ним не
+принимают. Без этого состояния фикс «убрать имя из списка» краснит утверждение
+о существующей истории, и выбор сводится к «оставить дыру» или «сломать main».
+
 ЗАМЕР, ИЗ-ЗА КОТОРОГО ГЕЙТ ЗАВЕДЁН. Один и тот же деятель приезжает в историю
 под тремя личностями: ``Claude <noreply@anthropic.com>``,
 ``Claude <arvs.markitanov@gmail.com>`` и ``ArtVsMark <arvs.markitanov@gmail.com>``.
@@ -22,15 +44,20 @@
 вслух.
 
 РАЗБОР НАДВОЕ (правило 182). Кому принадлежит имя и законно ли оно — суждение,
-и машинной эта половина не станет: список имён ведёт человек. **Что имя в
-списке** — следует из истории целиком, и держится здесь.
+и машинной эта половина не станет: список имён ведёт человек. **Что имя было в
+списке ДО этого изменения** — следует из истории целиком, и держится здесь.
 
 ЧЕГО ГЕЙТ НЕ ЛОВИТ, названо здесь, а не подразумевается (правило 056):
 
+* **расширение списка отдельным изменением.** Механизм делает расширение
+  отдельным и видимым, а не невозможным: заход, готовый потратить на подлог два
+  изменения вместо одного, пройдёт. Запрет живёт вне дерева: ``CODEOWNERS``
+  назначает владельца всему дереву, но ревью требует настройка защиты ветки,
+  а изменения уезжают автомержем по зелёному CI;
+* **верность самого списка.** Имя, добавленное в него ошибочно, гейт примет
+  следующим заходом: он сверяет с объявленным, а не судит об объявленном;
 * **подмену на записи.** Кем окно подпишется, из дерева не следует; это
   выясняется пробой — записью и взглядом на подпись (правило 135);
-* **верность самого списка.** Имя, добавленное в него ошибочно, гейт примет:
-  он сверяет с объявленным, а не судит об объявленном;
 * **чужие ветки.** Разбирается заданный диапазон; что лежит в неслитых ветках
   соседей, отсюда не видно.
 
@@ -55,12 +82,22 @@ from typing import Final, NamedTuple
 ROOT: Final = Path(__file__).resolve().parent.parent
 ALLOWED: Final = ROOT / ".github" / "authors.txt"
 
+IN_TREE: Final = ".github/authors.txt"
+"""Тот же список путём внутри дерева: им он читается из произвольной ревизии."""
+
 DEFAULT_RANGE: Final = "origin/main..HEAD"
+RANGE_SEPARATOR: Final = ".."
 SEPARATOR: Final = "\x1e"
 """Разделитель записей в выводе git: в сообщении коммита он не встречается."""
 
+RETIRED_MARK: Final = "закрыто:"
+"""Префикс личности, закрытой для новых коммитов, но живущей в истории."""
+
 TRAILER: Final = re.compile(r"^(?P<key>[A-Za-z][A-Za-z-]*): +(?P<value>.+)$")
 COAUTHOR: Final = "co-authored-by"
+
+AUTHOR: Final = "автор"
+CO: Final = "соавтор"
 
 RECORD_FIELDS: Final = 2
 """Сколько строк несёт запись до сообщения: идентификатор и личность автора."""
@@ -86,18 +123,138 @@ class Commit(NamedTuple):
     message: str
 
 
+class Roster(NamedTuple):
+    """Список имён, каким он объявлен в одной ревизии дерева.
+
+    Attributes:
+        active: Действующие личности.
+        retired: Закрытые: лежат в истории, новых коммитов не принимают.
+    """
+
+    active: frozenset[str]
+    retired: frozenset[str]
+
+    @property
+    def declared(self) -> frozenset[str]:
+        """Все объявленные личности — и действующие, и закрытые."""
+        return self.active | self.retired
+
+
+class InForce(NamedTuple):
+    """Список, действующий для проверяемого диапазона.
+
+    Attributes:
+        allowed: Личности в силе.
+        retired: Закрытые для новых коммитов.
+        pending: Объявленные этим же изменением — в силу ещё не вошли.
+    """
+
+    allowed: frozenset[str]
+    retired: frozenset[str] = frozenset()
+    pending: frozenset[str] = frozenset()
+
+    @classmethod
+    def as_declared(cls, names: Roster) -> InForce:
+        """Список как объявлен — для утверждения о СУЩЕСТВУЮЩЕЙ истории.
+
+        История общей ветки не перезаписывается, поэтому закрытая личность в ней
+        находкой не является: закрытие смотрит вперёд, а не назад.
+
+        Args:
+            names: Список имён одной ревизии.
+
+        Returns:
+            Список, где в силе всё объявленное.
+        """
+        return cls(names.declared)
+
+    @classmethod
+    def between(cls, base: Roster, head: Roster) -> InForce:
+        """Пересечение основы и рабочего дерева.
+
+        Args:
+            base: Список, лежащий на основе диапазона.
+            head: Список, лежащий в рабочем дереве.
+
+        Returns:
+            Список в силе: расширение отложено, сужение действует сразу.
+        """
+        return cls(
+            allowed=base.active & head.active,
+            retired=head.retired,
+            pending=head.active - base.active,
+        )
+
+
 class NotRunError(RuntimeError):
     """История не прочитана: третий исход, а не находка."""
 
 
-def allowed_identities(path: Path = ALLOWED) -> set[str]:
-    """Разрешительный список личностей.
+def run_git(*args: str) -> str:
+    """Позвать git и вернуть его вывод.
+
+    Args:
+        *args: Аргументы команды.
+
+    Returns:
+        Стандартный вывод.
+
+    Raises:
+        NotRunError: git не запустился, не уложился в дедлайн или отказал.
+    """
+    command = " ".join(("git", *args))
+    try:
+        # S603/S607 сняты осознанно: git зовётся по имени из PATH — это тот же
+        # git, которым пользуется разработчик и прогон, а команда собрана из
+        # констант и аргументов, которые сюда передаёт вызывающий.
+        result = subprocess.run(  # noqa: S603
+            ["git", *args],  # noqa: S607
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            timeout=TIMEOUT,
+            cwd=ROOT,
+            check=False,
+        )
+    except OSError as error:
+        raise NotRunError(f"git не запустился: {error}") from error
+    except subprocess.TimeoutExpired as error:
+        raise NotRunError(f"«{command}» не уложился в {TIMEOUT} с") from error
+    if result.returncode != 0:
+        raise NotRunError(f"«{command}» не отработал: {result.stderr.strip()}")
+    return result.stdout
+
+
+def parse_roster(text: str) -> Roster:
+    """Разобрать список имён.
+
+    Args:
+        text: Содержимое файла со списком.
+
+    Returns:
+        Действующие и закрытые личности в форме ``Имя <почта>``.
+    """
+    active: set[str] = set()
+    retired: set[str] = set()
+    for raw in text.splitlines():
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith(RETIRED_MARK):
+            retired.add(line[len(RETIRED_MARK) :].strip())
+        else:
+            active.add(line)
+    return Roster(frozenset(active), frozenset(retired))
+
+
+def roster(path: Path = ALLOWED) -> Roster:
+    """Список имён из рабочего дерева.
 
     Args:
         path: Файл со списком.
 
     Returns:
-        Личности в форме ``Имя <почта>``.
+        Разобранный список.
 
     Raises:
         NotRunError: Файла нет — сверять не с чем.
@@ -107,11 +264,59 @@ def allowed_identities(path: Path = ALLOWED) -> set[str]:
             f"нет списка имён {path} — сверять авторство не с чем. Список ведёт "
             "человек: машина проверяет вхождение, а не законность имени"
         )
-    return {
-        line.strip()
-        for line in path.read_text(encoding="utf-8").splitlines()
-        if line.strip() and not line.lstrip().startswith("#")
-    }
+    return parse_roster(path.read_text(encoding="utf-8"))
+
+
+def base_of(commit_range: str) -> str:
+    """Основа диапазона — ревизия слева от ``..``.
+
+    Args:
+        commit_range: Диапазон в записи git.
+
+    Returns:
+        Имя ревизии.
+
+    Raises:
+        NotRunError: Диапазон основу не называет.
+    """
+    base, separator, head = commit_range.partition(RANGE_SEPARATOR)
+    if not separator or not base or not head or head.startswith("."):
+        raise NotRunError(
+            f"диапазон «{commit_range}» не называет основу: список имён в силе "
+            "берётся из ревизии слева от «..», а запись без левой стороны и "
+            "трёхточечная запись такой ревизии не задают"
+        )
+    return base
+
+
+def roster_at(revision: str) -> Roster:
+    """Список имён, каким он лежит в заданной ревизии.
+
+    Args:
+        revision: Ревизия в записи git.
+
+    Returns:
+        Разобранный список.
+
+    Raises:
+        NotRunError: Ревизии нет или списка в ней нет — сверять не с чем.
+    """
+    return parse_roster(run_git("show", f"{revision}:{IN_TREE}"))
+
+
+def roster_in_force(commit_range: str) -> InForce:
+    """Список, действующий для диапазона.
+
+    Args:
+        commit_range: Диапазон в записи git.
+
+    Returns:
+        Пересечение списка на основе и списка в рабочем дереве.
+
+    Raises:
+        NotRunError: Основу не прочитать — сверять не с чем.
+    """
+    return InForce.between(roster_at(base_of(commit_range)), roster())
 
 
 def trailer_block(message: str) -> list[str]:
@@ -168,26 +373,9 @@ def read_history(commit_range: str) -> list[Commit]:
     Raises:
         NotRunError: git не отработал — диапазон, репозиторий, права.
     """
-    try:
-        # S603/S607 сняты осознанно: git зовётся по имени из PATH — это тот же
-        # git, которым пользуется разработчик и прогон, а команда собрана из
-        # констант и одного аргумента, который сюда передаёт вызывающий.
-        result = subprocess.run(  # noqa: S603
-            ["git", "log", commit_range, f"--format=%h%n%an <%ae>%n%B{SEPARATOR}"],  # noqa: S607
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            timeout=TIMEOUT,
-            cwd=ROOT,
-            check=False,
-        )
-    except OSError as error:
-        raise NotRunError(f"git не запустился: {error}") from error
-    if result.returncode != 0:
-        raise NotRunError(f"git log {commit_range} не отработал: {result.stderr.strip()}")
-
+    output = run_git("log", commit_range, f"--format=%h%n%an <%ae>%n%B{SEPARATOR}")
     commits: list[Commit] = []
-    for record in result.stdout.split(SEPARATOR):
+    for record in output.split(SEPARATOR):
         lines = record.strip("\n").splitlines()
         if len(lines) < RECORD_FIELDS:
             continue
@@ -195,28 +383,96 @@ def read_history(commit_range: str) -> list[Commit]:
     return commits
 
 
-def findings(commits: list[Commit], known: set[str]) -> list[str]:
-    """Кто в истории назвался именем, которого нет в списке.
+def verdict(identity: str, role: str, names: InForce) -> str | None:
+    """Что не так с личностью.
+
+    Args:
+        identity: Личность в форме ``Имя <почта>``.
+        role: Кем она выступает в коммите: автором или соавтором.
+        names: Список, действующий для диапазона.
+
+    Returns:
+        Готовая к печати находка; ``None`` — личность в силе.
+    """
+    if identity in names.retired:
+        return (
+            f"{role} «{identity}» — закрытая личность: она лежит в истории и "
+            "оттуда не переписывается, но новых коммитов под ней не принимают"
+        )
+    if identity in names.pending:
+        return (
+            f"{role} «{identity}» объявлен в {ALLOWED.name} этим же изменением — "
+            "в силу список входит следующим заходом: расширяет его человек, "
+            "отдельно от кода, который этим списком сторожится"
+        )
+    if identity not in names.allowed:
+        return f"{role} «{identity}» не в списке {ALLOWED.name}"
+    return None
+
+
+def findings(commits: list[Commit], names: InForce) -> list[str]:
+    """Кто в истории назвался именем, которого нет в силе.
 
     Args:
         commits: Коммиты диапазона.
-        known: Разрешённые личности.
+        names: Список, действующий для диапазона.
 
     Returns:
         Готовые к печати находки.
     """
     problems: list[str] = []
     for commit in commits:
-        if commit.author not in known:
-            problems.append(
-                f"{commit.sha}: автор «{commit.author}» не в списке {ALLOWED.name}"
-            )
+        note = verdict(commit.author, AUTHOR, names)
+        if note is not None:
+            problems.append(f"{commit.sha}: {note}")
         problems.extend(
-            f"{commit.sha}: соавтор «{coauthor}» не в списке {ALLOWED.name}"
+            f"{commit.sha}: {note}"
             for coauthor in trailers(commit.message).get(COAUTHOR, ())
-            if coauthor not in known
+            if (note := verdict(coauthor, CO, names)) is not None
         )
     return problems
+
+
+def print_identities(commit_range: str, commits: list[Commit]) -> None:
+    """Напечатать личности диапазона и сколько раз каждая встретилась.
+
+    Args:
+        commit_range: Диапазон в записи git — он называется в заголовке.
+        commits: Коммиты диапазона.
+    """
+    seen: dict[str, int] = {}
+    for commit in commits:
+        seen[commit.author] = seen.get(commit.author, 0) + 1
+        for coauthor in trailers(commit.message).get(COAUTHOR, ()):
+            seen[f"({CO}) {coauthor}"] = seen.get(f"({CO}) {coauthor}", 0) + 1
+    print(f"личностей в {commit_range}: {len(seen)}")
+    for identity, count in sorted(seen.items(), key=lambda pair: -pair[1]):
+        mark = " " if identity.startswith(f"({CO}) ") else ""
+        print(f"  {count:3} {mark}{identity}")
+
+
+def summary(commits: list[Commit], names: InForce) -> str:
+    """Строка охвата: что просмотрено и какой список при этом действовал.
+
+    Молчание проверки означает и «ничего не нашла», и «ничего не смотрела»;
+    различить их читателю нечем, пока не названо число просмотренного (075).
+
+    Args:
+        commits: Коммиты диапазона.
+        names: Список, действующий для диапазона.
+
+    Returns:
+        Готовая к печати строка.
+    """
+    parts = [f"коммитов {len(commits)}", f"имён в силе {len(names.allowed)}"]
+    if names.retired:
+        parts.append(f"закрытых {len(names.retired)}")
+    if names.pending:
+        parts.append(
+            f"объявлено этим же изменением {len(names.pending)} — "
+            "в силу войдут следующим заходом"
+        )
+    return "атрибуция сходится: " + ", ".join(parts)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -235,29 +491,19 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         commits = read_history(args.range)
-        known = allowed_identities()
+        if args.list:
+            print_identities(args.range, commits)
+            return 0
+        if not commits:
+            # Пустой диапазон — не «атрибуция в порядке», а «смотреть нечего».
+            print(f"в диапазоне {args.range} нет коммитов — проверять нечего")
+            return 0
+        names = roster_in_force(args.range)
     except NotRunError as refusal:
         print(f"проверка не отработала: {refusal}", file=sys.stderr)
         return NOT_RUN
 
-    if args.list:
-        seen: dict[str, int] = {}
-        for commit in commits:
-            seen[commit.author] = seen.get(commit.author, 0) + 1
-            for coauthor in trailers(commit.message).get(COAUTHOR, ()):
-                seen[f"(соавтор) {coauthor}"] = seen.get(f"(соавтор) {coauthor}", 0) + 1
-        print(f"личностей в {args.range}: {len(seen)}")
-        for identity, count in sorted(seen.items(), key=lambda pair: -pair[1]):
-            mark = " " if identity.startswith("(соавтор) ") else ""
-            print(f"  {count:3} {mark}{identity}")
-        return 0
-
-    if not commits:
-        # Пустой диапазон — не «атрибуция в порядке», а «смотреть нечего».
-        print(f"в диапазоне {args.range} нет коммитов — проверять нечего")
-        return 0
-
-    problems = findings(commits, known)
+    problems = findings(commits, names)
     if problems:
         print("атрибуция в истории не сходится со списком имён:", file=sys.stderr)
         for problem in problems:
@@ -265,12 +511,13 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"\n  Список ведёт человек: {ALLOWED}. Имя, приехавшее в общую ветку\n"
             "  под чужой личностью, оттуда уже не переписать — историю общей\n"
-            "  ветки не перезаписывают (правило 123).",
+            "  ветки не перезаписывают (правило 123). Расширение списка едет\n"
+            "  отдельным изменением: тем же заходом оно в силу не входит.",
             file=sys.stderr,
         )
         return 1
 
-    print(f"атрибуция сходится: коммитов {len(commits)}, имён в списке {len(known)}")
+    print(summary(commits, names))
     return 0
 
 

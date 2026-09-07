@@ -144,26 +144,63 @@ def test_repository_list_is_declared():
     assert attribution.allowed_identities(), "список имён объявлен пустым"
 
 
-def available_range(depth: int = 20) -> str:
-    """Диапазон, который есть в этом клоне: он бывает неглубоким."""
-    total = int(
-        subprocess.run(
-            # Тот же git по имени из PATH, что зовёт и сам гейт.
-            ["git", "rev-list", "--count", "HEAD"],  # noqa: S607
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            cwd=project_root(),
-            check=True,
-            timeout=attribution.TIMEOUT,
-        ).stdout.strip()
-    )
+MIN_HISTORY = 2
+"""Меньше двух коммитов — диапазона не построить, и сверять нечего."""
+
+
+def git(*args: str) -> str:
+    """Тот же git по имени из PATH, что зовёт и сам гейт."""
+    # S603/S607 сняты по той же причине, что и в самом гейте: git зовётся по
+    # имени из PATH, а команда собрана из констант набора.
+    return subprocess.run(  # noqa: S603
+        ["git", *args],  # noqa: S607
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        cwd=project_root(),
+        check=True,
+        timeout=attribution.TIMEOUT,
+    ).stdout.strip()
+
+
+def available_range(depth: int = 20) -> str | None:
+    """Диапазон истории, который есть в этом клоне, либо ``None``.
+
+    ``None`` — не «история чиста», а «сверять не с чем»: клон неглубокий либо
+    несёт единственный коммит (правило 039).
+
+    Args:
+        depth: Сколько коммитов взять, если их столько есть.
+
+    Returns:
+        Диапазон в записи git; ``None`` — истории для сверки нет.
+    """
+    if git("rev-parse", "--is-shallow-repository") == "true":
+        return None
+    total = int(git("rev-list", "--count", "HEAD"))
+    if total < MIN_HISTORY:
+        return None
     return f"HEAD~{min(depth, total - 1)}..HEAD"
 
 
 def test_recent_history_matches_the_declared_list():
-    """Утверждение о живой истории, отдельно от проверки разбора (146)."""
-    commits = attribution.read_history(available_range())
-    assert commits, "история пуста — гейт смотрел бы в пустоту"
+    """Утверждение о живой истории, отдельно от проверки разбора (146).
+
+    ЗАМЕР. Первый прогон набора в CI покраснел здесь — и не на дереве, а на
+    собственной арифметике этой проверки: матрица тестов берёт клон глубиной
+    один коммит, счёт давал 1, диапазон складывался в пустой ``HEAD~0..HEAD``,
+    и сообщение «история пуста» говорило о клоне, а не об атрибуции. Ровно та
+    склейка, против которой заведён третий исход: «не нашли» и «нечего
+    смотреть» — разные ответы (правило 039).
+    """
+    history = available_range()
+    if history is None:
+        pytest.skip(
+            "клон неглубокий либо несёт единственный коммит — сверять не с чем. "
+            "Живую историю смотрит прогон «Атрибуция коммитов изменения»: он "
+            "берёт её целиком (fetch-depth: 0 в .github/workflows/ci.yml)"
+        )
+    commits = attribution.read_history(history)
+    assert commits, f"в диапазоне {history} нет коммитов — гейт смотрел бы в пустоту"
     problems = attribution.findings(commits, attribution.allowed_identities())
     assert not problems, "\n".join(problems)

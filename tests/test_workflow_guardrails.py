@@ -387,3 +387,34 @@ def test_badge_namespace_covers_everything_written():
             path.stem for path in facts.write_badges(facts.build_facts(), Path(tmp))
         }
     assert written - {"facts"} <= set(facts.BADGE_NAMES)
+
+
+# --------------------------------------------------------------------------- #
+# Комплексная задача ведётся пересчётом, а не прозой (правило каталога 028)
+# --------------------------------------------------------------------------- #
+
+INBOX_PATH = WORKFLOWS / "rules-inbox.yml"
+
+
+@pytest.mark.live_surface
+def test_complex_task_is_recomputed_not_hand_edited():
+    """Состояние задачи «Входящие» выводится, а не правится руками.
+
+    Правило 028 требует у комплексной задачи чек-лист — потому что состояние,
+    записанное прозой, приходится вычислять чтением и сверкой с историей. Здесь
+    вычислять нечего: тело задачи пересобирает действие каталога из
+    ``.rules/bindings.json`` по расписанию, и руками его никто не трогает.
+
+    Утверждение держится тем, что прогон существует, ходит сам и имеет право
+    писать задачи. Без любого из трёх ответ «пересчитывается» был бы обещанием.
+    """
+    assert INBOX_PATH.exists(), f"прогона входящих нет: {INBOX_PATH}"
+    document = yaml.safe_load(INBOX_PATH.read_text(encoding="utf-8"))
+    triggers = document.get("on", document.get(True, {}))
+    assert "schedule" in triggers, (
+        "у прогона входящих нет расписания: тело задачи перестало бы "
+        "пересчитываться, и состояние снова пришлось бы вести прозой"
+    )
+    assert document["permissions"].get("issues") == "write", (
+        "прогону входящих нечем писать задачу — пересчёт был бы обещанием"
+    )

@@ -57,6 +57,13 @@ repos:
         pass_filenames: false
         files: ^(CLAUDE\.md|CONTRIBUTING\.md|README\.md|docs/.*\.md|scripts/check_exclusive\.py)$
 
+      - id: environment-defaults
+        name: Умолчания окружения заданы явно
+        entry: python scripts/check_defaults.py
+        language: system
+        pass_filenames: false
+        files: ^(src|scripts|tests)/.*\.py$
+
       - id: glossary-build-check
         name: Витрина синхронна с данными
         entry: python -m glossary build --check

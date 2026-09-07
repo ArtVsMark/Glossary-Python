@@ -108,6 +108,9 @@ jobs:
       - name: Исключительные утверждения сверены друг с другом
         run: python scripts/check_exclusive.py --check
 
+      - name: Умолчания окружения заданы явно
+        run: python scripts/check_defaults.py
+
       - name: Числа в документации совпадают с источниками
         run: python scripts/facts.py --check
 

@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -59,6 +59,9 @@ rules: ## Проверить ответ проекта каталогу прав
 exclusives: ## Сверить исключительные утверждения документов друг с другом
 	$(BIN)/python scripts/check_exclusive.py --check
 
+defaults: ## Проверить, что умолчания окружения заданы явно
+	$(BIN)/python scripts/check_defaults.py
+
 changelog-check: ## Проверить форму записей журнала
 	$(BIN)/python scripts/changelog.py --check
 
@@ -83,7 +86,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test validate rules exclusives facts-check changelog-check build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test validate rules exclusives defaults facts-check changelog-check build-check ## Полный набор проверок (как в CI)
 
 facts-check: ## Проверить, что числа в README не разъехались
 	$(BIN)/python scripts/facts.py --check

@@ -41,7 +41,13 @@ def test_data_loads(real_glossary: Glossary):
     assert real_glossary.schema_version == SCHEMA_VERSION
 
 
+@pytest.mark.live_surface
 def test_data_has_no_validation_errors(real_glossary: Glossary):
+    """Вторая защита правил валидации: снимок им соответствует (072).
+
+    Первая — что правило способно покраснеть — живёт в наборе правил.
+    Эта молчит о ней, та молчит о данных: слепота у них разная.
+    """
     report = validate(real_glossary)
     assert report.ok, "\n".join(i.format() for i in report.errors)
 

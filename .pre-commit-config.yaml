@@ -50,6 +50,20 @@ repos:
         pass_filenames: false
         files: ^(\.rules/.*\.json|tests/test_rules_bindings\.py)$
 
+      - id: exclusive-claims
+        name: Исключительные утверждения сверены друг с другом
+        entry: python scripts/check_exclusive.py --check
+        language: system
+        pass_filenames: false
+        files: ^(CLAUDE\.md|CONTRIBUTING\.md|README\.md|docs/.*\.md|scripts/check_exclusive\.py)$
+
+      - id: environment-defaults
+        name: Умолчания окружения заданы явно
+        entry: python scripts/check_defaults.py
+        language: system
+        pass_filenames: false
+        files: ^(src|scripts|tests)/.*\.py$
+
       - id: check-links
         name: Ссылки документации разрешаются в файлы дерева
         entry: python scripts/check_links.py

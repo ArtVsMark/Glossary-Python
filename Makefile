@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults outcomes attribution links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults outcomes attribution prlink links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -76,6 +76,9 @@ outcomes: ## Проверить, что у каждой точки входа е
 
 attribution: ## Сверить имена авторов коммитов ветки со списком
 	$(BIN)/python scripts/check_attribution.py
+
+prlink: ## Проверить ответ изменения задаче (тело в PR_BODY)
+	$(BIN)/python scripts/check_pr_link.py
 
 links: ## Проверить, что ссылки документации разрешаются в файлы дерева
 	$(BIN)/python scripts/check_links.py

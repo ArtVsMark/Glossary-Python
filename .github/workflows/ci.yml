@@ -103,6 +103,32 @@ jobs:
           python scripts/check_attribution.py \
             --range "origin/${{ github.base_ref || 'main' }}..HEAD"
 
+  link:
+    name: Связь изменения с задачей
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: У изменения есть ответ задаче
+        if: github.event_name == 'pull_request'
+        # Тело приходит переменной окружения, а не подстановкой в оболочку:
+        # чужой текст в командной строке — это разбор кавычек чужими руками.
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: python scripts/check_pr_link.py
+
+      # Зелёное на пустоте выглядит как зелёное на проверенном. Работа говорит
+      # вслух, что она не проверяла, а не молчит (правила 039, 075).
+      - name: Событие не изменение — проверять нечего
+        if: github.event_name != 'pull_request'
+        run: |
+          echo "связь с задачей есть у изменения; событие ${{ github.event_name }}"
+          echo "тела изменения не несёт — проверять нечего"
+
   data:
     name: Качество данных и синхронность витрины
     runs-on: ubuntu-latest
@@ -176,7 +202,7 @@ jobs:
   # результаты явно.
   check-pr:
     name: check PR
-    needs: [quality, tests, data, attribution]
+    needs: [quality, tests, data, attribution, link]
     if: always()
     runs-on: ubuntu-latest
     steps:

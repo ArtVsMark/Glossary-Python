@@ -50,6 +50,13 @@ repos:
         pass_filenames: false
         files: ^(\.rules/.*\.json|tests/test_rules_bindings\.py)$
 
+      - id: check-links
+        name: Ссылки документации разрешаются в файлы дерева
+        entry: python scripts/check_links.py
+        language: system
+        pass_filenames: false
+        files: ^(README\.md|CLAUDE\.md|CONTRIBUTING\.md|docs/.*\.md|scripts/check_links\.py)$
+
       - id: glossary-build-check
         name: Витрина синхронна с данными
         entry: python -m glossary build --check

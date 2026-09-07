@@ -105,6 +105,9 @@ jobs:
       - name: Форма записей журнала
         run: python scripts/changelog.py --check
 
+      - name: Ссылки документации разрешаются в файлы дерева
+        run: python scripts/check_links.py
+
       - name: Витрина собрана из текущих данных
         run: python -m glossary build --check
 

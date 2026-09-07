@@ -3,7 +3,7 @@
   "schema_of": "факты о проекте-витрине глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Stepik-Python-Grader",
-  "generated_at": "2026-09-07T07:58:42+00:00",
+  "generated_at": "2026-09-07T08:16:25+00:00",
   "glossary": {
     "cards": 1349,
     "groups": 55,
@@ -14,13 +14,13 @@
     "completeness_python": "3.14"
   },
   "rules": {
-    "total": 179,
-    "gate": 36,
-    "document": 27,
-    "pipeline": 6,
-    "mechanised": 69,
-    "none": 33,
-    "not_applicable": 77
+    "total": 181,
+    "gate": 40,
+    "document": 28,
+    "pipeline": 7,
+    "mechanised": 75,
+    "none": 31,
+    "not_applicable": 75
   },
   "python_versions": [
     "3.11",

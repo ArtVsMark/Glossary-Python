@@ -140,6 +140,100 @@ def test_pages_does_not_depend_on_an_out_of_tree_setting():
     )
 
 
+def _triggers(path: Path) -> dict[str, Any]:
+    """Триггеры прогона.
+
+    Ключ ``on`` разбирается YAML-ом как булево ``True``: в YAML 1.1 это одно из
+    написаний истины. Читать его надо обоими способами, иначе сторож молча
+    решит, что триггеров нет вовсе.
+    """
+    document = yaml.safe_load(path.read_text(encoding="utf-8"))
+    triggers: dict[str, Any] = document.get("on", document.get(True, {}))
+    return triggers
+
+
+READY_FOR_REVIEW = "ready_for_review"
+
+
+def pull_request_types_problem(name: str, triggers: dict[str, Any]) -> str | None:
+    """Что не так с набором событий ``pull_request``; ``None`` — всё в порядке.
+
+    Вынесено функцией, чтобы сторожа можно было прогнать по предмету, который
+    он ОБЯЗАН отвергнуть, а не только по зелёному дереву (правило 140).
+
+    Args:
+        name: Имя прогона — оно попадает в текст находки (правило 158).
+        triggers: Разобранное значение ключа ``on``.
+
+    Returns:
+        Готовая находка либо ``None``.
+    """
+    if "pull_request" not in triggers:
+        return None
+    spec = triggers["pull_request"]
+    if not isinstance(spec, dict) or not spec.get("types"):
+        return (
+            f"{name}: прогон отвечает на pull_request, но набор событий не назван. "
+            "Умолчание площадки — opened, synchronize, reopened — не включает "
+            f"{READY_FOR_REVIEW}"
+        )
+    if READY_FOR_REVIEW not in spec["types"]:
+        return (
+            f"{name}: в наборе событий нет {READY_FOR_REVIEW} — снятие черновика "
+            "останется без проверок"
+        )
+    return None
+
+
+def test_pull_request_event_types_are_named_explicitly():
+    """Умолчание площадки не включает снятие черновика (правило 104).
+
+    Типы по умолчанию — ``opened``, ``synchronize``, ``reopened``. Изменение,
+    открытое черновиком, проверок при готовности не получает, и добудиться их
+    можно только отправкой коммита — то есть пустышкой ради перезапуска,
+    которая остаётся в истории навсегда.
+
+    Вторая причина назвать набор явно: пропуск черновиков (``if:
+    !github.event.pull_request.draft``) — обычный приём, и вместе с умолчанием
+    он оставляет изменение БЕЗ ЕДИНОЙ проверки: ни при создании, ни при
+    готовности. Отказ при этом выглядит не красным, а ожиданием.
+    """
+    problems = [
+        problem
+        for path in sorted(WORKFLOWS.glob("*.yml"))
+        if (problem := pull_request_types_problem(path.name, _triggers(path)))
+    ]
+    assert not problems, "\n".join(problems)
+
+
+def test_workflow_reacting_to_pull_request_exists():
+    """У сторожа должен быть предмет: проверять нечего — это не сторож (075)."""
+    reacting = [
+        path.name
+        for path in sorted(WORKFLOWS.glob("*.yml"))
+        if "pull_request" in _triggers(path)
+    ]
+    assert reacting, "ни один прогон не отвечает на pull_request"
+
+
+def test_types_left_to_the_default_are_rejected():
+    """Предмет, который сторож обязан отвергнуть: `pull_request:` без набора."""
+    assert pull_request_types_problem("ci.yml", {"pull_request": None})
+    assert pull_request_types_problem("ci.yml", {"pull_request": {}})
+
+
+def test_types_without_ready_for_review_are_rejected():
+    problem = pull_request_types_problem(
+        "ci.yml", {"pull_request": {"types": ["opened", "synchronize"]}}
+    )
+    assert problem and READY_FOR_REVIEW in problem
+
+
+def test_workflow_without_pull_request_is_not_a_problem():
+    """Прогон по расписанию про черновики ничего не обязан знать."""
+    assert pull_request_types_problem("badges.yml", {"schedule": [], "push": {}}) is None
+
+
 def test_every_workflow_has_a_manual_button():
     """События теряются: у автоматики обязана быть ручная кнопка (правило 104)."""
     workflows = sorted(WORKFLOWS.glob("*.yml"))

@@ -103,6 +103,25 @@ jobs:
           python scripts/check_attribution.py \
             --range "origin/${{ github.base_ref || 'main' }}..HEAD"
 
+  journal:
+    name: Запись журнала едет с изменением
+    runs-on: ubuntu-latest
+    steps:
+      # Полная история намеренно: состав изменения считается против основы, а
+      # при глубине 1 сравнивать не с чем (правило 138).
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: Решение осело артефактом тем же заходом
+        run: |
+          python scripts/check_journal.py \
+            --base "origin/${{ github.base_ref || 'main' }}"
+
   link:
     name: Связь изменения с задачей
     runs-on: ubuntu-latest
@@ -202,7 +221,7 @@ jobs:
   # результаты явно.
   check-pr:
     name: check PR
-    needs: [quality, tests, data, attribution, link]
+    needs: [quality, tests, data, attribution, link, journal]
     if: always()
     runs-on: ubuntu-latest
     steps:

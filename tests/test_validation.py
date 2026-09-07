@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import ast
+from pathlib import Path
+
 import pytest
 
 from glossary.models import Glossary, Text
@@ -399,3 +402,48 @@ def test_rule_names_are_unique_and_stable():
         "unique-id",
         "version-format",
     }
+
+
+# --------------------------------------------------------------------------- #
+# У правила две защиты с разной слепотой (правило каталога 072)
+# --------------------------------------------------------------------------- #
+
+
+def exercised_rules() -> set[str]:
+    """Правила, которые хоть один тест этого набора зовёт напрямую.
+
+    Разбор, а не поиск подстроки: имя правила встречается и в списке импорта, и
+    в перечислении реестра, и оба раза это не вызов (правило 166 о том же —
+    искать надо предмет, а не его написание).
+
+    Returns:
+        Имена вызванных правил.
+    """
+    module = ast.parse(Path(__file__).read_text(encoding="utf-8"))
+    return {
+        node.func.id
+        for node in ast.walk(module)
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name)
+    }
+
+
+def test_every_rule_has_a_forgery_of_its_own():
+    """Первая защита: правило показано СРАБОТАВШИМ на подделанной карточке.
+
+    Правило каталога 072: защит должно быть две, и слепы они в разных местах.
+    Вторая здесь — утверждение о снимке (``test_data_has_no_validation_errors``):
+    она говорит, что данные чисты, и молчит о том, способно ли правило вообще
+    покраснеть. Эта — наоборот. Ни одна не заменяет другую.
+    """
+    called = exercised_rules()
+    silent = sorted(rule.__name__ for rule in RULES if rule.__name__ not in called)
+    assert not silent, (
+        "правила реестра не показаны сработавшими ни на одной подделке: "
+        + ", ".join(silent)
+        + ". Правило, ни разу не покрасневшее, зелено неизвестно о чём"
+    )
+
+
+def test_the_forgery_search_can_actually_come_up_empty():
+    """Разбор обязан уметь не найти, иначе его молчание ничего не значит."""
+    assert "rule_такого_нет" not in exercised_rules()

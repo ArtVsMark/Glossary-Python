@@ -58,6 +58,9 @@ jobs:
       - name: Сроки ожидания названы
         run: python scripts/check_deadlines.py
 
+      - name: Записи решений называют отвергнутое
+        run: python scripts/check_decisions.py
+
   tests:
     timeout-minutes: 15
     name: Тесты (Python ${{ matrix.python-version }})

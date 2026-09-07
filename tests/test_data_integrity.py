@@ -151,6 +151,13 @@ def _published_completeness() -> dict[str, int]:
         [sys.executable, "-m", "glossary", "completeness", "--format", "json"],
         capture_output=True,
         text=True,
+        # encoding и timeout — не украшение вызова, а два разных умолчания.
+        # Без encoding текстовый режим берёт кодировку локали (правило 176):
+        # на ячейке матрицы с cp1252 разбор вывода развалился бы на кириллице.
+        # Без timeout процесс, зависший до первой строки, вешает прогон целиком
+        # (правило 100): у запуска свой дедлайн, и он короткий.
+        encoding="utf-8",
+        timeout=120,
         check=True,
         cwd=project_root(),
     )

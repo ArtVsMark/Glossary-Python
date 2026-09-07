@@ -50,6 +50,13 @@ repos:
         pass_filenames: false
         files: ^(\.rules/.*\.json|tests/test_rules_bindings\.py)$
 
+      - id: exclusive-claims
+        name: Исключительные утверждения сверены друг с другом
+        entry: python scripts/check_exclusive.py --check
+        language: system
+        pass_filenames: false
+        files: ^(CLAUDE\.md|CONTRIBUTING\.md|README\.md|docs/.*\.md|scripts/check_exclusive\.py)$
+
       - id: glossary-build-check
         name: Витрина синхронна с данными
         entry: python -m glossary build --check

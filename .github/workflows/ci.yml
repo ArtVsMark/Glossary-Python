@@ -99,6 +99,9 @@ jobs:
       - name: Ответ каталогу правил
         run: pytest tests/test_rules_bindings.py -q
 
+      - name: Исключительные утверждения сверены друг с другом
+        run: python scripts/check_exclusive.py --check
+
       - name: Числа в документации совпадают с источниками
         run: python scripts/facts.py --check
 

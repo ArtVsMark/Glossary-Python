@@ -1,0 +1,65 @@
+# Автомерж: изменение уезжает в main само, когда проверки позеленели.
+#
+# ЕДИНСТВЕННЫЙ ВЫЗОВ ЧЕРЕЗ GRAPHQL ВО ВСЁМ РЕПОЗИТОРИИ, И ОН НАЗВАН ПОИМЁННО.
+# Правило каталога 001 требует REST по умолчанию: одна операция GraphQL стоит
+# около трёхсот единиц часовой квоты против одной у REST. Оно же называет
+# закрытый список операций, у которых REST-эквивалента НЕТ ВОВСЕ, и включение
+# авто-мержа стоит в этом списке первым: мутация enablePullRequestAutoMerge.
+# Мутация здесь ровно одна, вызывается один раз на изменение, и других
+# обращений к GraphQL в дереве нет — это стережёт tests/test_automerge.py.
+#
+# ЧЕГО ЭТОТ ПРОГОН НЕ ДЕЛАЕТ. Он не сливает. Он ставит изменение в очередь
+# площадки и уходит; сливает площадка, когда обязательные проверки позеленели
+# и конфликта нет. Поэтому здесь нет ни повторов, ни ожидания, ни расхода
+# квоты на опрос.
+#
+# ЧТО НУЖНО ВКЛЮЧИТЬ РУКАМИ ОДИН РАЗ. Настройка репозитория «Allow auto-merge»
+# живёт вне дерева, и включить её из прогона нельзя: у GITHUB_TOKEN нет прав
+# на настройки. Пока она выключена, мутация отвечает отказом — и шаг ниже
+# печатает это словами, а не молчит (правило 158).
+name: automerge
+
+on:
+  # Набор событий назван явно: умолчание площадки — opened, synchronize,
+  # reopened — снятия черновика НЕ включает, а именно оно и есть согласие
+  # (правило 104).
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, labeled, unlabeled]
+
+  # У событийной автоматики всегда есть ручная кнопка: события теряются.
+  workflow_dispatch:
+    inputs:
+      pull_request:
+        description: Номер изменения, которое поставить в очередь
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: automerge-${{ github.event.pull_request.number || inputs.pull_request }}
+  cancel-in-progress: false
+
+jobs:
+  arm:
+    name: Поставить в очередь площадки
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # Черновик согласия не выражает, а метка hold его отзывает: ни то, ни другое
+    # в очередь не ставится. ГРАНИЦА: hold, поставленный ПОСЛЕ постановки в
+    # очередь, её не отменяет — снятие автомержа это вторая мутация GraphQL, а
+    # список исключений закрыт одной (правило 001). Сняли hold — событие
+    # unlabeled поставит изменение в очередь заново.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (!github.event.pull_request.draft &&
+       !contains(github.event.pull_request.labels.*.name, 'hold'))
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Включить автомерж
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NUMBER: ${{ github.event.pull_request.number || inputs.pull_request }}
+        run: python scripts/automerge.py "$NUMBER"

@@ -31,6 +31,7 @@ env:
 
 jobs:
   quality:
+    timeout-minutes: 10
     name: Линтер и типы
     runs-on: ubuntu-latest
     steps:
@@ -54,7 +55,11 @@ jobs:
       - name: mypy
         run: mypy
 
+      - name: Сроки ожидания названы
+        run: python scripts/check_deadlines.py
+
   tests:
+    timeout-minutes: 15
     name: Тесты (Python ${{ matrix.python-version }})
     runs-on: ubuntu-latest
     strategy:
@@ -85,6 +90,7 @@ jobs:
           retention-days: 14
 
   attribution:
+    timeout-minutes: 5
     name: Атрибуция коммитов изменения
     runs-on: ubuntu-latest
     steps:
@@ -104,6 +110,7 @@ jobs:
             --range "origin/${{ github.base_ref || 'main' }}..HEAD"
 
   journal:
+    timeout-minutes: 5
     name: Запись журнала едет с изменением
     runs-on: ubuntu-latest
     steps:
@@ -123,6 +130,7 @@ jobs:
             --base "origin/${{ github.base_ref || 'main' }}"
 
   link:
+    timeout-minutes: 5
     name: Связь изменения с задачей
     runs-on: ubuntu-latest
     steps:
@@ -149,6 +157,7 @@ jobs:
           echo "тела изменения не несёт — проверять нечего"
 
   data:
+    timeout-minutes: 15
     name: Качество данных и синхронность витрины
     runs-on: ubuntu-latest
     steps:
@@ -220,6 +229,7 @@ jobs:
   # Поэтому работа доходит до вердикта при любом исходе соседей и сверяет их
   # результаты явно.
   check-pr:
+    timeout-minutes: 5
     name: check PR
     needs: [quality, tests, data, attribution, link, journal]
     if: always()

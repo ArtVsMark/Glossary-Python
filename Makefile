@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults outcomes links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults outcomes attribution links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -74,6 +74,9 @@ changelog-collect: ## Перенести фрагменты в [Unreleased]
 outcomes: ## Проверить, что у каждой точки входа есть третий исход
 	$(BIN)/python scripts/check_third_outcome.py
 
+attribution: ## Сверить имена авторов коммитов ветки со списком
+	$(BIN)/python scripts/check_attribution.py
+
 links: ## Проверить, что ссылки документации разрешаются в файлы дерева
 	$(BIN)/python scripts/check_links.py
 
@@ -92,7 +95,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test validate rules exclusives defaults outcomes links facts-check changelog-check build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test validate rules exclusives defaults outcomes attribution links facts-check changelog-check build-check ## Полный набор проверок (как в CI)
 
 facts-check: ## Проверить, что числа в README не разъехались
 	$(BIN)/python scripts/facts.py --check

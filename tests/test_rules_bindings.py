@@ -145,7 +145,7 @@ def test_unmechanised_count_does_not_grow():
     Число зафиксировано здесь намеренно: растворённая в тексте метрика выглядит
     отсутствующей. Планка двигается только вниз — как и храповик качества данных.
     """
-    ceiling = 17
+    ceiling = 16
     unmechanised = sorted(
         k
         for k, v in rules().items()

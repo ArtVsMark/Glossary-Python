@@ -71,6 +71,13 @@ repos:
         pass_filenames: false
         files: ^(README\.md|CLAUDE\.md|CONTRIBUTING\.md|docs/.*\.md|scripts/check_links\.py)$
 
+      - id: third-outcome
+        name: У каждой точки входа есть третий исход
+        entry: python scripts/check_third_outcome.py
+        language: system
+        pass_filenames: false
+        files: ^(scripts/.*\.py|src/glossary/cli\.py)$
+
       - id: glossary-build-check
         name: Витрина синхронна с данными
         entry: python -m glossary build --check

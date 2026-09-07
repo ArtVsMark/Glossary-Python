@@ -137,10 +137,18 @@ def test_foreign_json_is_rejected(tmp_path: Path):
 
 
 def test_cli_refuses_a_lone_dump(tmp_path: Path, capsys: pytest.CaptureFixture[str]):
+    """Одна выгрузка — третий исход, а не находка (правила 039, 158).
+
+    Прежде здесь стояла единица, то есть «разности не нашлось». Это склеивало
+    два разных ответа: «нового нет» и «считать было не из чего». Второй теперь
+    отвечает кодом 2 и называет, что именно получил.
+    """
     only = tmp_path / "inv.json"
     only.write_text(json.dumps(dump("3.14", "a")), encoding="utf-8")
-    assert whatsnew.main([str(only)]) == 1
-    assert "хотя бы" in capsys.readouterr().err
+    assert whatsnew.main([str(only)]) == whatsnew.NOT_RUN
+    error = capsys.readouterr().err
+    assert "не отработало" in error
+    assert str(only) in error, "третий исход обязан назвать предмет"
 
 
 def test_cli_writes_the_contract(tmp_path: Path):

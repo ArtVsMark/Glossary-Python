@@ -35,6 +35,15 @@ from pathlib import Path
 from typing import Final
 
 ROOT: Final = Path(__file__).resolve().parent.parent
+
+NOT_RUN: Final = 2
+"""Проверка не отработала. Не означает «замечаний нет» — их не искали."""
+
+
+class NotRunError(RuntimeError):
+    """Смотреть негде: предмета проверки не существует (правила 039, 075)."""
+
+
 FRAGMENTS: Final = ROOT / "changelog.d"
 CHANGELOG: Final = ROOT / "CHANGELOG.md"
 
@@ -75,7 +84,11 @@ def read_fragments() -> tuple[list[Fragment], list[str]]:
     problems: list[str] = []
     fragments: list[Fragment] = []
     if not FRAGMENTS.is_dir():
-        return fragments, [f"каталог {FRAGMENTS.name} отсутствует — класть записи некуда"]
+        # Не находка, а третий исход: смотреть негде. Возвращать это замечанием
+        # значило бы сказать «форма нарушена» там, где формы нет вовсе.
+        raise NotRunError(
+            f"каталога {FRAGMENTS} нет — класть записи некуда и проверять нечего"
+        )
 
     for path in sorted(FRAGMENTS.iterdir()):
         if path.name == "README.md" or path.name.startswith("."):
@@ -144,7 +157,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--collect", action="store_true", help="перенести в журнал")
     args = parser.parse_args(argv)
 
-    fragments, problems = read_fragments()
+    try:
+        fragments, problems = read_fragments()
+    except NotRunError as refusal:
+        print(f"проверка не отработала: {refusal}", file=sys.stderr)
+        return NOT_RUN
     for problem in problems:
         print(problem, file=sys.stderr)
     if problems:

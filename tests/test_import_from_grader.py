@@ -158,8 +158,27 @@ def test_check_fails_when_snapshot_drifted(tmp_path: Path, monkeypatch):
     assert imp.main(["--source", str(source), "--check"]) == 1
 
 
-def test_check_fails_without_snapshot(tmp_path: Path, monkeypatch):
+def test_check_without_snapshot_is_the_third_outcome(tmp_path: Path, monkeypatch, capsys):
+    """Снимка нет — сверять не с чем; это не «разошлось» (правила 039, 158).
+
+    Прежде здесь стояла единица, то есть утверждение о снимке, которого не
+    существует. Два разных ответа склеивались в один, и отличить «сверено,
+    совпало» от «сверять было нечего» по коду возврата было нельзя.
+    """
     source = make_source(tmp_path / "src", {"str": [card(id="a")]})
-    monkeypatch.setattr(imp, "default_data_path", lambda: tmp_path / "нет.json")
+    missing = tmp_path / "нет.json"
+    monkeypatch.setattr(imp, "default_data_path", lambda: missing)
     monkeypatch.setattr(imp, "ROOT", tmp_path)
-    assert imp.main(["--source", str(source), "--check"]) == 1
+    assert imp.main(["--source", str(source), "--check"]) == imp.NOT_RUN
+    error = capsys.readouterr().err
+    assert "не отработала" in error
+    assert str(missing) in error, "третий исход обязан назвать предмет"
+
+
+def test_missing_source_is_the_third_outcome(tmp_path: Path, capsys):
+    """Источника нет — импортировать нечего, и путь назван."""
+    absent = tmp_path / "нет-такого-клона"
+    assert imp.main(["--source", str(absent)]) == imp.NOT_RUN
+    error = capsys.readouterr().err
+    assert "не отработал" in error
+    assert str(absent) in error

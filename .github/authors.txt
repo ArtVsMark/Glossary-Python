@@ -32,11 +32,16 @@ Artem Markitanov <86671904+ArtVsMark@users.noreply.github.com>
 # перезаписывают, поэтому имя остаётся объявленным — но новых коммитов под ним
 # не принимают: окно ставит git config user.name/user.email владельца до первого
 # коммита.
+#
+# ЗАКРЫТО 01.10 — вторая запись, по решению владельца: окно подписывается его
+# личностью, и агентское имя на его почте новым коммитам не нужно.
 закрыто: Claude <noreply@anthropic.com>
-Claude <arvs.markitanov@gmail.com>
+закрыто: Claude <arvs.markitanov@gmail.com>
 
 # Соавторство агентского окна в трейлере Co-Authored-By.
+# Окружение сменило подпись соавтора молча 01.10: «Opus 5» → «Opus 5.5».
 Claude Opus 5 <noreply@anthropic.com>
+Claude Opus 5.5 <noreply@anthropic.com>
 
 # Автомерж площадки: с переходом на него автором коммитов слияния стал бот.
 # Это названная цена автомержа, а не недосмотр.

@@ -1,9 +1,14 @@
 {
-  "schema": "1.0",
-  "schema_of": "факты о проекте-витрине глоссария",
+  "schema": "1.2",
+  "schema_of": "факты о проекте-витрине глоссария по договору фактов витрины 1.2: по каждому показателю значение или причина в none",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Stepik-Python-Grader",
-  "generated_at": "2026-09-07T08:16:25+00:00",
+  "generated_at": "2026-10-01T10:29:01+00:00",
+  "repo": "ArtVsMark/Glossary-Python",
+  "commit": "0e45969c442a2854454b2f7e97b4daa8b3d35763",
+  "ci": {
+    "workflow": "ci.yml"
+  },
   "glossary": {
     "cards": 1349,
     "groups": 55,
@@ -15,12 +20,42 @@
   },
   "rules": {
     "total": 181,
-    "gate": 40,
-    "document": 28,
-    "pipeline": 7,
-    "mechanised": 75,
-    "none": 31,
-    "not_applicable": 75
+    "gate": 60,
+    "document": 29,
+    "pipeline": 12,
+    "mechanised": 101,
+    "none": 16,
+    "not_applicable": 64
+  },
+  "tests": {
+    "functions": 517,
+    "modules": 33
+  },
+  "python": {
+    "supported": [
+      "3.11",
+      "3.12",
+      "3.13",
+      "3.14"
+    ],
+    "os": [
+      "ubuntu-latest"
+    ]
+  },
+  "checks_per_pr": {
+    "count": 10,
+    "names": [
+      "Линтер и типы",
+      "Тесты (Python 3.11)",
+      "Тесты (Python 3.12)",
+      "Тесты (Python 3.13)",
+      "Тесты (Python 3.14)",
+      "Атрибуция коммитов изменения",
+      "Запись журнала едет с изменением",
+      "Связь изменения с задачей",
+      "Качество данных и синхронность витрины",
+      "check PR"
+    ]
   },
   "python_versions": [
     "3.11",
@@ -28,5 +63,9 @@
     "3.13",
     "3.14"
   ],
-  "coverage_percent": 96.8
+  "coverage_percent": 97.1,
+  "none": {
+    "release": "выпусков нет: пакет не публикуется и тегов не ставит — содержимое приезжает выгрузкой из Stepik-Python-Grader, а витрина пересобирается с каждым слиянием",
+    "version": "версии нет: содержимое не версионируется, оно снимок источника; поле version в pyproject.toml — метаданные установки инструментов, а не выпуск"
+  }
 }

@@ -48,10 +48,17 @@ def now() -> str:
     return dt.datetime.now(dt.UTC).isoformat(timespec="seconds")
 
 
-def envelope(schema_of: str) -> dict[str, Any]:
-    """Шапка контракта: кто, о чём, какой версии и когда собрал."""
+def envelope(schema_of: str, schema: str = SCHEMA) -> dict[str, Any]:
+    """Шапка контракта: кто, о чём, какой версии и когда собрал.
+
+    Args:
+        schema_of: Одна строка о том, чего эта версия.
+        schema: Версия формата. Своя у контракта, чей формат задан не здесь, а
+            у потребителя: ``facts.json`` отвечает договору витрины профиля и
+            несёт его номер.
+    """
     return {
-        "schema": SCHEMA,
+        "schema": schema,
         "schema_of": schema_of,
         "producer": PRODUCER,
         "source": SOURCE,

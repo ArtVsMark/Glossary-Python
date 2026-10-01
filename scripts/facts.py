@@ -24,8 +24,11 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import json
+import os
 import re
+import subprocess
 import sys
 import xml.etree.ElementTree as ET
 from collections import Counter
@@ -34,8 +37,9 @@ from typing import TYPE_CHECKING, Any, Final
 
 import yaml
 
+from glossary import __version__
 from glossary.completeness import build_completeness
-from glossary.contracts import envelope
+from glossary.contracts import PRODUCER, envelope
 from glossary.loader import load_glossary
 from glossary.validation import Severity, validate
 
@@ -54,7 +58,35 @@ COVERAGE: Final = ROOT / "coverage.xml"
 NOT_RUN: Final = 2
 """Факты не посчитаны. Не означает «числа совпадают» — их не с чем было сверять."""
 
-FACTS_SCHEMA_OF: Final = "факты о проекте-витрине глоссария"
+FACTS_SCHEMA: Final = "1.2"
+"""Версия договора фактов витрины профиля, которому отвечает файл.
+
+Формат ``facts.json`` задан потребителем — витриной ArtVsMark/ArtVsMark,
+``.rules/facts.schema.json``, — и номер у файла его, а не общий номер
+``glossary.contracts.SCHEMA`` (Glossary-Python#49)."""
+
+FACTS_SCHEMA_OF: Final = (
+    "факты о проекте-витрине глоссария по договору фактов витрины 1.2: "
+    "по каждому показателю значение или причина в none"
+)
+CI_WORKFLOW: Final = "ci.yml"
+"""Прогон, статус которого витрина спрашивает у площадки."""
+
+TESTS: Final = ROOT / "tests"
+GIT_TIMEOUT: Final = 30
+"""Дедлайн на вызов git: у публикующего прогона он свой и короткий (правило 100)."""
+
+NO_RELEASE: Final = (
+    "выпусков нет: пакет не публикуется и тегов не ставит — содержимое приезжает "
+    "выгрузкой из Stepik-Python-Grader, а витрина пересобирается с каждым слиянием"
+)
+"""Причина ``none.release``. Действует, пока в репозитории нет ни одного тега."""
+
+NO_VERSION: Final = (
+    "версии нет: содержимое не версионируется, оно снимок источника; поле version "
+    "в pyproject.toml — метаданные установки инструментов, а не выпуск"
+)
+"""Причина ``none.version``. Снимается вместе с первым выпуском."""
 GOOD_COVERAGE: Final = 90.0
 """С какого покрытия тестами значок зеленеет. Совпадает с --cov-fail-under в CI."""
 
@@ -140,29 +172,161 @@ def _coverage_percent() -> float | None:
     return round(float(rate) * 100, 1) if rate is not None else None
 
 
+def _ci() -> dict[str, Any]:
+    """Прогон проверок как он описан в дереве."""
+    path = ROOT / ".github" / "workflows" / CI_WORKFLOW
+    loaded: dict[str, Any] = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return loaded
+
+
 def _python_versions() -> list[str]:
     """Матрица версий — из прогона, а не из прозы о нём."""
-    ci = yaml.safe_load((ROOT / ".github" / "workflows" / "ci.yml").read_text("utf-8"))
-    versions = ci["jobs"]["tests"]["strategy"]["matrix"]["python-version"]
+    versions = _ci()["jobs"]["tests"]["strategy"]["matrix"]["python-version"]
     return [str(v) for v in versions]
 
 
+def _python_facts() -> dict[str, list[str]]:
+    """Версии Python и ОС, на которых идут тесты, — из той же матрицы."""
+    runner = _ci()["jobs"]["tests"]["runs-on"]
+    return {
+        "supported": _python_versions(),
+        "os": [str(runner)] if isinstance(runner, str) else [str(r) for r in runner],
+    }
+
+
+def _job_names(job_id: str, job: dict[str, Any]) -> list[str]:
+    """Имена проверок, которые работа порождает на изменении.
+
+    Работа с матрицей даёт по проверке на каждое значение: площадка подставляет
+    его в имя. Разворачивается одна ось — у прогона других нет, а вторая ось
+    без разбора всех комбинаций дала бы неверное число.
+    """
+    name = str(job.get("name", job_id))
+    matrix = job.get("strategy", {}).get("matrix", {})
+    if not matrix:
+        return [name]
+    if len(matrix) != 1:
+        raise ValueError(f"работа {job_id}: матрица больше чем по одной оси")
+    ((axis, values),) = matrix.items()
+    placeholder = re.compile(r"\$\{\{\s*matrix\." + re.escape(axis) + r"\s*\}\}")
+    return [placeholder.sub(str(value), name) for value in values]
+
+
+def _checks_per_pr() -> dict[str, Any]:
+    """Проверки, которые прогон CI ставит на каждое изменение.
+
+    Считается прогон, названный в ``ci.workflow``. Постановка в очередь
+    автомержа (``automerge.yml``) — тоже работа на изменении, но изменение она
+    не проверяет, и проверкой здесь не считается.
+    """
+    names = [
+        check
+        for job_id, job in _ci()["jobs"].items()
+        for check in _job_names(job_id, job)
+    ]
+    return {"count": len(names), "names": names}
+
+
+def _is_test(node: ast.AST) -> bool:
+    """Функция, которую pytest соберёт как тест."""
+    return isinstance(node, ast.FunctionDef | ast.AsyncFunctionDef) and (
+        node.name.startswith("test")
+    )
+
+
+def _tests_facts() -> dict[str, int]:
+    """Тестовые функции и модули — разбором исходников, без запуска.
+
+    Функция считается один раз, сколько бы случаев ни давала параметризация:
+    число случаев зависит от данных, а показатель — о том, что написано.
+    """
+    modules = sorted(TESTS.glob("test_*.py"))
+    functions = 0
+    for module in modules:
+        tree = ast.parse(module.read_text(encoding="utf-8"))
+        for node in tree.body:
+            if _is_test(node):
+                functions += 1
+            elif isinstance(node, ast.ClassDef) and node.name.startswith("Test"):
+                functions += sum(1 for item in node.body if _is_test(item))
+    return {"functions": functions, "modules": len(modules)}
+
+
+def _git(*args: str) -> str:
+    """Вывод git; отказ git — ``OSError``, то есть третий исход точки входа."""
+    try:
+        done = subprocess.run(  # noqa: S603 — аргументы наши, не чужой ввод
+            ["git", *args],  # noqa: S607 — git ищется в PATH прогона
+            cwd=ROOT,
+            capture_output=True,
+            check=True,
+            text=True,
+            encoding="utf-8",
+            timeout=GIT_TIMEOUT,
+        )
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as refusal:
+        raise OSError(f"git {' '.join(args)}: {refusal}") from refusal
+    return done.stdout.strip()
+
+
+def _commit() -> str:
+    """Полный SHA, по которому собран файл.
+
+    В прогоне — ``GITHUB_SHA``: площадка называет коммит сама, и ответ не
+    зависит от того, как сделан checkout.
+    """
+    return os.environ.get("GITHUB_SHA") or _git("rev-parse", "HEAD")
+
+
+def _release() -> str | None:
+    """Последний выпуск — самый поздний тег; ``None``, если тегов нет.
+
+    Причина «выпусков нет» не записана раз и навсегда: она верна, пока тегов
+    нет, и первый тег её снимает без правки этого файла.
+    """
+    tags = _git("tag", "--list", "--sort=-creatordate").splitlines()
+    return tags[0] if tags else None
+
+
 def build_facts() -> dict[str, Any]:
-    """Собрать факты о проекте.
+    """Собрать факты о проекте по договору фактов витрины 1.2.
+
+    По каждому показателю договора — значение или причина в ``none``. Покрытие
+    — исключение: без ``coverage.xml`` ключа нет вовсе, потому что «не
+    измеряли» не то же, что «предмета нет»; публикующий прогон отчёт снимает
+    всегда.
 
     Returns:
         Словарь, пригодный к публикации. Ключи, которые не удалось измерить,
         отсутствуют — их не выставляют нулём.
     """
     facts: dict[str, Any] = {
-        **envelope(FACTS_SCHEMA_OF),
+        **envelope(FACTS_SCHEMA_OF, schema=FACTS_SCHEMA),
+        "repo": PRODUCER,
+        "commit": _commit(),
+        "ci": {"workflow": CI_WORKFLOW},
         "glossary": _glossary_facts(),
         "rules": _rules_facts(),
+        "tests": _tests_facts(),
+        "python": _python_facts(),
+        "checks_per_pr": _checks_per_pr(),
+        # Прежнее имя остаётся: опубликованное поле не удаляется (docs/contracts.md).
+        # Источник у обоих один, разойтись им негде.
         "python_versions": _python_versions(),
     }
     coverage = _coverage_percent()
     if coverage is not None:
         facts["coverage_percent"] = coverage
+    none: dict[str, str] = {}
+    release = _release()
+    if release is None:
+        none["release"] = NO_RELEASE
+        none["version"] = NO_VERSION
+    else:
+        facts["release"] = release
+        facts["version"] = __version__
+    if none:
+        facts["none"] = none
     return facts
 
 

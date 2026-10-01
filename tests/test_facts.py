@@ -14,11 +14,13 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import pytest
 
 import facts as facts_module
+import glossary
 from glossary import contracts
 from glossary.loader import project_root
 
@@ -31,7 +33,7 @@ def facts() -> dict[str, object]:
 
 def test_facts_are_collected(facts: dict[str, object]):
     """Пустой сбор — ошибка входа, а не «фактов нет»."""
-    assert facts["schema"] == contracts.SCHEMA
+    assert facts["schema"] == facts_module.FACTS_SCHEMA
     assert facts["producer"] == contracts.PRODUCER
     glossary = facts["glossary"]
     assert isinstance(glossary, dict)
@@ -45,6 +47,105 @@ def test_unmeasured_key_is_absent_not_zero(monkeypatch: pytest.MonkeyPatch):
     """
     monkeypatch.setattr(facts_module, "COVERAGE", Path("/нет/такого/coverage.xml"))
     assert "coverage_percent" not in facts_module.build_facts()
+
+
+def test_contract_minimum_is_present(facts: dict[str, object]):
+    """Обязательный минимум договора 1.2: без него витрина файл не читает."""
+    assert facts["repo"] == contracts.PRODUCER
+    assert re.fullmatch(r"[0-9a-f]{40}", str(facts["commit"])), "нужен полный SHA"
+    ci = facts["ci"]
+    assert isinstance(ci, dict)
+    workflow = project_root() / ".github" / "workflows" / ci["workflow"]
+    assert workflow.exists(), "статус спрашивают у прогона, которого нет"
+
+
+INDICATORS = ("version", "release", "tests", "python", "checks_per_pr")
+"""Показатели договора, у которых значение или причина есть всегда.
+
+Покрытия здесь нет: без отчёта оно «не измерено», а не «предмета нет», и его
+отсутствие проверяет ``test_unmeasured_key_is_absent_not_zero``.
+"""
+
+
+@pytest.mark.parametrize("indicator", INDICATORS)
+def test_every_indicator_has_value_or_reason(facts: dict[str, object], indicator: str):
+    """Третьего нет: пустой показатель снаружи неотличим от «не дошли»."""
+    reasons = facts.get("none", {})
+    assert isinstance(reasons, dict)
+    has_value = indicator in facts
+    has_reason = bool(reasons.get(indicator))
+    assert has_value != has_reason, f"{indicator}: значение и причина — ровно одно"
+
+
+def test_checks_name_the_required_one(facts: dict[str, object]):
+    """Перечень проверок взят из прогона: обязательная проверка в нём есть."""
+    checks = facts["checks_per_pr"]
+    assert isinstance(checks, dict)
+    assert checks["count"] == len(checks["names"])
+    assert "check PR" in checks["names"]
+
+
+def test_matrix_expands_into_one_check_per_value():
+    """Площадка ставит по проверке на значение матрицы и подставляет его в имя."""
+    job = {
+        "name": "Тесты (Python ${{ matrix.python-version }})",
+        "strategy": {"matrix": {"python-version": ["3.11", "3.12"]}},
+    }
+    assert facts_module._job_names("tests", job) == [
+        "Тесты (Python 3.11)",
+        "Тесты (Python 3.12)",
+    ]
+    assert facts_module._job_names("lint", {}) == ["lint"]
+
+
+def test_second_matrix_axis_is_refused_not_miscounted():
+    """Две оси без разбора комбинаций дали бы неверное число — отказ честнее."""
+    job = {"strategy": {"matrix": {"python-version": ["3.11"], "os": ["a", "b"]}}}
+    with pytest.raises(ValueError, match="матрица"):
+        facts_module._job_names("tests", job)
+
+
+def test_tests_are_counted_from_sources(facts: dict[str, object]):
+    """Модулей столько, сколько файлов собирает pytest; функций не меньше."""
+    tests = facts["tests"]
+    assert isinstance(tests, dict)
+    modules = list((project_root() / "tests").glob("test_*.py"))
+    assert tests["modules"] == len(modules)
+    assert tests["functions"] >= tests["modules"]
+
+
+def test_python_section_and_old_name_share_one_source(facts: dict[str, object]):
+    """Прежнее имя не удалено и не расходится с новым."""
+    python = facts["python"]
+    assert isinstance(python, dict)
+    assert python["supported"] == facts["python_versions"]
+    assert python["os"], "ОС прогона тестов не названа"
+
+
+def test_platform_names_the_commit(monkeypatch: pytest.MonkeyPatch):
+    """В прогоне коммит называет площадка, а не checkout."""
+    monkeypatch.setenv("GITHUB_SHA", "a" * 40)
+    assert facts_module._commit() == "a" * 40
+
+
+def test_first_tag_lifts_the_reason(monkeypatch: pytest.MonkeyPatch):
+    """Причина «выпусков нет» снимается первым тегом, без правки кода."""
+    monkeypatch.setattr(facts_module, "_release", lambda: "v1.0.0")
+    built = facts_module.build_facts()
+    assert built["release"] == "v1.0.0"
+    assert built["version"] == glossary.__version__
+    assert "none" not in built
+
+
+def test_git_refusal_is_the_third_outcome(monkeypatch: pytest.MonkeyPatch):
+    """Git не ответил — факты не посчитаны, а не «расхождение»."""
+
+    def refuse(*_: str) -> str:
+        raise OSError("git не найден")
+
+    monkeypatch.delenv("GITHUB_SHA", raising=False)
+    monkeypatch.setattr(facts_module, "_git", refuse)
+    assert facts_module.main(["--json"]) == facts_module.NOT_RUN
 
 
 @pytest.fixture(scope="module")

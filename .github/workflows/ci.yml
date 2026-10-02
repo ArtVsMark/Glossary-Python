@@ -67,6 +67,9 @@ jobs:
       - name: Записи решений называют отвергнутое
         run: python scripts/check_decisions.py
 
+      - name: Код конвейера исполняется на планке Python
+        run: python scripts/check_python_version.py
+
   tests:
     timeout-minutes: 15
     name: Тесты (Python ${{ matrix.python-version }})
@@ -251,6 +254,11 @@ jobs:
     if: always()
     runs-on: ubuntu-latest
     steps:
+      # Сводку пишет python планки, а не системный python раннера (217).
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
       # След отказа кладётся в СВОДКУ ПРОГОНА, а не только в логи (правило 151).
       # Логи открывает не всякий, кто чинит: у облачного окна доступ к ним
       # зависит от посредника, а сводку видит всякий, кто открыл прогон.

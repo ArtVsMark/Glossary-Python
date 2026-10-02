@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml)
 [![Публикация витрины](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml)
+[![Python: основной CI, версии, ОС, покрытие, выпуск, версия](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/python.svg)](.github/workflows/python-next.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Карточек](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json)
 [![Замечаний](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](#качество-данных)

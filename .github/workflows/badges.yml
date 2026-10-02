@@ -165,7 +165,7 @@ jobs:
       - name: Покрытие — источник для одноимённого значка
         run: pytest --cov=glossary --cov-report=xml -q
 
-      - uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
           pattern: inventory-*
           path: inventory

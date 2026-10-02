@@ -39,7 +39,7 @@ jobs:
 
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: "3.14"
           cache: pip
           cache-dependency-path: pyproject.toml
 
@@ -68,7 +68,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11", "3.12", "3.13", "3.14"]
+        python-version: ["3.14"]
     steps:
       # История с тегами: живая половина сверки версии с тегом выпуска
       # (tests/test_version.py) без тега в клоне честно пропускается.
@@ -90,7 +90,7 @@ jobs:
         run: pytest --cov=glossary --cov-report=xml --cov-report=term-missing --cov-fail-under=90
 
       - name: Публикация отчёта о покрытии
-        if: matrix.python-version == '3.11'
+        if: matrix.python-version == '3.14'
         uses: actions/upload-artifact@v7
         with:
           name: coverage
@@ -110,7 +110,7 @@ jobs:
 
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Имена авторов сходятся со списком
         run: |
@@ -130,7 +130,7 @@ jobs:
 
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: Решение осело артефактом тем же заходом
         run: |
@@ -146,7 +146,7 @@ jobs:
 
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: "3.14"
 
       - name: У изменения есть ответ задаче
         if: github.event_name == 'pull_request'
@@ -173,7 +173,7 @@ jobs:
 
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.11"
+          python-version: "3.14"
           cache: pip
           cache-dependency-path: pyproject.toml
 

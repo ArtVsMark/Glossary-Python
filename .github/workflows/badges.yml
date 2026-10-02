@@ -61,13 +61,15 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
-          cache: pip
-          cache-dependency-path: pyproject.toml
 
-      - name: Установка зависимостей
-        run: python -m pip install -e .
-
+      # Из дерева, без установки. Планка проекта — 3.14, и requires-python
+      # ставить пакет ниже неё не даёт, а замер языка нужен и на младших
+      # версиях: из них складывается разность «что появилось» (Glossary-Python#53).
+      # Runtime-зависимостей нет, поэтому установка замеру и не нужна; что код
+      # пакета разбирается младшей версией, держит tests/test_measured_versions.py.
       - name: Снять инвентарь
+        env:
+          PYTHONPATH: src
         run: >
           python -m glossary inventory
           -o inventory/inventory-${{ matrix.python-version }}.json
@@ -95,10 +97,9 @@ jobs:
           python-version: "3.15"
           allow-prereleases: true
 
-      - name: Установка зависимостей
-        run: python -m pip install -e .
-
       - name: Снять инвентарь
+        env:
+          PYTHONPATH: src
         run: python -m glossary inventory -o inventory/inventory-3.15.json
 
       - uses: actions/upload-artifact@v7

@@ -2,7 +2,6 @@
 
 [![CI](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml)
 [![Публикация витрины](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Карточек](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json)
 [![Замечаний](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](#качество-данных)
@@ -125,7 +124,8 @@ glossary completeness                   # чего в глоссарии нет 
 ```
 
 Пакет запускается и как модуль: `python -m glossary …`. Runtime-зависимостей нет —
-достаточно интерпретатора Python 3.11+.
+достаточно интерпретатора Python 3.14+. Замер языка (`glossary inventory`)
+запускается из дерева и на младших версиях, от 3.11: так снимается разность версий.
 
 ## Качество данных
 

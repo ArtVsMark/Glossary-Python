@@ -1,0 +1,1 @@
+планка Python поднята до 3.14 (`requires-python`, ruff, mypy, прогоны); предварительная 3.15 проверяется отдельным прогоном `python-next.yml` без `continue-on-error`; замер языка остаётся матрицей 3.11–3.15 и запускает пакет из дерева, а `facts.json` называет 3.15 в `python.experimental` (#53)

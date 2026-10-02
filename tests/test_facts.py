@@ -120,6 +120,8 @@ def test_python_section_and_old_name_share_one_source(facts: dict[str, object]):
     assert isinstance(python, dict)
     assert python["supported"] == facts["python_versions"]
     assert python["os"], "ОС прогона тестов не названа"
+    assert python["experimental"], "предварительная версия не названа"
+    assert not set(python["experimental"]) & set(python["supported"])
 
 
 def test_platform_names_the_commit(monkeypatch: pytest.MonkeyPatch):

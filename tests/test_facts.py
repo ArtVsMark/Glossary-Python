@@ -50,7 +50,7 @@ def test_unmeasured_key_is_absent_not_zero(monkeypatch: pytest.MonkeyPatch):
 
 
 def test_contract_minimum_is_present(facts: dict[str, object]):
-    """Обязательный минимум договора 1.2: без него витрина файл не читает."""
+    """Обязательный минимум договора 1.3: без него витрина файл не читает."""
     assert facts["repo"] == contracts.PRODUCER
     assert re.fullmatch(r"[0-9a-f]{40}", str(facts["commit"])), "нужен полный SHA"
     ci = facts["ci"]
@@ -135,8 +135,9 @@ def test_first_tag_lifts_the_reason(monkeypatch: pytest.MonkeyPatch):
     tagged = version_module.Version("v0.1.0", "0.1", "0.1.41")
     monkeypatch.setattr(version_module, "version", lambda: tagged)
     built = facts_module.build_facts()
-    assert built["release"] == "v0.1.0"
+    assert built["release"] == "0.1", "договор 1.3: выпуск — серия X.Y, а не тег"
     assert built["version"] == "0.1.41"
+    assert built["version"].startswith(built["release"] + ".")
     assert "none" not in built
 
 

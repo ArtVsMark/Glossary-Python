@@ -549,10 +549,9 @@ def test_workflow_run_typo_is_caught_on_a_fake():
 
 
 @pytest.mark.live_surface
-def test_badges_wake_on_workflows_that_exist(badges: dict[str, Any]):
+def test_badges_wake_on_workflows_that_exist():
     """Живая половина: значки будятся завершением прогонов, которые есть."""
-    triggers = badges.get("on") or badges.get(True)
-    listed = triggers["workflow_run"]["workflows"]
+    listed = _triggers(BADGES_PATH)["workflow_run"]["workflows"]
     known = {
         str(yaml.safe_load(path.read_text(encoding="utf-8"))["name"])
         for path in WORKFLOWS.glob("*.yml")

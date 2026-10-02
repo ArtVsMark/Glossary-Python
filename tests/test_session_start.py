@@ -5,8 +5,6 @@
 вне облака молчит и читает планку тем же разбором, что и все.
 """
 
-from __future__ import annotations
-
 import json
 import os
 import subprocess

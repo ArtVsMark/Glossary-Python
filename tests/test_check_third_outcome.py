@@ -9,8 +9,6 @@
 ``changelog.py`` и ``whatsnew.py`` до правки в том же заходе.
 """
 
-from __future__ import annotations
-
 from pathlib import Path
 
 import pytest

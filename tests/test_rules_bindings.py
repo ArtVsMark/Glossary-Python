@@ -23,8 +23,6 @@
   молчание; «не нашли» и «нет» разные ответы (правило 039).
 """
 
-from __future__ import annotations
-
 import json
 import re
 from typing import Any, Final

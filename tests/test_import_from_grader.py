@@ -6,8 +6,6 @@
 результата: порядок, дедуп, отбор по статусу и происхождение цветовой группы.
 """
 
-from __future__ import annotations
-
 import json
 from pathlib import Path
 from typing import Any

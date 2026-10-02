@@ -22,8 +22,6 @@
 цена, а не недосмотр.
 """
 
-from __future__ import annotations
-
 import re
 
 import pytest

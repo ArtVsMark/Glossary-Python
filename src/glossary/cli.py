@@ -10,15 +10,13 @@ runtime-зависимостей, поэтому его можно запуск�
 самих констант ниже.
 """
 
-from __future__ import annotations
-
 import argparse
 import json
 import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__, completeness, contracts, inventory, objections
+from glossary import __version__, completeness, inventory, measure, objections
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, load_glossary, project_root
@@ -417,21 +415,10 @@ def _cmd_inventory(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     отвечает на «что появилось в 3.14».
     """
     snapshot = inventory.build_inventory()
-    payload = {
-        **contracts.envelope(inventory.SCHEMA_OF),
-        "python_version": snapshot.python_version,
-        "count": len(snapshot),
-        "items": [
-            {"qualname": item.qualname, "module": item.module, "kind": item.kind}
-            for item in snapshot
-        ],
-    }
-    rendered = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
-    if args.output is None:
-        out.write(rendered)
+    text = measure.write(snapshot, args.output)
+    if text is not None:
+        out.write(text)
     else:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(rendered, encoding="utf-8")
         print(
             f"Инвентарь Python {snapshot.python_version}: "
             f"{len(snapshot)} сущностей → {args.output}",

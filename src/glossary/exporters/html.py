@@ -6,8 +6,6 @@
 браузере и править в любом редакторе.
 """
 
-from __future__ import annotations
-
 import json
 from importlib import resources
 from typing import TYPE_CHECKING, Final

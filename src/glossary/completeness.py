@@ -23,8 +23,6 @@
 бы методы всех типов сразу.
 """
 
-from __future__ import annotations
-
 import json
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, Final

@@ -16,8 +16,6 @@
 получает: решение там уже есть, и записать его есть кому.
 """
 
-from __future__ import annotations
-
 from typing import TYPE_CHECKING, Final
 
 if TYPE_CHECKING:

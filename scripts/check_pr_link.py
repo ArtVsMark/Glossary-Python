@@ -38,8 +38,6 @@
 Исходы: 0 — ответ дан; 1 — ответа нет; 2 — проверка не отработала.
 """
 
-from __future__ import annotations
-
 import argparse
 import os
 import re

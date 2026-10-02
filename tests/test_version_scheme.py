@@ -5,8 +5,6 @@
 третий исход, а не правдоподобное число.
 """
 
-from __future__ import annotations
-
 import pytest
 
 import version as version_module

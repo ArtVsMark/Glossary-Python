@@ -5,8 +5,6 @@
 похожих на новые. Поэтому проверяется порядок, а не только арифметика.
 """
 
-from __future__ import annotations
-
 import json
 from pathlib import Path
 from typing import Any

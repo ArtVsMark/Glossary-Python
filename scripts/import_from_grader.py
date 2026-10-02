@@ -21,8 +21,6 @@
     python scripts/import_from_grader.py --source ... --check   # сверить, не писать
 """
 
-from __future__ import annotations
-
 import argparse
 import json
 import sys

@@ -14,8 +14,6 @@
 у одного, и ответ проекта по правилу 056 честно стоял «не дошли руки».
 """
 
-from __future__ import annotations
-
 import ast
 from typing import Final
 

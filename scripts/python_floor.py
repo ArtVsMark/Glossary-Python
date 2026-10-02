@@ -12,8 +12,6 @@
 Исходы: 0 — планка напечатана; 2 — ``requires-python`` не прочитан.
 """
 
-from __future__ import annotations
-
 import re
 import sys
 import tomllib

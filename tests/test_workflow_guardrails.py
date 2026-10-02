@@ -6,8 +6,6 @@
 совпадение держится тестом, а не памятью.
 """
 
-from __future__ import annotations
-
 import json
 import re
 import tempfile

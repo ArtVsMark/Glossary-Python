@@ -34,8 +34,6 @@
 Исходы: 0 — версия определена; 2 — тега схемы не видно.
 """
 
-from __future__ import annotations
-
 import argparse
 import re
 import subprocess

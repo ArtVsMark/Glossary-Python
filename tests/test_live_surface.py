@@ -28,8 +28,6 @@
   severity нет, и гейт требует только, чтобы живая половина существовала.
 """
 
-from __future__ import annotations
-
 import ast
 from pathlib import Path
 

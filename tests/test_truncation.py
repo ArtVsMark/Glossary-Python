@@ -27,8 +27,6 @@
   проверяют наборы отчётов, а не этот гейт.
 """
 
-from __future__ import annotations
-
 import ast
 from pathlib import Path
 

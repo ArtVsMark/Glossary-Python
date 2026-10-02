@@ -25,8 +25,6 @@ merge-коммиту, которого при конфликте не сущес
     python scripts/changelog.py --collect   # перенести в [Unreleased] и удалить
 """
 
-from __future__ import annotations
-
 import argparse
 import re
 import sys

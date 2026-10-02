@@ -4,8 +4,6 @@
 ``conftest`` предназначен для фикстур, а не для переиспользуемых функций.
 """
 
-from __future__ import annotations
-
 from typing import Any
 
 from glossary.models import Entry, Glossary, Text

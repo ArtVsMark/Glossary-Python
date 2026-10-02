@@ -5,8 +5,6 @@
 что качество не деградирует от правки к правке.
 """
 
-from __future__ import annotations
-
 import json
 import subprocess
 import sys

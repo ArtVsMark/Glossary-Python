@@ -11,8 +11,6 @@
 принял за соавтора середину фразы «github-actions[bot] в уплотнённый коммит».
 """
 
-from __future__ import annotations
-
 import subprocess
 from pathlib import Path
 

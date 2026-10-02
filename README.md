@@ -213,13 +213,13 @@ Python 3.15 снимается отдельным прогоном с право
 Набор собран командой каталога `onboard_consumer.py`, а не перенесён руками:
 копия генератора в каждом проекте — это N реализаций одного алгоритма.
 
-Разобраны все **<!--m:rules_total-->181<!--/m:rules_total-->** правил каталога, `unreviewed` не осталось:
+Разобраны все **<!--m:rules_total-->214<!--/m:rules_total-->** правил каталога, `unreviewed` не осталось:
 
 | Ответ | Сколько | Что означает |
 | --- | --- | --- |
-| `active` + механизм | <!--m:rules_mechanised-->101<!--/m:rules_mechanised--> | Правило действует и держится гейтом (<!--m:rules_gate-->64<!--/m:rules_gate-->), документом (<!--m:rules_document-->24<!--/m:rules_document-->) или конвейером (<!--m:rules_pipeline-->13<!--/m:rules_pipeline-->) |
+| `active` + механизм | <!--m:rules_mechanised-->127<!--/m:rules_mechanised--> | Правило действует и держится гейтом (<!--m:rules_gate-->72<!--/m:rules_gate-->), документом (<!--m:rules_document-->39<!--/m:rules_document-->) или конвейером (<!--m:rules_pipeline-->16<!--/m:rules_pipeline-->) |
 | `active` + `none` | <!--m:rules_none-->16<!--/m:rules_none--> | Правило действует, но здесь ничем не держится — у каждого названа причина |
-| `not-applicable` | <!--m:rules_na-->64<!--/m:rules_na--> | Предмета правила в этом проекте нет — с объяснением, почему |
+| `not-applicable` | <!--m:rules_na-->71<!--/m:rules_na--> | Предмета правила в этом проекте нет — с объяснением, почему |
 
 **<!--m:rules_none-->16<!--/m:rules_none--> — это метрика, и она должна уменьшаться.** Потолок зафиксирован в
 `tests/test_rules_bindings.py` и двигается только вниз, как и храповик качества

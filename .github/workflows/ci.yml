@@ -41,7 +41,7 @@ jobs:
     name: Линтер и типы
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
         with:
@@ -78,7 +78,7 @@ jobs:
     steps:
       # История с тегами: живая половина сверки версии с тегом выпуска
       # (tests/test_version.py) без тега в клоне честно пропускается.
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           fetch-tags: true
@@ -110,7 +110,7 @@ jobs:
     steps:
       # Полная история намеренно: атрибуция проверяется в том, что ляжет в
       # общую ветку, а при глубине 1 сравнивать не с чем (правило 123).
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -130,7 +130,7 @@ jobs:
     steps:
       # Полная история намеренно: состав изменения считается против основы, а
       # при глубине 1 сравнивать не с чем (правило 138).
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -148,7 +148,7 @@ jobs:
     name: Связь изменения с задачей
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
         with:
@@ -175,7 +175,7 @@ jobs:
     name: Качество данных и синхронность витрины
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
         with:

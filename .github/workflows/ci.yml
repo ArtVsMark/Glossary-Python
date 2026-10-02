@@ -70,7 +70,12 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12", "3.13", "3.14"]
     steps:
+      # История с тегами: живая половина сверки версии с тегом выпуска
+      # (tests/test_version.py) без тега в клоне честно пропускается.
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - uses: actions/setup-python@v7
         with:

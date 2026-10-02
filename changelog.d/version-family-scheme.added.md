@@ -1,0 +1,1 @@
+версия считается по схеме семьи — тег выпуска `vX.Y.0` плюс принятые после него изменения (`scripts/version.py`); `facts.json` публикует `release` и `version`, рядом значки `release.json` и `version.json`

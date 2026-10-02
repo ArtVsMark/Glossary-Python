@@ -20,7 +20,7 @@ from pathlib import Path
 import pytest
 
 import facts as facts_module
-import glossary
+import version as version_module
 from glossary import contracts
 from glossary.loader import project_root
 
@@ -129,12 +129,33 @@ def test_platform_names_the_commit(monkeypatch: pytest.MonkeyPatch):
 
 
 def test_first_tag_lifts_the_reason(monkeypatch: pytest.MonkeyPatch):
-    """Причина «выпусков нет» снимается первым тегом, без правки кода."""
-    monkeypatch.setattr(facts_module, "_release", lambda: "v1.0.0")
+    """Причина «выпуска нет» снимается первым тегом, без правки кода."""
+    tagged = version_module.Version("v0.1.0", "0.1", "0.1.41")
+    monkeypatch.setattr(version_module, "version", lambda: tagged)
     built = facts_module.build_facts()
-    assert built["release"] == "v1.0.0"
-    assert built["version"] == glossary.__version__
+    assert built["release"] == "v0.1.0"
+    assert built["version"] == "0.1.41"
     assert "none" not in built
+
+
+def test_untagged_clone_gives_reasons_not_numbers(monkeypatch: pytest.MonkeyPatch):
+    """Без тега версия недостоверна: причина, а не правдоподобное «0.1.N»."""
+    monkeypatch.setattr(version_module, "version", lambda: None)
+    built = facts_module.build_facts()
+    assert "version" not in built and "release" not in built
+    assert set(built["none"]) == {"version", "release"}
+
+
+def test_release_and_version_badges_follow_the_tag(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+):
+    """Значок выпуска говорит «X.Y», значок версии — полную версию."""
+    tagged = version_module.Version("v0.1.0", "0.1", "0.1.41")
+    monkeypatch.setattr(version_module, "version", lambda: tagged)
+    facts_module.write_badges(facts_module.build_facts(), tmp_path)
+    release = json.loads((tmp_path / "release.json").read_text(encoding="utf-8"))
+    current = json.loads((tmp_path / "version.json").read_text(encoding="utf-8"))
+    assert (release["message"], current["message"]) == ("0.1", "0.1.41")
 
 
 def test_git_refusal_is_the_third_outcome(monkeypatch: pytest.MonkeyPatch):

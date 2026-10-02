@@ -311,14 +311,24 @@ def test_badges_publish_what_changed_between_versions(badges: dict[str, Any]):
 def test_inventory_is_taken_on_every_tested_version(
     ci: dict[str, Any], badges: dict[str, Any]
 ):
-    """Инвентарь снимается ровно на тех версиях, на которых мы проверяемся.
+    """Инвентарь снимается на каждой версии, на которой мы проверяемся, и шире.
 
-    Разойдись эти списки — и мы либо мерили бы полноту на версии, которую не
-    тестируем, либо молча теряли бы разность между соседними: пропуск версии
-    в середине превращает «что появилось в 3.13» в «что появилось за две
-    версии», и результат выглядит правдоподобно.
+    С переходом на 3.14 (Glossary-Python#53) списки разошлись намеренно:
+    тесты идут на планке, а замер языка — от младшей версии, которую нужно
+    сравнивать, до планки. Полноту мерить на версии, которую не тестируем,
+    нельзя, поэтому проверяемые версии обязаны входить в замер.
     """
-    assert _versions(badges, "inventory") == _versions(ci, "tests")
+    assert set(_versions(ci, "tests")) <= set(_versions(badges, "inventory"))
+
+
+def test_measured_versions_have_no_gap(badges: dict[str, Any]):
+    """Пропуск версии в середине превращает «что появилось в 3.13» в «за две».
+
+    Результат такой разности выглядит правдоподобно, поэтому разрыв ловится
+    здесь, а не глазами в whatsnew.json.
+    """
+    minors = sorted(int(v.split(".")[1]) for v in _versions(badges, "inventory"))
+    assert minors == list(range(minors[0], minors[-1] + 1)), minors
 
 
 def test_preview_version_never_blocks_publication(badges: dict[str, Any]):

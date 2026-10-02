@@ -20,6 +20,9 @@ import tomllib
 from importlib.metadata import version as installed_version
 from pathlib import Path
 
+import pytest
+
+import version as version_module
 from glossary import __version__
 from glossary._version import DISTRIBUTION, UNINSTALLED, package_version
 from glossary.loader import project_root
@@ -115,3 +118,35 @@ def test_literal_scan_passes_the_derived_assignment(tmp_path):
 def test_uninstalled_tree_says_so_instead_of_guessing():
     """Дерева без установки метаданные не несут — ответ обязан это назвать."""
     assert package_version("glossary-python-not-installed") == UNINSTALLED
+
+
+def release_mismatch(declared: str, tag: str) -> str | None:
+    """Расхождение поля version с тегом выпуска; ``None`` — совпадают.
+
+    Поле в ``pyproject.toml`` — начало отсчёта схемы семьи: тег ``vX.Y.0``
+    называет выпуск, и поле обязано называть тот же ``X.Y.0``.
+    """
+    expected = tag.removeprefix("v")
+    if declared == expected:
+        return None
+    return f"pyproject.toml объявляет {declared}, а последний тег выпуска — {tag}"
+
+
+def test_release_mismatch_is_caught_on_a_fake():
+    """Подделка: сверка краснеет на расхождении, а не сравнивает число с собой."""
+    assert release_mismatch("0.1.0", "v0.1.0") is None
+    assert release_mismatch("0.1.0", "v0.2.0") is not None
+
+
+@pytest.mark.live_surface
+def test_declared_version_names_the_latest_release_tag():
+    """Живая половина: поле version совпадает с последним тегом выпуска.
+
+    Без тегов в клоне сверять не с чем — это пропуск с названной причиной, а
+    не зелёное: неглубокий клон без тегов неотличим от проекта до выпуска.
+    """
+    tag = version_module.latest_tag()
+    if tag is None:
+        pytest.skip("тега выпуска в клоне не видно: git fetch --tags")
+    problem = release_mismatch(declared_version(), tag)
+    assert problem is None, problem

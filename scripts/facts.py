@@ -37,7 +37,7 @@ from typing import TYPE_CHECKING, Any, Final
 
 import yaml
 
-from glossary import __version__
+import version
 from glossary.completeness import build_completeness
 from glossary.contracts import PRODUCER, envelope
 from glossary.loader import load_glossary
@@ -76,21 +76,27 @@ TESTS: Final = ROOT / "tests"
 GIT_TIMEOUT: Final = 30
 """Дедлайн на вызов git: у публикующего прогона он свой и короткий (правило 100)."""
 
-NO_RELEASE: Final = (
-    "выпусков нет: пакет не публикуется и тегов не ставит — содержимое приезжает "
-    "выгрузкой из Stepik-Python-Grader, а витрина пересобирается с каждым слиянием"
-)
-"""Причина ``none.release``. Действует, пока в репозитории нет ни одного тега."""
+NO_RELEASE: Final = "выпуска ещё нет: тег вида vX.Y.0 в репозитории не поставлен"
+"""Причина ``none.release``. Публикующий прогон берёт историю целиком и с тегами,
+поэтому там тега не видно лишь тогда, когда его действительно нет."""
 
 NO_VERSION: Final = (
-    "версии нет: содержимое не версионируется, оно снимок источника; поле version "
-    "в pyproject.toml — метаданные установки инструментов, а не выпуск"
+    "версии ещё нет: по схеме семьи она считается от тега выпуска vX.Y.0, "
+    "а тег не поставлен"
 )
-"""Причина ``none.version``. Снимается вместе с первым выпуском."""
+"""Причина ``none.version``. Снимается первым тегом без правки кода."""
 GOOD_COVERAGE: Final = 90.0
 """С какого покрытия тестами значок зеленеет. Совпадает с --cov-fail-under в CI."""
 
-BADGE_NAMES: Final = ("cards", "rules", "warnings", "coverage", "completeness")
+BADGE_NAMES: Final = (
+    "cards",
+    "rules",
+    "warnings",
+    "coverage",
+    "completeness",
+    "release",
+    "version",
+)
 """Имена, занятые значками, — заповедник, а не перечень написанного.
 
 Значок покрытия появляется только при наличии ``coverage.xml``, поэтому список
@@ -278,16 +284,6 @@ def _commit() -> str:
     return os.environ.get("GITHUB_SHA") or _git("rev-parse", "HEAD")
 
 
-def _release() -> str | None:
-    """Последний выпуск — самый поздний тег; ``None``, если тегов нет.
-
-    Причина «выпусков нет» не записана раз и навсегда: она верна, пока тегов
-    нет, и первый тег её снимает без правки этого файла.
-    """
-    tags = _git("tag", "--list", "--sort=-creatordate").splitlines()
-    return tags[0] if tags else None
-
-
 def build_facts() -> dict[str, Any]:
     """Собрать факты о проекте по договору фактов витрины 1.2.
 
@@ -318,13 +314,15 @@ def build_facts() -> dict[str, Any]:
     if coverage is not None:
         facts["coverage_percent"] = coverage
     none: dict[str, str] = {}
-    release = _release()
-    if release is None:
+    # Версия — по схеме семьи (scripts/version.py), а не из метаданных пакета:
+    # поле version в pyproject.toml называет выпуск, а не принятое после него.
+    current = version.version()
+    if current is None:
         none["release"] = NO_RELEASE
         none["version"] = NO_VERSION
     else:
-        facts["release"] = release
-        facts["version"] = __version__
+        facts["release"] = current.tag
+        facts["version"] = current.full
     if none:
         facts["none"] = none
     return facts
@@ -426,6 +424,19 @@ def write_badges(facts: dict[str, Any], target: Path) -> list[Path]:
             "label": "покрытие",
             "message": f"{percent}%",
             "color": "brightgreen" if percent >= GOOD_COVERAGE else "yellow",
+        }
+    # Выпуск и версия — двумя значками, как у семьи: выпуск меняется тегом,
+    # версия — каждым принятым изменением. Без тега их нет вовсе, а не «0».
+    if "version" in facts:
+        badges["release"] = {
+            "label": "release",
+            "message": facts["release"].removeprefix("v").rsplit(".", 1)[0],
+            "color": "brightgreen",
+        }
+        badges["version"] = {
+            "label": "version",
+            "message": facts["version"],
+            "color": "blue",
         }
     filled = glossary["completeness_percent"]
     badges["completeness"] = {

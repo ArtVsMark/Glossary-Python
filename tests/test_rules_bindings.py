@@ -27,7 +27,7 @@ from __future__ import annotations
 
 import json
 import re
-from typing import Any
+from typing import Any, Final
 
 import pytest
 
@@ -39,6 +39,10 @@ PROPOSALS_PATH = project_root() / ".rules" / "proposals.json"
 VALID_STATUSES = {"active", "rejected", "not-applicable", "unreviewed"}
 VALID_MECHANISMS = {"gate", "pipeline", "document", "none"}
 NEEDS_WHY = {"rejected", "not-applicable"}
+UNHELD = {"document", "none"}
+"""Механизмы, которые не краснеют: у них контракт 1.7 спрашивает holdable."""
+HOLDABLE = {"no", "not-yet", "conditional", "refused"}
+DAY = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 # Токен, похожий на адрес: путь с разделителем, образец со звёздочкой,
 # корневой dotfile (.gitattributes, .pre-commit-config.yaml) либо корневой
@@ -82,9 +86,20 @@ def test_bindings_file_exists():
     assert PROPOSALS_PATH.exists(), "канал предложений обязателен: пустой список законен"
 
 
+CONTRACT: Final = "1.7"
+"""Контракт ответа и выгрузки, под который ответы перечитаны (правило 157).
+
+Число сдвигается вместе с перечитыванием, а не вместо него: задача-входящие
+печатает расхождение, если каталог ушёл вперёд."""
+
+
 def test_schema_and_project_declared():
     doc = load_bindings()
-    assert doc["schema"] == "1.1"
+    assert doc["schema"] == CONTRACT
+    assert doc["answers_to"] == CONTRACT, (
+        "answers_to — версия выгрузки, по которой построены ответы; без неё "
+        "каталог считает ответы несверенными"
+    )
     assert doc["project"] == "ArtVsMark/Glossary-Python"
     assert "Engineering-Incidents-Playbook" in str(doc["catalogue"])
 
@@ -109,6 +124,19 @@ def test_answer_follows_contract(rule_id: str, answer: dict[str, Any]):
     mechanism = answer.get("mechanism")
     assert mechanism in VALID_MECHANISMS, f"{rule_id}: механизм {mechanism!r}"
 
+    if mechanism in UNHELD:
+        # Контракт 1.5+: можно ли держать машиной — закрытым словом, а не прозой,
+        # потому что счётчику каталога знаменатель надо разделить.
+        holdable = answer.get("holdable")
+        assert holdable in HOLDABLE, f"{rule_id}: holdable {holdable!r} при {mechanism}"
+        assert answer.get("why"), f"{rule_id}: holdable без причины в why"
+        if holdable == "conditional":
+            assert answer.get("awaiting"), f"{rule_id}: conditional без события"
+        if holdable == "refused":
+            assert answer.get("machine_half"), f"{rule_id}: refused без замера"
+    else:
+        assert "awaiting" not in answer, f"{rule_id}: awaiting при {mechanism}"
+
     if mechanism == "none":
         # Правило 154: «не держится ничем» обязано назвать причину,
         # иначе none означает сразу «нельзя» и «не дошли руки».
@@ -131,6 +159,17 @@ def test_answer_follows_contract(rule_id: str, answer: dict[str, Any]):
         f"{rule_id}: в поле where нет разрешимого адреса — "
         f"проза рядом с адресом допустима, вместо адреса нет. Получено: {where!r}"
     )
+
+
+@pytest.mark.parametrize("rule_id, answer", sorted(rules().items()))
+def test_dates_are_ordered(rule_id: str, answer: dict[str, Any]):
+    """Решают, посмотрев: decided не позже analysed и не без него."""
+    analysed, decided = answer.get("analysed"), answer.get("decided")
+    for value in (analysed, decided):
+        assert value is None or DAY.match(value), f"{rule_id}: дата {value!r}"
+    if decided is not None:
+        assert analysed is not None, f"{rule_id}: decided без analysed"
+        assert decided <= analysed, f"{rule_id}: решено позже, чем сверено"
 
 
 def test_no_unreviewed_answers():
@@ -162,7 +201,7 @@ def test_unmechanised_count_does_not_grow():
 
 def test_proposals_channel_is_valid():
     doc = json.loads(PROPOSALS_PATH.read_text(encoding="utf-8"))
-    assert doc["schema"] == "1.0"
+    assert doc["schema"] == "1.2"
     assert isinstance(doc["proposals"], list)
     for proposal in doc["proposals"]:
         assert "id" not in proposal, "номер присваивает каталог при приёме"

@@ -46,8 +46,6 @@
     python scripts/check_links.py --list    # показать найденные ссылки
 """
 
-from __future__ import annotations
-
 import argparse
 import re
 import sys

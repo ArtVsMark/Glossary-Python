@@ -8,8 +8,6 @@
 предупреждения формируют бэклог по качеству данных и не блокируют работу.
 """
 
-from __future__ import annotations
-
 import re
 import sys
 from collections import Counter, defaultdict

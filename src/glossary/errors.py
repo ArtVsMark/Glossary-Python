@@ -1,7 +1,5 @@
 """Иерархия ошибок пакета."""
 
-from __future__ import annotations
-
 __all__ = ["DataFormatError", "ExportError", "GlossaryError"]
 
 

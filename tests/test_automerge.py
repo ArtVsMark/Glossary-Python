@@ -10,8 +10,6 @@
 том, чего REST не умеет, и живёт оно в CLAUDE.md, разделе «Работа с GitHub».
 """
 
-from __future__ import annotations
-
 import ast
 from pathlib import Path
 from typing import Any

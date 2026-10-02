@@ -46,8 +46,6 @@ GitHub».
 Исходы: 0 — поставлено в очередь; 1 — площадка отказала; 2 — не отработало.
 """
 
-from __future__ import annotations
-
 import argparse
 import json
 import os

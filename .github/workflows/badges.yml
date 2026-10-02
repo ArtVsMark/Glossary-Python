@@ -79,13 +79,15 @@ jobs:
       # Из дерева, без установки. Планка проекта — 3.14, и requires-python
       # ставить пакет ниже неё не даёт, а замер языка нужен и на младших
       # версиях: из них складывается разность «что появилось» (Glossary-Python#53).
-      # Runtime-зависимостей нет, поэтому установка замеру и не нужна; что код
-      # пакета разбирается младшей версией, держит tests/test_measured_versions.py.
+      # Runtime-зависимостей нет, поэтому установка замеру и не нужна. Точка
+      # входа — glossary.measure: она грузит только цепочку замера, а не весь
+      # пакет, и только цепочка держит грамматику младшей версии. Обе половины
+      # стережёт tests/test_measured_versions.py.
       - name: Снять инвентарь
         env:
           PYTHONPATH: src
         run: >
-          python -m glossary inventory
+          python -m glossary.measure
           -o inventory/inventory-${{ matrix.python-version }}.json
 
       - uses: actions/upload-artifact@v7
@@ -123,7 +125,7 @@ jobs:
       - name: Снять инвентарь
         env:
           PYTHONPATH: src
-        run: python -m glossary inventory -o inventory/inventory-3.15.json
+        run: python -m glossary.measure -o inventory/inventory-3.15.json
 
       - uses: actions/upload-artifact@v7
         with:

@@ -39,8 +39,6 @@ r"""Запись журнала едет вместе с изменением, �
 Исходы: 0 — чисто; 1 — запись не приехала; 2 — проверка не отработала.
 """
 
-from __future__ import annotations
-
 import argparse
 import subprocess
 import sys

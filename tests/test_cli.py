@@ -1,7 +1,5 @@
 """Тесты командного интерфейса."""
 
-from __future__ import annotations
-
 import io
 import json
 from collections.abc import Sequence

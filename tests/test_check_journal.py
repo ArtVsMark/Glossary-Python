@@ -7,8 +7,6 @@
 на котором родилось правило 165.
 """
 
-from __future__ import annotations
-
 import subprocess
 from pathlib import Path
 

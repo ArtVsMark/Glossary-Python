@@ -8,8 +8,6 @@
 не наблюдаем ничем. Это названо в самом разделе, а не умолчано (правило 056).
 """
 
-from __future__ import annotations
-
 import re
 
 import pytest

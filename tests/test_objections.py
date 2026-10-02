@@ -7,8 +7,6 @@ Markdown читает человек, поэтому список усекает
 полным.
 """
 
-from __future__ import annotations
-
 import datetime as dt
 import json
 

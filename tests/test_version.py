@@ -13,8 +13,6 @@
 собой проходит всегда и не проверяет ничего (правило каталога 146).
 """
 
-from __future__ import annotations
-
 import ast
 import tomllib
 from importlib.metadata import version as installed_version

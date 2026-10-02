@@ -1,7 +1,5 @@
 """Тесты доменных моделей."""
 
-from __future__ import annotations
-
 import pytest
 
 from glossary.models import SCHEMA_VERSION, Entry, Glossary, Text

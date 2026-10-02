@@ -9,8 +9,6 @@
 мутируется. Это исключает расхождение между экспортёрами.
 """
 
-from __future__ import annotations
-
 from collections import Counter
 from dataclasses import dataclass, field, fields
 from typing import TYPE_CHECKING, Any, Final, Literal, Self, get_args

@@ -4,8 +4,6 @@
 CLI перечисляет доступные варианты по нему автоматически.
 """
 
-from __future__ import annotations
-
 from typing import TYPE_CHECKING, Final
 
 from glossary.errors import ExportError

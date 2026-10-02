@@ -21,8 +21,6 @@
     python scripts/facts.py --check               # гейт: маркеры на месте и совпадают
 """
 
-from __future__ import annotations
-
 import argparse
 import ast
 import json

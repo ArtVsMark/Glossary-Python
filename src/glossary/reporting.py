@@ -14,22 +14,18 @@
 получив маркера, нельзя — не потому, что это запрещено, а потому, что негде.
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Final, TypeVar
+from typing import TYPE_CHECKING, Final
 
 if TYPE_CHECKING:
     from collections.abc import Sequence
 
 __all__ = ["FULL_LIST_HINT", "truncate"]
 
-T = TypeVar("T")
-
 FULL_LIST_HINT: Final = "Полный список: `--limit 0`."
 """Как получить невырезанное. Маркер обрыва без этого — тупик для читателя."""
 
 
-def truncate(items: Sequence[T], limit: int) -> tuple[list[T], list[str]]:
+def truncate[T](items: Sequence[T], limit: int) -> tuple[list[T], list[str]]:
     """Урезать список и назвать обрыв.
 
     Args:

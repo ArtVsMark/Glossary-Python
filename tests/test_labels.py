@@ -19,8 +19,6 @@
 только обращением к API; гейт держит согласованность дерева с самим собой.
 """
 
-from __future__ import annotations
-
 from typing import Any
 
 import pytest

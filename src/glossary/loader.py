@@ -6,8 +6,6 @@
 расхождение с источником обнаружится не сразу.
 """
 
-from __future__ import annotations
-
 import hashlib
 import json
 from pathlib import Path

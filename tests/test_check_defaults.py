@@ -9,8 +9,6 @@
 ``tests/test_data_integrity.py`` до того, как разбор ответа каталогу его нашёл.
 """
 
-from __future__ import annotations
-
 from pathlib import Path
 
 import pytest

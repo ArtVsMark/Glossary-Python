@@ -26,8 +26,6 @@
   чтением кода, а не браузером: живой поверхности у прогона нет (правило 037).
 """
 
-from __future__ import annotations
-
 import re
 from pathlib import Path
 

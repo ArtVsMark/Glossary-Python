@@ -1,7 +1,5 @@
 """Экспорт в CSV — импорт в таблицы, Anki и внешние инструменты."""
 
-from __future__ import annotations
-
 import csv
 import io
 from dataclasses import fields

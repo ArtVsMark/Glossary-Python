@@ -26,8 +26,6 @@
     python scripts/whatsnew.py inventory-*.json -o whatsnew.json
 """
 
-from __future__ import annotations
-
 import argparse
 import json
 import sys

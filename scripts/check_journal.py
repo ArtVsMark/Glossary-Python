@@ -47,6 +47,8 @@ import sys
 from pathlib import Path
 from typing import Final
 
+from machine_authors import exemption
+
 ROOT: Final = Path(__file__).resolve().parent.parent
 
 DEFAULT_BASE: Final = "origin/main"
@@ -107,6 +109,36 @@ def changed_paths(base: str, root: Path = ROOT) -> list[str]:
     return [path for path in result.stdout.split(NUL) if path]
 
 
+def branch_authors(base: str, root: Path = ROOT) -> list[str]:
+    """Авторы коммитов ветки — те, что поедут в общую ветку.
+
+    Args:
+        base: С чем сравнивать.
+        root: Корень репозитория.
+
+    Returns:
+        Имена авторов в порядке коммитов.
+
+    Raises:
+        NotRunError: git не отработал.
+    """
+    try:
+        result = subprocess.run(  # noqa: S603 — команда собрана из констант
+            ["git", "log", "--format=%an", f"{base}..HEAD"],  # noqa: S607
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            timeout=TIMEOUT,
+            cwd=root,
+            check=False,
+        )
+    except OSError as error:
+        raise NotRunError(f"git не запустился: {error}") from error
+    if result.returncode != 0:
+        raise NotRunError(f"git log {base}..HEAD не отработал: {result.stderr.strip()}")
+    return [line for line in result.stdout.splitlines() if line]
+
+
 def findings(paths: list[str]) -> list[str]:
     """Нужна ли изменению запись журнала и приехала ли она.
 
@@ -145,6 +177,7 @@ def main(argv: list[str] | None = None) -> int:
 
     try:
         paths = changed_paths(args.base)
+        machine = exemption(branch_authors(args.base))
     except NotRunError as refusal:
         print(f"проверка не отработала: {refusal}", file=sys.stderr)
         return NOT_RUN
@@ -153,6 +186,10 @@ def main(argv: list[str] | None = None) -> int:
     # «чисто», и «нечего смотреть» — разные вещи (правила 165, 075).
     watched = [path for path in paths if path.startswith(WATCHED)]
     print(f"путей в изменении: {len(paths)}, из них под наблюдением: {len(watched)}")
+
+    if machine:
+        print(f"запись журнала не спрашивается — машинный автор: {machine}")
+        return 0
 
     problems = findings(paths)
     if problems:

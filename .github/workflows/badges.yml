@@ -70,7 +70,7 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12", "3.13", "3.14"]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
         with:
@@ -113,7 +113,7 @@ jobs:
       matrix:
         python-version: ["3.15"]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v7
         with:
@@ -147,7 +147,7 @@ jobs:
       #
       # На workflow_run файл прогона берётся с общей ветки, и код, который он
       # исполняет, закреплён за ней же (правило каталога 152).
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           fetch-tags: true

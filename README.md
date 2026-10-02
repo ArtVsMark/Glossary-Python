@@ -1,14 +1,13 @@
 # Glossary Python
 
 [![CI](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml)
-[![Публикация витрины](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml)
 [![Python: основной CI, версии, ОС, покрытие, выпуск, версия](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/python.svg)](.github/workflows/python-next.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![Карточек](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json)
-[![Замечаний](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](#качество-данных)
-[![Правил без механизма](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Frules.json)](#правила-проекта)
 
-### → [Открыть глоссарий](https://artvsmark.github.io/Glossary-Python/)
+### → [Открыть глоссарий](https://artvsmark.github.io/Glossary-Python/) [![Публикация витрины](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml)
+
+| Карточек | Замечаний к содержанию |
+| :---: | :---: |
+| [![Карточек](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json) | [![Замечаний](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](#качество-данных) |
 
 Двуязычный справочник стандартной библиотеки Python: **<!--m:cards-->1349<!--/m:cards--> карточка**
 в **<!--m:groups-->55<!--/m:groups--> разделах**. Каждая карточка — краткая сводка и развёрнутый разбор

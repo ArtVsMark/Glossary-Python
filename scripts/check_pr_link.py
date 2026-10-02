@@ -46,7 +46,11 @@ import re
 import sys
 from typing import Final, NamedTuple
 
+from machine_authors import exemption
+
 DEFAULT_ENV: Final = "PR_BODY"
+AUTHOR_ENV: Final = "PR_AUTHOR"
+"""Автор изменения — логин, который ставит площадка (machine_authors)."""
 
 CLOSES: Final = re.compile(r"\b(?:Closes|Fixes|Resolves)\s+#\d+", re.IGNORECASE)
 """Слова, которые площадка исполняет сама. Другие обещают и не делают."""
@@ -148,6 +152,11 @@ def main(argv: list[str] | None = None) -> int:
         help="переменная окружения с телом изменения",
     )
     args = parser.parse_args(argv)
+
+    machine = exemption([os.environ.get(AUTHOR_ENV, "")])
+    if machine:
+        print(f"ответ задаче не спрашивается — машинный автор: {machine}")
+        return 0
 
     # Тело приходит переменной окружения, а не аргументом: подстановка чужого
     # текста в командную строку — это разбор кавычек чужими руками (013).

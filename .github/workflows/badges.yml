@@ -35,16 +35,30 @@ on:
   # независимо от того, кто и как сливает.
   schedule:
     - cron: "17 3 * * *"
+  # Значок Python красится исходами CI и python-next на main. На толчке они
+  # ещё идут, и сборка по толчку видела бы прошлый исход: поэтому значки
+  # пересобираются и по ЗАВЕРШЕНИИ этих прогонов (Glossary-Python#57).
+  workflow_run:
+    workflows: [CI, python-next]
+    types: [completed]
+    branches: [main]
   # У событийной автоматики всегда есть ручная кнопка: события теряются.
   workflow_dispatch:
 
+# ГРУППА ОДНА И НЕ ОТМЕНЯЕТ, А СТАВИТ В ОЧЕРЕДЬ. Прогон — единственный писатель
+# ветки badges, и с workflow_run его будят несколько событий на один коммит.
+# Голова в имени группы разрешила бы двум прогонам писать ветку одновременно, и
+# второй толчок отказал бы как не быстрый; отмена же теряла бы свежий исход.
+# Предмет здесь не коммит, а состояние ветки badges (довод каталога, его
+# badges.yml).
 concurrency:
-  # Голова входит в имя группы: см. тот же довод в ci.yml.
-  group: badges-${{ github.sha }}
-  cancel-in-progress: true
+  group: badges
+  cancel-in-progress: false
 
 permissions:
   contents: write
+  # Исходы прогонов для значка Python читаются у площадки.
+  actions: read
 
 jobs:
   inventory:
@@ -89,12 +103,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     continue-on-error: true
+    # ВЕРСИЯ ЗАДАНА МАТРИЦЕЙ, А НЕ ЛИТЕРАЛОМ, И ЭТО НАЗВАННЫЙ ОБХОД. Значок
+    # Python каталога (python-badge@v1.6.0) считает предварительной ПРОВЕРКОЙ
+    # всякий шаг setup-python с allow-prereleases и литералом версии рядом и
+    # красит её часть исходом этого прогона. Здесь не проверка, а замер языка:
+    # литерал дал бы на значке вторую часть «3.15», окрашенную публикацией.
+    # Проверка 3.15 — python-next.yml.
+    strategy:
+      matrix:
+        python-version: ["3.15"]
     steps:
       - uses: actions/checkout@v5
 
       - uses: actions/setup-python@v7
         with:
-          python-version: "3.15"
+          python-version: ${{ matrix.python-version }}
           allow-prereleases: true
 
       - name: Снять инвентарь
@@ -121,10 +144,14 @@ jobs:
       # принятые после него изменения (scripts/version.py). Неглубокий checkout
       # не несёт ни тега, ни диапазона, и вместо версии публиковалась бы
       # причина «выпуска нет» — после выпуска это неправда.
+      #
+      # На workflow_run файл прогона берётся с общей ветки, и код, который он
+      # исполняет, закреплён за ней же (правило каталога 152).
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
           fetch-tags: true
+          ref: ${{ github.event_name == 'workflow_run' && 'main' || github.ref }}
 
       - uses: actions/setup-python@v7
         with:
@@ -146,6 +173,28 @@ jobs:
 
       - name: Собрать значки и факты
         run: python scripts/facts.py --badges
+
+      # Единый значок «Python │ ОС │ coverage │ release / PyPI │ version»
+      # рисует действие каталога из тега, а не копия здесь (правило 095).
+      # Покрытие и версию оно берёт из значков, собранных шагом выше, — второго
+      # замера нет (214). Отказ действия (площадка не ответила, версии не
+      # нашлось) не рисуется серым и не роняет публикацию: python.svg не
+      # появляется, и на ветке остаётся прежний значок — это предупреждение.
+      - name: Значок Python
+        id: python_badge
+        continue-on-error: true
+        uses: ArtVsMark/Engineering-Incidents-Playbook/.github/actions/python-badge@v1.6.0
+        with:
+          ci-workflow: ci.yml
+          coverage-json: .github/badges/coverage.json
+          version-json: .github/badges/version.json
+          out: .github/badges/python.svg
+
+      - name: Значок Python не собран — остаётся прежний
+        if: steps.python_badge.outcome == 'failure'
+        run: |
+          rm -f .github/badges/python.svg
+          echo "::warning::значок Python не собран — на ветке badges остаётся прежний"
 
       # Издатель проверяет себя схемой потребителя до публикации: файл, не
       # отвечающий договору фактов 1.2, витрина покажет прочерками. Проверка
@@ -198,6 +247,9 @@ jobs:
           fi
           mkdir -p "$publish/.github/badges"
           cp .github/badges/*.json "$publish/.github/badges/"
+          if [ -f .github/badges/python.svg ]; then
+            cp .github/badges/python.svg "$publish/.github/badges/"
+          fi
           git -C "$publish" add .github/badges
           # --cached, а не обычный diff: при первом прогоне файлы ещё не
           # отслеживаются, и обычный `git diff --quiet` не увидел бы добавления.

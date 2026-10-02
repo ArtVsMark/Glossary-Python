@@ -1,0 +1,1 @@
+`make versions` (`scripts/check_python_version.py`) — гейт версий: python до `setup-python`, версия не числом, версия ниже планки вне работ замера, предварительная не впереди проверяемых и окно ниже планки; `automerge.yml:arm` и `ci.yml:check-pr` получили `setup-python` и больше не исполняют код системным python раннера (#69, правило 217)

@@ -58,6 +58,12 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
+      # Код дерева исполняется на планке, а не системным python раннера (217):
+      # без этого шага число версии не объявлено вовсе, и сверять нечего.
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
       - name: Включить автомерж
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

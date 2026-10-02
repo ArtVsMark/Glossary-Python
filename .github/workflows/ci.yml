@@ -160,6 +160,8 @@ jobs:
         # чужой текст в командной строке — это разбор кавычек чужими руками.
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
+          # Машинному автору ответ задаче писать не о чем (machine_authors.py).
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         run: python scripts/check_pr_link.py
 
       # Зелёное на пустоте выглядит как зелёное на проверенном. Работа говорит

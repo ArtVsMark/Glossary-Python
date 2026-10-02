@@ -16,6 +16,7 @@ import pytest
 
 import check_journal as journal
 from glossary.loader import project_root
+from machine_authors import exemption
 
 CYRILLIC = "changelog.d/сброс-настроек.added.md"
 """Имя из инцидента правила 165: без -z git отдал бы его экранированным."""
@@ -177,5 +178,8 @@ def test_this_branch_carries_its_record():
         paths = journal.changed_paths(journal.DEFAULT_BASE)
     except journal.NotRunError as refusal:
         pytest.skip(f"основа недоступна в этом клоне: {refusal}")
+    machine = exemption(journal.branch_authors(journal.DEFAULT_BASE))
+    if machine:
+        pytest.skip(f"машинный автор, запись не спрашивается: {machine}")
     problems = journal.findings(paths)
     assert not problems, "\n".join(problems)

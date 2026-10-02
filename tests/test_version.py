@@ -120,22 +120,40 @@ def test_uninstalled_tree_says_so_instead_of_guessing():
     assert package_version("glossary-python-not-installed") == UNINSTALLED
 
 
+def _numbers(version: str) -> tuple[int, ...]:
+    return tuple(int(part) for part in version.removeprefix("v").split("."))
+
+
 def release_mismatch(declared: str, tag: str) -> str | None:
     """Расхождение поля version с тегом выпуска; ``None`` — совпадают.
 
     Поле в ``pyproject.toml`` — начало отсчёта схемы семьи: тег ``vX.Y.0``
-    называет выпуск, и поле обязано называть тот же ``X.Y.0``.
+    называет выпуск, и поле обязано называть тот же ``X.Y.0`` — либо
+    следующий выпуск, который готовится (см. :func:`release_pending`).
     """
-    expected = tag.removeprefix("v")
-    if declared == expected:
+    if _numbers(declared) >= _numbers(tag):
         return None
     return f"pyproject.toml объявляет {declared}, а последний тег выпуска — {tag}"
 
 
+def release_pending(declared: str, tag: str) -> bool:
+    """Выпуск подготовлен, а тег ещё не поставлен.
+
+    Тег ставится на коммит, который уже несёт новую версию, — то есть после
+    слияния изменения, поднявшего её. Между ними поле законно новее тега, и
+    сверка это называет, а не краснеет: красное на законном приучало бы читать
+    красное как фон (правило каталога 051).
+    """
+    return _numbers(declared) > _numbers(tag)
+
+
 def test_release_mismatch_is_caught_on_a_fake():
-    """Подделка: сверка краснеет на расхождении, а не сравнивает число с собой."""
+    """Подделка: сверка краснеет на отставании, а не сравнивает число с собой."""
     assert release_mismatch("0.1.0", "v0.1.0") is None
     assert release_mismatch("0.1.0", "v0.2.0") is not None
+    assert release_mismatch("1.0.0", "v0.1.0") is None
+    assert release_pending("1.0.0", "v0.1.0")
+    assert not release_pending("0.1.0", "v0.1.0")
 
 
 @pytest.mark.live_surface
@@ -144,9 +162,14 @@ def test_declared_version_names_the_latest_release_tag():
 
     Без тегов в клоне сверять не с чем — это пропуск с названной причиной, а
     не зелёное: неглубокий клон без тегов неотличим от проекта до выпуска.
+    Подготовленный выпуск без тега — тоже пропуск, и он называет, какой тег
+    ждёт постановки.
     """
     tag = version_module.latest_tag()
     if tag is None:
         pytest.skip("тега выпуска в клоне не видно: git fetch --tags")
-    problem = release_mismatch(declared_version(), tag)
+    declared = declared_version()
+    problem = release_mismatch(declared, tag)
     assert problem is None, problem
+    if release_pending(declared, tag):
+        pytest.skip(f"выпуск {declared} подготовлен, тег v{declared} ещё не поставлен")

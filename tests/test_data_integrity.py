@@ -15,7 +15,9 @@ from pathlib import Path
 from typing import Final
 
 import pytest
+import yaml
 
+import python_floor
 from glossary.exporters import get_exporter
 from glossary.loader import dump_glossary, load_glossary, project_root
 from glossary.models import SCHEMA_VERSION, Glossary
@@ -24,13 +26,21 @@ from glossary.validation import ValidationConfig, _cyrillic_share, validate
 pytestmark = pytest.mark.data
 
 BASELINE_PATH = Path(__file__).parent / "quality_baseline.json"
-RATCHET_PYTHON: Final = (3, 11)
-"""Версия, на которой считается планка качества.
+RATCHET_PYTHON: Final = python_floor.floor(
+    (project_root() / "pyproject.toml").read_text(encoding="utf-8")
+)
+"""Версия, на которой считается планка качества и полноты, — планка проекта.
 
 Часть правил версионно-зависима: пример на синтаксисе 3.12 не разберётся на
-3.11, и число замечаний законно отличается между версиями матрицы. Храповик
-сравнивает вчера с сегодня, а не один интерпретатор с другим, — поэтому у него
-одна опорная версия, та же, на которой прогон проверяет данные.
+3.11, и число замечаний законно отличается между версиями. Храповик сравнивает
+вчера с сегодня, а не один интерпретатор с другим, — поэтому у него одна
+опорная версия, та же, на которой прогон проверяет данные.
+
+Число не вписывается здесь вторым местом (правило 214). Прежде здесь стояла
+литералом 3.11, и при переходе на 3.14 (Glossary-Python#53) оба храповика
+перестали исполняться нигде: тест на чужой версии пропускается, а CI остался на
+одной 3.14. Пропуск зеленел, и гейт исчез молча. Что опорная версия
+исполняется прогоном, держит ``test_ratchet_runs_somewhere``.
 """
 SHOWCASE_PATH = project_root() / "python_glossary.html"
 SCHEMA_PATH = project_root() / "data" / "glossary.schema.json"
@@ -233,4 +243,22 @@ def test_completeness_does_not_regress():
     assert not improved, (
         "карточек стало больше — опустите планку в tests/completeness_floor.json: "
         + ", ".join(f"{n}: {now} < {was}" for n, (now, was) in sorted(improved.items()))
+    )
+
+
+def test_ratchet_runs_somewhere():
+    """Опорная версия храповиков — среди версий, на которых идут тесты в CI.
+
+    Иначе оба храповика пропускаются на каждой версии прогона, и гейта нет,
+    хотя набор зелёный (правило каталога 211).
+    """
+    workflow = yaml.safe_load(
+        (project_root() / ".github" / "workflows" / "ci.yml").read_text(encoding="utf-8")
+    )
+    tested = {
+        tuple(int(part) for part in str(v).split("."))
+        for v in workflow["jobs"]["tests"]["strategy"]["matrix"]["python-version"]
+    }
+    assert RATCHET_PYTHON in tested, (
+        f"храповики считаются на {RATCHET_PYTHON}, а CI гоняет {sorted(tested)}"
     )

@@ -1,0 +1,58 @@
+# Предварительная версия Python: будет ли проект работать на следующей.
+#
+# ПОЧЕМУ ОТДЕЛЬНЫЙ ФАЙЛ, А НЕ РАБОТА В ci.yml (Glossary-Python#53). Значок
+# workflow/status показывает исход всего прогона. Живи 3.15 работой внутри
+# ci.yml с continue-on-error, значок ci оставался бы зелёным при красном 3.15 и
+# ответа о 3.15 не давал бы. Здесь красное честное: ответ на вопрос и есть цвет
+# прогона, поэтому continue-on-error нет.
+#
+# ПОЧЕМУ НЕ НА ИЗМЕНЕНИИ. Необязательный канал слияния не держит (правило
+# каталога 084): красное на 3.15 значит «на 3.15 пока не заработает», а не
+# «изменение сломано». Поэтому pull_request здесь нет вовсе.
+#
+# ПОЧЕМУ РАСПИСАНИЕ. Слияния делает автомерж токеном прогона, а его пуш новых
+# прогонов не будит: без расписания этот прогон не шёл бы никогда.
+#
+# ЗАМЕР ЯЗЫКА 3.15 — не здесь: инвентарь снимается работой preview в
+# badges.yml, где он нужен разности версий.
+name: python-next
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Раз в неделю, в понедельник; минута не 0 — не в пик.
+    - cron: "41 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: python-next-${{ github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Тесты (Python 3.15, предварительная)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      # Без allow-prereleases setup-python предрелиз не ставит. Пометка — о
+      # чужом календаре (правило каталога 203): с выходом 3.15 её снимают, а
+      # следующей предварительной становится 3.16.
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.15"
+          allow-prereleases: true
+
+      - name: Установка зависимостей
+        run: python -m pip install -e ".[dev]"
+
+      - name: Тесты
+        run: pytest -q

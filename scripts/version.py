@@ -97,7 +97,7 @@ def git(*args: str) -> str | None:
             check=False,
             timeout=GIT_TIMEOUT,
         )
-    except (OSError, subprocess.TimeoutExpired):
+    except OSError, subprocess.TimeoutExpired:
         return None
     return done.stdout.strip() if done.returncode == 0 else None
 

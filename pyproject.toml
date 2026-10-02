@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Витрина и экспорт глоссария Python: валидация данных, сборка HTML, экспорт в JSON/Markdown/CSV"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 authors = [{ name = "ArtVsMark", email = "arvs.markitanov@gmail.com" }]
 keywords = ["python", "glossary", "reference", "education", "documentation"]
 classifiers = [
@@ -17,9 +17,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Natural Language :: Russian",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
     "Topic :: Education",
     "Typing :: Typed",
@@ -57,7 +54,7 @@ include = ["src/glossary", "data", "tests", "README.md", "CHANGELOG.md", "LICENS
 # --------------------------------------------------------------------------- #
 [tool.ruff]
 line-length = 90
-target-version = "py311"
+target-version = "py314"
 src = ["src", "tests", "scripts"]
 
 [tool.ruff.lint]
@@ -104,6 +101,11 @@ ignore = [
 "tests/**" = ["ANN", "D", "S101", "PLR2004", "TC"]
 # Скрипт репозитория печатает результат — это его работа.
 "scripts/**" = ["T20"]
+# Пакет запускается из дерева на каждой версии, которую меряет инвентарь языка
+# (матрица inventory в badges.yml), а не только на планке: синтаксис моложе
+# нижней версии замера (PEP 695 — с 3.12) уронил бы замер. Держит это
+# tests/test_measured_versions.py.
+"src/glossary/**" = ["UP040", "UP046", "UP047", "UP049"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
@@ -118,7 +120,7 @@ docstring-code-format = true
 # mypy: строгая типизация
 # --------------------------------------------------------------------------- #
 [tool.mypy]
-python_version = "3.11"
+python_version = "3.14"
 files = ["src", "tests", "scripts"]
 mypy_path = "scripts"
 strict = true

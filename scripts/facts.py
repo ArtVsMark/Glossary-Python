@@ -72,6 +72,9 @@ FACTS_SCHEMA_OF: Final = (
 CI_WORKFLOW: Final = "ci.yml"
 """Прогон, статус которого витрина спрашивает у площадки."""
 
+NEXT_WORKFLOW: Final = "python-next.yml"
+"""Прогон предварительной версии Python (Glossary-Python#53)."""
+
 TESTS: Final = ROOT / "tests"
 GIT_TIMEOUT: Final = 30
 """Дедлайн на вызов git: у публикующего прогона он свой и короткий (правило 100)."""
@@ -191,11 +194,24 @@ def _python_versions() -> list[str]:
     return [str(v) for v in versions]
 
 
+def _preview_versions() -> list[str]:
+    """Предварительная версия — из прогона python-next.yml, где она проверяется."""
+    path = ROOT / ".github" / "workflows" / NEXT_WORKFLOW
+    loaded: dict[str, Any] = yaml.safe_load(path.read_text(encoding="utf-8"))
+    return [
+        str(step["with"]["python-version"])
+        for job in loaded["jobs"].values()
+        for step in job["steps"]
+        if step.get("with", {}).get("allow-prereleases")
+    ]
+
+
 def _python_facts() -> dict[str, list[str]]:
-    """Версии Python и ОС, на которых идут тесты, — из той же матрицы."""
+    """Версии Python и ОС, на которых идут тесты, — из самих прогонов."""
     runner = _ci()["jobs"]["tests"]["runs-on"]
     return {
         "supported": _python_versions(),
+        "experimental": _preview_versions(),
         "os": [str(runner)] if isinstance(runner, str) else [str(r) for r in runner],
     }
 

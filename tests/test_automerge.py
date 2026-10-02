@@ -144,7 +144,7 @@ def test_refusal_names_the_change_and_the_likely_cause(monkeypatch: pytest.Monke
 
 
 def test_workflow_refusal_names_its_own_cause(monkeypatch: pytest.MonkeyPatch):
-    """Отказ из-за права workflows не выдаётся за выключенную настройку (замер #71)."""
+    """Отказ из-за права workflows — отставание ветки, не настройка (замер #71)."""
     message = (
         "Pull request refusing to allow a GitHub App to create or update workflow "
         "`.github/workflows/ci.yml` without `workflows` permission"
@@ -157,7 +157,7 @@ def test_workflow_refusal_names_its_own_cause(monkeypatch: pytest.MonkeyPatch):
         automerge.arm(71)
     text = str(refused.value)
     assert "#71" in text
-    assert "сливает человек" in text
+    assert "Подтяните main" in text
     assert "Allow auto-merge" not in text, "чужая причина не печатается"
 
 

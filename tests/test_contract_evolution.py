@@ -22,6 +22,7 @@ from typing import Final
 
 import pytest
 
+import facts
 from glossary.loader import project_root
 
 ROOT = project_root()
@@ -48,8 +49,15 @@ COMMON: Final = "Общие правила эволюции"
 
 
 def published() -> set[str]:
-    """Имена файлов, которые публикующий прогон кладёт наружу."""
-    return set(PUBLISHED.findall(BADGES.read_text(encoding="utf-8")))
+    """Имена контрактов, которые публикующий прогон кладёт наружу.
+
+    Значки shields — не контракты: их форма чужая (schemaVersion площадки), и
+    перечень их объявлен один раз, в ``facts.BADGE_NAMES``. Прогон называет их
+    в тексте — например, входами действия значка Python, — и без вычитания
+    сторож требовал бы раздела о каждом значке.
+    """
+    named = set(PUBLISHED.findall(BADGES.read_text(encoding="utf-8")))
+    return named - set(facts.BADGE_NAMES)
 
 
 def sections() -> list[str]:

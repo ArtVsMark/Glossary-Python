@@ -530,3 +530,30 @@ def test_empty_needs_says_so_in_the_summary(
     code, written = verdict({}, tmp_path / "summary.md", monkeypatch)
     assert code == 1
     assert "не отработал" in written
+
+
+def workflow_run_problems(listed: list[str], known: set[str]) -> list[str]:
+    """Имена в ``workflow_run.workflows``, которым не отвечает ни один прогон.
+
+    Площадка сверяет их с полем ``name`` прогона, а не с файлом, и опечатка
+    отключает событие молча: прогон просто никогда не будится.
+    """
+    return [name for name in listed if name not in known]
+
+
+def test_workflow_run_typo_is_caught_on_a_fake():
+    """Подделка: имя, которого нет, находится."""
+    assert workflow_run_problems(["CI", "python-nxt"], {"CI", "python-next"}) == [
+        "python-nxt"
+    ]
+
+
+@pytest.mark.live_surface
+def test_badges_wake_on_workflows_that_exist():
+    """Живая половина: значки будятся завершением прогонов, которые есть."""
+    listed = _triggers(BADGES_PATH)["workflow_run"]["workflows"]
+    known = {
+        str(yaml.safe_load(path.read_text(encoding="utf-8"))["name"])
+        for path in WORKFLOWS.glob("*.yml")
+    }
+    assert not workflow_run_problems(listed, known), (listed, known)

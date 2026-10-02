@@ -32,6 +32,12 @@ GitHub».
 живёт вне дерева, и у ``GITHUB_TOKEN`` нет прав её включить. Пока она
 выключена, мутация отвечает отказом — и он печатается словами, а не молчит.
 
+Вторая такая граница — права самого токена. Изменение, которое правит
+``.github/workflows/``, ``GITHUB_TOKEN`` в очередь не ставит: на это нужно право
+``workflows``, а выдать его токену прогона нельзя ни в каком ``permissions:``.
+Такое изменение сливает человек. Замер: #71 получил этот отказ, а прогон назвал
+причиной выключенную настройку — правдоподобно и неверно.
+
 Исходы: 0 — поставлено в очередь; 1 — площадка отказала; 2 — не отработало.
 """
 
@@ -66,6 +72,37 @@ mutation($pullRequestId: ID!, $method: PullRequestMergeMethod!) {
 }
 """
 """Единственная мутация репозитория. REST-эквивалента у неё нет (правило 001)."""
+
+
+CAUSES: Final = (
+    (
+        "without `workflows` permission",
+        "изменение правит .github/workflows/, а у GITHUB_TOKEN права workflows "
+        "нет и выдать его нельзя — такое изменение сливает человек",
+    ),
+)
+"""Узнаваемые отказы: подстрока ответа площадки и причина словами."""
+
+LIKELY_CAUSE: Final = (
+    "Чаще всего это выключенная настройка репозитория «Allow auto-merge» — "
+    "включить её из прогона нельзя, у GITHUB_TOKEN нет прав на настройки"
+)
+"""Причина по умолчанию: отказ не узнан, названа самая частая."""
+
+
+def cause(message: str) -> str:
+    """Причина отказа словами: узнанная по ответу площадки либо самая частая.
+
+    Args:
+        message: Текст отказа площадки.
+
+    Returns:
+        Причина для печати.
+    """
+    for marker, explanation in CAUSES:
+        if marker in message:
+            return f"Причина: {explanation}"
+    return LIKELY_CAUSE
 
 
 class RefusedError(RuntimeError):
@@ -201,9 +238,7 @@ def arm(number: int) -> str:
     message = refusal(answer)
     if message is not None:
         raise RefusedError(
-            f"#{number} в очередь не поставлено: {message}. Чаще всего это "
-            "выключенная настройка репозитория «Allow auto-merge» — включить "
-            "её из прогона нельзя, у GITHUB_TOKEN нет прав на настройки"
+            f"#{number} в очередь не поставлено: {message}. {cause(message)}"
         )
     request = (
         answer.get("data", {}).get("enablePullRequestAutoMerge", {}).get("pullRequest")

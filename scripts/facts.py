@@ -58,7 +58,7 @@ COVERAGE: Final = ROOT / "coverage.xml"
 NOT_RUN: Final = 2
 """Факты не посчитаны. Не означает «числа совпадают» — их не с чем было сверять."""
 
-FACTS_SCHEMA: Final = "1.2"
+FACTS_SCHEMA: Final = "1.3"
 """Версия договора фактов витрины профиля, которому отвечает файл.
 
 Формат ``facts.json`` задан потребителем — витриной ArtVsMark/ArtVsMark,
@@ -66,7 +66,7 @@ FACTS_SCHEMA: Final = "1.2"
 ``glossary.contracts.SCHEMA`` (Glossary-Python#49)."""
 
 FACTS_SCHEMA_OF: Final = (
-    "факты о проекте-витрине глоссария по договору фактов витрины 1.2: "
+    "факты о проекте-витрине глоссария по договору фактов витрины 1.3: "
     "по каждому показателю значение или причина в none"
 )
 CI_WORKFLOW: Final = "ci.yml"
@@ -301,7 +301,7 @@ def _commit() -> str:
 
 
 def build_facts() -> dict[str, Any]:
-    """Собрать факты о проекте по договору фактов витрины 1.2.
+    """Собрать факты о проекте по договору фактов витрины 1.3.
 
     По каждому показателю договора — значение или причина в ``none``. Покрытие
     — исключение: без ``coverage.xml`` ключа нет вовсе, потому что «не
@@ -337,7 +337,9 @@ def build_facts() -> dict[str, Any]:
         none["release"] = NO_RELEASE
         none["version"] = NO_VERSION
     else:
-        facts["release"] = current.tag
+        # Договор 1.3: выпуск — серия X.Y, а не тег; буква v и нулевая третья
+        # цифра — запись тега, а не выпуска.
+        facts["release"] = current.release
         facts["version"] = current.full
     if none:
         facts["none"] = none
@@ -457,7 +459,7 @@ def write_badges(facts: dict[str, Any], target: Path) -> list[Path]:
     if "version" in facts:
         badges["release"] = {
             "label": "release",
-            "message": facts["release"].removeprefix("v").rsplit(".", 1)[0],
+            "message": facts["release"],
             "color": "brightgreen",
         }
         badges["version"] = {

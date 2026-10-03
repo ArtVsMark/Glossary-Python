@@ -3,9 +3,9 @@
   "schema_of": "факты о проекте-витрине глоссария по договору фактов витрины 1.3: по каждому показателю значение или причина в none",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Stepik-Python-Grader",
-  "generated_at": "2026-10-02T11:33:56+00:00",
+  "generated_at": "2026-10-03T09:16:30+00:00",
   "repo": "ArtVsMark/Glossary-Python",
-  "commit": "53b42cff212c83fe3405b6948589ad8cc578dc64",
+  "commit": "3bcb070467e0fc0c2513ea065e00ebe04e03b5f3",
   "ci": {
     "workflow": "ci.yml"
   },
@@ -28,8 +28,8 @@
     "not_applicable": 71
   },
   "tests": {
-    "functions": 542,
-    "modules": 37
+    "functions": 565,
+    "modules": 40
   },
   "python": {
     "supported": [
@@ -59,5 +59,5 @@
   ],
   "coverage_percent": 97.1,
   "release": "1.0",
-  "version": "1.0.2"
+  "version": "1.0.7"
 }

@@ -1,0 +1,150 @@
+"""Тесты выгрузки для потребителей — контракт ``delivery.json``.
+
+Потребитель импортирует выгрузку записью каждой группы в свой файл. Поэтому
+сторож формы — обратная сборка: группы, разложенные по файлам, обязаны дать
+ровно тот же глоссарий, что собран из ``data/cards/``. Расхождение здесь
+означало бы, что грейдер учит не тому, что лежит в источнике.
+"""
+
+import io
+import json
+from pathlib import Path
+from typing import Any
+
+import pytest
+
+from glossary import delivery
+from glossary.cards import assemble, default_cards_dir, read_cards
+from glossary.cli import EXIT_OK, EXIT_USAGE, main
+from glossary.contracts import PRODUCER
+from glossary.loader import digest, load_glossary
+from glossary.models import SCHEMA_VERSION
+
+
+def card(**overrides: Any) -> dict[str, Any]:
+    """Карточка в форме ``data/cards/`` — без ``color_group``."""
+    base: dict[str, Any] = {
+        "id": "sample",
+        "title": {"ru": "sample()", "en": "sample()"},
+        "kind": "function",
+        "summary": {"ru": "Сводка.", "en": "Summary."},
+        "body": {"ru": "Тело.", "en": "Body."},
+        "status": "ready",
+        "section": "Раздел",
+    }
+    return base | overrides
+
+
+def make_cards(root: Path, files: dict[str, list[dict[str, Any]]]) -> Path:
+    """Разложить карточки по файлам групп."""
+    root.mkdir(parents=True, exist_ok=True)
+    for name, items in files.items():
+        (root / f"{name}.json").write_text(json.dumps(items, ensure_ascii=False), "utf-8")
+    return root
+
+
+def unpack(groups: dict[str, list[dict[str, Any]]], root: Path) -> Path:
+    """Сделать то, что сделает импорт потребителя: группа → файл."""
+    return make_cards(root, groups)
+
+
+# --------------------------- форма ---------------------------
+
+
+def test_groups_mirror_card_files(tmp_path: Path):
+    """Ключ — имя файла, порядок карточек — порядок файла, группы в поле нет."""
+    source = make_cards(
+        tmp_path,
+        {"str": [card(id="b"), card(id="a")], "exc": [card(id="e", kind="exception")]},
+    )
+    groups = delivery.groups_of(read_cards(source))
+    assert list(groups) == ["exc", "str"]
+    assert [c["id"] for c in groups["str"]] == ["b", "a"]
+    assert all("color_group" not in c for cards in groups.values() for c in cards)
+
+
+def test_drafts_stay_home(tmp_path: Path):
+    """Черновик не должен оказаться у учащегося раньше, чем его допишут."""
+    source = make_cards(tmp_path, {"str": [card(id="a"), card(id="b", status="draft")]})
+    groups = delivery.groups_of(read_cards(source))
+    assert [c["id"] for c in groups["str"]] == ["a"]
+
+
+def test_group_with_only_drafts_is_absent(tmp_path: Path):
+    source = make_cards(
+        tmp_path, {"str": [card(id="a")], "exc": [card(id="e", status="draft")]}
+    )
+    assert list(delivery.groups_of(read_cards(source))) == ["str"]
+
+
+def test_unpacked_delivery_assembles_to_the_same_glossary(tmp_path: Path):
+    """Сторож формы: импорт потребителя восстанавливает ту же сборку."""
+    source = make_cards(
+        tmp_path / "src",
+        {
+            "str": [card(id="я", section="Второй"), card(id="b", section="Первый")],
+            "exc": [card(id="a", section="Второй", kind="exception")],
+        },
+    )
+    payload = delivery.collect(source)
+    restored = unpack(payload["groups"], tmp_path / "consumer")
+    assert assemble(read_cards(restored)) == assemble(read_cards(source))
+
+
+def test_header_and_snapshot(tmp_path: Path):
+    source = make_cards(tmp_path, {"str": [card(id="a"), card(id="b")]})
+    payload = delivery.collect(source)
+    assert payload["producer"] == PRODUCER
+    assert payload["schema_of"] == delivery.SCHEMA_OF
+    assert set(payload) >= {"schema", "source", "generated_at", "snapshot", "groups"}
+    assert payload["snapshot"] == {
+        "cards": 2,
+        "schema_version": SCHEMA_VERSION,
+        "digest": digest(assemble(read_cards(source))),
+    }
+
+
+# --------------------------- команда ---------------------------
+
+
+def run(*argv: str) -> tuple[int, str, str]:
+    out, err = io.StringIO(), io.StringIO()
+    code = main(argv, out=out, err=err)
+    return code, out.getvalue(), err.getvalue()
+
+
+def test_cli_writes_file(tmp_path: Path):
+    source = make_cards(tmp_path / "cards", {"str": [card(id="a")]})
+    target = tmp_path / "out" / "delivery.json"
+    code, out, _ = run("delivery", "--cards", str(source), "-o", str(target))
+    assert code == EXIT_OK
+    assert "1" in out
+    assert json.loads(target.read_text("utf-8"))["groups"]["str"][0]["id"] == "a"
+
+
+def test_cli_prints_to_stdout(tmp_path: Path):
+    source = make_cards(tmp_path, {"str": [card(id="a")]})
+    code, out, _ = run("delivery", "--cards", str(source))
+    assert code == EXIT_OK
+    assert json.loads(out)["snapshot"]["cards"] == 1
+
+
+def test_missing_cards_is_the_third_outcome(tmp_path: Path):
+    absent = tmp_path / "нет-каталога"
+    code, _, err = run("delivery", "--cards", str(absent))
+    assert code == EXIT_USAGE
+    assert str(absent) in err, "третий исход обязан назвать предмет"
+
+
+# --------------------------- живая половина ---------------------------
+
+
+@pytest.mark.live_surface
+def test_repository_delivery_matches_the_assembled_glossary(tmp_path: Path):
+    """Выгрузка дерева восстанавливает ровно ``data/glossary.json``."""
+    if not default_cards_dir().is_dir():  # pragma: no cover - вне репозитория
+        pytest.skip("каталога data/cards нет")
+    payload = delivery.collect()
+    restored = assemble(read_cards(unpack(payload["groups"], tmp_path)))
+    assert restored == load_glossary()
+    assert payload["snapshot"]["digest"] == digest(load_glossary())

@@ -88,10 +88,10 @@ def load_glossary(path: Path | None = None) -> Glossary:
     version = payload.get("schema_version")
     if version != SCHEMA_VERSION:
         hint = ""
-        if version == 1:
+        if version in {1, 2}:
             hint = (
-                " Снимок версии 1 одноязычен и не несёт синонимов и связей; "
-                "пересоберите его: python -m glossary assemble"
+                f" Файл версии {version} несёт одноязычные заголовок и "
+                "подкатегорию; пересоберите его: python -m glossary assemble"
             )
         raise DataFormatError(
             f"{source}: несовместимая версия схемы {version!r}, "

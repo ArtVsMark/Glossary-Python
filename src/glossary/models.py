@@ -29,12 +29,15 @@ __all__ = [
     "Text",
 ]
 
-SCHEMA_VERSION: Final = 2
+SCHEMA_VERSION: Final = 3
 """Версия формата ``data/glossary.json``.
 
 Версия 1 хранила одноязычную карточку с полями ``name``/``group``/
-``description``. Версия 2 приняла форму источника: двуязычные тексты,
-синонимы, связи и вид карточки.
+``description``. Версия 2 приняла форму базы знаний грейдера: двуязычные
+тексты, синонимы, связи и вид карточки. Версия 3 сделала двуязычными заголовок
+и подкатегорию (#85): в английском режиме витрина больше не наполовину русская.
+Раздел остаётся ключом — его подписи на двух языках живут в
+:mod:`glossary.taxonomy`, по одной на раздел, а не по копии на карточку.
 """
 
 Language = Literal["ru", "en"]
@@ -103,7 +106,7 @@ class Entry:
     """
 
     id: str
-    title: str
+    title: Text
     kind: str
     summary: Text
     body: Text
@@ -112,7 +115,7 @@ class Entry:
     docs_url: str = ""
     version: str = ""
     section: str = ""
-    subcat: str = ""
+    subcat: Text = field(default_factory=Text)
     color_group: str = "op"
     aliases: tuple[str, ...] = ()
     keywords: tuple[str, ...] = ()
@@ -130,7 +133,7 @@ class Entry:
         """
         return cls(
             id=str(raw.get("id", "")),
-            title=str(raw.get("title", "")),
+            title=Text.from_any(raw.get("title")),
             kind=str(raw.get("kind", "")),
             summary=Text.from_any(raw.get("summary")),
             body=Text.from_any(raw.get("body")),
@@ -139,7 +142,7 @@ class Entry:
             docs_url=str(raw.get("docs_url", "")),
             version=str(raw.get("version", "")),
             section=str(raw.get("section", "")),
-            subcat=str(raw.get("subcat", "")),
+            subcat=Text.from_any(raw.get("subcat")),
             color_group=str(raw.get("color_group", "") or "op"),
             aliases=_tuple(raw.get("aliases")),
             keywords=_tuple(raw.get("keywords")),
@@ -164,7 +167,12 @@ class Entry:
 
     def searchable(self, language: str = "ru") -> str:
         """Всё, по чему карточку ищут: имя, синонимы, ключевые слова, сводка."""
-        parts = [self.title, self.summary.get(language), *self.aliases, *self.keywords]
+        parts = [
+            self.title.get(language),
+            self.summary.get(language),
+            *self.aliases,
+            *self.keywords,
+        ]
         return " ".join(part for part in parts if part)
 
 

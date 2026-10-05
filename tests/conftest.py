@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from glossary.loader import default_data_path, load_glossary, project_root
-from glossary.models import Glossary
+from glossary.models import Glossary, Text
 from tests.factories import make_entry, make_glossary
 
 # scripts/ — инструменты репозитория, а не часть пакета: пакет ставится
@@ -39,7 +39,12 @@ def sample_glossary() -> Glossary:
     """
     return make_glossary(
         make_entry(id="alpha", title="alpha()", section="Первый"),
-        make_entry(id="beta", title="beta()", section="Первый", subcat="другая"),
+        make_entry(
+            id="beta",
+            title="beta()",
+            section="Первый",
+            subcat=Text(ru="другая", en="another"),
+        ),
         make_entry(id="gamma", title="gamma()", section="Второй", color_group="module"),
         make_entry(id="delta", title="delta()", section="Второй", color_group="module"),
     )

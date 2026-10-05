@@ -1,7 +1,10 @@
 [
   {
     "id": "del-для-списка",
-    "title": "del для списка",
+    "title": {
+      "ru": "del для списка",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Оператор del удаляет элемент по индексу, срез или весь список из памяти. Изменяет объект на месте.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-del-statement",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "удалить элемент по индексу",
       "удалить срез списка",
@@ -56,7 +62,10 @@
   },
   {
     "id": "enumerate-со-списком",
-    "title": "enumerate() со списком",
+    "title": {
+      "ru": "enumerate() со списком",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "enumerate() возвращает пары (индекс, элемент). start= задаёт начальный индекс.",
@@ -71,7 +80,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#enumerate",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "итерация",
+    "subcat": {
+      "ru": "итерация",
+      "en": ""
+    },
     "aliases": [
       "индекс и элемент в цикле",
       "номер элемента при переборе",
@@ -110,7 +122,10 @@
   },
   {
     "id": "in-not-in-для-списков",
-    "title": "in / not in для списков",
+    "title": {
+      "ru": "in / not in для списков",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Проверяет наличие элемента в списке за O(n). Возвращает bool.",
@@ -125,7 +140,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
     "version": "3.8",
     "section": "Списки (list)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "проверить есть ли элемент в списке",
       "содержится ли значение в списке",
@@ -158,7 +176,10 @@
   },
   {
     "id": "len-min-max-sum-для-кортежей",
-    "title": "len/min/max/sum для кортежей",
+    "title": {
+      "ru": "len/min/max/sum для кортежей",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Встроенные функции работают с кортежами так же, как со списками.",
@@ -173,7 +194,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "агрегация",
+    "subcat": {
+      "ru": "агрегация",
+      "en": ""
+    },
     "aliases": [
       "длина кортежа",
       "сумма элементов кортежа",
@@ -204,7 +228,10 @@
   },
   {
     "id": "zip-с-кортежами",
-    "title": "zip() с кортежами",
+    "title": {
+      "ru": "zip() с кортежами",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "zip() работает с кортежами так же, как со списками. Возвращает итератор кортежей.",
@@ -219,7 +246,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "итерация",
+    "subcat": {
+      "ru": "итерация",
+      "en": ""
+    },
     "aliases": [
       "объединить кортежи попарно",
       "параллельный перебор двух кортежей"
@@ -252,7 +282,10 @@
   },
   {
     "id": "zip-со-списками",
-    "title": "zip() со списками",
+    "title": {
+      "ru": "zip() со списками",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "zip() объединяет элементы нескольких итерируемых объектов в кортежи. Останавливается на самом коротком.",
@@ -267,7 +300,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "итерация",
+    "subcat": {
+      "ru": "итерация",
+      "en": ""
+    },
     "aliases": [
       "пройти по двум спискам одновременно",
       "объединить списки попарно",
@@ -307,7 +343,10 @@
   },
   {
     "id": "вложенные-списки-матрицы",
-    "title": "Вложенные списки / матрицы",
+    "title": {
+      "ru": "Вложенные списки / матрицы",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Список списков используется как двумерная матрица. Доступ через двойной индекс matrix[row][col].",
@@ -322,7 +361,10 @@
     "docs_url": "https://docs.python.org/3/faq/programming.html#how-do-i-create-a-multidimensional-list",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "матрицы",
+    "subcat": {
+      "ru": "матрицы",
+      "en": ""
+    },
     "aliases": [
       "двумерный массив",
       "список списков",
@@ -366,7 +408,10 @@
   },
   {
     "id": "вложенный-list-comprehension",
-    "title": "Вложенный list comprehension",
+    "title": {
+      "ru": "Вложенный list comprehension",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "List comprehension может содержать несколько вложенных for, что позволяет строить вложенные списки или «разворачивать» матрицы в плоский список.",
@@ -381,7 +426,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "comprehension",
+    "subcat": {
+      "ru": "comprehension",
+      "en": "comprehension"
+    },
     "aliases": [
       "развернуть вложенный список в плоский",
       "двойной цикл в списочном выражении",
@@ -412,7 +460,10 @@
   },
   {
     "id": "индексирование-и-срезы-кортежа",
-    "title": "Индексирование и срезы кортежа",
+    "title": {
+      "ru": "Индексирование и срезы кортежа",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Индексирование и срезы работают так же, как у строк и списков, но результат — кортеж или элемент (неизменяемый).",
@@ -427,7 +478,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "индексы/срезы",
+    "subcat": {
+      "ru": "индексы/срезы",
+      "en": ""
+    },
     "aliases": [
       "срез кортежа",
       "элемент кортежа по индексу",
@@ -461,7 +515,10 @@
   },
   {
     "id": "индексирование-списка",
-    "title": "Индексирование списка",
+    "title": {
+      "ru": "Индексирование списка",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Доступ к элементу по индексу. Отрицательные индексы — от конца. Поддерживает присваивание.",
@@ -476,7 +533,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "индексы/срезы",
+    "subcat": {
+      "ru": "индексы/срезы",
+      "en": ""
+    },
     "aliases": [
       "получить элемент списка по номеру",
       "последний элемент списка",
@@ -513,7 +573,10 @@
   },
   {
     "id": "кортеж-в-return-функции",
-    "title": "Кортеж в return функции",
+    "title": {
+      "ru": "Кортеж в return функции",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Функция может возвращать несколько значений — Python упаковывает их в кортеж.",
@@ -528,7 +591,10 @@
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-return-statement",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "применение",
+    "subcat": {
+      "ru": "применение",
+      "en": ""
+    },
     "aliases": [
       "вернуть несколько значений из функции",
       "функция возвращает два значения",
@@ -572,7 +638,10 @@
   },
   {
     "id": "кортеж-как-ключ-словаря",
-    "title": "Кортеж как ключ словаря",
+    "title": {
+      "ru": "Кортеж как ключ словаря",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Кортежи хэшируемы (если все элементы хэшируемы), поэтому могут быть ключами словаря. Списки — нет.",
@@ -587,7 +656,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "применение",
+    "subcat": {
+      "ru": "применение",
+      "en": ""
+    },
     "aliases": [
       "составной ключ словаря",
       "ключ из нескольких значений",
@@ -630,7 +702,10 @@
   },
   {
     "id": "наименованный-кортеж-namedtuple",
-    "title": "Наименованный кортеж namedtuple",
+    "title": {
+      "ru": "Наименованный кортеж namedtuple",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "namedtuple создаёт класс кортежа с именованными полями. Поля доступны по имени и по индексу.",
@@ -645,7 +720,10 @@
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.namedtuple",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "namedtuple",
+    "subcat": {
+      "ru": "namedtuple",
+      "en": "namedtuple"
+    },
     "aliases": [
       "кортеж с именованными полями",
       "обращение к полям по имени вместо индекса"
@@ -685,7 +763,10 @@
   },
   {
     "id": "неизменяемость-кортежа",
-    "title": "Неизменяемость кортежа",
+    "title": {
+      "ru": "Неизменяемость кортежа",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Кортежи неизменяемы: нельзя изменить, добавить или удалить элемент. Обходы: создать новый кортеж, преобразовать в список.",
@@ -700,7 +781,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#tuples",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "неизменяемость",
+    "subcat": {
+      "ru": "неизменяемость",
+      "en": ""
+    },
     "aliases": [
       "почему нельзя изменить кортеж",
       "как изменить кортеж",
@@ -744,7 +828,10 @@
   },
   {
     "id": "объединение-повторение-списков",
-    "title": "+ объединение / * повторение списков",
+    "title": {
+      "ru": "+ объединение / * повторение списков",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Оператор + возвращает новый список-объединение. * повторяет список n раз. Для mutable объектов * создаёт shallow копии.",
@@ -759,7 +846,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "склеить два списка",
       "объединить два списка в один",
@@ -792,7 +882,10 @@
   },
   {
     "id": "распаковка-кортежа",
-    "title": "Распаковка кортежа",
+    "title": {
+      "ru": "Распаковка кортежа",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Распаковка позволяет присвоить элементы переменным. * захватывает остаток. _ — соглашение для игнорируемых значений.",
@@ -807,7 +900,10 @@
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "распаковка",
+    "subcat": {
+      "ru": "распаковка",
+      "en": ""
+    },
     "aliases": [
       "множественное присваивание",
       "присвоить нескольким переменным сразу",
@@ -855,7 +951,10 @@
   },
   {
     "id": "распаковка-списка",
-    "title": "Распаковка списка — *",
+    "title": {
+      "ru": "Распаковка списка — *",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Распаковка позволяет присвоить элементы переменным. * захватывает остаток как список.",
@@ -870,7 +969,10 @@
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "распаковка",
+    "subcat": {
+      "ru": "распаковка",
+      "en": ""
+    },
     "aliases": [
       "присвоить несколько переменных сразу",
       "звёздочка перед переменной",
@@ -911,7 +1013,10 @@
   },
   {
     "id": "создание-кортежа",
-    "title": "Создание кортежа",
+    "title": {
+      "ru": "Создание кортежа",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Кортеж создаётся скобками (), конструктором tuple(), или простым перечислением. Один элемент требует замыкающей запятой: (x,).",
@@ -926,7 +1031,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#tuple",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "создание",
+    "subcat": {
+      "ru": "создание",
+      "en": ""
+    },
     "aliases": [
       "кортеж из одного элемента",
       "преобразовать список в кортеж",
@@ -961,7 +1069,10 @@
   },
   {
     "id": "создание-списка",
-    "title": "Создание списка",
+    "title": {
+      "ru": "Создание списка",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Список создаётся литералом [], конструктором list(), или списочным выражением. Может содержать элементы любых типов.",
@@ -976,7 +1087,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "создание",
+    "subcat": {
+      "ru": "создание",
+      "en": ""
+    },
     "aliases": [
       "пустой список",
       "объявить массив",
@@ -1012,7 +1126,10 @@
   },
   {
     "id": "сортировка-ключом-key-lambda",
-    "title": "Сортировка ключом key= / lambda",
+    "title": {
+      "ru": "Сортировка ключом key= / lambda",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "key= принимает функцию, возвращающую значение для сравнения. lambda удобна для однострочных ключей.",
@@ -1027,7 +1144,10 @@
     "docs_url": "https://docs.python.org/3/howto/sorting.html#key-functions",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "сортировка",
+    "subcat": {
+      "ru": "сортировка",
+      "en": ""
+    },
     "aliases": [
       "сортировка по полю объекта",
       "сортировка по второму элементу",
@@ -1070,7 +1190,10 @@
   },
   {
     "id": "списочные-выражения-list-comprehension",
-    "title": "Списочные выражения (list comprehension)",
+    "title": {
+      "ru": "Списочные выражения (list comprehension)",
+      "en": ""
+    },
     "kind": "function",
     "summary": {
       "ru": "Компактный синтаксис создания списка с необязательной фильтрацией. Быстрее эквивалентного цикла for+append.",
@@ -1085,7 +1208,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "comprehension",
+    "subcat": {
+      "ru": "comprehension",
+      "en": "comprehension"
+    },
     "aliases": [
       "генератор списка",
       "создать список одной строкой",
@@ -1132,7 +1258,10 @@
   },
   {
     "id": "срезы-с-шагом-2-1",
-    "title": "Срезы с шагом [::2] / [::-1]",
+    "title": {
+      "ru": "Срезы с шагом [::2] / [::-1]",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Третий параметр среза — шаг: [start:stop:step]. Шаг 2 — каждый второй элемент. Шаг -1 — обратный порядок. Можно комбинировать start/stop со шагом.",
@@ -1147,7 +1276,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "индексы/срезы",
+    "subcat": {
+      "ru": "индексы/срезы",
+      "en": ""
+    },
     "aliases": [
       "каждый второй элемент",
       "развернуть список в обратном порядке",
@@ -1175,7 +1307,10 @@
   },
   {
     "id": "срезы-списка",
-    "title": "Срезы списка",
+    "title": {
+      "ru": "Срезы списка",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Срезы возвращают новый список. s[a:b:c] — с шагом c. [::-1] — реверс. Срез без аргументов — поверхностная копия.",
@@ -1190,7 +1325,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "индексы/срезы",
+    "subcat": {
+      "ru": "индексы/срезы",
+      "en": ""
+    },
     "aliases": [
       "взять часть списка",
       "вырезать подсписок",
@@ -1229,7 +1367,10 @@
   },
   {
     "id": "условный-list-comprehension",
-    "title": "Условный list comprehension",
+    "title": {
+      "ru": "Условный list comprehension",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Фильтрующий if в конце list comprehension отбирает элементы по условию. Не путать с тернарным оператором (if ... else ...) в начале выражения — тот преобразует, а не фильтрует.",
@@ -1244,7 +1385,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comprehensions",
     "version": "3.6",
     "section": "Списки (list)",
-    "subcat": "comprehension",
+    "subcat": {
+      "ru": "comprehension",
+      "en": "comprehension"
+    },
     "aliases": [
       "фильтрация списка условием",
       "отобрать элементы списка по условию"
@@ -1270,7 +1414,10 @@
   },
   {
     "id": "list.append",
-    "title": "list.append",
+    "title": {
+      "ru": "list.append",
+      "en": "list.append"
+    },
     "kind": "function",
     "summary": {
       "ru": "Добавляет один элемент в конец списка (на месте); возвращает None.",
@@ -1285,7 +1432,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.append",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "добавление",
+    "subcat": {
+      "ru": "добавление",
+      "en": ""
+    },
     "aliases": [
       "добавить элемент в список",
       "добавить в конец списка"
@@ -1310,7 +1460,10 @@
   },
   {
     "id": "list.clear",
-    "title": "list.clear",
+    "title": {
+      "ru": "list.clear",
+      "en": "list.clear"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет все элементы, оставляя пустой список (на месте).",
@@ -1325,7 +1478,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.clear",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "очистить список",
       "удалить все элементы списка"
@@ -1349,7 +1505,10 @@
   },
   {
     "id": "list.count",
-    "title": "list.count",
+    "title": {
+      "ru": "list.count",
+      "en": "list.count"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает число вхождений значения в список (сравнение через ==).",
@@ -1364,7 +1523,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.count",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "сколько раз элемент встречается в списке",
       "подсчёт вхождений в списке",
@@ -1389,7 +1551,10 @@
   },
   {
     "id": "list.copy",
-    "title": "list.copy",
+    "title": {
+      "ru": "list.copy",
+      "en": "list.copy"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает поверхностную (shallow) копию списка: новый список с теми же ссылками на элементы; вложенные объекты не копируются.",
@@ -1404,7 +1569,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.copy",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "копирование",
+    "subcat": {
+      "ru": "копирование",
+      "en": ""
+    },
     "aliases": [
       "скопировать список",
       "копия списка без ссылки на оригинал",
@@ -1431,7 +1599,10 @@
   },
   {
     "id": "list.extend",
-    "title": "list.extend",
+    "title": {
+      "ru": "list.extend",
+      "en": "list.extend"
+    },
     "kind": "function",
     "summary": {
       "ru": "Добавляет все элементы итерируемого объекта в конец списка (на месте).",
@@ -1446,7 +1617,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.extend",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "добавление",
+    "subcat": {
+      "ru": "добавление",
+      "en": ""
+    },
     "aliases": [
       "добавить список к списку",
       "добавить несколько элементов в список"
@@ -1473,7 +1647,10 @@
   },
   {
     "id": "list.index",
-    "title": "list.index",
+    "title": {
+      "ru": "list.index",
+      "en": "list.index"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает индекс первого вхождения значения; опциональные start/end сужают диапазон; ValueError, если не найдено.",
@@ -1488,7 +1665,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.index",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "найти позицию элемента в списке",
       "узнать индекс элемента",
@@ -1515,7 +1695,10 @@
   },
   {
     "id": "list.insert",
-    "title": "list.insert",
+    "title": {
+      "ru": "list.insert",
+      "en": "list.insert"
+    },
     "kind": "function",
     "summary": {
       "ru": "Вставляет элемент перед указанным индексом; индекс ≥ len — в конец, отрицательный — от конца.",
@@ -1530,7 +1713,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.insert",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "добавление",
+    "subcat": {
+      "ru": "добавление",
+      "en": ""
+    },
     "aliases": [
       "вставить элемент в список по индексу",
       "вставить элемент в начало списка"
@@ -1555,7 +1741,10 @@
   },
   {
     "id": "list.pop",
-    "title": "list.pop",
+    "title": {
+      "ru": "list.pop",
+      "en": "list.pop"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет и возвращает элемент по индексу (по умолчанию последний); IndexError на пустом/неверном индексе.",
@@ -1570,7 +1759,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.pop",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "извлечь последний элемент списка",
       "удалить и вернуть элемент",
@@ -1598,7 +1790,10 @@
   },
   {
     "id": "list.remove",
-    "title": "list.remove",
+    "title": {
+      "ru": "list.remove",
+      "en": "list.remove"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет первое вхождение значения; ValueError, если значение не найдено.",
@@ -1613,7 +1808,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.remove",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "удалить элемент по значению",
       "убрать значение из списка",
@@ -1642,7 +1840,10 @@
   },
   {
     "id": "list.reverse",
-    "title": "list.reverse",
+    "title": {
+      "ru": "list.reverse",
+      "en": "list.reverse"
+    },
     "kind": "function",
     "summary": {
       "ru": "Переворачивает список на месте. Для нового обратного итератора без изменения списка — встроенная reversed().",
@@ -1657,7 +1858,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.reverse",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "сортировка",
+    "subcat": {
+      "ru": "сортировка",
+      "en": ""
+    },
     "aliases": [
       "перевернуть список",
       "развернуть список",
@@ -1685,7 +1889,10 @@
   },
   {
     "id": "list.sort",
-    "title": "list.sort",
+    "title": {
+      "ru": "list.sort",
+      "en": "list.sort"
+    },
     "kind": "function",
     "summary": {
       "ru": "Сортирует список на месте; key= задаёт функцию ключа, reverse=True — обратный порядок. Для нового списка без изменения исходного — встроенная sorted().",
@@ -1700,7 +1907,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.sort",
     "version": "",
     "section": "Списки (list)",
-    "subcat": "сортировка",
+    "subcat": {
+      "ru": "сортировка",
+      "en": ""
+    },
     "aliases": [
       "отсортировать список",
       "сортировка списка по возрастанию",
@@ -1731,7 +1941,10 @@
   },
   {
     "id": "tuple.count",
-    "title": "tuple.count",
+    "title": {
+      "ru": "tuple.count",
+      "en": "tuple.count"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает число вхождений значения в кортеж (сравнение через ==).",
@@ -1746,7 +1959,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "методы",
+    "subcat": {
+      "ru": "методы",
+      "en": ""
+    },
     "aliases": [
       "сколько раз элемент встречается в кортеже",
       "подсчёт вхождений в кортеже"
@@ -1769,7 +1985,10 @@
   },
   {
     "id": "tuple.index",
-    "title": "tuple.index",
+    "title": {
+      "ru": "tuple.index",
+      "en": "tuple.index"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает индекс первого вхождения значения; опциональные start/end сужают диапазон; ValueError, если не найдено.",
@@ -1784,7 +2003,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Кортежи (tuple)",
-    "subcat": "методы",
+    "subcat": {
+      "ru": "методы",
+      "en": ""
+    },
     "aliases": [
       "найти индекс элемента в кортеже",
       "позиция элемента в кортеже"
@@ -1809,7 +2031,10 @@
   },
   {
     "id": "bytes.capitalize",
-    "title": "bytes.capitalize",
+    "title": {
+      "ru": "bytes.capitalize",
+      "en": "bytes.capitalize"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию: первый байт в верхнем регистре, остальные — в нижнем.",
@@ -1824,7 +2049,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.capitalize",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — регистр",
+    "subcat": {
+      "ru": "bytes — регистр",
+      "en": ""
+    },
     "aliases": [
       "первый байт с заглавной буквы",
       "байты с большой буквы"
@@ -1849,7 +2077,10 @@
   },
   {
     "id": "bytes.lower",
-    "title": "bytes.lower",
+    "title": {
+      "ru": "bytes.lower",
+      "en": "bytes.lower"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию, где ASCII-буквы приведены к нижнему регистру.",
@@ -1864,7 +2095,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.lower",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — регистр",
+    "subcat": {
+      "ru": "bytes — регистр",
+      "en": ""
+    },
     "aliases": [
       "байты в нижний регистр",
       "сделать байты строчными"
@@ -1890,7 +2124,10 @@
   },
   {
     "id": "bytes.upper",
-    "title": "bytes.upper",
+    "title": {
+      "ru": "bytes.upper",
+      "en": "bytes.upper"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию, где ASCII-буквы приведены к верхнему регистру.",
@@ -1905,7 +2142,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.upper",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — регистр",
+    "subcat": {
+      "ru": "bytes — регистр",
+      "en": ""
+    },
     "aliases": [
       "перевести байты в верхний регистр",
       "сделать байты заглавными"
@@ -1930,7 +2170,10 @@
   },
   {
     "id": "bytes.title",
-    "title": "bytes.title",
+    "title": {
+      "ru": "bytes.title",
+      "en": "bytes.title"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию в «заголовочном» регистре (каждое слово с большой буквы).",
@@ -1945,7 +2188,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.title",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — регистр",
+    "subcat": {
+      "ru": "bytes — регистр",
+      "en": ""
+    },
     "aliases": [
       "каждое слово байтов с заглавной",
       "заголовочный регистр байтов"
@@ -1970,7 +2216,10 @@
   },
   {
     "id": "bytes.swapcase",
-    "title": "bytes.swapcase",
+    "title": {
+      "ru": "bytes.swapcase",
+      "en": "bytes.swapcase"
+    },
     "kind": "function",
     "summary": {
       "ru": "Меняет регистр ASCII-букв на противоположный.",
@@ -1985,7 +2234,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.swapcase",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — регистр",
+    "subcat": {
+      "ru": "bytes — регистр",
+      "en": ""
+    },
     "aliases": [
       "поменять регистр байтов на противоположный",
       "инвертировать регистр байтов"
@@ -2010,7 +2262,10 @@
   },
   {
     "id": "bytes.center",
-    "title": "bytes.center",
+    "title": {
+      "ru": "bytes.center",
+      "en": "bytes.center"
+    },
     "kind": "function",
     "summary": {
       "ru": "Центрирует байты в поле заданной ширины, заполняя байтом-заполнителем.",
@@ -2025,7 +2280,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.center",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — выравнивание",
+    "subcat": {
+      "ru": "bytes — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "выровнять байты по центру",
       "центрировать байтовую строку"
@@ -2051,7 +2309,10 @@
   },
   {
     "id": "bytes.ljust",
-    "title": "bytes.ljust",
+    "title": {
+      "ru": "bytes.ljust",
+      "en": "bytes.ljust"
+    },
     "kind": "function",
     "summary": {
       "ru": "Выравнивает по левому краю в поле заданной ширины.",
@@ -2066,7 +2327,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.ljust",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — выравнивание",
+    "subcat": {
+      "ru": "bytes — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "выровнять байты по левому краю",
       "дополнить байты справа до нужной ширины"
@@ -2093,7 +2357,10 @@
   },
   {
     "id": "bytes.rjust",
-    "title": "bytes.rjust",
+    "title": {
+      "ru": "bytes.rjust",
+      "en": "bytes.rjust"
+    },
     "kind": "function",
     "summary": {
       "ru": "Выравнивает по правому краю в поле заданной ширины.",
@@ -2108,7 +2375,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rjust",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — выравнивание",
+    "subcat": {
+      "ru": "bytes — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "выровнять байты по правому краю",
       "дополнить байты слева до нужной ширины"
@@ -2135,7 +2405,10 @@
   },
   {
     "id": "bytes.zfill",
-    "title": "bytes.zfill",
+    "title": {
+      "ru": "bytes.zfill",
+      "en": "bytes.zfill"
+    },
     "kind": "function",
     "summary": {
       "ru": "Дополняет слева нулями до заданной длины (учитывает ведущий знак).",
@@ -2150,7 +2423,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.zfill",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — выравнивание",
+    "subcat": {
+      "ru": "bytes — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "дополнить байты нулями слева",
       "ведущие нули в байтовой строке"
@@ -2176,7 +2452,10 @@
   },
   {
     "id": "bytes.expandtabs",
-    "title": "bytes.expandtabs",
+    "title": {
+      "ru": "bytes.expandtabs",
+      "en": "bytes.expandtabs"
+    },
     "kind": "function",
     "summary": {
       "ru": "Заменяет символы табуляции пробелами до следующей позиции табуляции.",
@@ -2191,7 +2470,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.expandtabs",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — выравнивание",
+    "subcat": {
+      "ru": "bytes — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "заменить табуляцию пробелами в байтах",
       "развернуть табы в байтовой строке"
@@ -2217,7 +2499,10 @@
   },
   {
     "id": "bytes.count",
-    "title": "bytes.count",
+    "title": {
+      "ru": "bytes.count",
+      "en": "bytes.count"
+    },
     "kind": "function",
     "summary": {
       "ru": "Считает число непересекающихся вхождений подпоследовательности.",
@@ -2232,7 +2517,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.count",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — поиск",
+    "subcat": {
+      "ru": "bytes — поиск",
+      "en": ""
+    },
     "aliases": [
       "сколько раз встречаются байты",
       "посчитать вхождения в байтовой строке"
@@ -2260,7 +2548,10 @@
   },
   {
     "id": "bytes.find",
-    "title": "bytes.find",
+    "title": {
+      "ru": "bytes.find",
+      "en": "bytes.find"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает индекс первого вхождения подпоследовательности или -1.",
@@ -2275,7 +2566,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.find",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — поиск",
+    "subcat": {
+      "ru": "bytes — поиск",
+      "en": ""
+    },
     "aliases": [
       "позиция байтов в байтовой строке",
       "искать байты, минус один если нет"
@@ -2304,7 +2598,10 @@
   },
   {
     "id": "bytes.rfind",
-    "title": "bytes.rfind",
+    "title": {
+      "ru": "bytes.rfind",
+      "en": "bytes.rfind"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает индекс последнего вхождения подпоследовательности или -1.",
@@ -2319,7 +2616,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rfind",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — поиск",
+    "subcat": {
+      "ru": "bytes — поиск",
+      "en": ""
+    },
     "aliases": [
       "последнее вхождение байтов",
       "искать байты с конца"
@@ -2345,7 +2645,10 @@
   },
   {
     "id": "bytes.index",
-    "title": "bytes.index",
+    "title": {
+      "ru": "bytes.index",
+      "en": "bytes.index"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как find, но бросает ValueError, если подпоследовательность не найдена.",
@@ -2360,7 +2663,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.index",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — поиск",
+    "subcat": {
+      "ru": "bytes — поиск",
+      "en": ""
+    },
     "aliases": [
       "индекс байтов с ошибкой если не найдено",
       "поиск байтов с исключением"
@@ -2387,7 +2693,10 @@
   },
   {
     "id": "bytes.rindex",
-    "title": "bytes.rindex",
+    "title": {
+      "ru": "bytes.rindex",
+      "en": "bytes.rindex"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как rfind, но бросает ValueError, если не найдено.",
@@ -2402,7 +2711,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rindex",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — поиск",
+    "subcat": {
+      "ru": "bytes — поиск",
+      "en": ""
+    },
     "aliases": [
       "последнее вхождение байтов с ошибкой если нет",
       "поиск байтов справа с исключением"
@@ -2430,7 +2742,10 @@
   },
   {
     "id": "bytes.startswith",
-    "title": "bytes.startswith",
+    "title": {
+      "ru": "bytes.startswith",
+      "en": "bytes.startswith"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, начинаются ли байты с заданного префикса.",
@@ -2445,7 +2760,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.startswith",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — поиск",
+    "subcat": {
+      "ru": "bytes — поиск",
+      "en": ""
+    },
     "aliases": [
       "байтовая строка начинается с",
       "проверить префикс байтов"
@@ -2474,7 +2792,10 @@
   },
   {
     "id": "bytes.endswith",
-    "title": "bytes.endswith",
+    "title": {
+      "ru": "bytes.endswith",
+      "en": "bytes.endswith"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, заканчиваются ли байты заданным суффиксом.",
@@ -2489,7 +2810,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.endswith",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — поиск",
+    "subcat": {
+      "ru": "bytes — поиск",
+      "en": ""
+    },
     "aliases": [
       "байтовая строка заканчивается на",
       "проверить окончание байтов"
@@ -2518,7 +2842,10 @@
   },
   {
     "id": "bytes.join",
-    "title": "bytes.join",
+    "title": {
+      "ru": "bytes.join",
+      "en": "bytes.join"
+    },
     "kind": "function",
     "summary": {
       "ru": "Соединяет последовательность байтовых объектов через разделитель.",
@@ -2533,7 +2860,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.join",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — разбиение и соединение",
+    "subcat": {
+      "ru": "bytes — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "склеить байты через разделитель",
       "объединить список байтов в одну байтовую строку"
@@ -2561,7 +2891,10 @@
   },
   {
     "id": "bytes.split",
-    "title": "bytes.split",
+    "title": {
+      "ru": "bytes.split",
+      "en": "bytes.split"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разбивает байты по разделителю (по умолчанию — по пробельным).",
@@ -2576,7 +2909,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.split",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — разбиение и соединение",
+    "subcat": {
+      "ru": "bytes — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разбить байты по разделителю",
       "разделить байтовую строку на части"
@@ -2606,7 +2942,10 @@
   },
   {
     "id": "bytes.rsplit",
-    "title": "bytes.rsplit",
+    "title": {
+      "ru": "bytes.rsplit",
+      "en": "bytes.rsplit"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как split, но разбивает справа и с ограничением числа разбиений.",
@@ -2621,7 +2960,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rsplit",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — разбиение и соединение",
+    "subcat": {
+      "ru": "bytes — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разбить байты справа",
       "разделить байты с конца с ограничением"
@@ -2647,7 +2989,10 @@
   },
   {
     "id": "bytes.partition",
-    "title": "bytes.partition",
+    "title": {
+      "ru": "bytes.partition",
+      "en": "bytes.partition"
+    },
     "kind": "function",
     "summary": {
       "ru": "Делит по первому вхождению разделителя на тройку (до, разделитель, после).",
@@ -2662,7 +3007,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.partition",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — разбиение и соединение",
+    "subcat": {
+      "ru": "bytes — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разделить байты по первому вхождению",
       "разбить байты на три части"
@@ -2687,7 +3035,10 @@
   },
   {
     "id": "bytes.rpartition",
-    "title": "bytes.rpartition",
+    "title": {
+      "ru": "bytes.rpartition",
+      "en": "bytes.rpartition"
+    },
     "kind": "function",
     "summary": {
       "ru": "Делит по последнему вхождению разделителя на тройку.",
@@ -2702,7 +3053,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rpartition",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — разбиение и соединение",
+    "subcat": {
+      "ru": "bytes — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разделить байты по последнему вхождению",
       "разбить байты на тройку с конца"
@@ -2728,7 +3082,10 @@
   },
   {
     "id": "bytes.splitlines",
-    "title": "bytes.splitlines",
+    "title": {
+      "ru": "bytes.splitlines",
+      "en": "bytes.splitlines"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разбивает байты по границам строк.",
@@ -2743,7 +3100,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.splitlines",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — разбиение и соединение",
+    "subcat": {
+      "ru": "bytes — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разбить байты на строки",
       "разделить байты по переводу строки"
@@ -2769,7 +3129,10 @@
   },
   {
     "id": "bytes.strip",
-    "title": "bytes.strip",
+    "title": {
+      "ru": "bytes.strip",
+      "en": "bytes.strip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает заданные байты (по умолчанию пробельные) с обоих концов.",
@@ -2784,7 +3147,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.strip",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — обрезка",
+    "subcat": {
+      "ru": "bytes — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать пробелы с обоих концов байтовой строки",
       "обрезать байты с двух сторон"
@@ -2812,7 +3178,10 @@
   },
   {
     "id": "bytes.lstrip",
-    "title": "bytes.lstrip",
+    "title": {
+      "ru": "bytes.lstrip",
+      "en": "bytes.lstrip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает заданные байты слева.",
@@ -2827,7 +3196,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.lstrip",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — обрезка",
+    "subcat": {
+      "ru": "bytes — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать байты слева",
       "обрезать байтовую строку слева"
@@ -2853,7 +3225,10 @@
   },
   {
     "id": "bytes.rstrip",
-    "title": "bytes.rstrip",
+    "title": {
+      "ru": "bytes.rstrip",
+      "en": "bytes.rstrip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает заданные байты справа.",
@@ -2868,7 +3243,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rstrip",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — обрезка",
+    "subcat": {
+      "ru": "bytes — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать байты справа",
       "убрать перевод строки в конце байтов"
@@ -2896,7 +3274,10 @@
   },
   {
     "id": "bytes.removeprefix",
-    "title": "bytes.removeprefix",
+    "title": {
+      "ru": "bytes.removeprefix",
+      "en": "bytes.removeprefix"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает заданный префикс, если он есть (Python 3.9+).",
@@ -2911,7 +3292,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.removeprefix",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — обрезка",
+    "subcat": {
+      "ru": "bytes — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать префикс у байтов",
       "отрезать начало байтовой строки"
@@ -2937,7 +3321,10 @@
   },
   {
     "id": "bytes.removesuffix",
-    "title": "bytes.removesuffix",
+    "title": {
+      "ru": "bytes.removesuffix",
+      "en": "bytes.removesuffix"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает заданный суффикс, если он есть (Python 3.9+).",
@@ -2952,7 +3339,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.removesuffix",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — обрезка",
+    "subcat": {
+      "ru": "bytes — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать суффикс у байтов",
       "отрезать заданный конец байтовой строки"
@@ -2979,7 +3369,10 @@
   },
   {
     "id": "bytes.replace",
-    "title": "bytes.replace",
+    "title": {
+      "ru": "bytes.replace",
+      "en": "bytes.replace"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию с заменой всех (или первых count) вхождений.",
@@ -2994,7 +3387,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.replace",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — замена и перевод",
+    "subcat": {
+      "ru": "bytes — замена и перевод",
+      "en": ""
+    },
     "aliases": [
       "заменить подстроку в байтах",
       "замена вхождений в байтовой строке"
@@ -3020,7 +3416,10 @@
   },
   {
     "id": "bytes.translate",
-    "title": "bytes.translate",
+    "title": {
+      "ru": "bytes.translate",
+      "en": "bytes.translate"
+    },
     "kind": "function",
     "summary": {
       "ru": "Заменяет байты по таблице перевода (256 байт).",
@@ -3035,7 +3434,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.translate",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — замена и перевод",
+    "subcat": {
+      "ru": "bytes — замена и перевод",
+      "en": ""
+    },
     "aliases": [
       "заменить байты по таблице перевода",
       "удалить или подменить отдельные байты"
@@ -3064,7 +3466,10 @@
   },
   {
     "id": "bytes.maketrans",
-    "title": "bytes.maketrans",
+    "title": {
+      "ru": "bytes.maketrans",
+      "en": "bytes.maketrans"
+    },
     "kind": "function",
     "summary": {
       "ru": "Статический метод: строит таблицу перевода из двух байтовых объектов (для translate).",
@@ -3079,7 +3484,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.maketrans",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — замена и перевод",
+    "subcat": {
+      "ru": "bytes — замена и перевод",
+      "en": ""
+    },
     "aliases": [
       "таблица замены байтов",
       "построить таблицу перевода для байтов"
@@ -3106,7 +3514,10 @@
   },
   {
     "id": "bytes.decode",
-    "title": "bytes.decode",
+    "title": {
+      "ru": "bytes.decode",
+      "en": "bytes.decode"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декодирует байты в строку (str) по заданной кодировке (по умолчанию UTF-8).",
@@ -3121,7 +3532,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.decode",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — кодирование",
+    "subcat": {
+      "ru": "bytes — кодирование",
+      "en": ""
+    },
     "aliases": [
       "байты в строку",
       "декодировать байты",
@@ -3151,7 +3565,10 @@
   },
   {
     "id": "bytes.hex",
-    "title": "bytes.hex",
+    "title": {
+      "ru": "bytes.hex",
+      "en": "bytes.hex"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает шестнадцатеричное представление байтов как строку.",
@@ -3166,7 +3583,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.hex",
     "version": "3.5",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — кодирование",
+    "subcat": {
+      "ru": "bytes — кодирование",
+      "en": ""
+    },
     "aliases": [
       "байты в шестнадцатеричную строку",
       "шестнадцатеричное представление байтов",
@@ -3192,7 +3612,10 @@
   },
   {
     "id": "bytes.fromhex",
-    "title": "bytes.fromhex",
+    "title": {
+      "ru": "bytes.fromhex",
+      "en": "bytes.fromhex"
+    },
     "kind": "function",
     "summary": {
       "ru": "Статический метод: создаёт bytes из шестнадцатеричной строки.",
@@ -3207,7 +3630,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.fromhex",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — кодирование",
+    "subcat": {
+      "ru": "bytes — кодирование",
+      "en": ""
+    },
     "aliases": [
       "из шестнадцатеричной строки в байты",
       "hex-строка в байты"
@@ -3234,7 +3660,10 @@
   },
   {
     "id": "bytes.isalnum",
-    "title": "bytes.isalnum",
+    "title": {
+      "ru": "bytes.isalnum",
+      "en": "bytes.isalnum"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что все байты — ASCII-буквы или цифры и последовательность непуста.",
@@ -3249,7 +3678,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isalnum",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "байты только буквы и цифры",
       "проверка байтов на буквы и цифры"
@@ -3275,7 +3707,10 @@
   },
   {
     "id": "bytes.isalpha",
-    "title": "bytes.isalpha",
+    "title": {
+      "ru": "bytes.isalpha",
+      "en": "bytes.isalpha"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что все байты — ASCII-буквы и последовательность непуста.",
@@ -3290,7 +3725,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isalpha",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "байты только из букв",
       "проверка байтов на буквы"
@@ -3317,7 +3755,10 @@
   },
   {
     "id": "bytes.isascii",
-    "title": "bytes.isascii",
+    "title": {
+      "ru": "bytes.isascii",
+      "en": "bytes.isascii"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что все байты — ASCII (0–127); пустая последовательность тоже True.",
@@ -3332,7 +3773,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isascii",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "байты только ascii-символы",
       "проверка байтов на ascii-диапазон"
@@ -3357,7 +3801,10 @@
   },
   {
     "id": "bytes.isdigit",
-    "title": "bytes.isdigit",
+    "title": {
+      "ru": "bytes.isdigit",
+      "en": "bytes.isdigit"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что все байты — ASCII-цифры и последовательность непуста.",
@@ -3372,7 +3819,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isdigit",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "байты только из цифр",
       "проверка байтов на цифры"
@@ -3398,7 +3848,10 @@
   },
   {
     "id": "bytes.islower",
-    "title": "bytes.islower",
+    "title": {
+      "ru": "bytes.islower",
+      "en": "bytes.islower"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что все буквенные байты — в нижнем регистре.",
@@ -3413,7 +3866,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.islower",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "байты в нижнем регистре",
       "проверка байтов на строчные буквы"
@@ -3439,7 +3895,10 @@
   },
   {
     "id": "bytes.isspace",
-    "title": "bytes.isspace",
+    "title": {
+      "ru": "bytes.isspace",
+      "en": "bytes.isspace"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что все байты — пробельные и последовательность непуста.",
@@ -3454,7 +3913,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isspace",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "байты только пробельные",
       "проверка байтов на пробелы"
@@ -3480,7 +3942,10 @@
   },
   {
     "id": "bytes.istitle",
-    "title": "bytes.istitle",
+    "title": {
+      "ru": "bytes.istitle",
+      "en": "bytes.istitle"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что последовательность в «заголовочном» регистре.",
@@ -3495,7 +3960,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.istitle",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "байты в заголовочном регистре",
       "каждое слово в байтах с заглавной"
@@ -3521,7 +3989,10 @@
   },
   {
     "id": "bytes.isupper",
-    "title": "bytes.isupper",
+    "title": {
+      "ru": "bytes.isupper",
+      "en": "bytes.isupper"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, что все буквенные байты — в верхнем регистре.",
@@ -3536,7 +4007,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isupper",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytes — проверки is*",
+    "subcat": {
+      "ru": "bytes — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "проверить, что байты заглавные",
       "все ли байты в верхнем регистре"
@@ -3562,7 +4036,10 @@
   },
   {
     "id": "bytearray.capitalize",
-    "title": "bytearray.capitalize",
+    "title": {
+      "ru": "bytearray.capitalize",
+      "en": "bytearray.capitalize"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию: первый байт в верхнем регистре, остальные — в нижнем.",
@@ -3577,7 +4054,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.capitalize",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — регистр",
+    "subcat": {
+      "ru": "bytearray — регистр",
+      "en": ""
+    },
     "aliases": [
       "первая буква заглавная в байтовом массиве",
       "байтовый массив с прописной буквы"
@@ -3603,7 +4083,10 @@
   },
   {
     "id": "bytearray.lower",
-    "title": "bytearray.lower",
+    "title": {
+      "ru": "bytearray.lower",
+      "en": "bytearray.lower"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию с ASCII-буквами в нижнем регистре.",
@@ -3618,7 +4101,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.lower",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — регистр",
+    "subcat": {
+      "ru": "bytearray — регистр",
+      "en": ""
+    },
     "aliases": [
       "байтовый массив в нижний регистр",
       "маленькие буквы в байтовом массиве"
@@ -3644,7 +4130,10 @@
   },
   {
     "id": "bytearray.upper",
-    "title": "bytearray.upper",
+    "title": {
+      "ru": "bytearray.upper",
+      "en": "bytearray.upper"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию с ASCII-буквами в верхнем регистре.",
@@ -3659,7 +4148,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.upper",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — регистр",
+    "subcat": {
+      "ru": "bytearray — регистр",
+      "en": ""
+    },
     "aliases": [
       "байтовый массив в верхний регистр",
       "большие буквы в байтовом массиве"
@@ -3685,7 +4177,10 @@
   },
   {
     "id": "bytearray.title",
-    "title": "bytearray.title",
+    "title": {
+      "ru": "bytearray.title",
+      "en": "bytearray.title"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию в «заголовочном» регистре.",
@@ -3700,7 +4195,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.title",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — регистр",
+    "subcat": {
+      "ru": "bytearray — регистр",
+      "en": ""
+    },
     "aliases": [
       "каждое слово с большой буквы в байтовом массиве",
       "заголовочный регистр байтового массива"
@@ -3726,7 +4224,10 @@
   },
   {
     "id": "bytearray.swapcase",
-    "title": "bytearray.swapcase",
+    "title": {
+      "ru": "bytearray.swapcase",
+      "en": "bytearray.swapcase"
+    },
     "kind": "function",
     "summary": {
       "ru": "Меняет регистр ASCII-букв на противоположный.",
@@ -3741,7 +4242,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.swapcase",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — регистр",
+    "subcat": {
+      "ru": "bytearray — регистр",
+      "en": ""
+    },
     "aliases": [
       "поменять регистр байтового массива на противоположный",
       "инвертировать регистр байтового массива"
@@ -3767,7 +4271,10 @@
   },
   {
     "id": "bytearray.center",
-    "title": "bytearray.center",
+    "title": {
+      "ru": "bytearray.center",
+      "en": "bytearray.center"
+    },
     "kind": "function",
     "summary": {
       "ru": "Центрирует в поле заданной ширины байтом-заполнителем.",
@@ -3782,7 +4289,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.center",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — выравнивание",
+    "subcat": {
+      "ru": "bytearray — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "центрировать байты",
       "выровнять байты по центру"
@@ -3808,7 +4318,10 @@
   },
   {
     "id": "bytearray.ljust",
-    "title": "bytearray.ljust",
+    "title": {
+      "ru": "bytearray.ljust",
+      "en": "bytearray.ljust"
+    },
     "kind": "function",
     "summary": {
       "ru": "Выравнивает по левому краю в поле заданной ширины.",
@@ -3823,7 +4336,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.ljust",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — выравнивание",
+    "subcat": {
+      "ru": "bytearray — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "выровнять байты по левому краю",
       "дополнить байты справа до длины"
@@ -3850,7 +4366,10 @@
   },
   {
     "id": "bytearray.rjust",
-    "title": "bytearray.rjust",
+    "title": {
+      "ru": "bytearray.rjust",
+      "en": "bytearray.rjust"
+    },
     "kind": "function",
     "summary": {
       "ru": "Выравнивает по правому краю в поле заданной ширины.",
@@ -3865,7 +4384,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rjust",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — выравнивание",
+    "subcat": {
+      "ru": "bytearray — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "выровнять байты по правому краю",
       "дополнить байты слева до длины"
@@ -3891,7 +4413,10 @@
   },
   {
     "id": "bytearray.zfill",
-    "title": "bytearray.zfill",
+    "title": {
+      "ru": "bytearray.zfill",
+      "en": "bytearray.zfill"
+    },
     "kind": "function",
     "summary": {
       "ru": "Дополняет слева нулями до заданной длины.",
@@ -3906,7 +4431,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.zfill",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — выравнивание",
+    "subcat": {
+      "ru": "bytearray — выравнивание",
+      "en": ""
+    },
     "aliases": [
       "дополнить байты нулями слева",
       "ведущие нули в байтах"
@@ -3931,7 +4459,10 @@
   },
   {
     "id": "bytearray.expandtabs",
-    "title": "bytearray.expandtabs",
+    "title": {
+      "ru": "bytearray.expandtabs",
+      "en": "bytearray.expandtabs"
+    },
     "kind": "function",
     "summary": {
       "ru": "Заменяет табуляции пробелами до следующей позиции табуляции.",
@@ -3946,7 +4477,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.expandtabs",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — выравнивание",
+    "subcat": {
+      "ru": "bytearray — выравнивание",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -3968,7 +4502,10 @@
   },
   {
     "id": "bytearray.count",
-    "title": "bytearray.count",
+    "title": {
+      "ru": "bytearray.count",
+      "en": "bytearray.count"
+    },
     "kind": "function",
     "summary": {
       "ru": "Считает непересекающиеся вхождения подпоследовательности.",
@@ -3983,7 +4520,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.count",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — поиск",
+    "subcat": {
+      "ru": "bytearray — поиск",
+      "en": ""
+    },
     "aliases": [
       "сколько раз байты встречаются в массиве",
       "посчитать вхождения подпоследовательности байтов"
@@ -4008,7 +4548,10 @@
   },
   {
     "id": "bytearray.find",
-    "title": "bytearray.find",
+    "title": {
+      "ru": "bytearray.find",
+      "en": "bytearray.find"
+    },
     "kind": "function",
     "summary": {
       "ru": "Индекс первого вхождения подпоследовательности или -1.",
@@ -4023,7 +4566,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.find",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — поиск",
+    "subcat": {
+      "ru": "bytearray — поиск",
+      "en": ""
+    },
     "aliases": [
       "найти позицию байтов в массиве",
       "поиск байтов возвращает минус один"
@@ -4050,7 +4596,10 @@
   },
   {
     "id": "bytearray.rfind",
-    "title": "bytearray.rfind",
+    "title": {
+      "ru": "bytearray.rfind",
+      "en": "bytearray.rfind"
+    },
     "kind": "function",
     "summary": {
       "ru": "Индекс последнего вхождения подпоследовательности или -1.",
@@ -4065,7 +4614,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rfind",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — поиск",
+    "subcat": {
+      "ru": "bytearray — поиск",
+      "en": ""
+    },
     "aliases": [
       "найти последнее вхождение байтов",
       "искать байты с конца"
@@ -4093,7 +4645,10 @@
   },
   {
     "id": "bytearray.index",
-    "title": "bytearray.index",
+    "title": {
+      "ru": "bytearray.index",
+      "en": "bytearray.index"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как find, но бросает ValueError, если не найдено.",
@@ -4108,7 +4663,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.index",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — поиск",
+    "subcat": {
+      "ru": "bytearray — поиск",
+      "en": ""
+    },
     "aliases": [
       "позиция байтов или ошибка если не найдено",
       "искать байты с исключением"
@@ -4136,7 +4694,10 @@
   },
   {
     "id": "bytearray.rindex",
-    "title": "bytearray.rindex",
+    "title": {
+      "ru": "bytearray.rindex",
+      "en": "bytearray.rindex"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как rfind, но бросает ValueError, если не найдено.",
@@ -4151,7 +4712,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rindex",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — поиск",
+    "subcat": {
+      "ru": "bytearray — поиск",
+      "en": ""
+    },
     "aliases": [
       "последнее вхождение байтов или ошибка",
       "искать байты с конца с исключением"
@@ -4179,7 +4743,10 @@
   },
   {
     "id": "bytearray.startswith",
-    "title": "bytearray.startswith",
+    "title": {
+      "ru": "bytearray.startswith",
+      "en": "bytearray.startswith"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет заданный префикс.",
@@ -4194,7 +4761,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.startswith",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — поиск",
+    "subcat": {
+      "ru": "bytearray — поиск",
+      "en": ""
+    },
     "aliases": [
       "проверить начало байтового массива",
       "начинается ли с нужных байтов"
@@ -4222,7 +4792,10 @@
   },
   {
     "id": "bytearray.endswith",
-    "title": "bytearray.endswith",
+    "title": {
+      "ru": "bytearray.endswith",
+      "en": "bytearray.endswith"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет заданный суффикс.",
@@ -4237,7 +4810,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.endswith",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — поиск",
+    "subcat": {
+      "ru": "bytearray — поиск",
+      "en": ""
+    },
     "aliases": [
       "проверить конец байтового массива",
       "заканчивается ли нужными байтами"
@@ -4264,7 +4840,10 @@
   },
   {
     "id": "bytearray.join",
-    "title": "bytearray.join",
+    "title": {
+      "ru": "bytearray.join",
+      "en": "bytearray.join"
+    },
     "kind": "function",
     "summary": {
       "ru": "Соединяет последовательность байтовых объектов через разделитель.",
@@ -4279,7 +4858,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.join",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — разбиение и соединение",
+    "subcat": {
+      "ru": "bytearray — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "склеить байтовые куски через разделитель",
       "объединить байты в один массив"
@@ -4307,7 +4889,10 @@
   },
   {
     "id": "bytearray.split",
-    "title": "bytearray.split",
+    "title": {
+      "ru": "bytearray.split",
+      "en": "bytearray.split"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разбивает по разделителю (по умолчанию по пробельным).",
@@ -4322,7 +4907,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.split",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — разбиение и соединение",
+    "subcat": {
+      "ru": "bytearray — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разбить байтовый массив на части по разделителю",
       "разделить байтовый массив по пробелам"
@@ -4349,7 +4937,10 @@
   },
   {
     "id": "bytearray.rsplit",
-    "title": "bytearray.rsplit",
+    "title": {
+      "ru": "bytearray.rsplit",
+      "en": "bytearray.rsplit"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как split, но справа и с ограничением числа разбиений.",
@@ -4364,7 +4955,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rsplit",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — разбиение и соединение",
+    "subcat": {
+      "ru": "bytearray — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разбить байтовый массив с конца",
       "разделить байтовый массив справа с ограничением"
@@ -4390,7 +4984,10 @@
   },
   {
     "id": "bytearray.partition",
-    "title": "bytearray.partition",
+    "title": {
+      "ru": "bytearray.partition",
+      "en": "bytearray.partition"
+    },
     "kind": "function",
     "summary": {
       "ru": "Делит по первому разделителю на тройку.",
@@ -4405,7 +5002,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.partition",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — разбиение и соединение",
+    "subcat": {
+      "ru": "bytearray — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разделить байтовый массив по первому разделителю",
       "байтовый массив на три части"
@@ -4434,7 +5034,10 @@
   },
   {
     "id": "bytearray.rpartition",
-    "title": "bytearray.rpartition",
+    "title": {
+      "ru": "bytearray.rpartition",
+      "en": "bytearray.rpartition"
+    },
     "kind": "function",
     "summary": {
       "ru": "Делит по последнему разделителю на тройку.",
@@ -4449,7 +5052,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rpartition",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — разбиение и соединение",
+    "subcat": {
+      "ru": "bytearray — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разделить байтовый массив по последнему разделителю",
       "отделить хвост байтового массива после разделителя"
@@ -4476,7 +5082,10 @@
   },
   {
     "id": "bytearray.splitlines",
-    "title": "bytearray.splitlines",
+    "title": {
+      "ru": "bytearray.splitlines",
+      "en": "bytearray.splitlines"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разбивает по границам строк.",
@@ -4491,7 +5100,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.splitlines",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — разбиение и соединение",
+    "subcat": {
+      "ru": "bytearray — разбиение и соединение",
+      "en": ""
+    },
     "aliases": [
       "разбить байтовый массив на строки",
       "байтовый массив по переводам строки"
@@ -4517,7 +5129,10 @@
   },
   {
     "id": "bytearray.strip",
-    "title": "bytearray.strip",
+    "title": {
+      "ru": "bytearray.strip",
+      "en": "bytearray.strip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает байты (по умолчанию пробельные) с обоих концов.",
@@ -4532,7 +5147,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.strip",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — обрезка",
+    "subcat": {
+      "ru": "bytearray — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать пробельные байты с обоих концов",
       "обрезать байтовый массив с двух сторон"
@@ -4558,7 +5176,10 @@
   },
   {
     "id": "bytearray.lstrip",
-    "title": "bytearray.lstrip",
+    "title": {
+      "ru": "bytearray.lstrip",
+      "en": "bytearray.lstrip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает байты слева.",
@@ -4573,7 +5194,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.lstrip",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — обрезка",
+    "subcat": {
+      "ru": "bytearray — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать пробелы в начале байтов",
       "обрезать байты слева"
@@ -4600,7 +5224,10 @@
   },
   {
     "id": "bytearray.rstrip",
-    "title": "bytearray.rstrip",
+    "title": {
+      "ru": "bytearray.rstrip",
+      "en": "bytearray.rstrip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает байты справа.",
@@ -4615,7 +5242,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rstrip",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — обрезка",
+    "subcat": {
+      "ru": "bytearray — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать пробельные байты справа",
       "обрезать байтовый массив справа"
@@ -4641,7 +5271,10 @@
   },
   {
     "id": "bytearray.removeprefix",
-    "title": "bytearray.removeprefix",
+    "title": {
+      "ru": "bytearray.removeprefix",
+      "en": "bytearray.removeprefix"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает заданный префикс, если он есть (3.9+).",
@@ -4656,7 +5289,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.removeprefix",
     "version": "3.9",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — обрезка",
+    "subcat": {
+      "ru": "bytearray — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать префикс из байтового массива",
       "отрезать начало если совпадает"
@@ -4682,7 +5318,10 @@
   },
   {
     "id": "bytearray.removesuffix",
-    "title": "bytearray.removesuffix",
+    "title": {
+      "ru": "bytearray.removesuffix",
+      "en": "bytearray.removesuffix"
+    },
     "kind": "function",
     "summary": {
       "ru": "Убирает заданный суффикс, если он есть (3.9+).",
@@ -4697,7 +5336,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.removesuffix",
     "version": "3.9",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — обрезка",
+    "subcat": {
+      "ru": "bytearray — обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать суффикс из байтового массива",
       "отрезать окончание если совпадает"
@@ -4725,7 +5367,10 @@
   },
   {
     "id": "bytearray.replace",
-    "title": "bytearray.replace",
+    "title": {
+      "ru": "bytearray.replace",
+      "en": "bytearray.replace"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию с заменой вхождений подпоследовательности.",
@@ -4740,7 +5385,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.replace",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — замена и перевод",
+    "subcat": {
+      "ru": "bytearray — замена и перевод",
+      "en": ""
+    },
     "aliases": [
       "заменить последовательность байтов",
       "замена вхождений в байтовом массиве"
@@ -4767,7 +5415,10 @@
   },
   {
     "id": "bytearray.translate",
-    "title": "bytearray.translate",
+    "title": {
+      "ru": "bytearray.translate",
+      "en": "bytearray.translate"
+    },
     "kind": "function",
     "summary": {
       "ru": "Заменяет байты по таблице перевода (256 байт).",
@@ -4782,7 +5433,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.translate",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — замена и перевод",
+    "subcat": {
+      "ru": "bytearray — замена и перевод",
+      "en": ""
+    },
     "aliases": [
       "заменить байты по готовой таблице",
       "удалить байты по таблице перевода"
@@ -4810,7 +5464,10 @@
   },
   {
     "id": "bytearray.maketrans",
-    "title": "bytearray.maketrans",
+    "title": {
+      "ru": "bytearray.maketrans",
+      "en": "bytearray.maketrans"
+    },
     "kind": "function",
     "summary": {
       "ru": "Статический метод: строит таблицу перевода из двух байтовых объектов.",
@@ -4825,7 +5482,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.maketrans",
     "version": "3.1",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — замена и перевод",
+    "subcat": {
+      "ru": "bytearray — замена и перевод",
+      "en": ""
+    },
     "aliases": [
       "построить таблицу замены байтов",
       "подготовить таблицу перевода для байтов"
@@ -4854,7 +5514,10 @@
   },
   {
     "id": "bytearray.decode",
-    "title": "bytearray.decode",
+    "title": {
+      "ru": "bytearray.decode",
+      "en": "bytearray.decode"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декодирует в строку (str) по кодировке (по умолчанию UTF-8).",
@@ -4869,7 +5532,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.decode",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — кодирование",
+    "subcat": {
+      "ru": "bytearray — кодирование",
+      "en": ""
+    },
     "aliases": [
       "байтовый массив в строку",
       "получить текст из байтового массива"
@@ -4898,7 +5564,10 @@
   },
   {
     "id": "bytearray.hex",
-    "title": "bytearray.hex",
+    "title": {
+      "ru": "bytearray.hex",
+      "en": "bytearray.hex"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает шестнадцатеричное представление как строку.",
@@ -4913,7 +5582,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.hex",
     "version": "3.5",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — кодирование",
+    "subcat": {
+      "ru": "bytearray — кодирование",
+      "en": ""
+    },
     "aliases": [
       "байты в шестнадцатеричный вид",
       "шестнадцатеричное представление байтов"
@@ -4939,7 +5611,10 @@
   },
   {
     "id": "bytearray.fromhex",
-    "title": "bytearray.fromhex",
+    "title": {
+      "ru": "bytearray.fromhex",
+      "en": "bytearray.fromhex"
+    },
     "kind": "function",
     "summary": {
       "ru": "Статический метод: создаёт bytearray из шестнадцатеричной строки.",
@@ -4954,7 +5629,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.fromhex",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — кодирование",
+    "subcat": {
+      "ru": "bytearray — кодирование",
+      "en": ""
+    },
     "aliases": [
       "шестнадцатеричная строка в байты",
       "создать байты из шестнадцатеричного текста"
@@ -4981,7 +5659,10 @@
   },
   {
     "id": "bytearray.isalnum",
-    "title": "bytearray.isalnum",
+    "title": {
+      "ru": "bytearray.isalnum",
+      "en": "bytearray.isalnum"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все байты — ASCII-буквы/цифры и последовательность непуста.",
@@ -4996,7 +5677,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isalnum",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "в байтах только буквы и цифры",
       "проверить байты на буквы и цифры"
@@ -5021,7 +5705,10 @@
   },
   {
     "id": "bytearray.isalpha",
-    "title": "bytearray.isalpha",
+    "title": {
+      "ru": "bytearray.isalpha",
+      "en": "bytearray.isalpha"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все байты — ASCII-буквы и последовательность непуста.",
@@ -5036,7 +5723,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isalpha",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "в байтах только буквы",
       "проверить байты на буквы"
@@ -5061,7 +5751,10 @@
   },
   {
     "id": "bytearray.isascii",
-    "title": "bytearray.isascii",
+    "title": {
+      "ru": "bytearray.isascii",
+      "en": "bytearray.isascii"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все байты — ASCII (0–127).",
@@ -5076,7 +5769,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isascii",
     "version": "3.7",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "проверить байты на аски",
       "все байты меньше 128"
@@ -5101,7 +5797,10 @@
   },
   {
     "id": "bytearray.isdigit",
-    "title": "bytearray.isdigit",
+    "title": {
+      "ru": "bytearray.isdigit",
+      "en": "bytearray.isdigit"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все байты — ASCII-цифры и последовательность непуста.",
@@ -5116,7 +5815,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isdigit",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "в байтах только цифры",
       "проверить байты на цифры"
@@ -5142,7 +5844,10 @@
   },
   {
     "id": "bytearray.islower",
-    "title": "bytearray.islower",
+    "title": {
+      "ru": "bytearray.islower",
+      "en": "bytearray.islower"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все буквенные байты — в нижнем регистре.",
@@ -5157,7 +5862,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.islower",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "все байты в нижнем регистре",
       "проверить байты на строчные буквы"
@@ -5182,7 +5890,10 @@
   },
   {
     "id": "bytearray.isspace",
-    "title": "bytearray.isspace",
+    "title": {
+      "ru": "bytearray.isspace",
+      "en": "bytearray.isspace"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все байты — пробельные и последовательность непуста.",
@@ -5197,7 +5908,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isspace",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "в байтах только пробельные символы",
       "проверить байты на пробелы"
@@ -5222,7 +5936,10 @@
   },
   {
     "id": "bytearray.istitle",
-    "title": "bytearray.istitle",
+    "title": {
+      "ru": "bytearray.istitle",
+      "en": "bytearray.istitle"
+    },
     "kind": "function",
     "summary": {
       "ru": "Последовательность в «заголовочном» регистре.",
@@ -5237,7 +5954,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.istitle",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -5260,7 +5980,10 @@
   },
   {
     "id": "bytearray.isupper",
-    "title": "bytearray.isupper",
+    "title": {
+      "ru": "bytearray.isupper",
+      "en": "bytearray.isupper"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все буквенные байты — в верхнем регистре.",
@@ -5275,7 +5998,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isupper",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — проверки is*",
+    "subcat": {
+      "ru": "bytearray — проверки is*",
+      "en": ""
+    },
     "aliases": [
       "все байты в верхнем регистре",
       "проверить байты на заглавные буквы"
@@ -5300,7 +6026,10 @@
   },
   {
     "id": "bytearray.append",
-    "title": "bytearray.append",
+    "title": {
+      "ru": "bytearray.append",
+      "en": "bytearray.append"
+    },
     "kind": "function",
     "summary": {
       "ru": "Добавляет один байт (int 0–255) в конец (изменяет объект).",
@@ -5315,7 +6044,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.append",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "добавить байт в конец",
       "дописать один байт"
@@ -5341,7 +6073,10 @@
   },
   {
     "id": "bytearray.extend",
-    "title": "bytearray.extend",
+    "title": {
+      "ru": "bytearray.extend",
+      "en": "bytearray.extend"
+    },
     "kind": "function",
     "summary": {
       "ru": "Дописывает байты из итерируемого в конец (изменяет объект).",
@@ -5356,7 +6091,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.extend",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "дописать несколько байтов",
       "добавить байты из последовательности"
@@ -5382,7 +6120,10 @@
   },
   {
     "id": "bytearray.insert",
-    "title": "bytearray.insert",
+    "title": {
+      "ru": "bytearray.insert",
+      "en": "bytearray.insert"
+    },
     "kind": "function",
     "summary": {
       "ru": "Вставляет байт по индексу (изменяет объект).",
@@ -5397,7 +6138,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.insert",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "вставить байт по индексу",
       "вставить байт в середину"
@@ -5423,7 +6167,10 @@
   },
   {
     "id": "bytearray.pop",
-    "title": "bytearray.pop",
+    "title": {
+      "ru": "bytearray.pop",
+      "en": "bytearray.pop"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет и возвращает байт по индексу (по умолчанию последний).",
@@ -5438,7 +6185,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.pop",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "удалить и вернуть байт",
       "извлечь байт по индексу"
@@ -5466,7 +6216,10 @@
   },
   {
     "id": "bytearray.remove",
-    "title": "bytearray.remove",
+    "title": {
+      "ru": "bytearray.remove",
+      "en": "bytearray.remove"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет первое вхождение байта с данным значением.",
@@ -5481,7 +6234,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.remove",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "удалить байт по значению",
       "убрать первое вхождение байта"
@@ -5507,7 +6263,10 @@
   },
   {
     "id": "bytearray.reverse",
-    "title": "bytearray.reverse",
+    "title": {
+      "ru": "bytearray.reverse",
+      "en": "bytearray.reverse"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разворачивает байты на месте.",
@@ -5522,7 +6281,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.reverse",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "перевернуть байты на месте",
       "развернуть байтовый массив"
@@ -5545,7 +6307,10 @@
   },
   {
     "id": "bytearray.clear",
-    "title": "bytearray.clear",
+    "title": {
+      "ru": "bytearray.clear",
+      "en": "bytearray.clear"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет все байты (делает пустым).",
@@ -5560,7 +6325,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.clear",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "очистить байтовый массив",
       "удалить все байты"
@@ -5583,7 +6351,10 @@
   },
   {
     "id": "bytearray.copy",
-    "title": "bytearray.copy",
+    "title": {
+      "ru": "bytearray.copy",
+      "en": "bytearray.copy"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает поверхностную копию (новый bytearray).",
@@ -5598,7 +6369,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.copy",
     "version": "",
     "section": "Байтовые последовательности",
-    "subcat": "bytearray — мутирующие",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": ""
+    },
     "aliases": [
       "копия байтового массива",
       "скопировать байты"

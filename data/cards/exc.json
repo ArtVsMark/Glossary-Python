@@ -1,7 +1,10 @@
 [
   {
     "id": "assert",
-    "title": "assert",
+    "title": {
+      "ru": "assert",
+      "en": "assert"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Утверждение — проверяет условие и вызывает AssertionError при False. Используется для отладки и тестов. Отключается с -O.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assert",
     "version": "",
     "section": "Исключения",
-    "subcat": "проверка",
+    "subcat": {
+      "ru": "проверка",
+      "en": ""
+    },
     "aliases": [
       "утверждение в коде",
       "проверка условия в тестах",
@@ -63,7 +69,10 @@
   },
   {
     "id": "attributeerror",
-    "title": "AttributeError",
+    "title": {
+      "ru": "AttributeError",
+      "en": "AttributeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при обращении к несуществующему атрибуту или методу объекта.",
@@ -78,7 +87,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#AttributeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "нет такого атрибута",
       "нет такого метода",
@@ -104,7 +116,10 @@
   },
   {
     "id": "else-в-try-except",
-    "title": "else в try-except",
+    "title": {
+      "ru": "else в try-except",
+      "en": ""
+    },
     "kind": "exception",
     "summary": {
       "ru": "Блок else выполняется, только если в try не возникло исключения. Отделяет «счастливый путь» от обработки ошибок.",
@@ -119,7 +134,10 @@
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#else-clause",
     "version": "",
     "section": "Исключения",
-    "subcat": "обработка",
+    "subcat": {
+      "ru": "обработка",
+      "en": ""
+    },
     "aliases": [
       "если исключения не было",
       "код при успешном выполнении try"
@@ -180,7 +198,10 @@
   },
   {
     "id": "filenotfounderror",
-    "title": "FileNotFoundError",
+    "title": {
+      "ru": "FileNotFoundError",
+      "en": "FileNotFoundError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при попытке открыть или работать с файлом, которого не существует. Подкласс OSError.",
@@ -195,7 +216,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FileNotFoundError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "файл не найден",
       "нет такого файла",
@@ -223,7 +247,10 @@
   },
   {
     "id": "finally",
-    "title": "finally",
+    "title": {
+      "ru": "finally",
+      "en": "finally"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Блок finally выполняется всегда — независимо от того, было ли исключение. Используется для освобождения ресурсов.",
@@ -238,7 +265,10 @@
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#finally",
     "version": "",
     "section": "Исключения",
-    "subcat": "обработка",
+    "subcat": {
+      "ru": "обработка",
+      "en": ""
+    },
     "aliases": [
       "выполнится в любом случае",
       "гарантированное освобождение ресурсов",
@@ -304,7 +334,10 @@
   },
   {
     "id": "importerror",
-    "title": "ImportError",
+    "title": {
+      "ru": "ImportError",
+      "en": "ImportError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается, если импорт модуля не удался — модуль найден, но при загрузке произошла ошибка.",
@@ -319,7 +352,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ImportError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка импорта",
       "не удалось импортировать модуль",
@@ -345,7 +381,10 @@
   },
   {
     "id": "indexerror",
-    "title": "IndexError",
+    "title": {
+      "ru": "IndexError",
+      "en": "IndexError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при обращении к элементу последовательности по несуществующему индексу.",
@@ -360,7 +399,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IndexError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "выход за границы списка",
       "индекс вне диапазона",
@@ -388,7 +430,10 @@
   },
   {
     "id": "keyerror",
-    "title": "KeyError",
+    "title": {
+      "ru": "KeyError",
+      "en": "KeyError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при обращении к несуществующему ключу словаря. Используй .get() чтобы избежать.",
@@ -403,7 +448,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#KeyError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "нет такого ключа",
       "ключ отсутствует в словаре",
@@ -432,7 +480,10 @@
   },
   {
     "id": "modulenotfounderror",
-    "title": "ModuleNotFoundError",
+    "title": {
+      "ru": "ModuleNotFoundError",
+      "en": "ModuleNotFoundError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Подкласс ImportError. Вызывается, когда модуль вообще не найден в sys.path. Python 3.6+.",
@@ -447,7 +498,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ModuleNotFoundError",
     "version": "3.6",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "модуль не найден",
       "нет такого модуля",
@@ -473,7 +527,10 @@
   },
   {
     "id": "nameerror",
-    "title": "NameError",
+    "title": {
+      "ru": "NameError",
+      "en": "NameError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при использовании имени переменной или функции, которая не определена в текущей области видимости.",
@@ -488,7 +545,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NameError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "переменная не определена",
       "имя не определено",
@@ -512,7 +572,10 @@
   },
   {
     "id": "notimplementederror",
-    "title": "NotImplementedError",
+    "title": {
+      "ru": "NotImplementedError",
+      "en": "NotImplementedError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается в абстрактных методах, которые обязаны быть переопределены в подклассах. Показывает, что метод намеренно не реализован.",
@@ -527,7 +590,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NotImplementedError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "метод не реализован",
       "нужно переопределить метод",
@@ -554,7 +620,10 @@
   },
   {
     "id": "oserror",
-    "title": "OSError",
+    "title": {
+      "ru": "OSError",
+      "en": "OSError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс для ошибок операционной системы: работа с файлами, сетью, процессами. FileNotFoundError и PermissionError — его подклассы.",
@@ -569,7 +638,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#OSError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка операционной системы",
       "системная ошибка ввода-вывода"
@@ -596,7 +668,10 @@
   },
   {
     "id": "permissionerror",
-    "title": "PermissionError",
+    "title": {
+      "ru": "PermissionError",
+      "en": "PermissionError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при попытке выполнить операцию без необходимых прав доступа к файлу или ресурсу.",
@@ -611,7 +686,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PermissionError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "нет доступа к файлу",
       "отказано в доступе",
@@ -649,7 +727,10 @@
   },
   {
     "id": "raise",
-    "title": "raise",
+    "title": {
+      "ru": "raise",
+      "en": "raise"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Генерирует исключение вручную. raise from — цепочка исключений. re-raise — raise без аргументов.",
@@ -664,7 +745,10 @@
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#raise",
     "version": "",
     "section": "Исключения",
-    "subcat": "генерация",
+    "subcat": {
+      "ru": "генерация",
+      "en": ""
+    },
     "aliases": [
       "выбросить исключение",
       "сгенерировать ошибку вручную",
@@ -733,7 +817,10 @@
   },
   {
     "id": "recursionerror",
-    "title": "RecursionError",
+    "title": {
+      "ru": "RecursionError",
+      "en": "RecursionError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при превышении максимальной глубины рекурсии (по умолчанию 1000). Подкласс RuntimeError.",
@@ -748,7 +835,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RecursionError",
     "version": "3.5",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "превышена глубина рекурсии",
       "бесконечная рекурсия",
@@ -777,7 +867,10 @@
   },
   {
     "id": "stopiteration",
-    "title": "StopIteration",
+    "title": {
+      "ru": "StopIteration",
+      "en": "StopIteration"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Сигнализирует об исчерпании итератора. Автоматически перехватывается циклом for и генераторами — вручную поднимать нужно редко.",
@@ -792,7 +885,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#StopIteration",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "конец итератора",
       "итератор закончился",
@@ -822,7 +918,10 @@
   },
   {
     "id": "try-except",
-    "title": "try / except",
+    "title": {
+      "ru": "try / except",
+      "en": "try / except"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Блок try содержит код, который может вызвать исключение. except перехватывает его. else — если исключения не было. finally — всегда.",
@@ -837,7 +936,10 @@
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-try-statement",
     "version": "",
     "section": "Исключения",
-    "subcat": "обработка",
+    "subcat": {
+      "ru": "обработка",
+      "en": ""
+    },
     "aliases": [
       "обработка ошибок",
       "поймать исключение",
@@ -899,7 +1001,10 @@
   },
   {
     "id": "typeerror",
-    "title": "TypeError",
+    "title": {
+      "ru": "TypeError",
+      "en": "TypeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается при операции или функции с объектом неподходящего типа. Частый случай: сложение str и int.",
@@ -914,7 +1019,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TypeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка типа",
       "нельзя сложить строку и число",
@@ -940,7 +1048,10 @@
   },
   {
     "id": "valueerror",
-    "title": "ValueError",
+    "title": {
+      "ru": "ValueError",
+      "en": "ValueError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Вызывается, когда функция получает аргумент правильного типа, но недопустимого значения. Например, int('abc') или math.sqrt(-1).",
@@ -955,7 +1066,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ValueError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "недопустимое значение аргумента",
       "ошибка преобразования строки в число",
@@ -984,7 +1098,10 @@
   },
   {
     "id": "иерархия-исключений",
-    "title": "Иерархия исключений",
+    "title": {
+      "ru": "Иерархия исключений",
+      "en": ""
+    },
     "kind": "exception",
     "summary": {
       "ru": "Встроенные исключения образуют иерархию. BaseException → Exception → стандартные исключения.",
@@ -999,7 +1116,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseException",
     "version": "",
     "section": "Исключения",
-    "subcat": "иерархия",
+    "subcat": {
+      "ru": "иерархия",
+      "en": ""
+    },
     "aliases": [
       "дерево классов исключений",
       "какие бывают исключения",
@@ -1050,7 +1170,10 @@
   },
   {
     "id": "пользовательские-исключения",
-    "title": "Пользовательские исключения",
+    "title": {
+      "ru": "Пользовательские исключения",
+      "en": ""
+    },
     "kind": "exception",
     "summary": {
       "ru": "Создавай классы исключений, наследуясь от Exception. Можно добавлять атрибуты и иерархию.",
@@ -1065,7 +1188,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions",
     "version": "",
     "section": "Исключения",
-    "subcat": "пользовательские",
+    "subcat": {
+      "ru": "пользовательские",
+      "en": ""
+    },
     "aliases": [
       "свой класс исключения",
       "создать собственную ошибку"
@@ -1141,7 +1267,10 @@
   },
   {
     "id": "baseexception",
-    "title": "BaseException",
+    "title": {
+      "ru": "BaseException",
+      "en": "BaseException"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Корень всей иерархии исключений; ловит абсолютно всё, включая SystemExit/KeyboardInterrupt. В прикладном коде почти никогда не ловят напрямую.",
@@ -1156,7 +1285,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseException",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "самый общий класс исключений",
       "перехват абсолютно всех ошибок",
@@ -1182,7 +1314,10 @@
   },
   {
     "id": "exception",
-    "title": "Exception",
+    "title": {
+      "ru": "Exception",
+      "en": "Exception"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс всех обычных (прикладных) исключений. `except Exception` — типовой перехват, не задевающий SystemExit/KeyboardInterrupt.",
@@ -1197,7 +1332,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#Exception",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "базовый класс всех ошибок",
       "поймать любую ошибку"
@@ -1222,7 +1360,10 @@
   },
   {
     "id": "arithmeticerror",
-    "title": "ArithmeticError",
+    "title": {
+      "ru": "ArithmeticError",
+      "en": "ArithmeticError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс арифметических ошибок: ZeroDivisionError, OverflowError, FloatingPointError.",
@@ -1237,7 +1378,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ArithmeticError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "арифметическая ошибка",
       "ошибка при вычислениях"
@@ -1262,7 +1406,10 @@
   },
   {
     "id": "zerodivisionerror",
-    "title": "ZeroDivisionError",
+    "title": {
+      "ru": "ZeroDivisionError",
+      "en": "ZeroDivisionError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Деление (или взятие остатка) на ноль: 1/0, 5 % 0.",
@@ -1277,7 +1424,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ZeroDivisionError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "деление на ноль",
       "нельзя делить на ноль"
@@ -1301,7 +1451,10 @@
   },
   {
     "id": "overflowerror",
-    "title": "OverflowError",
+    "title": {
+      "ru": "OverflowError",
+      "en": "OverflowError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Результат арифметической операции слишком велик для типа (обычно float): math.exp(1000).",
@@ -1316,7 +1469,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#OverflowError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "переполнение числа",
       "слишком большое число",
@@ -1341,7 +1497,10 @@
   },
   {
     "id": "floatingpointerror",
-    "title": "FloatingPointError",
+    "title": {
+      "ru": "FloatingPointError",
+      "en": "FloatingPointError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка операции с плавающей точкой. В CPython по умолчанию не возникает (нужна спец. настройка), но входит в иерархию.",
@@ -1356,7 +1515,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FloatingPointError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка вещественной арифметики",
       "сбой операции с плавающей точкой"
@@ -1380,7 +1542,10 @@
   },
   {
     "id": "assertionerror",
-    "title": "AssertionError",
+    "title": {
+      "ru": "AssertionError",
+      "en": "AssertionError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Условие оператора assert оказалось ложным: assert x > 0.",
@@ -1395,7 +1560,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#AssertionError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "проверка не прошла",
       "ошибка утверждения",
@@ -1420,7 +1588,10 @@
   },
   {
     "id": "lookuperror",
-    "title": "LookupError",
+    "title": {
+      "ru": "LookupError",
+      "en": "LookupError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс ошибок поиска по ключу/индексу: IndexError и KeyError.",
@@ -1435,7 +1606,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#LookupError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "базовый класс ошибок поиска",
       "ошибка поиска по ключу или индексу"
@@ -1459,7 +1633,10 @@
   },
   {
     "id": "runtimeerror",
-    "title": "RuntimeError",
+    "title": {
+      "ru": "RuntimeError",
+      "en": "RuntimeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Общая ошибка времени выполнения, не подходящая под другие категории.",
@@ -1474,7 +1651,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RuntimeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка времени выполнения",
       "ошибка выполнения"
@@ -1499,7 +1679,10 @@
   },
   {
     "id": "eoferror",
-    "title": "EOFError",
+    "title": {
+      "ru": "EOFError",
+      "en": "EOFError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "input() достиг конца ввода (EOF), не получив данных.",
@@ -1514,7 +1697,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#EOFError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "конец ввода",
       "ввод закончился",
@@ -1539,7 +1725,10 @@
   },
   {
     "id": "keyboardinterrupt",
-    "title": "KeyboardInterrupt",
+    "title": {
+      "ru": "KeyboardInterrupt",
+      "en": "KeyboardInterrupt"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Пользователь прервал программу (Ctrl+C). Наследует BaseException, поэтому `except Exception` его не ловит.",
@@ -1554,7 +1743,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#KeyboardInterrupt",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "прерывание с клавиатуры",
       "остановка программы пользователем",
@@ -1579,7 +1771,10 @@
   },
   {
     "id": "systemexit",
-    "title": "SystemExit",
+    "title": {
+      "ru": "SystemExit",
+      "en": "SystemExit"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Поднимается sys.exit() для завершения программы. Наследует BaseException.",
@@ -1594,7 +1789,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SystemExit",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "выход из программы",
       "завершить выполнение скрипта"
@@ -1619,7 +1817,10 @@
   },
   {
     "id": "generatorexit",
-    "title": "GeneratorExit",
+    "title": {
+      "ru": "GeneratorExit",
+      "en": "GeneratorExit"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Поднимается внутри генератора при его закрытии (.close()). Наследует BaseException.",
@@ -1634,7 +1835,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#GeneratorExit",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "закрытие генератора",
       "прерывание генератора"
@@ -1658,7 +1862,10 @@
   },
   {
     "id": "stopasynciteration",
-    "title": "StopAsyncIteration",
+    "title": {
+      "ru": "StopAsyncIteration",
+      "en": "StopAsyncIteration"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Сигнал исчерпания асинхронного итератора (аналог StopIteration для async for).",
@@ -1673,7 +1880,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#StopAsyncIteration",
     "version": "3.5",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "конец асинхронного итератора",
       "исчерпание асинхронного генератора"
@@ -1697,7 +1907,10 @@
   },
   {
     "id": "memoryerror",
-    "title": "MemoryError",
+    "title": {
+      "ru": "MemoryError",
+      "en": "MemoryError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Операции не хватило памяти.",
@@ -1712,7 +1925,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#MemoryError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "не хватает памяти",
       "закончилась память"
@@ -1735,7 +1951,10 @@
   },
   {
     "id": "referenceerror",
-    "title": "ReferenceError",
+    "title": {
+      "ru": "ReferenceError",
+      "en": "ReferenceError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Обращение к weakref-прокси на уже удалённый объект.",
@@ -1750,7 +1969,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ReferenceError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "обращение к удалённому объекту",
       "слабая ссылка на уничтоженный объект"
@@ -1770,7 +1992,10 @@
   },
   {
     "id": "systemerror",
-    "title": "SystemError",
+    "title": {
+      "ru": "SystemError",
+      "en": "SystemError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Внутренняя ошибка интерпретатора (не фатальная). Обычно повод сообщить о баге.",
@@ -1785,7 +2010,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SystemError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "внутренняя ошибка интерпретатора",
       "баг интерпретатора"
@@ -1808,7 +2036,10 @@
   },
   {
     "id": "buffererror",
-    "title": "BufferError",
+    "title": {
+      "ru": "BufferError",
+      "en": "BufferError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Операция с buffer-протоколом невозможна (напр. изменение размера при экспортированном буфере).",
@@ -1823,7 +2054,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BufferError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -1844,7 +2078,10 @@
   },
   {
     "id": "unboundlocalerror",
-    "title": "UnboundLocalError",
+    "title": {
+      "ru": "UnboundLocalError",
+      "en": "UnboundLocalError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Чтение локальной переменной до присваивания (подкласс NameError); частая ловушка с присваиванием в функции.",
@@ -1859,7 +2096,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnboundLocalError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "локальная переменная без значения",
       "обращение к переменной до присваивания"
@@ -1883,7 +2123,10 @@
   },
   {
     "id": "syntaxerror",
-    "title": "SyntaxError",
+    "title": {
+      "ru": "SyntaxError",
+      "en": "SyntaxError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Синтаксически некорректный код (обнаруживается при компиляции): eval('1 +').",
@@ -1898,7 +2141,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "синтаксическая ошибка",
       "неверный синтаксис",
@@ -1923,7 +2169,10 @@
   },
   {
     "id": "indentationerror",
-    "title": "IndentationError",
+    "title": {
+      "ru": "IndentationError",
+      "en": "IndentationError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Некорректные отступы (подкласс SyntaxError).",
@@ -1938,7 +2187,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IndentationError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка отступа",
       "неправильные отступы"
@@ -1961,7 +2213,10 @@
   },
   {
     "id": "taberror",
-    "title": "TabError",
+    "title": {
+      "ru": "TabError",
+      "en": "TabError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Непоследовательное смешение табов и пробелов в отступах (подкласс IndentationError).",
@@ -1976,7 +2231,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TabError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "смешаны табы и пробелы",
       "ошибка табуляции в отступах"
@@ -1999,7 +2257,10 @@
   },
   {
     "id": "unicodeerror",
-    "title": "UnicodeError",
+    "title": {
+      "ru": "UnicodeError",
+      "en": "UnicodeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс ошибок кодирования/декодирования Unicode (подкласс ValueError).",
@@ -2014,7 +2275,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка юникода",
       "общая ошибка кодировки"
@@ -2039,7 +2303,10 @@
   },
   {
     "id": "unicodedecodeerror",
-    "title": "UnicodeDecodeError",
+    "title": {
+      "ru": "UnicodeDecodeError",
+      "en": "UnicodeDecodeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Не удалось декодировать байты в строку: b'\\xff'.decode('utf-8').",
@@ -2054,7 +2321,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeDecodeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка декодирования",
       "неверная кодировка при чтении файла"
@@ -2079,7 +2349,10 @@
   },
   {
     "id": "unicodeencodeerror",
-    "title": "UnicodeEncodeError",
+    "title": {
+      "ru": "UnicodeEncodeError",
+      "en": "UnicodeEncodeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Не удалось закодировать строку в байты: '☃'.encode('ascii').",
@@ -2094,7 +2367,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeEncodeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка кодирования строки",
       "неверная кодировка при записи файла",
@@ -2120,7 +2396,10 @@
   },
   {
     "id": "unicodetranslateerror",
-    "title": "UnicodeTranslateError",
+    "title": {
+      "ru": "UnicodeTranslateError",
+      "en": "UnicodeTranslateError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка при переводе Unicode-символов (редкая, при str.translate с codec-обработчиком).",
@@ -2135,7 +2414,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeTranslateError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -2156,7 +2438,10 @@
   },
   {
     "id": "fileexistserror",
-    "title": "FileExistsError",
+    "title": {
+      "ru": "FileExistsError",
+      "en": "FileExistsError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Попытка создать файл/каталог, который уже существует (подкласс OSError).",
@@ -2171,7 +2456,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FileExistsError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "файл уже существует",
       "каталог уже существует"
@@ -2195,7 +2483,10 @@
   },
   {
     "id": "isadirectoryerror",
-    "title": "IsADirectoryError",
+    "title": {
+      "ru": "IsADirectoryError",
+      "en": "IsADirectoryError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Файловая операция ожидала файл, но получила каталог (подкласс OSError).",
@@ -2210,7 +2501,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IsADirectoryError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "это папка, а не файл",
       "попытка открыть каталог как файл"
@@ -2234,7 +2528,10 @@
   },
   {
     "id": "notadirectoryerror",
-    "title": "NotADirectoryError",
+    "title": {
+      "ru": "NotADirectoryError",
+      "en": "NotADirectoryError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Операция ожидала каталог, но получила не-каталог (подкласс OSError).",
@@ -2249,7 +2546,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NotADirectoryError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ожидался каталог, а получен файл",
       "это не папка"
@@ -2274,7 +2574,10 @@
   },
   {
     "id": "interruptederror",
-    "title": "InterruptedError",
+    "title": {
+      "ru": "InterruptedError",
+      "en": "InterruptedError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Системный вызов был прерван сигналом (подкласс OSError). В современном Python обычно повторяется автоматически.",
@@ -2289,7 +2592,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#InterruptedError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -2309,7 +2615,10 @@
   },
   {
     "id": "childprocesserror",
-    "title": "ChildProcessError",
+    "title": {
+      "ru": "ChildProcessError",
+      "en": "ChildProcessError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка операции над дочерним процессом (напр. wait без детей; подкласс OSError).",
@@ -2324,7 +2633,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ChildProcessError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -2345,7 +2657,10 @@
   },
   {
     "id": "processlookuperror",
-    "title": "ProcessLookupError",
+    "title": {
+      "ru": "ProcessLookupError",
+      "en": "ProcessLookupError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Указанный процесс не существует (подкласс OSError).",
@@ -2360,7 +2675,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ProcessLookupError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "процесс не найден",
       "нет такого процесса"
@@ -2384,7 +2702,10 @@
   },
   {
     "id": "timeouterror",
-    "title": "TimeoutError",
+    "title": {
+      "ru": "TimeoutError",
+      "en": "TimeoutError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Истёк тайм-аут системной функции (подкласс OSError).",
@@ -2399,7 +2720,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TimeoutError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "превышено время ожидания",
       "истёк тайм-аут"
@@ -2423,7 +2747,10 @@
   },
   {
     "id": "blockingioerror",
-    "title": "BlockingIOError",
+    "title": {
+      "ru": "BlockingIOError",
+      "en": "BlockingIOError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Неблокирующая операция ввода-вывода заблокировалась бы (подкласс OSError).",
@@ -2438,7 +2765,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BlockingIOError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -2459,7 +2789,10 @@
   },
   {
     "id": "connectionerror",
-    "title": "ConnectionError",
+    "title": {
+      "ru": "ConnectionError",
+      "en": "ConnectionError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс сетевых ошибок соединения (подкласс OSError).",
@@ -2474,7 +2807,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка соединения",
       "не удалось подключиться",
@@ -2500,7 +2836,10 @@
   },
   {
     "id": "connectionreseterror",
-    "title": "ConnectionResetError",
+    "title": {
+      "ru": "ConnectionResetError",
+      "en": "ConnectionResetError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Соединение сброшено удалённой стороной (подкласс ConnectionError).",
@@ -2515,7 +2854,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionResetError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "соединение сброшено",
       "сервер разорвал соединение"
@@ -2539,7 +2881,10 @@
   },
   {
     "id": "connectionrefusederror",
-    "title": "ConnectionRefusedError",
+    "title": {
+      "ru": "ConnectionRefusedError",
+      "en": "ConnectionRefusedError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Удалённая сторона отклонила попытку соединения (подкласс ConnectionError).",
@@ -2554,7 +2899,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionRefusedError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "соединение отклонено",
       "сервер отказал в подключении"
@@ -2578,7 +2926,10 @@
   },
   {
     "id": "connectionabortederror",
-    "title": "ConnectionAbortedError",
+    "title": {
+      "ru": "ConnectionAbortedError",
+      "en": "ConnectionAbortedError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Соединение прервано (aborted) хостом (подкласс ConnectionError).",
@@ -2593,7 +2944,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionAbortedError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "соединение прервано",
       "обрыв соединения"
@@ -2617,7 +2971,10 @@
   },
   {
     "id": "brokenpipeerror",
-    "title": "BrokenPipeError",
+    "title": {
+      "ru": "BrokenPipeError",
+      "en": "BrokenPipeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Запись в закрытый на другом конце канал/сокет (подкласс ConnectionError).",
@@ -2632,7 +2989,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BrokenPipeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "запись в закрытый канал",
       "обрыв канала"
@@ -2656,7 +3016,10 @@
   },
   {
     "id": "exceptiongroup",
-    "title": "ExceptionGroup",
+    "title": {
+      "ru": "ExceptionGroup",
+      "en": "ExceptionGroup"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Группа нескольких исключений сразу (Python 3.11+); обрабатывается except*.",
@@ -2671,7 +3034,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ExceptionGroup",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "группа исключений",
       "несколько ошибок сразу"
@@ -2695,7 +3061,10 @@
   },
   {
     "id": "baseexceptiongroup",
-    "title": "BaseExceptionGroup",
+    "title": {
+      "ru": "BaseExceptionGroup",
+      "en": "BaseExceptionGroup"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовая группа исключений, включающая системные (SystemExit/KeyboardInterrupt); родитель ExceptionGroup (3.11+).",
@@ -2710,7 +3079,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseExceptionGroup",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "базовая группа исключений",
       "группа исключений с системными"
@@ -2734,7 +3106,10 @@
   },
   {
     "id": "pythonfinalizationerror",
-    "title": "PythonFinalizationError",
+    "title": {
+      "ru": "PythonFinalizationError",
+      "en": "PythonFinalizationError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Операция запрещена во время финализации интерпретатора (напр. запуск нового потока при завершении, 3.13+).",
@@ -2749,7 +3124,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PythonFinalizationError",
     "version": "3.13",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка при завершении интерпретатора",
       "нельзя запустить поток при выходе из программы"
@@ -2773,7 +3151,10 @@
   },
   {
     "id": "warning",
-    "title": "Warning",
+    "title": {
+      "ru": "Warning",
+      "en": "Warning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс всех предупреждений (обычно показываются, а не поднимаются).",
@@ -2788,7 +3169,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#Warning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "базовый класс предупреждений",
       "виды предупреждений"
@@ -2813,7 +3197,10 @@
   },
   {
     "id": "deprecationwarning",
-    "title": "DeprecationWarning",
+    "title": {
+      "ru": "DeprecationWarning",
+      "en": "DeprecationWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Использование устаревшей возможности, предназначенной для разработчиков.",
@@ -2828,7 +3215,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#DeprecationWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "устаревшая возможность",
       "предупреждение об устаревании"
@@ -2852,7 +3242,10 @@
   },
   {
     "id": "pendingdeprecationwarning",
-    "title": "PendingDeprecationWarning",
+    "title": {
+      "ru": "PendingDeprecationWarning",
+      "en": "PendingDeprecationWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Возможность устареет в будущем (мягче DeprecationWarning).",
@@ -2867,7 +3260,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PendingDeprecationWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "предупреждение о скором устаревании",
       "устареет в будущих версиях"
@@ -2891,7 +3287,10 @@
   },
   {
     "id": "runtimewarning",
-    "title": "RuntimeWarning",
+    "title": {
+      "ru": "RuntimeWarning",
+      "en": "RuntimeWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Сомнительное поведение во время выполнения.",
@@ -2906,7 +3305,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RuntimeWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "предупреждение времени выполнения",
       "предупреждение о сомнительном поведении"
@@ -2930,7 +3332,10 @@
   },
   {
     "id": "syntaxwarning",
-    "title": "SyntaxWarning",
+    "title": {
+      "ru": "SyntaxWarning",
+      "en": "SyntaxWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Сомнительный синтаксис (напр. подозрительное сравнение).",
@@ -2945,7 +3350,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "подозрительный синтаксис",
       "предупреждение о подозрительном сравнении"
@@ -2969,7 +3377,10 @@
   },
   {
     "id": "userwarning",
-    "title": "UserWarning",
+    "title": {
+      "ru": "UserWarning",
+      "en": "UserWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Категория предупреждений по умолчанию для warnings.warn().",
@@ -2984,7 +3395,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UserWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "как выдать предупреждение",
       "своё предупреждение"
@@ -3008,7 +3422,10 @@
   },
   {
     "id": "futurewarning",
-    "title": "FutureWarning",
+    "title": {
+      "ru": "FutureWarning",
+      "en": "FutureWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Изменение поведения в будущем, предназначенное для конечных пользователей.",
@@ -3023,7 +3440,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FutureWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "предупреждение о будущих изменениях",
       "поведение изменится в новых версиях"
@@ -3047,7 +3467,10 @@
   },
   {
     "id": "importwarning",
-    "title": "ImportWarning",
+    "title": {
+      "ru": "ImportWarning",
+      "en": "ImportWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Возможная ошибка при импорте (по умолчанию скрыта).",
@@ -3062,7 +3485,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ImportWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "предупреждение при импорте модуля",
       "скрытое предупреждение об импорте"
@@ -3086,7 +3512,10 @@
   },
   {
     "id": "unicodewarning",
-    "title": "UnicodeWarning",
+    "title": {
+      "ru": "UnicodeWarning",
+      "en": "UnicodeWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Предупреждение, связанное с Unicode.",
@@ -3101,7 +3530,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "предупреждение о юникоде",
       "предупреждение при сравнении байтов и строки"
@@ -3125,7 +3557,10 @@
   },
   {
     "id": "byteswarning",
-    "title": "BytesWarning",
+    "title": {
+      "ru": "BytesWarning",
+      "en": "BytesWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Предупреждение о сомнительных операциях с bytes/bytearray.",
@@ -3140,7 +3575,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BytesWarning",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -3161,7 +3599,10 @@
   },
   {
     "id": "resourcewarning",
-    "title": "ResourceWarning",
+    "title": {
+      "ru": "ResourceWarning",
+      "en": "ResourceWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Не освобождённый ресурс (напр. незакрытый файл/сокет; по умолчанию скрыт).",
@@ -3176,7 +3617,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ResourceWarning",
     "version": "3.2",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "незакрытый файл",
       "утечка ресурсов"
@@ -3200,7 +3644,10 @@
   },
   {
     "id": "encodingwarning",
-    "title": "EncodingWarning",
+    "title": {
+      "ru": "EncodingWarning",
+      "en": "EncodingWarning"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Открытие текстового файла без явной кодировки (полагаясь на локаль).",
@@ -3215,7 +3662,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#EncodingWarning",
     "version": "3.10",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [
       "кодировка не указана",
       "предупреждение о кодировке"
@@ -3239,7 +3689,10 @@
   },
   {
     "id": "_incompleteinputerror",
-    "title": "_IncompleteInputError",
+    "title": {
+      "ru": "_IncompleteInputError",
+      "en": "_IncompleteInputError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Внутреннее: код синтаксически неполон (используется REPL для многострочного ввода).",
@@ -3254,7 +3707,10 @@
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxError",
     "version": "",
     "section": "Исключения",
-    "subcat": "встроенные исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -3275,7 +3731,10 @@
   },
   {
     "id": "json.decoder.jsondecodeerror",
-    "title": "json.JSONDecodeError",
+    "title": {
+      "ru": "json.JSONDecodeError",
+      "en": "json.JSONDecodeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Некорректный JSON при разборе: json.loads('{bad'). Несёт позицию ошибки (pos/lineno/colno).",
@@ -3290,7 +3749,10 @@
     "docs_url": "https://docs.python.org/3/library/json.html#json.JSONDecodeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка разбора json",
       "некорректный json",
@@ -3317,7 +3779,10 @@
   },
   {
     "id": "re.patternerror",
-    "title": "re.PatternError",
+    "title": {
+      "ru": "re.PatternError",
+      "en": "re.PatternError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка компиляции регулярного выражения: re.compile('['). Синоним — re.error.",
@@ -3332,7 +3797,10 @@
     "docs_url": "https://docs.python.org/3/library/re.html#re.PatternError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка в регулярном выражении",
       "неверный шаблон регулярного выражения",
@@ -3359,7 +3827,10 @@
   },
   {
     "id": "statistics.statisticserror",
-    "title": "statistics.StatisticsError",
+    "title": {
+      "ru": "statistics.StatisticsError",
+      "en": "statistics.StatisticsError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Некорректные данные для статистической функции: statistics.mean([]).",
@@ -3374,7 +3845,10 @@
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.StatisticsError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "среднее по пустому списку",
       "недостаточно данных для статистики"
@@ -3399,7 +3873,10 @@
   },
   {
     "id": "dataclasses.frozeninstanceerror",
-    "title": "dataclasses.FrozenInstanceError",
+    "title": {
+      "ru": "dataclasses.FrozenInstanceError",
+      "en": "dataclasses.FrozenInstanceError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Попытка изменить поле frozen-dataclass (@dataclass(frozen=True)).",
@@ -3414,7 +3891,10 @@
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.FrozenInstanceError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "нельзя изменить поле неизменяемого датакласса",
       "присваивание в замороженном датаклассе",
@@ -3440,7 +3920,10 @@
   },
   {
     "id": "io.unsupportedoperation",
-    "title": "io.UnsupportedOperation",
+    "title": {
+      "ru": "io.UnsupportedOperation",
+      "en": "io.UnsupportedOperation"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Операция не поддержана потоком (напр. запись в файл, открытый для чтения; подкласс OSError и ValueError).",
@@ -3455,7 +3938,10 @@
     "docs_url": "https://docs.python.org/3/library/io.html#io.UnsupportedOperation",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "файл открыт только для чтения",
       "нельзя писать в файл, открытый для чтения",
@@ -3481,7 +3967,10 @@
   },
   {
     "id": "struct.error",
-    "title": "struct.error",
+    "title": {
+      "ru": "struct.error",
+      "en": "struct.error"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка упаковки/распаковки struct (несоответствие формата и данных).",
@@ -3496,7 +3985,10 @@
     "docs_url": "https://docs.python.org/3/library/struct.html#struct.error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка упаковки двоичных данных",
       "формат не совпадает с данными",
@@ -3521,7 +4013,10 @@
   },
   {
     "id": "zlib.error",
-    "title": "zlib.error",
+    "title": {
+      "ru": "zlib.error",
+      "en": "zlib.error"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка сжатия/распаковки zlib (напр. повреждённые данные).",
@@ -3536,7 +4031,10 @@
     "docs_url": "https://docs.python.org/3/library/zlib.html#zlib.error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка сжатия данных",
       "не удалось распаковать данные"
@@ -3560,7 +4058,10 @@
   },
   {
     "id": "copy.error",
-    "title": "copy.Error",
+    "title": {
+      "ru": "copy.Error",
+      "en": "copy.Error"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка операции копирования в модуле copy.",
@@ -3575,7 +4076,10 @@
     "docs_url": "https://docs.python.org/3/library/copy.html#copy.Error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка копирования объекта",
       "сбой при копировании"
@@ -3600,7 +4104,10 @@
   },
   {
     "id": "locale.error",
-    "title": "locale.Error",
+    "title": {
+      "ru": "locale.Error",
+      "en": "locale.Error"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка модуля locale (напр. неизвестная локаль в setlocale).",
@@ -3615,7 +4122,10 @@
     "docs_url": "https://docs.python.org/3/library/locale.html#locale.Error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка установки локали",
       "неизвестная локаль"
@@ -3636,7 +4146,10 @@
   },
   {
     "id": "argparse.argumenterror",
-    "title": "argparse.ArgumentError",
+    "title": {
+      "ru": "argparse.ArgumentError",
+      "en": "argparse.ArgumentError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка значения аргумента командной строки при разборе (argparse).",
@@ -3651,7 +4164,10 @@
     "docs_url": "https://docs.python.org/3/library/argparse.html#argparse.ArgumentError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка аргумента командной строки",
       "неверный аргумент командной строки"
@@ -3676,7 +4192,10 @@
   },
   {
     "id": "argparse.argumenttypeerror",
-    "title": "argparse.ArgumentTypeError",
+    "title": {
+      "ru": "argparse.ArgumentTypeError",
+      "en": "argparse.ArgumentTypeError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "type-функция аргумента argparse отвергла значение.",
@@ -3691,7 +4210,10 @@
     "docs_url": "https://docs.python.org/3/library/argparse.html#argparse.ArgumentTypeError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "неверный тип аргумента командной строки",
       "ошибка преобразования аргумента командной строки"
@@ -3716,7 +4238,10 @@
   },
   {
     "id": "shutil.error",
-    "title": "shutil.Error",
+    "title": {
+      "ru": "shutil.Error",
+      "en": "shutil.Error"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовая ошибка операций shutil (напр. copytree собрала несколько ошибок).",
@@ -3731,7 +4256,10 @@
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "ошибка копирования файлов",
       "ошибка при копировании каталога"
@@ -3757,7 +4285,10 @@
   },
   {
     "id": "shutil.samefileerror",
-    "title": "shutil.SameFileError",
+    "title": {
+      "ru": "shutil.SameFileError",
+      "en": "shutil.SameFileError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Источник и приёмник copy() — один и тот же файл (подкласс shutil.Error).",
@@ -3772,7 +4303,10 @@
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.SameFileError",
     "version": "3.4",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "копирование файла в самого себя",
       "исходный и целевой файл совпадают"
@@ -3797,7 +4331,10 @@
   },
   {
     "id": "shutil.specialfileerror",
-    "title": "shutil.SpecialFileError",
+    "title": {
+      "ru": "shutil.SpecialFileError",
+      "en": "shutil.SpecialFileError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Операция над специальным файлом (сокет/устройство), который нельзя скопировать как обычный.",
@@ -3812,7 +4349,10 @@
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.SpecialFileError",
     "version": "2.7",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -3834,7 +4374,10 @@
   },
   {
     "id": "shutil.execerror",
-    "title": "shutil.ExecError",
+    "title": {
+      "ru": "shutil.ExecError",
+      "en": "shutil.ExecError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка выполнения внешней команды в shutil.",
@@ -3849,7 +4392,10 @@
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -3871,7 +4417,10 @@
   },
   {
     "id": "shutil.readerror",
-    "title": "shutil.ReadError",
+    "title": {
+      "ru": "shutil.ReadError",
+      "en": "shutil.ReadError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Архив не распознан/повреждён при unpack_archive.",
@@ -3886,7 +4435,10 @@
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "не удалось распаковать архив",
       "повреждённый архив"
@@ -3911,7 +4463,10 @@
   },
   {
     "id": "shutil.registryerror",
-    "title": "shutil.RegistryError",
+    "title": {
+      "ru": "shutil.RegistryError",
+      "en": "shutil.RegistryError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка реестра форматов архивов/распаковщиков shutil.",
@@ -3926,7 +4481,10 @@
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -3948,7 +4506,10 @@
   },
   {
     "id": "threading.brokenbarriererror",
-    "title": "threading.BrokenBarrierError",
+    "title": {
+      "ru": "threading.BrokenBarrierError",
+      "en": "threading.BrokenBarrierError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Barrier сломан (сброшен/таймаут), пока поток ждал на нём.",
@@ -3963,7 +4524,10 @@
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.BrokenBarrierError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -3985,7 +4549,10 @@
   },
   {
     "id": "tokenize.tokenerror",
-    "title": "tokenize.TokenError",
+    "title": {
+      "ru": "tokenize.TokenError",
+      "en": "tokenize.TokenError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка токенизации Python-исходника (напр. незакрытая скобка/строка).",
@@ -4000,7 +4567,10 @@
     "docs_url": "https://docs.python.org/3/library/tokenize.html#tokenize.TokenError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4022,7 +4592,10 @@
   },
   {
     "id": "zipimport.zipimporterror",
-    "title": "zipimport.ZipImportError",
+    "title": {
+      "ru": "zipimport.ZipImportError",
+      "en": "zipimport.ZipImportError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Не удалось импортировать модуль из ZIP-архива (подкласс ImportError).",
@@ -4037,7 +4610,10 @@
     "docs_url": "https://docs.python.org/3/library/zipimport.html#zipimport.ZipImportError",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4059,7 +4635,10 @@
   },
   {
     "id": "signal.itimererror",
-    "title": "signal.ItimerError",
+    "title": {
+      "ru": "signal.ItimerError",
+      "en": "signal.ItimerError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка setitimer/getitimer (подкласс OSError).",
@@ -4074,7 +4653,10 @@
     "docs_url": "https://docs.python.org/3/library/signal.html#signal.ItimerError",
     "version": "3.3",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4104,7 +4686,10 @@
   },
   {
     "id": "decimal.decimalexception",
-    "title": "decimal.DecimalException",
+    "title": {
+      "ru": "decimal.DecimalException",
+      "en": "decimal.DecimalException"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс всех сигналов-исключений модуля decimal (подкласс ArithmeticError).",
@@ -4119,7 +4704,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.DecimalException",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "базовое исключение десятичной арифметики",
       "ошибки точных десятичных вычислений"
@@ -4145,7 +4733,10 @@
   },
   {
     "id": "decimal.invalidoperation",
-    "title": "decimal.InvalidOperation",
+    "title": {
+      "ru": "decimal.InvalidOperation",
+      "en": "decimal.InvalidOperation"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Недопустимая операция decimal (напр. Decimal('nan') в сравнении, деление 0/0).",
@@ -4160,7 +4751,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.InvalidOperation",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "недопустимая операция с десятичным числом",
       "некорректное значение десятичного числа"
@@ -4185,7 +4779,10 @@
   },
   {
     "id": "decimal.divisionbyzero",
-    "title": "decimal.DivisionByZero",
+    "title": {
+      "ru": "decimal.DivisionByZero",
+      "en": "decimal.DivisionByZero"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Деление ненулевого Decimal на ноль (аналог ZeroDivisionError для decimal).",
@@ -4200,7 +4797,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.DivisionByZero",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "деление на ноль десятичного числа",
       "деление на ноль в десятичной арифметике"
@@ -4225,7 +4825,10 @@
   },
   {
     "id": "decimal.divisionimpossible",
-    "title": "decimal.DivisionImpossible",
+    "title": {
+      "ru": "decimal.DivisionImpossible",
+      "en": "decimal.DivisionImpossible"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Целочисленное деление decimal не может дать корректный результат.",
@@ -4240,7 +4843,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4262,7 +4868,10 @@
   },
   {
     "id": "decimal.divisionundefined",
-    "title": "decimal.DivisionUndefined",
+    "title": {
+      "ru": "decimal.DivisionUndefined",
+      "en": "decimal.DivisionUndefined"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Деление 0/0 в decimal (результат не определён).",
@@ -4277,7 +4886,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4299,7 +4911,10 @@
   },
   {
     "id": "decimal.overflow",
-    "title": "decimal.Overflow",
+    "title": {
+      "ru": "decimal.Overflow",
+      "en": "decimal.Overflow"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Экспонента результата decimal превысила максимум контекста.",
@@ -4314,7 +4929,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Overflow",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "переполнение десятичного числа",
       "слишком большое десятичное число"
@@ -4340,7 +4958,10 @@
   },
   {
     "id": "decimal.underflow",
-    "title": "decimal.Underflow",
+    "title": {
+      "ru": "decimal.Underflow",
+      "en": "decimal.Underflow"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Результат decimal слишком мал (субнормализован и округлён к нулю).",
@@ -4355,7 +4976,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Underflow",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "потеря значимости",
       "слишком маленькое десятичное число"
@@ -4381,7 +5005,10 @@
   },
   {
     "id": "decimal.inexact",
-    "title": "decimal.Inexact",
+    "title": {
+      "ru": "decimal.Inexact",
+      "en": "decimal.Inexact"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Округление decimal отбросило ненулевые разряды (результат неточен).",
@@ -4396,7 +5023,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Inexact",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "потеря точности при округлении",
       "неточный результат вычисления"
@@ -4421,7 +5051,10 @@
   },
   {
     "id": "decimal.rounded",
-    "title": "decimal.Rounded",
+    "title": {
+      "ru": "decimal.Rounded",
+      "en": "decimal.Rounded"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Результат decimal был округлён (даже если точность не потеряна).",
@@ -4436,7 +5069,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Rounded",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "округление десятичного числа",
       "результат округлён"
@@ -4461,7 +5097,10 @@
   },
   {
     "id": "decimal.subnormal",
-    "title": "decimal.Subnormal",
+    "title": {
+      "ru": "decimal.Subnormal",
+      "en": "decimal.Subnormal"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Результат decimal субнормален (экспонента ниже Emin).",
@@ -4476,7 +5115,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Subnormal",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4498,7 +5140,10 @@
   },
   {
     "id": "decimal.clamped",
-    "title": "decimal.Clamped",
+    "title": {
+      "ru": "decimal.Clamped",
+      "en": "decimal.Clamped"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Экспонента результата decimal изменена, чтобы уложиться в допустимый диапазон.",
@@ -4513,7 +5158,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Clamped",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4535,7 +5183,10 @@
   },
   {
     "id": "decimal.conversionsyntax",
-    "title": "decimal.ConversionSyntax",
+    "title": {
+      "ru": "decimal.ConversionSyntax",
+      "en": "decimal.ConversionSyntax"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Некорректная строка при создании Decimal из строки.",
@@ -4550,7 +5201,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [
       "некорректная строка для десятичного числа",
       "ошибка создания десятичного числа из строки"
@@ -4575,7 +5229,10 @@
   },
   {
     "id": "decimal.floatoperation",
-    "title": "decimal.FloatOperation",
+    "title": {
+      "ru": "decimal.FloatOperation",
+      "en": "decimal.FloatOperation"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Смешивание Decimal и float при включённой ловушке FloatOperation.",
@@ -4590,7 +5247,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.FloatOperation",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4612,7 +5272,10 @@
   },
   {
     "id": "decimal.invalidcontext",
-    "title": "decimal.InvalidContext",
+    "title": {
+      "ru": "decimal.InvalidContext",
+      "en": "decimal.InvalidContext"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Недопустимая настройка контекста decimal.",
@@ -4627,7 +5290,10 @@
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
     "section": "Исключения",
-    "subcat": "модульные исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -4649,7 +5315,10 @@
   },
   {
     "id": "encodings.CodecRegistryError",
-    "title": "encodings.CodecRegistryError",
+    "title": {
+      "ru": "encodings.CodecRegistryError",
+      "en": "encodings.CodecRegistryError"
+    },
     "kind": "exception",
     "summary": {
       "ru": "Ошибка реестра кодеков: поднимается при сбое поиска/регистрации кодека в системе encodings (подкласс LookupError и SystemError).",
@@ -4664,7 +5333,10 @@
     "docs_url": "https://docs.python.org/3/library/codecs.html#encodings.CodecRegistryError",
     "version": "",
     "section": "Исключения",
-    "subcat": "исключения модулей",
+    "subcat": {
+      "ru": "исключения модулей",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [

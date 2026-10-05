@@ -441,6 +441,8 @@ const t = k => I18N[LANG][k];
 function txt(field){ return (field && field[LANG]) || ""; }
 function txtOr(field){ return txt(field) || (field && field.ru) || ""; }
 function isTranslated(d){ return LANG === "ru" || Boolean(d.summary && d.summary.en); }
+/* Заголовок и подкатегория двуязычны со схемы v3 — с тем же откатом на русский. */
+const ttl = d => txtOr(d.title);
 
 /* ---------- подсветка Python (без сети) ---------- */
 const PY_KW = new Set("False None True and as assert async await break class continue def del elif else except finally for from global if import in is lambda nonlocal not or pass raise return try while with yield match case".split(" "));
@@ -507,7 +509,9 @@ function haystack(d){
   const key = d.id + "|" + LANG;
   let s = HAY.get(key);
   if(s === undefined){
-    s = [d.title, d.id, txtOr(d.summary), ...(d.aliases||[]), ...(d.keywords||[]), d.section, d.subcat]
+    /* Заголовок ищется на обоих языках: человек набирает то имя, которое помнит. */
+    s = [d.title.ru, d.title.en, d.id, txtOr(d.summary), ...(d.aliases||[]),
+         ...(d.keywords||[]), d.section, txtOr(d.subcat)]
       .filter(Boolean).join(" ").toLowerCase();
     HAY.set(key, s);
   }
@@ -533,7 +537,7 @@ function matches(d){
 
 const collator = new Intl.Collator("ru", {sensitivity:"base", numeric:true});
 function sorted(list){
-  const byTitle = (a,b) => collator.compare(a.title, b.title);
+  const byTitle = (a,b) => collator.compare(ttl(a), ttl(b));
   if(state.sort === "az") return list.slice().sort(byTitle);
   if(state.sort === "za") return list.slice().sort((a,b) => byTitle(b,a));
   return list.slice().sort((a,b) =>
@@ -568,10 +572,10 @@ function cardHtml(d){
     <div class="badges">
       ${ver}<span class="badge cg">${section}</span><span class="badge">${t(d.kind) || esc(d.kind)}</span>
     </div>
-    <div class="card-name" title="${esc(d.title)}">${mark(d.title)}</div>
+    <div class="card-name" title="${esc(ttl(d))}">${mark(ttl(d))}</div>
   </div>
   <div class="card-body">
-    ${d.subcat ? `<div class="subcat">${esc(d.subcat)}</div>` : ""}
+    ${txtOr(d.subcat) ? `<div class="subcat">${esc(txtOr(d.subcat))}</div>` : ""}
     ${hint}
     <div class="summary">${mark(txtOr(d.summary))}</div>
     ${syntax}
@@ -599,12 +603,12 @@ function detailsHtml(d){
   const links = (d.related || []).map(resolve).filter(Boolean);
   if(links.length){
     parts.push(`<div class="field-label">${t("seeAlso")}</div><div class="related">` +
-      links.map(e => `<a href="#${esc(e.id)}">${esc(e.title)}</a>`).join("") + "</div>");
+      links.map(e => `<a href="#${esc(e.id)}">${esc(ttl(e))}</a>`).join("") + "</div>");
   }
   const errs = (d.related_errors || []).map(resolve).filter(Boolean);
   if(errs.length){
     parts.push(`<div class="field-label">${t("commonErrors")}</div><div class="related errs">` +
-      errs.map(e => `<a href="#${esc(e.id)}">${esc(e.title)}</a>`).join("") + "</div>");
+      errs.map(e => `<a href="#${esc(e.id)}">${esc(ttl(e))}</a>`).join("") + "</div>");
   }
   return parts.join("");
 }
@@ -717,16 +721,25 @@ function scrollToIndex(idx, block){
 /* Алфавит собирается из самих карточек: в глоссарии соседствуют латинские
    имена API и русские названия понятий, и жёсткая латиница просто спрятала
    бы вторые. */
-const initial = d => (d.title[0] || "").toUpperCase();
-const RAIL = Array.from(new Set(DATA.map(initial))).filter(ch => /\p{L}/u.test(ch))
-  .sort((a,b) => collator.compare(a,b));
+const initial = d => (ttl(d)[0] || "").toUpperCase();
+/* Алфавит зависит от языка: заголовок двуязычен, и у английского режима свои
+   первые буквы. Пересчитывается по языку, а не один раз при загрузке. */
+const RAILS = new Map();
+function rail(){
+  if(!RAILS.has(LANG)){
+    RAILS.set(LANG, Array.from(new Set(DATA.map(initial))).filter(ch => /\p{L}/u.test(ch))
+      .sort((a,b) => collator.compare(a,b)));
+  }
+  return RAILS.get(LANG);
+}
 function updateRail(){
   const present = new Set(visible.map(initial));
-  $("#azRail").innerHTML = RAIL
+  const letters = rail();
+  $("#azRail").innerHTML = letters
     .map(ch => `<button type="button"${present.has(ch) ? "" : " disabled"}>${ch}</button>`).join("");
   $("#azRail").querySelectorAll("button").forEach((b,i) => {
     b.onclick = () => {
-      const idx = visible.findIndex(d => initial(d) === RAIL[i]);
+      const idx = visible.findIndex(d => initial(d) === letters[i]);
       if(idx >= 0) scrollToIndex(idx, "start");
     };
   });

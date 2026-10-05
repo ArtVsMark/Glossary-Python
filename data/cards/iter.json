@@ -1,7 +1,10 @@
 [
   {
     "id": "async-def-await",
-    "title": "async def / await",
+    "title": {
+      "ru": "async def / await",
+      "en": "async def / await"
+    },
     "kind": "term",
     "summary": {
       "ru": "async def объявляет корутину. await приостанавливает выполнение до результата другой корутины.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#coroutine-function-definition",
     "version": "",
     "section": "Асинхронное программирование",
-    "subcat": "корутины",
+    "subcat": {
+      "ru": "корутины",
+      "en": ""
+    },
     "aliases": [
       "корутина",
       "асинхронная функция",
@@ -46,7 +52,10 @@
   },
   {
     "id": "async-for-async-with",
-    "title": "async for / async with",
+    "title": {
+      "ru": "async for / async with",
+      "en": "async for / async with"
+    },
     "kind": "term",
     "summary": {
       "ru": "async for итерирует по асинхронному итератору. async with использует асинхронный контекстный менеджер.",
@@ -61,7 +70,10 @@
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-async-for-statement",
     "version": "",
     "section": "Асинхронное программирование",
-    "subcat": "итерация",
+    "subcat": {
+      "ru": "итерация",
+      "en": ""
+    },
     "aliases": [
       "асинхронный цикл",
       "асинхронный контекстный менеджер",
@@ -91,7 +103,10 @@
   },
   {
     "id": "asyncio.create_task",
-    "title": "asyncio.create_task()",
+    "title": {
+      "ru": "asyncio.create_task()",
+      "en": "asyncio.create_task()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Оборачивает корутину в Task, запуская её в фоне event loop. Задача стартует немедленно, не дожидаясь await.",
@@ -106,7 +121,10 @@
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task",
     "version": "3.7",
     "section": "Асинхронное программирование",
-    "subcat": "задачи",
+    "subcat": {
+      "ru": "задачи",
+      "en": ""
+    },
     "aliases": [
       "фоновая задача",
       "запустить корутину в фоне"
@@ -138,7 +156,10 @@
   },
   {
     "id": "asyncio.gather",
-    "title": "asyncio.gather()",
+    "title": {
+      "ru": "asyncio.gather()",
+      "en": "asyncio.gather()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Запускает несколько корутин конкурентно и ждёт завершения всех. Возвращает список результатов.",
@@ -153,7 +174,10 @@
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.gather",
     "version": "",
     "section": "Асинхронное программирование",
-    "subcat": "параллельность",
+    "subcat": {
+      "ru": "параллельность",
+      "en": ""
+    },
     "aliases": [
       "запустить корутины параллельно",
       "дождаться всех задач"
@@ -181,7 +205,10 @@
   },
   {
     "id": "asyncio.queue",
-    "title": "asyncio.Queue",
+    "title": {
+      "ru": "asyncio.Queue",
+      "en": "asyncio.Queue"
+    },
     "kind": "term",
     "summary": {
       "ru": "Очередь для обмена данными между корутинами. put/get — с await. Не потокобезопасна: для обмена между потоками используй queue.Queue.",
@@ -196,7 +223,10 @@
     "docs_url": "https://docs.python.org/3/library/asyncio-queue.html#asyncio.Queue",
     "version": "",
     "section": "Асинхронное программирование",
-    "subcat": "очередь",
+    "subcat": {
+      "ru": "очередь",
+      "en": ""
+    },
     "aliases": [
       "асинхронная очередь",
       "очередь для корутин"
@@ -229,7 +259,10 @@
   },
   {
     "id": "asyncio.run",
-    "title": "asyncio.run()",
+    "title": {
+      "ru": "asyncio.run()",
+      "en": "asyncio.run()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Запускает корутину верхнего уровня в новом event loop. Главная точка входа для async-программ (Python 3.7+).",
@@ -244,7 +277,10 @@
     "docs_url": "https://docs.python.org/3/library/asyncio-runner.html#asyncio.run",
     "version": "3.7",
     "section": "Асинхронное программирование",
-    "subcat": "event loop",
+    "subcat": {
+      "ru": "event loop",
+      "en": "event loop"
+    },
     "aliases": [
       "запустить корутину",
       "запуск асинхронной программы"
@@ -276,7 +312,10 @@
   },
   {
     "id": "asyncio.sleep",
-    "title": "asyncio.sleep()",
+    "title": {
+      "ru": "asyncio.sleep()",
+      "en": "asyncio.sleep()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Приостанавливает корутину на указанное время, не блокируя event loop. Аналог time.sleep() для async.",
@@ -291,7 +330,10 @@
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep",
     "version": "",
     "section": "Асинхронное программирование",
-    "subcat": "event loop",
+    "subcat": {
+      "ru": "event loop",
+      "en": "event loop"
+    },
     "aliases": [
       "асинхронная пауза",
       "неблокирующая задержка",
@@ -321,7 +363,10 @@
   },
   {
     "id": "generator-function-yield",
-    "title": "Generator function — yield",
+    "title": {
+      "ru": "Generator function — yield",
+      "en": "Generator function — yield"
+    },
     "kind": "term",
     "summary": {
       "ru": "Функция с yield — генераторная функция. Возвращает генератор. Выполнение приостанавливается при yield.",
@@ -336,7 +381,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "генераторы",
+    "subcat": {
+      "ru": "генераторы",
+      "en": ""
+    },
     "aliases": [
       "генераторная функция",
       "возвращать значения по одному",
@@ -410,7 +458,10 @@
   },
   {
     "id": "iter-next",
-    "title": "iter() / next()",
+    "title": {
+      "ru": "iter() / next()",
+      "en": "iter() / next()"
+    },
     "kind": "function",
     "summary": {
       "ru": "iter() создаёт итератор из итерируемого. next() возвращает следующий элемент. Default-значение — вместо StopIteration.",
@@ -425,7 +476,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#iter",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "протокол итератора",
+    "subcat": {
+      "ru": "протокол итератора",
+      "en": ""
+    },
     "aliases": [
       "создать итератор из коллекции",
       "получить следующий элемент",
@@ -473,7 +527,10 @@
   },
   {
     "id": "itertools.accumulate",
-    "title": "itertools.accumulate",
+    "title": {
+      "ru": "itertools.accumulate",
+      "en": "itertools.accumulate"
+    },
     "kind": "term",
     "summary": {
       "ru": "Накапливающиеся промежуточные результаты применения функции. По умолчанию — сумма.",
@@ -488,7 +545,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "накопительная сумма",
       "нарастающий итог",
@@ -521,7 +581,10 @@
   },
   {
     "id": "itertools.chain",
-    "title": "itertools.chain",
+    "title": {
+      "ru": "itertools.chain",
+      "en": "itertools.chain"
+    },
     "kind": "term",
     "summary": {
       "ru": "Последовательно перебирает несколько итерируемых как одно целое.",
@@ -536,7 +599,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.chain",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "перебрать несколько списков подряд",
       "объединить итерируемые в одну цепочку"
@@ -573,7 +639,10 @@
   },
   {
     "id": "itertools.groupby",
-    "title": "itertools.groupby",
+    "title": {
+      "ru": "itertools.groupby",
+      "en": "itertools.groupby"
+    },
     "kind": "term",
     "summary": {
       "ru": "Группирует последовательные одинаковые элементы. Данные должны быть отсортированы по ключу!",
@@ -588,7 +657,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.groupby",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "группировка по ключу",
       "сгруппировать подряд идущие одинаковые элементы"
@@ -629,7 +701,10 @@
   },
   {
     "id": "itertools.islice",
-    "title": "itertools.islice",
+    "title": {
+      "ru": "itertools.islice",
+      "en": "itertools.islice"
+    },
     "kind": "term",
     "summary": {
       "ru": "Срез итератора без материализации. Аналог slice для итерируемых.",
@@ -644,7 +719,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.islice",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "срез итератора",
       "взять первые элементы генератора"
@@ -682,7 +760,10 @@
   },
   {
     "id": "yield-from",
-    "title": "yield from",
+    "title": {
+      "ru": "yield from",
+      "en": "yield from"
+    },
     "kind": "term",
     "summary": {
       "ru": "Делегирует yield другому генератору или итерируемому. Упрощает вложенные генераторы.",
@@ -697,7 +778,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "генераторы",
+    "subcat": {
+      "ru": "генераторы",
+      "en": ""
+    },
     "aliases": [
       "делегирование генератора",
       "вложенные генераторы"
@@ -746,7 +830,10 @@
   },
   {
     "id": "генераторное-выражение",
-    "title": "Генераторное выражение",
+    "title": {
+      "ru": "Генераторное выражение",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Ленивый аналог list comprehension в круглых скобках. Не создаёт список в памяти.",
@@ -761,7 +848,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#generator-expressions",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "генераторы",
+    "subcat": {
+      "ru": "генераторы",
+      "en": ""
+    },
     "aliases": [
       "генератор в круглых скобках",
       "ленивая генерация без списка в памяти"
@@ -799,7 +889,10 @@
   },
   {
     "id": "итератор-__iter__-__next__",
-    "title": "Итератор __iter__ / __next__",
+    "title": {
+      "ru": "Итератор __iter__ / __next__",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Итератор — объект с __iter__ и __next__. __next__ возвращает следующее значение или поднимает StopIteration.",
@@ -814,7 +907,10 @@
     "docs_url": "https://docs.python.org/3/glossary.html#term-iterator",
     "version": "",
     "section": "Итераторы и генераторы",
-    "subcat": "протокол итератора",
+    "subcat": {
+      "ru": "протокол итератора",
+      "en": ""
+    },
     "aliases": [
       "протокол итератора",
       "сделать класс перебираемым",
@@ -897,7 +993,10 @@
   },
   {
     "id": "itertools.count",
-    "title": "itertools.count",
+    "title": {
+      "ru": "itertools.count",
+      "en": "itertools.count"
+    },
     "kind": "function",
     "summary": {
       "ru": "Бесконечный счётчик: start, start+step, … Часто с zip()/islice().",
@@ -912,7 +1011,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.count",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "бесконечный счётчик",
       "нумерация с заданным шагом",
@@ -940,7 +1042,10 @@
   },
   {
     "id": "itertools.cycle",
-    "title": "itertools.cycle",
+    "title": {
+      "ru": "itertools.cycle",
+      "en": "itertools.cycle"
+    },
     "kind": "function",
     "summary": {
       "ru": "Бесконечно повторяет элементы итерируемого по кругу.",
@@ -955,7 +1060,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.cycle",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "зациклить последовательность",
       "повторять элементы по кругу"
@@ -981,7 +1089,10 @@
   },
   {
     "id": "itertools.repeat",
-    "title": "itertools.repeat",
+    "title": {
+      "ru": "itertools.repeat",
+      "en": "itertools.repeat"
+    },
     "kind": "function",
     "summary": {
       "ru": "Повторяет одно значение: бесконечно или ровно times раз.",
@@ -996,7 +1107,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.repeat",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "повторить значение несколько раз",
       "последовательность одинаковых элементов"
@@ -1022,7 +1136,10 @@
   },
   {
     "id": "itertools.combinations",
-    "title": "itertools.combinations",
+    "title": {
+      "ru": "itertools.combinations",
+      "en": "itertools.combinations"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все сочетания длины r из итерируемого (без повторов, порядок не важен).",
@@ -1037,7 +1154,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "сочетания",
       "комбинаторика без повторений",
@@ -1064,7 +1184,10 @@
   },
   {
     "id": "itertools.combinations_with_replacement",
-    "title": "itertools.combinations_with_replacement",
+    "title": {
+      "ru": "itertools.combinations_with_replacement",
+      "en": "itertools.combinations_with_replacement"
+    },
     "kind": "function",
     "summary": {
       "ru": "Сочетания длины r с повторами элементов.",
@@ -1079,7 +1202,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations_with_replacement",
     "version": "3.1",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "сочетания с повторениями",
       "комбинации с возвращением"
@@ -1105,7 +1231,10 @@
   },
   {
     "id": "itertools.permutations",
-    "title": "itertools.permutations",
+    "title": {
+      "ru": "itertools.permutations",
+      "en": "itertools.permutations"
+    },
     "kind": "function",
     "summary": {
       "ru": "Все перестановки длины r из итерируемого (порядок важен).",
@@ -1120,7 +1249,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.permutations",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "перестановки",
       "все порядки элементов",
@@ -1147,7 +1279,10 @@
   },
   {
     "id": "itertools.product",
-    "title": "itertools.product",
+    "title": {
+      "ru": "itertools.product",
+      "en": "itertools.product"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декартово произведение итерируемых (вложенные циклы как плоский итератор).",
@@ -1162,7 +1297,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.product",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "декартово произведение",
       "все комбинации из нескольких списков",
@@ -1189,7 +1327,10 @@
   },
   {
     "id": "itertools.compress",
-    "title": "itertools.compress",
+    "title": {
+      "ru": "itertools.compress",
+      "en": "itertools.compress"
+    },
     "kind": "function",
     "summary": {
       "ru": "Отбирает элементы data, где соответствующий элемент selectors истинен.",
@@ -1204,7 +1345,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.compress",
     "version": "3.1",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "фильтр по маске",
       "выбрать элементы по флагам"
@@ -1230,7 +1374,10 @@
   },
   {
     "id": "itertools.dropwhile",
-    "title": "itertools.dropwhile",
+    "title": {
+      "ru": "itertools.dropwhile",
+      "en": "itertools.dropwhile"
+    },
     "kind": "function",
     "summary": {
       "ru": "Пропускает элементы, пока предикат истинен, затем отдаёт остаток целиком.",
@@ -1245,7 +1392,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.dropwhile",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "пропустить элементы пока условие истинно",
       "отбросить начало последовательности"
@@ -1271,7 +1421,10 @@
   },
   {
     "id": "itertools.takewhile",
-    "title": "itertools.takewhile",
+    "title": {
+      "ru": "itertools.takewhile",
+      "en": "itertools.takewhile"
+    },
     "kind": "function",
     "summary": {
       "ru": "Отдаёт элементы, пока предикат истинен, затем останавливается.",
@@ -1286,7 +1439,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.takewhile",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "брать элементы пока условие истинно",
       "остановиться на первом несовпадении",
@@ -1313,7 +1469,10 @@
   },
   {
     "id": "itertools.filterfalse",
-    "title": "itertools.filterfalse",
+    "title": {
+      "ru": "itertools.filterfalse",
+      "en": "itertools.filterfalse"
+    },
     "kind": "function",
     "summary": {
       "ru": "Отдаёт элементы, для которых предикат ложен (обратное filter()).",
@@ -1328,7 +1487,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.filterfalse",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "обратный фильтр",
       "оставить элементы не прошедшие условие"
@@ -1354,7 +1516,10 @@
   },
   {
     "id": "itertools.starmap",
-    "title": "itertools.starmap",
+    "title": {
+      "ru": "itertools.starmap",
+      "en": "itertools.starmap"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как map(), но аргументы берутся распаковкой кортежей: f(*args).",
@@ -1369,7 +1534,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.starmap",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "применить функцию к кортежам аргументов",
       "отображение с распаковкой аргументов"
@@ -1395,7 +1563,10 @@
   },
   {
     "id": "itertools.pairwise",
-    "title": "itertools.pairwise",
+    "title": {
+      "ru": "itertools.pairwise",
+      "en": "itertools.pairwise"
+    },
     "kind": "function",
     "summary": {
       "ru": "Соседние пары элементов: (s0,s1), (s1,s2), … (Python 3.10+).",
@@ -1410,7 +1581,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.pairwise",
     "version": "3.10",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "соседние пары элементов",
       "пары подряд идущих значений",
@@ -1437,7 +1611,10 @@
   },
   {
     "id": "itertools.batched",
-    "title": "itertools.batched",
+    "title": {
+      "ru": "itertools.batched",
+      "en": "itertools.batched"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разбивает итерируемое на кортежи длины n (последний может быть короче); Python 3.12+.",
@@ -1452,7 +1629,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.batched",
     "version": "3.12",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "разбить список на части",
       "нарезать последовательность группами",
@@ -1481,7 +1661,10 @@
   },
   {
     "id": "itertools.zip_longest",
-    "title": "itertools.zip_longest",
+    "title": {
+      "ru": "itertools.zip_longest",
+      "en": "itertools.zip_longest"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как zip(), но продолжает до самого длинного итерируемого, добивая fillvalue.",
@@ -1496,7 +1679,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.zip_longest",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "объединить списки разной длины",
       "заполнить недостающие элементы при объединении"
@@ -1522,7 +1708,10 @@
   },
   {
     "id": "itertools.tee",
-    "title": "itertools.tee",
+    "title": {
+      "ru": "itertools.tee",
+      "en": "itertools.tee"
+    },
     "kind": "function",
     "summary": {
       "ru": "Создаёт n независимых итераторов из одного (исходный дальше использовать нельзя).",
@@ -1537,7 +1726,10 @@
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.tee",
     "version": "",
     "section": "Модуль itertools",
-    "subcat": "itertools",
+    "subcat": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
     "aliases": [
       "размножить итератор",
       "копия генератора",

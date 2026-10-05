@@ -112,7 +112,7 @@ def test_build_drops_duplicate_ids():
         ]
     )
     assert len(glossary) == 1
-    assert glossary.entries[0].title == "первая"
+    assert glossary.entries[0].title.ru == "первая"
 
 
 def test_build_stamps_current_schema_version():

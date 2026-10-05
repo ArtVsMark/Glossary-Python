@@ -1,7 +1,10 @@
 [
   {
     "id": "__import__",
-    "title": "__import__",
+    "title": {
+      "ru": "__import__",
+      "en": "__import__"
+    },
     "kind": "term",
     "summary": {
       "ru": "Низкоуровневый импорт модуля. Обычно используй importlib.import_module.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#import__",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "модули",
+    "subcat": {
+      "ru": "модули",
+      "en": ""
+    },
     "aliases": [
       "импорт модуля по имени-строке",
       "динамический импорт модуля"
@@ -45,7 +51,10 @@
   },
   {
     "id": "all",
-    "title": "all",
+    "title": {
+      "ru": "all",
+      "en": "all"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает True, если все элементы итерируемого истинны, или если итерируемый пуст. Использует ленивое вычисление.",
@@ -60,7 +69,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#all",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "логика",
+    "subcat": {
+      "ru": "логика",
+      "en": ""
+    },
     "aliases": [
       "все элементы истинны",
       "проверить, что все условия выполнены",
@@ -84,7 +96,10 @@
   },
   {
     "id": "any",
-    "title": "any",
+    "title": {
+      "ru": "any",
+      "en": "any"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает True, если хотя бы один элемент итерируемого истинен. Использует ленивое вычисление.",
@@ -99,7 +114,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#any",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "логика",
+    "subcat": {
+      "ru": "логика",
+      "en": ""
+    },
     "aliases": [
       "хотя бы один элемент истинен",
       "есть ли подходящий элемент",
@@ -125,7 +143,10 @@
   },
   {
     "id": "ascii",
-    "title": "ascii",
+    "title": {
+      "ru": "ascii",
+      "en": "ascii"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает repr() объекта, но заменяет все не-ASCII символы на escape-последовательности \\xNN, \\uNNNN или \\UNNNNNNNN.",
@@ -140,7 +161,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#ascii",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "строки",
+    "subcat": {
+      "ru": "строки",
+      "en": ""
+    },
     "aliases": [
       "экранирование юникод-символов",
       "показать коды символов в строке"
@@ -165,7 +189,10 @@
   },
   {
     "id": "bin",
-    "title": "bin",
+    "title": {
+      "ru": "bin",
+      "en": "bin"
+    },
     "kind": "term",
     "summary": {
       "ru": "Преобразует целое число в строку двоичного представления с префиксом '0b'. Отрицательные числа: bin(-5) → '-0b101'.",
@@ -180,7 +207,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#bin",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "числа",
+    "subcat": {
+      "ru": "числа",
+      "en": ""
+    },
     "aliases": [
       "перевести число в двоичную систему",
       "двоичное представление числа",
@@ -207,7 +237,10 @@
   },
   {
     "id": "breakpoint",
-    "title": "breakpoint",
+    "title": {
+      "ru": "breakpoint",
+      "en": "breakpoint"
+    },
     "kind": "term",
     "summary": {
       "ru": "Вызывает встроенный отладчик pdb в месте вызова. Python 3.7+. Поведение можно переопределить через PYTHONBREAKPOINT.",
@@ -222,7 +255,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#breakpoint",
     "version": "3.7",
     "section": "Встроенные функции",
-    "subcat": "отладка",
+    "subcat": {
+      "ru": "отладка",
+      "en": ""
+    },
     "aliases": [
       "точка останова",
       "запустить отладчик",
@@ -249,7 +285,10 @@
   },
   {
     "id": "callable",
-    "title": "callable",
+    "title": {
+      "ru": "callable",
+      "en": "callable"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает True, если объект можно вызвать: функция, класс, лямбда или объект с методом __call__.",
@@ -264,7 +303,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#callable",
     "version": "3.2",
     "section": "Встроенные функции",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "можно ли вызвать объект",
       "проверить что объект функция"
@@ -291,7 +333,10 @@
   },
   {
     "id": "chr",
-    "title": "chr",
+    "title": {
+      "ru": "chr",
+      "en": "chr"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает строку из одного символа по его Unicode кодовой точке (целое число). Обратная функция для ord().",
@@ -306,7 +351,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#chr",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "строки",
+    "subcat": {
+      "ru": "строки",
+      "en": ""
+    },
     "aliases": [
       "символ по коду",
       "преобразовать число в символ",
@@ -332,7 +380,10 @@
   },
   {
     "id": "compile",
-    "title": "compile",
+    "title": {
+      "ru": "compile",
+      "en": "compile"
+    },
     "kind": "term",
     "summary": {
       "ru": "Компилирует строку или AST в объект кода (code object). Используется с exec() или eval() для динамического кода.",
@@ -347,7 +398,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#compile",
     "version": "3.8",
     "section": "Встроенные функции",
-    "subcat": "выполнение",
+    "subcat": {
+      "ru": "выполнение",
+      "en": ""
+    },
     "aliases": [
       "скомпилировать строку в код",
       "объект кода"
@@ -374,7 +428,10 @@
   },
   {
     "id": "delattr",
-    "title": "delattr",
+    "title": {
+      "ru": "delattr",
+      "en": "delattr"
+    },
     "kind": "term",
     "summary": {
       "ru": "Удаляет атрибут объекта по имени. Эквивалент del obj.attr, но позволяет передать имя атрибута как строку динамически.",
@@ -389,7 +446,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#delattr",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "ООП",
+    "subcat": {
+      "ru": "ООП",
+      "en": ""
+    },
     "aliases": [
       "удалить атрибут объекта",
       "удалить свойство по имени"
@@ -420,7 +480,10 @@
   },
   {
     "id": "dict",
-    "title": "dict",
+    "title": {
+      "ru": "dict",
+      "en": "dict"
+    },
     "kind": "term",
     "summary": {
       "ru": "Изменяемый маппинг: хранит пары ключ–значение. Ключи уникальны и хешируемы. С Python 3.7 сохраняет порядок вставки.",
@@ -435,7 +498,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#func-dict",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "типы",
+    "subcat": {
+      "ru": "типы",
+      "en": ""
+    },
     "aliases": [
       "словарь",
       "ассоциативный массив",
@@ -463,7 +529,10 @@
   },
   {
     "id": "dir",
-    "title": "dir",
+    "title": {
+      "ru": "dir",
+      "en": "dir"
+    },
     "kind": "term",
     "summary": {
       "ru": "Список атрибутов объекта (или локального пространства имён).",
@@ -478,7 +547,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#dir",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "список атрибутов объекта",
       "какие методы есть у объекта",
@@ -507,7 +579,10 @@
   },
   {
     "id": "end",
-    "title": "end=",
+    "title": {
+      "ru": "end=",
+      "en": "end="
+    },
     "kind": "term",
     "summary": {
       "ru": "Параметр функции print(), задающий строку, добавляемую в конец вывода. По умолчанию — символ новой строки '\\n'. Позволяет выводить на одной строке.",
@@ -522,7 +597,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "вывод",
+    "subcat": {
+      "ru": "вывод",
+      "en": ""
+    },
     "aliases": [
       "вывод без переноса строки",
       "печать в одну строку",
@@ -548,7 +626,10 @@
   },
   {
     "id": "eval",
-    "title": "eval",
+    "title": {
+      "ru": "eval",
+      "en": "eval"
+    },
     "kind": "term",
     "summary": {
       "ru": "Вычисляет выражение из строки. ВНИМАНИЕ: небезопасен для ненадёжного ввода!",
@@ -563,7 +644,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#eval",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "выполнение",
+    "subcat": {
+      "ru": "выполнение",
+      "en": ""
+    },
     "aliases": [
       "вычислить выражение из строки",
       "выполнить строку как выражение",
@@ -590,7 +674,10 @@
   },
   {
     "id": "exec",
-    "title": "exec",
+    "title": {
+      "ru": "exec",
+      "en": "exec"
+    },
     "kind": "term",
     "summary": {
       "ru": "Выполняет динамически созданный Python-код: строку или code object. Изменяет переданное пространство имён.",
@@ -605,7 +692,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#exec",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "выполнение",
+    "subcat": {
+      "ru": "выполнение",
+      "en": ""
+    },
     "aliases": [
       "выполнить код из строки",
       "запустить строку как программу",
@@ -637,7 +727,10 @@
   },
   {
     "id": "format",
-    "title": "format",
+    "title": {
+      "ru": "format",
+      "en": "format"
+    },
     "kind": "term",
     "summary": {
       "ru": "Форматирует значение по строке спецификации формата (format spec). Вызывает метод __format__ объекта.",
@@ -652,7 +745,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#format",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "строки",
+    "subcat": {
+      "ru": "строки",
+      "en": ""
+    },
     "aliases": [
       "форматирование числа",
       "вывести число с двумя знаками после запятой",
@@ -681,7 +777,10 @@
   },
   {
     "id": "frozenset",
-    "title": "frozenset",
+    "title": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "kind": "term",
     "summary": {
       "ru": "Неизменяемое множество. Поддерживает все операции set (объединение, пересечение и т.д.), но не поддерживает add() и remove(). Хешируемо — можно использовать как ключ словаря.",
@@ -696,7 +795,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#func-frozenset",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "типы",
+    "subcat": {
+      "ru": "типы",
+      "en": ""
+    },
     "aliases": [
       "замороженное множество",
       "хешируемое множество",
@@ -724,7 +826,10 @@
   },
   {
     "id": "getattr",
-    "title": "getattr",
+    "title": {
+      "ru": "getattr",
+      "en": "getattr"
+    },
     "kind": "term",
     "summary": {
       "ru": "Получает атрибут объекта по имени как строке. Третий аргумент — значение по умолчанию, если атрибут не существует (иначе AttributeError).",
@@ -739,7 +844,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#getattr",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "ООП",
+    "subcat": {
+      "ru": "ООП",
+      "en": ""
+    },
     "aliases": [
       "получить атрибут по имени",
       "обращение к полю объекта через строку",
@@ -769,7 +877,10 @@
   },
   {
     "id": "globals",
-    "title": "globals",
+    "title": {
+      "ru": "globals",
+      "en": "globals"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает словарь глобального пространства имён текущего модуля.",
@@ -784,7 +895,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#globals",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "пространства имён",
+    "subcat": {
+      "ru": "пространства имён",
+      "en": ""
+    },
     "aliases": [
       "глобальные переменные модуля",
       "словарь глобальных имён",
@@ -813,7 +927,10 @@
   },
   {
     "id": "hasattr",
-    "title": "hasattr",
+    "title": {
+      "ru": "hasattr",
+      "en": "hasattr"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает True, если у объекта есть атрибут с указанным именем. Реализован через попытку getattr() — проверяет наличие без исключения.",
@@ -828,7 +945,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#hasattr",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "ООП",
+    "subcat": {
+      "ru": "ООП",
+      "en": ""
+    },
     "aliases": [
       "проверить наличие атрибута",
       "есть ли у объекта поле",
@@ -857,7 +977,10 @@
   },
   {
     "id": "hash",
-    "title": "hash",
+    "title": {
+      "ru": "hash",
+      "en": "hash"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает целочисленный хеш объекта. Объект должен быть хешируемым (неизменяемым). Используется словарями и множествами.",
@@ -872,7 +995,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#hash",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "хеш объекта",
       "хешируемый объект",
@@ -901,7 +1027,10 @@
   },
   {
     "id": "help",
-    "title": "help",
+    "title": {
+      "ru": "help",
+      "en": "help"
+    },
     "kind": "term",
     "summary": {
       "ru": "Выводит встроенную справку по объекту, функции или модулю. В интерактивном режиме без аргумента запускает интерактивную справку.",
@@ -916,7 +1045,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#help",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "встроенная справка",
       "документация по функции",
@@ -941,7 +1073,10 @@
   },
   {
     "id": "hex",
-    "title": "hex",
+    "title": {
+      "ru": "hex",
+      "en": "hex"
+    },
     "kind": "term",
     "summary": {
       "ru": "Преобразует целое число в строку шестнадцатеричного представления с префиксом '0x'. Буквы в нижнем регистре.",
@@ -956,7 +1091,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#hex",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "числа",
+    "subcat": {
+      "ru": "числа",
+      "en": ""
+    },
     "aliases": [
       "перевести число в шестнадцатеричную систему",
       "шестнадцатеричное представление числа"
@@ -982,7 +1120,10 @@
   },
   {
     "id": "id",
-    "title": "id",
+    "title": {
+      "ru": "id",
+      "en": "id"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает уникальный идентификатор объекта (адрес в памяти).",
@@ -997,7 +1138,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#id",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "идентификатор объекта",
       "адрес объекта в памяти",
@@ -1030,7 +1174,10 @@
   },
   {
     "id": "input",
-    "title": "input()",
+    "title": {
+      "ru": "input()",
+      "en": "input()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Встроенная функция для чтения строки с клавиатуры. Выводит необязательный приглашающий текст и возвращает введённую строку без символа новой строки.",
@@ -1045,7 +1192,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#input",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "ввод",
+    "subcat": {
+      "ru": "ввод",
+      "en": ""
+    },
     "aliases": [
       "ввод с клавиатуры",
       "считать строку от пользователя",
@@ -1080,7 +1230,10 @@
   },
   {
     "id": "issubclass",
-    "title": "issubclass",
+    "title": {
+      "ru": "issubclass",
+      "en": "issubclass"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает True, если класс является подклассом указанного класса или одного из классов в кортеже.",
@@ -1095,7 +1248,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#issubclass",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "интроспекция/ООП",
+    "subcat": {
+      "ru": "интроспекция/ООП",
+      "en": ""
+    },
     "aliases": [
       "проверка подкласса",
       "является ли класс наследником",
@@ -1124,7 +1280,10 @@
   },
   {
     "id": "iter",
-    "title": "iter",
+    "title": {
+      "ru": "iter",
+      "en": "iter"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает итератор. С двумя аргументами — вызывает функцию до значения sentinel.",
@@ -1139,7 +1298,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#iter",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "итераторы",
+    "subcat": {
+      "ru": "итераторы",
+      "en": ""
+    },
     "aliases": [
       "получить итератор",
       "создать итератор из последовательности",
@@ -1171,7 +1333,10 @@
   },
   {
     "id": "list",
-    "title": "list",
+    "title": {
+      "ru": "list",
+      "en": "list"
+    },
     "kind": "term",
     "summary": {
       "ru": "Создаёт изменяемый список из итерируемого или пустой список. list() без аргументов эквивалентен [].",
@@ -1186,7 +1351,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#func-list",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "типы",
+    "subcat": {
+      "ru": "типы",
+      "en": ""
+    },
     "aliases": [
       "список",
       "массив в питоне",
@@ -1213,7 +1381,10 @@
   },
   {
     "id": "locals",
-    "title": "locals",
+    "title": {
+      "ru": "locals",
+      "en": "locals"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает словарь текущего локального пространства имён. В модуле совпадает с globals(). Копия, не ссылка.",
@@ -1228,7 +1399,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#locals",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "пространства имён",
+    "subcat": {
+      "ru": "пространства имён",
+      "en": ""
+    },
     "aliases": [
       "локальные переменные функции",
       "словарь локальных имён",
@@ -1260,7 +1434,10 @@
   },
   {
     "id": "max",
-    "title": "max",
+    "title": {
+      "ru": "max",
+      "en": "max"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает наибольший элемент итерируемого или наибольший из переданных аргументов. Поддерживает key-функцию.",
@@ -1275,7 +1452,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#max",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "числа/коллекции",
+    "subcat": {
+      "ru": "числа/коллекции",
+      "en": ""
+    },
     "aliases": [
       "максимум",
       "наибольшее значение",
@@ -1301,7 +1481,10 @@
   },
   {
     "id": "memoryview",
-    "title": "memoryview",
+    "title": {
+      "ru": "memoryview",
+      "en": "memoryview"
+    },
     "kind": "term",
     "summary": {
       "ru": "Создаёт объект представления буфера без копирования данных. Позволяет работать со срезами бинарных данных эффективно.",
@@ -1316,7 +1499,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#func-memoryview",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "типы",
+    "subcat": {
+      "ru": "типы",
+      "en": ""
+    },
     "aliases": [
       "работа с байтами без копирования",
       "срез бинарных данных без копирования",
@@ -1346,7 +1532,10 @@
   },
   {
     "id": "min",
-    "title": "min",
+    "title": {
+      "ru": "min",
+      "en": "min"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает наименьший элемент итерируемого или наименьший из переданных аргументов. Поддерживает key-функцию.",
@@ -1361,7 +1550,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#min",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "числа/коллекции",
+    "subcat": {
+      "ru": "числа/коллекции",
+      "en": ""
+    },
     "aliases": [
       "минимум",
       "наименьшее значение",
@@ -1387,7 +1579,10 @@
   },
   {
     "id": "next",
-    "title": "next",
+    "title": {
+      "ru": "next",
+      "en": "next"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает следующий элемент итератора. default — если итератор исчерпан.",
@@ -1402,7 +1597,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#next",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "итераторы",
+    "subcat": {
+      "ru": "итераторы",
+      "en": ""
+    },
     "aliases": [
       "следующий элемент итератора",
       "взять следующее значение генератора",
@@ -1430,7 +1628,10 @@
   },
   {
     "id": "object",
-    "title": "object",
+    "title": {
+      "ru": "object",
+      "en": "object"
+    },
     "kind": "term",
     "summary": {
       "ru": "Базовый класс всех классов Python. Предоставляет методы по умолчанию: __str__, __repr__, __eq__, __hash__ и другие магические методы.",
@@ -1445,7 +1646,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#object",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "ООП",
+    "subcat": {
+      "ru": "ООП",
+      "en": ""
+    },
     "aliases": [
       "базовый класс всех объектов",
       "родитель всех классов",
@@ -1474,7 +1678,10 @@
   },
   {
     "id": "oct",
-    "title": "oct",
+    "title": {
+      "ru": "oct",
+      "en": "oct"
+    },
     "kind": "term",
     "summary": {
       "ru": "Преобразует целое число в строку восьмеричного представления с префиксом '0o'.",
@@ -1489,7 +1696,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#oct",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "числа",
+    "subcat": {
+      "ru": "числа",
+      "en": ""
+    },
     "aliases": [
       "перевести число в восьмеричную систему",
       "восьмеричное представление числа"
@@ -1515,7 +1725,10 @@
   },
   {
     "id": "ord",
-    "title": "ord",
+    "title": {
+      "ru": "ord",
+      "en": "ord"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает Unicode кодовую точку (целое число) символа. Принимает строку длиной 1. Обратная функция для chr().",
@@ -1530,7 +1743,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#ord",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "строки",
+    "subcat": {
+      "ru": "строки",
+      "en": ""
+    },
     "aliases": [
       "код символа",
       "номер символа в юникоде",
@@ -1556,7 +1772,10 @@
   },
   {
     "id": "print",
-    "title": "print()",
+    "title": {
+      "ru": "print()",
+      "en": "print()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Встроенная функция для вывода данных на стандартный вывод (экран). Принимает любое количество аргументов, разделяет их параметром sep и заканчивает строку параметром end.",
@@ -1571,7 +1790,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "вывод",
+    "subcat": {
+      "ru": "вывод",
+      "en": ""
+    },
     "aliases": [
       "вывод на экран",
       "печать в консоль",
@@ -1604,7 +1826,10 @@
   },
   {
     "id": "print-file-flush",
-    "title": "print(file=, flush=)",
+    "title": {
+      "ru": "print(file=, flush=)",
+      "en": "print(file=, flush=)"
+    },
     "kind": "function",
     "summary": {
       "ru": "Параметр file= перенаправляет вывод в произвольный файловый объект (по умолчанию sys.stdout). flush=True немедленно сбрасывает внутренний буфер потока, не дожидаясь его заполнения.",
@@ -1619,7 +1844,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "вывод",
+    "subcat": {
+      "ru": "вывод",
+      "en": ""
+    },
     "aliases": [
       "печать в файл",
       "перенаправление вывода",
@@ -1649,7 +1877,10 @@
   },
   {
     "id": "repr",
-    "title": "repr",
+    "title": {
+      "ru": "repr",
+      "en": "repr"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает строку с официальным представлением объекта — такую, по которой можно воссоздать объект (по возможности).",
@@ -1664,7 +1895,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#repr",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "строки",
+    "subcat": {
+      "ru": "строки",
+      "en": ""
+    },
     "aliases": [
       "строковое представление объекта",
       "отладочный вывод объекта",
@@ -1691,7 +1925,10 @@
   },
   {
     "id": "repr-vs-str",
-    "title": "repr() vs str()",
+    "title": {
+      "ru": "repr() vs str()",
+      "en": "repr() vs str()"
+    },
     "kind": "term",
     "summary": {
       "ru": "str() возвращает «читаемое» представление объекта для вывода пользователю. repr() возвращает «однозначное» представление, пригодное для воспроизведения объекта в коде; используется в интерактивной консоли и при отладке.",
@@ -1706,7 +1943,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#repr",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "строки",
+    "subcat": {
+      "ru": "строки",
+      "en": ""
+    },
     "aliases": [
       "строковое представление объекта",
       "отладочное представление объекта",
@@ -1734,7 +1974,10 @@
   },
   {
     "id": "reversed",
-    "title": "reversed",
+    "title": {
+      "ru": "reversed",
+      "en": "reversed"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает обратный итератор для последовательности. Не копирует данные — ленивое вычисление.",
@@ -1749,7 +1992,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#reversed",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "итераторы",
+    "subcat": {
+      "ru": "итераторы",
+      "en": ""
+    },
     "aliases": [
       "перебор в обратном порядке",
       "пройти список с конца",
@@ -1775,7 +2021,10 @@
   },
   {
     "id": "sep",
-    "title": "sep=",
+    "title": {
+      "ru": "sep=",
+      "en": "sep="
+    },
     "kind": "term",
     "summary": {
       "ru": "Параметр функции print(), задающий разделитель между аргументами. По умолчанию — пробел. Может быть любой строкой, включая пустую.",
@@ -1790,7 +2039,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "вывод",
+    "subcat": {
+      "ru": "вывод",
+      "en": ""
+    },
     "aliases": [
       "разделитель при печати",
       "вывод через запятую",
@@ -1816,7 +2068,10 @@
   },
   {
     "id": "set",
-    "title": "set",
+    "title": {
+      "ru": "set",
+      "en": "set"
+    },
     "kind": "term",
     "summary": {
       "ru": "Изменяемое множество уникальных хешируемых элементов без определённого порядка. Поддерживает операции объединения, пересечения и разности.",
@@ -1831,7 +2086,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#func-set",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "типы",
+    "subcat": {
+      "ru": "типы",
+      "en": ""
+    },
     "aliases": [
       "множество",
       "уникальные элементы",
@@ -1859,7 +2117,10 @@
   },
   {
     "id": "setattr",
-    "title": "setattr",
+    "title": {
+      "ru": "setattr",
+      "en": "setattr"
+    },
     "kind": "term",
     "summary": {
       "ru": "Устанавливает атрибут объекта по имени. Эквивалент obj.name = value, но позволяет задать имя атрибута динамически как строку.",
@@ -1874,7 +2135,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#setattr",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "ООП",
+    "subcat": {
+      "ru": "ООП",
+      "en": ""
+    },
     "aliases": [
       "установить атрибут по имени",
       "задать поле объекта динамически"
@@ -1905,7 +2169,10 @@
   },
   {
     "id": "sorted",
-    "title": "sorted",
+    "title": {
+      "ru": "sorted",
+      "en": "sorted"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает новый отсортированный список. Принимает key и reverse. Не изменяет исходную последовательность.",
@@ -1920,7 +2187,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "итераторы",
+    "subcat": {
+      "ru": "итераторы",
+      "en": ""
+    },
     "aliases": [
       "сортировка",
       "отсортировать список",
@@ -1947,7 +2217,10 @@
   },
   {
     "id": "sum",
-    "title": "sum",
+    "title": {
+      "ru": "sum",
+      "en": "sum"
+    },
     "kind": "term",
     "summary": {
       "ru": "Суммирует элементы итерируемого. start — начальное значение.",
@@ -1962,7 +2235,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#sum",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "числа/коллекции",
+    "subcat": {
+      "ru": "числа/коллекции",
+      "en": ""
+    },
     "aliases": [
       "сумма элементов",
       "суммировать список",
@@ -1988,7 +2264,10 @@
   },
   {
     "id": "tuple",
-    "title": "tuple",
+    "title": {
+      "ru": "tuple",
+      "en": "tuple"
+    },
     "kind": "term",
     "summary": {
       "ru": "Неизменяемая упорядоченная последовательность элементов. Хешируема (если элементы хешируемы) — можно использовать как ключ словаря.",
@@ -2003,7 +2282,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#func-tuple",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "типы",
+    "subcat": {
+      "ru": "типы",
+      "en": ""
+    },
     "aliases": [
       "кортеж",
       "неизменяемый список",
@@ -2031,7 +2313,10 @@
   },
   {
     "id": "vars",
-    "title": "vars",
+    "title": {
+      "ru": "vars",
+      "en": "vars"
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает __dict__ объекта или словарь текущего локального пространства имён (без аргументов — аналог locals()).",
@@ -2046,7 +2331,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#vars",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "словарь атрибутов объекта",
       "получить поля объекта как словарь"
@@ -2074,7 +2362,10 @@
   },
   {
     "id": "переменные",
-    "title": "Переменные",
+    "title": {
+      "ru": "Переменные",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Именованные области памяти для хранения значений. В Python переменные динамически типизированы — тип определяется значением, а не объявлением.",
@@ -2089,7 +2380,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "переменные",
+    "subcat": {
+      "ru": "переменные",
+      "en": ""
+    },
     "aliases": [
       "присваивание значения",
       "объявить переменную",
@@ -2118,7 +2412,10 @@
   },
   {
     "id": "числовые-литералы",
-    "title": "Числовые литералы",
+    "title": {
+      "ru": "Числовые литералы",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Python поддерживает запись чисел в двоичной (0b), восьмеричной (0o) и шестнадцатеричной (0x) системах счисления, разделитель _ для читаемости, а также экспоненциальную нотацию.",
@@ -2133,7 +2430,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#",
     "version": "",
     "section": "Ввод и вывод",
-    "subcat": "литералы",
+    "subcat": {
+      "ru": "литералы",
+      "en": ""
+    },
     "aliases": [
       "двоичная запись числа",
       "шестнадцатеричное число",
@@ -2161,7 +2461,10 @@
   },
   {
     "id": "len",
-    "title": "len()",
+    "title": {
+      "ru": "len()",
+      "en": "len()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает число элементов в объекте (длину): последовательности, множества, словаря, строки.",
@@ -2176,7 +2479,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#len",
     "version": "",
     "section": "Встроенные функции",
-    "subcat": "Встроенные функции",
+    "subcat": {
+      "ru": "Встроенные функции",
+      "en": ""
+    },
     "aliases": [
       "длина строки",
       "количество элементов",
@@ -2200,7 +2506,10 @@
   },
   {
     "id": "aiter",
-    "title": "aiter()",
+    "title": {
+      "ru": "aiter()",
+      "en": "aiter()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Асинхронный аналог iter(): возвращает асинхронный итератор объекта (вызывает __aiter__). Работает с async for / anext().",
@@ -2215,7 +2524,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#aiter",
     "version": "3.10",
     "section": "Встроенные функции",
-    "subcat": "Встроенные функции",
+    "subcat": {
+      "ru": "Встроенные функции",
+      "en": ""
+    },
     "aliases": [
       "получить асинхронный итератор",
       "перебор асинхронной последовательности"
@@ -2246,7 +2558,10 @@
   },
   {
     "id": "anext",
-    "title": "anext()",
+    "title": {
+      "ru": "anext()",
+      "en": "anext()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Асинхронный аналог next(): возвращает awaitable для следующего элемента async-итератора; с default не поднимает StopAsyncIteration.",
@@ -2261,7 +2576,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#anext",
     "version": "3.10",
     "section": "Встроенные функции",
-    "subcat": "Встроенные функции",
+    "subcat": {
+      "ru": "Встроенные функции",
+      "en": ""
+    },
     "aliases": [
       "следующий элемент асинхронного итератора",
       "асинхронное получение следующего значения"

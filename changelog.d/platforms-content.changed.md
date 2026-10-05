@@ -1,1 +1,0 @@
-поле `platforms` заполнено по директиве `availability` документации CPython: 109 карточек получили ограничение (Linux · macOS — 76, Linux — 25, Windows — 7, macOS · Windows — 1), остальные — `AllOS` (#83)

@@ -1,1 +1,0 @@
-выгрузка для грейдера привязана к выпускам: версия формы `form` в шапке `delivery.json`, `glossary delivery --schema` собирает `delivery.schema.json` из схемы карточки, прогон `release-delivery.yml` прикладывает оба файла к каждому выпуску, журнал формы в `docs/contracts.md` под сторожем (#105)

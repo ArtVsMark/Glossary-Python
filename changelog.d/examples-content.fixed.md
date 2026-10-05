@@ -1,0 +1,1 @@
+17 примеров исправлены и исполняются как обещают: `GIL` и `ThreadPoolExecutor` без сети и с `if __name__ == "__main__"` (умолчание `forkserver` в 3.14), `dataclass-frozen-true` и `unittest-TestCase` без ошибочного отступа, файловые примеры создают свои файлы, у `os.eventfd_write` и `os.fchmod` названо верное исключение; находок гейта примеров 17 → 0 (#82)

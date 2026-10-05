@@ -934,15 +934,15 @@
       "module"
     ],
     "examples": [
-      "# GIL мешает CPU-задачам:",
-      "import threading, time",
-      "def cpu_task():",
-      "    sum(range(10**7))",
-      "    # 2 потока не быстрее 1 для CPU",
-      "# Для CPU-параллелизма используй ProcessPoolExecutor",
-      "from concurrent.futures import ProcessPoolExecutor",
-      "with ProcessPoolExecutor() as ex:",
-      "    list(ex.map(cpu_task, range(4)))"
+      "# GIL мешает CPU-задачам: два потока не быстрее одного",
+      "from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor",
+      "def cpu_task(n):",
+      "    return sum(range(n))",
+      "if __name__ == '__main__':  # обязательно: процессы-помощники заново импортируют модуль",
+      "    with ThreadPoolExecutor() as ex:   # потоки: байт-код исполняет один поток за раз",
+      "        print(sum(ex.map(cpu_task, [10**6] * 4)))  # → 1999998000000",
+      "    with ProcessPoolExecutor() as ex:  # процессы: у каждого свой интерпретатор и свой GIL",
+      "        print(sum(ex.map(cpu_task, [10**6] * 4)))  # → 1999998000000"
     ],
     "related": [
       "threading-thread",
@@ -1082,13 +1082,13 @@
     ],
     "examples": [
       "from concurrent.futures import ThreadPoolExecutor",
-      "import urllib.request",
+      "import time",
       "urls = ['https://python.org', 'https://pypi.org']",
       "def fetch(url):",
-      "    return len(urllib.request.urlopen(url).read())",
+      "    time.sleep(0.1)  # имитация ожидания сети: пока один поток ждёт, работают другие",
+      "    return len(url)",
       "with ThreadPoolExecutor(max_workers=4) as ex:",
-      "    sizes = list(ex.map(fetch, urls))",
-      "    print(sizes)"
+      "    print(list(ex.map(fetch, urls)))  # → [18, 16] — порядок результатов как у входа"
     ],
     "related": [
       "ProcessPoolExecutor",
@@ -2431,13 +2431,14 @@
       "from dataclasses import dataclass",
       "@dataclass(frozen=True)",
       "class Pt:",
-      "    x: int; y: int",
-      "    p = Pt(1, 2)",
-      "    p.x # → 1",
-      "    hash(p) # → работает (объект хэшируем)",
-      "    # p.x = 5  # → FrozenInstanceError",
-      "    d = {p: 'origin'}",
-      "    d[Pt(1, 2)] # → 'origin'"
+      "    x: int",
+      "    y: int",
+      "p = Pt(1, 2)",
+      "print(p.x)  # → 1",
+      "print(hash(p) == hash(Pt(1, 2)))  # → True — замороженный объект хэшируем",
+      "d = {p: 'origin'}",
+      "print(d[Pt(1, 2)])  # → origin — равные по полям объекты дают один ключ",
+      "p.x = 5  # → FrozenInstanceError"
     ],
     "related": [
       "dataclass",
@@ -3590,12 +3591,16 @@
       "module"
     ],
     "examples": [
-      "# без буфера (binary only)",
-      "f = open('raw.bin', 'wb', buffering=0)",
-      "# построчная буферизация",
-      "f = open('out.txt', 'w', buffering=1)",
+      "# без буфера — только в бинарном режиме",
+      "with open('raw.bin', 'wb', buffering=0) as f:",
+      "    f.write(b'\\x00\\x01')",
+      "# построчная буферизация — только в текстовом режиме",
+      "with open('out.txt', 'w', buffering=1) as f:",
+      "    f.write('строка\\n')   # уходит на диск на каждом переводе строки",
       "# буфер 4096 байт",
-      "f = open('data.txt', 'r', buffering=4096)"
+      "with open('out.txt', 'r', buffering=4096) as f:",
+      "    print(f.read().strip())  # → строка",
+      "open('out.txt', 'w', buffering=0)  # → ValueError: текст без буфера не бывает"
     ],
     "related": [
       "file-flush",
@@ -3639,12 +3644,16 @@
       "module"
     ],
     "examples": [
+      "with open('broken.txt', 'wb') as f:",
+      "    f.write('привет'.encode('utf-8') + b'\\xff')",
       "# игнорировать некорректные байты",
       "with open('broken.txt', encoding='utf-8', errors='ignore') as f:",
-      "    text = f.read()",
-      "# заменить на ?",
-      "with open('mixed.txt', encoding='utf-8', errors='replace') as f:",
-      "    text = f.read()"
+      "    print(f.read())  # → привет",
+      "# заменить их символом-заменителем",
+      "with open('broken.txt', encoding='utf-8', errors='replace') as f:",
+      "    print(f.read())  # → привет� — символ-заменитель",
+      "with open('broken.txt', encoding='utf-8') as f:",
+      "    f.read()  # → UnicodeDecodeError: по умолчанию errors='strict'"
     ],
     "related": [
       "open",
@@ -3742,13 +3751,15 @@
       "module"
     ],
     "examples": [
+      "with open('data.txt', 'wb') as f:",
+      "    f.write(b'hello world')",
       "with open('data.txt', 'rb') as f:",
       "    f.read(5)",
-      "    pos = f.tell()      # 5",
+      "    print(f.tell())     # → 5",
       "    f.read(3)",
-      "    print(f.tell())     # 8",
+      "    print(f.tell())     # → 8",
       "    f.seek(0)           # вернуться в начало",
-      "    print(f.tell())     # 0"
+      "    print(f.tell())     # → 0"
     ],
     "related": [
       "file-truncate",
@@ -3793,12 +3804,19 @@
       "module"
     ],
     "examples": [
+      "import os",
+      "with open('data.txt', 'w') as f:",
+      "    f.write('много текста')",
       "# очистить файл",
       "with open('data.txt', 'r+') as f:",
       "    f.truncate(0)",
+      "print(os.path.getsize('data.txt'))  # → 0",
       "# обрезать до 100 байт",
+      "with open('big.bin', 'wb') as f:",
+      "    f.write(bytes(1000))",
       "with open('big.bin', 'r+b') as f:",
-      "    f.truncate(100)"
+      "    f.truncate(100)",
+      "print(os.path.getsize('big.bin'))  # → 100"
     ],
     "related": [
       "file-tell",
@@ -4275,10 +4293,12 @@
     "examples": [
       "import hashlib",
       "h = hashlib.md5(b'hello world')",
-      "print(h.hexdigest())  # 5eb63bbbe01eeed093cb22bb8f5acdc3",
-      "# хеш файла",
+      "print(h.hexdigest())  # → 5eb63bbbe01eeed093cb22bb8f5acdc3",
+      "# хеш файла: файл читается в бинарном режиме",
+      "with open('file.txt', 'wb') as f:",
+      "    f.write(b'hello world')",
       "with open('file.txt', 'rb') as f:",
-      "    digest = hashlib.md5(f.read()).hexdigest()"
+      "    print(hashlib.md5(f.read()).hexdigest())  # → 5eb63bbbe01eeed093cb22bb8f5acdc3"
     ],
     "related": [
       "hashlib-sha256",
@@ -4327,14 +4347,15 @@
     "examples": [
       "import hashlib",
       "h = hashlib.sha256(b'secret data')",
-      "print(h.hexdigest())",
-      "# 2b...64 символа",
-      "# постепенная загрузка больших файлов",
+      "print(len(h.hexdigest()))  # → 64 — шестнадцатеричных символов",
+      "# постепенная загрузка большого файла: память не зависит от его размера",
+      "with open('bigfile.bin', 'wb') as f:",
+      "    f.write(b'x' * 200_000)",
       "h = hashlib.sha256()",
       "with open('bigfile.bin', 'rb') as f:",
       "    for chunk in iter(lambda: f.read(65536), b''):",
       "        h.update(chunk)",
-      "        print(h.hexdigest())"
+      "print(h.hexdigest() == hashlib.sha256(b'x' * 200_000).hexdigest())  # → True"
     ],
     "related": [
       "hashlib-md5",
@@ -7196,7 +7217,7 @@
       "db_host = os.getenv('DB_HOST', 'localhost')",
       "api_key  = os.getenv('API_KEY')  # None если не задана",
       "if api_key is None:",
-      "    raise EnvironmentError('API_KEY не задана')"
+      "    raise EnvironmentError('API_KEY не задана')  # → OSError: EnvironmentError — его псевдоним"
     ],
     "related": [
       "os.environ",
@@ -10649,8 +10670,8 @@
       "        self.assertEqual(1 + 1, 2)",
       "    def test_type(self):",
       "        self.assertIsInstance(42, int)",
-      "    if __name__ == '__main__':",
-      "        unittest.main()"
+      "if __name__ == '__main__':  # на уровне модуля, а не внутри класса",
+      "    unittest.main()  # → Ran 2 tests ... OK"
     ],
     "related": [
       "unittest.assertEqual",
@@ -22892,7 +22913,7 @@
     ],
     "examples": [
       "import os",
-      "size = os.get_terminal_size()",
+      "size = os.get_terminal_size()  # → ? только в терминале; в пайпе и CI — OSError",
       "print(size)   # → os.terminal_size(columns=80, lines=24) — конкретные числа зависят от размеров окна терминала",
       "print(size.columns)   # → ширина терминала в символах, например 80",
       "print('-' * size.columns)   # → разделитель во всю ширину окна — типовое применение",
@@ -26910,8 +26931,8 @@
     ],
     "examples": [
       "import os",
-      "print(os.getlogin())  # → имя пользователя управляющего терминала, например alex",
-      "user = os.getlogin()",
+      "print(os.getlogin())  # → ? имя пользователя управляющего терминала, например alex; без терминала — OSError",
+      "user = os.getlogin()  # → ? без терминала (cron, CI) — OSError",
       "print(os.path.join('/home', user))  # → путь к домашнему каталогу по имени входа, например /home/alex",
       "print(os.environ.get('USER') or os.getlogin())  # → то же имя; в cron или в демоне без терминала os.getlogin() бросает OSError, поэтому сначала смотрят переменную окружения",
       "print(os.getlogin() == os.environ.get('LOGNAME'))  # → на Unix обычно True, но getlogin() читает владельца терминала, а LOGNAME — переменную окружения, которую можно подменить"
@@ -29250,11 +29271,12 @@
     "examples": [
       "import os",
       "f = open('demo_fd.txt', 'w')  # → ? открываем файл и дальше работаем через его дескриптор",
-      "os.fchmod(f.fileno(), 0o600)  # → ? только Unix: то же, что os.chmod(path, 0o600), но привязано к дескриптору, а не к имени файла",
-      "print(oct(os.fstat(f.fileno()).st_mode & 0o777))  # → 0o600",
-      "os.fchmod(f.fileno(), 0o644)  # → ? только Unix: открываем чтение остальным; файл могли переименовать — дескриптор всё равно указывает на него",
+      "fd = f.fileno()  # → ? номер дескриптора, например 3",
+      "os.fchmod(fd, 0o600)  # → ? только Unix: то же, что os.chmod(path, 0o600), но привязано к дескриптору, а не к имени файла",
+      "print(oct(os.fstat(fd).st_mode & 0o777))  # → 0o600",
+      "os.fchmod(fd, 0o644)  # → ? только Unix: открываем чтение остальным; файл могли переименовать — дескриптор всё равно указывает на него",
       "f.close()  # → ? закрываем файл, дескриптор становится недействительным",
-      "os.fchmod(f.fileno(), 0o600)  # → OSError: Bad file descriptor — по закрытому дескриптору права менять нельзя"
+      "os.fchmod(fd, 0o600)  # → OSError: Bad file descriptor — по закрытому дескриптору права менять нельзя"
     ],
     "related": [
       "os.chmod",
@@ -30362,12 +30384,14 @@
     "examples": [
       "import os",
       "r, w = os.pipe()",
-      "fd = os.open('/tmp/example.bin', os.O_RDONLY)",
+      "with open('example.bin', 'wb') as f:",
+      "    f.write(b'hello splice')",
+      "fd = os.open('example.bin', os.O_RDONLY)",
       "n = os.splice(fd, w, 4096)",
       "print(n)   # → ? только Linux: сколько байт ядро перенесло в канал, не больше 4096",
       "print(os.read(r, n))   # → ? только Linux: те же самые байты — при переносе они не копировались в память процесса",
       "print(os.splice(fd, w, 65536, offset_src=0))   # → ? только Linux: перенос с начала файла, позиция fd при этом не сдвигается",
-      "dst = os.open('/tmp/copy.bin', os.O_WRONLY | os.O_CREAT)",
+      "dst = os.open('copy.bin', os.O_WRONLY | os.O_CREAT)",
       "print(os.splice(fd, dst, 4096))   # → ? только Linux: OSError [Errno 22] Invalid argument — хотя бы один из дескрипторов обязан быть каналом (pipe)"
     ],
     "related": [
@@ -30698,7 +30722,7 @@
       "os.eventfd_write(fd, 1)   # → ? только Linux: счётчик 0 → 1, ожидающий читатель просыпается",
       "os.eventfd_write(fd, 4)   # → ? только Linux: счётчик 1 → 5, значения складываются, а не заменяют друг друга",
       "print(os.eventfd_read(fd))   # → 5",
-      "os.eventfd_write(fd, -1)   # → OverflowError, значение счётчика беззнаковое"
+      "os.eventfd_write(fd, -1)   # → ValueError: счётчик беззнаковый, отрицательное значение в него не помещается"
     ],
     "related": [
       "os.eventfd_read",

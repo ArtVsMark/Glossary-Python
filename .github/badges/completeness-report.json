@@ -3,17 +3,17 @@
   "schema_of": "полнота глоссария относительно официального Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-05T12:21:31+00:00",
+  "generated_at": "2026-10-05T13:38:52+00:00",
   "python_version": "3.14",
   "snapshot": {
     "cards": 1349,
-    "digest": "fb67c68c5ab0"
+    "digest": "79a438d5e65e"
   },
   "totals": {
     "known": 1304,
-    "covered": 1029,
-    "missing": 275,
-    "ratio": 0.7891
+    "covered": 1033,
+    "missing": 271,
+    "ratio": 0.7922
   },
   "categories": [
     {
@@ -47,8 +47,8 @@
     {
       "name": "stdlib",
       "total": 921,
-      "covered": 651,
-      "ratio": 0.7068,
+      "covered": 655,
+      "ratio": 0.7112,
       "missing": [
         "argparse.Action",
         "argparse.ArgumentDefaultsHelpFormatter",
@@ -68,7 +68,6 @@
         "concurrent.futures.InterpreterPoolExecutor",
         "concurrent.futures.ProcessPoolExecutor",
         "concurrent.futures.ThreadPoolExecutor",
-        "concurrent.futures.as_completed",
         "concurrent.futures.wait",
         "copy.replace",
         "csv.Dialect",
@@ -85,16 +84,13 @@
         "csv.unix_dialect",
         "csv.unregister_dialect",
         "csv.writer",
-        "dataclasses.Field",
         "dataclasses.dataclass",
-        "dataclasses.field",
         "datetime.timedelta",
         "decimal.Context",
         "decimal.DecimalTuple",
         "decimal.IEEEContext",
         "decimal.localcontext",
         "enum.Enum",
-        "enum.auto",
         "enum.property",
         "enum.unique",
         "hashlib.blake2b",

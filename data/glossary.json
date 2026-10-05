@@ -10531,7 +10531,7 @@
         "ru": "assert",
         "en": "assert"
       },
-      "kind": "exception",
+      "kind": "construct",
       "summary": {
         "ru": "Утверждение — проверяет условие и вызывает AssertionError при False. Используется для отладки и тестов. Отключается с -O.",
         "en": "An assertion — checks a condition and raises AssertionError when it is False. Used for debugging and tests. Disabled with -O."
@@ -11977,7 +11977,7 @@
         "ru": "else в try-except",
         "en": "else in try-except"
       },
-      "kind": "exception",
+      "kind": "construct",
       "summary": {
         "ru": "Блок else выполняется, только если в try не возникло исключения. Отделяет «счастливый путь» от обработки ошибок.",
         "en": "The else block runs only if no exception was raised inside try. It separates the happy path from error handling."
@@ -12387,7 +12387,7 @@
         "ru": "finally",
         "en": "finally"
       },
-      "kind": "exception",
+      "kind": "construct",
       "summary": {
         "ru": "Блок finally выполняется всегда — независимо от того, было ли исключение. Используется для освобождения ресурсов.",
         "en": "The finally block always runs — whether or not an exception was raised. Used to release resources."
@@ -13703,7 +13703,7 @@
         "ru": "raise",
         "en": "raise"
       },
-      "kind": "exception",
+      "kind": "construct",
       "summary": {
         "ru": "Генерирует исключение вручную. raise from — цепочка исключений. re-raise — raise без аргументов.",
         "en": "Raises an exception by hand. raise ... from chains exceptions together. A bare raise re-raises the current one."
@@ -14128,8 +14128,8 @@
       },
       "kind": "exception",
       "summary": {
-        "ru": "Ошибка выполнения внешней команды в shutil.",
-        "en": "Raised when a command could not be executed"
+        "ru": "Устаревшее исключение shutil: ни одна функция модуля его не возбуждает; с 3.14 — DeprecationWarning, в 3.16 имя удаляется.",
+        "en": "A deprecated shutil exception: no function in the module raises it; since 3.14 it emits DeprecationWarning, and 3.16 removes the name."
       },
       "body": {
         "ru": "Реликт тех времён, когда make_archive паковал архивы внешними tar и zip: в актуальном CPython ни одна функция shutil его не возбуждает. В Python 3.14 само обращение к shutil.ExecError даёт DeprecationWarning и возвращает обычный RuntimeError (до 3.13 это был отдельный подкласс OSError), а в 3.16 имя уберут совсем. Писать под него except в новом коде смысла нет.",
@@ -14960,7 +14960,7 @@
         "ru": "try / except",
         "en": "try / except"
       },
-      "kind": "exception",
+      "kind": "construct",
       "summary": {
         "ru": "Блок try содержит код, который может вызвать исключение. except перехватывает его. else — если исключения не было. finally — всегда.",
         "en": "The try block holds code that may raise an exception. except catches it. else runs if there was none. finally runs always."
@@ -15649,7 +15649,7 @@
         "ru": "Иерархия исключений",
         "en": "Exception hierarchy"
       },
-      "kind": "exception",
+      "kind": "term",
       "summary": {
         "ru": "Встроенные исключения образуют иерархию. BaseException → Exception → стандартные исключения.",
         "en": "The built-in exceptions form a hierarchy. BaseException → Exception → the standard exceptions."
@@ -15722,7 +15722,7 @@
         "ru": "Пользовательские исключения",
         "en": "Custom exceptions"
       },
-      "kind": "exception",
+      "kind": "term",
       "summary": {
         "ru": "Создавай классы исключений, наследуясь от Exception. Можно добавлять атрибуты и иерархию.",
         "en": "Write your own exception classes by inheriting from Exception. You can give them attributes and a hierarchy of their own."
@@ -64191,7 +64191,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "csv",
         "en": "csv"
@@ -64270,7 +64270,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "параметры open()",
         "en": "open() parameters"
@@ -64323,7 +64323,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "параметры open()",
         "en": "open() parameters"
@@ -64376,7 +64376,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.flush",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "буфер",
         "en": "buffer"
@@ -64431,7 +64431,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.tell",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "позиция в файле",
         "en": "file position"
@@ -64484,7 +64484,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.truncate",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "изменение размера",
         "en": "resizing"
@@ -64542,7 +64542,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase.read",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "чтение",
         "en": "reading"
@@ -64593,7 +64593,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.readline",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "чтение",
         "en": "reading"
@@ -64643,7 +64643,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.readlines",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "чтение",
         "en": "reading"
@@ -64693,7 +64693,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase.write",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "запись",
         "en": "writing"
@@ -64743,7 +64743,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.writelines",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "запись",
         "en": "writing"
@@ -64790,7 +64790,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "json",
         "en": "json"
@@ -64866,7 +64866,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "открытие",
         "en": "opening"
@@ -64950,7 +64950,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "os",
         "en": "os"
@@ -65013,7 +65013,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "pathlib",
         "en": "pathlib"
@@ -65084,7 +65084,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "pickle",
         "en": "pickle"
@@ -65152,7 +65152,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "потоки",
         "en": "streams"
@@ -65223,7 +65223,7 @@
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#open",
       "version": "",
-      "section": "Файлы и I_O",
+      "section": "Файлы и I/O",
       "subcat": {
         "ru": "чтение",
         "en": "reading"

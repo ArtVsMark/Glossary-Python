@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness import import-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness assemble assemble-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -41,17 +41,17 @@ cov: ## Прогнать тесты с отчётом о покрытии
 validate: ## Проверить качество данных глоссария
 	$(BIN)/python -m glossary validate
 
-objections: ## Собрать замечания к содержанию для отправки в источник
+objections: ## Собрать замечания к содержанию — очередь работы над карточками
 	$(BIN)/python -m glossary objections
 
 completeness: ## Показать, чего в глоссарии нет вовсе (эталон — сам Python)
 	$(BIN)/python -m glossary completeness
 
-import: ## Перечитать карточки из клона Stepik-Python-Grader (SOURCE=путь)
-	$(BIN)/python scripts/import_from_grader.py --source $(SOURCE)
+assemble: ## Собрать data/glossary.json из карточек data/cards/
+	$(BIN)/python -m glossary assemble
 
-import-check: ## Сверить снимок с источником, ничего не записывая (SOURCE=путь)
-	$(BIN)/python scripts/import_from_grader.py --source $(SOURCE) --check
+assemble-check: ## Убедиться, что data/glossary.json собран из data/cards/
+	$(BIN)/python -m glossary assemble --check
 
 rules: ## Проверить ответ проекта каталогу правил
 	$(BIN)/pytest tests/test_rules_bindings.py -q
@@ -110,7 +110,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test validate rules exclusives defaults outcomes attribution decisions deadlines versions journal links facts-check changelog-check build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test assemble-check validate rules exclusives defaults outcomes attribution decisions deadlines versions journal links facts-check changelog-check build-check ## Полный набор проверок (как в CI)
 
 facts-check: ## Проверить, что числа в README не разъехались
 	$(BIN)/python scripts/facts.py --check

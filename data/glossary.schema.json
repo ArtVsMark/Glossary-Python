@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/ArtVsMark/Glossary-Python/blob/main/data/glossary.schema.json",
   "title": "Python Glossary",
-  "description": "Снимок глоссария Python. Содержание ведётся в базе знаний ArtVsMark/Stepik-Python-Grader; сюда оно попадает выгрузкой (scripts/import_from_grader.py) и вручную не правится. Каждая запись — одна карточка.",
+  "description": "Глоссарий Python, собранный из карточек data/cards/ командой `glossary assemble`; вручную не правится. Каждая запись — одна карточка.",
   "type": "object",
   "required": ["schema_version", "entries"],
   "additionalProperties": false,
@@ -77,7 +77,7 @@
         "status": {
           "type": "string",
           "enum": ["ready"],
-          "description": "В снимок попадают только опубликованные карточки; черновики остаются в источнике."
+          "description": "В сборку попадают только опубликованные карточки; черновики остаются в data/cards/."
         },
         "docs_url": {
           "type": "string",
@@ -105,7 +105,7 @@
             "builtin", "str", "seq", "mapset", "oop",
             "exc", "module", "iter", "op", "typing"
           ],
-          "description": "Цветовая группа карточки в витрине. В источнике выражена именем файла; при склейке файлов в снимок переезжает в поле."
+          "description": "Цветовая группа карточки в витрине. В data/cards/ выражена именем файла; при сборке переезжает в поле."
         },
         "aliases": {
           "$ref": "#/$defs/strings",
@@ -117,7 +117,7 @@
         },
         "tags": {
           "$ref": "#/$defs/strings",
-          "description": "Тематические метки источника (`os`, `collections`, `bytearray`). Цветовую группу не задают."
+          "description": "Тематические метки карточки (`os`, `collections`, `bytearray`). Цветовую группу не задают."
         },
         "examples": {
           "$ref": "#/$defs/strings",

@@ -181,7 +181,7 @@ def test_every_decision_of_the_repository_complies():
 def test_baseline_moves_only_down():
     """Планка освобождает, и потому расти ей нельзя — как и храповику качества."""
     payload = json.loads(BASELINE_PATH.read_text(encoding="utf-8"))
-    ceiling = 9
+    ceiling = 7
     grandfathered = payload["grandfathered"]
     assert len(grandfathered) <= ceiling, (
         f"освобождённых записей стало {len(grandfathered)} против потолка {ceiling}: "

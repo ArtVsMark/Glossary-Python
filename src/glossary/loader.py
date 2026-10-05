@@ -1,9 +1,9 @@
-"""Загрузка и запись снимка ``data/glossary.json``.
+"""Загрузка и запись ``data/glossary.json``.
 
-Снимок — производное первого порядка: содержание приходит из базы знаний
-``ArtVsMark/Stepik-Python-Grader`` командой ``scripts/import_from_grader.py``.
-Руками он не правится: правка здесь исчезнет при следующем импорте, а
-расхождение с источником обнаружится не сразу.
+Файл — производное первого порядка: он собирается из карточек ``data/cards/``
+командой ``glossary assemble`` (:mod:`glossary.cards`). Руками он не правится:
+правка здесь исчезнет при следующей сборке, а ``assemble --check`` в CI
+отклонит расхождение.
 """
 
 import hashlib
@@ -91,7 +91,7 @@ def load_glossary(path: Path | None = None) -> Glossary:
         if version == 1:
             hint = (
                 " Снимок версии 1 одноязычен и не несёт синонимов и связей; "
-                "пересоберите его: python scripts/import_from_grader.py"
+                "пересоберите его: python -m glossary assemble"
             )
         raise DataFormatError(
             f"{source}: несовместимая версия схемы {version!r}, "

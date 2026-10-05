@@ -8,6 +8,7 @@
 
 import io
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -17,8 +18,10 @@ from glossary import delivery
 from glossary.cards import assemble, default_cards_dir, read_cards
 from glossary.cli import EXIT_OK, EXIT_USAGE, main
 from glossary.contracts import PRODUCER
-from glossary.loader import digest, load_glossary
+from glossary.loader import digest, load_glossary, project_root
 from glossary.models import SCHEMA_VERSION
+
+ROOT = project_root()
 
 
 def card(**overrides: Any) -> dict[str, Any]:
@@ -148,3 +151,54 @@ def test_repository_delivery_matches_the_assembled_glossary(tmp_path: Path):
     restored = assemble(read_cards(unpack(payload["groups"], tmp_path)))
     assert restored == load_glossary()
     assert payload["snapshot"]["digest"] == digest(load_glossary())
+
+
+# --------------------------- версия формы и схема ---------------------------
+
+
+def test_form_major_is_the_schema_version():
+    major, minor = delivery.FORM.split(".")
+    assert int(major) == SCHEMA_VERSION
+    assert minor.isdigit()
+
+
+def test_header_names_the_form(tmp_path: Path):
+    source = make_cards(tmp_path, {"str": [card()]})
+    assert delivery.collect(source)["form"] == delivery.FORM
+
+
+def test_delivery_schema_is_derived_from_the_card_schema():
+    """Вторая схема руками не пишется: карточка выгрузки — карточка данных без группы."""
+    cards = json.loads((ROOT / delivery.CARD_SCHEMA).read_text(encoding="utf-8"))
+    entry = delivery.schema()["$defs"]["entry"]
+    expected = set(cards["$defs"]["entry"]["properties"]) - {"color_group"}
+    assert set(entry["properties"]) == expected
+    assert "color_group" not in entry["required"]
+    assert delivery.schema()["properties"]["form"] == {"const": delivery.FORM}
+
+
+def test_cli_writes_the_schema(tmp_path: Path):
+    target = tmp_path / "delivery.schema.json"
+    code, out, _ = run("delivery", "--schema", "-o", str(target))
+    assert code == EXIT_OK
+    assert delivery.FORM in out
+    assert json.loads(target.read_text("utf-8"))["title"] == "Glossary-Python delivery"
+
+
+JOURNAL_ROW = re.compile(r"^\| `(?P<form>\d+\.\d+)` \|", re.MULTILINE)
+
+
+@pytest.mark.live_surface
+def test_form_journal_names_the_current_form():
+    """Поднял форму — допиши журнал: по нему потребитель читает свой дрейф."""
+    text = (ROOT / "docs" / "contracts.md").read_text(encoding="utf-8")
+    journal = text.split("### Журнал формы", 1)[1].split("\n## ", 1)[0]
+    assert delivery.FORM in JOURNAL_ROW.findall(journal), (
+        f"в docs/contracts.md § «Журнал формы» нет строки `{delivery.FORM}`"
+    )
+
+
+@pytest.mark.live_surface
+def test_repository_delivery_matches_its_schema():
+    jsonschema = pytest.importorskip("jsonschema", reason="extra 'schema' не установлен")
+    jsonschema.validate(delivery.collect(), delivery.schema())

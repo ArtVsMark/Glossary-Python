@@ -258,6 +258,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="каталог карточек (по умолчанию data/cards)",
     )
     p_del.add_argument(
+        "--schema",
+        action="store_true",
+        help="вместо выгрузки — её JSON Schema (delivery.schema.json)",
+    )
+    p_del.add_argument(
         "-o",
         "--output",
         type=Path,
@@ -490,14 +495,17 @@ def _cmd_completeness(args: argparse.Namespace, out: TextIO, err: TextIO) -> int
 
 def _cmd_delivery(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     """Выгрузить карточки по группам — то, что читает грейдер (#76, этап 2)."""
-    rendered = delivery.as_json(args.cards)
+    rendered = delivery.as_schema_json() if args.schema else delivery.as_json(args.cards)
     if args.output is None:
         out.write(rendered)
         return EXIT_OK
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(rendered, encoding="utf-8")
-    cards_total = json.loads(rendered)["snapshot"]["cards"]
-    print(f"Выгружено карточек: {cards_total} → {args.output}", file=out)
+    if args.schema:
+        print(f"Схема выгрузки, форма {delivery.FORM} → {args.output}", file=out)
+    else:
+        cards_total = json.loads(rendered)["snapshot"]["cards"]
+        print(f"Выгружено карточек: {cards_total} → {args.output}", file=out)
     return EXIT_OK
 
 

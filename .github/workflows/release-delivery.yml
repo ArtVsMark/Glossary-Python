@@ -1,0 +1,56 @@
+# Выгрузка для потребителей, привязанная к выпуску (#105).
+#
+# badges/delivery.json — «последнее состояние»: свежее, но подвижное. Потребитель,
+# которому нужна стабильность (Stepik-Python-Grader), закрепляет выпуск и читает
+# неизменяемые файлы, приложенные к нему: выгрузку этого выпуска и её JSON Schema.
+# Когда форма карточки меняется, закрепление отстаёт, и потребитель видит дрейф
+# по журналу формы в docs/contracts.md, а не узнаёт о нём поломкой импорта.
+name: Выгрузка к выпуску
+
+on:
+  release:
+    types: [published]
+  # Ручная кнопка: приложить файлы к уже существующему выпуску.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Тег выпуска, например v1.1.0"
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-delivery-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  attach:
+    name: Приложить delivery.json и схему
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TAG: ${{ github.event.release.tag_name || inputs.tag }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ env.TAG }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Установка пакета
+        run: python -m pip install -e .
+
+      - name: Собрать выгрузку и её схему из дерева выпуска
+        run: |
+          mkdir -p release-assets
+          python -m glossary delivery -o release-assets/delivery.json
+          python -m glossary delivery --schema -o release-assets/delivery.schema.json
+
+      # --clobber: ручной перезапуск по тому же тегу заменяет файлы, а не падает.
+      # Дерево выпуска то же, поэтому и содержимое то же — меняется лишь отметка времени.
+      - name: Приложить к выпуску
+        run: gh release upload "$TAG" release-assets/delivery.json release-assets/delivery.schema.json --clobber

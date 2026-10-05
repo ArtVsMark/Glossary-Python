@@ -3,7 +3,7 @@
     "id": "__add__-__mul__-__eq__-__lt__-и-оператор",
     "title": {
       "ru": "__add__ / __mul__ / __eq__ / __lt__ и операторные методы",
-      "en": ""
+      "en": "__add__ / __mul__ / __eq__ / __lt__ and operator methods"
     },
     "kind": "term",
     "summary": {
@@ -21,7 +21,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "магические методы",
-      "en": ""
+      "en": "magic methods"
     },
     "aliases": [
       "перегрузка операторов",
@@ -146,7 +146,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "контекст. менеджер",
-      "en": ""
+      "en": "context manager"
     },
     "aliases": [
       "контекстный менеджер",
@@ -256,7 +256,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "инициализация",
-      "en": ""
+      "en": "initialization"
     },
     "aliases": [
       "конструктор класса",
@@ -348,7 +348,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "магические методы",
-      "en": ""
+      "en": "magic methods"
     },
     "aliases": [
       "свой класс как список",
@@ -544,7 +544,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "магические методы",
-      "en": ""
+      "en": "magic methods"
     },
     "aliases": [
       "строковое представление объекта",
@@ -631,7 +631,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "классы",
-      "en": ""
+      "en": "classes"
     },
     "aliases": [
       "создать свой класс",
@@ -716,7 +716,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "классы",
-      "en": ""
+      "en": "classes"
     },
     "aliases": [
       "метод класса",
@@ -1044,7 +1044,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "методы",
-      "en": ""
+      "en": "methods"
     },
     "aliases": [
       "статический метод",
@@ -1119,7 +1119,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "наследование",
-      "en": ""
+      "en": "inheritance"
     },
     "aliases": [
       "вызов метода родителя",
@@ -1210,7 +1210,7 @@
     "id": "абстрактные-классы",
     "title": {
       "ru": "Абстрактные классы",
-      "en": ""
+      "en": "Abstract classes"
     },
     "kind": "term",
     "summary": {
@@ -1308,7 +1308,7 @@
     "id": "атрибуты-экземпляра-и-класса",
     "title": {
       "ru": "Атрибуты экземпляра и класса",
-      "en": ""
+      "en": "Instance and class attributes"
     },
     "kind": "term",
     "summary": {
@@ -1326,7 +1326,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "атрибуты",
-      "en": ""
+      "en": "attributes"
     },
     "aliases": [
       "поле объекта",
@@ -1392,7 +1392,7 @@
     "id": "инкапсуляция-_private-__mangled",
     "title": {
       "ru": "Инкапсуляция — _private, __mangled",
-      "en": ""
+      "en": "Encapsulation — _private, __mangled"
     },
     "kind": "term",
     "summary": {
@@ -1410,7 +1410,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "инкапсуляция",
-      "en": ""
+      "en": "encapsulation"
     },
     "aliases": [
       "приватный атрибут",
@@ -1489,7 +1489,7 @@
     "id": "методы-экземпляра",
     "title": {
       "ru": "Методы экземпляра",
-      "en": ""
+      "en": "Instance methods"
     },
     "kind": "term",
     "summary": {
@@ -1507,7 +1507,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "методы",
-      "en": ""
+      "en": "methods"
     },
     "aliases": [
       "метод с self",
@@ -1603,7 +1603,7 @@
     "id": "множественное-наследование-mro",
     "title": {
       "ru": "Множественное наследование / MRO",
-      "en": ""
+      "en": "Multiple inheritance / MRO"
     },
     "kind": "term",
     "summary": {
@@ -1621,7 +1621,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "наследование",
-      "en": ""
+      "en": "inheritance"
     },
     "aliases": [
       "порядок разрешения методов",
@@ -1701,7 +1701,7 @@
     "id": "наследование",
     "title": {
       "ru": "Наследование",
-      "en": ""
+      "en": "Inheritance"
     },
     "kind": "term",
     "summary": {
@@ -1719,7 +1719,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "наследование",
-      "en": ""
+      "en": "inheritance"
     },
     "aliases": [
       "наследование классов",
@@ -1815,7 +1815,7 @@
     "id": "полиморфизм",
     "title": {
       "ru": "Полиморфизм",
-      "en": ""
+      "en": "Polymorphism"
     },
     "kind": "term",
     "summary": {
@@ -1833,7 +1833,7 @@
     "section": "ООП",
     "subcat": {
       "ru": "полиморфизм",
-      "en": ""
+      "en": "polymorphism"
     },
     "aliases": [
       "утиная типизация",

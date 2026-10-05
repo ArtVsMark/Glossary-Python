@@ -36,6 +36,7 @@ def test_to_dict_preserves_field_order():
         "status",
         "docs_url",
         "version",
+        "platforms",
         "section",
         "subcat",
         "color_group",

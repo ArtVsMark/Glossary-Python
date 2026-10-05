@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.exists",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "проверки",
@@ -68,6 +71,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.is_file",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "проверки",
@@ -118,6 +124,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.is_dir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "проверки",
@@ -167,6 +176,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.glob",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "поиск",
@@ -215,6 +227,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.rglob",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "поиск",
@@ -264,6 +279,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.iterdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "обход",
@@ -328,6 +346,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.mkdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
@@ -390,6 +411,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.unlink",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
@@ -444,6 +468,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.rename",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
@@ -498,6 +525,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.replace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
@@ -551,6 +581,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Enum.name",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "атрибуты",
@@ -603,6 +636,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_text",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
@@ -657,6 +693,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_text",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
@@ -710,6 +749,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_bytes",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
@@ -762,6 +804,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.write_bytes",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
@@ -814,6 +859,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.name",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "части пути",
@@ -872,6 +920,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Future",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "асинхронный результат",
@@ -919,6 +970,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-global-interpreter-lock",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль threading",
     "subcat": {
       "ru": "концепции",
@@ -970,6 +1024,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.mock.html#unittest.mock.MagicMock",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль unittest",
     "subcat": {
       "ru": "моки",
@@ -1019,6 +1076,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул процессов",
@@ -1067,6 +1127,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул потоков",
@@ -1117,6 +1180,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#object.__copy__",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль copy",
     "subcat": {
       "ru": "кастомизация",
@@ -1173,6 +1239,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.__post_init__",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "инициализация",
@@ -1227,6 +1296,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Enum._missing_",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "обработка",
@@ -1280,6 +1352,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.as_completed",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул задач",
@@ -1332,6 +1407,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.auto",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "auto",
@@ -1382,6 +1460,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.bisect",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль bisect",
     "subcat": {
       "ru": "позиция",
@@ -1426,6 +1507,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.bisect_left",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль bisect",
     "subcat": {
       "ru": "позиция",
@@ -1474,6 +1558,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.bisect_right",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль bisect",
     "subcat": {
       "ru": "позиция",
@@ -1522,6 +1609,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.insort_left",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль bisect",
     "subcat": {
       "ru": "вставка",
@@ -1569,6 +1659,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.insort_right",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль bisect",
     "subcat": {
       "ru": "вставка",
@@ -1618,6 +1711,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.ChainMap",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "chainmap",
@@ -1670,6 +1766,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.Counter",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "counter",
@@ -1719,6 +1818,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.defaultdict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "defaultdict",
@@ -1768,6 +1870,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.deque",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "deque",
@@ -1846,6 +1951,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.namedtuple",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "namedtuple",
@@ -1894,6 +2002,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.OrderedDict",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "ordereddict",
@@ -1942,6 +2053,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.closing",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "закрытие",
@@ -1993,6 +2107,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "декоратор",
@@ -2048,6 +2165,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.ExitStack",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "динамический",
@@ -2098,6 +2218,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.nullcontext",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "заглушка",
@@ -2147,6 +2270,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.suppress",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "исключения",
@@ -2205,6 +2331,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#copy.copy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль copy",
     "subcat": {
       "ru": "поверхностная",
@@ -2257,6 +2386,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#copy.deepcopy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль copy",
     "subcat": {
       "ru": "глубокая",
@@ -2314,6 +2446,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "базовый",
@@ -2413,6 +2548,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#frozen-instances",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "базовый",
@@ -2469,6 +2607,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "базовый",
@@ -2521,6 +2662,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.fields",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "field",
@@ -2573,6 +2717,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.replace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "копирование",
@@ -2625,6 +2772,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#date-objects",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "date",
@@ -2676,6 +2826,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date.today",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "date",
@@ -2724,6 +2877,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date.fromisoformat",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "date",
@@ -2774,6 +2930,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.now",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "datetime",
@@ -2824,6 +2983,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.utcnow",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "datetime",
@@ -2871,6 +3033,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.strftime",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "форматирование",
@@ -2920,6 +3085,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.strptime",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "форматирование",
@@ -2970,6 +3138,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.astimezone",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3019,6 +3190,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.combine",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3069,6 +3243,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.fromtimestamp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3121,6 +3298,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date.isoweekday",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3167,6 +3347,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.replace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3219,6 +3402,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.timestamp",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3268,6 +3454,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.timetuple",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3317,6 +3506,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.utcfromtimestamp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3369,6 +3561,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date.weekday",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
@@ -3420,6 +3615,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Enum",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "базовый",
@@ -3471,6 +3669,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.submit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул задач",
@@ -3523,6 +3724,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.field",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "field",
@@ -3577,6 +3781,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "параметры open()",
@@ -3629,6 +3836,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "параметры open()",
@@ -3681,6 +3891,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.flush",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "буфер",
@@ -3735,6 +3948,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.tell",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "позиция в файле",
@@ -3787,6 +4003,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.truncate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "изменение размера",
@@ -3844,6 +4063,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Flag",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
@@ -3899,6 +4121,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.cached_property",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "кэширование",
@@ -3953,6 +4178,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.partial",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "частичное",
@@ -4011,6 +4239,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.reduce",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "сворачивание",
@@ -4059,6 +4290,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.singledispatch",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "диспетчеризация",
@@ -4114,6 +4348,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.total_ordering",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "сравнение",
@@ -4167,6 +4404,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.wraps",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "декораторы",
@@ -4223,6 +4463,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#examples",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль bisect",
     "subcat": {
       "ru": "применение",
@@ -4275,6 +4518,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/hashlib.html#hashlib.md5",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль hashlib",
     "subcat": {
       "ru": "хеширование",
@@ -4328,6 +4574,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/hashlib.html#hashlib.sha256",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль hashlib",
     "subcat": {
       "ru": "хеширование",
@@ -4385,6 +4634,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heapify",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
@@ -4436,6 +4688,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappush",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
@@ -4488,6 +4743,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappop",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
@@ -4540,6 +4798,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heapreplace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
@@ -4591,6 +4852,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappushpop",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
@@ -4641,6 +4905,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.nlargest",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "выборка",
@@ -4692,6 +4959,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.nsmallest",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "выборка",
@@ -4742,6 +5012,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.IntEnum",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "базовый",
@@ -4797,6 +5070,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BytesIO",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "байты",
@@ -4848,6 +5124,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.StringIO",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "строки",
@@ -4900,6 +5179,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOWrapper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "обёртка",
@@ -4952,6 +5234,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.handlers.html#logging.FileHandler",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "обработчики",
@@ -4999,6 +5284,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.Formatter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "форматирование",
@@ -5049,6 +5337,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.Handler",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "обработчики",
@@ -5095,6 +5386,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "обработчики",
@@ -5144,6 +5438,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.basicConfig",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "настройка",
@@ -5195,6 +5492,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.debug",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
@@ -5243,6 +5543,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
@@ -5292,6 +5595,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.getLogger",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "настройка",
@@ -5343,6 +5649,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.info",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
@@ -5391,6 +5700,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.warning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
@@ -5440,6 +5752,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.acos",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -5489,6 +5804,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.asin",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -5538,6 +5856,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.atan",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -5587,6 +5908,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.atan2",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -5636,6 +5960,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.ceil",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "округление",
@@ -5685,6 +6012,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.comb",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
@@ -5734,6 +6064,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.cos",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -5783,6 +6116,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.degrees",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -5835,6 +6171,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.e",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
@@ -5883,6 +6222,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.exp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
@@ -5931,6 +6273,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.fabs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "абсолютное",
@@ -5979,6 +6324,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.factorial",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
@@ -6027,6 +6375,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.floor",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "округление",
@@ -6076,6 +6427,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.fsum",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "агрегация",
@@ -6133,6 +6487,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.gcd",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
@@ -6181,6 +6538,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.hypot",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "геометрия",
@@ -6230,6 +6590,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.inf",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
@@ -6278,6 +6641,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.isclose",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "сравнение",
@@ -6327,6 +6693,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.isfinite",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "проверка",
@@ -6375,6 +6744,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.isinf",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "проверка",
@@ -6424,6 +6796,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.isnan",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "проверка",
@@ -6473,6 +6848,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.lcm",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
@@ -6521,6 +6899,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.log",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "логарифмы",
@@ -6571,6 +6952,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.log10",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "логарифмы",
@@ -6619,6 +7003,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.log2",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "логарифмы",
@@ -6667,6 +7054,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.nan",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
@@ -6715,6 +7105,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.perm",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
@@ -6763,6 +7156,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.pi",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
@@ -6812,6 +7208,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.pow",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "степень/корень",
@@ -6860,6 +7259,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.prod",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "агрегация",
@@ -6908,6 +7310,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.radians",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -6956,6 +7361,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.sin",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -7006,6 +7414,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.sqrt",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "степень/корень",
@@ -7055,6 +7466,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.tan",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
@@ -7104,6 +7518,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.tau",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
@@ -7151,6 +7568,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.trunc",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль math",
     "subcat": {
       "ru": "округление",
@@ -7200,6 +7620,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getenv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "переменные окружения",
@@ -7245,6 +7668,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.scandir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "файловая система",
@@ -7297,6 +7723,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.environ",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "окружение",
@@ -7341,6 +7770,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getpid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "процесс",
@@ -7386,6 +7818,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.listdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "директории",
@@ -7435,6 +7870,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.join",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path",
@@ -7483,6 +7921,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.splitext",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path",
@@ -7529,6 +7970,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.remove",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — удаление",
@@ -7582,6 +8026,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sep",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "константы",
@@ -7630,6 +8077,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.walk",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "обход",
@@ -7678,6 +8128,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "создание",
@@ -7727,6 +8180,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.home",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "создание",
@@ -7775,6 +8231,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.cwd",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "создание",
@@ -7824,6 +8283,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.stat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "метаданные",
@@ -7879,6 +8341,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.choice",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "выборка",
@@ -7931,6 +8396,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.choices",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "выборка",
@@ -7982,6 +8450,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.gauss",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -8032,6 +8503,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.randint",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "целые",
@@ -8083,6 +8557,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.random",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "вещественные",
@@ -8134,6 +8611,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.randrange",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "целые",
@@ -8184,6 +8664,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.sample",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "выборка",
@@ -8235,6 +8718,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.seed",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "воспроизводимость",
@@ -8285,6 +8771,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.shuffle",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "перемешивание",
@@ -8341,6 +8830,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.SystemRandom",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "класс random",
@@ -8393,6 +8885,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.uniform",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "вещественные",
@@ -8442,6 +8937,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.group",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
@@ -8493,6 +8991,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.compile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "компиляция",
@@ -8543,6 +9044,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.escape",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "экранирование",
@@ -8596,6 +9100,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.findall",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
@@ -8643,6 +9150,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.finditer",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
@@ -8691,6 +9201,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.fullmatch",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
@@ -8738,6 +9251,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.group",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
@@ -8790,6 +9306,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.groups",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
@@ -8842,6 +9361,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.groupdict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
@@ -8891,6 +9413,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.match",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
@@ -8938,6 +9463,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.search",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
@@ -8986,6 +9514,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.split",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "разбивка",
@@ -9033,6 +9564,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.ascii_letters",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "буквы",
@@ -9082,6 +9616,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.ascii_lowercase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "буквы",
@@ -9130,6 +9667,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.capwords",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "функции",
@@ -9177,6 +9717,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.digits",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "цифры",
@@ -9225,6 +9768,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.hexdigits",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "цифры",
@@ -9273,6 +9819,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.printable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "спецсимволы",
@@ -9321,6 +9870,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.punctuation",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "спецсимволы",
@@ -9369,6 +9921,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.Template",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "шаблоны",
@@ -9420,6 +9975,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.whitespace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "спецсимволы",
@@ -9468,6 +10026,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.PIPE",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "константы",
@@ -9517,6 +10078,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.Popen",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "запуск процессов",
@@ -9572,6 +10136,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.check_output",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "запуск процессов",
@@ -9625,6 +10192,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.run",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "запуск процессов",
@@ -9679,6 +10249,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.argv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "аргументы",
@@ -9729,6 +10302,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.exit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "управление",
@@ -9787,6 +10363,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.getrecursionlimit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "рекурсия",
@@ -9837,6 +10416,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.setrecursionlimit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "рекурсия",
@@ -9883,6 +10465,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.getsizeof",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "память",
@@ -9931,6 +10516,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.intern",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "строки",
@@ -9981,6 +10569,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.modules",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "модули",
@@ -10030,6 +10621,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.path",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "модули",
@@ -10078,6 +10672,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.stdin",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "потоки",
@@ -10131,6 +10728,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.version",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sys",
     "subcat": {
       "ru": "информация",
@@ -10183,6 +10783,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Event",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
@@ -10237,6 +10840,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Lock",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
@@ -10290,6 +10896,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.RLock",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
@@ -10339,6 +10948,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Semaphore",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
@@ -10390,6 +11002,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Thread",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль threading",
     "subcat": {
       "ru": "потоки",
@@ -10441,6 +11056,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.time",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "time",
@@ -10490,6 +11108,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.timedelta",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "timedelta",
@@ -10543,6 +11164,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#aware-and-naive-objects",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "timezone",
@@ -10597,6 +11221,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.unique",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "проверка",
@@ -10649,6 +11276,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль unittest",
     "subcat": {
       "ru": "тестирование",
@@ -10700,6 +11330,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertEqual",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль unittest",
     "subcat": {
       "ru": "проверки",
@@ -10750,6 +11383,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRaises",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль unittest",
     "subcat": {
       "ru": "проверки",
@@ -10802,6 +11438,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.mock.html#unittest.mock.patch",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль unittest",
     "subcat": {
       "ru": "моки",
@@ -10856,6 +11495,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.setUp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль unittest",
     "subcat": {
       "ru": "фикстуры",
@@ -10905,6 +11547,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.tearDown",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль unittest",
     "subcat": {
       "ru": "фикстуры",
@@ -10953,6 +11598,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#searching-sorted-lists",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль bisect",
     "subcat": {
       "ru": "применение",
@@ -11003,6 +11651,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#buffered-streams",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "буферизация",
@@ -11055,6 +11706,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#regular-expression-syntax",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
@@ -11104,6 +11758,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.timedelta.days",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "timedelta",
@@ -11155,6 +11812,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/enum.html#iteration",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "базовый",
@@ -11206,6 +11866,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "форматирование",
@@ -11255,6 +11918,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappush",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль heapq",
     "subcat": {
       "ru": "применение",
@@ -11307,6 +11973,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль copy",
     "subcat": {
       "ru": "ловушки",
@@ -11365,6 +12034,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#operators",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "объединение",
@@ -11414,6 +12086,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#regular-expression-syntax",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "паттерны",
@@ -11462,6 +12137,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.IGNORECASE",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "флаги",
@@ -11513,6 +12191,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.lru_cache",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "functools",
@@ -11561,6 +12242,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.cache",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "functools",
@@ -11608,6 +12292,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.cmp_to_key",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "functools",
@@ -11655,6 +12342,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.update_wrapper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "functools",
@@ -11703,6 +12393,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "дата",
@@ -11751,6 +12444,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "дата-время",
@@ -11797,6 +12493,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.time",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "время",
@@ -11842,6 +12541,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.timezone",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "часовой пояс",
@@ -11888,6 +12590,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.tzinfo",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль datetime",
     "subcat": {
       "ru": "часовой пояс",
@@ -11938,6 +12643,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.dedent",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "отступы",
@@ -11985,6 +12693,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.indent",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "отступы",
@@ -12033,6 +12744,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.wrap",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
@@ -12080,6 +12794,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.fill",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
@@ -12127,6 +12844,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.shorten",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
@@ -12175,6 +12895,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.TextWrapper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
@@ -12223,6 +12946,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.asdict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "конвертация",
@@ -12274,6 +13000,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.astuple",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "конвертация",
@@ -12323,6 +13052,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.is_dataclass",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "интроспекция",
@@ -12370,6 +13102,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.make_dataclass",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "фабрика",
@@ -12423,6 +13158,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.InitVar",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "поля",
@@ -12472,6 +13210,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.sub",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "замена",
@@ -12520,6 +13261,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.subn",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "замена",
@@ -12568,6 +13312,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.purge",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "кеш",
@@ -12611,6 +13358,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Pattern",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "объекты",
@@ -12659,6 +13409,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.RegexFlag",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль re",
     "subcat": {
       "ru": "флаги",
@@ -12706,6 +13459,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.IntEnum",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "виды enum",
@@ -12754,6 +13510,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.StrEnum",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "виды enum",
@@ -12801,6 +13560,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Flag",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
@@ -12850,6 +13612,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.IntFlag",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
@@ -12897,6 +13662,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.ReprEnum",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "виды enum",
@@ -12942,6 +13710,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.member",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "члены",
@@ -12988,6 +13759,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.nonmember",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "члены",
@@ -13036,6 +13810,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.verify",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "проверки",
@@ -13084,6 +13861,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumCheck",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "проверки",
@@ -13130,6 +13910,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.FlagBoundary",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
@@ -13176,6 +13959,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.isqrt",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
@@ -13228,6 +14014,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.cbrt",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
@@ -13275,6 +14064,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.exp2",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
@@ -13322,6 +14114,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.expm1",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
@@ -13369,6 +14164,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.log1p",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
@@ -13418,6 +14216,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.sinh",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
@@ -13465,6 +14266,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.cosh",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
@@ -13512,6 +14316,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.tanh",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
@@ -13559,6 +14366,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.asinh",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
@@ -13606,6 +14416,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.acosh",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
@@ -13655,6 +14468,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.atanh",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
@@ -13704,6 +14520,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.erf",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
@@ -13751,6 +14570,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.erfc",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
@@ -13799,6 +14621,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.gamma",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
@@ -13848,6 +14673,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.lgamma",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
@@ -13897,6 +14725,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.fmod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "остаток",
@@ -13947,6 +14778,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.remainder",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "остаток",
@@ -13996,6 +14830,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.copysign",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
@@ -14043,6 +14880,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.frexp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
@@ -14090,6 +14930,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.modf",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
@@ -14137,6 +14980,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.ldexp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
@@ -14184,6 +15030,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.ulp",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
@@ -14231,6 +15080,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.nextafter",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
@@ -14278,6 +15130,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.dist",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "геометрия",
@@ -14328,6 +15183,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.sumprod",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "произведение",
@@ -14378,6 +15236,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.fma",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "произведение",
@@ -14432,6 +15293,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.redirect_stdout",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "перенаправление",
@@ -14479,6 +15343,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.redirect_stderr",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "перенаправление",
@@ -14525,6 +15392,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.chdir",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
@@ -14576,6 +15446,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.AbstractContextManager",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "протоколы",
@@ -14623,6 +15496,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.AbstractAsyncContextManager",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "протоколы",
@@ -14669,6 +15545,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.ContextDecorator",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
@@ -14717,6 +15596,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.AsyncExitStack",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
@@ -14768,6 +15650,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.asynccontextmanager",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
@@ -14814,6 +15699,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.aclosing",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
@@ -14863,6 +15751,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABC",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
@@ -14913,6 +15804,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABCMeta",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
@@ -14964,6 +15858,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractmethod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
@@ -15014,6 +15911,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractproperty",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
@@ -15061,6 +15961,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractclassmethod",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
@@ -15115,6 +16018,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractstaticmethod",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
@@ -15162,6 +16068,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.get_cache_token",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "abc-служебные",
@@ -15205,6 +16114,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.update_abstractmethods",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль abc",
     "subcat": {
       "ru": "abc-служебные",
@@ -15249,6 +16161,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.Formatter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль string",
     "subcat": {
       "ru": "форматирование",
@@ -15298,6 +16213,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15347,6 +16265,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15398,6 +16319,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Reversible",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15448,6 +16372,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Generator",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15495,6 +16422,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Sized",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15544,6 +16474,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Container",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15593,6 +16526,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Collection",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15643,6 +16579,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15694,6 +16633,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15744,6 +16686,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15794,6 +16739,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15844,6 +16792,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableMapping",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15894,6 +16845,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSet",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15944,6 +16898,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.KeysView",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -15994,6 +16951,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.ValuesView",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16048,6 +17008,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.ItemsView",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16098,6 +17061,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MappingView",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16148,6 +17114,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Buffer",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16197,6 +17166,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.ByteString",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16248,6 +17220,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Awaitable",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16295,6 +17270,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Coroutine",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16343,6 +17321,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.AsyncIterable",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16390,6 +17371,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.AsyncIterator",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16438,6 +17422,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.AsyncGenerator",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
@@ -16485,6 +17472,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.UserDict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "обёртки типов",
@@ -16530,6 +17520,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.UserList",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "обёртки типов",
@@ -16575,6 +17568,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.UserString",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль collections",
     "subcat": {
       "ru": "обёртки типов",
@@ -16622,6 +17618,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
@@ -16672,6 +17671,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.RawIOBase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
@@ -16717,6 +17719,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedIOBase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
@@ -16764,6 +17769,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
@@ -16812,6 +17820,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.FileIO",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
@@ -16866,6 +17877,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedReader",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
@@ -16918,6 +17932,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedWriter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
@@ -16966,6 +17983,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedRandom",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
@@ -17015,6 +18035,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedRWPair",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
@@ -17065,6 +18088,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IncrementalNewlineDecoder",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "служебные",
@@ -17107,6 +18133,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.text_encoding",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "служебные",
@@ -17155,6 +18184,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.open_code",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "служебные",
@@ -17203,6 +18235,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.betavariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17252,6 +18287,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.binomialvariate",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17302,6 +18340,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.expovariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17351,6 +18392,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.gammavariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17400,6 +18444,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.lognormvariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17447,6 +18494,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.normalvariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17495,6 +18545,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.paretovariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17542,6 +18595,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.triangular",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17589,6 +18645,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.vonmisesvariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17637,6 +18696,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.weibullvariate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
@@ -17684,6 +18746,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.getrandbits",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "биты и байты",
@@ -17732,6 +18797,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.randbytes",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "биты и байты",
@@ -17779,6 +18847,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.getstate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "состояние ГСЧ",
@@ -17826,6 +18897,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.setstate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль random",
     "subcat": {
       "ru": "состояние ГСЧ",
@@ -17872,6 +18946,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumType",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "метакласс",
@@ -17917,6 +18994,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumType",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "метакласс",
@@ -17962,6 +19042,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumDict",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "метакласс",
@@ -18004,6 +19087,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.global_enum",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
@@ -18050,6 +19136,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
@@ -18095,6 +19184,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
@@ -18140,6 +19232,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
@@ -18186,6 +19281,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "pickle",
@@ -18232,6 +19330,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль enum",
     "subcat": {
       "ru": "pickle",
@@ -18277,6 +19378,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.add",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18328,6 +19432,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.sub",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18379,6 +19486,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.mul",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18428,6 +19538,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.truediv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18480,6 +19593,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.floordiv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18531,6 +19647,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.mod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18581,6 +19700,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.neg",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18630,6 +19752,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.pos",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -18679,6 +19804,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.and_",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
@@ -18730,6 +19858,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.or_",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
@@ -18782,6 +19913,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.xor",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
@@ -18834,6 +19968,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.invert",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
@@ -18883,6 +20020,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.inv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
@@ -18927,6 +20067,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.lshift",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
@@ -18974,6 +20117,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.rshift",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
@@ -19024,6 +20170,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.eq",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
@@ -19071,6 +20220,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ne",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
@@ -19119,6 +20271,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.lt",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
@@ -19167,6 +20322,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.le",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
@@ -19215,6 +20373,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.gt",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
@@ -19265,6 +20426,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ge",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
@@ -19315,6 +20479,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.is_",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
@@ -19365,6 +20532,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.is_not",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
@@ -19414,6 +20584,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.not_",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
@@ -19462,6 +20635,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.truth",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
@@ -19509,6 +20685,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.concat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19559,6 +20738,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.contains",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19608,6 +20790,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.countOf",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19657,6 +20842,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.indexOf",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19706,6 +20894,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.getitem",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19758,6 +20949,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.setitem",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19806,6 +21000,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.delitem",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19856,6 +21053,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.length_hint",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
@@ -19904,6 +21104,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.matmul",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "матричное умножение",
@@ -19949,6 +21152,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.call",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
@@ -19998,6 +21204,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.itemgetter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
@@ -20052,6 +21261,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.attrgetter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
@@ -20103,6 +21315,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.methodcaller",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
@@ -20154,6 +21369,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.iadd",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20207,6 +21425,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.isub",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20255,6 +21476,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.imul",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20304,6 +21528,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.itruediv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20354,6 +21581,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ifloordiv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20403,6 +21633,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.imod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20452,6 +21685,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ipow",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20500,6 +21736,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.iand",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20550,6 +21789,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ior",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20600,6 +21842,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ixor",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20650,6 +21895,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ilshift",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20697,6 +21945,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.irshift",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20745,6 +21996,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.iconcat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20795,6 +22049,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.imatmul",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
@@ -20840,6 +22097,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.basename",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -20882,6 +22142,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.dirname",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -20924,6 +22187,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.split",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -20965,6 +22231,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.splitdrive",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -21011,6 +22280,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.splitroot",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -21056,6 +22328,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.normcase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -21099,6 +22374,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.normpath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -21144,6 +22422,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.commonprefix",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -21188,6 +22469,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.commonpath",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -21235,6 +22519,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.relpath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
@@ -21280,6 +22567,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.abspath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
@@ -21325,6 +22615,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.realpath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
@@ -21372,6 +22665,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.expanduser",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
@@ -21417,6 +22713,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.expandvars",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
@@ -21462,6 +22761,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isabs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
@@ -21507,6 +22809,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.exists",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21549,6 +22854,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.lexists",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21593,6 +22901,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21635,6 +22946,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isfile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21677,6 +22991,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.islink",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21722,6 +23039,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.ismount",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21767,6 +23087,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isjunction",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21811,6 +23134,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isdevdrive",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -21855,6 +23181,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getsize",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
@@ -21904,6 +23233,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getmtime",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
@@ -21952,6 +23284,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getatime",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
@@ -22000,6 +23335,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getctime",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
@@ -22046,6 +23384,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.samefile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
@@ -22094,6 +23435,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.samestat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
@@ -22142,6 +23486,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.sameopenfile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
@@ -22184,6 +23531,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fsencode",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — кодирование путей",
@@ -22229,6 +23579,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fsdecode",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — кодирование путей",
@@ -22273,6 +23626,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fspath",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — кодирование путей",
@@ -22321,6 +23677,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getenv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
@@ -22367,6 +23726,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.putenv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
@@ -22411,6 +23773,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.unsetenv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
@@ -22456,6 +23821,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.get_exec_path",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
@@ -22499,6 +23867,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getppid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
@@ -22543,6 +23914,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.umask",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
@@ -22585,6 +23959,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.times",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
@@ -22630,6 +24007,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.times",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
@@ -22674,6 +24054,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.waitstatus_to_exitcode",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
@@ -22723,6 +24106,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.cpu_count",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
@@ -22767,6 +24153,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.urandom",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
@@ -22812,6 +24201,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.strerror",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
@@ -22856,6 +24248,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.device_encoding",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
@@ -22901,6 +24296,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.get_terminal_size",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
@@ -22948,6 +24346,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.isatty",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
@@ -22991,6 +24392,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.terminal_size",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
@@ -23037,6 +24441,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.abort",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — аварийное завершение",
@@ -23081,6 +24488,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os._exit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — аварийное завершение",
@@ -23125,6 +24535,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.system",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — аварийное завершение",
@@ -23169,6 +24582,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getcwd",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — рабочий каталог",
@@ -23210,6 +24626,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getcwdb",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — рабочий каталог",
@@ -23254,6 +24673,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.close",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23298,6 +24720,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.closerange",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23341,6 +24766,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.dup",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23387,6 +24815,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.dup2",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23433,6 +24864,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.read",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23480,6 +24914,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.write",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23527,6 +24964,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lseek",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23572,6 +25012,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fstat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23616,6 +25059,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.ftruncate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23664,6 +25110,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fdopen",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23709,6 +25158,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pipe",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23752,6 +25204,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.get_inheritable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23797,6 +25252,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.set_inheritable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23841,6 +25299,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.truncate",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -23890,6 +25351,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.access",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -23935,6 +25399,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.stat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -23984,6 +25451,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lstat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -24033,6 +25503,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.scandir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -24080,6 +25553,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.stat_result",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -24126,6 +25602,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.DirEntry",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -24169,6 +25648,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFEXITED",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24216,6 +25698,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WEXITSTATUS",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24262,6 +25747,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFSIGNALED",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24307,6 +25795,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WTERMSIG",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24352,6 +25843,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFSTOPPED",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24397,6 +25891,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WSTOPSIG",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24442,6 +25939,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFCONTINUED",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24489,6 +25989,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WCOREDUMP",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
@@ -24535,6 +26038,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fork",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — создание процессов",
@@ -24583,6 +26089,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.forkpty",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — создание процессов",
@@ -24630,6 +26139,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.register_at_fork",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — создание процессов",
@@ -24677,6 +26189,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -24724,6 +26239,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execve",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -24771,6 +26289,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execl",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -24818,6 +26339,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execle",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -24866,6 +26390,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execlp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -24914,6 +26441,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execlpe",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -24961,6 +26491,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execvp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -25007,6 +26540,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execvpe",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
@@ -25054,6 +26590,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnv",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25103,6 +26642,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnve",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25151,6 +26693,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnl",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25198,6 +26743,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnle",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25245,6 +26793,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnlp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25292,6 +26843,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnlpe",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25340,6 +26894,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnvp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25387,6 +26944,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnvpe",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25436,6 +26996,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.posix_spawn",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25483,6 +27046,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.posix_spawnp",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
@@ -25530,6 +27096,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.wait",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
@@ -25577,6 +27146,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.waitpid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
@@ -25627,6 +27199,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.wait3",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
@@ -25674,6 +27249,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.wait4",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
@@ -25721,6 +27299,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.waitid",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
@@ -25770,6 +27351,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.waitid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
@@ -25816,6 +27400,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.kill",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
@@ -25866,6 +27453,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.killpg",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
@@ -25915,6 +27505,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.nice",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
@@ -25960,6 +27553,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getpriority",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
@@ -26007,6 +27603,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setpriority",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
@@ -26055,6 +27654,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_yield",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26100,6 +27702,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getaffinity",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26147,6 +27752,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setaffinity",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26195,6 +27803,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getscheduler",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26240,6 +27851,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setscheduler",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26288,6 +27902,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getparam",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26333,6 +27950,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setparam",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26380,6 +28000,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_get_priority_max",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26427,6 +28050,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_get_priority_min",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26474,6 +28100,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_rr_get_interval",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26519,6 +28148,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_param",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
@@ -26565,6 +28197,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getuid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26610,6 +28245,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.geteuid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26654,6 +28292,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getgid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26697,6 +28338,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getegid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26741,6 +28385,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getresuid",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26786,6 +28433,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getresgid",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26831,6 +28481,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getgroups",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26875,6 +28528,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getgrouplist",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26919,6 +28575,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getlogin",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -26965,6 +28624,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setuid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27012,6 +28674,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.seteuid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27059,6 +28724,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setgid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27106,6 +28774,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setegid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27153,6 +28824,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setreuid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27200,6 +28874,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setregid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27247,6 +28924,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setresuid",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27294,6 +28974,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setresgid",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27341,6 +29024,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setgroups",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27388,6 +29074,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.initgroups",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
@@ -27437,6 +29126,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getpgid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27484,6 +29176,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getpgrp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27529,6 +29224,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getsid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27576,6 +29274,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setpgid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27621,6 +29322,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setpgrp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27666,6 +29370,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setsid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27713,6 +29420,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.tcgetpgrp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27759,6 +29469,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.tcsetpgrp",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
@@ -27806,6 +29519,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.ctermid",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -27852,6 +29568,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.openpty",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -27898,6 +29617,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.posix_openpt",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -27946,6 +29668,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.grantpt",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -27992,6 +29717,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.unlockpt",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -28039,6 +29767,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.ptsname",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -28087,6 +29818,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.ttyname",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -28134,6 +29868,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.login_tty",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
@@ -28182,6 +29919,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
@@ -28230,6 +29970,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.mkdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
@@ -28280,6 +30023,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.makedirs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
@@ -28330,6 +30076,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.rmdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
@@ -28379,6 +30128,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.removedirs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
@@ -28427,6 +30179,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.rename",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — переименование/перемещение",
@@ -28482,6 +30237,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.renames",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — переименование/перемещение",
@@ -28535,6 +30293,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.link",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ссылки",
@@ -28586,6 +30347,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.symlink",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ссылки",
@@ -28635,6 +30399,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.readlink",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ссылки",
@@ -28684,6 +30451,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.unlink",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — удаление",
@@ -28732,6 +30502,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.utime",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — метаданные",
@@ -28780,6 +30553,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chmod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
@@ -28829,6 +30605,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chown",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
@@ -28879,6 +30658,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lchown",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
@@ -28928,6 +30710,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chroot",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
@@ -28976,6 +30761,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.mkfifo",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спецфайлы",
@@ -29024,6 +30812,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.mknod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спецфайлы",
@@ -29072,6 +30863,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fsync",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — синхронизация",
@@ -29119,6 +30913,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fdatasync",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — синхронизация",
@@ -29166,6 +30963,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sync",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — синхронизация",
@@ -29210,6 +31010,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fchdir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
@@ -29257,6 +31060,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fchmod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
@@ -29307,6 +31113,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fchown",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
@@ -29356,6 +31165,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lockf",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — блокировки",
@@ -29397,6 +31209,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.popen",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процессы",
@@ -29441,6 +31256,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fwalk",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — обход дерева",
@@ -29486,6 +31304,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.statvfs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -29533,6 +31354,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fstatvfs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -29581,6 +31405,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.statvfs_result",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -29626,6 +31453,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pathconf",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
@@ -29671,6 +31501,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fpathconf",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
@@ -29720,6 +31553,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.confstr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
@@ -29767,6 +31603,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sysconf",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
@@ -29814,6 +31653,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getloadavg",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
@@ -29858,6 +31700,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.uname",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
@@ -29904,6 +31749,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.uname_result",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
@@ -29948,6 +31796,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getenvb",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
@@ -29993,6 +31844,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pread",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
@@ -30042,6 +31896,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pwrite",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
@@ -30090,6 +31947,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.preadv",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
@@ -30137,6 +31997,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pwritev",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
@@ -30184,6 +32047,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.readv",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
@@ -30231,6 +32097,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.writev",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
@@ -30278,6 +32147,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sendfile",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — эффективное копирование",
@@ -30324,6 +32196,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.copy_file_range",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — эффективное копирование",
@@ -30370,6 +32245,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.splice",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — эффективное копирование",
@@ -30422,6 +32300,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getxattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
@@ -30470,6 +32351,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setxattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
@@ -30518,6 +32402,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.listxattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
@@ -30566,6 +32453,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.removexattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
@@ -30614,6 +32504,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.eventfd",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30660,6 +32553,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.eventfd_read",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30705,6 +32601,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.eventfd_write",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30750,6 +32649,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_create",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30797,6 +32699,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_settime",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30844,6 +32749,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_settime_ns",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30891,6 +32799,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_gettime",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30938,6 +32849,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_gettime_ns",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
@@ -30985,6 +32899,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.memfd_create",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спец. дескрипторы",
@@ -31030,6 +32947,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pidfd_open",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спец. дескрипторы",
@@ -31075,6 +32995,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pipe2",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спец. дескрипторы",
@@ -31120,6 +33043,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setns",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — пространства имён",
@@ -31169,6 +33095,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.unshare",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — пространства имён",
@@ -31216,6 +33145,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.posix_fadvise",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — советы ядру",
@@ -31263,6 +33195,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.posix_fallocate",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — советы ядру",
@@ -31310,6 +33245,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.get_blocking",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — режим дескриптора",
@@ -31356,6 +33294,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.set_blocking",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — режим дескриптора",
@@ -31401,6 +33342,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getrandom",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — случайность",
@@ -31446,6 +33390,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.major",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — номера устройств",
@@ -31491,6 +33438,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.minor",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — номера устройств",
@@ -31536,6 +33486,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.makedev",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — номера устройств",
@@ -31582,6 +33535,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.partialmethod",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "частичное применение",
@@ -31630,6 +33586,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.singledispatchmethod",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль functools",
     "subcat": {
       "ru": "обобщённые функции",
@@ -31678,6 +33637,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.JSONDecoder",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль json",
     "subcat": {
       "ru": "классы",
@@ -31725,6 +33687,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.JSONEncoder",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль json",
     "subcat": {
       "ru": "классы",
@@ -31772,6 +33737,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#slice",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные типы",
     "subcat": {
       "ru": "срезы",
@@ -31820,6 +33788,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.kde",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "статистика",
@@ -31867,6 +33838,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.kde_random",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "статистика",
@@ -31916,6 +33890,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.interpreters.html#concurrent.interpreters.InterpreterError",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.interpreters",
     "subcat": {
       "ru": "исключения",
@@ -31971,6 +33948,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.interpreters.html#concurrent.interpreters.InterpreterNotFoundError",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.interpreters",
     "subcat": {
       "ru": "исключения",
@@ -32029,6 +34009,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.interpreters.html#concurrent.interpreters.NotShareableError",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль concurrent.interpreters",
     "subcat": {
       "ru": "исключения",
@@ -32086,6 +34069,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.ArgumentError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль ctypes",
     "subcat": {
       "ru": "исключения",
@@ -32137,6 +34123,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.Reader",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "протоколы",
@@ -32190,6 +34179,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.Writer",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль io",
     "subcat": {
       "ru": "протоколы",
@@ -32243,6 +34235,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.index",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
@@ -32296,6 +34291,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.is_none",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
@@ -32349,6 +34347,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.is_not_none",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
@@ -32402,6 +34403,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.get_handle_inheritable",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "дескрипторы",
@@ -32457,6 +34461,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lchmod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "права доступа",
@@ -32514,6 +34521,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.listdrives",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "файловая система",
@@ -32569,6 +34579,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.listmounts",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -32623,6 +34636,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.listvolumes",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
@@ -32677,6 +34693,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isreserved",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
@@ -32729,6 +34748,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.readinto",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -32786,6 +34808,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.reload_environ",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
@@ -32839,6 +34864,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.set_handle_inheritable",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
@@ -32899,6 +34927,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.startfile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ",
@@ -32955,6 +34986,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.UnsupportedOperation",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "исключения",
@@ -33007,6 +35041,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.DataError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33059,6 +35096,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.DatabaseError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33108,6 +35148,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.Error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33158,6 +35201,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.IntegrityError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33209,6 +35255,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.InterfaceError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33261,6 +35310,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.InternalError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33313,6 +35365,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.NotSupportedError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33365,6 +35420,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.OperationalError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
@@ -33416,6 +35474,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.ProgrammingError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",

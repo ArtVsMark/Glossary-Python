@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Any",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "any",
@@ -69,6 +72,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Callable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "callable",
@@ -121,6 +127,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ClassVar",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "атрибуты",
@@ -176,6 +185,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Final",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "константы",
@@ -227,6 +239,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Generic",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "generics",
@@ -283,6 +298,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#types-genericalias",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "встроенные",
@@ -332,6 +350,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Literal",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "литерал",
@@ -384,6 +405,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.NamedTuple",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "namedtuple",
@@ -436,6 +460,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Optional",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "опциональный",
@@ -487,6 +514,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Protocol",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "протокол",
@@ -542,6 +572,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TYPE_CHECKING",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "импорт",
@@ -591,6 +624,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypedDict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "typeddict",
@@ -644,6 +680,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeVar",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "generics",
@@ -696,6 +735,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Union",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "объединение",
@@ -748,6 +790,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_args",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
@@ -796,6 +841,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_origin",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
@@ -845,6 +893,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_type_hints",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
@@ -901,6 +952,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_overloads",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
@@ -953,6 +1007,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_protocol_members",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
@@ -1002,6 +1059,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.is_protocol",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
@@ -1049,6 +1109,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.is_typeddict",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
@@ -1094,6 +1157,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.cast",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
@@ -1142,6 +1208,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.reveal_type",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
@@ -1190,6 +1259,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.assert_type",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
@@ -1238,6 +1310,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.assert_never",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
@@ -1287,6 +1362,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Generic",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1335,6 +1413,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.NewType",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1383,6 +1464,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpec",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1433,6 +1517,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpecArgs",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1478,6 +1565,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpecKwargs",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1523,6 +1613,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeVarTuple",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1572,6 +1665,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeAliasType",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1622,6 +1718,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ForwardRef",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1671,6 +1770,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.IO",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
@@ -1720,6 +1822,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.BinaryIO",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
@@ -1769,6 +1874,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TextIO",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
@@ -1820,6 +1928,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Text",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
@@ -1868,6 +1979,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsInt",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
@@ -1916,6 +2030,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsFloat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
@@ -1964,6 +2081,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsComplex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
@@ -2012,6 +2132,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsBytes",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
@@ -2057,6 +2180,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsAbs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
@@ -2105,6 +2231,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsRound",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
@@ -2153,6 +2282,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsIndex",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
@@ -2201,6 +2333,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.overload",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
@@ -2258,6 +2393,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.override",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
@@ -2306,6 +2444,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.no_type_check",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
@@ -2351,6 +2492,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.no_type_check_decorator",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
@@ -2400,6 +2544,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.runtime_checkable",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
@@ -2448,6 +2595,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.dataclass_transform",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
@@ -2492,6 +2642,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.clear_overloads",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
@@ -2535,6 +2688,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.evaluate_forward_ref",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция аннотаций",

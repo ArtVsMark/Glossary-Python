@@ -3,6 +3,8 @@
 import re
 from typing import TYPE_CHECKING
 
+from glossary.models import ALL_OS
+
 if TYPE_CHECKING:
     from collections.abc import Iterator
 
@@ -57,7 +59,8 @@ class MarkdownExporter:
         yield f"### {entry.title.get(self._language)}{version}"
         yield ""
         subcat = entry.subcat.get(self._language)
-        subtitle = " · ".join(part for part in (entry.kind, subcat) if part)
+        platforms = "" if ALL_OS in entry.platforms else ", ".join(entry.platforms)
+        subtitle = " · ".join(part for part in (entry.kind, subcat, platforms) if part)
         if subtitle:
             yield f"*{subtitle}*"
             yield ""

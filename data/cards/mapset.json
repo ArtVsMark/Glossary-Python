@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.ChainMap",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "collections",
@@ -69,6 +72,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.copy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "копирование",
@@ -125,6 +131,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.Counter",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "collections",
@@ -190,6 +199,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.defaultdict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "collections",
@@ -269,6 +281,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "операторы",
@@ -318,6 +333,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "операторы",
@@ -364,6 +382,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.fromkeys",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "перебор",
@@ -412,6 +433,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -472,6 +496,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "поиск",
@@ -531,6 +558,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "поиск",
@@ -585,6 +615,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.OrderedDict",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "collections",
@@ -641,6 +674,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "вложенность",
@@ -708,6 +744,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#set-displays",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "comprehension",
@@ -767,6 +806,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "операторы",
@@ -831,6 +873,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "операторы",
@@ -878,6 +923,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "операторы",
@@ -944,6 +992,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "практика",
@@ -1008,6 +1059,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "распаковка",
@@ -1071,6 +1125,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "comprehension",
@@ -1143,6 +1200,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "создание",
@@ -1207,6 +1267,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "создание",
@@ -1267,6 +1330,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "сортировка",
@@ -1322,6 +1388,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.clear",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "удаление",
@@ -1367,6 +1436,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.copy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "копирование",
@@ -1413,6 +1485,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.get",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "доступ",
@@ -1460,6 +1535,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.items",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "перебор",
@@ -1506,6 +1584,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.keys",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "перебор",
@@ -1553,6 +1634,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.pop",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "удаление",
@@ -1601,6 +1685,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.popitem",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "удаление",
@@ -1647,6 +1734,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.setdefault",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "доступ",
@@ -1692,6 +1782,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "изменение",
@@ -1739,6 +1832,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.values",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "перебор",
@@ -1784,6 +1880,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "доступ",
@@ -1832,6 +1931,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "доступ",
@@ -1881,6 +1983,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Словари (dict)",
     "subcat": {
       "ru": "доступ",
@@ -1931,6 +2036,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.add",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "добавление",
@@ -1980,6 +2088,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.update",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "добавление",
@@ -2026,6 +2137,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.remove",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "удаление",
@@ -2073,6 +2187,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.discard",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "удаление",
@@ -2118,6 +2235,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.pop",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "удаление",
@@ -2167,6 +2287,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.clear",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "изменение",
@@ -2212,6 +2335,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.copy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "копирование",
@@ -2259,6 +2385,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.union",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "теория множеств",
@@ -2308,6 +2437,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.intersection",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "теория множеств",
@@ -2356,6 +2488,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.difference",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "теория множеств",
@@ -2405,6 +2540,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.symmetric_difference",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "теория множеств",
@@ -2454,6 +2592,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.difference_update",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "теория множеств",
@@ -2499,6 +2640,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.intersection_update",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "теория множеств",
@@ -2543,6 +2687,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.symmetric_difference_update",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "теория множеств",
@@ -2587,6 +2734,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.issubset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "проверка",
@@ -2635,6 +2785,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.issuperset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "проверка",
@@ -2683,6 +2836,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.isdisjoint",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "проверка",
@@ -2731,6 +2887,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.copy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -2778,6 +2937,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.union",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -2826,6 +2988,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.intersection",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -2874,6 +3039,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.difference",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -2921,6 +3089,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.symmetric_difference",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -2969,6 +3140,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.isdisjoint",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -3016,6 +3190,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.issubset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",
@@ -3063,6 +3240,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.issuperset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Множества (set)",
     "subcat": {
       "ru": "frozenset",

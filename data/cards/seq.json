@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-del-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "удаление",
@@ -79,6 +82,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#enumerate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "итерация",
@@ -139,6 +145,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "поиск",
@@ -193,6 +202,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "агрегация",
@@ -245,6 +257,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "итерация",
@@ -299,6 +314,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "итерация",
@@ -360,6 +378,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/faq/programming.html#how-do-i-create-a-multidimensional-list",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "матрицы",
@@ -425,6 +446,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "comprehension",
@@ -477,6 +501,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "индексы/срезы",
@@ -532,6 +559,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "индексы/срезы",
@@ -590,6 +620,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-return-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "применение",
@@ -655,6 +688,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "применение",
@@ -719,6 +755,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.namedtuple",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "namedtuple",
@@ -780,6 +819,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#tuples",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "неизменяемость",
@@ -845,6 +887,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "операторы",
@@ -899,6 +944,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "распаковка",
@@ -968,6 +1016,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "распаковка",
@@ -1030,6 +1081,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#tuple",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "создание",
@@ -1086,6 +1140,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "создание",
@@ -1143,6 +1200,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html#key-functions",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "сортировка",
@@ -1207,6 +1267,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "comprehension",
@@ -1275,6 +1338,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "индексы/срезы",
@@ -1324,6 +1390,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "индексы/срезы",
@@ -1384,6 +1453,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comprehensions",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "comprehension",
@@ -1431,6 +1503,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.append",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "добавление",
@@ -1477,6 +1552,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.clear",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "удаление",
@@ -1522,6 +1600,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.count",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "поиск",
@@ -1568,6 +1649,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.copy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "копирование",
@@ -1616,6 +1700,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.extend",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "добавление",
@@ -1664,6 +1751,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.index",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "поиск",
@@ -1712,6 +1802,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.insert",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "добавление",
@@ -1758,6 +1851,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.pop",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "удаление",
@@ -1807,6 +1903,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.remove",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "удаление",
@@ -1857,6 +1956,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.reverse",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "сортировка",
@@ -1906,6 +2008,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.sort",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Списки (list)",
     "subcat": {
       "ru": "сортировка",
@@ -1958,6 +2063,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "методы",
@@ -2002,6 +2110,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Кортежи (tuple)",
     "subcat": {
       "ru": "методы",
@@ -2048,6 +2159,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.capitalize",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — регистр",
@@ -2094,6 +2208,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.lower",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — регистр",
@@ -2141,6 +2258,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.upper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — регистр",
@@ -2187,6 +2307,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.title",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — регистр",
@@ -2233,6 +2356,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.swapcase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — регистр",
@@ -2279,6 +2405,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.center",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — выравнивание",
@@ -2326,6 +2455,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.ljust",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — выравнивание",
@@ -2374,6 +2506,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rjust",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — выравнивание",
@@ -2422,6 +2557,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.zfill",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — выравнивание",
@@ -2469,6 +2607,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.expandtabs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — выравнивание",
@@ -2516,6 +2657,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.count",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — поиск",
@@ -2565,6 +2709,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.find",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — поиск",
@@ -2615,6 +2762,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rfind",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — поиск",
@@ -2662,6 +2812,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.index",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — поиск",
@@ -2710,6 +2863,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rindex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — поиск",
@@ -2759,6 +2915,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.startswith",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — поиск",
@@ -2809,6 +2968,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.endswith",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — поиск",
@@ -2859,6 +3021,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.join",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — разбиение и соединение",
@@ -2908,6 +3073,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.split",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — разбиение и соединение",
@@ -2959,6 +3127,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rsplit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — разбиение и соединение",
@@ -3006,6 +3177,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.partition",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — разбиение и соединение",
@@ -3052,6 +3226,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rpartition",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — разбиение и соединение",
@@ -3099,6 +3276,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.splitlines",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — разбиение и соединение",
@@ -3146,6 +3326,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.strip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — обрезка",
@@ -3195,6 +3378,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.lstrip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — обрезка",
@@ -3242,6 +3428,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rstrip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — обрезка",
@@ -3291,6 +3480,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.removeprefix",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — обрезка",
@@ -3338,6 +3530,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.removesuffix",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — обрезка",
@@ -3386,6 +3581,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.replace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — замена и перевод",
@@ -3433,6 +3631,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.translate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — замена и перевод",
@@ -3483,6 +3684,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.maketrans",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — замена и перевод",
@@ -3531,6 +3735,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.decode",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — кодирование",
@@ -3582,6 +3789,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.hex",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — кодирование",
@@ -3629,6 +3839,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.fromhex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — кодирование",
@@ -3677,6 +3890,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isalnum",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -3724,6 +3940,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isalpha",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -3772,6 +3991,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isascii",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -3818,6 +4040,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isdigit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -3865,6 +4090,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.islower",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -3912,6 +4140,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isspace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -3959,6 +4190,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.istitle",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -4006,6 +4240,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isupper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytes — проверки is*",
@@ -4053,6 +4290,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.capitalize",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — регистр",
@@ -4100,6 +4340,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.lower",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — регистр",
@@ -4147,6 +4390,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.upper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — регистр",
@@ -4194,6 +4440,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.title",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — регистр",
@@ -4241,6 +4490,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.swapcase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — регистр",
@@ -4288,6 +4540,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.center",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — выравнивание",
@@ -4335,6 +4590,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.ljust",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — выравнивание",
@@ -4383,6 +4641,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rjust",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — выравнивание",
@@ -4430,6 +4691,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.zfill",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — выравнивание",
@@ -4476,6 +4740,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.expandtabs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — выравнивание",
@@ -4519,6 +4786,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.count",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — поиск",
@@ -4565,6 +4835,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.find",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — поиск",
@@ -4613,6 +4886,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rfind",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — поиск",
@@ -4662,6 +4938,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.index",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — поиск",
@@ -4711,6 +4990,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rindex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — поиск",
@@ -4760,6 +5042,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.startswith",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — поиск",
@@ -4809,6 +5094,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.endswith",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — поиск",
@@ -4857,6 +5145,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.join",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — разбиение и соединение",
@@ -4906,6 +5197,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.split",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — разбиение и соединение",
@@ -4954,6 +5248,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rsplit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — разбиение и соединение",
@@ -5001,6 +5298,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.partition",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — разбиение и соединение",
@@ -5051,6 +5351,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rpartition",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — разбиение и соединение",
@@ -5099,6 +5402,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.splitlines",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — разбиение и соединение",
@@ -5146,6 +5452,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.strip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — обрезка",
@@ -5193,6 +5502,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.lstrip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — обрезка",
@@ -5241,6 +5553,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rstrip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — обрезка",
@@ -5288,6 +5603,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.removeprefix",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — обрезка",
@@ -5335,6 +5653,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.removesuffix",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — обрезка",
@@ -5384,6 +5705,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.replace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — замена и перевод",
@@ -5432,6 +5756,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.translate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — замена и перевод",
@@ -5481,6 +5808,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.maketrans",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — замена и перевод",
@@ -5531,6 +5861,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.decode",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — кодирование",
@@ -5581,6 +5914,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.hex",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — кодирование",
@@ -5628,6 +5964,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.fromhex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — кодирование",
@@ -5676,6 +6015,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isalnum",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -5722,6 +6064,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isalpha",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -5768,6 +6113,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isascii",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -5814,6 +6162,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isdigit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -5861,6 +6212,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.islower",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -5907,6 +6261,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isspace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -5953,6 +6310,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.istitle",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -5997,6 +6357,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isupper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — проверки is*",
@@ -6043,6 +6406,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.append",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",
@@ -6090,6 +6456,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.extend",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",
@@ -6137,6 +6506,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.insert",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",
@@ -6184,6 +6556,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.pop",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",
@@ -6233,6 +6608,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.remove",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",
@@ -6280,6 +6658,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.reverse",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",
@@ -6324,6 +6705,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.clear",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",
@@ -6368,6 +6752,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.copy",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "bytearray — мутирующие",

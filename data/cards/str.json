@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes-objects",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "байты",
@@ -67,6 +70,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#f-strings",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "форматирование",
@@ -131,6 +137,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.format",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "форматирование",
@@ -188,6 +197,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -240,6 +252,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#len",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "длина",
@@ -294,6 +309,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#raw-string-literals",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "создание",
@@ -343,6 +361,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "индексы/срезы",
@@ -401,6 +422,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "операторы",
@@ -456,6 +480,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "операторы",
@@ -509,6 +536,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#strings",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "создание",
@@ -568,6 +598,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#value-comparisons",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "сравнение",
@@ -620,6 +653,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "индексы/срезы",
@@ -678,6 +714,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.intern",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "память",
@@ -741,6 +780,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "создание",
@@ -792,6 +834,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "форматирование",
@@ -846,6 +891,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.capitalize",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "регистр",
@@ -890,6 +938,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.title",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "регистр",
@@ -935,6 +986,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.swapcase",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "регистр",
@@ -979,6 +1033,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.upper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "регистр",
@@ -1023,6 +1080,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.lower",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "регистр",
@@ -1067,6 +1127,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.casefold",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "регистр",
@@ -1111,6 +1174,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isalnum",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1155,6 +1221,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isalpha",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1199,6 +1268,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isdigit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1244,6 +1316,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isdecimal",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1288,6 +1363,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isnumeric",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1332,6 +1410,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isspace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1376,6 +1457,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.islower",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1420,6 +1504,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isupper",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1464,6 +1551,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.istitle",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1508,6 +1598,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isidentifier",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1551,6 +1644,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isascii",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1595,6 +1691,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isprintable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "проверка символов",
@@ -1639,6 +1738,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.find",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -1685,6 +1787,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rfind",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -1729,6 +1834,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.index",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -1776,6 +1884,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rindex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -1822,6 +1933,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.count",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -1868,6 +1982,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.startswith",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -1913,6 +2030,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.endswith",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "поиск",
@@ -1958,6 +2078,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.split",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "разбивка",
@@ -2004,6 +2127,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rsplit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "разбивка",
@@ -2048,6 +2174,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.splitlines",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "разбивка",
@@ -2092,6 +2221,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.partition",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "разбивка",
@@ -2136,6 +2268,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rpartition",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "разбивка",
@@ -2180,6 +2315,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.join",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "объединение",
@@ -2227,6 +2365,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.strip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "обрезка",
@@ -2272,6 +2413,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.lstrip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "обрезка",
@@ -2317,6 +2461,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rstrip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "обрезка",
@@ -2362,6 +2509,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.center",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "выравнивание",
@@ -2407,6 +2557,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.ljust",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "выравнивание",
@@ -2452,6 +2605,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rjust",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "выравнивание",
@@ -2497,6 +2653,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.zfill",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "выравнивание",
@@ -2542,6 +2701,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.replace",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "замена",
@@ -2588,6 +2750,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.translate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "замена",
@@ -2633,6 +2798,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.maketrans",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "замена",
@@ -2681,6 +2849,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.removeprefix",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "замена",
@@ -2725,6 +2896,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.removesuffix",
     "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "замена",
@@ -2770,6 +2944,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.expandtabs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "замена",
@@ -2814,6 +2991,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.encode",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "кодировки",
@@ -2862,6 +3042,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.format_map",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Строки (str)",
     "subcat": {
       "ru": "форматирование",
@@ -2908,6 +3091,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.resize",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Байтовые последовательности",
     "subcat": {
       "ru": "изменение размера",

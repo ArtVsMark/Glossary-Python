@@ -13,7 +13,7 @@ import pytest
 
 import check_examples as gate
 
-CEILING: Final = 18
+CEILING: Final = 17
 """Находок на дереве сейчас. Опускается вместе с правкой карточек (#82)."""
 
 
@@ -103,6 +103,18 @@ def test_multiline_message_does_not_hide_the_name():
         "  allowed 0b0 011\n"
     )
     assert gate.failure(stderr, gate.FILENAME) == (3, "ValueError")
+
+
+def test_failure_inside_a_function_is_marked_at_the_call():
+    """Пометку ставят на строку вызова, которую видит читатель, а не в тело."""
+    code = "def deep(n):\n    return deep(n + 1)\nprint(deep(0))  # → RecursionError\n"
+    assert outcome(code).outcome == "intended"
+
+
+def test_call_line_without_mark_is_a_finding_even_if_body_is_marked():
+    code = "def f():\n    return 1 / 0  # → ZeroDivisionError\nf()\n"
+    result = outcome(code)
+    assert (result.outcome, result.detail) == ("finding", "строка 3: ZeroDivisionError")
 
 
 def test_lineage_of_unknown_name_is_the_name_itself():

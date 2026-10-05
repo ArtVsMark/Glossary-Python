@@ -73,7 +73,11 @@ ENVIRONMENT_MARK: Final = "→ ?"
 """Пометка строки, чей результат зависит от платформы, прав или терминала."""
 
 FILENAME: Final = "example.py"
-FRAME: Final = re.compile(r'^  File "(?P<file>[^"]+)", line (?P<line>\d+)', re.MULTILINE)
+FRAME: Final = re.compile(
+    r'^  File "(?P<file>[^"]+)", line (?P<line>\d+)(?:, in (?P<scope>\S+))?', re.MULTILINE
+)
+MODULE_SCOPE: Final = "<module>"
+"""Кадр верхнего уровня примера: пометку ставят на строку, которую видит читатель."""
 EXCEPTION_LINE: Final = re.compile(r"^(?P<name>[A-Za-z_][\w.]*)(?::|$)")
 NAME: Final = re.compile(r"[A-Za-z_][\w.]*")
 
@@ -127,13 +131,19 @@ def lineage(name: str) -> set[str]:
 def failure(stderr: str, path: str) -> tuple[int, str]:
     """Строка примера, на которой он упал, и имя исключения.
 
-    Строка — последний кадр трассировки в файле примера; имя — первая строка
-    после кадров, похожая на ``Имя: сообщение``. Сообщение бывает многострочным,
-    поэтому последняя строка вывода именем не считается.
+    Строка — кадр верхнего уровня (``<module>``) в файле примера: исключение,
+    поднятое внутри функции примера, помечают на строке вызова, а не в теле —
+    ``print(deep(0))  # → RecursionError``. Кадра верхнего уровня нет — берётся
+    последний кадр примера. Имя — первая строка после всех кадров, похожая на
+    ``Имя: сообщение``: сообщение бывает многострочным, поэтому последняя строка
+    вывода именем не считается.
     """
-    frames = [m for m in FRAME.finditer(stderr) if m.group("file").endswith(path)]
-    line = int(frames[-1].group("line")) if frames else 0
-    tail = stderr[frames[-1].end() :] if frames else stderr
+    every = list(FRAME.finditer(stderr))
+    own = [m for m in every if m.group("file").endswith(path)]
+    top = [m for m in own if m.group("scope") == MODULE_SCOPE]
+    chosen = top or own
+    line = int(chosen[-1].group("line")) if chosen else 0
+    tail = stderr[every[-1].end() :] if every else stderr
     for text in tail.splitlines():
         if text.startswith(" ") or not text:
             continue

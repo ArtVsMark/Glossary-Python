@@ -9,6 +9,10 @@
 /* Шрифты системные: страницу скачивают и открывают без сети,
    а веб-шрифт с CDN превратил бы её в наполовину загруженную. */
 :root{
+  /* Высота свёрнутой карточки — замер, а не вкус: у неё ограничено всё
+     (имя ≤2 строк, сводка ≤3, синтаксис ≤2, подкатегория и пометка по 1), и
+     карточка со всеми частями сразу занимает 323px. Меньше — обрезало бы. */
+  --card-h:324px;
   --bg:#f4f2ec; --surface:#fff; --surface-2:#faf9f5; --surface-3:#f2efe7;
   --border:#e6e2d8; --border-strong:#d6d0c2;
   --text:#161b26; --muted:#666e7d; --faint:#98a0ad;
@@ -141,21 +145,6 @@ a{color:inherit}
 .chip .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .chip .cnt{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
 .chip.active .cnt{color:var(--accent-ink)}
-.dd{position:relative}
-.dd-menu{
-  position:absolute;top:calc(100% + 6px);left:0;z-index:70;min-width:265px;max-height:60vh;overflow:auto;
-  background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-sm);
-  box-shadow:var(--shadow-lg);padding:5px;display:none;
-}
-.dd-menu.open{display:block}
-.dd-menu button{
-  display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;
-  border:0;background:transparent;color:var(--text);font:inherit;font-size:13px;
-  padding:7px 9px;border-radius:var(--radius-xs);cursor:pointer;text-align:left;
-}
-.dd-menu button:hover{background:var(--surface-3)}
-.dd-menu button.active{background:var(--accent-soft);color:var(--accent-ink);font-weight:700}
-.dd-menu .cnt{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
 
 /* ---------- раскладка ---------- */
 .layout{max-width:1520px;margin:0 auto;padding:22px 26px 80px;display:flex;gap:16px;align-items:flex-start}
@@ -181,10 +170,14 @@ a{color:inherit}
 .sec-head:first-child{margin-top:0}
 .sec-head h2{margin:0;font-size:15.5px;font-weight:800;letter-spacing:-.2px}
 .sec-head span{font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(345px,1fr));gap:13px;align-items:start}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;align-items:start}
+@media (max-width:1180px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* ---------- карточка ---------- */
 .card{
+  /* Свёрнутые карточки одной высоты: сетка читается рядами, а не лесенкой.
+     Лишнее в свёрнутом виде обрезается и целиком видно по «Подробнее». */
+  height:var(--card-h);
   position:relative;display:flex;flex-direction:column;
   background:var(--surface);border:1px solid var(--border);
   border-radius:var(--radius);padding:15px 16px 14px 19px;box-shadow:var(--shadow);
@@ -192,21 +185,32 @@ a{color:inherit}
 }
 .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cg,var(--c-op))}
 .card:hover{border-color:var(--border-strong);box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card.open{height:auto}
 .card:target{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft),var(--shadow-lg)}
-.card-top{display:flex;align-items:flex-start;gap:9px;margin-bottom:3px}
+/* Бейджи над именем, а не рядом: в одной строке три несжимаемых бейджа
+   отнимали у имени всю ширину, и «- вычитание» вставало столбиком по букве. */
+.card-top{display:flex;flex-direction:column;gap:7px;margin-bottom:5px}
 .card-name{
-  flex:1;min-width:0;font-family:ui-monospace,monospace;font-size:15.5px;font-weight:700;
-  letter-spacing:-.3px;word-break:break-word;
+  font-family:ui-monospace,monospace;font-size:15.5px;font-weight:700;
+  letter-spacing:-.3px;overflow-wrap:anywhere;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
 }
-.badges{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end;flex-shrink:0}
+.card.open .card-name{-webkit-line-clamp:unset}
+.badges{display:flex;flex-wrap:wrap;gap:4px}
+.card-body{flex:1;min-height:0;overflow:hidden}
+.card.open .card-body{overflow:visible}
 .badge{
   font-size:10.5px;font-weight:700;letter-spacing:.25px;padding:2px 7px;border-radius:99px;
   background:var(--surface-3);color:var(--muted);white-space:nowrap;
 }
 .badge.cg{background:color-mix(in srgb,var(--cg) 14%,transparent);color:var(--cg)}
 .badge.ver{background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--accent-ink)}
-.subcat{font-size:11.5px;color:var(--faint);margin-bottom:9px}
-.summary{font-size:14px;color:var(--text);margin-bottom:11px}
+.subcat{font-size:11.5px;color:var(--faint);margin-bottom:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.summary{
+  font-size:14px;color:var(--text);margin-bottom:11px;
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;
+}
+.card.open .summary{-webkit-line-clamp:unset}
 .field-label{
   font-size:10px;font-weight:800;letter-spacing:.85px;text-transform:uppercase;
   color:var(--faint);margin-bottom:4px;
@@ -216,6 +220,7 @@ a{color:inherit}
   border:1px solid var(--code-border);border-radius:var(--radius-xs);padding:7px 10px;
   overflow-x:auto;white-space:pre;margin-bottom:11px;
 }
+.card:not(.open) .syntax{max-height:calc(2lh + 16px);overflow-y:hidden}
 .untranslated{
   display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--faint);
   border:1px dashed var(--border-strong);border-radius:var(--radius-xs);padding:3px 8px;margin-bottom:11px;
@@ -291,10 +296,11 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
   .brand p{display:none}
   .counter{display:none}
   .grid{grid-template-columns:1fr}
+  :root{--card-h:auto}
 }
 @media print{
   .site-header,.toolbar,.az-rail,.card-foot,.site-footer{display:none}
-  .card{break-inside:avoid;box-shadow:none}
+  .card{break-inside:avoid;box-shadow:none;height:auto}
   .card .details{display:block}
 }
 </style>
@@ -343,7 +349,8 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
       </div>
     </div>
     <div class="filters" id="kindFilters"></div>
-    <div class="filters" id="groupFilters"></div>
+    <div class="filters" id="familyFilters"></div>
+    <div class="filters" id="sectionFilters" hidden></div>
   </div>
 </div>
 
@@ -369,6 +376,7 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
 </footer>
 
 <script id="glossary-data" type="application/json">{{GLOSSARY_DATA}}</script>
+<script id="glossary-nav" type="application/json">{{NAVIGATION}}</script>
 <script>
 "use strict";
 
@@ -378,6 +386,10 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
 const PRISTINE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
 
 const DATA = JSON.parse(document.getElementById("glossary-data").textContent);
+/* Семейства и подписи разделов приходят сборкой (glossary.taxonomy): правило
+   классификации живёт в Python и здесь не повторяется. */
+const NAV = JSON.parse(document.getElementById("glossary-nav").textContent);
+const famOf = d => (NAV.sections[d.section] || {}).group || "other";
 const CG = ["builtin","str","seq","mapset","oop","exc","module","iter","op","typing"];
 const CG_VAR = Object.fromEntries(CG.map(g => [g, "var(--c-" + g + ")"]));
 
@@ -394,7 +406,7 @@ const I18N = {
     title:"Python Glossary", subtitle:"Справочник стандартной библиотеки",
     download:"Скачать", downloaded:"Готово", theme:"Сменить тему",
     search:"Поиск по имени, синонимам, ключевым словам…",
-    bySection:"По разделам", kind:"Вид", group:"Группа", modules:"Модули",
+    bySection:"По разделам", kind:"Вид", group:"Раздел", moduleWord:"модуль",
     all:"Все", shown:"Показано", of:"из",
     term:"понятие", function:"функция", exception:"исключение", construct:"конструкция",
     syntax:"Синтаксис", examples:"Примеры", copy:"Копировать", copied:"Скопировано",
@@ -409,7 +421,7 @@ const I18N = {
     title:"Python Glossary", subtitle:"Standard library reference",
     download:"Download", downloaded:"Saved", theme:"Toggle theme",
     search:"Search by name, alias, keyword…",
-    bySection:"By section", kind:"Kind", group:"Group", modules:"Modules",
+    bySection:"By section", kind:"Kind", group:"Section", moduleWord:"module",
     all:"All", shown:"Showing", of:"of",
     term:"term", function:"function", exception:"exception", construct:"construct",
     syntax:"Syntax", examples:"Examples", copy:"Copy", copied:"Copied",
@@ -477,11 +489,16 @@ const SECTIONS = [];
 DATA.forEach(d => { if(!SECTIONS.includes(d.section)) SECTIONS.push(d.section); });
 const SECTION_COUNT = Object.create(null);
 DATA.forEach(d => { SECTION_COUNT[d.section] = (SECTION_COUNT[d.section]||0) + 1; });
-const CG_COUNT = Object.create(null);
-DATA.forEach(d => { CG_COUNT[d.color_group] = (CG_COUNT[d.color_group]||0) + 1; });
+const FAM_COUNT = Object.create(null);
+DATA.forEach(d => { FAM_COUNT[famOf(d)] = (FAM_COUNT[famOf(d)]||0) + 1; });
 const KIND_COUNT = Object.create(null);
 DATA.forEach(d => { KIND_COUNT[d.kind] = (KIND_COUNT[d.kind]||0) + 1; });
-const MODULE_SECTIONS = SECTIONS.filter(s => /^Модул/i.test(s)).sort((a,b) => a.localeCompare(b,"ru"));
+const sectionLabel = s => (NAV.sections[s] || {})[LANG] || s;
+/* Бейдж раздела на карточке: у модуля имя без слова «Модуль» в фильтре, но
+   на карточке без контекста фильтра слово нужно — иначе «os» читается как
+   что угодно. */
+const sectionBadge = s => (NAV.sections[s] || {}).group === "modules"
+  ? `${t("moduleWord")} ${sectionLabel(s)}` : sectionLabel(s);
 
 /* Строка поиска считается один раз на карточку и язык: пересборка её на
    каждое нажатие клавиши превращала бы 1349 карточек в заметную паузу. */
@@ -498,7 +515,7 @@ function haystack(d){
 }
 
 /* ---------- состояние ---------- */
-const state = { q:"", kind:"", cg:"", section:"", sort:"az" };
+const state = { q:"", kind:"", fam:"", section:"", sort:"az" };
 let visible = [];
 let drawn = 0;
 const CHUNK = 48;
@@ -508,7 +525,7 @@ const grid = $("#grid"), empty = $("#empty"), counter = $("#counter");
 
 function matches(d){
   if(state.kind && d.kind !== state.kind) return false;
-  if(state.cg && d.color_group !== state.cg) return false;
+  if(state.fam && famOf(d) !== state.fam) return false;
   if(state.section && d.section !== state.section) return false;
   if(state.q && !haystack(d).includes(state.q)) return false;
   return true;
@@ -537,7 +554,7 @@ const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 function cardHtml(d){
   const cgv = CG_VAR[d.color_group] || "var(--c-op)";
   const ver = d.version ? `<span class="badge ver">Python ${esc(d.version)}</span>` : "";
-  const section = esc(d.section.replace(/^Модуль /, "mod · "));
+  const section = esc(sectionBadge(d.section));
   const syntax = d.syntax
     ? `<div class="field-label">${t("syntax")}</div><div class="syntax">${highlightPy(d.syntax)}</div>` : "";
   const hint = isTranslated(d) ? ""
@@ -548,15 +565,17 @@ function cardHtml(d){
     || (d.related_errors && d.related_errors.length);
   return `<article class="card" id="${esc(d.id)}" style="--cg:${cgv}">
   <div class="card-top">
-    <div class="card-name">${mark(d.title)}</div>
     <div class="badges">
       ${ver}<span class="badge cg">${section}</span><span class="badge">${t(d.kind) || esc(d.kind)}</span>
     </div>
+    <div class="card-name" title="${esc(d.title)}">${mark(d.title)}</div>
   </div>
-  ${d.subcat ? `<div class="subcat">${esc(d.subcat)}</div>` : ""}
-  ${hint}
-  <div class="summary">${mark(txtOr(d.summary))}</div>
-  ${syntax}
+  <div class="card-body">
+    ${d.subcat ? `<div class="subcat">${esc(d.subcat)}</div>` : ""}
+    ${hint}
+    <div class="summary">${mark(txtOr(d.summary))}</div>
+    ${syntax}
+  </div>
   <div class="card-foot">
     ${hasDetails ? `<button class="expand" type="button"><span>${t("details")}</span>${ICON_CHEVRON}</button>` : ""}
     ${d.docs_url ? `<a class="docs-link" href="${esc(d.docs_url)}" target="_blank" rel="noopener">${ICON_DOC} docs.python.org</a>` : ""}
@@ -597,7 +616,7 @@ function drawChunk(){
   let prev = drawn > 0 ? visible[drawn-1].section : null;
   for(const d of slice){
     if(state.sort === "sec" && d.section !== prev){
-      html += `<div class="sec-head"><h2>${esc(d.section)}</h2><span>${SECTION_COUNT[d.section]}</span></div>`;
+      html += `<div class="sec-head"><h2>${esc(sectionBadge(d.section))}</h2><span>${SECTION_COUNT[d.section]}</span></div>`;
       prev = d.section;
     }
     html += cardHtml(d);
@@ -638,48 +657,43 @@ function buildKindFilters(){
   });
 }
 
-function buildGroupFilters(){
-  const box = $("#groupFilters");
-  const groups = CG.filter(g => CG_COUNT[g]);
-  const modLabel = state.section ? state.section.replace(/^Модуль /, "") : t("modules");
+/* Фильтр в два уровня, как в глоссарии грейдера: семейство, внутри него
+   раздел. Раньше здесь были цветовые группы карточек — коды вроде «seq» и
+   «mapset», которые читателю ничего не говорят и на русский не переводились. */
+function buildFamilyFilters(){
+  const box = $("#familyFilters");
+  const fams = NAV.groups.filter(g => FAM_COUNT[g]);
   box.innerHTML = `<span class="fil-label">${t("group")}</span>` +
-    chip(t("all"), state.cg === "" && state.section === "", DATA.length) +
-    groups.map(g => chip(g, state.cg === g, CG_COUNT[g], CG_VAR[g])).join("") +
-    `<span class="dd"><button class="chip${state.section ? " active" : ""}" id="ddBtn" type="button" aria-expanded="false">
-       <span class="dot" style="background:var(--c-module)"></span>${esc(modLabel)} ▾</button>
-     <div class="dd-menu" id="ddMenu"></div></span>`;
-
-  const plain = Array.from(box.querySelectorAll(".chip")).filter(b => b.id !== "ddBtn");
-  plain.forEach((b,i) => {
+    chip(t("all"), state.fam === "", DATA.length) +
+    fams.map(g => chip(esc(NAV.labels[g][LANG]), state.fam === g, FAM_COUNT[g])).join("");
+  box.querySelectorAll(".chip").forEach((b,i) => {
     b.onclick = () => {
+      const fam = i === 0 ? "" : fams[i-1];
+      state.fam = state.fam === fam ? "" : fam;
       state.section = "";
-      state.cg = i === 0 ? "" : groups[i-1];
-      buildGroupFilters(); render();
-    };
-  });
-
-  const menu = $("#ddMenu"), btn = $("#ddBtn");
-  menu.innerHTML = MODULE_SECTIONS.map(s =>
-    `<button type="button" class="${state.section === s ? "active" : ""}">
-       <span>${esc(s.replace(/^Модуль /, ""))}</span><span class="cnt">${SECTION_COUNT[s]}</span></button>`).join("");
-  btn.onclick = e => {
-    e.stopPropagation();
-    const open = menu.classList.toggle("open");
-    btn.setAttribute("aria-expanded", String(open));
-  };
-  menu.querySelectorAll("button").forEach((b,i) => {
-    b.onclick = () => {
-      const s = MODULE_SECTIONS[i];
-      state.section = state.section === s ? "" : s;
-      state.cg = "";
-      menu.classList.remove("open");
-      buildGroupFilters(); render();
+      buildFamilyFilters(); buildSectionFilters(); render();
     };
   });
 }
-document.addEventListener("click", () => {
-  const m = $("#ddMenu"); if(m) m.classList.remove("open");
-});
+
+function buildSectionFilters(){
+  const box = $("#sectionFilters");
+  box.hidden = !state.fam;
+  if(!state.fam){ box.innerHTML = ""; return; }
+  const secs = SECTIONS.filter(s => (NAV.sections[s] || {}).group === state.fam)
+    .sort((a,b) => collator.compare(sectionLabel(a), sectionLabel(b)));
+  const famTotal = FAM_COUNT[state.fam] || 0;
+  box.innerHTML = `<span class="fil-label">${esc(NAV.labels[state.fam][LANG])}</span>` +
+    chip(t("all"), state.section === "", famTotal) +
+    secs.map(s => chip(esc(sectionLabel(s)), state.section === s, SECTION_COUNT[s])).join("");
+  box.querySelectorAll(".chip").forEach((b,i) => {
+    b.onclick = () => {
+      const sec = i === 0 ? "" : secs[i-1];
+      state.section = state.section === sec ? "" : sec;
+      buildSectionFilters(); render();
+    };
+  });
+}
 
 /* Прокрутка к карточке, которой на экране ещё нет.
 
@@ -750,9 +764,9 @@ function revealHash(){
   const id = decodeURIComponent(location.hash.slice(1));
   if(!id || !BY_ID.has(id)) return;
   if(!visible.some(d => d.id === id)){
-    state.q = ""; state.kind = ""; state.cg = ""; state.section = "";
+    state.q = ""; state.kind = ""; state.fam = ""; state.section = "";
     $("#search").value = "";
-    buildKindFilters(); buildGroupFilters(); render();
+    buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); render();
   }
   scrollToIndex(visible.findIndex(d => d.id === id), "center");
 }
@@ -799,7 +813,7 @@ function applyLang(lang, persist = true){
     b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
   $("#search").placeholder = t("search");
   $("#footStats").textContent = I18N[lang].stats(DATA.length, SECTIONS.length);
-  buildKindFilters(); buildGroupFilters(); render();
+  buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); render();
   $("#resetBtn").textContent = t("reset");
   $("#resetBtn").title = t("resetHint");
   if(persist){ try{ localStorage.setItem(STORE.lang, lang); }catch(_){} }

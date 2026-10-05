@@ -1,23 +1,31 @@
 """Сборка HTML-витрины из шаблона и данных.
 
 Шаблон — это исходная одностраничная витрина, в которой блок данных заменён
-плейсхолдером. Такой подход намеренно проще шаблонизатора: у проекта ровно одна
-точка подстановки, а разметка остаётся обычным HTML, который можно открыть в
-браузере и править в любом редакторе.
+плейсхолдером. Такой подход намеренно проще шаблонизатора: точек подстановки
+две — данные и таблица фильтра, — а разметка остаётся обычным HTML, который
+можно открыть в браузере и править в любом редакторе.
 """
 
 import json
 from importlib import resources
 from typing import TYPE_CHECKING, Final
 
+from glossary import taxonomy
 from glossary.errors import ExportError
 
 if TYPE_CHECKING:
     from glossary.models import Glossary
 
-__all__ = ["PLACEHOLDER", "HtmlExporter", "load_template"]
+__all__ = ["NAVIGATION", "PLACEHOLDER", "HtmlExporter", "load_template"]
 
 PLACEHOLDER: Final = "{{GLOSSARY_DATA}}"
+NAVIGATION: Final = "{{NAVIGATION}}"
+"""Таблица фильтра: семейства и подписи разделов (:mod:`glossary.taxonomy`).
+
+Вторая точка подстановки, а не поле в данных: классификация — свойство
+витрины, а не карточки, и в экспорт JSON она не едет. Шаблон без неё
+собирается — проверочные шаблоны в тестах малы, — а что поставляемый шаблон
+её содержит, держит ``tests/test_taxonomy.py``."""
 TEMPLATE_NAME: Final = "showcase.html"
 _PACKAGE: Final = "glossary.templates"
 
@@ -70,4 +78,13 @@ class HtmlExporter:
         # ``</script>`` внутри строкового литерала закрыл бы блок данных раньше
         # времени; экранирование по стандартной для встроенного JSON схеме.
         payload = payload.replace("</", "<\\/")
-        return self._template.replace(PLACEHOLDER, payload)
+        navigation = json.dumps(
+            taxonomy.table(list(glossary.sections)),
+            ensure_ascii=False,
+            separators=(",", ":"),
+        ).replace("</", "<\\/")
+        # Таблица подставляется первой: текст карточек не должен попасть под
+        # вторую замену, если в нём встретится имя плейсхолдера.
+        return self._template.replace(NAVIGATION, navigation).replace(
+            PLACEHOLDER, payload
+        )

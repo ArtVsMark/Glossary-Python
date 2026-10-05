@@ -46,6 +46,7 @@
 | [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию: правило, уровень, область, полный список карточек |
 | [`badges/.github/badges/completeness-report.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/completeness-report.json) | Полнота относительно официального Python: чего в глоссарии нет вовсе |
 | [`badges/.github/badges/whatsnew.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/whatsnew.json) | Что появилось и исчезло между версиями Python — и что из нового не описано |
+| [`badges/.github/badges/delivery.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/delivery.json) | Сами карточки по группам в форме `data/cards/` — их забирает Stepik-Python-Grader |
 
 Это контракты, а не удобство. Глоссарий забирают выгрузкой, а не копированием
 файла из репозитория. `objections.json` — очередь работы над содержанием в

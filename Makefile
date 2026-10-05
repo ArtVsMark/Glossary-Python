@@ -113,7 +113,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test assemble-check validate rules exclusives defaults outcomes attribution decisions deadlines versions journal links facts-check changelog-check build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test assemble-check validate rules exclusives defaults outcomes attribution decisions deadlines versions journal links examples facts-check changelog-check build-check ## Полный набор проверок (как в CI)
 
 facts-check: ## Проверить, что числа в README не разъехались
 	$(BIN)/python scripts/facts.py --check

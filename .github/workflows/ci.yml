@@ -191,6 +191,9 @@ jobs:
       - name: Установка пакета
         run: python -m pip install -e ".[dev]"
 
+      - name: Глоссарий собран из карточек data/cards/
+        run: python -m glossary assemble --check
+
       - name: Валидация данных
         run: python -m glossary validate
 

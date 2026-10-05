@@ -16,10 +16,10 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__, completeness, inventory, measure, objections
+from glossary import __version__, cards, completeness, inventory, measure, objections
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
-from glossary.loader import default_data_path, load_glossary, project_root
+from glossary.loader import default_data_path, dump_glossary, load_glossary, project_root
 from glossary.validation import Severity, ValidationConfig, validate
 
 if TYPE_CHECKING:
@@ -40,8 +40,8 @@ EXIT_FAILED: Final = 1
 """Проверка не пройдена: найдено ровно то, что она ищет.
 
 Не означает поломки инструмента — находка это его нормальная работа, а не
-авария. Не означает и вины вызвавшего: у замечаний к содержанию адресат
-источник карточек, а не тот, кто запустил команду.
+авария. Не означает и вины вызвавшего: замечание говорит о карточке, а не о
+том, кто запустил команду.
 """
 
 EXIT_USAGE: Final = 2
@@ -112,6 +112,25 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_validate.set_defaults(handler=_cmd_validate)
 
+    p_assemble = sub.add_parser(
+        "assemble",
+        help="собрать data/glossary.json из карточек data/cards/",
+        parents=[common],
+    )
+    p_assemble.add_argument(
+        "--cards",
+        type=Path,
+        default=None,
+        metavar="DIR",
+        help="каталог карточек (по умолчанию data/cards)",
+    )
+    p_assemble.add_argument(
+        "--check",
+        action="store_true",
+        help="не записывать файл, а проверить, что он совпадает со сборкой",
+    )
+    p_assemble.set_defaults(handler=_cmd_assemble)
+
     p_build = sub.add_parser(
         "build", help="собрать HTML-витрину из данных", parents=[common]
     )
@@ -163,14 +182,14 @@ def build_parser() -> argparse.ArgumentParser:
 
     p_obj = sub.add_parser(
         "objections",
-        help="собрать замечания к содержанию для отправки в источник",
+        help="собрать замечания к содержанию — очередь работы над карточками",
         parents=[common],
     )
     p_obj.add_argument(
         "--format",
         choices=("markdown", "json"),
         default="markdown",
-        help="письмо для issue (markdown) или публикуемый контракт (json)",
+        help="отчёт для задачи (markdown) или публикуемый контракт (json)",
     )
     p_obj.add_argument(
         "--limit",
@@ -283,6 +302,39 @@ def _cmd_validate(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     return EXIT_OK
 
 
+def _cmd_assemble(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Собрать глоссарий из источника или сверить собранный с источником."""
+    glossary = cards.assemble(cards.read_cards(args.cards))
+    target: Path = args.data
+
+    if args.check:
+        if not target.exists():
+            # Третий исход: сверять не с чем. Единица означала бы «разошлось»,
+            # то есть утверждение о файле, которого нет (правила 039, 158).
+            print(
+                f"Сверка не отработала: {target} нет — сверять источник не с чем. "
+                "Выполните `glossary assemble`.",
+                file=err,
+            )
+            return EXIT_USAGE
+        expected = dump_glossary(glossary, target.with_name(f".{target.name}.check"))
+        same = expected.read_text(encoding="utf-8") == target.read_text(encoding="utf-8")
+        expected.unlink()
+        if same:
+            print(f"Глоссарий собран из источника: {len(glossary)} карточек", file=out)
+            return EXIT_OK
+        print(
+            f"{target} расходится с data/cards/. "
+            "Выполните `glossary assemble` и закоммитьте результат.",
+            file=err,
+        )
+        return EXIT_FAILED
+
+    dump_glossary(glossary, target)
+    print(f"Собрано {len(glossary)} карточек → {target}", file=out)
+    return EXIT_OK
+
+
 def _cmd_build(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
     glossary = load_glossary(args.data)
     rendered = get_exporter("html").render(glossary)
@@ -357,7 +409,7 @@ def _cmd_stats(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
 
 
 def _cmd_objections(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
-    """Собрать замечания к содержанию — письмом в источник, а не в консоль."""
+    """Собрать замечания к содержанию — отчётом для задачи или контрактом."""
     glossary = load_glossary(args.data)
     rendered = (
         objections.as_json(glossary)

@@ -226,6 +226,14 @@ jobs:
           python -m glossary completeness --format json
           -o .github/badges/completeness-report.json
 
+      # Выгрузка для грейдера (#76, этап 2): карточки по группам в форме
+      # data/cards/. Потребитель забирает её обычным HTTP и раскладывает по
+      # файлам — импорт без преобразования схемы (правило каталога 174).
+      - name: Выгрузить карточки для потребителей
+        run: >
+          python -m glossary delivery
+          -o .github/badges/delivery.json
+
       - name: Свести разность версий
         run: >
           python scripts/whatsnew.py inventory/inventory-*.json

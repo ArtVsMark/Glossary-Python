@@ -16,7 +16,15 @@ import sys
 from pathlib import Path
 from typing import TYPE_CHECKING, Final, TextIO
 
-from glossary import __version__, cards, completeness, inventory, measure, objections
+from glossary import (
+    __version__,
+    cards,
+    completeness,
+    delivery,
+    inventory,
+    measure,
+    objections,
+)
 from glossary.errors import GlossaryError
 from glossary.exporters import EXPORTERS, get_exporter
 from glossary.loader import default_data_path, dump_glossary, load_glossary, project_root
@@ -238,6 +246,27 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_cov.set_defaults(handler=_cmd_completeness)
 
+    p_del = sub.add_parser(
+        "delivery",
+        help="выгрузка карточек для потребителей (контракт delivery.json)",
+    )
+    p_del.add_argument(
+        "--cards",
+        type=Path,
+        default=None,
+        metavar="DIR",
+        help="каталог карточек (по умолчанию data/cards)",
+    )
+    p_del.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        metavar="PATH",
+        help="файл результата (по умолчанию — stdout)",
+    )
+    p_del.set_defaults(handler=_cmd_delivery)
+
     p_inv = sub.add_parser(
         "inventory",
         help="выгрузить инвентарь языка для этой версии Python",
@@ -456,6 +485,19 @@ def _cmd_completeness(args: argparse.Namespace, out: TextIO, err: TextIO) -> int
             f"{report.covered}/{report.total} → {args.output}",
             file=out,
         )
+    return EXIT_OK
+
+
+def _cmd_delivery(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Выгрузить карточки по группам — то, что читает грейдер (#76, этап 2)."""
+    rendered = delivery.as_json(args.cards)
+    if args.output is None:
+        out.write(rendered)
+        return EXIT_OK
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(rendered, encoding="utf-8")
+    cards_total = json.loads(rendered)["snapshot"]["cards"]
+    print(f"Выгружено карточек: {cards_total} → {args.output}", file=out)
     return EXIT_OK
 
 

@@ -124,7 +124,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "атрибуты",
-      "en": ""
+      "en": "attributes"
     },
     "aliases": [
       "переменная класса в аннотации",
@@ -179,7 +179,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "константа в аннотации",
@@ -268,7 +268,7 @@
     "id": "int-str-list-dict-аннотации",
     "title": {
       "ru": "int / str / list / dict (аннотации)",
-      "en": ""
+      "en": "int / str / list / dict (annotations)"
     },
     "kind": "function",
     "summary": {
@@ -286,7 +286,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "встроенные",
-      "en": ""
+      "en": "built-in"
     },
     "aliases": [
       "встроенные типы в аннотациях",
@@ -335,7 +335,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "литерал",
-      "en": ""
+      "en": "literal"
     },
     "aliases": [
       "тип из конкретных значений",
@@ -439,7 +439,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "опциональный",
-      "en": ""
+      "en": "optional"
     },
     "aliases": [
       "необязательное значение в аннотации",
@@ -490,7 +490,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "протокол",
-      "en": ""
+      "en": "protocol"
     },
     "aliases": [
       "утиная типизация",
@@ -545,7 +545,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "импорт",
-      "en": ""
+      "en": "import"
     },
     "aliases": [
       "импорт только для аннотаций",
@@ -699,7 +699,7 @@
     "section": "Аннотации и typing",
     "subcat": {
       "ru": "объединение",
-      "en": ""
+      "en": "union"
     },
     "aliases": [
       "объединение типов",
@@ -751,7 +751,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "аргументы обобщённого типа",
@@ -799,7 +799,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "базовый тип аннотации",
@@ -848,7 +848,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "получить аннотации функции",
@@ -904,7 +904,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "список перегрузок функции",
@@ -956,7 +956,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "какие методы требует протокол",
@@ -1005,7 +1005,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "проверить, является ли класс протоколом",
@@ -1052,7 +1052,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "проверить, типизированный ли это словарь",
@@ -1097,7 +1097,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
-      "en": ""
+      "en": "casting and debugging"
     },
     "aliases": [
       "указать тип вручную",
@@ -1145,7 +1145,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
-      "en": ""
+      "en": "casting and debugging"
     },
     "aliases": [
       "показать выведенный тип",
@@ -1193,7 +1193,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
-      "en": ""
+      "en": "casting and debugging"
     },
     "aliases": [
       "утверждение о типе",
@@ -1241,7 +1241,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "приведение и отладка",
-      "en": ""
+      "en": "casting and debugging"
     },
     "aliases": [
       "недостижимая ветка",
@@ -1290,7 +1290,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [
       "обобщённый класс",
@@ -1338,7 +1338,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [
       "новый тип поверх существующего",
@@ -1386,7 +1386,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [
       "типизация декоратора",
@@ -1436,7 +1436,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [],
     "keywords": [],
@@ -1481,7 +1481,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [],
     "keywords": [],
@@ -1526,7 +1526,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [
       "переменное число типов",
@@ -1575,7 +1575,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [
       "псевдоним типа",
@@ -1625,7 +1625,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
-      "en": ""
+      "en": "generics and parameters"
     },
     "aliases": [
       "аннотация типа строкой",
@@ -1674,7 +1674,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
-      "en": ""
+      "en": "I/O streams"
     },
     "aliases": [
       "аннотация типа файла",
@@ -1723,7 +1723,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
-      "en": ""
+      "en": "I/O streams"
     },
     "aliases": [
       "тип бинарного потока",
@@ -1772,7 +1772,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
-      "en": ""
+      "en": "I/O streams"
     },
     "aliases": [
       "тип текстового потока",
@@ -1823,7 +1823,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "потоки ввода-вывода",
-      "en": ""
+      "en": "I/O streams"
     },
     "aliases": [
       "устаревший синоним строки",
@@ -1871,7 +1871,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
-      "en": ""
+      "en": "Supports* protocols"
     },
     "aliases": [
       "протокол целого числа",
@@ -1919,7 +1919,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
-      "en": ""
+      "en": "Supports* protocols"
     },
     "aliases": [
       "протокол вещественного числа",
@@ -1967,7 +1967,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
-      "en": ""
+      "en": "Supports* protocols"
     },
     "aliases": [
       "протокол комплексного числа",
@@ -2015,7 +2015,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
-      "en": ""
+      "en": "Supports* protocols"
     },
     "aliases": [
       "протокол преобразования в байты",
@@ -2060,7 +2060,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
-      "en": ""
+      "en": "Supports* protocols"
     },
     "aliases": [
       "поддерживает взятие модуля",
@@ -2108,7 +2108,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
-      "en": ""
+      "en": "Supports* protocols"
     },
     "aliases": [
       "протокол округления",
@@ -2156,7 +2156,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "протоколы Supports*",
-      "en": ""
+      "en": "Supports* protocols"
     },
     "aliases": [
       "объект можно использовать как индекс",
@@ -2204,7 +2204,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
-      "en": ""
+      "en": "decorators and markers"
     },
     "aliases": [
       "перегрузка функции",
@@ -2261,7 +2261,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
-      "en": ""
+      "en": "decorators and markers"
     },
     "aliases": [
       "пометить переопределение метода",
@@ -2309,7 +2309,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
-      "en": ""
+      "en": "decorators and markers"
     },
     "aliases": [
       "отключить проверку типов",
@@ -2354,7 +2354,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
-      "en": ""
+      "en": "decorators and markers"
     },
     "aliases": [],
     "keywords": [],
@@ -2403,7 +2403,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
-      "en": ""
+      "en": "decorators and markers"
     },
     "aliases": [
       "протокол с проверкой во время выполнения",
@@ -2451,7 +2451,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
-      "en": ""
+      "en": "decorators and markers"
     },
     "aliases": [],
     "keywords": [],
@@ -2495,7 +2495,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",
-      "en": ""
+      "en": "decorators and markers"
     },
     "aliases": [],
     "keywords": [],
@@ -2538,7 +2538,7 @@
     "section": "Модуль typing",
     "subcat": {
       "ru": "интроспекция аннотаций",
-      "en": ""
+      "en": "annotation introspection"
     },
     "aliases": [
       "вычислить отложенную аннотацию",

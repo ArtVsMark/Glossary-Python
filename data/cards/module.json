@@ -21,7 +21,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "проверки",
-      "en": ""
+      "en": "checks"
     },
     "aliases": [
       "проверить существование файла",
@@ -71,7 +71,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "проверки",
-      "en": ""
+      "en": "checks"
     },
     "aliases": [
       "проверить что это файл",
@@ -121,7 +121,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "проверки",
-      "en": ""
+      "en": "checks"
     },
     "aliases": [
       "проверить что это папка",
@@ -170,7 +170,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "поиск",
-      "en": ""
+      "en": "search"
     },
     "aliases": [
       "поиск файлов по маске",
@@ -218,7 +218,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "поиск",
-      "en": ""
+      "en": "search"
     },
     "aliases": [
       "рекурсивный поиск файлов",
@@ -267,7 +267,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "обход",
-      "en": ""
+      "en": "traversal"
     },
     "aliases": [
       "список файлов в папке",
@@ -331,7 +331,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "создать папку",
@@ -393,7 +393,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "удалить файл",
@@ -447,7 +447,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "переименовать файл",
@@ -501,7 +501,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "переместить с заменой",
@@ -554,7 +554,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "атрибуты",
-      "en": ""
+      "en": "attributes"
     },
     "aliases": [
       "имя элемента перечисления",
@@ -606,7 +606,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
-      "en": ""
+      "en": "reading/writing"
     },
     "aliases": [
       "прочитать файл целиком",
@@ -660,7 +660,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
-      "en": ""
+      "en": "reading/writing"
     },
     "aliases": [
       "записать текст в файл",
@@ -713,7 +713,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
-      "en": ""
+      "en": "reading/writing"
     },
     "aliases": [
       "прочитать двоичный файл",
@@ -765,7 +765,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чтение/запись",
-      "en": ""
+      "en": "reading/writing"
     },
     "aliases": [
       "записать байты в файл",
@@ -817,7 +817,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "части пути",
-      "en": ""
+      "en": "path components"
     },
     "aliases": [
       "расширение файла",
@@ -875,7 +875,7 @@
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "асинхронный результат",
-      "en": ""
+      "en": "asynchronous result"
     },
     "aliases": [
       "результат асинхронной задачи",
@@ -922,7 +922,7 @@
     "section": "Модуль threading",
     "subcat": {
       "ru": "концепции",
-      "en": ""
+      "en": "concepts"
     },
     "aliases": [
       "глобальная блокировка интерпретатора",
@@ -973,7 +973,7 @@
     "section": "Модуль unittest",
     "subcat": {
       "ru": "моки",
-      "en": ""
+      "en": "mocks"
     },
     "aliases": [
       "мок-объект",
@@ -1022,7 +1022,7 @@
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул процессов",
-      "en": ""
+      "en": "process pool"
     },
     "aliases": [
       "пул процессов",
@@ -1070,7 +1070,7 @@
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул потоков",
-      "en": ""
+      "en": "thread pool"
     },
     "aliases": [
       "пул потоков",
@@ -1120,7 +1120,7 @@
     "section": "Модуль copy",
     "subcat": {
       "ru": "кастомизация",
-      "en": ""
+      "en": "customization"
     },
     "aliases": [
       "своё копирование объекта",
@@ -1176,7 +1176,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "инициализация",
-      "en": ""
+      "en": "initialization"
     },
     "aliases": [
       "валидация полей датакласса",
@@ -1230,7 +1230,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "обработка",
-      "en": ""
+      "en": "handling"
     },
     "aliases": [
       "значение не найдено в перечислении",
@@ -1283,7 +1283,7 @@
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул задач",
-      "en": ""
+      "en": "task pool"
     },
     "aliases": [
       "обработать задачи по мере готовности",
@@ -1385,7 +1385,7 @@
     "section": "Модуль bisect",
     "subcat": {
       "ru": "позиция",
-      "en": ""
+      "en": "position"
     },
     "aliases": [],
     "keywords": [],
@@ -1429,7 +1429,7 @@
     "section": "Модуль bisect",
     "subcat": {
       "ru": "позиция",
-      "en": ""
+      "en": "position"
     },
     "aliases": [
       "индекс вставки перед равными элементами",
@@ -1477,7 +1477,7 @@
     "section": "Модуль bisect",
     "subcat": {
       "ru": "позиция",
-      "en": ""
+      "en": "position"
     },
     "aliases": [
       "индекс вставки после равных элементов",
@@ -1525,7 +1525,7 @@
     "section": "Модуль bisect",
     "subcat": {
       "ru": "вставка",
-      "en": ""
+      "en": "insertion"
     },
     "aliases": [
       "вставить в отсортированный список перед равными",
@@ -1572,7 +1572,7 @@
     "section": "Модуль bisect",
     "subcat": {
       "ru": "вставка",
-      "en": ""
+      "en": "insertion"
     },
     "aliases": [
       "вставить в отсортированный список после равных",
@@ -1945,7 +1945,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "закрытие",
-      "en": ""
+      "en": "closing"
     },
     "aliases": [
       "автоматически закрыть объект после with",
@@ -1996,7 +1996,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "декоратор",
-      "en": ""
+      "en": "decorator"
     },
     "aliases": [
       "создать свой контекстный менеджер",
@@ -2051,7 +2051,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "динамический",
-      "en": ""
+      "en": "dynamic"
     },
     "aliases": [
       "несколько контекстных менеджеров сразу",
@@ -2101,7 +2101,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "заглушка",
-      "en": ""
+      "en": "no-op"
     },
     "aliases": [
       "пустой контекстный менеджер",
@@ -2150,7 +2150,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "подавить исключение",
@@ -2208,7 +2208,7 @@
     "section": "Модуль copy",
     "subcat": {
       "ru": "поверхностная",
-      "en": ""
+      "en": "shallow"
     },
     "aliases": [
       "поверхностная копия",
@@ -2260,7 +2260,7 @@
     "section": "Модуль copy",
     "subcat": {
       "ru": "глубокая",
-      "en": ""
+      "en": "deep"
     },
     "aliases": [
       "глубокая копия объекта",
@@ -2317,7 +2317,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "базовый",
-      "en": ""
+      "en": "basics"
     },
     "aliases": [
       "класс для хранения данных",
@@ -2416,7 +2416,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "базовый",
-      "en": ""
+      "en": "basics"
     },
     "aliases": [
       "неизменяемый датакласс",
@@ -2471,7 +2471,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "базовый",
-      "en": ""
+      "en": "basics"
     },
     "aliases": [
       "сортировка объектов датакласса",
@@ -2575,7 +2575,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "копирование",
-      "en": ""
+      "en": "copying"
     },
     "aliases": [
       "копия датакласса с изменённым полем",
@@ -2609,7 +2609,7 @@
     "id": "date-арифметика",
     "title": {
       "ru": "date арифметика",
-      "en": ""
+      "en": "date arithmetic"
     },
     "kind": "term",
     "summary": {
@@ -2873,7 +2873,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "форматирование",
-      "en": ""
+      "en": "formatting"
     },
     "aliases": [
       "форматирование даты",
@@ -2922,7 +2922,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "форматирование",
-      "en": ""
+      "en": "formatting"
     },
     "aliases": [
       "строка в дату",
@@ -2972,7 +2972,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "перевести время в другой часовой пояс",
@@ -3021,7 +3021,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "объединить дату и время",
@@ -3071,7 +3071,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "метка времени в дату",
@@ -3123,7 +3123,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "номер дня недели с единицы",
@@ -3169,7 +3169,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "заменить поле в дате",
@@ -3221,7 +3221,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "дата в секунды",
@@ -3270,7 +3270,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "дата в структуру времени",
@@ -3319,7 +3319,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "метка времени в utc-дату",
@@ -3371,7 +3371,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "методы datetime",
-      "en": ""
+      "en": "datetime methods"
     },
     "aliases": [
       "день недели числом",
@@ -3422,7 +3422,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "базовый",
-      "en": ""
+      "en": "basics"
     },
     "aliases": [
       "перечисление",
@@ -3473,7 +3473,7 @@
     "section": "Модуль concurrent.futures",
     "subcat": {
       "ru": "пул задач",
-      "en": ""
+      "en": "task pool"
     },
     "aliases": [
       "отправить задачу в пул",
@@ -3579,7 +3579,7 @@
     "section": "Файлы и I_O",
     "subcat": {
       "ru": "параметры open()",
-      "en": ""
+      "en": "open() parameters"
     },
     "aliases": [
       "построчная запись в файл",
@@ -3627,7 +3627,7 @@
     "section": "Файлы и I_O",
     "subcat": {
       "ru": "параметры open()",
-      "en": ""
+      "en": "open() parameters"
     },
     "aliases": [
       "ошибка кодировки при чтении файла",
@@ -3675,7 +3675,7 @@
     "section": "Файлы и I_O",
     "subcat": {
       "ru": "буфер",
-      "en": ""
+      "en": "buffer"
     },
     "aliases": [
       "сбросить буфер записи",
@@ -3729,7 +3729,7 @@
     "section": "Файлы и I_O",
     "subcat": {
       "ru": "позиция в файле",
-      "en": ""
+      "en": "file position"
     },
     "aliases": [
       "позиция курсора в файле",
@@ -3779,7 +3779,7 @@
     "section": "Файлы и I_O",
     "subcat": {
       "ru": "изменение размера",
-      "en": ""
+      "en": "resizing"
     },
     "aliases": [
       "обрезать файл",
@@ -3829,7 +3829,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
-      "en": ""
+      "en": "flags"
     },
     "aliases": [
       "битовые операции с флагами",
@@ -3884,7 +3884,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "кэширование",
-      "en": ""
+      "en": "caching"
     },
     "aliases": [
       "кешируемое свойство",
@@ -3938,7 +3938,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "частичное",
-      "en": ""
+      "en": "partial"
     },
     "aliases": [
       "частичное применение функции",
@@ -3996,7 +3996,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "сворачивание",
-      "en": ""
+      "en": "folding"
     },
     "aliases": [
       "свёртка последовательности",
@@ -4044,7 +4044,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "диспетчеризация",
-      "en": ""
+      "en": "dispatch"
     },
     "aliases": [
       "перегрузка функции по типу аргумента",
@@ -4099,7 +4099,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "автоматические операторы сравнения",
@@ -4152,7 +4152,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "декораторы",
-      "en": ""
+      "en": "decorators"
     },
     "aliases": [
       "сохранить имя и документацию функции",
@@ -4190,7 +4190,7 @@
     "id": "grade-buckets-range-lookups",
     "title": {
       "ru": "Поиск по диапазонам через bisect()",
-      "en": ""
+      "en": "Range lookups with bisect()"
     },
     "kind": "term",
     "summary": {
@@ -4208,7 +4208,7 @@
     "section": "Модуль bisect",
     "subcat": {
       "ru": "применение",
-      "en": ""
+      "en": "usage"
     },
     "aliases": [
       "Grade buckets / range lookups",
@@ -4260,7 +4260,7 @@
     "section": "Модуль hashlib",
     "subcat": {
       "ru": "хеширование",
-      "en": ""
+      "en": "hashing"
     },
     "aliases": [
       "контрольная сумма файла",
@@ -4311,7 +4311,7 @@
     "section": "Модуль hashlib",
     "subcat": {
       "ru": "хеширование",
-      "en": ""
+      "en": "hashing"
     },
     "aliases": [
       "криптостойкий хеш",
@@ -4367,7 +4367,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "превратить список в кучу",
@@ -4418,7 +4418,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "добавить элемент в кучу",
@@ -4470,7 +4470,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "извлечь минимум из кучи",
@@ -4522,7 +4522,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "заменить минимум кучи новым элементом",
@@ -4573,7 +4573,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "операции",
-      "en": ""
+      "en": "operations"
     },
     "aliases": [
       "вставить в кучу и сразу извлечь минимум",
@@ -4623,7 +4623,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "выборка",
-      "en": ""
+      "en": "selection"
     },
     "aliases": [
       "наибольшие элементы списка",
@@ -4674,7 +4674,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "выборка",
-      "en": ""
+      "en": "selection"
     },
     "aliases": [
       "наименьшие элементы списка",
@@ -4724,7 +4724,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "базовый",
-      "en": ""
+      "en": "basics"
     },
     "aliases": [
       "смешанные перечисления с числом и строкой",
@@ -4779,7 +4779,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "байты",
-      "en": ""
+      "en": "bytes"
     },
     "aliases": [
       "файл из байтов в памяти",
@@ -4830,7 +4830,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "строки",
-      "en": ""
+      "en": "strings"
     },
     "aliases": [
       "файл в памяти",
@@ -4882,7 +4882,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "обёртка",
-      "en": ""
+      "en": "wrapper"
     },
     "aliases": [
       "обернуть байтовый поток в текстовый",
@@ -4934,7 +4934,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "обработчики",
-      "en": ""
+      "en": "handlers"
     },
     "aliases": [
       "записывать логи в файл",
@@ -4981,7 +4981,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "форматирование",
-      "en": ""
+      "en": "formatting"
     },
     "aliases": [
       "формат строки лога",
@@ -5031,7 +5031,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "обработчики",
-      "en": ""
+      "en": "handlers"
     },
     "aliases": [
       "обработчик логов",
@@ -5077,7 +5077,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "обработчики",
-      "en": ""
+      "en": "handlers"
     },
     "aliases": [
       "вывод логов в консоль",
@@ -5126,7 +5126,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "настройка",
-      "en": ""
+      "en": "configuration"
     },
     "aliases": [
       "настроить логирование",
@@ -5177,7 +5177,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
-      "en": ""
+      "en": "levels"
     },
     "aliases": [
       "отладочное сообщение в лог",
@@ -5225,7 +5225,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
-      "en": ""
+      "en": "levels"
     },
     "aliases": [
       "записать ошибку в лог",
@@ -5274,7 +5274,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "настройка",
-      "en": ""
+      "en": "configuration"
     },
     "aliases": [
       "создать логгер",
@@ -5325,7 +5325,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
-      "en": ""
+      "en": "levels"
     },
     "aliases": [
       "информационное сообщение в лог",
@@ -5373,7 +5373,7 @@
     "section": "Модуль logging",
     "subcat": {
       "ru": "уровни",
-      "en": ""
+      "en": "levels"
     },
     "aliases": [
       "предупреждение в лог",
@@ -5422,7 +5422,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "арккосинус",
@@ -5471,7 +5471,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "арксинус",
@@ -5520,7 +5520,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "арктангенс",
@@ -5569,7 +5569,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "угол по координатам",
@@ -5618,7 +5618,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "округление",
-      "en": ""
+      "en": "rounding"
     },
     "aliases": [
       "округление вверх",
@@ -5667,7 +5667,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
-      "en": ""
+      "en": "combinatorics"
     },
     "aliases": [
       "число сочетаний",
@@ -5716,7 +5716,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "косинус",
@@ -5765,7 +5765,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "перевод радиан в градусы",
@@ -5817,7 +5817,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "число эйлера",
@@ -5865,7 +5865,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "экспонента",
@@ -5913,7 +5913,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "абсолютное",
-      "en": ""
+      "en": "absolute value"
     },
     "aliases": [
       "модуль числа",
@@ -5961,7 +5961,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
-      "en": ""
+      "en": "combinatorics"
     },
     "aliases": [
       "факториал",
@@ -6009,7 +6009,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "округление",
-      "en": ""
+      "en": "rounding"
     },
     "aliases": [
       "округление вниз",
@@ -6058,7 +6058,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "агрегация",
-      "en": ""
+      "en": "aggregation"
     },
     "aliases": [
       "точная сумма дробных чисел",
@@ -6115,7 +6115,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
-      "en": ""
+      "en": "combinatorics"
     },
     "aliases": [
       "наибольший общий делитель",
@@ -6163,7 +6163,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "геометрия",
-      "en": ""
+      "en": "geometry"
     },
     "aliases": [
       "гипотенуза",
@@ -6212,7 +6212,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "бесконечность",
@@ -6260,7 +6260,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "сравнение чисел с погрешностью",
@@ -6309,7 +6309,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "проверка",
-      "en": ""
+      "en": "checking"
     },
     "aliases": [
       "проверка на конечность числа",
@@ -6357,7 +6357,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "проверка",
-      "en": ""
+      "en": "checking"
     },
     "aliases": [
       "проверка на бесконечность",
@@ -6406,7 +6406,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "проверка",
-      "en": ""
+      "en": "checking"
     },
     "aliases": [
       "проверка на не-число",
@@ -6455,7 +6455,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
-      "en": ""
+      "en": "combinatorics"
     },
     "aliases": [
       "наименьшее общее кратное",
@@ -6503,7 +6503,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "логарифмы",
-      "en": ""
+      "en": "logarithms"
     },
     "aliases": [
       "логарифм",
@@ -6553,7 +6553,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "логарифмы",
-      "en": ""
+      "en": "logarithms"
     },
     "aliases": [
       "десятичный логарифм",
@@ -6601,7 +6601,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "логарифмы",
-      "en": ""
+      "en": "logarithms"
     },
     "aliases": [
       "двоичный логарифм",
@@ -6649,7 +6649,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "не число",
@@ -6697,7 +6697,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "комбинаторика",
-      "en": ""
+      "en": "combinatorics"
     },
     "aliases": [
       "число размещений",
@@ -6745,7 +6745,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "число пи",
@@ -6794,7 +6794,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "степень/корень",
-      "en": ""
+      "en": "power/root"
     },
     "aliases": [
       "возведение в степень",
@@ -6842,7 +6842,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "агрегация",
-      "en": ""
+      "en": "aggregation"
     },
     "aliases": [
       "произведение элементов списка",
@@ -6890,7 +6890,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "перевод градусов в радианы",
@@ -6938,7 +6938,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "синус",
@@ -6988,7 +6988,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "степень/корень",
-      "en": ""
+      "en": "power/root"
     },
     "aliases": [
       "квадратный корень",
@@ -7037,7 +7037,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "тригонометрия",
-      "en": ""
+      "en": "trigonometry"
     },
     "aliases": [
       "тангенс",
@@ -7086,7 +7086,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "два пи",
@@ -7133,7 +7133,7 @@
     "section": "Модуль math",
     "subcat": {
       "ru": "округление",
-      "en": ""
+      "en": "rounding"
     },
     "aliases": [
       "отбросить дробную часть",
@@ -7182,7 +7182,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "переменные окружения",
-      "en": ""
+      "en": "environment variables"
     },
     "aliases": [],
     "keywords": [
@@ -7227,7 +7227,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "файловая система",
-      "en": ""
+      "en": "file system"
     },
     "aliases": [],
     "keywords": [
@@ -7279,7 +7279,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "окружение",
-      "en": ""
+      "en": "environment"
     },
     "aliases": [],
     "keywords": [],
@@ -7323,7 +7323,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "процесс",
-      "en": ""
+      "en": "process"
     },
     "aliases": [],
     "keywords": [],
@@ -7368,7 +7368,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "директории",
-      "en": ""
+      "en": "directories"
     },
     "aliases": [],
     "keywords": [],
@@ -7511,7 +7511,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — удаление",
-      "en": ""
+      "en": "os — removal"
     },
     "aliases": [],
     "keywords": [
@@ -7564,7 +7564,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [],
     "keywords": [
@@ -7612,7 +7612,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "обход",
-      "en": ""
+      "en": "traversal"
     },
     "aliases": [],
     "keywords": [],
@@ -7660,7 +7660,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "создание",
-      "en": ""
+      "en": "creation"
     },
     "aliases": [
       "объект пути",
@@ -7709,7 +7709,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "создание",
-      "en": ""
+      "en": "creation"
     },
     "aliases": [
       "домашняя папка",
@@ -7757,7 +7757,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "создание",
-      "en": ""
+      "en": "creation"
     },
     "aliases": [
       "текущая рабочая папка",
@@ -7806,7 +7806,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "метаданные",
-      "en": ""
+      "en": "metadata"
     },
     "aliases": [
       "размер файла",
@@ -7861,7 +7861,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "выборка",
-      "en": ""
+      "en": "selection"
     },
     "aliases": [
       "случайный элемент списка",
@@ -7913,7 +7913,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "выборка",
-      "en": ""
+      "en": "selection"
     },
     "aliases": [
       "случайная выборка с повторениями",
@@ -7964,7 +7964,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "гауссово распределение",
@@ -8014,7 +8014,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "целые",
-      "en": ""
+      "en": "integers"
     },
     "aliases": [
       "случайное целое число",
@@ -8065,7 +8065,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "вещественные",
-      "en": ""
+      "en": "floats"
     },
     "aliases": [
       "случайное число от 0 до 1",
@@ -8116,7 +8116,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "целые",
-      "en": ""
+      "en": "integers"
     },
     "aliases": [
       "случайное число с шагом",
@@ -8166,7 +8166,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "выборка",
-      "en": ""
+      "en": "selection"
     },
     "aliases": [
       "случайная выборка без повторений",
@@ -8217,7 +8217,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "воспроизводимость",
-      "en": ""
+      "en": "reproducibility"
     },
     "aliases": [
       "зерно генератора случайных чисел",
@@ -8267,7 +8267,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "перемешивание",
-      "en": ""
+      "en": "shuffling"
     },
     "aliases": [
       "перемешать список",
@@ -8323,7 +8323,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "класс random",
-      "en": ""
+      "en": "Random class"
     },
     "aliases": [
       "криптостойкий генератор случайных чисел",
@@ -8375,7 +8375,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "вещественные",
-      "en": ""
+      "en": "floats"
     },
     "aliases": [
       "случайное число в диапазоне",
@@ -8424,7 +8424,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
-      "en": ""
+      "en": "groups"
     },
     "aliases": [
       "именованная группа",
@@ -8475,7 +8475,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "компиляция",
-      "en": ""
+      "en": "compilation"
     },
     "aliases": [
       "скомпилировать регулярное выражение",
@@ -8525,7 +8525,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "экранирование",
-      "en": ""
+      "en": "escaping"
     },
     "aliases": [
       "экранировать спецсимволы в шаблоне",
@@ -8578,7 +8578,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
-      "en": ""
+      "en": "search"
     },
     "aliases": [
       "найти все совпадения",
@@ -8625,7 +8625,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
-      "en": ""
+      "en": "search"
     },
     "aliases": [
       "итератор по совпадениям",
@@ -8673,7 +8673,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
-      "en": ""
+      "en": "search"
     },
     "aliases": [
       "совпадение всей строки целиком",
@@ -8720,7 +8720,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
-      "en": ""
+      "en": "groups"
     },
     "aliases": [
       "получить текст совпадения",
@@ -8772,7 +8772,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
-      "en": ""
+      "en": "groups"
     },
     "aliases": [
       "кортеж всех групп",
@@ -8824,7 +8824,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
-      "en": ""
+      "en": "groups"
     },
     "aliases": [
       "словарь именованных групп",
@@ -8873,7 +8873,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
-      "en": ""
+      "en": "search"
     },
     "aliases": [
       "совпадение с начала строки",
@@ -8920,7 +8920,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "поиск",
-      "en": ""
+      "en": "search"
     },
     "aliases": [
       "найти первое совпадение",
@@ -8968,7 +8968,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "разбивка",
-      "en": ""
+      "en": "splitting"
     },
     "aliases": [
       "разбить строку по шаблону",
@@ -9015,7 +9015,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "буквы",
-      "en": ""
+      "en": "letters"
     },
     "aliases": [
       "все латинские буквы",
@@ -9064,7 +9064,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "буквы",
-      "en": ""
+      "en": "letters"
     },
     "aliases": [
       "строчные латинские буквы",
@@ -9112,7 +9112,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "функции",
-      "en": ""
+      "en": "functions"
     },
     "aliases": [
       "каждое слово с заглавной буквы",
@@ -9159,7 +9159,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "цифры",
-      "en": ""
+      "en": "digits"
     },
     "aliases": [
       "все цифры от нуля до девяти",
@@ -9207,7 +9207,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "цифры",
-      "en": ""
+      "en": "digits"
     },
     "aliases": [
       "шестнадцатеричные цифры",
@@ -9255,7 +9255,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "спецсимволы",
-      "en": ""
+      "en": "special characters"
     },
     "aliases": [
       "все печатаемые символы",
@@ -9303,7 +9303,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "спецсимволы",
-      "en": ""
+      "en": "special characters"
     },
     "aliases": [
       "знаки препинания",
@@ -9351,7 +9351,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "шаблоны",
-      "en": ""
+      "en": "templates"
     },
     "aliases": [
       "шаблон строки с подстановкой",
@@ -9402,7 +9402,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "спецсимволы",
-      "en": ""
+      "en": "special characters"
     },
     "aliases": [
       "пробельные символы",
@@ -9450,7 +9450,7 @@
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "константы",
-      "en": ""
+      "en": "constants"
     },
     "aliases": [
       "перехватить вывод дочернего процесса",
@@ -9499,7 +9499,7 @@
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "запуск процессов",
-      "en": ""
+      "en": "running processes"
     },
     "aliases": [
       "запуск процесса с ручным управлением",
@@ -9554,7 +9554,7 @@
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "запуск процессов",
-      "en": ""
+      "en": "running processes"
     },
     "aliases": [
       "получить вывод команды в переменную",
@@ -9607,7 +9607,7 @@
     "section": "Модуль subprocess",
     "subcat": {
       "ru": "запуск процессов",
-      "en": ""
+      "en": "running processes"
     },
     "aliases": [
       "запустить внешнюю программу",
@@ -9661,7 +9661,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "аргументы",
-      "en": ""
+      "en": "arguments"
     },
     "aliases": [
       "аргументы командной строки",
@@ -9711,7 +9711,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "управление",
-      "en": ""
+      "en": "control"
     },
     "aliases": [
       "завершить программу",
@@ -9769,7 +9769,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "рекурсия",
-      "en": ""
+      "en": "recursion"
     },
     "aliases": [
       "узнать предел рекурсии",
@@ -9819,7 +9819,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "рекурсия",
-      "en": ""
+      "en": "recursion"
     },
     "aliases": [
       "увеличить лимит рекурсии",
@@ -9865,7 +9865,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "память",
-      "en": ""
+      "en": "memory"
     },
     "aliases": [
       "размер объекта в памяти",
@@ -9913,7 +9913,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "строки",
-      "en": ""
+      "en": "strings"
     },
     "aliases": [
       "интернирование строк",
@@ -9963,7 +9963,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "модули",
-      "en": ""
+      "en": "modules"
     },
     "aliases": [
       "загруженные модули",
@@ -10012,7 +10012,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "модули",
-      "en": ""
+      "en": "modules"
     },
     "aliases": [
       "где питон ищет модули",
@@ -10060,7 +10060,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "потоки",
-      "en": ""
+      "en": "streams"
     },
     "aliases": [
       "стандартные потоки ввода и вывода",
@@ -10113,7 +10113,7 @@
     "section": "Модуль sys",
     "subcat": {
       "ru": "информация",
-      "en": ""
+      "en": "information"
     },
     "aliases": [
       "версия питона",
@@ -10165,7 +10165,7 @@
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
-      "en": ""
+      "en": "synchronization"
     },
     "aliases": [
       "сигнал между потоками",
@@ -10219,7 +10219,7 @@
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
-      "en": ""
+      "en": "synchronization"
     },
     "aliases": [
       "мьютекс",
@@ -10272,7 +10272,7 @@
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
-      "en": ""
+      "en": "synchronization"
     },
     "aliases": [
       "рекурсивный мьютекс",
@@ -10321,7 +10321,7 @@
     "section": "Модуль threading",
     "subcat": {
       "ru": "синхронизация",
-      "en": ""
+      "en": "synchronization"
     },
     "aliases": [
       "семафор",
@@ -10372,7 +10372,7 @@
     "section": "Модуль threading",
     "subcat": {
       "ru": "потоки",
-      "en": ""
+      "en": "threads"
     },
     "aliases": [
       "запустить поток",
@@ -10405,7 +10405,7 @@
     "id": "time-объект",
     "title": {
       "ru": "time объект",
-      "en": ""
+      "en": "time object"
     },
     "kind": "term",
     "summary": {
@@ -10579,7 +10579,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "проверка",
-      "en": ""
+      "en": "checking"
     },
     "aliases": [
       "запретить дубликаты значений перечисления",
@@ -10631,7 +10631,7 @@
     "section": "Модуль unittest",
     "subcat": {
       "ru": "тестирование",
-      "en": ""
+      "en": "testing"
     },
     "aliases": [
       "класс с тестами",
@@ -10682,7 +10682,7 @@
     "section": "Модуль unittest",
     "subcat": {
       "ru": "проверки",
-      "en": ""
+      "en": "checks"
     },
     "aliases": [
       "проверить равенство в тесте",
@@ -10732,7 +10732,7 @@
     "section": "Модуль unittest",
     "subcat": {
       "ru": "проверки",
-      "en": ""
+      "en": "checks"
     },
     "aliases": [
       "проверить, что код бросает исключение",
@@ -10784,7 +10784,7 @@
     "section": "Модуль unittest",
     "subcat": {
       "ru": "моки",
-      "en": ""
+      "en": "mocks"
     },
     "aliases": [
       "подменить функцию в тесте",
@@ -10838,7 +10838,7 @@
     "section": "Модуль unittest",
     "subcat": {
       "ru": "фикстуры",
-      "en": ""
+      "en": "fixtures"
     },
     "aliases": [
       "подготовка перед каждым тестом",
@@ -10887,7 +10887,7 @@
     "section": "Модуль unittest",
     "subcat": {
       "ru": "фикстуры",
-      "en": ""
+      "en": "fixtures"
     },
     "aliases": [
       "очистка после каждого теста",
@@ -10917,7 +10917,7 @@
     "id": "бинарный-поиск-через-bisect",
     "title": {
       "ru": "Бинарный поиск через bisect",
-      "en": ""
+      "en": "Binary search with bisect"
     },
     "kind": "term",
     "summary": {
@@ -10935,7 +10935,7 @@
     "section": "Модуль bisect",
     "subcat": {
       "ru": "применение",
-      "en": ""
+      "en": "usage"
     },
     "aliases": [
       "проверить наличие элемента в отсортированном списке",
@@ -10967,7 +10967,7 @@
     "id": "буферизация",
     "title": {
       "ru": "Буферизация",
-      "en": ""
+      "en": "Buffering"
     },
     "kind": "term",
     "summary": {
@@ -10985,7 +10985,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "буферизация",
-      "en": ""
+      "en": "buffering"
     },
     "aliases": [
       "почему данные не записались в файл сразу",
@@ -11019,7 +11019,7 @@
     "id": "группы-в-паттернах",
     "title": {
       "ru": "Группы в паттернах",
-      "en": ""
+      "en": "Groups in patterns"
     },
     "kind": "term",
     "summary": {
@@ -11037,7 +11037,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "группы",
-      "en": ""
+      "en": "groups"
     },
     "aliases": [
       "скобки в регулярном выражении",
@@ -11068,7 +11068,7 @@
     "id": "дни-между-датами",
     "title": {
       "ru": "Дни между датами",
-      "en": ""
+      "en": "Days between dates"
     },
     "kind": "term",
     "summary": {
@@ -11119,7 +11119,7 @@
     "id": "итерация-и-сравнение-enum",
     "title": {
       "ru": "Итерация и сравнение Enum",
-      "en": ""
+      "en": "Enum iteration and comparison"
     },
     "kind": "term",
     "summary": {
@@ -11137,7 +11137,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "базовый",
-      "en": ""
+      "en": "basics"
     },
     "aliases": [
       "перебрать все элементы перечисления",
@@ -11170,7 +11170,7 @@
     "id": "коды-формата-datetime",
     "title": {
       "ru": "Коды формата datetime",
-      "en": ""
+      "en": "datetime format codes"
     },
     "kind": "term",
     "summary": {
@@ -11188,7 +11188,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "форматирование",
-      "en": ""
+      "en": "formatting"
     },
     "aliases": [
       "шаблоны формата даты",
@@ -11219,7 +11219,7 @@
     "id": "куча-как-приоритетная-очередь",
     "title": {
       "ru": "Куча как приоритетная очередь",
-      "en": ""
+      "en": "Heap as a priority queue"
     },
     "kind": "term",
     "summary": {
@@ -11237,7 +11237,7 @@
     "section": "Модуль heapq",
     "subcat": {
       "ru": "применение",
-      "en": ""
+      "en": "usage"
     },
     "aliases": [
       "очередь с приоритетами",
@@ -11271,7 +11271,7 @@
     "id": "ловушки-копирования",
     "title": {
       "ru": "Ловушки копирования",
-      "en": ""
+      "en": "Copying pitfalls"
     },
     "kind": "term",
     "summary": {
@@ -11289,7 +11289,7 @@
     "section": "Модуль copy",
     "subcat": {
       "ru": "ловушки",
-      "en": ""
+      "en": "pitfalls"
     },
     "aliases": [
       "изменение копии меняет оригинал",
@@ -11329,7 +11329,7 @@
     "id": "оператор",
     "title": {
       "ru": "/ оператор",
-      "en": ""
+      "en": "/ operator"
     },
     "kind": "term",
     "summary": {
@@ -11347,7 +11347,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "объединение",
-      "en": ""
+      "en": "union"
     },
     "aliases": [
       "объединение путей",
@@ -11378,7 +11378,7 @@
     "id": "спецсимволы-паттернов",
     "title": {
       "ru": "Спецсимволы паттернов",
-      "en": ""
+      "en": "Pattern special characters"
     },
     "kind": "term",
     "summary": {
@@ -11396,7 +11396,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "паттерны",
-      "en": ""
+      "en": "patterns"
     },
     "aliases": [
       "метасимволы регулярных выражений",
@@ -11426,7 +11426,7 @@
     "id": "флаги-re",
     "title": {
       "ru": "Флаги re",
-      "en": ""
+      "en": "re flags"
     },
     "kind": "term",
     "summary": {
@@ -11444,7 +11444,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "флаги",
-      "en": ""
+      "en": "flags"
     },
     "aliases": [
       "игнорировать регистр при поиске",
@@ -11685,7 +11685,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "дата",
-      "en": ""
+      "en": "date"
     },
     "aliases": [
       "календарная дата",
@@ -11733,7 +11733,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "дата-время",
-      "en": ""
+      "en": "date and time"
     },
     "aliases": [
       "дата и время вместе",
@@ -11779,7 +11779,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "время",
-      "en": ""
+      "en": "time"
     },
     "aliases": [
       "время суток",
@@ -11824,7 +11824,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "часовой пояс",
-      "en": ""
+      "en": "time zone"
     },
     "aliases": [
       "часовой пояс со смещением",
@@ -11870,7 +11870,7 @@
     "section": "Модуль datetime",
     "subcat": {
       "ru": "часовой пояс",
-      "en": ""
+      "en": "time zone"
     },
     "aliases": [
       "базовый класс часового пояса",
@@ -11920,7 +11920,7 @@
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "отступы",
-      "en": ""
+      "en": "indentation"
     },
     "aliases": [
       "убрать общий отступ",
@@ -11967,7 +11967,7 @@
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "отступы",
-      "en": ""
+      "en": "indentation"
     },
     "aliases": [
       "добавить отступ к тексту",
@@ -12015,7 +12015,7 @@
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
-      "en": ""
+      "en": "wrapping"
     },
     "aliases": [
       "разбить текст на строки",
@@ -12062,7 +12062,7 @@
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
-      "en": ""
+      "en": "wrapping"
     },
     "aliases": [
       "текст с переносами одной строкой",
@@ -12109,7 +12109,7 @@
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
-      "en": ""
+      "en": "wrapping"
     },
     "aliases": [
       "обрезать длинный текст",
@@ -12157,7 +12157,7 @@
     "section": "Модуль textwrap",
     "subcat": {
       "ru": "перенос",
-      "en": ""
+      "en": "wrapping"
     },
     "aliases": [
       "настраиваемый переносчик текста",
@@ -12205,7 +12205,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "конвертация",
-      "en": ""
+      "en": "conversion"
     },
     "aliases": [
       "датакласс в словарь",
@@ -12256,7 +12256,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "конвертация",
-      "en": ""
+      "en": "conversion"
     },
     "aliases": [
       "датакласс в кортеж",
@@ -12305,7 +12305,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "интроспекция",
-      "en": ""
+      "en": "introspection"
     },
     "aliases": [
       "проверить, датакласс ли объект",
@@ -12352,7 +12352,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "фабрика",
-      "en": ""
+      "en": "factory"
     },
     "aliases": [
       "создать датакласс динамически",
@@ -12405,7 +12405,7 @@
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "поля",
-      "en": ""
+      "en": "fields"
     },
     "aliases": [
       "поле датакласса только для инициализации",
@@ -12454,7 +12454,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "замена",
-      "en": ""
+      "en": "replacement"
     },
     "aliases": [
       "замена по регулярному выражению",
@@ -12502,7 +12502,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "замена",
-      "en": ""
+      "en": "replacement"
     },
     "aliases": [
       "замена с подсчётом",
@@ -12550,7 +12550,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "кеш",
-      "en": ""
+      "en": "cache"
     },
     "aliases": [],
     "keywords": [],
@@ -12593,7 +12593,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "объекты",
-      "en": ""
+      "en": "objects"
     },
     "aliases": [
       "скомпилированный шаблон",
@@ -12641,7 +12641,7 @@
     "section": "Модуль re",
     "subcat": {
       "ru": "флаги",
-      "en": ""
+      "en": "flags"
     },
     "aliases": [
       "перечисление флагов регулярок",
@@ -12688,7 +12688,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "виды enum",
-      "en": ""
+      "en": "enum kinds"
     },
     "aliases": [
       "числовое перечисление",
@@ -12736,7 +12736,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "виды enum",
-      "en": ""
+      "en": "enum kinds"
     },
     "aliases": [
       "строковое перечисление",
@@ -12783,7 +12783,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
-      "en": ""
+      "en": "flags"
     },
     "aliases": [
       "перечисление битовых флагов",
@@ -12832,7 +12832,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
-      "en": ""
+      "en": "flags"
     },
     "aliases": [
       "флаги, которые ведут себя как числа",
@@ -12879,7 +12879,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "виды enum",
-      "en": ""
+      "en": "enum kinds"
     },
     "aliases": [],
     "keywords": [],
@@ -12924,7 +12924,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "члены",
-      "en": ""
+      "en": "members"
     },
     "aliases": [
       "сделать значение членом перечисления",
@@ -12970,7 +12970,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "члены",
-      "en": ""
+      "en": "members"
     },
     "aliases": [
       "исключить значение из перечисления",
@@ -13018,7 +13018,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "проверки",
-      "en": ""
+      "en": "checks"
     },
     "aliases": [
       "проверить ограничения перечисления",
@@ -13066,7 +13066,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "проверки",
-      "en": ""
+      "en": "checks"
     },
     "aliases": [],
     "keywords": [],
@@ -13112,7 +13112,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "флаги",
-      "en": ""
+      "en": "flags"
     },
     "aliases": [],
     "keywords": [],
@@ -13158,7 +13158,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
-      "en": ""
+      "en": "roots/powers"
     },
     "aliases": [
       "целочисленный квадратный корень",
@@ -13210,7 +13210,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
-      "en": ""
+      "en": "roots/powers"
     },
     "aliases": [
       "кубический корень",
@@ -13257,7 +13257,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
-      "en": ""
+      "en": "roots/powers"
     },
     "aliases": [
       "двойка в степени",
@@ -13304,7 +13304,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
-      "en": ""
+      "en": "roots/powers"
     },
     "aliases": [
       "экспонента минус единица",
@@ -13351,7 +13351,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "корни/степени",
-      "en": ""
+      "en": "roots/powers"
     },
     "aliases": [
       "логарифм от 1 плюс x",
@@ -13400,7 +13400,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
-      "en": ""
+      "en": "hyperbolic"
     },
     "aliases": [
       "гиперболический синус",
@@ -13447,7 +13447,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
-      "en": ""
+      "en": "hyperbolic"
     },
     "aliases": [
       "гиперболический косинус",
@@ -13494,7 +13494,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
-      "en": ""
+      "en": "hyperbolic"
     },
     "aliases": [
       "гиперболический тангенс",
@@ -13541,7 +13541,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
-      "en": ""
+      "en": "hyperbolic"
     },
     "aliases": [
       "ареасинус",
@@ -13588,7 +13588,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
-      "en": ""
+      "en": "hyperbolic"
     },
     "aliases": [
       "ареакосинус",
@@ -13637,7 +13637,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "гиперболические",
-      "en": ""
+      "en": "hyperbolic"
     },
     "aliases": [
       "ареатангенс",
@@ -13686,7 +13686,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
-      "en": ""
+      "en": "special functions"
     },
     "aliases": [
       "функция ошибок",
@@ -13733,7 +13733,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
-      "en": ""
+      "en": "special functions"
     },
     "aliases": [
       "дополнительная функция ошибок",
@@ -13781,7 +13781,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
-      "en": ""
+      "en": "special functions"
     },
     "aliases": [
       "гамма-функция",
@@ -13830,7 +13830,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "спецфункции",
-      "en": ""
+      "en": "special functions"
     },
     "aliases": [
       "логарифм гамма-функции",
@@ -13879,7 +13879,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "остаток",
-      "en": ""
+      "en": "remainder"
     },
     "aliases": [
       "остаток от деления дробных чисел",
@@ -13929,7 +13929,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "остаток",
-      "en": ""
+      "en": "remainder"
     },
     "aliases": [
       "остаток по стандарту IEEE 754",
@@ -13978,7 +13978,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
-      "en": ""
+      "en": "representation"
     },
     "aliases": [
       "скопировать знак числа",
@@ -14025,7 +14025,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
-      "en": ""
+      "en": "representation"
     },
     "aliases": [
       "мантисса и порядок числа",
@@ -14072,7 +14072,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
-      "en": ""
+      "en": "representation"
     },
     "aliases": [
       "дробная часть числа",
@@ -14119,7 +14119,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
-      "en": ""
+      "en": "representation"
     },
     "aliases": [
       "собрать число из мантиссы и порядка",
@@ -14166,7 +14166,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
-      "en": ""
+      "en": "representation"
     },
     "aliases": [
       "размер младшего разряда",
@@ -14213,7 +14213,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "представление",
-      "en": ""
+      "en": "representation"
     },
     "aliases": [
       "следующее число с плавающей точкой",
@@ -14260,7 +14260,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "геометрия",
-      "en": ""
+      "en": "geometry"
     },
     "aliases": [
       "расстояние между точками",
@@ -14310,7 +14310,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "произведение",
-      "en": ""
+      "en": "product"
     },
     "aliases": [
       "скалярное произведение векторов",
@@ -14360,7 +14360,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "произведение",
-      "en": ""
+      "en": "product"
     },
     "aliases": [
       "слитное умножение-сложение",
@@ -14414,7 +14414,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "перенаправление",
-      "en": ""
+      "en": "redirection"
     },
     "aliases": [
       "перенаправить вывод в файл",
@@ -14461,7 +14461,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "перенаправление",
-      "en": ""
+      "en": "redirection"
     },
     "aliases": [
       "перенаправить поток ошибок",
@@ -14507,7 +14507,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
-      "en": ""
+      "en": "managers"
     },
     "aliases": [
       "временно сменить рабочий каталог",
@@ -14558,7 +14558,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "протоколы",
-      "en": ""
+      "en": "protocols"
     },
     "aliases": [
       "протокол контекстного менеджера",
@@ -14605,7 +14605,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "протоколы",
-      "en": ""
+      "en": "protocols"
     },
     "aliases": [
       "протокол асинхронного менеджера контекста",
@@ -14651,7 +14651,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
-      "en": ""
+      "en": "managers"
     },
     "aliases": [
       "менеджер контекста как декоратор",
@@ -14699,7 +14699,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
-      "en": ""
+      "en": "managers"
     },
     "aliases": [
       "асинхронный стек контекстных менеджеров",
@@ -14750,7 +14750,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
-      "en": ""
+      "en": "managers"
     },
     "aliases": [
       "создать асинхронный контекстный менеджер",
@@ -14796,7 +14796,7 @@
     "section": "Модуль contextlib",
     "subcat": {
       "ru": "менеджеры",
-      "en": ""
+      "en": "managers"
     },
     "aliases": [
       "закрыть асинхронный генератор",
@@ -14845,7 +14845,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
-      "en": ""
+      "en": "abstract classes"
     },
     "aliases": [
       "абстрактный базовый класс",
@@ -14895,7 +14895,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
-      "en": ""
+      "en": "abstract classes"
     },
     "aliases": [
       "метакласс абстрактного класса",
@@ -14946,7 +14946,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
-      "en": ""
+      "en": "abstract classes"
     },
     "aliases": [
       "объявить абстрактный метод",
@@ -14996,7 +14996,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
-      "en": ""
+      "en": "abstract classes"
     },
     "aliases": [
       "абстрактное свойство",
@@ -15043,7 +15043,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
-      "en": ""
+      "en": "abstract classes"
     },
     "aliases": [
       "абстрактный метод класса",
@@ -15097,7 +15097,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "абстрактные классы",
-      "en": ""
+      "en": "abstract classes"
     },
     "aliases": [
       "абстрактный статический метод",
@@ -15144,7 +15144,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "abc-служебные",
-      "en": ""
+      "en": "abc utilities"
     },
     "aliases": [],
     "keywords": [],
@@ -15187,7 +15187,7 @@
     "section": "Модуль abc",
     "subcat": {
       "ru": "abc-служебные",
-      "en": ""
+      "en": "abc utilities"
     },
     "aliases": [],
     "keywords": [],
@@ -15231,7 +15231,7 @@
     "section": "Модуль string",
     "subcat": {
       "ru": "форматирование",
-      "en": ""
+      "en": "formatting"
     },
     "aliases": [
       "класс форматирования строк",
@@ -15280,7 +15280,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "проверка на итерируемость",
@@ -15329,7 +15329,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "проверка на итератор",
@@ -15380,7 +15380,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "можно ли перебрать в обратном порядке",
@@ -15430,7 +15430,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол генератора",
@@ -15477,7 +15477,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "есть ли длина у объекта",
@@ -15526,7 +15526,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол контейнера",
@@ -15575,7 +15575,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол коллекции",
@@ -15625,7 +15625,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "хешируемый объект",
@@ -15676,7 +15676,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "последовательность с индексами",
@@ -15726,7 +15726,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "изменяемый список",
@@ -15776,7 +15776,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "проверка на словарь",
@@ -15826,7 +15826,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "изменяемый словарь",
@@ -15876,7 +15876,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "изменяемое множество",
@@ -15926,7 +15926,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "представление ключей словаря",
@@ -15976,7 +15976,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "представление значений словаря",
@@ -16030,7 +16030,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "представление пар ключ-значение",
@@ -16080,7 +16080,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "базовый класс представлений словаря",
@@ -16130,7 +16130,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол буфера",
@@ -16179,7 +16179,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [],
     "keywords": [
@@ -16230,7 +16230,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "ожидаемый объект",
@@ -16277,7 +16277,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол корутины",
@@ -16325,7 +16325,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол асинхронной итерации",
@@ -16372,7 +16372,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол асинхронного итератора",
@@ -16420,7 +16420,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "collections.abc — протоколы",
-      "en": ""
+      "en": "collections.abc — protocols"
     },
     "aliases": [
       "протокол асинхронного генератора",
@@ -16467,7 +16467,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "обёртки типов",
-      "en": ""
+      "en": "type wrappers"
     },
     "aliases": [
       "свой класс на основе словаря",
@@ -16512,7 +16512,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "обёртки типов",
-      "en": ""
+      "en": "type wrappers"
     },
     "aliases": [
       "свой класс на основе списка",
@@ -16557,7 +16557,7 @@
     "section": "Модуль collections",
     "subcat": {
       "ru": "обёртки типов",
-      "en": ""
+      "en": "type wrappers"
     },
     "aliases": [
       "свой класс на основе строки",
@@ -16604,7 +16604,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
-      "en": ""
+      "en": "abstract bases"
     },
     "aliases": [
       "проверить что объект файлоподобный",
@@ -16654,7 +16654,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
-      "en": ""
+      "en": "abstract bases"
     },
     "aliases": [],
     "keywords": [],
@@ -16699,7 +16699,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
-      "en": ""
+      "en": "abstract bases"
     },
     "aliases": [],
     "keywords": [],
@@ -16746,7 +16746,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "абстрактные базы",
-      "en": ""
+      "en": "abstract bases"
     },
     "aliases": [
       "проверить что поток текстовый а не байтовый",
@@ -16794,7 +16794,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
-      "en": ""
+      "en": "binary streams"
     },
     "aliases": [
       "чтение файла без буферизации",
@@ -16848,7 +16848,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
-      "en": ""
+      "en": "binary streams"
     },
     "aliases": [
       "буферизованное чтение бинарного файла",
@@ -16900,7 +16900,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
-      "en": ""
+      "en": "binary streams"
     },
     "aliases": [
       "буферизованная запись байтов в файл",
@@ -16948,7 +16948,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
-      "en": ""
+      "en": "binary streams"
     },
     "aliases": [],
     "keywords": [],
@@ -16997,7 +16997,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "бинарные потоки",
-      "en": ""
+      "en": "binary streams"
     },
     "aliases": [],
     "keywords": [],
@@ -17047,7 +17047,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "служебные",
-      "en": ""
+      "en": "utilities"
     },
     "aliases": [],
     "keywords": [],
@@ -17089,7 +17089,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "служебные",
-      "en": ""
+      "en": "utilities"
     },
     "aliases": [
       "кодировка по умолчанию для текстовых файлов",
@@ -17137,7 +17137,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "служебные",
-      "en": ""
+      "en": "utilities"
     },
     "aliases": [],
     "keywords": [],
@@ -17185,7 +17185,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "бета-распределение",
@@ -17234,7 +17234,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "биномиальное распределение",
@@ -17284,7 +17284,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "экспоненциальное распределение",
@@ -17333,7 +17333,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "гамма-распределение",
@@ -17382,7 +17382,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "логнормальное распределение",
@@ -17429,7 +17429,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "нормальный закон распределения",
@@ -17477,7 +17477,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "распределение Парето",
@@ -17524,7 +17524,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "треугольное распределение",
@@ -17571,7 +17571,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "распределение фон Мизеса",
@@ -17619,7 +17619,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "распределения",
-      "en": ""
+      "en": "distributions"
     },
     "aliases": [
       "распределение Вейбулла",
@@ -17666,7 +17666,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "биты и байты",
-      "en": ""
+      "en": "bits and bytes"
     },
     "aliases": [
       "случайные биты",
@@ -17714,7 +17714,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "биты и байты",
-      "en": ""
+      "en": "bits and bytes"
     },
     "aliases": [
       "случайные байты",
@@ -17761,7 +17761,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "состояние ГСЧ",
-      "en": ""
+      "en": "RNG state"
     },
     "aliases": [
       "сохранить состояние генератора",
@@ -17808,7 +17808,7 @@
     "section": "Модуль random",
     "subcat": {
       "ru": "состояние ГСЧ",
-      "en": ""
+      "en": "RNG state"
     },
     "aliases": [
       "восстановить состояние генератора",
@@ -17854,7 +17854,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "метакласс",
-      "en": ""
+      "en": "metaclass"
     },
     "aliases": [
       "метакласс перечислений",
@@ -17899,7 +17899,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "метакласс",
-      "en": ""
+      "en": "metaclass"
     },
     "aliases": [],
     "keywords": [],
@@ -17944,7 +17944,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "метакласс",
-      "en": ""
+      "en": "metaclass"
     },
     "aliases": [],
     "keywords": [],
@@ -17986,7 +17986,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
-      "en": ""
+      "en": "globalization"
     },
     "aliases": [],
     "keywords": [],
@@ -18032,7 +18032,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
-      "en": ""
+      "en": "globalization"
     },
     "aliases": [],
     "keywords": [],
@@ -18077,7 +18077,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
-      "en": ""
+      "en": "globalization"
     },
     "aliases": [],
     "keywords": [],
@@ -18122,7 +18122,7 @@
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
-      "en": ""
+      "en": "globalization"
     },
     "aliases": [],
     "keywords": [],
@@ -18259,7 +18259,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "сложение как функция",
@@ -18310,7 +18310,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "вычитание как функция",
@@ -18361,7 +18361,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "умножение как функция",
@@ -18410,7 +18410,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "истинное деление",
@@ -18462,7 +18462,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "целочисленное деление как функция",
@@ -18513,7 +18513,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "остаток от деления как функция",
@@ -18563,7 +18563,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "унарный минус как функция",
@@ -18612,7 +18612,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "унарный плюс",
@@ -18661,7 +18661,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
-      "en": ""
+      "en": "bitwise"
     },
     "aliases": [
       "побитовое И",
@@ -18712,7 +18712,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
-      "en": ""
+      "en": "bitwise"
     },
     "aliases": [
       "побитовое ИЛИ",
@@ -18764,7 +18764,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
-      "en": ""
+      "en": "bitwise"
     },
     "aliases": [
       "исключающее ИЛИ",
@@ -18816,7 +18816,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
-      "en": ""
+      "en": "bitwise"
     },
     "aliases": [
       "побитовая инверсия",
@@ -18865,7 +18865,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
-      "en": ""
+      "en": "bitwise"
     },
     "aliases": [],
     "keywords": [],
@@ -18909,7 +18909,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
-      "en": ""
+      "en": "bitwise"
     },
     "aliases": [
       "сдвиг битов влево",
@@ -18956,7 +18956,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "битовые",
-      "en": ""
+      "en": "bitwise"
     },
     "aliases": [
       "сдвиг битов вправо",
@@ -19006,7 +19006,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "проверка на равенство",
@@ -19053,7 +19053,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "не равно",
@@ -19101,7 +19101,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "строго меньше",
@@ -19149,7 +19149,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "меньше или равно",
@@ -19197,7 +19197,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "строго больше",
@@ -19247,7 +19247,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "сравнение",
-      "en": ""
+      "en": "comparison"
     },
     "aliases": [
       "больше или равно",
@@ -19297,7 +19297,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
-      "en": ""
+      "en": "identity and logic"
     },
     "aliases": [
       "сравнение по ссылке",
@@ -19347,7 +19347,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
-      "en": ""
+      "en": "identity and logic"
     },
     "aliases": [
       "не тот же объект",
@@ -19396,7 +19396,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
-      "en": ""
+      "en": "identity and logic"
     },
     "aliases": [
       "логическое НЕ",
@@ -19444,7 +19444,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
-      "en": ""
+      "en": "identity and logic"
     },
     "aliases": [
       "истинность объекта",
@@ -19491,7 +19491,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "склеить две последовательности",
@@ -19541,7 +19541,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "проверить вхождение элемента",
@@ -19590,7 +19590,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "сколько раз встречается элемент",
@@ -19639,7 +19639,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "найти позицию элемента",
@@ -19688,7 +19688,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "взять элемент по индексу функцией",
@@ -19740,7 +19740,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "записать значение по индексу",
@@ -19788,7 +19788,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "удалить элемент по индексу функцией",
@@ -19838,7 +19838,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "последовательности",
-      "en": ""
+      "en": "sequences"
     },
     "aliases": [
       "оценка длины итератора",
@@ -19886,7 +19886,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "матричное умножение",
-      "en": ""
+      "en": "matrix multiplication"
     },
     "aliases": [
       "умножение матриц",
@@ -19931,7 +19931,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
-      "en": ""
+      "en": "calls and access"
     },
     "aliases": [
       "вызвать объект как функцию",
@@ -19980,7 +19980,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
-      "en": ""
+      "en": "calls and access"
     },
     "aliases": [
       "извлечь элемент по индексу",
@@ -20034,7 +20034,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
-      "en": ""
+      "en": "calls and access"
     },
     "aliases": [
       "извлечь атрибут по имени",
@@ -20085,7 +20085,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",
-      "en": ""
+      "en": "calls and access"
     },
     "aliases": [
       "вызвать метод по имени",
@@ -20136,7 +20136,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "сложение с присваиванием",
@@ -20189,7 +20189,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "вычитание с присваиванием",
@@ -20237,7 +20237,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "умножение с присваиванием",
@@ -20286,7 +20286,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "деление с присваиванием",
@@ -20336,7 +20336,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "целочисленное деление с присваиванием",
@@ -20385,7 +20385,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "остаток с присваиванием",
@@ -20434,7 +20434,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "возведение в степень с присваиванием",
@@ -20482,7 +20482,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "побитовое И с присваиванием",
@@ -20532,7 +20532,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "побитовое ИЛИ с присваиванием",
@@ -20582,7 +20582,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "исключающее ИЛИ с присваиванием",
@@ -20632,7 +20632,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "сдвиг влево с присваиванием",
@@ -20679,7 +20679,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "сдвиг вправо с присваиванием",
@@ -20727,7 +20727,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "дописать список на месте",
@@ -20777,7 +20777,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "на месте (in-place)",
-      "en": ""
+      "en": "in-place"
     },
     "aliases": [
       "матричное умножение с присваиванием",
@@ -20822,7 +20822,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -20864,7 +20864,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -20906,7 +20906,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -20947,7 +20947,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -20993,7 +20993,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -21038,7 +21038,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -21081,7 +21081,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -21126,7 +21126,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -21170,7 +21170,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -21217,7 +21217,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — разбор пути",
-      "en": ""
+      "en": "os.path — path parsing"
     },
     "aliases": [],
     "keywords": [],
@@ -21262,7 +21262,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
-      "en": ""
+      "en": "os.path — making paths absolute"
     },
     "aliases": [],
     "keywords": [],
@@ -21307,7 +21307,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
-      "en": ""
+      "en": "os.path — making paths absolute"
     },
     "aliases": [],
     "keywords": [],
@@ -21354,7 +21354,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
-      "en": ""
+      "en": "os.path — making paths absolute"
     },
     "aliases": [],
     "keywords": [],
@@ -21399,7 +21399,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
-      "en": ""
+      "en": "os.path — making paths absolute"
     },
     "aliases": [],
     "keywords": [],
@@ -21444,7 +21444,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — абсолютизация",
-      "en": ""
+      "en": "os.path — making paths absolute"
     },
     "aliases": [],
     "keywords": [],
@@ -21489,7 +21489,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21531,7 +21531,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21575,7 +21575,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21617,7 +21617,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21659,7 +21659,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21704,7 +21704,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21749,7 +21749,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21793,7 +21793,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [],
     "keywords": [],
@@ -21837,7 +21837,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
-      "en": ""
+      "en": "os.path — metadata (stat)"
     },
     "aliases": [],
     "keywords": [],
@@ -21886,7 +21886,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
-      "en": ""
+      "en": "os.path — metadata (stat)"
     },
     "aliases": [],
     "keywords": [],
@@ -21934,7 +21934,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
-      "en": ""
+      "en": "os.path — metadata (stat)"
     },
     "aliases": [],
     "keywords": [],
@@ -21982,7 +21982,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
-      "en": ""
+      "en": "os.path — metadata (stat)"
     },
     "aliases": [],
     "keywords": [],
@@ -22028,7 +22028,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
-      "en": ""
+      "en": "os.path — metadata (stat)"
     },
     "aliases": [],
     "keywords": [],
@@ -22076,7 +22076,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
-      "en": ""
+      "en": "os.path — metadata (stat)"
     },
     "aliases": [],
     "keywords": [],
@@ -22124,7 +22124,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — метаданные (stat)",
-      "en": ""
+      "en": "os.path — metadata (stat)"
     },
     "aliases": [],
     "keywords": [],
@@ -22166,7 +22166,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — кодирование путей",
-      "en": ""
+      "en": "os — path encoding"
     },
     "aliases": [],
     "keywords": [],
@@ -22211,7 +22211,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — кодирование путей",
-      "en": ""
+      "en": "os — path encoding"
     },
     "aliases": [],
     "keywords": [],
@@ -22255,7 +22255,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — кодирование путей",
-      "en": ""
+      "en": "os — path encoding"
     },
     "aliases": [],
     "keywords": [],
@@ -22303,7 +22303,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
-      "en": ""
+      "en": "os — environment"
     },
     "aliases": [],
     "keywords": [],
@@ -22349,7 +22349,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
-      "en": ""
+      "en": "os — environment"
     },
     "aliases": [],
     "keywords": [],
@@ -22393,7 +22393,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
-      "en": ""
+      "en": "os — environment"
     },
     "aliases": [],
     "keywords": [],
@@ -22438,7 +22438,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
-      "en": ""
+      "en": "os — environment"
     },
     "aliases": [],
     "keywords": [],
@@ -22481,7 +22481,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
-      "en": ""
+      "en": "os — process"
     },
     "aliases": [],
     "keywords": [],
@@ -22525,7 +22525,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
-      "en": ""
+      "en": "os — process"
     },
     "aliases": [],
     "keywords": [],
@@ -22567,7 +22567,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
-      "en": ""
+      "en": "os — process"
     },
     "aliases": [],
     "keywords": [],
@@ -22612,7 +22612,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
-      "en": ""
+      "en": "os — process"
     },
     "aliases": [],
     "keywords": [],
@@ -22656,7 +22656,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процесс",
-      "en": ""
+      "en": "os — process"
     },
     "aliases": [],
     "keywords": [],
@@ -22705,7 +22705,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
-      "en": ""
+      "en": "os — system"
     },
     "aliases": [],
     "keywords": [],
@@ -22749,7 +22749,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
-      "en": ""
+      "en": "os — system"
     },
     "aliases": [],
     "keywords": [],
@@ -22794,7 +22794,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
-      "en": ""
+      "en": "os — system"
     },
     "aliases": [],
     "keywords": [],
@@ -22838,7 +22838,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
-      "en": ""
+      "en": "os — terminals and devices"
     },
     "aliases": [],
     "keywords": [],
@@ -22883,7 +22883,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
-      "en": ""
+      "en": "os — terminals and devices"
     },
     "aliases": [],
     "keywords": [],
@@ -22930,7 +22930,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
-      "en": ""
+      "en": "os — terminals and devices"
     },
     "aliases": [],
     "keywords": [],
@@ -22973,7 +22973,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — терминал и устройства",
-      "en": ""
+      "en": "os — terminals and devices"
     },
     "aliases": [],
     "keywords": [],
@@ -23019,7 +23019,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — аварийное завершение",
-      "en": ""
+      "en": "os — abnormal termination"
     },
     "aliases": [],
     "keywords": [],
@@ -23063,7 +23063,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — аварийное завершение",
-      "en": ""
+      "en": "os — abnormal termination"
     },
     "aliases": [],
     "keywords": [],
@@ -23107,7 +23107,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — аварийное завершение",
-      "en": ""
+      "en": "os — abnormal termination"
     },
     "aliases": [],
     "keywords": [],
@@ -23151,7 +23151,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — рабочий каталог",
-      "en": ""
+      "en": "os — working directory"
     },
     "aliases": [],
     "keywords": [],
@@ -23192,7 +23192,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — рабочий каталог",
-      "en": ""
+      "en": "os — working directory"
     },
     "aliases": [],
     "keywords": [],
@@ -23236,7 +23236,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23280,7 +23280,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23323,7 +23323,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23369,7 +23369,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23415,7 +23415,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23462,7 +23462,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23509,7 +23509,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23554,7 +23554,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23598,7 +23598,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23646,7 +23646,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23691,7 +23691,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23734,7 +23734,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23779,7 +23779,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23823,7 +23823,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -23872,7 +23872,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -23917,7 +23917,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -23966,7 +23966,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -24015,7 +24015,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -24062,7 +24062,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -24108,7 +24108,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -24151,7 +24151,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24198,7 +24198,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24244,7 +24244,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24289,7 +24289,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24334,7 +24334,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24379,7 +24379,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24424,7 +24424,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24471,7 +24471,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — разбор статуса (W*)",
-      "en": ""
+      "en": "os — status decoding (W*)"
     },
     "aliases": [],
     "keywords": [],
@@ -24517,7 +24517,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — создание процессов",
-      "en": ""
+      "en": "os — process creation"
     },
     "aliases": [],
     "keywords": [],
@@ -24565,7 +24565,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — создание процессов",
-      "en": ""
+      "en": "os — process creation"
     },
     "aliases": [],
     "keywords": [],
@@ -24612,7 +24612,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — создание процессов",
-      "en": ""
+      "en": "os — process creation"
     },
     "aliases": [],
     "keywords": [],
@@ -24659,7 +24659,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -24706,7 +24706,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -24753,7 +24753,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -24800,7 +24800,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -24848,7 +24848,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -24896,7 +24896,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -24943,7 +24943,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -24989,7 +24989,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (exec)",
-      "en": ""
+      "en": "os — running programs (exec)"
     },
     "aliases": [],
     "keywords": [],
@@ -25036,7 +25036,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25085,7 +25085,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25133,7 +25133,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25180,7 +25180,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25227,7 +25227,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25274,7 +25274,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25322,7 +25322,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25369,7 +25369,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25418,7 +25418,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25465,7 +25465,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ (spawn)",
-      "en": ""
+      "en": "os — running programs (spawn)"
     },
     "aliases": [],
     "keywords": [],
@@ -25512,7 +25512,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
-      "en": ""
+      "en": "os — waiting for processes"
     },
     "aliases": [],
     "keywords": [],
@@ -25559,7 +25559,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
-      "en": ""
+      "en": "os — waiting for processes"
     },
     "aliases": [],
     "keywords": [],
@@ -25609,7 +25609,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
-      "en": ""
+      "en": "os — waiting for processes"
     },
     "aliases": [],
     "keywords": [],
@@ -25656,7 +25656,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
-      "en": ""
+      "en": "os — waiting for processes"
     },
     "aliases": [],
     "keywords": [],
@@ -25703,7 +25703,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
-      "en": ""
+      "en": "os — waiting for processes"
     },
     "aliases": [],
     "keywords": [],
@@ -25752,7 +25752,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ожидание процессов",
-      "en": ""
+      "en": "os — waiting for processes"
     },
     "aliases": [],
     "keywords": [],
@@ -25798,7 +25798,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
-      "en": ""
+      "en": "os — signals and priority"
     },
     "aliases": [],
     "keywords": [],
@@ -25848,7 +25848,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
-      "en": ""
+      "en": "os — signals and priority"
     },
     "aliases": [],
     "keywords": [],
@@ -25897,7 +25897,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
-      "en": ""
+      "en": "os — signals and priority"
     },
     "aliases": [],
     "keywords": [],
@@ -25942,7 +25942,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
-      "en": ""
+      "en": "os — signals and priority"
     },
     "aliases": [],
     "keywords": [],
@@ -25989,7 +25989,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сигналы и приоритет",
-      "en": ""
+      "en": "os — signals and priority"
     },
     "aliases": [],
     "keywords": [],
@@ -26037,7 +26037,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26082,7 +26082,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26129,7 +26129,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26177,7 +26177,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26222,7 +26222,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26270,7 +26270,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26315,7 +26315,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26362,7 +26362,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26409,7 +26409,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26456,7 +26456,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26501,7 +26501,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — планировщик (sched)",
-      "en": ""
+      "en": "os — scheduler (sched)"
     },
     "aliases": [],
     "keywords": [],
@@ -26547,7 +26547,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26592,7 +26592,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26636,7 +26636,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26679,7 +26679,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26723,7 +26723,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26768,7 +26768,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26813,7 +26813,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26857,7 +26857,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26901,7 +26901,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26947,7 +26947,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -26994,7 +26994,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27041,7 +27041,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27088,7 +27088,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27135,7 +27135,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27182,7 +27182,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27229,7 +27229,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27276,7 +27276,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27323,7 +27323,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27370,7 +27370,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — идентификаторы пользователя/группы",
-      "en": ""
+      "en": "os — user/group IDs"
     },
     "aliases": [],
     "keywords": [],
@@ -27419,7 +27419,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27466,7 +27466,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27511,7 +27511,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27558,7 +27558,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27603,7 +27603,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27648,7 +27648,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27695,7 +27695,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27741,7 +27741,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — сессии и группы процессов",
-      "en": ""
+      "en": "os — sessions and process groups"
     },
     "aliases": [],
     "keywords": [],
@@ -27788,7 +27788,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -27834,7 +27834,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -27880,7 +27880,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -27928,7 +27928,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -27974,7 +27974,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -28021,7 +28021,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -28069,7 +28069,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -28116,7 +28116,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — псевдотерминалы (pty)",
-      "en": ""
+      "en": "os — pseudo-terminals (pty)"
     },
     "aliases": [],
     "keywords": [],
@@ -28164,7 +28164,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
-      "en": ""
+      "en": "os — directories"
     },
     "aliases": [],
     "keywords": [],
@@ -28212,7 +28212,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
-      "en": ""
+      "en": "os — directories"
     },
     "aliases": [],
     "keywords": [],
@@ -28262,7 +28262,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
-      "en": ""
+      "en": "os — directories"
     },
     "aliases": [],
     "keywords": [],
@@ -28312,7 +28312,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
-      "en": ""
+      "en": "os — directories"
     },
     "aliases": [],
     "keywords": [],
@@ -28361,7 +28361,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
-      "en": ""
+      "en": "os — directories"
     },
     "aliases": [],
     "keywords": [],
@@ -28409,7 +28409,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — переименование/перемещение",
-      "en": ""
+      "en": "os — renaming/moving"
     },
     "aliases": [],
     "keywords": [],
@@ -28464,7 +28464,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — переименование/перемещение",
-      "en": ""
+      "en": "os — renaming/moving"
     },
     "aliases": [],
     "keywords": [],
@@ -28517,7 +28517,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ссылки",
-      "en": ""
+      "en": "os — links"
     },
     "aliases": [],
     "keywords": [],
@@ -28568,7 +28568,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ссылки",
-      "en": ""
+      "en": "os — links"
     },
     "aliases": [],
     "keywords": [],
@@ -28617,7 +28617,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — ссылки",
-      "en": ""
+      "en": "os — links"
     },
     "aliases": [],
     "keywords": [],
@@ -28666,7 +28666,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — удаление",
-      "en": ""
+      "en": "os — removal"
     },
     "aliases": [],
     "keywords": [],
@@ -28714,7 +28714,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — метаданные",
-      "en": ""
+      "en": "os — metadata"
     },
     "aliases": [],
     "keywords": [],
@@ -28762,7 +28762,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
-      "en": ""
+      "en": "os — permissions and ownership"
     },
     "aliases": [],
     "keywords": [],
@@ -28811,7 +28811,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
-      "en": ""
+      "en": "os — permissions and ownership"
     },
     "aliases": [],
     "keywords": [],
@@ -28861,7 +28861,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
-      "en": ""
+      "en": "os — permissions and ownership"
     },
     "aliases": [],
     "keywords": [],
@@ -28910,7 +28910,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
-      "en": ""
+      "en": "os — directories"
     },
     "aliases": [],
     "keywords": [],
@@ -28958,7 +28958,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спецфайлы",
-      "en": ""
+      "en": "os — special files"
     },
     "aliases": [],
     "keywords": [],
@@ -29006,7 +29006,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спецфайлы",
-      "en": ""
+      "en": "os — special files"
     },
     "aliases": [],
     "keywords": [],
@@ -29054,7 +29054,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — синхронизация",
-      "en": ""
+      "en": "os — synchronization"
     },
     "aliases": [],
     "keywords": [],
@@ -29101,7 +29101,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — синхронизация",
-      "en": ""
+      "en": "os — synchronization"
     },
     "aliases": [],
     "keywords": [],
@@ -29148,7 +29148,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — синхронизация",
-      "en": ""
+      "en": "os — synchronization"
     },
     "aliases": [],
     "keywords": [],
@@ -29192,7 +29192,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — каталоги",
-      "en": ""
+      "en": "os — directories"
     },
     "aliases": [],
     "keywords": [],
@@ -29239,7 +29239,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
-      "en": ""
+      "en": "os — permissions and ownership"
     },
     "aliases": [],
     "keywords": [],
@@ -29288,7 +29288,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — права и владелец",
-      "en": ""
+      "en": "os — permissions and ownership"
     },
     "aliases": [],
     "keywords": [],
@@ -29337,7 +29337,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — блокировки",
-      "en": ""
+      "en": "os — locks"
     },
     "aliases": [],
     "keywords": [],
@@ -29378,7 +29378,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — процессы",
-      "en": ""
+      "en": "os — processes"
     },
     "aliases": [],
     "keywords": [],
@@ -29422,7 +29422,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — обход дерева",
-      "en": ""
+      "en": "os — tree walking"
     },
     "aliases": [],
     "keywords": [],
@@ -29467,7 +29467,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -29514,7 +29514,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -29562,7 +29562,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [],
     "keywords": [],
@@ -29607,7 +29607,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
-      "en": ""
+      "en": "os — configuration"
     },
     "aliases": [],
     "keywords": [],
@@ -29652,7 +29652,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
-      "en": ""
+      "en": "os — configuration"
     },
     "aliases": [],
     "keywords": [],
@@ -29701,7 +29701,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
-      "en": ""
+      "en": "os — configuration"
     },
     "aliases": [],
     "keywords": [],
@@ -29748,7 +29748,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — конфигурация",
-      "en": ""
+      "en": "os — configuration"
     },
     "aliases": [],
     "keywords": [],
@@ -29795,7 +29795,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
-      "en": ""
+      "en": "os — system"
     },
     "aliases": [],
     "keywords": [],
@@ -29839,7 +29839,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
-      "en": ""
+      "en": "os — system"
     },
     "aliases": [],
     "keywords": [],
@@ -29885,7 +29885,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — система",
-      "en": ""
+      "en": "os — system"
     },
     "aliases": [],
     "keywords": [],
@@ -29929,7 +29929,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
-      "en": ""
+      "en": "os — environment"
     },
     "aliases": [],
     "keywords": [],
@@ -29974,7 +29974,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
-      "en": ""
+      "en": "os — positional I/O"
     },
     "aliases": [],
     "keywords": [],
@@ -30023,7 +30023,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
-      "en": ""
+      "en": "os — positional I/O"
     },
     "aliases": [],
     "keywords": [],
@@ -30071,7 +30071,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
-      "en": ""
+      "en": "os — positional I/O"
     },
     "aliases": [],
     "keywords": [],
@@ -30118,7 +30118,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
-      "en": ""
+      "en": "os — positional I/O"
     },
     "aliases": [],
     "keywords": [],
@@ -30165,7 +30165,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
-      "en": ""
+      "en": "os — positional I/O"
     },
     "aliases": [],
     "keywords": [],
@@ -30212,7 +30212,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — позиционный ввод-вывод",
-      "en": ""
+      "en": "os — positional I/O"
     },
     "aliases": [],
     "keywords": [],
@@ -30259,7 +30259,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — эффективное копирование",
-      "en": ""
+      "en": "os — efficient copying"
     },
     "aliases": [],
     "keywords": [],
@@ -30305,7 +30305,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — эффективное копирование",
-      "en": ""
+      "en": "os — efficient copying"
     },
     "aliases": [],
     "keywords": [],
@@ -30351,7 +30351,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — эффективное копирование",
-      "en": ""
+      "en": "os — efficient copying"
     },
     "aliases": [],
     "keywords": [],
@@ -30401,7 +30401,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
-      "en": ""
+      "en": "os — extended attributes (xattr)"
     },
     "aliases": [],
     "keywords": [],
@@ -30449,7 +30449,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
-      "en": ""
+      "en": "os — extended attributes (xattr)"
     },
     "aliases": [],
     "keywords": [],
@@ -30497,7 +30497,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
-      "en": ""
+      "en": "os — extended attributes (xattr)"
     },
     "aliases": [],
     "keywords": [],
@@ -30545,7 +30545,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — расширенные атрибуты (xattr)",
-      "en": ""
+      "en": "os — extended attributes (xattr)"
     },
     "aliases": [],
     "keywords": [],
@@ -30593,7 +30593,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30639,7 +30639,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30684,7 +30684,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30729,7 +30729,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30776,7 +30776,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30823,7 +30823,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30870,7 +30870,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30917,7 +30917,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — события и таймеры (fd)",
-      "en": ""
+      "en": "os — events and timers (fd)"
     },
     "aliases": [],
     "keywords": [],
@@ -30964,7 +30964,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спец. дескрипторы",
-      "en": ""
+      "en": "os — special descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -31009,7 +31009,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спец. дескрипторы",
-      "en": ""
+      "en": "os — special descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -31054,7 +31054,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — спец. дескрипторы",
-      "en": ""
+      "en": "os — special descriptors"
     },
     "aliases": [],
     "keywords": [],
@@ -31099,7 +31099,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — пространства имён",
-      "en": ""
+      "en": "os — namespaces"
     },
     "aliases": [],
     "keywords": [],
@@ -31148,7 +31148,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — пространства имён",
-      "en": ""
+      "en": "os — namespaces"
     },
     "aliases": [],
     "keywords": [],
@@ -31195,7 +31195,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — советы ядру",
-      "en": ""
+      "en": "os — kernel hints"
     },
     "aliases": [],
     "keywords": [],
@@ -31242,7 +31242,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — советы ядру",
-      "en": ""
+      "en": "os — kernel hints"
     },
     "aliases": [],
     "keywords": [],
@@ -31289,7 +31289,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — режим дескриптора",
-      "en": ""
+      "en": "os — descriptor mode"
     },
     "aliases": [],
     "keywords": [],
@@ -31335,7 +31335,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — режим дескриптора",
-      "en": ""
+      "en": "os — descriptor mode"
     },
     "aliases": [],
     "keywords": [],
@@ -31380,7 +31380,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — случайность",
-      "en": ""
+      "en": "os — randomness"
     },
     "aliases": [],
     "keywords": [],
@@ -31425,7 +31425,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — номера устройств",
-      "en": ""
+      "en": "os — device numbers"
     },
     "aliases": [],
     "keywords": [],
@@ -31470,7 +31470,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — номера устройств",
-      "en": ""
+      "en": "os — device numbers"
     },
     "aliases": [],
     "keywords": [],
@@ -31515,7 +31515,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — номера устройств",
-      "en": ""
+      "en": "os — device numbers"
     },
     "aliases": [],
     "keywords": [],
@@ -31561,7 +31561,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "частичное применение",
-      "en": ""
+      "en": "partial application"
     },
     "aliases": [
       "частичное применение метода",
@@ -31609,7 +31609,7 @@
     "section": "Модуль functools",
     "subcat": {
       "ru": "обобщённые функции",
-      "en": ""
+      "en": "generic functions"
     },
     "aliases": [
       "перегрузка метода по типу аргумента",
@@ -31657,7 +31657,7 @@
     "section": "Модуль json",
     "subcat": {
       "ru": "классы",
-      "en": ""
+      "en": "classes"
     },
     "aliases": [
       "настроить разбор json",
@@ -31704,7 +31704,7 @@
     "section": "Модуль json",
     "subcat": {
       "ru": "классы",
-      "en": ""
+      "en": "classes"
     },
     "aliases": [
       "сериализация своих классов в json",
@@ -31751,7 +31751,7 @@
     "section": "Встроенные типы",
     "subcat": {
       "ru": "срезы",
-      "en": ""
+      "en": "slices"
     },
     "aliases": [
       "объект среза",
@@ -31799,7 +31799,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "статистика",
-      "en": ""
+      "en": "statistics"
     },
     "aliases": [
       "ядерная оценка плотности",
@@ -31846,7 +31846,7 @@
     "section": "Числа и математика",
     "subcat": {
       "ru": "статистика",
-      "en": ""
+      "en": "statistics"
     },
     "aliases": [
       "случайные числа по выборке",
@@ -31895,7 +31895,7 @@
     "section": "Модуль concurrent.interpreters",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "ошибка субинтерпретатора",
@@ -31950,7 +31950,7 @@
     "section": "Модуль concurrent.interpreters",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "интерпретатор не найден",
@@ -32008,7 +32008,7 @@
     "section": "Модуль concurrent.interpreters",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "объект нельзя передать между интерпретаторами",
@@ -32065,7 +32065,7 @@
     "section": "Модуль ctypes",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "ошибка преобразования аргумента",
@@ -32116,7 +32116,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "протоколы",
-      "en": ""
+      "en": "protocols"
     },
     "aliases": [
       "протокол чтения потока",
@@ -32169,7 +32169,7 @@
     "section": "Модуль io",
     "subcat": {
       "ru": "протоколы",
-      "en": ""
+      "en": "protocols"
     },
     "aliases": [
       "протокол записи в поток",
@@ -32222,7 +32222,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "арифметика",
-      "en": ""
+      "en": "arithmetic"
     },
     "aliases": [
       "привести объект к индексу",
@@ -32275,7 +32275,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
-      "en": ""
+      "en": "identity and logic"
     },
     "aliases": [
       "проверка тождества с пустым значением",
@@ -32328,7 +32328,7 @@
     "section": "Модуль operator",
     "subcat": {
       "ru": "тождество и логика",
-      "en": ""
+      "en": "identity and logic"
     },
     "aliases": [
       "проверка что значение не пустое",
@@ -32381,7 +32381,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "дескрипторы",
-      "en": ""
+      "en": "descriptors"
     },
     "aliases": [
       "наследуется ли хендл",
@@ -32436,7 +32436,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "права доступа",
-      "en": ""
+      "en": "permissions"
     },
     "aliases": [
       "права символьной ссылки",
@@ -32493,7 +32493,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "файловая система",
-      "en": ""
+      "en": "file system"
     },
     "aliases": [
       "список дисков",
@@ -32548,7 +32548,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [
       "точки монтирования тома",
@@ -32602,7 +32602,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловая система",
-      "en": ""
+      "en": "os — file system"
     },
     "aliases": [
       "список томов системы",
@@ -32656,7 +32656,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os.path — проверки существования и типа",
-      "en": ""
+      "en": "os.path — existence and type checks"
     },
     "aliases": [
       "зарезервированное имя файла",
@@ -32708,7 +32708,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [
       "чтение в готовый буфер",
@@ -32765,7 +32765,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — окружение",
-      "en": ""
+      "en": "os — environment"
     },
     "aliases": [
       "обновить переменные окружения",
@@ -32818,7 +32818,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — файловые дескрипторы",
-      "en": ""
+      "en": "os — file descriptors"
     },
     "aliases": [
       "флаг наследования хендла",
@@ -32878,7 +32878,7 @@
     "section": "Модуль os",
     "subcat": {
       "ru": "os — запуск программ",
-      "en": ""
+      "en": "os — running programs"
     },
     "aliases": [
       "открыть файл в программе по умолчанию",
@@ -32934,7 +32934,7 @@
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "операция не поддерживается платформой",
@@ -32986,7 +32986,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "ошибка данных базы",
@@ -33038,7 +33038,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "ошибка базы данных",
@@ -33087,7 +33087,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "ошибка при работе с базой данных",
@@ -33137,7 +33137,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "нарушение целостности данных",
@@ -33188,7 +33188,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "ошибка интерфейса базы данных",
@@ -33240,7 +33240,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "внутренняя ошибка движка базы данных",
@@ -33292,7 +33292,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "операция не поддерживается базой данных",
@@ -33344,7 +33344,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "ошибка работы с базой данных",
@@ -33395,7 +33395,7 @@
     "section": "Модуль sqlite3",
     "subcat": {
       "ru": "исключения",
-      "en": ""
+      "en": "exceptions"
     },
     "aliases": [
       "неверное число параметров запроса",

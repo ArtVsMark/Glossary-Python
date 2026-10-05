@@ -36198,7 +36198,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WCOREDUMP",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36248,7 +36249,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WEXITSTATUS",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36298,7 +36300,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WIFCONTINUED",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36349,7 +36352,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WIFEXITED",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36400,7 +36404,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WIFSIGNALED",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36449,7 +36454,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WIFSTOPPED",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36498,7 +36504,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WSTOPSIG",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36547,7 +36554,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.WTERMSIG",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36846,7 +36854,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.chown",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -36900,7 +36909,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.chroot",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -37047,7 +37057,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.confstr",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -37098,7 +37109,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.copy_file_range",
       "version": "3.8",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -37196,7 +37207,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.ctermid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -37443,7 +37455,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.eventfd",
       "version": "3.10",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -37493,7 +37505,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.eventfd_read",
       "version": "3.10",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -37542,7 +37554,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.eventfd_write",
       "version": "3.10",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38000,7 +38012,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.fchdir",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38105,7 +38118,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.fchown",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38158,7 +38172,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.fdatasync",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38258,7 +38272,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.fork",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38310,7 +38325,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.forkpty",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38361,7 +38377,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.fpathconf",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38611,7 +38628,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.fstatvfs",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38766,7 +38784,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.fwalk",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -38912,7 +38931,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.get_handle_inheritable",
       "version": "3.4",
       "platforms": [
-        "AllOS"
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39164,7 +39183,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getegid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39262,7 +39282,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getenvb",
       "version": "3.2",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39311,7 +39332,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.geteuid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39359,7 +39381,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getgid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39406,7 +39429,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getgrouplist",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39454,7 +39478,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getgroups",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39502,7 +39527,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getloadavg",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39600,7 +39626,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getpgid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39651,7 +39678,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getpgrp",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39797,7 +39825,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getpriority",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39848,7 +39877,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getrandom",
       "version": "3.6",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39897,7 +39926,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getresgid",
       "version": "3.2",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39946,7 +39975,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getresuid",
       "version": "3.2",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -39995,7 +40024,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getsid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40046,7 +40076,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.getuid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40147,7 +40178,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.grantpt",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40197,7 +40229,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.initgroups",
       "version": "3.2",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40351,7 +40384,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.killpg",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40404,7 +40438,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.lchmod",
       "version": "",
       "platforms": [
-        "AllOS"
+        "macOS",
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40465,7 +40500,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.lchown",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40626,7 +40662,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.listdrives",
       "version": "3.12",
       "platforms": [
-        "AllOS"
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40685,7 +40721,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.listmounts",
       "version": "3.12",
       "platforms": [
-        "AllOS"
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40743,7 +40779,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.listvolumes",
       "version": "3.12",
       "platforms": [
-        "AllOS"
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40853,7 +40889,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.lockf",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -40898,7 +40935,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.login_tty",
       "version": "3.11",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -41205,7 +41243,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.memfd_create",
       "version": "3.8",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -41357,7 +41395,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.mkfifo",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -41409,7 +41448,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.mknod",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -41461,7 +41501,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.nice",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -41510,7 +41551,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.openpty",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -42486,7 +42528,7 @@
       "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isreserved",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43182,7 +43224,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.pathconf",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43231,7 +43274,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.pidfd_open",
       "version": "3.9",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43327,7 +43370,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.pipe2",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43424,7 +43467,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.posix_fadvise",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43475,7 +43518,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.posix_fallocate",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43526,7 +43569,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.posix_openpt",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43578,7 +43622,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.posix_spawn",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43629,7 +43674,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.posix_spawnp",
       "version": "3.8",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43680,7 +43726,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.pread",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43733,7 +43780,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.preadv",
       "version": "3.7",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43784,7 +43831,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.ptsname",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43884,7 +43932,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.pwrite",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -43936,7 +43985,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.pwritev",
       "version": "3.7",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -44152,7 +44201,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.readv",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -44203,7 +44253,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.register_at_fork",
       "version": "3.7",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45246,7 +45297,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.sendfile",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45397,7 +45449,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.set_handle_inheritable",
       "version": "3.4",
       "platforms": [
-        "AllOS"
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45509,7 +45561,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setegid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45560,7 +45613,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.seteuid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45611,7 +45665,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setgid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45662,7 +45717,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setgroups",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45713,7 +45769,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setns",
       "version": "3.12",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45766,7 +45822,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setpgid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45815,7 +45872,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setpgrp",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45864,7 +45922,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setpriority",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45916,7 +45975,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setregid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -45967,7 +46027,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setresgid",
       "version": "3.2",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -46018,7 +46078,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setresuid",
       "version": "3.2",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -46069,7 +46129,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setreuid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -46120,7 +46181,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setsid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -46171,7 +46233,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.setuid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -46688,7 +46751,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.splice",
       "version": "3.10",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -46744,7 +46807,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.startfile",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Windows"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -46907,7 +46970,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.statvfs",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47108,7 +47172,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.sync",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47156,7 +47221,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.sysconf",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47255,7 +47321,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.tcgetpgrp",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47305,7 +47372,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.tcsetpgrp",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47406,7 +47474,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_create",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47457,7 +47525,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_gettime",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47508,7 +47576,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_gettime_ns",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47559,7 +47627,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_settime",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47610,7 +47678,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.timerfd_settime_ns",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47811,7 +47879,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.ttyname",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -47908,7 +47977,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.uname",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48058,7 +48128,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.unlockpt",
       "version": "3.13",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48158,7 +48229,7 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.unshare",
       "version": "3.12",
       "platforms": [
-        "AllOS"
+        "Linux"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48310,7 +48381,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.wait",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48361,7 +48433,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.wait3",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48412,7 +48485,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.wait4",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48463,7 +48537,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.waitid",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48516,7 +48591,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.waitid",
       "version": "",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {
@@ -48776,7 +48852,8 @@
       "docs_url": "https://docs.python.org/3/library/os.html#os.writev",
       "version": "3.3",
       "platforms": [
-        "AllOS"
+        "Linux",
+        "macOS"
       ],
       "section": "Модуль os",
       "subcat": {

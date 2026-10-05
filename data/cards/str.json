@@ -1,7 +1,10 @@
 [
   {
     "id": "b-...-байт-строки",
-    "title": "b\"...\" байт-строки",
+    "title": {
+      "ru": "b\"...\" байт-строки",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Байтовые строки (b\"...\") хранят последовательность байт, а не Unicode-символов. Каждый элемент — целое число 0–255. Используются при работе с бинарными данными.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes-objects",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "байты",
+    "subcat": {
+      "ru": "байты",
+      "en": ""
+    },
     "aliases": [
       "байтовая строка",
       "бинарные данные",
@@ -44,7 +50,10 @@
   },
   {
     "id": "f-строки",
-    "title": "f-строки",
+    "title": {
+      "ru": "f-строки",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "f-строки (f'...') — форматированные строковые литералы. Выражения в {} вычисляются во время выполнения.",
@@ -59,7 +68,10 @@
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#f-strings",
     "version": "3.6",
     "section": "Строки (str)",
-    "subcat": "форматирование",
+    "subcat": {
+      "ru": "форматирование",
+      "en": ""
+    },
     "aliases": [
       "подставить переменную в строку",
       "интерполяция строк",
@@ -102,7 +114,10 @@
   },
   {
     "id": "format-метод-форматирования",
-    "title": "format() — метод форматирования",
+    "title": {
+      "ru": "format() — метод форматирования",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Метод str.format() подставляет аргументы по позиции или имени. Поддерживает спецификаторы формата.",
@@ -117,7 +132,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.format",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "форматирование",
+    "subcat": {
+      "ru": "форматирование",
+      "en": ""
+    },
     "aliases": [
       "форматирование строки шаблоном",
       "два знака после запятой",
@@ -153,7 +171,10 @@
   },
   {
     "id": "in-not-in-для-строк",
-    "title": "in / not in для строк",
+    "title": {
+      "ru": "in / not in для строк",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Проверяет, является ли одна строка подстрокой другой. Возвращает bool.",
@@ -168,7 +189,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
     "version": "3.8",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "проверить наличие подстроки",
       "содержит ли строка слово",
@@ -199,7 +223,10 @@
   },
   {
     "id": "len-для-строк",
-    "title": "len() для строк",
+    "title": {
+      "ru": "len() для строк",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Возвращает количество символов в строке. Считает Unicode-символы как один символ.",
@@ -214,7 +241,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#len",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "длина",
+    "subcat": {
+      "ru": "длина",
+      "en": ""
+    },
     "aliases": [
       "длина строки",
       "сколько символов в строке",
@@ -247,7 +277,10 @@
   },
   {
     "id": "raw-строки-r-...",
-    "title": "Raw-строки r\"...\"",
+    "title": {
+      "ru": "Raw-строки r\"...\"",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Raw-строки (r\"...\") не обрабатывают escape-последовательности: обратный слэш трактуется как обычный символ. Незаменимы для регулярных выражений и путей Windows.",
@@ -262,7 +295,10 @@
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#raw-string-literals",
     "version": "3.6",
     "section": "Строки (str)",
-    "subcat": "создание",
+    "subcat": {
+      "ru": "создание",
+      "en": ""
+    },
     "aliases": [
       "сырая строка",
       "строка без экранирования обратного слэша",
@@ -290,7 +326,10 @@
   },
   {
     "id": "индексирование-строк",
-    "title": "Индексирование строк",
+    "title": {
+      "ru": "Индексирование строк",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Доступ к символу строки по индексу. Положительные индексы от начала (0), отрицательные — от конца (-1).",
@@ -305,7 +344,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "индексы/срезы",
+    "subcat": {
+      "ru": "индексы/срезы",
+      "en": ""
+    },
     "aliases": [
       "символ по индексу",
       "первый символ строки",
@@ -342,7 +384,10 @@
   },
   {
     "id": "конкатенация-строк",
-    "title": "+ конкатенация строк",
+    "title": {
+      "ru": "+ конкатенация строк",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Оператор + объединяет две строки в новую. Операнды должны быть строками.",
@@ -357,7 +402,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "склеить две строки",
       "сложение строк",
@@ -391,7 +439,10 @@
   },
   {
     "id": "повторение-строки",
-    "title": "* повторение строки",
+    "title": {
+      "ru": "* повторение строки",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Оператор * повторяет строку n раз. При n <= 0 возвращает пустую строку.",
@@ -406,7 +457,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "повторить строку несколько раз",
       "умножить строку на число",
@@ -438,7 +492,10 @@
   },
   {
     "id": "создание-строк",
-    "title": "Создание строк",
+    "title": {
+      "ru": "Создание строк",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Строки создаются одинарными/двойными кавычками, тройными для многострочных, raw-строками (r''), байтами (b''), escape-последовательностями.",
@@ -453,7 +510,10 @@
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#strings",
     "version": "3.3",
     "section": "Строки (str)",
-    "subcat": "создание",
+    "subcat": {
+      "ru": "создание",
+      "en": ""
+    },
     "aliases": [
       "как объявить строку",
       "одинарные или двойные кавычки",
@@ -491,7 +551,10 @@
   },
   {
     "id": "сравнение-строк",
-    "title": "Сравнение строк",
+    "title": {
+      "ru": "Сравнение строк",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Строки сравниваются лексикографически по Unicode code points символов.",
@@ -506,7 +569,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#value-comparisons",
     "version": "3.8",
     "section": "Строки (str)",
-    "subcat": "сравнение",
+    "subcat": {
+      "ru": "сравнение",
+      "en": ""
+    },
     "aliases": [
       "какая строка больше",
       "лексикографический порядок строк"
@@ -537,7 +603,10 @@
   },
   {
     "id": "срезы-строк",
-    "title": "Срезы строк",
+    "title": {
+      "ru": "Срезы строк",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Получение подстроки по диапазону индексов. s[a:b] — от a до b (не включая b), s[a:b:c] — с шагом c. s[::-1] — реверс.",
@@ -552,7 +621,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "индексы/срезы",
+    "subcat": {
+      "ru": "индексы/срезы",
+      "en": ""
+    },
     "aliases": [
       "подстрока по диапазону",
       "вырезать часть строки",
@@ -589,7 +661,10 @@
   },
   {
     "id": "строки-в-памяти-интернирование-неизменяе",
-    "title": "Строки в памяти — интернирование, неизменяемость",
+    "title": {
+      "ru": "Строки в памяти — интернирование, неизменяемость",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Строки в Python неизменяемы (immutable). Интернирование — кэширование коротких строк-идентификаторов. is проверяет идентичность объектов, == — равенство.",
@@ -604,7 +679,10 @@
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.intern",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "память",
+    "subcat": {
+      "ru": "память",
+      "en": ""
+    },
     "aliases": [
       "неизменяемость строк",
       "почему нельзя изменить символ строки",
@@ -646,7 +724,10 @@
   },
   {
     "id": "тройные-кавычки",
-    "title": "Тройные кавычки",
+    "title": {
+      "ru": "Тройные кавычки",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Строки в тройных кавычках (\"\"\"...\"\"\" или '''...''') могут содержать переносы строк и кавычки без экранирования. Используются для многострочных строк и docstring-документации.",
@@ -661,7 +742,10 @@
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals",
     "version": "3.3",
     "section": "Строки (str)",
-    "subcat": "создание",
+    "subcat": {
+      "ru": "создание",
+      "en": ""
+    },
     "aliases": [
       "многострочная строка",
       "текст на несколько строк",
@@ -691,7 +775,10 @@
   },
   {
     "id": "форматирование-старый-стиль",
-    "title": "% форматирование (старый стиль)",
+    "title": {
+      "ru": "% форматирование (старый стиль)",
+      "en": ""
+    },
     "kind": "function",
     "summary": {
       "ru": "Старый стиль форматирования через оператор %. %s — строка, %d — целое, %f — вещественное, %r — repr.",
@@ -706,7 +793,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "форматирование",
+    "subcat": {
+      "ru": "форматирование",
+      "en": ""
+    },
     "aliases": [
       "старый способ форматирования строк",
       "форматирование через знак процента"
@@ -739,7 +829,10 @@
   },
   {
     "id": "str.capitalize",
-    "title": "str.capitalize",
+    "title": {
+      "ru": "str.capitalize",
+      "en": "str.capitalize"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию строки: первый символ — заглавный, остальные строчные.",
@@ -754,7 +847,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.capitalize",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "регистр",
+    "subcat": {
+      "ru": "регистр",
+      "en": ""
+    },
     "aliases": [
       "сделать первую букву заглавной",
       "первая буква большая"
@@ -777,7 +873,10 @@
   },
   {
     "id": "str.title",
-    "title": "str.title",
+    "title": {
+      "ru": "str.title",
+      "en": "str.title"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает строку, где каждое слово начинается с заглавной буквы, остальные строчные.",
@@ -792,7 +891,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.title",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "регистр",
+    "subcat": {
+      "ru": "регистр",
+      "en": ""
+    },
     "aliases": [
       "каждое слово с заглавной буквы",
       "привести к регистру заголовка"
@@ -816,7 +918,10 @@
   },
   {
     "id": "str.swapcase",
-    "title": "str.swapcase",
+    "title": {
+      "ru": "str.swapcase",
+      "en": "str.swapcase"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию строки с инверсией регистра: заглавные ↔ строчные.",
@@ -831,7 +936,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.swapcase",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "регистр",
+    "subcat": {
+      "ru": "регистр",
+      "en": ""
+    },
     "aliases": [
       "поменять регистр на противоположный",
       "инвертировать регистр букв"
@@ -854,7 +962,10 @@
   },
   {
     "id": "str.upper",
-    "title": "str.upper",
+    "title": {
+      "ru": "str.upper",
+      "en": "str.upper"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию строки, где все символы приведены к верхнему регистру.",
@@ -869,7 +980,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.upper",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "регистр",
+    "subcat": {
+      "ru": "регистр",
+      "en": ""
+    },
     "aliases": [
       "привести к верхнему регистру",
       "сделать буквы заглавными"
@@ -892,7 +1006,10 @@
   },
   {
     "id": "str.lower",
-    "title": "str.lower",
+    "title": {
+      "ru": "str.lower",
+      "en": "str.lower"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию строки, где все символы приведены к нижнему регистру.",
@@ -907,7 +1024,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.lower",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "регистр",
+    "subcat": {
+      "ru": "регистр",
+      "en": ""
+    },
     "aliases": [
       "привести к нижнему регистру",
       "сделать буквы строчными"
@@ -930,7 +1050,10 @@
   },
   {
     "id": "str.casefold",
-    "title": "str.casefold",
+    "title": {
+      "ru": "str.casefold",
+      "en": "str.casefold"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как lower(), но агрессивнее — для регистронезависимого сравнения (напр. ß → ss).",
@@ -945,7 +1068,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.casefold",
     "version": "3.3",
     "section": "Строки (str)",
-    "subcat": "регистр",
+    "subcat": {
+      "ru": "регистр",
+      "en": ""
+    },
     "aliases": [
       "сравнение строк без учёта регистра",
       "агрессивное приведение к нижнему регистру"
@@ -968,7 +1094,10 @@
   },
   {
     "id": "str.isalnum",
-    "title": "str.isalnum",
+    "title": {
+      "ru": "str.isalnum",
+      "en": "str.isalnum"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка непуста и все символы буквенно-цифровые.",
@@ -983,7 +1112,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isalnum",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "только буквы и цифры",
       "строка без спецсимволов"
@@ -1006,7 +1138,10 @@
   },
   {
     "id": "str.isalpha",
-    "title": "str.isalpha",
+    "title": {
+      "ru": "str.isalpha",
+      "en": "str.isalpha"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка непуста и все символы — буквы.",
@@ -1021,7 +1156,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isalpha",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "состоит ли строка из букв",
       "только буквы в строке"
@@ -1044,7 +1182,10 @@
   },
   {
     "id": "str.isdigit",
-    "title": "str.isdigit",
+    "title": {
+      "ru": "str.isdigit",
+      "en": "str.isdigit"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если все символы — цифры (включая надстрочные, напр. ²).",
@@ -1059,7 +1200,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isdigit",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "проверить что строка это число",
       "состоит ли строка из цифр",
@@ -1083,7 +1227,10 @@
   },
   {
     "id": "str.isdecimal",
-    "title": "str.isdecimal",
+    "title": {
+      "ru": "str.isdecimal",
+      "en": "str.isdecimal"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если все символы — десятичные цифры (0–9); строже isdigit.",
@@ -1098,7 +1245,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isdecimal",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "только десятичные цифры",
       "строгая проверка на цифры"
@@ -1121,7 +1271,10 @@
   },
   {
     "id": "str.isnumeric",
-    "title": "str.isnumeric",
+    "title": {
+      "ru": "str.isnumeric",
+      "en": "str.isnumeric"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если все символы числовые — включая дроби и римские (½, Ⅴ).",
@@ -1136,7 +1289,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isnumeric",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "проверить что строка числовая",
       "числовые символы юникода"
@@ -1159,7 +1315,10 @@
   },
   {
     "id": "str.isspace",
-    "title": "str.isspace",
+    "title": {
+      "ru": "str.isspace",
+      "en": "str.isspace"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка непуста и все символы — пробельные.",
@@ -1174,7 +1333,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isspace",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "строка состоит из пробелов",
       "проверка на пробельные символы"
@@ -1197,7 +1359,10 @@
   },
   {
     "id": "str.islower",
-    "title": "str.islower",
+    "title": {
+      "ru": "str.islower",
+      "en": "str.islower"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если в строке есть буквы и все они строчные.",
@@ -1212,7 +1377,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.islower",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "проверка на строчные буквы",
       "все буквы маленькие"
@@ -1235,7 +1403,10 @@
   },
   {
     "id": "str.isupper",
-    "title": "str.isupper",
+    "title": {
+      "ru": "str.isupper",
+      "en": "str.isupper"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если в строке есть буквы и все они заглавные.",
@@ -1250,7 +1421,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isupper",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "проверка на заглавные буквы",
       "все буквы большие"
@@ -1273,7 +1447,10 @@
   },
   {
     "id": "str.istitle",
-    "title": "str.istitle",
+    "title": {
+      "ru": "str.istitle",
+      "en": "str.istitle"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если каждое слово начинается с заглавной буквы (title-регистр).",
@@ -1288,7 +1465,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.istitle",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "проверка что каждое слово с большой буквы",
       "проверить стиль заголовка"
@@ -1311,7 +1491,10 @@
   },
   {
     "id": "str.isidentifier",
-    "title": "str.isidentifier",
+    "title": {
+      "ru": "str.isidentifier",
+      "en": "str.isidentifier"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка — допустимый идентификатор Python (в т.ч. ключевые слова).",
@@ -1326,7 +1509,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isidentifier",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "допустимое имя переменной",
       "можно ли так назвать переменную"
@@ -1348,7 +1534,10 @@
   },
   {
     "id": "str.isascii",
-    "title": "str.isascii",
+    "title": {
+      "ru": "str.isascii",
+      "en": "str.isascii"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка пуста или все символы — из диапазона ASCII.",
@@ -1363,7 +1552,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isascii",
     "version": "3.7",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "проверка на латиницу",
       "строка без кириллицы"
@@ -1386,7 +1578,10 @@
   },
   {
     "id": "str.isprintable",
-    "title": "str.isprintable",
+    "title": {
+      "ru": "str.isprintable",
+      "en": "str.isprintable"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка пуста или все символы печатаемые (без \\t, \\n и т.п.).",
@@ -1401,7 +1596,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isprintable",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "проверка символов",
+    "subcat": {
+      "ru": "проверка символов",
+      "en": ""
+    },
     "aliases": [
       "печатаемые символы",
       "проверка на непечатаемые символы"
@@ -1424,7 +1622,10 @@
   },
   {
     "id": "str.find",
-    "title": "str.find",
+    "title": {
+      "ru": "str.find",
+      "en": "str.find"
+    },
     "kind": "function",
     "summary": {
       "ru": "Индекс первого вхождения подстроки или -1, если не найдена. Опц. start/end.",
@@ -1439,7 +1640,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.find",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "найти позицию подстроки",
       "индекс подстроки в строке",
@@ -1464,7 +1668,10 @@
   },
   {
     "id": "str.rfind",
-    "title": "str.rfind",
+    "title": {
+      "ru": "str.rfind",
+      "en": "str.rfind"
+    },
     "kind": "function",
     "summary": {
       "ru": "Индекс последнего вхождения подстроки или -1 (поиск с конца).",
@@ -1479,7 +1686,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rfind",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "найти подстроку с конца",
       "позиция последнего вхождения"
@@ -1502,7 +1712,10 @@
   },
   {
     "id": "str.index",
-    "title": "str.index",
+    "title": {
+      "ru": "str.index",
+      "en": "str.index"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как find, но бросает ValueError, если подстрока не найдена.",
@@ -1517,7 +1730,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.index",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "позиция подстроки или ошибка",
       "поиск подстроки с исключением"
@@ -1543,7 +1759,10 @@
   },
   {
     "id": "str.rindex",
-    "title": "str.rindex",
+    "title": {
+      "ru": "str.rindex",
+      "en": "str.rindex"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как rfind, но бросает ValueError, если подстрока не найдена (поиск с конца).",
@@ -1558,7 +1777,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rindex",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "поиск с конца с исключением",
       "последнее вхождение или ошибка"
@@ -1583,7 +1805,10 @@
   },
   {
     "id": "str.count",
-    "title": "str.count",
+    "title": {
+      "ru": "str.count",
+      "en": "str.count"
+    },
     "kind": "function",
     "summary": {
       "ru": "Число непересекающихся вхождений подстроки. Опц. диапазон start/end.",
@@ -1598,7 +1823,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.count",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "сколько раз символ встречается в строке",
       "посчитать вхождения подстроки",
@@ -1623,7 +1851,10 @@
   },
   {
     "id": "str.startswith",
-    "title": "str.startswith",
+    "title": {
+      "ru": "str.startswith",
+      "en": "str.startswith"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка начинается с префикса (или одного из кортежа префиксов).",
@@ -1638,7 +1869,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.startswith",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "проверить начало строки",
       "начинается ли строка с подстроки",
@@ -1662,7 +1896,10 @@
   },
   {
     "id": "str.endswith",
-    "title": "str.endswith",
+    "title": {
+      "ru": "str.endswith",
+      "en": "str.endswith"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если строка заканчивается суффиксом (или одним из кортежа суффиксов).",
@@ -1677,7 +1914,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.endswith",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "проверить окончание строки",
       "заканчивается ли строка на подстроку",
@@ -1701,7 +1941,10 @@
   },
   {
     "id": "str.split",
-    "title": "str.split",
+    "title": {
+      "ru": "str.split",
+      "en": "str.split"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разбивает строку по разделителю в список. Без аргумента — по любым пробелам.",
@@ -1716,7 +1959,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.split",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "разбивка",
+    "subcat": {
+      "ru": "разбивка",
+      "en": ""
+    },
     "aliases": [
       "разбить строку на слова",
       "разделить строку по запятой",
@@ -1741,7 +1987,10 @@
   },
   {
     "id": "str.rsplit",
-    "title": "str.rsplit",
+    "title": {
+      "ru": "str.rsplit",
+      "en": "str.rsplit"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как split, но при заданном maxsplit разбивает с конца строки.",
@@ -1756,7 +2005,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rsplit",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "разбивка",
+    "subcat": {
+      "ru": "разбивка",
+      "en": ""
+    },
     "aliases": [
       "разбить строку с конца",
       "разделить строку справа"
@@ -1779,7 +2031,10 @@
   },
   {
     "id": "str.splitlines",
-    "title": "str.splitlines",
+    "title": {
+      "ru": "str.splitlines",
+      "en": "str.splitlines"
+    },
     "kind": "function",
     "summary": {
       "ru": "Разбивает строку по границам строк (\\n, \\r и др.) в список без переводов строк.",
@@ -1794,7 +2049,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.splitlines",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "разбивка",
+    "subcat": {
+      "ru": "разбивка",
+      "en": ""
+    },
     "aliases": [
       "разбить текст на строки",
       "разделить по переносам строк"
@@ -1817,7 +2075,10 @@
   },
   {
     "id": "str.partition",
-    "title": "str.partition",
+    "title": {
+      "ru": "str.partition",
+      "en": "str.partition"
+    },
     "kind": "function",
     "summary": {
       "ru": "Делит строку по первому разделителю на кортеж (до, разделитель, после).",
@@ -1832,7 +2093,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.partition",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "разбивка",
+    "subcat": {
+      "ru": "разбивка",
+      "en": ""
+    },
     "aliases": [
       "разбить строку по первому разделителю",
       "разделить строку на три части"
@@ -1855,7 +2119,10 @@
   },
   {
     "id": "str.rpartition",
-    "title": "str.rpartition",
+    "title": {
+      "ru": "str.rpartition",
+      "en": "str.rpartition"
+    },
     "kind": "function",
     "summary": {
       "ru": "Делит строку по последнему разделителю на кортеж (до, разделитель, после).",
@@ -1870,7 +2137,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rpartition",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "разбивка",
+    "subcat": {
+      "ru": "разбивка",
+      "en": ""
+    },
     "aliases": [
       "разбить строку по последнему разделителю",
       "отделить хвост строки после разделителя"
@@ -1893,7 +2163,10 @@
   },
   {
     "id": "str.join",
-    "title": "str.join",
+    "title": {
+      "ru": "str.join",
+      "en": "str.join"
+    },
     "kind": "function",
     "summary": {
       "ru": "Собирает строки итерабельного в одну через строку-разделитель (получатель).",
@@ -1908,7 +2181,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.join",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "объединение",
+    "subcat": {
+      "ru": "объединение",
+      "en": ""
+    },
     "aliases": [
       "объединить список в строку",
       "склеить строки через разделитель",
@@ -1934,7 +2210,10 @@
   },
   {
     "id": "str.strip",
-    "title": "str.strip",
+    "title": {
+      "ru": "str.strip",
+      "en": "str.strip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию без ведущих и хвостовых символов (по умолчанию пробелов).",
@@ -1949,7 +2228,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.strip",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "обрезка",
+    "subcat": {
+      "ru": "обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать лишние пробелы по краям",
       "обрезать пробелы в начале и конце",
@@ -1973,7 +2255,10 @@
   },
   {
     "id": "str.lstrip",
-    "title": "str.lstrip",
+    "title": {
+      "ru": "str.lstrip",
+      "en": "str.lstrip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию без ведущих символов слева (по умолчанию пробелов).",
@@ -1988,7 +2273,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.lstrip",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "обрезка",
+    "subcat": {
+      "ru": "обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать пробелы слева",
       "обрезать строку слева",
@@ -2012,7 +2300,10 @@
   },
   {
     "id": "str.rstrip",
-    "title": "str.rstrip",
+    "title": {
+      "ru": "str.rstrip",
+      "en": "str.rstrip"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию без хвостовых символов справа (по умолчанию пробелов).",
@@ -2027,7 +2318,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rstrip",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "обрезка",
+    "subcat": {
+      "ru": "обрезка",
+      "en": ""
+    },
     "aliases": [
       "убрать пробелы справа",
       "обрезать строку справа",
@@ -2051,7 +2345,10 @@
   },
   {
     "id": "str.center",
-    "title": "str.center",
+    "title": {
+      "ru": "str.center",
+      "en": "str.center"
+    },
     "kind": "function",
     "summary": {
       "ru": "Центрирует строку в поле ширины width, дополняя символом fillchar (по умолч. пробел).",
@@ -2066,7 +2363,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.center",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "выравнивание",
+    "subcat": {
+      "ru": "выравнивание",
+      "en": ""
+    },
     "aliases": [
       "центрировать строку",
       "выровнять текст по центру",
@@ -2090,7 +2390,10 @@
   },
   {
     "id": "str.ljust",
-    "title": "str.ljust",
+    "title": {
+      "ru": "str.ljust",
+      "en": "str.ljust"
+    },
     "kind": "function",
     "summary": {
       "ru": "Выравнивает строку по левому краю в поле ширины width, дополняя справа fillchar.",
@@ -2105,7 +2408,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.ljust",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "выравнивание",
+    "subcat": {
+      "ru": "выравнивание",
+      "en": ""
+    },
     "aliases": [
       "выровнять текст по левому краю",
       "дополнить строку справа пробелами",
@@ -2129,7 +2435,10 @@
   },
   {
     "id": "str.rjust",
-    "title": "str.rjust",
+    "title": {
+      "ru": "str.rjust",
+      "en": "str.rjust"
+    },
     "kind": "function",
     "summary": {
       "ru": "Выравнивает строку по правому краю в поле ширины width, дополняя слева fillchar.",
@@ -2144,7 +2453,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rjust",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "выравнивание",
+    "subcat": {
+      "ru": "выравнивание",
+      "en": ""
+    },
     "aliases": [
       "выровнять текст по правому краю",
       "дополнить строку слева пробелами",
@@ -2168,7 +2480,10 @@
   },
   {
     "id": "str.zfill",
-    "title": "str.zfill",
+    "title": {
+      "ru": "str.zfill",
+      "en": "str.zfill"
+    },
     "kind": "function",
     "summary": {
       "ru": "Дополняет строку нулями слева до ширины width; знак +/- остаётся впереди.",
@@ -2183,7 +2498,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.zfill",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "выравнивание",
+    "subcat": {
+      "ru": "выравнивание",
+      "en": ""
+    },
     "aliases": [
       "дополнить нулями слева",
       "ведущие нули",
@@ -2207,7 +2525,10 @@
   },
   {
     "id": "str.replace",
-    "title": "str.replace",
+    "title": {
+      "ru": "str.replace",
+      "en": "str.replace"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию, где все вхождения old заменены на new. Опц. лимит count.",
@@ -2222,7 +2543,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.replace",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "замена",
+    "subcat": {
+      "ru": "замена",
+      "en": ""
+    },
     "aliases": [
       "заменить подстроку в строке",
       "замена символов в тексте",
@@ -2247,7 +2571,10 @@
   },
   {
     "id": "str.translate",
-    "title": "str.translate",
+    "title": {
+      "ru": "str.translate",
+      "en": "str.translate"
+    },
     "kind": "function",
     "summary": {
       "ru": "Заменяет символы по таблице (обычно из str.maketrans): ord(символа) → замена.",
@@ -2262,7 +2589,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.translate",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "замена",
+    "subcat": {
+      "ru": "замена",
+      "en": ""
+    },
     "aliases": [
       "замена символов по таблице",
       "таблица замены символов",
@@ -2286,7 +2616,10 @@
   },
   {
     "id": "str.maketrans",
-    "title": "str.maketrans",
+    "title": {
+      "ru": "str.maketrans",
+      "en": "str.maketrans"
+    },
     "kind": "function",
     "summary": {
       "ru": "Статический метод: строит таблицу перевода для translate из двух строк (и опц. удаляемых).",
@@ -2301,7 +2634,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.maketrans",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "замена",
+    "subcat": {
+      "ru": "замена",
+      "en": ""
+    },
     "aliases": [
       "таблица замены символов",
       "заменить несколько символов сразу",
@@ -2328,7 +2664,10 @@
   },
   {
     "id": "str.removeprefix",
-    "title": "str.removeprefix",
+    "title": {
+      "ru": "str.removeprefix",
+      "en": "str.removeprefix"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию без префикса prefix, если он есть; иначе строку без изменений (Python 3.9+).",
@@ -2343,7 +2682,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.removeprefix",
     "version": "3.9",
     "section": "Строки (str)",
-    "subcat": "замена",
+    "subcat": {
+      "ru": "замена",
+      "en": ""
+    },
     "aliases": [
       "убрать префикс строки",
       "удалить начало строки"
@@ -2366,7 +2708,10 @@
   },
   {
     "id": "str.removesuffix",
-    "title": "str.removesuffix",
+    "title": {
+      "ru": "str.removesuffix",
+      "en": "str.removesuffix"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает копию без суффикса suffix, если он есть; иначе строку без изменений (Python 3.9+).",
@@ -2381,7 +2726,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.removesuffix",
     "version": "3.9",
     "section": "Строки (str)",
-    "subcat": "замена",
+    "subcat": {
+      "ru": "замена",
+      "en": ""
+    },
     "aliases": [
       "убрать суффикс строки",
       "удалить окончание строки",
@@ -2405,7 +2753,10 @@
   },
   {
     "id": "str.expandtabs",
-    "title": "str.expandtabs",
+    "title": {
+      "ru": "str.expandtabs",
+      "en": "str.expandtabs"
+    },
     "kind": "function",
     "summary": {
       "ru": "Заменяет табы пробелами до колонок кратных tabsize (по умолчанию 8).",
@@ -2420,7 +2771,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.expandtabs",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "замена",
+    "subcat": {
+      "ru": "замена",
+      "en": ""
+    },
     "aliases": [
       "заменить табы пробелами",
       "табуляция в пробелы"
@@ -2443,7 +2797,10 @@
   },
   {
     "id": "str.encode",
-    "title": "str.encode",
+    "title": {
+      "ru": "str.encode",
+      "en": "str.encode"
+    },
     "kind": "function",
     "summary": {
       "ru": "Кодирует строку в байты по указанной кодировке (по умолчанию UTF-8).",
@@ -2458,7 +2815,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.encode",
     "version": "",
     "section": "Строки (str)",
-    "subcat": "кодировки",
+    "subcat": {
+      "ru": "кодировки",
+      "en": ""
+    },
     "aliases": [
       "строка в байты",
       "закодировать строку",
@@ -2485,7 +2845,10 @@
   },
   {
     "id": "str.format_map",
-    "title": "str.format_map",
+    "title": {
+      "ru": "str.format_map",
+      "en": "str.format_map"
+    },
     "kind": "function",
     "summary": {
       "ru": "Как format, но берёт подстановки прямо из переданного словаря (без копирования).",
@@ -2500,7 +2863,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.format_map",
     "version": "3.2",
     "section": "Строки (str)",
-    "subcat": "форматирование",
+    "subcat": {
+      "ru": "форматирование",
+      "en": ""
+    },
     "aliases": [
       "подстановка из словаря в строку",
       "форматирование строки словарём"
@@ -2525,7 +2891,10 @@
   },
   {
     "id": "bytearray.resize",
-    "title": "bytearray.resize()",
+    "title": {
+      "ru": "bytearray.resize()",
+      "en": "bytearray.resize()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Меняет длину bytearray на месте: лишние байты отбрасываются, недостающие добавляются нулевыми (b'\\x00'). Возвращает None. Python 3.14+.",
@@ -2540,7 +2909,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.resize",
     "version": "3.14",
     "section": "Байтовые последовательности",
-    "subcat": "изменение размера",
+    "subcat": {
+      "ru": "изменение размера",
+      "en": ""
+    },
     "aliases": [
       "изменить размер байтового массива",
       "обрезать байтовый массив",

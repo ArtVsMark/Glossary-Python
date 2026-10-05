@@ -21,6 +21,7 @@ from glossary.validation import (
     rule_examples,
     rule_id_format,
     rule_kind,
+    rule_label_translated,
     rule_language_script,
     rule_non_empty,
     rule_related_errors_resolve,
@@ -134,6 +135,43 @@ def test_translated_only_warns_on_missing_body():
     glossary = make_glossary(make_entry(body=Text(ru="Есть.", en="")))
     issues = list(rule_translated(glossary, CFG))
     assert [i.severity for i in issues] == [Severity.WARNING]
+
+
+def test_untranslated_label_is_a_warning():
+    """Подпись без английской половины витрину не ломает: она откатится на русский."""
+    glossary = make_glossary(make_entry(title=Text(ru="Бинарный поиск", en="")))
+    issues = list(rule_label_translated(glossary, CFG))
+    assert [(i.severity, i.entry_id) for i in issues] == [(Severity.WARNING, "sample")]
+    assert "'title'" in issues[0].message
+
+
+def test_untranslated_subcat_is_found_too():
+    glossary = make_glossary(make_entry(subcat=Text(ru="поиск", en="")))
+    issues = list(rule_label_translated(glossary, CFG))
+    assert ["'subcat'" in i.message for i in issues] == [True]
+
+
+def test_code_name_label_needs_no_translation():
+    """Имя из кода переводу не подлежит: совпавшие половины — норма."""
+    glossary = make_glossary(make_entry(title="str.split()"))
+    assert list(rule_label_translated(glossary, CFG)) == []
+
+
+def test_empty_russian_label_is_a_required_field_error():
+    glossary = make_glossary(make_entry(title=Text(ru="", en="split")))
+    issues = list(rule_required_fields(glossary, CFG))
+    assert [i.severity for i in issues] == [Severity.ERROR]
+    assert "'title'" in issues[0].message
+    assert list(rule_label_translated(glossary, CFG)) == [], (
+        "пустая русская половина — одна находка, не две"
+    )
+
+
+def test_russian_title_in_the_english_half_is_an_error():
+    glossary = make_glossary(make_entry(title=Text(ru="Стек", en="Стек")))
+    issues = list(rule_language_script(glossary, CFG))
+    assert [i.severity for i in issues] == [Severity.ERROR]
+    assert "title" in issues[0].message
 
 
 # --------------------------------------------------------------------------- #
@@ -355,6 +393,7 @@ def test_all_rules_are_registered():
         rule_examples,
         rule_id_format,
         rule_kind,
+        rule_label_translated,
         rule_language_script,
         rule_non_empty,
         rule_related_errors_resolve,
@@ -391,6 +430,7 @@ def test_rule_names_are_unique_and_stable():
         "examples",
         "id-format",
         "kind",
+        "label-translated",
         "related-errors-resolve",
         "related-resolves",
         "required-fields",

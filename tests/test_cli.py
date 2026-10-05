@@ -9,7 +9,7 @@ import pytest
 
 from glossary.cli import EXIT_FAILED, EXIT_OK, EXIT_USAGE, main
 from glossary.loader import dump_glossary
-from glossary.models import Text
+from glossary.models import SCHEMA_VERSION, Text
 from tests.factories import make_entry, make_glossary
 
 
@@ -133,7 +133,9 @@ def test_validate_min_summary_is_configurable(data_file: Path):
 def test_validate_fails_on_empty_data_file(tmp_path: Path):
     """Файл без карточек не должен проходить проверку зелёным."""
     empty = tmp_path / "glossary.json"
-    empty.write_text('{"schema_version": 2, "entries": []}', encoding="utf-8")
+    empty.write_text(
+        json.dumps({"schema_version": SCHEMA_VERSION, "entries": []}), encoding="utf-8"
+    )
     result = run("--data", str(empty), "validate")
     assert result.code == EXIT_FAILED
     assert "non-empty" in result.err

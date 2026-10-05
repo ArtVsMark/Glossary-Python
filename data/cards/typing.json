@@ -1,7 +1,10 @@
 [
   {
     "id": "typing.Any",
-    "title": "typing.Any",
+    "title": {
+      "ru": "typing.Any",
+      "en": "typing.Any"
+    },
     "kind": "term",
     "summary": {
       "ru": "Специальный тип: совместим с любым типом. Отключает проверку типов. Используется при миграции кода или для действительно динамических значений.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Any",
     "version": "",
     "section": "Аннотации и typing",
-    "subcat": "any",
+    "subcat": {
+      "ru": "any",
+      "en": "any"
+    },
     "aliases": [
       "Any"
     ],
@@ -46,7 +52,10 @@
   },
   {
     "id": "callable-arg-ret",
-    "title": "Callable[[arg], ret]",
+    "title": {
+      "ru": "Callable[[arg], ret]",
+      "en": "Callable[[arg], ret]"
+    },
     "kind": "term",
     "summary": {
       "ru": "Аннотация для callable-объектов. Callable[[A1, A2], R] — принимает A1, A2, возвращает R. Callable[..., R] — любые аргументы.",
@@ -61,7 +70,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Callable",
     "version": "",
     "section": "Аннотации и typing",
-    "subcat": "callable",
+    "subcat": {
+      "ru": "callable",
+      "en": "callable"
+    },
     "aliases": [
       "тип вызываемого объекта",
       "аннотация функции как параметра"
@@ -92,7 +104,10 @@
   },
   {
     "id": "classvar",
-    "title": "ClassVar",
+    "title": {
+      "ru": "ClassVar",
+      "en": "ClassVar"
+    },
     "kind": "term",
     "summary": {
       "ru": "Указывает, что переменная является переменной класса, а не экземпляра. Не должна присваиваться через self.",
@@ -107,7 +122,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ClassVar",
     "version": "3.5",
     "section": "Аннотации и typing",
-    "subcat": "атрибуты",
+    "subcat": {
+      "ru": "атрибуты",
+      "en": ""
+    },
     "aliases": [
       "переменная класса в аннотации",
       "поле класса, а не экземпляра"
@@ -141,7 +159,10 @@
   },
   {
     "id": "final",
-    "title": "Final",
+    "title": {
+      "ru": "Final",
+      "en": "Final"
+    },
     "kind": "term",
     "summary": {
       "ru": "Обозначает переменную как константу — не должна переназначаться после инициализации. Только для статического анализа.",
@@ -156,7 +177,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Final",
     "version": "3.8",
     "section": "Аннотации и typing",
-    "subcat": "константы",
+    "subcat": {
+      "ru": "константы",
+      "en": ""
+    },
     "aliases": [
       "константа в аннотации",
       "запрет переназначения переменной"
@@ -186,7 +210,10 @@
   },
   {
     "id": "generic-t",
-    "title": "Generic[T]",
+    "title": {
+      "ru": "Generic[T]",
+      "en": "Generic[T]"
+    },
     "kind": "term",
     "summary": {
       "ru": "Базовый класс для создания обобщённых пользовательских классов. Параметры типа задаются через TypeVar.",
@@ -201,7 +228,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Generic",
     "version": "",
     "section": "Аннотации и typing",
-    "subcat": "generics",
+    "subcat": {
+      "ru": "generics",
+      "en": "generics"
+    },
     "aliases": [
       "обобщённый класс",
       "дженерики",
@@ -236,7 +266,10 @@
   },
   {
     "id": "int-str-list-dict-аннотации",
-    "title": "int / str / list / dict (аннотации)",
+    "title": {
+      "ru": "int / str / list / dict (аннотации)",
+      "en": ""
+    },
     "kind": "function",
     "summary": {
       "ru": "С Python 3.9+ встроенные типы используются как обобщения напрямую: list[int], dict[str, int]. Ранее нужен был typing.List, typing.Dict.",
@@ -251,7 +284,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#types-genericalias",
     "version": "3.9",
     "section": "Аннотации и typing",
-    "subcat": "встроенные",
+    "subcat": {
+      "ru": "встроенные",
+      "en": ""
+    },
     "aliases": [
       "встроенные типы в аннотациях",
       "аннотация списка и словаря"
@@ -279,7 +315,10 @@
   },
   {
     "id": "literal-v1-v2",
-    "title": "Literal[v1, v2]",
+    "title": {
+      "ru": "Literal[v1, v2]",
+      "en": "Literal[v1, v2]"
+    },
     "kind": "term",
     "summary": {
       "ru": "Тип, допускающий только конкретные литеральные значения. Позволяет mypy/pyright проверить, что передаётся допустимое значение.",
@@ -294,7 +333,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Literal",
     "version": "3.8",
     "section": "Аннотации и typing",
-    "subcat": "литерал",
+    "subcat": {
+      "ru": "литерал",
+      "en": ""
+    },
     "aliases": [
       "тип из конкретных значений",
       "ограничить допустимые значения аргумента"
@@ -325,7 +367,10 @@
   },
   {
     "id": "namedtuple",
-    "title": "NamedTuple",
+    "title": {
+      "ru": "NamedTuple",
+      "en": "NamedTuple"
+    },
     "kind": "term",
     "summary": {
       "ru": "Типизированный именованный кортеж через наследование. Синтаксис класса с аннотациями.",
@@ -340,7 +385,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.NamedTuple",
     "version": "",
     "section": "Аннотации и typing",
-    "subcat": "namedtuple",
+    "subcat": {
+      "ru": "namedtuple",
+      "en": "namedtuple"
+    },
     "aliases": [
       "типизированный именованный кортеж",
       "кортеж с полями и типами"
@@ -371,7 +419,10 @@
   },
   {
     "id": "optional-x-x-none",
-    "title": "Optional[X] / X | None",
+    "title": {
+      "ru": "Optional[X] / X | None",
+      "en": "Optional[X] / X | None"
+    },
     "kind": "term",
     "summary": {
       "ru": "Optional[X] означает X | None. С Python 3.10+ можно писать X | None напрямую. Применяется для значений, которые могут отсутствовать.",
@@ -386,7 +437,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Optional",
     "version": "3.10",
     "section": "Аннотации и typing",
-    "subcat": "опциональный",
+    "subcat": {
+      "ru": "опциональный",
+      "en": ""
+    },
     "aliases": [
       "необязательное значение в аннотации",
       "тип, допускающий отсутствие значения"
@@ -416,7 +470,10 @@
   },
   {
     "id": "protocol",
-    "title": "Protocol",
+    "title": {
+      "ru": "Protocol",
+      "en": "Protocol"
+    },
     "kind": "term",
     "summary": {
       "ru": "Определяет интерфейс через структуру (duck typing). Класс считается совместимым, если реализует все методы Protocol, без явного наследования.",
@@ -431,7 +488,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Protocol",
     "version": "3.8",
     "section": "Аннотации и typing",
-    "subcat": "протокол",
+    "subcat": {
+      "ru": "протокол",
+      "en": ""
+    },
     "aliases": [
       "утиная типизация",
       "структурная типизация",
@@ -465,7 +525,10 @@
   },
   {
     "id": "type_checking",
-    "title": "TYPE_CHECKING",
+    "title": {
+      "ru": "TYPE_CHECKING",
+      "en": "TYPE_CHECKING"
+    },
     "kind": "term",
     "summary": {
       "ru": "Булева константа, True только при статическом анализе (mypy, pyright). Позволяет импортировать типы лишь для аннотаций, избегая циклических импортов в рантайме.",
@@ -480,7 +543,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TYPE_CHECKING",
     "version": "3.5",
     "section": "Аннотации и typing",
-    "subcat": "импорт",
+    "subcat": {
+      "ru": "импорт",
+      "en": ""
+    },
     "aliases": [
       "импорт только для аннотаций",
       "циклический импорт при типизации"
@@ -508,7 +574,10 @@
   },
   {
     "id": "typeddict",
-    "title": "TypedDict",
+    "title": {
+      "ru": "TypedDict",
+      "en": "TypedDict"
+    },
     "kind": "term",
     "summary": {
       "ru": "Словарь с фиксированными типизированными ключами. Только для статического анализа; в рантайме — обычный dict.",
@@ -523,7 +592,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypedDict",
     "version": "",
     "section": "Аннотации и typing",
-    "subcat": "typeddict",
+    "subcat": {
+      "ru": "typeddict",
+      "en": "typeddict"
+    },
     "aliases": [
       "типизированный словарь",
       "словарь с фиксированными ключами"
@@ -555,7 +627,10 @@
   },
   {
     "id": "typevar",
-    "title": "TypeVar",
+    "title": {
+      "ru": "TypeVar",
+      "en": "TypeVar"
+    },
     "kind": "term",
     "summary": {
       "ru": "Переменная типа для создания обобщённых функций и классов. Ограничения задаются через bound= или явный список типов.",
@@ -570,7 +645,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeVar",
     "version": "",
     "section": "Аннотации и typing",
-    "subcat": "generics",
+    "subcat": {
+      "ru": "generics",
+      "en": "generics"
+    },
     "aliases": [
       "переменная типа",
       "параметр типа"
@@ -601,7 +679,10 @@
   },
   {
     "id": "union-x-y-x-y",
-    "title": "Union[X, Y] / X | Y",
+    "title": {
+      "ru": "Union[X, Y] / X | Y",
+      "en": "Union[X, Y] / X | Y"
+    },
     "kind": "term",
     "summary": {
       "ru": "Union[X, Y] — значение может быть типа X или Y. С Python 3.10+ поддерживается сокращённая запись X | Y.",
@@ -616,7 +697,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Union",
     "version": "3.10",
     "section": "Аннотации и typing",
-    "subcat": "объединение",
+    "subcat": {
+      "ru": "объединение",
+      "en": ""
+    },
     "aliases": [
       "объединение типов",
       "несколько допустимых типов аргумента"
@@ -647,7 +731,10 @@
   },
   {
     "id": "typing.get_args",
-    "title": "typing.get_args",
+    "title": {
+      "ru": "typing.get_args",
+      "en": "typing.get_args"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает кортеж аргументов обобщённого типа: get_args(list[int]) → (int,).",
@@ -662,7 +749,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_args",
     "version": "3.8",
     "section": "Модуль typing",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "аргументы обобщённого типа",
       "узнать тип элементов из аннотации",
@@ -689,7 +779,10 @@
   },
   {
     "id": "typing.get_origin",
-    "title": "typing.get_origin",
+    "title": {
+      "ru": "typing.get_origin",
+      "en": "typing.get_origin"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает «происхождение» обобщённого типа: get_origin(list[int]) → list (без параметров).",
@@ -704,7 +797,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_origin",
     "version": "3.8",
     "section": "Модуль typing",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "базовый тип аннотации",
       "какой контейнер указан в аннотации",
@@ -732,7 +828,10 @@
   },
   {
     "id": "typing.get_type_hints",
-    "title": "typing.get_type_hints",
+    "title": {
+      "ru": "typing.get_type_hints",
+      "en": "typing.get_type_hints"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает словарь аннотаций объекта (функции/класса/модуля) с разрешёнными строковыми ссылками.",
@@ -747,7 +846,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_type_hints",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "получить аннотации функции",
       "прочитать типы параметров во время выполнения",
@@ -782,7 +884,10 @@
   },
   {
     "id": "typing.get_overloads",
-    "title": "typing.get_overloads",
+    "title": {
+      "ru": "typing.get_overloads",
+      "en": "typing.get_overloads"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает список ранее зарегистрированных @overload-реализаций функции (пустой, если их нет; Python 3.11+).",
@@ -797,7 +902,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_overloads",
     "version": "3.11",
     "section": "Модуль typing",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "список перегрузок функции",
       "все зарегистрированные варианты перегруженной функции"
@@ -828,7 +936,10 @@
   },
   {
     "id": "typing.get_protocol_members",
-    "title": "typing.get_protocol_members",
+    "title": {
+      "ru": "typing.get_protocol_members",
+      "en": "typing.get_protocol_members"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает frozenset имён членов протокола (методов и атрибутов; Python 3.13+).",
@@ -843,7 +954,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_protocol_members",
     "version": "3.13",
     "section": "Модуль typing",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "какие методы требует протокол",
       "имена членов протокола"
@@ -871,7 +985,10 @@
   },
   {
     "id": "typing.is_protocol",
-    "title": "typing.is_protocol",
+    "title": {
+      "ru": "typing.is_protocol",
+      "en": "typing.is_protocol"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, является ли класс протоколом (Protocol); True для классов, наследующих typing.Protocol (Python 3.13+).",
@@ -886,7 +1003,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.is_protocol",
     "version": "3.13",
     "section": "Модуль typing",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "проверить, является ли класс протоколом",
       "это протокол или обычный класс"
@@ -912,7 +1032,10 @@
   },
   {
     "id": "typing.is_typeddict",
-    "title": "typing.is_typeddict",
+    "title": {
+      "ru": "typing.is_typeddict",
+      "en": "typing.is_typeddict"
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверяет, создан ли объект через TypedDict.",
@@ -927,7 +1050,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.is_typeddict",
     "version": "3.10",
     "section": "Модуль typing",
-    "subcat": "интроспекция",
+    "subcat": {
+      "ru": "интроспекция",
+      "en": ""
+    },
     "aliases": [
       "проверить, типизированный ли это словарь",
       "создан ли класс словарём с аннотациями"
@@ -951,7 +1077,10 @@
   },
   {
     "id": "typing.cast",
-    "title": "typing.cast",
+    "title": {
+      "ru": "typing.cast",
+      "en": "typing.cast"
+    },
     "kind": "function",
     "summary": {
       "ru": "Подсказывает средству проверки типов, что значение имеет указанный тип; во время выполнения просто возвращает значение без изменений.",
@@ -966,7 +1095,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.cast",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "приведение и отладка",
+    "subcat": {
+      "ru": "приведение и отладка",
+      "en": ""
+    },
     "aliases": [
       "указать тип вручную",
       "подсказать тип анализатору",
@@ -993,7 +1125,10 @@
   },
   {
     "id": "typing.reveal_type",
-    "title": "typing.reveal_type",
+    "title": {
+      "ru": "typing.reveal_type",
+      "en": "typing.reveal_type"
+    },
     "kind": "function",
     "summary": {
       "ru": "Отладочный помощник: средство проверки типов печатает выведенный тип аргумента; во время выполнения возвращает сам аргумент (и пишет тип в stderr; Python 3.11+).",
@@ -1008,7 +1143,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.reveal_type",
     "version": "3.11",
     "section": "Модуль typing",
-    "subcat": "приведение и отладка",
+    "subcat": {
+      "ru": "приведение и отладка",
+      "en": ""
+    },
     "aliases": [
       "показать выведенный тип",
       "узнать тип переменной",
@@ -1035,7 +1173,10 @@
   },
   {
     "id": "typing.assert_type",
-    "title": "typing.assert_type",
+    "title": {
+      "ru": "typing.assert_type",
+      "en": "typing.assert_type"
+    },
     "kind": "function",
     "summary": {
       "ru": "Утверждение для средства проверки типов: значение должно иметь указанный тип; во время выполнения возвращает значение без изменений (Python 3.11+).",
@@ -1050,7 +1191,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.assert_type",
     "version": "3.11",
     "section": "Модуль typing",
-    "subcat": "приведение и отладка",
+    "subcat": {
+      "ru": "приведение и отладка",
+      "en": ""
+    },
     "aliases": [
       "утверждение о типе",
       "сверить тип с ожидаемым",
@@ -1077,7 +1221,10 @@
   },
   {
     "id": "typing.assert_never",
-    "title": "typing.assert_never",
+    "title": {
+      "ru": "typing.assert_never",
+      "en": "typing.assert_never"
+    },
     "kind": "function",
     "summary": {
       "ru": "Маркер недостижимой ветки (напр. в исчерпывающем match): средство проверки типов проверит недостижимость, а во время выполнения всегда бросает AssertionError (Python 3.11+).",
@@ -1092,7 +1239,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.assert_never",
     "version": "3.11",
     "section": "Модуль typing",
-    "subcat": "приведение и отладка",
+    "subcat": {
+      "ru": "приведение и отладка",
+      "en": ""
+    },
     "aliases": [
       "недостижимая ветка",
       "недостижимый код",
@@ -1120,7 +1270,10 @@
   },
   {
     "id": "typing.Generic",
-    "title": "typing.Generic",
+    "title": {
+      "ru": "typing.Generic",
+      "en": "typing.Generic"
+    },
     "kind": "term",
     "summary": {
       "ru": "Базовый класс для создания обобщённых (параметризуемых) пользовательских классов: class Box(Generic[T]).",
@@ -1135,7 +1288,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Generic",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [
       "обобщённый класс",
       "свой класс с параметром типа",
@@ -1162,7 +1318,10 @@
   },
   {
     "id": "typing.NewType",
-    "title": "typing.NewType",
+    "title": {
+      "ru": "typing.NewType",
+      "en": "typing.NewType"
+    },
     "kind": "term",
     "summary": {
       "ru": "Фабрика различимых типов-псевдонимов: создаёт «отдельный» тип поверх базового для проверки типов; во время выполнения вызов возвращает аргумент как есть.",
@@ -1177,7 +1336,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.NewType",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [
       "новый тип поверх существующего",
       "тип-обёртка для проверки типов"
@@ -1204,7 +1366,10 @@
   },
   {
     "id": "typing.ParamSpec",
-    "title": "typing.ParamSpec",
+    "title": {
+      "ru": "typing.ParamSpec",
+      "en": "typing.ParamSpec"
+    },
     "kind": "term",
     "summary": {
       "ru": "Переменная-спецификация параметров: захватывает сигнатуру вызова (позиционные и именованные) для типизации декораторов/обёрток (Python 3.10+).",
@@ -1219,7 +1384,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpec",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [
       "типизация декоратора",
       "сохранить сигнатуру функции",
@@ -1248,7 +1416,10 @@
   },
   {
     "id": "typing.ParamSpecArgs",
-    "title": "typing.ParamSpecArgs",
+    "title": {
+      "ru": "typing.ParamSpecArgs",
+      "en": "typing.ParamSpecArgs"
+    },
     "kind": "term",
     "summary": {
       "ru": "Тип атрибута P.args у ParamSpec — представляет позиционные аргументы захваченной сигнатуры.",
@@ -1263,7 +1434,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpecArgs",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -1287,7 +1461,10 @@
   },
   {
     "id": "typing.ParamSpecKwargs",
-    "title": "typing.ParamSpecKwargs",
+    "title": {
+      "ru": "typing.ParamSpecKwargs",
+      "en": "typing.ParamSpecKwargs"
+    },
     "kind": "term",
     "summary": {
       "ru": "Тип атрибута P.kwargs у ParamSpec — представляет именованные аргументы захваченной сигнатуры.",
@@ -1302,7 +1479,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpecKwargs",
     "version": "3.10",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -1326,7 +1506,10 @@
   },
   {
     "id": "typing.TypeVarTuple",
-    "title": "typing.TypeVarTuple",
+    "title": {
+      "ru": "typing.TypeVarTuple",
+      "en": "typing.TypeVarTuple"
+    },
     "kind": "term",
     "summary": {
       "ru": "Переменная переменной арности (variadic): захватывает произвольное число типов для типизации обобщений с изменяемым числом параметров (Python 3.11+).",
@@ -1341,7 +1524,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeVarTuple",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [
       "переменное число типов",
       "обобщение с любым числом параметров"
@@ -1369,7 +1555,10 @@
   },
   {
     "id": "typing.TypeAliasType",
-    "title": "typing.TypeAliasType",
+    "title": {
+      "ru": "typing.TypeAliasType",
+      "en": "typing.TypeAliasType"
+    },
     "kind": "term",
     "summary": {
       "ru": "Тип объектов, создаваемых инструкцией `type X = ...` (псевдонимы типов; Python 3.12+).",
@@ -1384,7 +1573,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeAliasType",
     "version": "3.12",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [
       "псевдоним типа",
       "синоним типа",
@@ -1413,7 +1605,10 @@
   },
   {
     "id": "typing.ForwardRef",
-    "title": "typing.ForwardRef",
+    "title": {
+      "ru": "typing.ForwardRef",
+      "en": "typing.ForwardRef"
+    },
     "kind": "term",
     "summary": {
       "ru": "Внутреннее представление строковой (отложенной) аннотации; хранит исходную строку в __forward_arg__.",
@@ -1428,7 +1623,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ForwardRef",
     "version": "3.7",
     "section": "Модуль typing",
-    "subcat": "обобщения и параметры",
+    "subcat": {
+      "ru": "обобщения и параметры",
+      "en": ""
+    },
     "aliases": [
       "аннотация типа строкой",
       "отложенная ссылка на тип",
@@ -1456,7 +1654,10 @@
   },
   {
     "id": "typing.IO",
-    "title": "typing.IO",
+    "title": {
+      "ru": "typing.IO",
+      "en": "typing.IO"
+    },
     "kind": "term",
     "summary": {
       "ru": "Обобщённый тип файловых объектов (потоков) для аннотаций; параметризуется типом элемента (str или bytes).",
@@ -1471,7 +1672,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.IO",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "потоки ввода-вывода",
+    "subcat": {
+      "ru": "потоки ввода-вывода",
+      "en": ""
+    },
     "aliases": [
       "аннотация типа файла",
       "тип файлового объекта"
@@ -1499,7 +1703,10 @@
   },
   {
     "id": "typing.BinaryIO",
-    "title": "typing.BinaryIO",
+    "title": {
+      "ru": "typing.BinaryIO",
+      "en": "typing.BinaryIO"
+    },
     "kind": "term",
     "summary": {
       "ru": "Тип бинарных файловых потоков (открытых в режиме 'b') для аннотаций.",
@@ -1514,7 +1721,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.BinaryIO",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "потоки ввода-вывода",
+    "subcat": {
+      "ru": "потоки ввода-вывода",
+      "en": ""
+    },
     "aliases": [
       "тип бинарного потока",
       "аннотация двоичного файла"
@@ -1542,7 +1752,10 @@
   },
   {
     "id": "typing.TextIO",
-    "title": "typing.TextIO",
+    "title": {
+      "ru": "typing.TextIO",
+      "en": "typing.TextIO"
+    },
     "kind": "term",
     "summary": {
       "ru": "Тип текстовых файловых потоков для аннотаций.",
@@ -1557,7 +1770,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TextIO",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "потоки ввода-вывода",
+    "subcat": {
+      "ru": "потоки ввода-вывода",
+      "en": ""
+    },
     "aliases": [
       "тип текстового потока",
       "аннотация текстового файла"
@@ -1587,7 +1803,10 @@
   },
   {
     "id": "typing.Text",
-    "title": "typing.Text",
+    "title": {
+      "ru": "typing.Text",
+      "en": "typing.Text"
+    },
     "kind": "term",
     "summary": {
       "ru": "Псевдоним str, оставшийся для совместимости с кодом на Python 2; в Python 3 эквивалентен str.",
@@ -1602,7 +1821,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Text",
     "version": "3.5",
     "section": "Модуль typing",
-    "subcat": "потоки ввода-вывода",
+    "subcat": {
+      "ru": "потоки ввода-вывода",
+      "en": ""
+    },
     "aliases": [
       "устаревший синоним строки",
       "строковый тип ради совместимости"
@@ -1629,7 +1851,10 @@
   },
   {
     "id": "typing.SupportsInt",
-    "title": "typing.SupportsInt",
+    "title": {
+      "ru": "typing.SupportsInt",
+      "en": "typing.SupportsInt"
+    },
     "kind": "term",
     "summary": {
       "ru": "Runtime-проверяемый протокол «поддерживает int()» (есть __int__).",
@@ -1644,7 +1869,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsInt",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "протоколы Supports*",
+    "subcat": {
+      "ru": "протоколы Supports*",
+      "en": ""
+    },
     "aliases": [
       "протокол целого числа",
       "объект приводится к целому"
@@ -1671,7 +1899,10 @@
   },
   {
     "id": "typing.SupportsFloat",
-    "title": "typing.SupportsFloat",
+    "title": {
+      "ru": "typing.SupportsFloat",
+      "en": "typing.SupportsFloat"
+    },
     "kind": "term",
     "summary": {
       "ru": "Runtime-проверяемый протокол «поддерживает float()» (есть __float__).",
@@ -1686,7 +1917,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsFloat",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "протоколы Supports*",
+    "subcat": {
+      "ru": "протоколы Supports*",
+      "en": ""
+    },
     "aliases": [
       "протокол вещественного числа",
       "объект приводится к дробному числу"
@@ -1713,7 +1947,10 @@
   },
   {
     "id": "typing.SupportsComplex",
-    "title": "typing.SupportsComplex",
+    "title": {
+      "ru": "typing.SupportsComplex",
+      "en": "typing.SupportsComplex"
+    },
     "kind": "term",
     "summary": {
       "ru": "Runtime-проверяемый протокол «поддерживает complex()» (есть __complex__).",
@@ -1728,7 +1965,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsComplex",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "протоколы Supports*",
+    "subcat": {
+      "ru": "протоколы Supports*",
+      "en": ""
+    },
     "aliases": [
       "протокол комплексного числа",
       "объект приводится к комплексному"
@@ -1755,7 +1995,10 @@
   },
   {
     "id": "typing.SupportsBytes",
-    "title": "typing.SupportsBytes",
+    "title": {
+      "ru": "typing.SupportsBytes",
+      "en": "typing.SupportsBytes"
+    },
     "kind": "term",
     "summary": {
       "ru": "Runtime-проверяемый протокол «поддерживает bytes()» (есть __bytes__).",
@@ -1770,7 +2013,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsBytes",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "протоколы Supports*",
+    "subcat": {
+      "ru": "протоколы Supports*",
+      "en": ""
+    },
     "aliases": [
       "протокол преобразования в байты",
       "объект умеет превращаться в байты"
@@ -1794,7 +2040,10 @@
   },
   {
     "id": "typing.SupportsAbs",
-    "title": "typing.SupportsAbs",
+    "title": {
+      "ru": "typing.SupportsAbs",
+      "en": "typing.SupportsAbs"
+    },
     "kind": "term",
     "summary": {
       "ru": "Runtime-проверяемый протокол «поддерживает abs()» (есть __abs__).",
@@ -1809,7 +2058,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsAbs",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "протоколы Supports*",
+    "subcat": {
+      "ru": "протоколы Supports*",
+      "en": ""
+    },
     "aliases": [
       "поддерживает взятие модуля",
       "протокол абсолютного значения"
@@ -1836,7 +2088,10 @@
   },
   {
     "id": "typing.SupportsRound",
-    "title": "typing.SupportsRound",
+    "title": {
+      "ru": "typing.SupportsRound",
+      "en": "typing.SupportsRound"
+    },
     "kind": "term",
     "summary": {
       "ru": "Runtime-проверяемый протокол «поддерживает round()» (есть __round__).",
@@ -1851,7 +2106,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsRound",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "протоколы Supports*",
+    "subcat": {
+      "ru": "протоколы Supports*",
+      "en": ""
+    },
     "aliases": [
       "протокол округления",
       "объект поддерживает округление"
@@ -1878,7 +2136,10 @@
   },
   {
     "id": "typing.SupportsIndex",
-    "title": "typing.SupportsIndex",
+    "title": {
+      "ru": "typing.SupportsIndex",
+      "en": "typing.SupportsIndex"
+    },
     "kind": "term",
     "summary": {
       "ru": "Runtime-проверяемый протокол «можно использовать как индекс» (есть __index__); объект приводится к int без потерь.",
@@ -1893,7 +2154,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsIndex",
     "version": "3.8",
     "section": "Модуль typing",
-    "subcat": "протоколы Supports*",
+    "subcat": {
+      "ru": "протоколы Supports*",
+      "en": ""
+    },
     "aliases": [
       "объект можно использовать как индекс",
       "протокол индексации"
@@ -1920,7 +2184,10 @@
   },
   {
     "id": "typing.overload",
-    "title": "typing.overload",
+    "title": {
+      "ru": "typing.overload",
+      "en": "typing.overload"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декоратор для объявления нескольких сигнатур одной функции (перегрузок) для средства проверки типов; во время выполнения перегрузки не имеют тела.",
@@ -1935,7 +2202,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.overload",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "декораторы и маркеры",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": ""
+    },
     "aliases": [
       "перегрузка функции",
       "несколько сигнатур одной функции",
@@ -1971,7 +2241,10 @@
   },
   {
     "id": "typing.override",
-    "title": "typing.override",
+    "title": {
+      "ru": "typing.override",
+      "en": "typing.override"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декоратор, помечающий метод как переопределение метода базового класса; средство проверки типов проверит, что такой метод действительно существует у предка (Python 3.12+).",
@@ -1986,7 +2259,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.override",
     "version": "3.12",
     "section": "Модуль typing",
-    "subcat": "декораторы и маркеры",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": ""
+    },
     "aliases": [
       "пометить переопределение метода",
       "проверка что метод есть у родителя"
@@ -2013,7 +2289,10 @@
   },
   {
     "id": "typing.no_type_check",
-    "title": "typing.no_type_check",
+    "title": {
+      "ru": "typing.no_type_check",
+      "en": "typing.no_type_check"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декоратор, отключающий проверку типов для функции или класса (аннотации игнорируются средством проверки типов).",
@@ -2028,7 +2307,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.no_type_check",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "декораторы и маркеры",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": ""
+    },
     "aliases": [
       "отключить проверку типов",
       "игнорировать аннотации типов"
@@ -2052,7 +2334,10 @@
   },
   {
     "id": "typing.no_type_check_decorator",
-    "title": "typing.no_type_check_decorator",
+    "title": {
+      "ru": "typing.no_type_check_decorator",
+      "en": "typing.no_type_check_decorator"
+    },
     "kind": "function",
     "summary": {
       "ru": "Служебный декоратор, превращающий переданный декоратор в такой, что он ещё и помечает цель no_type_check.",
@@ -2067,7 +2352,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.no_type_check_decorator",
     "version": "",
     "section": "Модуль typing",
-    "subcat": "декораторы и маркеры",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -2095,7 +2383,10 @@
   },
   {
     "id": "typing.runtime_checkable",
-    "title": "typing.runtime_checkable",
+    "title": {
+      "ru": "typing.runtime_checkable",
+      "en": "typing.runtime_checkable"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декоратор класса-протокола (Protocol), разрешающий проверять его через isinstance()/issubclass() по наличию методов.",
@@ -2110,7 +2401,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.runtime_checkable",
     "version": "3.8",
     "section": "Модуль typing",
-    "subcat": "декораторы и маркеры",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": ""
+    },
     "aliases": [
       "протокол с проверкой во время выполнения",
       "утиная типизация с проверкой"
@@ -2137,7 +2431,10 @@
   },
   {
     "id": "typing.dataclass_transform",
-    "title": "typing.dataclass_transform",
+    "title": {
+      "ru": "typing.dataclass_transform",
+      "en": "typing.dataclass_transform"
+    },
     "kind": "function",
     "summary": {
       "ru": "Декоратор-маркер: сообщает средству проверки типов, что помеченная функция/класс порождает объекты в стиле dataclass (Python 3.11+).",
@@ -2152,7 +2449,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.dataclass_transform",
     "version": "3.12",
     "section": "Модуль typing",
-    "subcat": "декораторы и маркеры",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -2175,7 +2475,10 @@
   },
   {
     "id": "typing.clear_overloads",
-    "title": "typing.clear_overloads",
+    "title": {
+      "ru": "typing.clear_overloads",
+      "en": "typing.clear_overloads"
+    },
     "kind": "function",
     "summary": {
       "ru": "Очищает внутренний реестр перегрузок, накопленный @overload (возвращает None; Python 3.11+).",
@@ -2190,7 +2493,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.clear_overloads",
     "version": "3.11",
     "section": "Модуль typing",
-    "subcat": "декораторы и маркеры",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": ""
+    },
     "aliases": [],
     "keywords": [],
     "tags": [
@@ -2212,7 +2518,10 @@
   },
   {
     "id": "typing.evaluate_forward_ref",
-    "title": "typing.evaluate_forward_ref()",
+    "title": {
+      "ru": "typing.evaluate_forward_ref()",
+      "en": "typing.evaluate_forward_ref()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Вычисляет ForwardRef (отложенную строковую аннотацию) в реальный тип, рекурсивно раскрывая вложенные ссылки. Python 3.14+.",
@@ -2227,7 +2536,10 @@
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.evaluate_forward_ref",
     "version": "3.14",
     "section": "Модуль typing",
-    "subcat": "интроспекция аннотаций",
+    "subcat": {
+      "ru": "интроспекция аннотаций",
+      "en": ""
+    },
     "aliases": [
       "вычислить отложенную аннотацию",
       "разрешить строковую аннотацию",

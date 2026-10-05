@@ -1,7 +1,10 @@
 [
   {
     "id": "chainmap",
-    "title": "ChainMap",
+    "title": {
+      "ru": "ChainMap",
+      "en": "ChainMap"
+    },
     "kind": "term",
     "summary": {
       "ru": "collections.ChainMap объединяет несколько словарей в единый вид без копирования. Поиск ключа идёт по словарям слева направо. Запись и удаление затрагивают только первый словарь.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.ChainMap",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "collections",
+    "subcat": {
+      "ru": "collections",
+      "en": "collections"
+    },
     "aliases": [
       "цепочка словарей",
       "несколько словарей как один",
@@ -46,7 +52,10 @@
   },
   {
     "id": "copy-deepcopy-словаря",
-    "title": "copy() / deepcopy() словаря",
+    "title": {
+      "ru": "copy() / deepcopy() словаря",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "dict.copy() делает поверхностную копию: вложенные объекты не копируются, а разделяются между оригиналом и копией. copy.deepcopy() копирует полностью рекурсивно.",
@@ -61,7 +70,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.copy",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "копирование",
+    "subcat": {
+      "ru": "копирование",
+      "en": ""
+    },
     "aliases": [
       "глубокая копия",
       "рекурсивное копирование",
@@ -96,7 +108,10 @@
   },
   {
     "id": "counter",
-    "title": "Counter",
+    "title": {
+      "ru": "Counter",
+      "en": "Counter"
+    },
     "kind": "term",
     "summary": {
       "ru": "Counter из collections — словарь для подсчёта. Поддерживает арифметику, most_common, вычитание.",
@@ -111,7 +126,10 @@
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.Counter",
     "version": "3.1",
     "section": "Словари (dict)",
-    "subcat": "collections",
+    "subcat": {
+      "ru": "collections",
+      "en": "collections"
+    },
     "aliases": [
       "подсчёт повторений",
       "сколько раз встречается элемент",
@@ -155,7 +173,10 @@
   },
   {
     "id": "defaultdict",
-    "title": "defaultdict",
+    "title": {
+      "ru": "defaultdict",
+      "en": "defaultdict"
+    },
     "kind": "term",
     "summary": {
       "ru": "defaultdict из collections автоматически создаёт значение по умолчанию при обращении к несуществующему ключу.",
@@ -170,7 +191,10 @@
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.defaultdict",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "collections",
+    "subcat": {
+      "ru": "collections",
+      "en": "collections"
+    },
     "aliases": [
       "словарь со значением по умолчанию",
       "группировка по ключу",
@@ -228,7 +252,10 @@
   },
   {
     "id": "dict-merge",
-    "title": "d1 | d2",
+    "title": {
+      "ru": "d1 | d2",
+      "en": "d1 | d2"
+    },
     "kind": "term",
     "summary": {
       "ru": "Оператор объединения словарей (Python 3.9+). Создаёт новый словарь, объединяя d1 и d2. При конфликте ключей побеждает правый операнд.",
@@ -243,7 +270,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "3.9",
     "section": "Словари (dict)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "объединить два словаря",
       "слить два словаря в новый",
@@ -271,7 +301,10 @@
   },
   {
     "id": "dict-merge-update",
-    "title": "d1 |= d2",
+    "title": {
+      "ru": "d1 |= d2",
+      "en": "d1 |= d2"
+    },
     "kind": "term",
     "summary": {
       "ru": "Оператор обновления словаря на месте (Python 3.9+). Добавляет/перезаписывает в d1 все пары из d2 без создания нового объекта.",
@@ -286,7 +319,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "3.9",
     "section": "Словари (dict)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "слияние словарей на месте",
       "объединить словари без нового объекта"
@@ -311,7 +347,10 @@
   },
   {
     "id": "dict.fromkeys",
-    "title": "dict.fromkeys()",
+    "title": {
+      "ru": "dict.fromkeys()",
+      "en": "dict.fromkeys()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Создаёт новый словарь из итерируемого набора ключей. Второй аргумент задаёт значение по умолчанию для всех ключей (по умолчанию None).",
@@ -326,7 +365,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.fromkeys",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "перебор",
+    "subcat": {
+      "ru": "перебор",
+      "en": ""
+    },
     "aliases": [
       "создать словарь из списка ключей",
       "заполнить словарь одинаковыми значениями",
@@ -353,7 +395,10 @@
   },
   {
     "id": "frozenset-неизменяемое-множество",
-    "title": "frozenset — неизменяемое множество",
+    "title": {
+      "ru": "frozenset — неизменяемое множество",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "frozenset — неизменяемая версия set. Хэшируемо, может быть ключом словаря или элементом другого множества.",
@@ -368,7 +413,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "замороженное множество",
       "множество как ключ словаря",
@@ -407,7 +455,10 @@
   },
   {
     "id": "in-not-in-для-множеств-o-1",
-    "title": "in / not in для множеств — O(1)",
+    "title": {
+      "ru": "in / not in для множеств — O(1)",
+      "en": ""
+    },
     "kind": "function",
     "summary": {
       "ru": "Проверка принадлежности в множестве работает за O(1) (хэш-таблица), в отличие от O(n) для списков.",
@@ -422,7 +473,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "проверка принадлежности",
       "есть ли элемент в множестве",
@@ -460,7 +514,10 @@
   },
   {
     "id": "in-not-in-для-словаря",
-    "title": "in / not in для словаря",
+    "title": {
+      "ru": "in / not in для словаря",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "in проверяет наличие КЛЮЧА в словаре за O(1). Для проверки значений используйте in d.values().",
@@ -475,7 +532,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "поиск",
+    "subcat": {
+      "ru": "поиск",
+      "en": ""
+    },
     "aliases": [
       "проверить есть ли ключ в словаре",
       "есть ли такой ключ",
@@ -508,7 +568,10 @@
   },
   {
     "id": "ordereddict",
-    "title": "OrderedDict",
+    "title": {
+      "ru": "OrderedDict",
+      "en": "OrderedDict"
+    },
     "kind": "term",
     "summary": {
       "ru": "OrderedDict из collections гарантирует порядок вставки (в Python 3.7+ обычный dict тоже сохраняет порядок). Имеет move_to_end() и popitem(last=).",
@@ -523,7 +586,10 @@
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.OrderedDict",
     "version": "3.1",
     "section": "Словари (dict)",
-    "subcat": "collections",
+    "subcat": {
+      "ru": "collections",
+      "en": "collections"
+    },
     "aliases": [
       "упорядоченный словарь",
       "порядок ключей в словаре",
@@ -558,7 +624,10 @@
   },
   {
     "id": "вложенные-словари",
-    "title": "Вложенные словари",
+    "title": {
+      "ru": "Вложенные словари",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Значения словаря могут быть любого типа, включая другие словари. Доступ через цепочку ключей.",
@@ -573,7 +642,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "вложенность",
+    "subcat": {
+      "ru": "вложенность",
+      "en": ""
+    },
     "aliases": [
       "словарь внутри словаря",
       "многоуровневый словарь",
@@ -619,7 +691,10 @@
   },
   {
     "id": "генераторы-множеств-set-comprehension",
-    "title": "Генераторы множеств (set comprehension)",
+    "title": {
+      "ru": "Генераторы множеств (set comprehension)",
+      "en": ""
+    },
     "kind": "function",
     "summary": {
       "ru": "Set comprehension создаёт множество аналогично list comprehension, но с фигурными скобками. Дубли автоматически удаляются.",
@@ -634,7 +709,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#set-displays",
     "version": "3.5",
     "section": "Множества (set)",
-    "subcat": "comprehension",
+    "subcat": {
+      "ru": "comprehension",
+      "en": "comprehension"
+    },
     "aliases": [
       "множество одной строкой",
       "собрать множество из цикла",
@@ -672,7 +750,10 @@
   },
   {
     "id": "объединение-словарей",
-    "title": "Объединение словарей",
+    "title": {
+      "ru": "Объединение словарей",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "update() изменяет словарь на месте. ** распаковка создаёт новый словарь. | (Python 3.9+) — оператор слияния.",
@@ -687,7 +768,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
     "version": "3.9",
     "section": "Словари (dict)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "слить два словаря",
       "добавить один словарь в другой"
@@ -730,7 +814,10 @@
   },
   {
     "id": "оператор-слияния-словарей",
-    "title": "| оператор слияния словарей",
+    "title": {
+      "ru": "| оператор слияния словарей",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Оператор | (Python 3.9+) объединяет два словаря в новый. При совпадении ключей значение берётся из правого словаря. |= обновляет словарь на месте.",
@@ -745,7 +832,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "3.9",
     "section": "Словари (dict)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "объединить словари одним оператором",
       "новый словарь из двух словарей"
@@ -771,7 +861,10 @@
   },
   {
     "id": "операции-над-множествами",
-    "title": "Операции над множествами: | & - ^",
+    "title": {
+      "ru": "Операции над множествами: | & - ^",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "| — объединение, & — пересечение, - — разность, ^ — симметричная разность. |=, &=, -=, ^= изменяют на месте.",
@@ -786,7 +879,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "операторы",
+    "subcat": {
+      "ru": "операторы",
+      "en": ""
+    },
     "aliases": [
       "объединение множеств",
       "пересечение множеств",
@@ -831,7 +927,10 @@
   },
   {
     "id": "практические-задачи-с-множествами",
-    "title": "Практические задачи с множествами",
+    "title": {
+      "ru": "Практические задачи с множествами",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Типичное применение: уникальные элементы, пересечения, разности, быстрая проверка принадлежности.",
@@ -846,7 +945,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "практика",
+    "subcat": {
+      "ru": "практика",
+      "en": ""
+    },
     "aliases": [
       "убрать дубликаты",
       "уникальные элементы списка",
@@ -889,7 +991,10 @@
   },
   {
     "id": "слияние-и-распаковка-словарей",
-    "title": "Слияние и распаковка ** словарей",
+    "title": {
+      "ru": "Слияние и распаковка ** словарей",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "** распаковывает словарь в именованные аргументы или создаёт слияние. При дублировании ключей побеждает последний.",
@@ -904,7 +1009,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
     "version": "3.5",
     "section": "Словари (dict)",
-    "subcat": "распаковка",
+    "subcat": {
+      "ru": "распаковка",
+      "en": ""
+    },
     "aliases": [
       "распаковка словаря звёздочками",
       "передать словарь как именованные аргументы"
@@ -946,7 +1054,10 @@
   },
   {
     "id": "словарные-выражения-dict-comprehension",
-    "title": "Словарные выражения (dict comprehension)",
+    "title": {
+      "ru": "Словарные выражения (dict comprehension)",
+      "en": ""
+    },
     "kind": "function",
     "summary": {
       "ru": "Dict comprehension создаёт словарь из итерируемого объекта. Поддерживает фильтрацию.",
@@ -961,7 +1072,10 @@
     "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
     "version": "3.5",
     "section": "Словари (dict)",
-    "subcat": "comprehension",
+    "subcat": {
+      "ru": "comprehension",
+      "en": "comprehension"
+    },
     "aliases": [
       "генератор словаря",
       "словарь одной строкой",
@@ -1012,7 +1126,10 @@
   },
   {
     "id": "создание-множества",
-    "title": "Создание множества",
+    "title": {
+      "ru": "Создание множества",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Множество создаётся литералом {}, конструктором set() или frozenset(). Дубликаты автоматически удаляются. Порядок не гарантирован.",
@@ -1027,7 +1144,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "создание",
+    "subcat": {
+      "ru": "создание",
+      "en": ""
+    },
     "aliases": [
       "как создать множество",
       "множество из списка",
@@ -1070,7 +1190,10 @@
   },
   {
     "id": "создание-словаря",
-    "title": "Создание словаря",
+    "title": {
+      "ru": "Создание словаря",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Словарь создаётся литералом {k:v}, конструктором dict(), dict.fromkeys() или словарным выражением.",
@@ -1085,7 +1208,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "создание",
+    "subcat": {
+      "ru": "создание",
+      "en": ""
+    },
     "aliases": [
       "пустой словарь",
       "объявить словарь",
@@ -1124,7 +1250,10 @@
   },
   {
     "id": "сортировка-словаря",
-    "title": "Сортировка словаря",
+    "title": {
+      "ru": "Сортировка словаря",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "sorted(d.items()) сортирует пары. key= задаёт критерий сортировки. Результат — список кортежей или новый словарь.",
@@ -1139,7 +1268,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "сортировка",
+    "subcat": {
+      "ru": "сортировка",
+      "en": ""
+    },
     "aliases": [
       "отсортировать словарь по значению",
       "отсортировать словарь по ключу"
@@ -1173,7 +1305,10 @@
   },
   {
     "id": "dict.clear",
-    "title": "dict.clear",
+    "title": {
+      "ru": "dict.clear",
+      "en": "dict.clear"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет все пары, оставляя пустой словарь (на месте).",
@@ -1188,7 +1323,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.clear",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "очистить словарь",
       "удалить все ключи словаря"
@@ -1212,7 +1350,10 @@
   },
   {
     "id": "dict.copy",
-    "title": "dict.copy",
+    "title": {
+      "ru": "dict.copy",
+      "en": "dict.copy"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает поверхностную (shallow) копию словаря: вложенные объекты разделяются с оригиналом.",
@@ -1227,7 +1368,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.copy",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "копирование",
+    "subcat": {
+      "ru": "копирование",
+      "en": ""
+    },
     "aliases": [
       "скопировать словарь",
       "поверхностная копия"
@@ -1252,7 +1396,10 @@
   },
   {
     "id": "dict.get",
-    "title": "dict.get",
+    "title": {
+      "ru": "dict.get",
+      "en": "dict.get"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает значение по ключу или default (по умолчанию None), не вызывая KeyError.",
@@ -1267,7 +1414,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.get",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "доступ",
+    "subcat": {
+      "ru": "доступ",
+      "en": ""
+    },
     "aliases": [
       "значение по умолчанию для ключа",
       "получить значение без ошибки",
@@ -1293,7 +1443,10 @@
   },
   {
     "id": "dict.items",
-    "title": "dict.items",
+    "title": {
+      "ru": "dict.items",
+      "en": "dict.items"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает динамическое представление (view) пар (ключ, значение); отражает изменения словаря.",
@@ -1308,7 +1461,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.items",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "перебор",
+    "subcat": {
+      "ru": "перебор",
+      "en": ""
+    },
     "aliases": [
       "перебрать словарь по ключам и значениям",
       "пары ключ-значение",
@@ -1333,7 +1489,10 @@
   },
   {
     "id": "dict.keys",
-    "title": "dict.keys",
+    "title": {
+      "ru": "dict.keys",
+      "en": "dict.keys"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает динамическое представление (view) ключей словаря.",
@@ -1348,7 +1507,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.keys",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "перебор",
+    "subcat": {
+      "ru": "перебор",
+      "en": ""
+    },
     "aliases": [
       "получить все ключи словаря",
       "список ключей словаря",
@@ -1374,7 +1536,10 @@
   },
   {
     "id": "dict.pop",
-    "title": "dict.pop",
+    "title": {
+      "ru": "dict.pop",
+      "en": "dict.pop"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет ключ и возвращает его значение; default или KeyError, если ключа нет.",
@@ -1389,7 +1554,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.pop",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "удалить ключ из словаря",
       "извлечь значение и удалить ключ"
@@ -1416,7 +1584,10 @@
   },
   {
     "id": "dict.popitem",
-    "title": "dict.popitem",
+    "title": {
+      "ru": "dict.popitem",
+      "en": "dict.popitem"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет и возвращает последнюю добавленную пару (LIFO, с Python 3.7); KeyError на пустом словаре.",
@@ -1431,7 +1602,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.popitem",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "удалить последнюю пару словаря",
       "извлечь последний элемент словаря"
@@ -1456,7 +1630,10 @@
   },
   {
     "id": "dict.setdefault",
-    "title": "dict.setdefault",
+    "title": {
+      "ru": "dict.setdefault",
+      "en": "dict.setdefault"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает значение по ключу; если ключа нет — добавляет его со значением default и возвращает default.",
@@ -1471,7 +1648,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.setdefault",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "доступ",
+    "subcat": {
+      "ru": "доступ",
+      "en": ""
+    },
     "aliases": [
       "добавить ключ, если его нет",
       "создать ключ со значением по умолчанию"
@@ -1495,7 +1675,10 @@
   },
   {
     "id": "dict.update",
-    "title": "dict.update",
+    "title": {
+      "ru": "dict.update",
+      "en": "dict.update"
+    },
     "kind": "function",
     "summary": {
       "ru": "Добавляет или заменяет пары из другого словаря, итерируемого пар или именованных аргументов (на месте).",
@@ -1510,7 +1693,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "изменение",
+    "subcat": {
+      "ru": "изменение",
+      "en": ""
+    },
     "aliases": [
       "обновить словарь другим словарём",
       "добавить несколько пар сразу"
@@ -1536,7 +1722,10 @@
   },
   {
     "id": "dict.values",
-    "title": "dict.values",
+    "title": {
+      "ru": "dict.values",
+      "en": "dict.values"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает динамическое представление (view) значений словаря.",
@@ -1551,7 +1740,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.values",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "перебор",
+    "subcat": {
+      "ru": "перебор",
+      "en": ""
+    },
     "aliases": [
       "получить все значения словаря",
       "список значений словаря",
@@ -1575,7 +1767,10 @@
   },
   {
     "id": "del-для-словаря",
-    "title": "del d[key]",
+    "title": {
+      "ru": "del d[key]",
+      "en": "del d[key]"
+    },
     "kind": "construct",
     "summary": {
       "ru": "Оператор del удаляет пару по ключу (KeyError, если ключа нет). Для удаления с возвратом значения — dict.pop()/dict.popitem().",
@@ -1590,7 +1785,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "доступ",
+    "subcat": {
+      "ru": "доступ",
+      "en": ""
+    },
     "aliases": [
       "удалить ключ из словаря",
       "удаление пары ключ-значение"
@@ -1617,7 +1815,10 @@
   },
   {
     "id": "доступ-d-key",
-    "title": "Доступ d[key]",
+    "title": {
+      "ru": "Доступ d[key]",
+      "en": ""
+    },
     "kind": "construct",
     "summary": {
       "ru": "d[key] возвращает значение по ключу или вызывает KeyError, если ключа нет. Чтобы избежать ошибки при отсутствии ключа — dict.get() с default.",
@@ -1632,7 +1833,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "доступ",
+    "subcat": {
+      "ru": "доступ",
+      "en": ""
+    },
     "aliases": [
       "получить значение по ключу",
       "обращение к словарю по ключу",
@@ -1660,7 +1864,10 @@
   },
   {
     "id": "добавление-изменение-d-key-val",
-    "title": "d[key] = value",
+    "title": {
+      "ru": "d[key] = value",
+      "en": "d[key] = value"
+    },
     "kind": "construct",
     "summary": {
       "ru": "Присваивание d[key] = value добавляет новый ключ или заменяет значение существующего. Для нескольких пар сразу — dict.update().",
@@ -1675,7 +1882,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
     "section": "Словари (dict)",
-    "subcat": "доступ",
+    "subcat": {
+      "ru": "доступ",
+      "en": ""
+    },
     "aliases": [
       "добавить элемент в словарь",
       "изменить значение по ключу",
@@ -1704,7 +1914,10 @@
   },
   {
     "id": "set.add",
-    "title": "set.add",
+    "title": {
+      "ru": "set.add",
+      "en": "set.add"
+    },
     "kind": "function",
     "summary": {
       "ru": "Добавляет элемент в множество (на месте); дубликаты игнорируются.",
@@ -1719,7 +1932,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.add",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "добавление",
+    "subcat": {
+      "ru": "добавление",
+      "en": ""
+    },
     "aliases": [
       "добавить элемент в множество",
       "вставить значение в множество"
@@ -1747,7 +1963,10 @@
   },
   {
     "id": "set.update",
-    "title": "set.update",
+    "title": {
+      "ru": "set.update",
+      "en": "set.update"
+    },
     "kind": "function",
     "summary": {
       "ru": "Добавляет элементы из одного или нескольких итерируемых объектов (на месте); объединение с присваиванием.",
@@ -1762,7 +1981,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.update",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "добавление",
+    "subcat": {
+      "ru": "добавление",
+      "en": ""
+    },
     "aliases": [
       "добавить сразу несколько элементов в множество",
       "объединить множества на месте",
@@ -1787,7 +2009,10 @@
   },
   {
     "id": "set.remove",
-    "title": "set.remove",
+    "title": {
+      "ru": "set.remove",
+      "en": "set.remove"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет элемент; KeyError, если элемента нет (в отличие от discard).",
@@ -1802,7 +2027,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.remove",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "удалить элемент из множества",
       "ошибка при удалении несуществующего элемента"
@@ -1828,7 +2056,10 @@
   },
   {
     "id": "set.discard",
-    "title": "set.discard",
+    "title": {
+      "ru": "set.discard",
+      "en": "set.discard"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет элемент, если он есть; отсутствие элемента ошибкой не считается (в отличие от remove).",
@@ -1843,7 +2074,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.discard",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "удалить элемент без ошибки",
       "убрать элемент если он есть"
@@ -1867,7 +2101,10 @@
   },
   {
     "id": "set.pop",
-    "title": "set.pop",
+    "title": {
+      "ru": "set.pop",
+      "en": "set.pop"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет и возвращает произвольный элемент множества; KeyError на пустом множестве.",
@@ -1882,7 +2119,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.pop",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "удаление",
+    "subcat": {
+      "ru": "удаление",
+      "en": ""
+    },
     "aliases": [
       "извлечь элемент из множества",
       "удалить произвольный элемент",
@@ -1910,7 +2150,10 @@
   },
   {
     "id": "set.clear",
-    "title": "set.clear",
+    "title": {
+      "ru": "set.clear",
+      "en": "set.clear"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет все элементы, оставляя пустое множество (на месте).",
@@ -1925,7 +2168,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.clear",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "изменение",
+    "subcat": {
+      "ru": "изменение",
+      "en": ""
+    },
     "aliases": [
       "очистить множество",
       "удалить все элементы множества"
@@ -1949,7 +2195,10 @@
   },
   {
     "id": "set.copy",
-    "title": "set.copy",
+    "title": {
+      "ru": "set.copy",
+      "en": "set.copy"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает поверхностную копию множества (новый независимый set).",
@@ -1964,7 +2213,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.copy",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "копирование",
+    "subcat": {
+      "ru": "копирование",
+      "en": ""
+    },
     "aliases": [
       "копия множества",
       "скопировать множество"
@@ -1990,7 +2242,10 @@
   },
   {
     "id": "set.union",
-    "title": "set.union",
+    "title": {
+      "ru": "set.union",
+      "en": "set.union"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает новое множество со всеми элементами исходного и переданных (объединение). Оператор — |.",
@@ -2005,7 +2260,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.union",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "теория множеств",
+    "subcat": {
+      "ru": "теория множеств",
+      "en": ""
+    },
     "aliases": [
       "объединение множеств",
       "объединить два множества",
@@ -2033,7 +2291,10 @@
   },
   {
     "id": "set.intersection",
-    "title": "set.intersection",
+    "title": {
+      "ru": "set.intersection",
+      "en": "set.intersection"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает новое множество из элементов, общих для всех (пересечение). Оператор — &.",
@@ -2048,7 +2309,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.intersection",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "теория множеств",
+    "subcat": {
+      "ru": "теория множеств",
+      "en": ""
+    },
     "aliases": [
       "пересечение множеств",
       "общие элементы двух списков"
@@ -2075,7 +2339,10 @@
   },
   {
     "id": "set.difference",
-    "title": "set.difference",
+    "title": {
+      "ru": "set.difference",
+      "en": "set.difference"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает новое множество из элементов, которых нет в переданных (разность). Оператор — -.",
@@ -2090,7 +2357,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.difference",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "теория множеств",
+    "subcat": {
+      "ru": "теория множеств",
+      "en": ""
+    },
     "aliases": [
       "разность множеств",
       "вычесть одно множество из другого",
@@ -2118,7 +2388,10 @@
   },
   {
     "id": "set.symmetric_difference",
-    "title": "set.symmetric_difference",
+    "title": {
+      "ru": "set.symmetric_difference",
+      "en": "set.symmetric_difference"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает элементы, входящие ровно в одно из двух множеств (симметрическая разность). Оператор — ^.",
@@ -2133,7 +2406,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.symmetric_difference",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "теория множеств",
+    "subcat": {
+      "ru": "теория множеств",
+      "en": ""
+    },
     "aliases": [
       "симметрическая разность",
       "элементы только в одном из множеств",
@@ -2161,7 +2437,10 @@
   },
   {
     "id": "set.difference_update",
-    "title": "set.difference_update",
+    "title": {
+      "ru": "set.difference_update",
+      "en": "set.difference_update"
+    },
     "kind": "function",
     "summary": {
       "ru": "Удаляет из множества элементы, найденные в переданных (разность на месте).",
@@ -2176,7 +2455,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.difference_update",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "теория множеств",
+    "subcat": {
+      "ru": "теория множеств",
+      "en": ""
+    },
     "aliases": [
       "разность множеств на месте",
       "удалить элементы другого множества"
@@ -2200,7 +2482,10 @@
   },
   {
     "id": "set.intersection_update",
-    "title": "set.intersection_update",
+    "title": {
+      "ru": "set.intersection_update",
+      "en": "set.intersection_update"
+    },
     "kind": "function",
     "summary": {
       "ru": "Оставляет только элементы, общие со всеми переданными (пересечение на месте).",
@@ -2215,7 +2500,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.intersection_update",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "теория множеств",
+    "subcat": {
+      "ru": "теория множеств",
+      "en": ""
+    },
     "aliases": [
       "пересечение на месте",
       "оставить только общие элементы"
@@ -2238,7 +2526,10 @@
   },
   {
     "id": "set.symmetric_difference_update",
-    "title": "set.symmetric_difference_update",
+    "title": {
+      "ru": "set.symmetric_difference_update",
+      "en": "set.symmetric_difference_update"
+    },
     "kind": "function",
     "summary": {
       "ru": "Оставляет элементы, входящие ровно в одно из множеств (симметрическая разность на месте).",
@@ -2253,7 +2544,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.symmetric_difference_update",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "теория множеств",
+    "subcat": {
+      "ru": "теория множеств",
+      "en": ""
+    },
     "aliases": [
       "симметрическая разность на месте",
       "оставить несовпадающие элементы"
@@ -2276,7 +2570,10 @@
   },
   {
     "id": "set.issubset",
-    "title": "set.issubset",
+    "title": {
+      "ru": "set.issubset",
+      "en": "set.issubset"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если все элементы множества входят в другое (подмножество). Оператор — <=.",
@@ -2291,7 +2588,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.issubset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "проверка",
+    "subcat": {
+      "ru": "проверка",
+      "en": ""
+    },
     "aliases": [
       "подмножество",
       "проверка подмножества",
@@ -2318,7 +2618,10 @@
   },
   {
     "id": "set.issuperset",
-    "title": "set.issuperset",
+    "title": {
+      "ru": "set.issuperset",
+      "en": "set.issuperset"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если множество содержит все элементы другого (надмножество). Оператор — >=.",
@@ -2333,7 +2636,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.issuperset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "проверка",
+    "subcat": {
+      "ru": "проверка",
+      "en": ""
+    },
     "aliases": [
       "надмножество",
       "проверка надмножества",
@@ -2360,7 +2666,10 @@
   },
   {
     "id": "set.isdisjoint",
-    "title": "set.isdisjoint",
+    "title": {
+      "ru": "set.isdisjoint",
+      "en": "set.isdisjoint"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если у множеств нет общих элементов (пересечение пусто).",
@@ -2375,7 +2684,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.isdisjoint",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "проверка",
+    "subcat": {
+      "ru": "проверка",
+      "en": ""
+    },
     "aliases": [
       "нет общих элементов",
       "непересекающиеся множества",
@@ -2402,7 +2714,10 @@
   },
   {
     "id": "frozenset.copy",
-    "title": "frozenset.copy",
+    "title": {
+      "ru": "frozenset.copy",
+      "en": "frozenset.copy"
+    },
     "kind": "function",
     "summary": {
       "ru": "У неизменяемого frozenset copy() возвращает тот же объект (копировать нечего).",
@@ -2417,7 +2732,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.copy",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "копия неизменяемого множества",
       "копирование замороженного множества"
@@ -2443,7 +2761,10 @@
   },
   {
     "id": "frozenset.union",
-    "title": "frozenset.union",
+    "title": {
+      "ru": "frozenset.union",
+      "en": "frozenset.union"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает новый frozenset — объединение с переданными итерируемыми.",
@@ -2458,7 +2779,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.union",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "объединение неизменяемых множеств",
       "слить замороженные множества"
@@ -2485,7 +2809,10 @@
   },
   {
     "id": "frozenset.intersection",
-    "title": "frozenset.intersection",
+    "title": {
+      "ru": "frozenset.intersection",
+      "en": "frozenset.intersection"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает новый frozenset — пересечение с переданными.",
@@ -2500,7 +2827,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.intersection",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "пересечение неизменяемых множеств",
       "общие элементы замороженных множеств"
@@ -2527,7 +2857,10 @@
   },
   {
     "id": "frozenset.difference",
-    "title": "frozenset.difference",
+    "title": {
+      "ru": "frozenset.difference",
+      "en": "frozenset.difference"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает новый frozenset — разность (элементы, которых нет в переданных).",
@@ -2542,7 +2875,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.difference",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "разность неизменяемых множеств",
       "вычитание замороженных множеств"
@@ -2568,7 +2904,10 @@
   },
   {
     "id": "frozenset.symmetric_difference",
-    "title": "frozenset.symmetric_difference",
+    "title": {
+      "ru": "frozenset.symmetric_difference",
+      "en": "frozenset.symmetric_difference"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает новый frozenset — симметрическую разность двух множеств.",
@@ -2583,7 +2922,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.symmetric_difference",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "симметрическая разность неизменяемых множеств",
       "элементы только в одном из замороженных множеств"
@@ -2610,7 +2952,10 @@
   },
   {
     "id": "frozenset.isdisjoint",
-    "title": "frozenset.isdisjoint",
+    "title": {
+      "ru": "frozenset.isdisjoint",
+      "en": "frozenset.isdisjoint"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если у frozenset нет общих элементов с переданным множеством.",
@@ -2625,7 +2970,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.isdisjoint",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "непересекающиеся замороженные множества",
       "нет общих элементов у неизменяемого множества"
@@ -2651,7 +2999,10 @@
   },
   {
     "id": "frozenset.issubset",
-    "title": "frozenset.issubset",
+    "title": {
+      "ru": "frozenset.issubset",
+      "en": "frozenset.issubset"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если все элементы frozenset входят в другое множество (подмножество).",
@@ -2666,7 +3017,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.issubset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "подмножество неизменяемого множества",
       "проверка вложенности замороженных множеств"
@@ -2692,7 +3046,10 @@
   },
   {
     "id": "frozenset.issuperset",
-    "title": "frozenset.issuperset",
+    "title": {
+      "ru": "frozenset.issuperset",
+      "en": "frozenset.issuperset"
+    },
     "kind": "function",
     "summary": {
       "ru": "True, если frozenset содержит все элементы другого множества (надмножество).",
@@ -2707,7 +3064,10 @@
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.issuperset",
     "version": "",
     "section": "Множества (set)",
-    "subcat": "frozenset",
+    "subcat": {
+      "ru": "frozenset",
+      "en": "frozenset"
+    },
     "aliases": [
       "надмножество неизменяемого множества",
       "замороженное множество содержит другое"

@@ -85,7 +85,7 @@ def known_names(glossary: Glossary) -> frozenset[str]:
     """
     names: set[str] = set()
     for entry in glossary:
-        for raw in (entry.id, entry.title, *entry.aliases):
+        for raw in (entry.id, entry.title.ru, entry.title.en, *entry.aliases):
             cleaned = raw.strip().removesuffix("()").lower()
             if cleaned:
                 names.add(cleaned)

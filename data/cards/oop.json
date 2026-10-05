@@ -1,7 +1,10 @@
 [
   {
     "id": "__add__-__mul__-__eq__-__lt__-и-оператор",
-    "title": "__add__ / __mul__ / __eq__ / __lt__ и операторные методы",
+    "title": {
+      "ru": "__add__ / __mul__ / __eq__ / __lt__ и операторные методы",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Перегрузка операторов. __add__(+), __sub__(-), __mul__(*), __eq__(==), __lt__(<), __le__(<=), __hash__, __neg__.",
@@ -16,7 +19,10 @@
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__add__",
     "version": "",
     "section": "ООП",
-    "subcat": "магические методы",
+    "subcat": {
+      "ru": "магические методы",
+      "en": ""
+    },
     "aliases": [
       "перегрузка операторов",
       "переопределение операторов",
@@ -120,7 +126,10 @@
   },
   {
     "id": "__enter__-__exit__",
-    "title": "__enter__ / __exit__",
+    "title": {
+      "ru": "__enter__ / __exit__",
+      "en": "__enter__ / __exit__"
+    },
     "kind": "term",
     "summary": {
       "ru": "Контекстный менеджер (with-statement). __enter__ выполняется при входе, __exit__ — при выходе (в том числе при исключении).",
@@ -135,7 +144,10 @@
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers",
     "version": "",
     "section": "ООП",
-    "subcat": "контекст. менеджер",
+    "subcat": {
+      "ru": "контекст. менеджер",
+      "en": ""
+    },
     "aliases": [
       "контекстный менеджер",
       "свой блок with",
@@ -224,7 +236,10 @@
   },
   {
     "id": "__init__",
-    "title": "__init__",
+    "title": {
+      "ru": "__init__",
+      "en": "__init__"
+    },
     "kind": "term",
     "summary": {
       "ru": "Конструктор — вызывается при создании экземпляра. Инициализирует атрибуты объекта.",
@@ -239,7 +254,10 @@
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__init__",
     "version": "",
     "section": "ООП",
-    "subcat": "инициализация",
+    "subcat": {
+      "ru": "инициализация",
+      "en": ""
+    },
     "aliases": [
       "конструктор класса",
       "инициализация объекта",
@@ -310,7 +328,10 @@
   },
   {
     "id": "__len__-__getitem__-__setitem__-__contai",
-    "title": "__len__ / __getitem__ / __setitem__ / __contains__",
+    "title": {
+      "ru": "__len__ / __getitem__ / __setitem__ / __contains__",
+      "en": "__len__ / __getitem__ / __setitem__ / __contains__"
+    },
     "kind": "term",
     "summary": {
       "ru": "Магические методы для протокола последовательности/контейнера. Позволяют использовать len(), [], in.",
@@ -325,7 +346,10 @@
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#emulating-container-types",
     "version": "",
     "section": "ООП",
-    "subcat": "магические методы",
+    "subcat": {
+      "ru": "магические методы",
+      "en": ""
+    },
     "aliases": [
       "свой класс как список",
       "поддержка квадратных скобок в классе",
@@ -418,7 +442,10 @@
   },
   {
     "id": "__slots__",
-    "title": "__slots__",
+    "title": {
+      "ru": "__slots__",
+      "en": "__slots__"
+    },
     "kind": "term",
     "summary": {
       "ru": "__slots__ ограничивает атрибуты экземпляра, убирает __dict__, экономит память. Особенно полезно для большого числа объектов.",
@@ -433,7 +460,10 @@
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#slots",
     "version": "",
     "section": "ООП",
-    "subcat": "slots",
+    "subcat": {
+      "ru": "slots",
+      "en": "slots"
+    },
     "aliases": [
       "экономия памяти объектов",
       "ограничить набор атрибутов",
@@ -494,7 +524,10 @@
   },
   {
     "id": "__str__-__repr__",
-    "title": "__str__ / __repr__",
+    "title": {
+      "ru": "__str__ / __repr__",
+      "en": "__str__ / __repr__"
+    },
     "kind": "term",
     "summary": {
       "ru": "__str__ — читаемое представление для print(). __repr__ — отладочное, воспроизводимое. repr() вызывает __repr__.",
@@ -509,7 +542,10 @@
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__str__",
     "version": "",
     "section": "ООП",
-    "subcat": "магические методы",
+    "subcat": {
+      "ru": "магические методы",
+      "en": ""
+    },
     "aliases": [
       "строковое представление объекта",
       "как объект выводится в print",
@@ -575,7 +611,10 @@
   },
   {
     "id": "class",
-    "title": "class",
+    "title": {
+      "ru": "class",
+      "en": "class"
+    },
     "kind": "term",
     "summary": {
       "ru": "Объявление класса. Класс — шаблон для создания объектов (экземпляров).",
@@ -590,7 +629,10 @@
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#class",
     "version": "",
     "section": "ООП",
-    "subcat": "классы",
+    "subcat": {
+      "ru": "классы",
+      "en": ""
+    },
     "aliases": [
       "создать свой класс",
       "объявить класс",
@@ -654,7 +696,10 @@
   },
   {
     "id": "classmethod",
-    "title": "@classmethod",
+    "title": {
+      "ru": "@classmethod",
+      "en": "@classmethod"
+    },
     "kind": "term",
     "summary": {
       "ru": "Метод класса. Первый параметр — cls (ссылка на класс). Используется для альтернативных конструкторов.",
@@ -669,7 +714,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#classmethod",
     "version": "",
     "section": "ООП",
-    "subcat": "классы",
+    "subcat": {
+      "ru": "классы",
+      "en": ""
+    },
     "aliases": [
       "метод класса",
       "альтернативный конструктор",
@@ -752,7 +800,10 @@
   },
   {
     "id": "property",
-    "title": "@property",
+    "title": {
+      "ru": "@property",
+      "en": "@property"
+    },
     "kind": "term",
     "summary": {
       "ru": "Превращает метод в атрибут (геттер). @x.setter — сеттер. @x.deleter — делитер. Вычисляемые атрибуты.",
@@ -767,7 +818,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#property",
     "version": "",
     "section": "ООП",
-    "subcat": "property",
+    "subcat": {
+      "ru": "property",
+      "en": "property"
+    },
     "aliases": [
       "геттер и сеттер",
       "вычисляемый атрибут",
@@ -879,7 +933,10 @@
   },
   {
     "id": "self",
-    "title": "self",
+    "title": {
+      "ru": "self",
+      "en": "self"
+    },
     "kind": "term",
     "summary": {
       "ru": "Ссылка на текущий экземпляр класса. Первый параметр методов экземпляра (имя — соглашение).",
@@ -894,7 +951,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#random-remarks",
     "version": "",
     "section": "ООП",
-    "subcat": "self",
+    "subcat": {
+      "ru": "self",
+      "en": "self"
+    },
     "aliases": [
       "ссылка на текущий объект",
       "первый параметр метода",
@@ -964,7 +1024,10 @@
   },
   {
     "id": "staticmethod",
-    "title": "@staticmethod",
+    "title": {
+      "ru": "@staticmethod",
+      "en": "@staticmethod"
+    },
     "kind": "term",
     "summary": {
       "ru": "Статический метод. Не принимает self или cls. Просто функция внутри класса — логическая группировка.",
@@ -979,7 +1042,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#staticmethod",
     "version": "",
     "section": "ООП",
-    "subcat": "методы",
+    "subcat": {
+      "ru": "методы",
+      "en": ""
+    },
     "aliases": [
       "статический метод",
       "метод без self"
@@ -1033,7 +1099,10 @@
   },
   {
     "id": "super",
-    "title": "super()",
+    "title": {
+      "ru": "super()",
+      "en": "super()"
+    },
     "kind": "function",
     "summary": {
       "ru": "Возвращает прокси-объект родительского класса. Используется для вызова методов родителя без явного указания имени.",
@@ -1048,7 +1117,10 @@
     "docs_url": "https://docs.python.org/3/library/functions.html#super",
     "version": "",
     "section": "ООП",
-    "subcat": "наследование",
+    "subcat": {
+      "ru": "наследование",
+      "en": ""
+    },
     "aliases": [
       "вызов метода родителя",
       "вызвать конструктор родителя",
@@ -1136,7 +1208,10 @@
   },
   {
     "id": "абстрактные-классы",
-    "title": "Абстрактные классы",
+    "title": {
+      "ru": "Абстрактные классы",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "abc.ABC и @abstractmethod запрещают создание экземпляров класса без реализации всех абстрактных методов.",
@@ -1151,7 +1226,10 @@
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABC",
     "version": "3.4",
     "section": "ООП",
-    "subcat": "ABC",
+    "subcat": {
+      "ru": "ABC",
+      "en": "ABC"
+    },
     "aliases": [
       "запретить создание экземпляра",
       "обязательный метод в наследнике",
@@ -1228,7 +1306,10 @@
   },
   {
     "id": "атрибуты-экземпляра-и-класса",
-    "title": "Атрибуты экземпляра и класса",
+    "title": {
+      "ru": "Атрибуты экземпляра и класса",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Атрибуты класса — общие для всех экземпляров. Атрибуты экземпляра — уникальные для каждого. Изменяемые атрибуты класса — ловушка!",
@@ -1243,7 +1324,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#class-and-instance-variables",
     "version": "",
     "section": "ООП",
-    "subcat": "атрибуты",
+    "subcat": {
+      "ru": "атрибуты",
+      "en": ""
+    },
     "aliases": [
       "поле объекта",
       "общая переменная для всех объектов",
@@ -1306,7 +1390,10 @@
   },
   {
     "id": "инкапсуляция-_private-__mangled",
-    "title": "Инкапсуляция — _private, __mangled",
+    "title": {
+      "ru": "Инкапсуляция — _private, __mangled",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Одиночный _ — соглашение (внутренний). Двойной __ — name mangling (переименование _Class__attr). Нет настоящих private в Python.",
@@ -1321,7 +1408,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#private-variables",
     "version": "",
     "section": "ООП",
-    "subcat": "инкапсуляция",
+    "subcat": {
+      "ru": "инкапсуляция",
+      "en": ""
+    },
     "aliases": [
       "приватный атрибут",
       "закрытое поле класса",
@@ -1397,7 +1487,10 @@
   },
   {
     "id": "методы-экземпляра",
-    "title": "Методы экземпляра",
+    "title": {
+      "ru": "Методы экземпляра",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Обычные методы класса. Первый параметр — self (ссылка на экземпляр). Могут читать и изменять состояние.",
@@ -1412,7 +1505,10 @@
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#instance-methods",
     "version": "",
     "section": "ООП",
-    "subcat": "методы",
+    "subcat": {
+      "ru": "методы",
+      "en": ""
+    },
     "aliases": [
       "метод с self",
       "обычный метод класса",
@@ -1505,7 +1601,10 @@
   },
   {
     "id": "множественное-наследование-mro",
-    "title": "Множественное наследование / MRO",
+    "title": {
+      "ru": "Множественное наследование / MRO",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Python поддерживает множественное наследование. Порядок разрешения методов (MRO) — C3-линеаризация.",
@@ -1520,7 +1619,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#multiple-inheritance",
     "version": "",
     "section": "ООП",
-    "subcat": "наследование",
+    "subcat": {
+      "ru": "наследование",
+      "en": ""
+    },
     "aliases": [
       "порядок разрешения методов",
       "наследование от двух классов",
@@ -1597,7 +1699,10 @@
   },
   {
     "id": "наследование",
-    "title": "Наследование",
+    "title": {
+      "ru": "Наследование",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Дочерний класс наследует атрибуты и методы родительского. Переопределение методов — полиморфизм.",
@@ -1612,7 +1717,10 @@
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#inheritance",
     "version": "",
     "section": "ООП",
-    "subcat": "наследование",
+    "subcat": {
+      "ru": "наследование",
+      "en": ""
+    },
     "aliases": [
       "наследование классов",
       "дочерний класс",
@@ -1705,7 +1813,10 @@
   },
   {
     "id": "полиморфизм",
-    "title": "Полиморфизм",
+    "title": {
+      "ru": "Полиморфизм",
+      "en": ""
+    },
     "kind": "term",
     "summary": {
       "ru": "Один интерфейс — разные реализации. В Python достигается переопределением методов и duck typing.",
@@ -1720,7 +1831,10 @@
     "docs_url": "https://docs.python.org/3/glossary.html#term-duck-typing",
     "version": "",
     "section": "ООП",
-    "subcat": "полиморфизм",
+    "subcat": {
+      "ru": "полиморфизм",
+      "en": ""
+    },
     "aliases": [
       "утиная типизация",
       "переопределение методов",

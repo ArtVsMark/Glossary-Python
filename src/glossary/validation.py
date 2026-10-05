@@ -42,14 +42,20 @@ DUPLICATE_THRESHOLD: Final = 2
 GENERIC_DOCS: Final = frozenset({DOCS_PREFIX, "https://docs.python.org/3"})
 _REQUIRED_TEXT_FIELDS: Final = (
     "id",
-    "title",
     "kind",
     "status",
     "section",
-    "subcat",
     "syntax",
     "docs_url",
 )
+_LABEL_FIELDS: Final = ("title", "subcat")
+"""Двуязычные подписи карточки (схема v3).
+
+Русская половина обязательна, как любое поле карточки; английская пока
+считается предупреждением ``label-translated``: при переходе на v3 перевод
+получили только подписи без кириллицы (имена из кода), остальные ждут правки
+содержания.
+"""
 
 
 class Severity(StrEnum):
@@ -157,6 +163,14 @@ def rule_required_fields(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                     f"поле {name!r} пустое",
                     entry.id or None,
                 )
+        for name in _LABEL_FIELDS:
+            if not getattr(entry, name).ru.strip():
+                yield Issue(
+                    Severity.ERROR,
+                    "required-fields",
+                    f"поле {name!r} пустое на языке 'ru'",
+                    entry.id or None,
+                )
 
 
 def rule_id_format(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
@@ -242,6 +256,29 @@ def rule_translated(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                 )
 
 
+def rule_label_translated(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Заголовок и подкатегория переведены на английский.
+
+    Отдельно от :func:`rule_translated`, а не внутри него: подписи стали
+    двуязычными в схеме v3, и их долг — свой, с собственной планкой. Слитый в
+    ``translated``, он поднял бы чужую планку, которая движется только вниз.
+
+    Пустая английская половина не ломает витрину — она показывает русскую, —
+    поэтому уровень пока предупреждение. В ошибку правило переводится, когда
+    данные переведены целиком (#85).
+    """
+    for entry in g.entries:
+        for name in _LABEL_FIELDS:
+            label = getattr(entry, name)
+            if label.ru.strip() and not label.en.strip():
+                yield Issue(
+                    Severity.WARNING,
+                    "label-translated",
+                    f"поле {name!r} не переведено на английский",
+                    entry.id,
+                )
+
+
 def rule_language_script(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Английская половина написана латиницей, а не оставлена русской.
 
@@ -263,7 +300,7 @@ def rule_language_script(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     правило о нём молчит вместо того, чтобы краснеть на верных данных.
     """
     for entry in g.entries:
-        for field_name in ("summary", "body"):
+        for field_name in ("summary", "body", *_LABEL_FIELDS):
             text = getattr(entry, field_name).get("en").strip()
             share = _cyrillic_share(text)
             if share > cfg.max_foreign_script:
@@ -475,7 +512,7 @@ def rule_duplicate_title(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Одинаковые имена в разных разделах — кандидаты на слияние."""
     by_title: defaultdict[str, list[Entry]] = defaultdict(list)
     for entry in g.entries:
-        by_title[entry.title].append(entry)
+        by_title[entry.title.ru].append(entry)
     for title, group in by_title.items():
         if len(group) < DUPLICATE_THRESHOLD:
             continue
@@ -507,6 +544,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_kind,
     rule_color_group,
     rule_translated,
+    rule_label_translated,
     rule_language_script,
     rule_docs_url,
     rule_summary_length,

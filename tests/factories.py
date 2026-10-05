@@ -41,11 +41,17 @@ def make_entry(**overrides: Any) -> Entry:
         "docs_url": "https://docs.python.org/3/library/functions.html#sample",
         "version": "",
         "section": "Раздел",
-        "subcat": "подкатегория",
+        "subcat": Text(ru="подкатегория", en="subcategory"),
         "color_group": "builtin",
         "examples": ("sample()", "# → None"),
     }
-    return Entry(**(defaults | overrides))
+    merged = defaults | overrides
+    # Подписи двуязычны со схемы v3; тесту удобнее строка — имя из кода, у
+    # которого обе половины совпадают.
+    for name in ("title", "subcat"):
+        if isinstance(merged[name], str):
+            merged[name] = Text(ru=merged[name], en=merged[name])
+    return Entry(**merged)
 
 
 def make_glossary(*entries: Entry) -> Glossary:

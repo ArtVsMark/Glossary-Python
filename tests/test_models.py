@@ -9,7 +9,7 @@ from tests.factories import make_entry, make_glossary
 def test_entry_is_immutable():
     entry = make_entry()
     with pytest.raises(AttributeError):
-        entry.title = "другое"  # type: ignore[misc]
+        entry.title = Text(ru="другое")  # type: ignore[misc]
 
 
 def test_from_dict_ignores_unknown_keys():

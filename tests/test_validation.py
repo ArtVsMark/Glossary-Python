@@ -137,11 +137,11 @@ def test_translated_only_warns_on_missing_body():
     assert [i.severity for i in issues] == [Severity.WARNING]
 
 
-def test_untranslated_label_is_a_warning():
-    """Подпись без английской половины витрину не ломает: она откатится на русский."""
+def test_untranslated_label_is_an_error():
+    """Подписи переведены целиком (#91) — непереведённая новая карточка красная."""
     glossary = make_glossary(make_entry(title=Text(ru="Бинарный поиск", en="")))
     issues = list(rule_label_translated(glossary, CFG))
-    assert [(i.severity, i.entry_id) for i in issues] == [(Severity.WARNING, "sample")]
+    assert [(i.severity, i.entry_id) for i in issues] == [(Severity.ERROR, "sample")]
     assert "'title'" in issues[0].message
 
 

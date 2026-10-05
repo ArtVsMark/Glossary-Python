@@ -13,7 +13,7 @@ import pytest
 
 import check_examples as gate
 
-CEILING: Final = 17
+CEILING: Final = 0
 """Находок на дереве сейчас. Опускается вместе с правкой карточек (#82)."""
 
 

@@ -1382,7 +1382,7 @@
     "syntax": "P = typing.ParamSpec('P')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpec",
-    "version": "",
+    "version": "3.10",
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1432,7 +1432,7 @@
     "syntax": "P.args  # тип ParamSpecArgs",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpecArgs",
-    "version": "",
+    "version": "3.10",
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",
@@ -1522,7 +1522,7 @@
     "syntax": "Ts = typing.TypeVarTuple('Ts')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeVarTuple",
-    "version": "",
+    "version": "3.11",
     "section": "Модуль typing",
     "subcat": {
       "ru": "обобщения и параметры",

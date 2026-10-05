@@ -396,7 +396,7 @@
     "syntax": "compile(source, filename, mode)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#compile",
-    "version": "3.8",
+    "version": "",
     "section": "Встроенные функции",
     "subcat": {
       "ru": "выполнение",

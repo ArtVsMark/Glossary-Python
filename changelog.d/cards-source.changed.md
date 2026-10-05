@@ -1,1 +1,0 @@
-хозяин содержания — этот репозиторий: карточки ведутся в `data/cards/<группа>.json`, `data/glossary.json` собирает `glossary assemble` (сверка `make assemble-check` в CI); `make import`/`make import-check` убраны, импорт из грейдера выведен из работы; поле `source` контрактов теперь `ArtVsMark/Glossary-Python` (#76)

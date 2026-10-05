@@ -1,0 +1,1 @@
+маркеры версий сверены с `versionadded` исходников документации CPython 3.14: совпали 1015, исправлены 8 (`dataclasses.field` 3.7, `compile` без маркера, `typing.ParamSpec`/`ParamSpecArgs` 3.10, `TypeVarTuple` 3.11, `enum.EnumCheck`/`FlagBoundary` 3.11, `enum.EnumDict` 3.13) (#83)

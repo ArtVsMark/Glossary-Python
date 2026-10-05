@@ -8601,7 +8601,7 @@
       "syntax": "compile(source, filename, mode)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#compile",
-      "version": "3.8",
+      "version": "",
       "section": "Встроенные функции",
       "subcat": {
         "ru": "выполнение",
@@ -23154,7 +23154,7 @@
       "syntax": "dataclasses.field(*, default=MISSING, default_factory=MISSING, repr=True, hash=None, compare=True, init=True)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.field",
-      "version": "3.10",
+      "version": "3.7",
       "section": "Модуль dataclasses",
       "subcat": {
         "ru": "field",
@@ -24731,7 +24731,7 @@
       "syntax": "enum.EnumCheck",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumCheck",
-      "version": "",
+      "version": "3.11",
       "section": "Модуль enum",
       "subcat": {
         "ru": "проверки",
@@ -24778,7 +24778,7 @@
       "syntax": "ns = enum.EnumDict()",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumDict",
-      "version": "",
+      "version": "3.13",
       "section": "Модуль enum",
       "subcat": {
         "ru": "метакласс",
@@ -24963,7 +24963,7 @@
       "syntax": "enum.FlagBoundary",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/enum.html#enum.FlagBoundary",
-      "version": "",
+      "version": "3.11",
       "section": "Модуль enum",
       "subcat": {
         "ru": "флаги",
@@ -53119,7 +53119,7 @@
       "syntax": "P = typing.ParamSpec('P')",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpec",
-      "version": "",
+      "version": "3.10",
       "section": "Модуль typing",
       "subcat": {
         "ru": "обобщения и параметры",
@@ -53170,7 +53170,7 @@
       "syntax": "P.args  # тип ParamSpecArgs",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/typing.html#typing.ParamSpecArgs",
-      "version": "",
+      "version": "3.10",
       "section": "Модуль typing",
       "subcat": {
         "ru": "обобщения и параметры",
@@ -53754,7 +53754,7 @@
       "syntax": "Ts = typing.TypeVarTuple('Ts')",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeVarTuple",
-      "version": "",
+      "version": "3.11",
       "section": "Модуль typing",
       "subcat": {
         "ru": "обобщения и параметры",

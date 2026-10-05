@@ -1211,8 +1211,8 @@
   {
     "id": "_missing_",
     "title": {
-      "ru": "_missing_()",
-      "en": "_missing_()"
+      "ru": "enum.Enum._missing_()",
+      "en": "enum.Enum._missing_()"
     },
     "kind": "function",
     "summary": {
@@ -1264,8 +1264,8 @@
   {
     "id": "as-completed",
     "title": {
-      "ru": "as_completed()",
-      "en": "as_completed()"
+      "ru": "concurrent.futures.as_completed()",
+      "en": "concurrent.futures.as_completed()"
     },
     "kind": "function",
     "summary": {
@@ -1316,8 +1316,8 @@
   {
     "id": "auto",
     "title": {
-      "ru": "auto()",
-      "en": "auto()"
+      "ru": "enum.auto()",
+      "en": "enum.auto()"
     },
     "kind": "function",
     "summary": {
@@ -2660,8 +2660,8 @@
   {
     "id": "date.today",
     "title": {
-      "ru": "date.today()",
-      "en": "date.today()"
+      "ru": "datetime.date.today()",
+      "en": "datetime.date.today()"
     },
     "kind": "function",
     "summary": {
@@ -2708,8 +2708,8 @@
   {
     "id": "date.fromisoformat",
     "title": {
-      "ru": "date.fromisoformat()",
-      "en": "date.fromisoformat()"
+      "ru": "datetime.date.fromisoformat()",
+      "en": "datetime.date.fromisoformat()"
     },
     "kind": "function",
     "summary": {
@@ -2758,8 +2758,8 @@
   {
     "id": "datetime.now",
     "title": {
-      "ru": "datetime.now()",
-      "en": "datetime.now()"
+      "ru": "datetime.datetime.now()",
+      "en": "datetime.datetime.now()"
     },
     "kind": "function",
     "summary": {
@@ -2808,8 +2808,8 @@
   {
     "id": "datetime.utcnow",
     "title": {
-      "ru": "datetime.utcnow()",
-      "en": "datetime.utcnow()"
+      "ru": "datetime.datetime.utcnow()",
+      "en": "datetime.datetime.utcnow()"
     },
     "kind": "function",
     "summary": {
@@ -2954,8 +2954,8 @@
   {
     "id": "dt-astimezone",
     "title": {
-      "ru": "astimezone()",
-      "en": "astimezone()"
+      "ru": "datetime.datetime.astimezone()",
+      "en": "datetime.datetime.astimezone()"
     },
     "kind": "function",
     "summary": {
@@ -3003,8 +3003,8 @@
   {
     "id": "dt-combine",
     "title": {
-      "ru": "combine()",
-      "en": "combine()"
+      "ru": "datetime.datetime.combine()",
+      "en": "datetime.datetime.combine()"
     },
     "kind": "function",
     "summary": {
@@ -3053,8 +3053,8 @@
   {
     "id": "dt-fromtimestamp",
     "title": {
-      "ru": "fromtimestamp()",
-      "en": "fromtimestamp()"
+      "ru": "datetime.datetime.fromtimestamp()",
+      "en": "datetime.datetime.fromtimestamp()"
     },
     "kind": "function",
     "summary": {
@@ -3105,8 +3105,8 @@
   {
     "id": "dt-isoweekday",
     "title": {
-      "ru": "isoweekday()",
-      "en": "isoweekday()"
+      "ru": "datetime.date.isoweekday()",
+      "en": "datetime.date.isoweekday()"
     },
     "kind": "function",
     "summary": {
@@ -3151,8 +3151,8 @@
   {
     "id": "dt-replace",
     "title": {
-      "ru": "replace()",
-      "en": "replace()"
+      "ru": "datetime.datetime.replace()",
+      "en": "datetime.datetime.replace()"
     },
     "kind": "function",
     "summary": {
@@ -3203,8 +3203,8 @@
   {
     "id": "dt-timestamp",
     "title": {
-      "ru": "timestamp()",
-      "en": "timestamp()"
+      "ru": "datetime.datetime.timestamp()",
+      "en": "datetime.datetime.timestamp()"
     },
     "kind": "function",
     "summary": {
@@ -3252,8 +3252,8 @@
   {
     "id": "dt-timetuple",
     "title": {
-      "ru": "timetuple()",
-      "en": "timetuple()"
+      "ru": "datetime.datetime.timetuple()",
+      "en": "datetime.datetime.timetuple()"
     },
     "kind": "function",
     "summary": {
@@ -3301,8 +3301,8 @@
   {
     "id": "dt-utcfromtimestamp",
     "title": {
-      "ru": "utcfromtimestamp()",
-      "en": "utcfromtimestamp()"
+      "ru": "datetime.datetime.utcfromtimestamp()",
+      "en": "datetime.datetime.utcfromtimestamp()"
     },
     "kind": "function",
     "summary": {
@@ -3353,8 +3353,8 @@
   {
     "id": "dt-weekday",
     "title": {
-      "ru": "weekday()",
-      "en": "weekday()"
+      "ru": "datetime.date.weekday()",
+      "en": "datetime.date.weekday()"
     },
     "kind": "function",
     "summary": {
@@ -3455,8 +3455,8 @@
   {
     "id": "executor-submit",
     "title": {
-      "ru": "executor.submit()",
-      "en": "executor.submit()"
+      "ru": "concurrent.futures.Executor.submit()",
+      "en": "concurrent.futures.Executor.submit()"
     },
     "kind": "function",
     "summary": {
@@ -3507,8 +3507,8 @@
   {
     "id": "field",
     "title": {
-      "ru": "field()",
-      "en": "field()"
+      "ru": "dataclasses.field()",
+      "en": "dataclasses.field()"
     },
     "kind": "function",
     "summary": {
@@ -3665,8 +3665,8 @@
   {
     "id": "file-flush",
     "title": {
-      "ru": "flush()",
-      "en": "flush()"
+      "ru": "io.IOBase.flush()",
+      "en": "io.IOBase.flush()"
     },
     "kind": "function",
     "summary": {
@@ -3719,8 +3719,8 @@
   {
     "id": "file-tell",
     "title": {
-      "ru": "tell()",
-      "en": "tell()"
+      "ru": "io.IOBase.tell()",
+      "en": "io.IOBase.tell()"
     },
     "kind": "function",
     "summary": {
@@ -3771,8 +3771,8 @@
   {
     "id": "file-truncate",
     "title": {
-      "ru": "truncate()",
-      "en": "truncate()"
+      "ru": "io.IOBase.truncate()",
+      "en": "io.IOBase.truncate()"
     },
     "kind": "function",
     "summary": {
@@ -7662,8 +7662,8 @@
   {
     "id": "path",
     "title": {
-      "ru": "Path()",
-      "en": "Path()"
+      "ru": "pathlib.Path()",
+      "en": "pathlib.Path()"
     },
     "kind": "function",
     "summary": {
@@ -7711,8 +7711,8 @@
   {
     "id": "path.home",
     "title": {
-      "ru": "Path.home()",
-      "en": "Path.home()"
+      "ru": "pathlib.Path.home()",
+      "en": "pathlib.Path.home()"
     },
     "kind": "function",
     "summary": {
@@ -7759,8 +7759,8 @@
   {
     "id": "path.cwd",
     "title": {
-      "ru": "Path.cwd()",
-      "en": "Path.cwd()"
+      "ru": "pathlib.Path.cwd()",
+      "en": "pathlib.Path.cwd()"
     },
     "kind": "function",
     "summary": {
@@ -7808,8 +7808,8 @@
   {
     "id": "path.stat",
     "title": {
-      "ru": "Path.stat()",
-      "en": "Path.stat()"
+      "ru": "pathlib.Path.stat()",
+      "en": "pathlib.Path.stat()"
     },
     "kind": "function",
     "summary": {
@@ -8722,8 +8722,8 @@
   {
     "id": "re.group",
     "title": {
-      "ru": "re.group()",
-      "en": "re.group()"
+      "ru": "re.Match.group()",
+      "en": "re.Match.group()"
     },
     "kind": "function",
     "summary": {
@@ -8774,8 +8774,8 @@
   {
     "id": "re.groups",
     "title": {
-      "ru": "re.groups()",
-      "en": "re.groups()"
+      "ru": "re.Match.groups()",
+      "en": "re.Match.groups()"
     },
     "kind": "function",
     "summary": {
@@ -8826,8 +8826,8 @@
   {
     "id": "re.groupdict",
     "title": {
-      "ru": "re.groupdict()",
-      "en": "re.groupdict()"
+      "ru": "re.Match.groupdict()",
+      "en": "re.Match.groupdict()"
     },
     "kind": "function",
     "summary": {
@@ -10684,8 +10684,8 @@
   {
     "id": "unittest.assertEqual",
     "title": {
-      "ru": "assertEqual()",
-      "en": "assertEqual()"
+      "ru": "unittest.TestCase.assertEqual()",
+      "en": "unittest.TestCase.assertEqual()"
     },
     "kind": "function",
     "summary": {
@@ -10734,8 +10734,8 @@
   {
     "id": "unittest.assertRaises",
     "title": {
-      "ru": "assertRaises()",
-      "en": "assertRaises()"
+      "ru": "unittest.TestCase.assertRaises()",
+      "en": "unittest.TestCase.assertRaises()"
     },
     "kind": "function",
     "summary": {
@@ -10840,8 +10840,8 @@
   {
     "id": "unittest.setUp",
     "title": {
-      "ru": "setUp()",
-      "en": "setUp()"
+      "ru": "unittest.TestCase.setUp()",
+      "en": "unittest.TestCase.setUp()"
     },
     "kind": "function",
     "summary": {
@@ -10889,8 +10889,8 @@
   {
     "id": "unittest.tearDown",
     "title": {
-      "ru": "tearDown()",
-      "en": "tearDown()"
+      "ru": "unittest.TestCase.tearDown()",
+      "en": "unittest.TestCase.tearDown()"
     },
     "kind": "function",
     "summary": {
@@ -12369,7 +12369,7 @@
     "syntax": "dataclasses.make_dataclass(name, fields)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.make_dataclass",
-    "version": "3.14",
+    "version": "3.7",
     "section": "Модуль dataclasses",
     "subcat": {
       "ru": "фабрика",
@@ -18049,7 +18049,7 @@
     "syntax": "enum.global_enum_repr(member)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
-    "version": "",
+    "version": "3.11",
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
@@ -18094,7 +18094,7 @@
     "syntax": "enum.global_flag_repr(member)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
-    "version": "",
+    "version": "3.11",
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
@@ -18139,7 +18139,7 @@
     "syntax": "enum.global_str(member)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
-    "version": "",
+    "version": "3.11",
     "section": "Модуль enum",
     "subcat": {
       "ru": "глобализация",
@@ -18185,7 +18185,7 @@
     "syntax": "member.__reduce_ex__ = enum.pickle_by_enum_name",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
-    "version": "",
+    "version": "3.11",
     "section": "Модуль enum",
     "subcat": {
       "ru": "pickle",
@@ -18231,7 +18231,7 @@
     "syntax": "member.__reduce_ex__ = enum.pickle_by_global_name",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#utilities-and-decorators",
-    "version": "",
+    "version": "3.11",
     "section": "Модуль enum",
     "subcat": {
       "ru": "pickle",
@@ -19948,7 +19948,7 @@
     "syntax": "operator.call(f, *args, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.call",
-    "version": "",
+    "version": "3.11",
     "section": "Модуль operator",
     "subcat": {
       "ru": "вызов и доступ",

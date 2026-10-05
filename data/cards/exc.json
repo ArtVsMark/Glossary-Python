@@ -3035,7 +3035,7 @@
     "syntax": "raise ExceptionGroup",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ExceptionGroup",
-    "version": "",
+    "version": "3.11",
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3080,7 +3080,7 @@
     "syntax": "raise BaseExceptionGroup",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseExceptionGroup",
-    "version": "",
+    "version": "3.11",
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3708,7 +3708,7 @@
     "syntax": "raise _IncompleteInputError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxError",
-    "version": "",
+    "version": "3.13",
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3798,7 +3798,7 @@
     "syntax": "raise re.PatternError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.PatternError",
-    "version": "",
+    "version": "3.13",
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",

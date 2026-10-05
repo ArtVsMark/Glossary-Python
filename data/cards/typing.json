@@ -2447,7 +2447,7 @@
     "syntax": "@typing.dataclass_transform()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.dataclass_transform",
-    "version": "3.12",
+    "version": "3.11",
     "section": "Модуль typing",
     "subcat": {
       "ru": "декораторы и маркеры",

@@ -2556,8 +2556,8 @@
   {
     "id": "file.read",
     "title": {
-      "ru": "read()",
-      "en": "read()"
+      "ru": "io.TextIOBase.read()",
+      "en": "io.TextIOBase.read()"
     },
     "kind": "function",
     "summary": {
@@ -2655,8 +2655,8 @@
   {
     "id": "file.readlines",
     "title": {
-      "ru": "readlines()",
-      "en": "readlines()"
+      "ru": "io.IOBase.readlines()",
+      "en": "io.IOBase.readlines()"
     },
     "kind": "function",
     "summary": {
@@ -2704,8 +2704,8 @@
   {
     "id": "reduce",
     "title": {
-      "ru": "reduce()",
-      "en": "reduce()"
+      "ru": "functools.reduce()",
+      "en": "functools.reduce()"
     },
     "kind": "function",
     "summary": {
@@ -3289,8 +3289,8 @@
   {
     "id": "file.write",
     "title": {
-      "ru": "write()",
-      "en": "write()"
+      "ru": "io.TextIOBase.write()",
+      "en": "io.TextIOBase.write()"
     },
     "kind": "function",
     "summary": {
@@ -3338,8 +3338,8 @@
   {
     "id": "file.writelines",
     "title": {
-      "ru": "writelines()",
-      "en": "writelines()"
+      "ru": "io.IOBase.writelines()",
+      "en": "io.IOBase.writelines()"
     },
     "kind": "function",
     "summary": {

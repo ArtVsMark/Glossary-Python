@@ -16,20 +16,24 @@ if TYPE_CHECKING:
     from collections.abc import Iterator
 
 __all__ = [
+    "ALL_OS",
     "COLOR_GROUPS",
     "KINDS",
     "LANGUAGES",
+    "PLATFORMS",
     "SCHEMA_VERSION",
+    "SYSTEMS",
     "ColorGroup",
     "Entry",
     "Glossary",
     "GlossaryStats",
     "Kind",
     "Language",
+    "Platform",
     "Text",
 ]
 
-SCHEMA_VERSION: Final = 3
+SCHEMA_VERSION: Final = 4
 """Версия формата ``data/glossary.json``.
 
 Версия 1 хранила одноязычную карточку с полями ``name``/``group``/
@@ -38,6 +42,7 @@ SCHEMA_VERSION: Final = 3
 и подкатегорию (#85): в английском режиме витрина больше не наполовину русская.
 Раздел остаётся ключом — его подписи на двух языках живут в
 :mod:`glossary.taxonomy`, по одной на раздел, а не по копии на карточку.
+Версия 4 добавила ``platforms`` — на каких системах возможность есть (#83).
 """
 
 Language = Literal["ru", "en"]
@@ -61,6 +66,20 @@ ColorGroup = Literal[
 """
 
 COLOR_GROUPS: Final[frozenset[str]] = frozenset(get_args(ColorGroup))
+
+Platform = Literal["AllOS", "Linux", "macOS", "Windows"]
+"""На каких системах возможность доступна.
+
+Три системы, а не перечень из документации CPython (``Unix, not WASI, not
+Android``): учащийся спрашивает «заработает ли у меня», и ответ нужен про его
+компьютер. WASI, Android и iOS в поле не попадают — это не платформы учебной
+машины. «Везде» записывается явно — ``AllOS`` (решение владельца): пустой список
+неотличим от «забыли заполнить».
+"""
+
+PLATFORMS: Final[tuple[Platform, ...]] = get_args(Platform)
+ALL_OS: Final = "AllOS"
+SYSTEMS: Final = ("Linux", "macOS", "Windows")
 
 
 @dataclass(frozen=True, slots=True)
@@ -114,6 +133,7 @@ class Entry:
     status: str = "ready"
     docs_url: str = ""
     version: str = ""
+    platforms: tuple[str, ...] = (ALL_OS,)
     section: str = ""
     subcat: Text = field(default_factory=Text)
     color_group: str = "op"
@@ -141,6 +161,7 @@ class Entry:
             status=str(raw.get("status", "")),
             docs_url=str(raw.get("docs_url", "")),
             version=str(raw.get("version", "")),
+            platforms=_tuple(raw.get("platforms")),
             section=str(raw.get("section", "")),
             subcat=Text.from_any(raw.get("subcat")),
             color_group=str(raw.get("color_group", "") or "op"),

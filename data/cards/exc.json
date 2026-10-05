@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assert",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "проверка",
@@ -86,6 +89,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#AttributeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -133,6 +139,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#else-clause",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "обработка",
@@ -215,6 +224,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FileNotFoundError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -264,6 +276,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#finally",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "обработка",
@@ -351,6 +366,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ImportError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -398,6 +416,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IndexError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -447,6 +468,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#KeyError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -497,6 +521,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ModuleNotFoundError",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -544,6 +571,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NameError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -589,6 +619,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NotImplementedError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -637,6 +670,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#OSError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -685,6 +721,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PermissionError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -744,6 +783,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#raise",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "генерация",
@@ -837,6 +879,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RecursionError",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -887,6 +932,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#StopIteration",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -938,6 +986,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-try-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "обработка",
@@ -1021,6 +1072,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TypeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1068,6 +1122,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ValueError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1118,6 +1175,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseException",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "иерархия",
@@ -1190,6 +1250,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "пользовательские",
@@ -1287,6 +1350,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseException",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1334,6 +1400,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#Exception",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1380,6 +1449,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ArithmeticError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1426,6 +1498,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ZeroDivisionError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1471,6 +1546,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#OverflowError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1517,6 +1595,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FloatingPointError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1562,6 +1643,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#AssertionError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1608,6 +1692,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#LookupError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1653,6 +1740,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RuntimeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1699,6 +1789,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#EOFError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1745,6 +1838,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#KeyboardInterrupt",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1791,6 +1887,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SystemExit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1837,6 +1936,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#GeneratorExit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1882,6 +1984,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#StopAsyncIteration",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1927,6 +2032,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#MemoryError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -1971,6 +2079,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ReferenceError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2012,6 +2123,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SystemError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2056,6 +2170,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BufferError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2098,6 +2215,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnboundLocalError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2143,6 +2263,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2189,6 +2312,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IndentationError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2233,6 +2359,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TabError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2277,6 +2406,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2323,6 +2455,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeDecodeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2369,6 +2504,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeEncodeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2416,6 +2554,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeTranslateError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2458,6 +2599,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FileExistsError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2503,6 +2647,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IsADirectoryError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2548,6 +2695,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NotADirectoryError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2594,6 +2744,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#InterruptedError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2635,6 +2788,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ChildProcessError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2677,6 +2833,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ProcessLookupError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2722,6 +2881,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TimeoutError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2767,6 +2929,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BlockingIOError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2809,6 +2974,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2856,6 +3024,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionResetError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2901,6 +3072,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionRefusedError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2946,6 +3120,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionAbortedError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -2991,6 +3168,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BrokenPipeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3036,6 +3216,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ExceptionGroup",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3081,6 +3264,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseExceptionGroup",
     "version": "3.11",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3126,6 +3312,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PythonFinalizationError",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3171,6 +3360,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#Warning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3217,6 +3409,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#DeprecationWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3262,6 +3457,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PendingDeprecationWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3307,6 +3505,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RuntimeWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3352,6 +3553,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3397,6 +3601,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UserWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3442,6 +3649,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FutureWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3487,6 +3697,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ImportWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3532,6 +3745,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3577,6 +3793,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BytesWarning",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3619,6 +3838,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ResourceWarning",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3664,6 +3886,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#EncodingWarning",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3709,6 +3934,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxError",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "встроенные исключения",
@@ -3751,6 +3979,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.JSONDecodeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -3799,6 +4030,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.PatternError",
     "version": "3.13",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -3847,6 +4081,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.StatisticsError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -3893,6 +4130,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.FrozenInstanceError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -3940,6 +4180,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.UnsupportedOperation",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -3987,6 +4230,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/struct.html#struct.error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4033,6 +4279,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/zlib.html#zlib.error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4078,6 +4327,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#copy.Error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4124,6 +4376,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/locale.html#locale.Error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4166,6 +4421,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/argparse.html#argparse.ArgumentError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4212,6 +4470,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/argparse.html#argparse.ArgumentTypeError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4258,6 +4519,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4305,6 +4569,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.SameFileError",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4351,6 +4618,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.SpecialFileError",
     "version": "2.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4394,6 +4664,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4437,6 +4710,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4483,6 +4759,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4526,6 +4805,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.BrokenBarrierError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4569,6 +4851,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/tokenize.html#tokenize.TokenError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4612,6 +4897,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/zipimport.html#zipimport.ZipImportError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4655,6 +4943,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/signal.html#signal.ItimerError",
     "version": "3.3",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4706,6 +4997,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.DecimalException",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4753,6 +5047,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.InvalidOperation",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4799,6 +5096,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.DivisionByZero",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4845,6 +5145,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4888,6 +5191,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4931,6 +5237,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Overflow",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -4978,6 +5287,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Underflow",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5025,6 +5337,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Inexact",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5071,6 +5386,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Rounded",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5117,6 +5435,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Subnormal",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5160,6 +5481,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Clamped",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5203,6 +5527,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5249,6 +5576,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.FloatOperation",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5292,6 +5622,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "модульные исключения",
@@ -5335,6 +5668,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/codecs.html#encodings.CodecRegistryError",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Исключения",
     "subcat": {
       "ru": "исключения модулей",

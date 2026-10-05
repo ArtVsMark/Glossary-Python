@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#import__",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "модули",
@@ -68,6 +71,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#all",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "логика",
@@ -113,6 +119,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#any",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "логика",
@@ -160,6 +169,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#ascii",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "строки",
@@ -206,6 +218,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#bin",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "числа",
@@ -254,6 +269,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#breakpoint",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "отладка",
@@ -302,6 +320,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#callable",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "интроспекция",
@@ -350,6 +371,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#chr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "строки",
@@ -397,6 +421,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#compile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "выполнение",
@@ -445,6 +472,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#delattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "ООП",
@@ -497,6 +527,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "типы",
@@ -546,6 +579,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#dir",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "интроспекция",
@@ -596,6 +632,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "вывод",
@@ -643,6 +682,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#eval",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "выполнение",
@@ -691,6 +733,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#exec",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "выполнение",
@@ -744,6 +789,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#format",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "строки",
@@ -794,6 +842,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-frozenset",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "типы",
@@ -843,6 +894,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#getattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "ООП",
@@ -894,6 +948,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#globals",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "пространства имён",
@@ -944,6 +1001,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#hasattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "ООП",
@@ -994,6 +1054,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#hash",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "интроспекция",
@@ -1044,6 +1107,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#help",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "интроспекция",
@@ -1090,6 +1156,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#hex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "числа",
@@ -1137,6 +1206,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#id",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "интроспекция",
@@ -1191,6 +1263,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#input",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "ввод",
@@ -1247,6 +1322,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#issubclass",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "интроспекция/ООП",
@@ -1297,6 +1375,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#iter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "итераторы",
@@ -1350,6 +1431,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-list",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "типы",
@@ -1398,6 +1482,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#locals",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "пространства имён",
@@ -1451,6 +1538,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#max",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "числа/коллекции",
@@ -1498,6 +1588,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-memoryview",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "типы",
@@ -1549,6 +1642,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#min",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "числа/коллекции",
@@ -1596,6 +1692,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#next",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "итераторы",
@@ -1645,6 +1744,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#object",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "ООП",
@@ -1695,6 +1797,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#oct",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "числа",
@@ -1742,6 +1847,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#ord",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "строки",
@@ -1789,6 +1897,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "вывод",
@@ -1843,6 +1954,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "вывод",
@@ -1894,6 +2008,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#repr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "строки",
@@ -1942,6 +2059,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#repr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "строки",
@@ -1991,6 +2111,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#reversed",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "итераторы",
@@ -2038,6 +2161,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "вывод",
@@ -2085,6 +2211,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-set",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "типы",
@@ -2134,6 +2263,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#setattr",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "ООП",
@@ -2186,6 +2318,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "итераторы",
@@ -2234,6 +2369,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sum",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "числа/коллекции",
@@ -2281,6 +2419,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-tuple",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "типы",
@@ -2330,6 +2471,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#vars",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "интроспекция",
@@ -2379,6 +2523,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "переменные",
@@ -2429,6 +2576,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Ввод и вывод",
     "subcat": {
       "ru": "литералы",
@@ -2478,6 +2628,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#len",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "Встроенные функции",
@@ -2523,6 +2676,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#aiter",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "Встроенные функции",
@@ -2575,6 +2731,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#anext",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Встроенные функции",
     "subcat": {
       "ru": "Встроенные функции",

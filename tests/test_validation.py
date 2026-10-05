@@ -24,6 +24,7 @@ from glossary.validation import (
     rule_label_translated,
     rule_language_script,
     rule_non_empty,
+    rule_platforms,
     rule_related_errors_resolve,
     rule_related_resolves,
     rule_required_fields,
@@ -172,6 +173,44 @@ def test_russian_title_in_the_english_half_is_an_error():
     issues = list(rule_language_script(glossary, CFG))
     assert [i.severity for i in issues] == [Severity.ERROR]
     assert "title" in issues[0].message
+
+
+def test_all_os_passes():
+    assert list(rule_platforms(make_glossary(make_entry()), CFG)) == []
+
+
+def test_known_systems_subset_passes():
+    glossary = make_glossary(make_entry(platforms=("Linux", "macOS")))
+    assert list(rule_platforms(glossary, CFG)) == []
+
+
+def test_empty_platforms_is_an_error():
+    """Пустой список неотличим от «забыли заполнить»: «везде» пишется AllOS."""
+    glossary = make_glossary(make_entry(platforms=()))
+    assert "AllOS" in next(rule_platforms(glossary, CFG)).message
+
+
+def test_unknown_platform_is_an_error():
+    glossary = make_glossary(make_entry(platforms=("Unix",)))
+    issues = list(rule_platforms(glossary, CFG))
+    assert [i.severity for i in issues] == [Severity.ERROR]
+    assert "Unix" in issues[0].message
+
+
+def test_all_os_does_not_combine_with_systems():
+    glossary = make_glossary(make_entry(platforms=("AllOS", "Linux")))
+    assert "не сочетается" in next(rule_platforms(glossary, CFG)).message
+
+
+def test_all_systems_must_be_written_as_all_os():
+    """«Везде» пишется одним способом: иначе витрина покажет ложный значок."""
+    glossary = make_glossary(make_entry(platforms=("Linux", "macOS", "Windows")))
+    assert "AllOS" in next(rule_platforms(glossary, CFG)).message
+
+
+def test_repeated_platform_is_an_error():
+    glossary = make_glossary(make_entry(platforms=("Linux", "Linux")))
+    assert "повторяется" in next(rule_platforms(glossary, CFG)).message
 
 
 # --------------------------------------------------------------------------- #
@@ -396,6 +435,7 @@ def test_all_rules_are_registered():
         rule_label_translated,
         rule_language_script,
         rule_non_empty,
+        rule_platforms,
         rule_related_errors_resolve,
         rule_related_resolves,
         rule_required_fields,
@@ -431,6 +471,7 @@ def test_rule_names_are_unique_and_stable():
         "id-format",
         "kind",
         "label-translated",
+        "platforms",
         "related-errors-resolve",
         "related-resolves",
         "required-fields",

@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#coroutine-function-definition",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Асинхронное программирование",
     "subcat": {
       "ru": "корутины",
@@ -69,6 +72,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-async-for-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Асинхронное программирование",
     "subcat": {
       "ru": "итерация",
@@ -120,6 +126,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Асинхронное программирование",
     "subcat": {
       "ru": "задачи",
@@ -173,6 +182,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.gather",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Асинхронное программирование",
     "subcat": {
       "ru": "параллельность",
@@ -222,6 +234,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-queue.html#asyncio.Queue",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Асинхронное программирование",
     "subcat": {
       "ru": "очередь",
@@ -276,6 +291,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-runner.html#asyncio.run",
     "version": "3.7",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Асинхронное программирование",
     "subcat": {
       "ru": "event loop",
@@ -329,6 +347,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Асинхронное программирование",
     "subcat": {
       "ru": "event loop",
@@ -380,6 +401,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "генераторы",
@@ -475,6 +499,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#iter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "протокол итератора",
@@ -544,6 +571,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "itertools",
@@ -598,6 +628,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.chain",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "itertools",
@@ -656,6 +689,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.groupby",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "itertools",
@@ -718,6 +754,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.islice",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "itertools",
@@ -777,6 +816,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "генераторы",
@@ -847,6 +889,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#generator-expressions",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "генераторы",
@@ -906,6 +951,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-iterator",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Итераторы и генераторы",
     "subcat": {
       "ru": "протокол итератора",
@@ -1010,6 +1058,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.count",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1059,6 +1110,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.cycle",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1106,6 +1160,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.repeat",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1153,6 +1210,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1201,6 +1261,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations_with_replacement",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1248,6 +1311,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.permutations",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1296,6 +1362,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.product",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1344,6 +1413,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.compress",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1391,6 +1463,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.dropwhile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1438,6 +1513,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.takewhile",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1486,6 +1564,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.filterfalse",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1533,6 +1614,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.starmap",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1580,6 +1664,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.pairwise",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1628,6 +1715,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.batched",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1678,6 +1768,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.zip_longest",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",
@@ -1725,6 +1818,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.tee",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль itertools",
     "subcat": {
       "ru": "itertools",

@@ -13,8 +13,8 @@
     },
     "schema_version": {
       "type": "integer",
-      "const": 3,
-      "description": "Версия формата данных. Версия 1 хранила одноязычную карточку с полями name/group/description; версия 2 приняла форму базы знаний грейдера; версия 3 сделала двуязычными заголовок и подкатегорию."
+      "const": 4,
+      "description": "Версия формата данных. Версия 1 хранила одноязычную карточку с полями name/group/description; версия 2 приняла форму базы знаний грейдера; версия 3 сделала двуязычными заголовок и подкатегорию; версия 4 добавила platforms."
     },
     "entries": {
       "type": "array",
@@ -41,7 +41,7 @@
       "type": "object",
       "required": [
         "id", "title", "kind", "summary", "body", "syntax", "status",
-        "docs_url", "version", "section", "subcat", "color_group",
+        "docs_url", "version", "platforms", "section", "subcat", "color_group",
         "aliases", "keywords", "tags", "examples", "related", "related_errors"
       ],
       "additionalProperties": false,
@@ -88,6 +88,13 @@
           "type": "string",
           "pattern": "^(|[0-9]+\\.[0-9]+)$",
           "description": "Версия Python, в которой возможность появилась. Пустая строка — доступно во всех поддерживаемых версиях."
+        },
+        "platforms": {
+          "type": "array",
+          "items": { "enum": ["AllOS", "Linux", "macOS", "Windows"] },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "Системы, на которых возможность доступна. AllOS — везде, стоит один. Выводится из директивы availability документации CPython: Unix и POSIX — Linux и macOS; WASI, Android и iOS в поле не попадают."
         },
         "section": {
           "type": "string",

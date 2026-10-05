@@ -16,7 +16,16 @@ from dataclasses import dataclass, field
 from enum import StrEnum
 from typing import Final
 
-from glossary.models import COLOR_GROUPS, KINDS, LANGUAGES, Entry, Glossary
+from glossary.models import (
+    ALL_OS,
+    COLOR_GROUPS,
+    KINDS,
+    LANGUAGES,
+    PLATFORMS,
+    SYSTEMS,
+    Entry,
+    Glossary,
+)
 
 __all__ = [
     "RULES",
@@ -365,6 +374,48 @@ def rule_body_length(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
             )
 
 
+def rule_platforms(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Платформы названы явно, из закрытого списка, у «везде» одна форма.
+
+    «Везде» — ``AllOS`` и только он: пустой список неотличим от «не заполнено»,
+    а три системы поимённо — вторая форма того же ответа, и витрина показала бы
+    значок там, где ограничения нет.
+    """
+    for entry in g.entries:
+        if not entry.platforms:
+            yield Issue(
+                Severity.ERROR,
+                "platforms",
+                f"платформы не указаны; для «везде» — {ALL_OS}",
+                entry.id,
+            )
+            continue
+        if ALL_OS in entry.platforms and len(entry.platforms) > 1:
+            yield Issue(
+                Severity.ERROR,
+                "platforms",
+                f"{ALL_OS} не сочетается с отдельными системами",
+                entry.id,
+            )
+        unknown = sorted(set(entry.platforms) - set(PLATFORMS))
+        if unknown:
+            yield Issue(
+                Severity.ERROR,
+                "platforms",
+                f"неизвестные платформы {unknown}; допустимы: {', '.join(PLATFORMS)}",
+                entry.id,
+            )
+        if len(set(entry.platforms)) != len(entry.platforms):
+            yield Issue(Severity.ERROR, "platforms", "платформа повторяется", entry.id)
+        if set(entry.platforms) == set(SYSTEMS):
+            yield Issue(
+                Severity.ERROR,
+                "platforms",
+                f"перечислены все системы — это «везде», пишется {ALL_OS}",
+                entry.id,
+            )
+
+
 def rule_version_format(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Маркер версии записан как ``N.N`` либо пуст."""
     for entry in g.entries:
@@ -548,6 +599,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_summary_length,
     rule_body_length,
     rule_version_format,
+    rule_platforms,
     rule_examples,
     rule_example_compiles,
     rule_related_resolves,

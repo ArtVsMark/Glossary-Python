@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__add__",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "магические методы",
@@ -143,6 +146,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "контекст. менеджер",
@@ -253,6 +259,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__init__",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "инициализация",
@@ -345,6 +354,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#emulating-container-types",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "магические методы",
@@ -459,6 +471,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#slots",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "slots",
@@ -541,6 +556,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__str__",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "магические методы",
@@ -628,6 +646,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#class",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "классы",
@@ -713,6 +734,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#classmethod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "классы",
@@ -817,6 +841,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#property",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "property",
@@ -950,6 +977,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#random-remarks",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "self",
@@ -1041,6 +1071,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#staticmethod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "методы",
@@ -1116,6 +1149,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#super",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "наследование",
@@ -1225,6 +1261,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABC",
     "version": "3.4",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "ABC",
@@ -1323,6 +1362,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#class-and-instance-variables",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "атрибуты",
@@ -1407,6 +1449,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#private-variables",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "инкапсуляция",
@@ -1504,6 +1549,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#instance-methods",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "методы",
@@ -1618,6 +1666,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#multiple-inheritance",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "наследование",
@@ -1716,6 +1767,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#inheritance",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "наследование",
@@ -1830,6 +1884,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-duck-typing",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "ООП",
     "subcat": {
       "ru": "полиморфизм",

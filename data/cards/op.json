@@ -18,6 +18,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#abs",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "числа",
@@ -67,6 +70,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "логика",
@@ -122,6 +128,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#arbitrary-argument-lists",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "параметры",
@@ -183,6 +192,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#bool",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "логика",
@@ -233,6 +245,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#break",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "управление",
@@ -297,6 +312,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-bytearray",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "байты",
@@ -346,6 +364,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-bytes",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "байты",
@@ -397,6 +418,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/cmath.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "cmath",
@@ -445,6 +469,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#complex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "числа",
@@ -494,6 +521,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#continue",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "управление",
@@ -554,6 +584,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "csv",
@@ -632,6 +665,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Decimal",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "decimal",
@@ -681,6 +717,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.getcontext",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "decimal",
@@ -730,6 +769,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.setcontext",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "decimal",
@@ -776,6 +818,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#def",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "определение",
@@ -837,6 +882,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#divmod",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "числа",
@@ -890,6 +938,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/constants.html#Ellipsis",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "специальные",
@@ -938,6 +989,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#else-clauses-on-loops",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "управление",
@@ -997,6 +1051,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#enumerate",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "итерация",
@@ -1054,6 +1111,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#filter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "функциональное",
@@ -1120,6 +1180,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#float",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "числа",
@@ -1172,6 +1235,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#for",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "цикл for",
@@ -1230,6 +1296,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#reversed",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "цикл for",
@@ -1281,6 +1350,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/fractions.html#fractions.Fraction",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "fractions",
@@ -1329,6 +1401,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-global-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "область видимости",
@@ -1421,6 +1496,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#if",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "ветвление",
@@ -1481,6 +1559,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-if-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "ветвление",
@@ -1541,6 +1622,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-if-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "ветвление",
@@ -1601,6 +1685,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#in",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "принадлежность",
@@ -1654,6 +1741,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#int",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "числа",
@@ -1704,6 +1794,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#identity-comparisons",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "тождество",
@@ -1755,6 +1848,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#isinstance",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "интроспекция",
@@ -1810,6 +1906,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "json",
@@ -1885,6 +1984,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "параметры",
@@ -1950,6 +2052,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#lambda",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "lambda",
@@ -2012,6 +2117,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#map",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "функциональное",
@@ -2081,6 +2189,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-match-statement",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "pattern matching",
@@ -2136,6 +2247,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#the-null-object",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "none",
@@ -2187,6 +2301,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "открытие",
@@ -2270,6 +2387,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "os",
@@ -2332,6 +2452,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "pathlib",
@@ -2402,6 +2525,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "pickle",
@@ -2469,6 +2595,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#pow",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "числа",
@@ -2519,6 +2648,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-range",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "range",
@@ -2572,6 +2704,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase.read",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "чтение",
@@ -2622,6 +2757,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.readline",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "чтение",
@@ -2671,6 +2809,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.readlines",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "чтение",
@@ -2720,6 +2861,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.reduce",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "функциональное",
@@ -2783,6 +2927,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#return",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "возврат",
@@ -2857,6 +3004,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#round",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "числа",
@@ -2907,6 +3057,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "функциональное",
@@ -2969,6 +3122,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.quantiles",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "statistics",
@@ -3017,6 +3173,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "потоки",
@@ -3087,6 +3246,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-str",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "строки",
@@ -3140,6 +3302,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#type",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "интроспекция",
@@ -3193,6 +3358,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#assignment-expressions",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "операторы",
@@ -3244,6 +3412,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#while",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "цикл while",
@@ -3305,6 +3476,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase.write",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "запись",
@@ -3354,6 +3528,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.writelines",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "запись",
@@ -3400,6 +3577,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "итерация",
@@ -3459,6 +3639,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "итерация",
@@ -3509,6 +3692,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "аннотации",
@@ -3582,6 +3768,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "поиск",
@@ -3682,6 +3871,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "битовые операции",
@@ -3762,6 +3954,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-if-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "ветвление",
@@ -3822,6 +4017,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-for-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "вложенность",
@@ -3887,6 +4085,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__call__",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "callable",
@@ -3964,6 +4165,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "арифметика",
@@ -4013,6 +4217,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "техники",
@@ -4108,6 +4315,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-decorator",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "декораторы",
@@ -4217,6 +4427,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "арифметика",
@@ -4269,6 +4482,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-closure-variable",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "замыкания",
@@ -4355,6 +4571,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Файлы и I/O",
     "subcat": {
       "ru": "чтение",
@@ -4423,6 +4642,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/executionmodel.html#resolution-of-names",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "область видимости",
@@ -4502,6 +4724,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.gcd",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "математика",
@@ -4580,6 +4805,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "практика",
@@ -4639,6 +4867,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#augmented-assignment-statements",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "присваивание",
@@ -4688,6 +4919,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "операторы",
@@ -4742,6 +4976,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "арифметика",
@@ -4795,6 +5032,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.deque",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "структуры",
@@ -4890,6 +5130,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-parameter",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "параметры",
@@ -4948,6 +5191,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#default-argument-values",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "параметры",
@@ -5012,6 +5258,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "битовые",
@@ -5061,6 +5310,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#int",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Типы данных",
     "subcat": {
       "ru": "преобразование",
@@ -5115,6 +5367,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "техники",
@@ -5202,6 +5457,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#operator-precedence",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "приоритет",
@@ -5251,6 +5509,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-for-statement",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Циклы",
     "subcat": {
       "ru": "цикл for",
@@ -5305,6 +5566,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.setrecursionlimit",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Функции",
     "subcat": {
       "ru": "рекурсия",
@@ -5386,6 +5650,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#bin",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "математика",
@@ -5465,6 +5732,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "арифметика",
@@ -5514,6 +5784,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "сортировка",
@@ -5603,6 +5876,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "сортировка",
@@ -5692,6 +5968,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "сортировка",
@@ -5783,6 +6062,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-stacks",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "структуры",
@@ -5895,6 +6177,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#the-power-operator",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "арифметика",
@@ -5944,6 +6229,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#conditional-expressions",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Условный оператор",
     "subcat": {
       "ru": "ветвление",
@@ -6002,6 +6290,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "арифметика",
@@ -6050,6 +6341,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "структуры",
@@ -6131,6 +6425,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
     "version": "3.5",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "арифметика",
@@ -6181,6 +6478,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Арифметика и операторы",
     "subcat": {
       "ru": "сравнение",
@@ -6230,6 +6530,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Алгоритмы и структуры данных",
     "subcat": {
       "ru": "математика",
@@ -6326,6 +6629,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.bit_length",
     "version": "3.1",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "биты",
@@ -6371,6 +6677,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.bit_count",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "биты",
@@ -6415,6 +6724,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.to_bytes",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "байты",
@@ -6463,6 +6775,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.from_bytes",
     "version": "3.2",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "байты",
@@ -6510,6 +6825,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.as_integer_ratio",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "как дробь",
@@ -6557,6 +6875,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "как число",
@@ -6601,6 +6922,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.is_integer",
     "version": "3.12",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "как дробь",
@@ -6645,6 +6969,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.is_integer",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "как дробь",
@@ -6689,6 +7016,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.as_integer_ratio",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "как дробь",
@@ -6733,6 +7063,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.hex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "hex",
@@ -6780,6 +7113,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.fromhex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "hex",
@@ -6829,6 +7165,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "как число",
@@ -6873,6 +7212,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "комплексные",
@@ -6921,6 +7263,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.dumps",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль json",
     "subcat": {
       "ru": "json",
@@ -6971,6 +7316,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.loads",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль json",
     "subcat": {
       "ru": "json",
@@ -7022,6 +7370,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.dump",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль json",
     "subcat": {
       "ru": "json",
@@ -7071,6 +7422,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.load",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль json",
     "subcat": {
       "ru": "json",
@@ -7121,6 +7475,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.mean",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "среднее",
@@ -7170,6 +7527,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.fmean",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "среднее",
@@ -7217,6 +7577,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.geometric_mean",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "среднее",
@@ -7265,6 +7628,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.harmonic_mean",
     "version": "3.6",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "среднее",
@@ -7312,6 +7678,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "медиана",
@@ -7361,6 +7730,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median_low",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "медиана",
@@ -7408,6 +7780,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median_high",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "медиана",
@@ -7455,6 +7830,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median_grouped",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "медиана",
@@ -7503,6 +7881,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.mode",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "мода",
@@ -7552,6 +7933,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.multimode",
     "version": "3.8",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "мода",
@@ -7599,6 +7983,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.stdev",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "разброс",
@@ -7648,6 +8035,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.pstdev",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "разброс",
@@ -7694,6 +8084,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.variance",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "разброс",
@@ -7741,6 +8134,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.pvariance",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "разброс",
@@ -7787,6 +8183,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.correlation",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "связь",
@@ -7834,6 +8233,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.covariance",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "связь",
@@ -7882,6 +8284,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.linear_regression",
     "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "связь",
@@ -7931,6 +8336,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.NormalDist",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль statistics",
     "subcat": {
       "ru": "распределение",
@@ -7977,6 +8385,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чистые пути",
@@ -8022,6 +8433,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePosixPath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чистые пути",
@@ -8070,6 +8484,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PureWindowsPath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "чистые пути",
@@ -8120,6 +8537,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "конкретные пути",
@@ -8168,6 +8588,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.WindowsPath",
     "version": "",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Модуль pathlib",
     "subcat": {
       "ru": "конкретные пути",
@@ -8216,6 +8639,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#complex.from_number",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "комплексные числа",
@@ -8270,6 +8696,9 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.from_number",
     "version": "3.14",
+    "platforms": [
+      "AllOS"
+    ],
     "section": "Числа и математика",
     "subcat": {
       "ru": "преобразование типов",

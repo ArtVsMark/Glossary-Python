@@ -79,6 +79,7 @@ git add data/cards data/glossary.json python_glossary.html
 | `examples` | Исполняемый код: строка кода — элемент массива, с результатом в комментариях |
 | `related` / `related_errors` | Идентификаторы существующих карточек |
 | `version` | Вид `N.N` либо пустая строка |
+| `platforms` | `["AllOS"]` — везде; иначе подмножество `Linux`, `macOS`, `Windows`. По директиве `availability` документации: Unix и POSIX — `Linux` и `macOS` |
 | `docs_url` | Конкретный раздел или якорь на docs.python.org, не корень |
 
 ### Храповик качества

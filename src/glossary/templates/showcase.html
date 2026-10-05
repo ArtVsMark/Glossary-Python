@@ -205,6 +205,7 @@ a{color:inherit}
 }
 .badge.cg{background:color-mix(in srgb,var(--cg) 14%,transparent);color:var(--cg)}
 .badge.ver{background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--accent-ink)}
+.badge.plat{border:1px dashed var(--faint)}
 .subcat{font-size:11.5px;color:var(--faint);margin-bottom:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .summary{
   font-size:14px;color:var(--text);margin-bottom:11px;
@@ -403,7 +404,7 @@ const STORE = { theme:"glossary-theme", lang:"glossary-lang" };
 
 const I18N = {
   ru:{
-    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки",
+    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)",
     download:"Скачать", downloaded:"Готово", theme:"Сменить тему",
     search:"Поиск по имени, синонимам, ключевым словам…",
     bySection:"По разделам", kind:"Вид", group:"Раздел", moduleWord:"модуль",
@@ -418,7 +419,7 @@ const I18N = {
     resetHint:"Удалить сохранённые тему и язык"
   },
   en:{
-    title:"Python Glossary", subtitle:"Standard library reference",
+    title:"Python Glossary", subtitle:"Standard library reference", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)",
     download:"Download", downloaded:"Saved", theme:"Toggle theme",
     search:"Search by name, alias, keyword…",
     bySection:"By section", kind:"Kind", group:"Section", moduleWord:"module",
@@ -558,6 +559,9 @@ const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 function cardHtml(d){
   const cgv = CG_VAR[d.color_group] || "var(--c-op)";
   const ver = d.version ? `<span class="badge ver">Python ${esc(d.version)}</span>` : "";
+  /* AllOS — «везде»: значок нужен только ограничению, на тысяче карточек он был бы шумом. */
+  const plat = (d.platforms && d.platforms.length && !d.platforms.includes("AllOS"))
+    ? `<span class="badge plat" title="${esc(t("platformsHint"))}">${d.platforms.map(esc).join(" · ")}</span>` : "";
   const section = esc(sectionBadge(d.section));
   const syntax = d.syntax
     ? `<div class="field-label">${t("syntax")}</div><div class="syntax">${highlightPy(d.syntax)}</div>` : "";
@@ -570,7 +574,7 @@ function cardHtml(d){
   return `<article class="card" id="${esc(d.id)}" style="--cg:${cgv}">
   <div class="card-top">
     <div class="badges">
-      ${ver}<span class="badge cg">${section}</span><span class="badge">${t(d.kind) || esc(d.kind)}</span>
+      ${ver}${plat}<span class="badge cg">${section}</span><span class="badge">${t(d.kind) || esc(d.kind)}</span>
     </div>
     <div class="card-name" title="${esc(ttl(d))}">${mark(ttl(d))}</div>
   </div>

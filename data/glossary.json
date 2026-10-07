@@ -1804,17 +1804,15 @@
       "examples": [
         [
           "from typing import Literal",
-          "Mode = Literal['r', 'w', 'a']"
-        ],
-        [
-          "from typing import Literal",
+          "Mode = Literal['r', 'w', 'a']",
           "def open_file(path: str, mode: Mode) -> None:",
           "    print(f'open {path} as {mode}')",
           "open_file('f.txt', 'r')  # → open f.txt as r",
-          "open_file('f.txt', 'w')  # → open f.txt as w",
-          "Direction = Literal['N', 'S', 'E', 'W']"
+          "open_file('f.txt', 'w')  # → open f.txt as w"
         ],
         [
+          "from typing import Literal",
+          "Direction = Literal['N', 'S', 'E', 'W']",
           "def move(d: Direction) -> str:",
           "    return f'Moving {d}'",
           "print(move('N'))  # → Moving N",
@@ -2204,17 +2202,15 @@
       "examples": [
         [
           "from typing import TypeVar",
-          "T = TypeVar('T')"
-        ],
-        [
-          "from typing import TypeVar",
+          "T = TypeVar('T')",
           "def first(lst: list[T]) -> T:",
           "    return lst[0]",
           "print(first([1, 2, 3]))  # → 1",
-          "print(first(['a', 'b']))  # → 'a'",
-          "N = TypeVar('N', int, float)"
+          "print(first(['a', 'b']))  # → 'a'"
         ],
         [
+          "from typing import TypeVar",
+          "N = TypeVar('N', int, float)",
           "def double(x: N) -> N:",
           "    return x * 2",
           "print(double(3))  # → 6",
@@ -9989,7 +9985,10 @@
           "        return self.amount == other.amount",
           "print(Money(5) == Money(5))   # → True",
           "print(Money(5) == 5)   # → False: Python попробовал int.__eq__ и сравнил по тождеству",
-          "print(type(NotImplemented).__name__)   # → NotImplementedType",
+          "print(type(NotImplemented).__name__)   # → NotImplementedType"
+        ],
+        [
+          "# Python 3.14+",
           "bool(NotImplemented)   # → TypeError: с Python 3.14 в логическом контексте нельзя"
         ]
       ],
@@ -12772,8 +12771,11 @@
           "print(sum([1,2,3,4,5]))  # → 15",
           "print(sum(range(101)))  # → 5050",
           "print(sum([[1,2],[3,4]], []))  # → [1,2,3,4]",
-          "print(sum([0.1]*10))  # → 1.0 (примерно)",
           "print(sum({'a':1,'b':2}.values()))  # → 3"
+        ],
+        [
+          "# Python 3.12+",
+          "print(sum([0.1]*10))  # → 1.0 — до 3.12 было 0.9999999999999999"
         ]
       ],
       "related": [
@@ -17527,6 +17529,7 @@
       ],
       "examples": [
         [
+          "# Python 3.14+",
           "import shutil",
           "try:",
           "    raise shutil.ExecError",
@@ -18250,7 +18253,7 @@
           "try:",
           "    subprocess.run(cmd, timeout=0.5)",
           "except subprocess.TimeoutExpired as e:",
-          "    print(e.timeout)  # → 0.5",
+          "    print(round(e.timeout, 1))  # → 0.5 — до 3.13 здесь лежало прошедшее время",
           "print(issubclass(subprocess.TimeoutExpired, TimeoutError))  # → False"
         ],
         [
@@ -25728,6 +25731,7 @@
           "print(isinstance('x', (bytes, bytearray, memoryview)))   # → False"
         ],
         [
+          "# Python 3.12+",
           "import collections.abc as abc",
           "# Либо abc.Buffer (появился в 3.12) — он про поддержку буферного протокола:",
           "print(isinstance(b'x', abc.Buffer))   # → True",
@@ -33597,6 +33601,7 @@
           "print(Field.name, Field.name.name, Field.value.value)  # → Field.name name 2"
         ],
         [
+          "# Python 3.12+",
           "import enum",
           "class Planet(enum.Enum):",
           "    EARTH = (5.97e24, 6.37e6)",
@@ -39885,6 +39890,7 @@
           "log.warning('чужой', extra={'user': 'bob'})  # → [anna] чужой"
         ],
         [
+          "# Python 3.13+",
           "import logging, sys",
           "h = logging.StreamHandler(sys.stdout)",
           "h.setFormatter(logging.Formatter('%(user)s/%(req)s %(message)s'))",
@@ -54148,6 +54154,7 @@
       ],
       "examples": [
         [
+          "# Python 3.13+ (на Windows — 3.12+)",
           "import os",
           "print(os.path.isdevdrive('.'))   # → False",
           "print(os.path.isdevdrive('нет-такого-пути'))   # → False (существование пути не проверяется, исключения нет)",
@@ -55155,7 +55162,11 @@
           "print(os.path.splitdrive('C:\\\\Users\\\\ivan'))   # → только Windows: ('C:', '\\\\Users\\\\ivan'); на Unix диск не выделяется — ('', 'C:\\\\Users\\\\ivan')",
           "drive, rest = os.path.splitdrive('/tmp/data.csv')",
           "print(drive + rest)   # → /tmp/data.csv — склейка частей всегда восстанавливает исходный путь",
-          "print(os.path.splitdrive(''))   # → ('', '')",
+          "print(os.path.splitdrive(''))   # → ('', '')"
+        ],
+        [
+          "# Python 3.12+",
+          "import os",
           "print(os.path.splitroot('/a/b'))   # → ('', '/', 'a/b') — splitroot дополнительно отделяет корень, splitdrive оставляет его в остатке"
         ]
       ],
@@ -64258,10 +64269,14 @@
         [
           "import random",
           "print(random.expovariate(1.0) >= 0.0)   # → True",
-          "print(type(random.expovariate()).__name__)   # → float",
           "print(round(sum(random.expovariate(2.0) for _ in range(10000)) / 10000, 1))   # → 0.5",
           "print(random.expovariate(1000.0) < 1.0)   # → True",
           "print(random.expovariate(0.0))   # → ZeroDivisionError"
+        ],
+        [
+          "# Python 3.12+",
+          "import random",
+          "print(type(random.expovariate()).__name__)   # → float"
         ]
       ],
       "related": [
@@ -69505,6 +69520,7 @@
           "b.close()"
         ],
         [
+          "# Python 3.13+",
           "import sqlite3",
           "import warnings",
           "with warnings.catch_warnings(record=True) as caught:",
@@ -69850,8 +69866,12 @@
           "print(statistics.correlation([1, 2, 3], [2, 4, 6]))   # → 1.0",
           "print(statistics.correlation([1, 2, 3], [6, 4, 2]))   # → -1.0",
           "print(statistics.correlation([1, 2, 3, 4], [1, 3, 2, 4]))   # → 0.8",
-          "print(statistics.correlation([1, 2, 3], [10, 30, 20], method='ranked'))   # → 0.5",
           "print(statistics.correlation([1, 1, 1], [1, 2, 3]))   # → StatisticsError"
+        ],
+        [
+          "# Python 3.12+",
+          "import statistics",
+          "print(statistics.correlation([1, 2, 3], [10, 30, 20], method='ranked'))   # → 0.5"
         ]
       ],
       "related": [
@@ -71649,7 +71669,7 @@
           "try:",
           "    struct.pack('<B', 300)",
           "except struct.error as e:",
-          "    print(e)  # → 'B' format requires 0 <= number <= 255"
+          "    print(e)  # → format requires 0 <= number <= 255"
         ]
       ],
       "related": [
@@ -73903,6 +73923,7 @@
           "print(sys.getrefcount(a))  # → 2"
         ],
         [
+          "# Python 3.12+",
           "import sys",
           "print(sys.getrefcount(None) > 10 ** 9)  # → True — бессмертный объект"
         ]
@@ -74890,11 +74911,15 @@
           "print(len(s))  # → 5736"
         ],
         [
+          "# Python 3.14+",
           "import sys",
           "try:",
           "    sys.set_int_max_str_digits(100)",
           "except ValueError as e:",
-          "    print(e)  # → maxdigits must be >= 640 or 0 for unlimited",
+          "    print(e)  # → maxdigits must be >= 640 or 0 for unlimited"
+        ],
+        [
+          "import sys",
           "sys.set_int_max_str_digits(5000)",
           "print(len(str(10 ** 4999)))  # → 5000"
         ]
@@ -80581,10 +80606,16 @@
         [
           "from typing import TypeVarTuple, Unpack",
           "Ts = TypeVarTuple('Ts')",
-          "print(Ts.__name__)   # → Ts",
+          "print(Ts.__name__)   # → Ts"
+        ],
+        [
+          "# Python 3.12+",
+          "from typing import TypeVarTuple, Unpack",
+          "Ts = TypeVarTuple('Ts')",
           "print(Unpack[Ts])   # → typing.Unpack[Ts]"
         ],
         [
+          "# Python 3.12+",
           "def pack[*Us](*args: *Us) -> tuple[*Us]: return args",
           "print(pack(1, 'a', True))   # → (1, 'a', True)",
           "print(pack())   # → ()",
@@ -83986,7 +84017,12 @@
         [
           "import uuid",
           "u = uuid.uuid5(uuid.NAMESPACE_DNS, 'python.org')",
-          "print(u)  # → 886313e1-3b8a-5372-9b90-0c9aee199e5d",
+          "print(u)  # → 886313e1-3b8a-5372-9b90-0c9aee199e5d"
+        ],
+        [
+          "# Python 3.12+",
+          "import uuid",
+          "u = uuid.uuid5(uuid.NAMESPACE_DNS, 'python.org')",
           "print(u == uuid.uuid5(uuid.NAMESPACE_DNS, b'python.org'))  # → True"
         ]
       ],
@@ -85482,7 +85518,7 @@
           "try:",
           "    p.z = 3",
           "except AttributeError as e:",
-          "    print(e)  # → 'Point' object has no attribute 'z' and no __dict__ for setting new attributes",
+          "        print(e)  # → 'Point' object has no attribute 'z'",
           "print(hasattr(p, '__dict__'))  # → False — словаря атрибутов нет"
         ],
         [
@@ -95749,6 +95785,7 @@
           "print(repr(out.getvalue()))  # → 'a;\"b;c\"\\n'"
         ],
         [
+          "# Python 3.14+",
           "import csv",
           "import io",
           "class Bad(csv.Dialect):",
@@ -102940,9 +102977,13 @@
           "import math",
           "print(math.nextafter(1.0, 2.0))   # → 1.0000000000000002",
           "print(math.nextafter(1.0, 0.0))   # → 0.9999999999999999",
-          "print(math.nextafter(1.0, 2.0, steps=2))   # → 1.0000000000000004",
           "print(math.nextafter(0.0, 1.0))   # → 5e-324",
           "print(math.nextafter(2.0, 2.0))   # → 2.0"
+        ],
+        [
+          "# Python 3.12+",
+          "import math",
+          "print(math.nextafter(1.0, 2.0, steps=2))   # → 1.0000000000000004"
         ]
       ],
       "related": [

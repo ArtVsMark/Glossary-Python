@@ -5327,6 +5327,7 @@
     ],
     "examples": [
       [
+        "# Python 3.14+",
         "import shutil",
         "try:",
         "    raise shutil.ExecError",
@@ -6710,7 +6711,7 @@
         "try:",
         "    subprocess.run(cmd, timeout=0.5)",
         "except subprocess.TimeoutExpired as e:",
-        "    print(e.timeout)  # → 0.5",
+        "    print(round(e.timeout, 1))  # → 0.5 — до 3.13 здесь лежало прошедшее время",
         "print(issubclass(subprocess.TimeoutExpired, TimeoutError))  # → False"
       ],
       [

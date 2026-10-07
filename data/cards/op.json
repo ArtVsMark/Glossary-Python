@@ -2620,10 +2620,10 @@
       "en": "Opens a file. Modes: r (read), w (write, truncating), a (append), x (create), b (binary). Use it with with."
     },
     "body": {
-      "ru": "Всегда указывай encoding='utf-8' явно: без него текстовый режим берёт кодировку из локали системы, и файл, который спокойно читается на Linux, роняет UnicodeDecodeError на Windows с cp1251. Режим 'w' обрезает файл до нуля уже в момент открытия, до первой записи, — если нужно создать файл, но не затереть существующий, бери 'x': он бросит FileExistsError вместо потери данных.",
-      "en": "Always pass encoding='utf-8' explicitly: without it text mode falls back to the system locale, so a file that reads fine on Linux blows up with UnicodeDecodeError on a Windows machine using cp1251. Mode 'w' empties the file the moment it is opened, before any write happens — if you want to create a file without clobbering an existing one, use 'x', which raises FileExistsError instead of destroying data."
+      "ru": "Всегда указывай encoding='utf-8' явно: без него текстовый режим берёт кодировку из локали системы (utf-8 — только в UTF-8 Mode, -X utf8), и файл, который спокойно читается на Linux, роняет UnicodeDecodeError на Windows с cp1251. Режим 'w' обрезает файл до нуля уже в момент открытия, до первой записи, — если нужно создать файл, но не затереть существующий, бери 'x': он бросит FileExistsError вместо потери данных.",
+      "en": "Always pass encoding='utf-8' explicitly: without it text mode falls back to the system locale (utf-8 only in UTF-8 Mode, -X utf8), so a file that reads fine on Linux blows up with UnicodeDecodeError on a Windows machine using cp1251. Mode 'w' empties the file the moment it is opened, before any write happens — if you want to create a file without clobbering an existing one, use 'x', which raises FileExistsError instead of destroying data."
     },
-    "syntax": "open(path, mode='r', encoding=None)",
+    "syntax": "open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
     "added": "<3.0",
@@ -3077,8 +3077,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Читает файл целиком в одну строку, либо ровно size символов, если аргумент задан. На большом файле съедает всю память — тогда лучше читать построчно.",
-      "en": "Read the whole file into a single string, or exactly size characters if given; on a large file this loads everything into memory — iterate by lines instead."
+      "ru": "Читает файл целиком в одну строку, либо не больше size символов, если аргумент задан. На большом файле съедает всю память — тогда лучше читать построчно.",
+      "en": "Read the whole file into a single string, or at most size characters if given; on a large file this loads everything into memory — iterate by lines instead."
     },
     "body": {
       "ru": "Курсор назад не отматывается: после f.read() файл прочитан до конца, и второй вызов внутри того же with вернёт пустую строку — самая частая причина «почему-то ничего не прочиталось». Чтобы прочитать заново, нужен f.seek(0). Аргумент size в текстовом режиме считает символы, а в бинарном — байты, и для не-ASCII это разные величины.",
@@ -3863,8 +3863,8 @@
       "en": "Write every string from an iterable in sequence; it adds no separators, so '\\n' must already be in the strings or everything runs together."
     },
     "body": {
-      "ru": "Имя обманывает: метод ничего не знает про «строки» и просто вызывает write() для каждого элемента подряд. Он парный к readlines(), который сохраняет '\\n' внутри элементов, поэтому f_out.writelines(f_in.readlines()) копирует файл точь-в-точь; а вот после splitlines() или strip() переводы строк придётся дописывать самому. На вход годится любой итерируемый объект — генератор, другой файл — а в бинарном режиме элементы должны быть bytes, иначе TypeError.",
-      "en": "The name misleads: the method knows nothing about \"lines\", it just calls write() on each item in turn. It pairs with readlines(), which keeps the '\\n' inside each item, so f_out.writelines(f_in.readlines()) reproduces a file exactly — but after splitlines() or strip() you have to put the newlines back yourself. Any iterable works as input, including a generator or another file object; in binary mode the items must be bytes or you get a TypeError."
+      "ru": "Имя обманывает: метод ничего не знает про «строки» и просто вызывает write() для каждого элемента подряд. Он парный к readlines(), который сохраняет '\\n' внутри элементов, поэтому f_out.writelines(f_in.readlines()) сохраняет разбиение на строки (байт в байт — только в бинарном режиме: в текстовом '\\r\\n' при чтении становится '\\n'); а вот после splitlines() или strip() переводы строк придётся дописывать самому. На вход годится любой итерируемый объект — генератор, другой файл — а в бинарном режиме элементы должны быть bytes, иначе TypeError.",
+      "en": "The name misleads: the method knows nothing about \"lines\", it just calls write() on each item in turn. It pairs with readlines(), which keeps the '\\n' inside each item, so f_out.writelines(f_in.readlines()) keeps the line structure (byte for byte only in binary mode: text mode turns '\\r\\n' into '\\n' on reading) — but after splitlines() or strip() you have to put the newlines back yourself. Any iterable works as input, including a generator or another file object; in binary mode the items must be bytes or you get a TypeError."
     },
     "syntax": "f.writelines(lines)",
     "status": "ready",

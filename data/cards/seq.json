@@ -3806,8 +3806,8 @@
       "en": "Split the bytes at line boundaries."
     },
     "body": {
-      "ru": "Главное отличие от b.split(b'\\n') — разделителем считается любая ASCII-граница строки, включая пару \\r\\n целиком, и завершающий перевод строки не порождает лишний пустой элемент в конце. У пустых байтов результат — пустой список, а не список из одного пустого элемента, так что счётчик строк по файлу с ним не соврёт. Границы тут только ASCII-овские, в отличие от str.splitlines, который делит текст ещё и по редким юникодным разделителям.",
-      "en": "Unlike b.split(b'\\n'), this treats any ASCII line boundary as a separator, handles \\r\\n as one break, and a trailing newline does not add a spurious empty last item. Empty bytes give an empty list rather than a one-element list, so counting lines this way stays honest. The boundary set is ASCII-only here, narrower than str.splitlines, which also breaks on rarer Unicode separators."
+      "ru": "Главное отличие от b.split(b'\\n') — разделителями считаются \\n, \\r и пара \\r\\n целиком, и завершающий перевод строки не порождает лишний пустой элемент в конце. У пустых байтов результат — пустой список, а не список из одного пустого элемента, так что счётчик строк по файлу с ним не соврёт. Других границ у байтов нет: str.splitlines делит текст ещё и по \\v, \\f, \\x1c–\\x1e и юникодным разделителям, а bytes оставит их внутри строки.",
+      "en": "Unlike b.split(b'\\n'), this splits on \\n, \\r and \\r\\n (treated as one break), and a trailing newline does not add a spurious empty last item. Empty bytes give an empty list rather than a one-element list, so counting lines this way stays honest. There are no other boundaries for bytes: str.splitlines also breaks on \\v, \\f, \\x1c–\\x1e and Unicode separators, which bytes leaves inside the line."
     },
     "syntax": "b.splitlines(...)",
     "status": "ready",
@@ -4442,8 +4442,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Статический метод: создаёт bytes из шестнадцатеричной строки.",
-      "en": "A static method creating bytes from a hex string."
+      "ru": "Метод класса: создаёт bytes из шестнадцатеричной строки.",
+      "en": "A class method that creates bytes from a hex string."
     },
     "body": {
       "ru": "Строка должна содержать чётное число шестнадцатеричных цифр, иначе ValueError; регистр не важен, пробельные символы между парами цифр пропускаются, а вот внутри пары — нет. Это точная обратная операция к b.hex(); такой же метод есть у bytearray и возвращает изменяемый объект.",
@@ -5937,8 +5937,8 @@
       "en": "Join a sequence of bytes with this separator."
     },
     "body": {
-      "ru": "Элементы должны быть байтоподобными (bytes, bytearray, memoryview): обычная строка в списке даёт TypeError, неявного кодирования не будет — кодируйте через .encode() сами. Склейка через join проходит по всем кускам один раз, а накопление результата в цикле через += квадратично по числу фрагментов, поэтому собирать длинные последовательности стоит именно join.",
-      "en": "Every element must be a bytes-like object (bytes, bytearray, memoryview): a plain str in the list raises TypeError, since there is no implicit encoding — call .encode() yourself. join walks the pieces once, whereas building the result with += in a loop is quadratic in the number of fragments, so use join for anything long."
+      "ru": "Элементы должны быть байтоподобными (bytes, bytearray, memoryview): обычная строка в списке даёт TypeError, неявного кодирования не будет — кодируйте через .encode() сами. Склейка через join проходит по всем кускам один раз. Накопление через += квадратично только для неизменяемого bytes; bytearray дописывает на месте и стоит амортизированно линейно, так что копить в нём можно, а готовый список кусков проще склеить одним join.",
+      "en": "Every element must be a bytes-like object (bytes, bytearray, memoryview): a plain str in the list raises TypeError, since there is no implicit encoding — call .encode() yourself. join walks the pieces once. Building a result with += is quadratic only for immutable bytes; a bytearray appends in place at amortised linear cost, so accumulating in one is fine, while a ready list of pieces is simplest to glue with a single join."
     },
     "syntax": "ba.join(...)",
     "status": "ready",
@@ -6864,8 +6864,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Статический метод: создаёт bytearray из шестнадцатеричной строки.",
-      "en": "A static method creating a bytearray from a hex string."
+      "ru": "Метод класса: создаёт bytearray из шестнадцатеричной строки.",
+      "en": "A class method that creates a bytearray from a hex string."
     },
     "body": {
       "ru": "Это метод самого типа, а не экземпляра: пишут bytearray.fromhex(...), никакого объекта заранее создавать не нужно. Пробелы и переводы строк внутри строки игнорируются, а вот нечётное число цифр или посторонний символ дают ValueError — операция обратная к .hex().",

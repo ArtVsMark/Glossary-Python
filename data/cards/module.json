@@ -23255,7 +23255,7 @@
         "print(operator.invert(5) == ~5)   # → True",
         "print(operator.invert(5) == -5 - 1)   # → True",
         "print(list(map(operator.invert, [1, 2, 3])))   # → [-2, -3, -4]",
-        "print(operator.invert(True))   # → -2"
+        "print(operator.invert(True))   # → -2 — с 3.12 DeprecationWarning: ~ над bool устарел"
       ]
     ],
     "related": [
@@ -26038,14 +26038,14 @@
       "en": "Return the longest common prefix of a list of strings — character-wise, not path-aware."
     },
     "body": {
-      "ru": "Сравнивает символы, а не компоненты, поэтому для путей даёт неверный ответ: commonprefix(['/usr/lib', '/usr/local']) вернёт '/usr/l' — такого каталога нет. Для путей нужна commonpath. Сама функция полезна для любых строк, например чтобы найти общее начало списка слов.",
-      "en": "It compares characters, not components, so for paths it gives a wrong answer: commonprefix(['/usr/lib', '/usr/local']) returns '/usr/l' — no such directory. Use commonpath for paths. The function itself is fine for any strings, e.g. finding the shared start of a word list."
+      "ru": "Сравнивает символы, а не компоненты, поэтому для путей даёт неверный ответ: commonprefix(['/usr/lib', '/usr/local']) вернёт '/usr/l' — такого каталога нет. Для путей нужна commonpath. Сама функция полезна для любых строк, например чтобы найти общее начало списка слов. С Python 3.15 функция объявлена устаревшей и выдаёт DeprecationWarning: для путей замена — commonpath(), для общего начала строк — сравнение посимвольно, например через zip и itertools.takewhile.",
+      "en": "It compares characters, not components, so for paths it gives a wrong answer: commonprefix(['/usr/lib', '/usr/local']) returns '/usr/l' — no such directory. Use commonpath for paths. The function itself is fine for any strings, e.g. finding the shared start of a word list. Since Python 3.15 the function is deprecated and emits a DeprecationWarning: for paths use commonpath(), for the shared start of strings compare characters, e.g. with zip and itertools.takewhile."
     },
     "syntax": "os.path.commonprefix(list)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.commonprefix",
     "added": "<3.0",
-    "deprecated": "",
+    "deprecated": "3.15",
     "removed": "",
     "platforms": [
       "AllOS"
@@ -26130,7 +26130,7 @@
         "print(os.path.commonpath(['a/b/c', 'a/b/d']) == os.path.join('a', 'b'))   # → True",
         "files = ['/var/log/app/a.log', '/var/log/app/b.log', '/var/log/db/c.log']",
         "print(os.path.commonpath(files).endswith(os.path.join('var', 'log')))   # → True",
-        "print(os.path.commonprefix(['/usr/lib', '/usr/local']))   # → /usr/l",
+        "print(os.path.commonprefix(['/usr/lib', '/usr/local']))   # → /usr/l — посимвольно; с 3.15 commonprefix даёт DeprecationWarning",
         "print(os.path.commonpath(['/usr', 'usr']))   # → ValueError"
       ]
     ],
@@ -50105,7 +50105,7 @@
         "os.mkdir('data')",
         "open('data/a.txt', 'w').close()",
         "name = shutil.make_archive('pack', 'gztar', root_dir='data')",
-        "shutil.unpack_archive(name, 'out')",
+        "shutil.unpack_archive(name, 'out', filter='data')  # без filter 3.12–3.13 предупреждают",
         "print(os.listdir('out'))  # → ['a.txt']"
       ],
       [
@@ -59230,7 +59230,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -59304,7 +59304,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -59533,7 +59533,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -59604,7 +59604,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -59674,7 +59674,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -59749,7 +59749,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -59986,7 +59986,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -60064,7 +60064,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -60147,7 +60147,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -60227,7 +60227,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -60314,7 +60314,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -60385,7 +60385,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -60465,7 +60465,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -60545,7 +60545,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -60634,7 +60634,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -60707,7 +60707,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -60784,7 +60784,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -60854,7 +60854,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -61013,7 +61013,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61096,7 +61096,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61171,7 +61171,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61248,7 +61248,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61328,7 +61328,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61405,7 +61405,7 @@
       "Linux",
       "macOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61478,7 +61478,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61557,7 +61557,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61631,7 +61631,7 @@
     "platforms": [
       "Windows"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61701,7 +61701,7 @@
       "Linux",
       "macOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61768,7 +61768,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61837,7 +61837,7 @@
     "platforms": [
       "Linux"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61910,7 +61910,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -61987,7 +61987,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62069,7 +62069,7 @@
       "Linux",
       "macOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62137,7 +62137,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62218,7 +62218,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62297,7 +62297,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62376,7 +62376,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62456,7 +62456,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62525,7 +62525,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -62919,7 +62919,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -62983,7 +62983,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -63061,7 +63061,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -63141,7 +63141,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -63219,7 +63219,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -63292,7 +63292,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -63507,7 +63507,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалённые модули",
       "en": "removed modules"
@@ -63659,7 +63659,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"
@@ -63729,7 +63729,7 @@
     "platforms": [
       "AllOS"
     ],
-    "section": "Модули и импорт",
+    "section": "Удалено из стандартной библиотеки",
     "subcat": {
       "ru": "удалено",
       "en": "removed"

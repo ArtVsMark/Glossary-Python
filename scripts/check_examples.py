@@ -60,6 +60,13 @@
 — поэтому граница ``removed`` его не отсекает. Пометка раньше ``removed``
 по-прежнему живёт внутри окна карточки.
 
+УСТАРЕВАНИЕ (#154). Примеры идут с ``-W always::DeprecationWarning``. Блок,
+выдавший предупреждение, законен, если карточка записала ``deprecated`` не
+позже версии прогона либо сам блок называет ``DeprecationWarning`` — он
+показывает устаревшую форму вызова, а не устаревшую возможность. Остальное —
+находка: устаревание, которого карточка не знает. На предварительной версии
+так новая версия языка сообщает о себе раньше, чем её What's New дочитан.
+
 Запуск::
 
     python scripts/check_examples.py              # гейт по data/glossary.json
@@ -81,7 +88,7 @@ import sys
 import tempfile
 import tokenize
 from concurrent.futures import ThreadPoolExecutor
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Final, Literal
 
@@ -113,6 +120,12 @@ EXCEPTION_LINE: Final = re.compile(r"^(?P<name>[A-Za-z_][\w.]*)(?::|$)")
 NAME: Final = re.compile(r"[A-Za-z_][\w.]*")
 
 OUTPUT_CEILING: Final = 0
+WARNED: Final = "DeprecationWarning"
+WARN_FILTER: Final = "always::DeprecationWarning"
+"""Устаревание показывается всегда, а не раз и не только из ``__main__``.
+
+Без фильтра предупреждение из библиотечного кода молчит: пример, зовущий
+устаревшую функцию через стандартную обёртку, выглядел бы чистым (#154)."""
 """Блоков, чей вывод расходится с обещанным. Опускается вместе с правкой карточек
 (#125) и только вниз; на нуле превышение станет обычной находкой."""
 
@@ -141,6 +154,8 @@ class Result:
     entry_id: str
     outcome: Outcome
     detail: str = ""
+    warned: bool = False
+    """Блок выдал DeprecationWarning — сверяется с полем ``deprecated``."""
 
 
 def comments(code: str) -> dict[int, str]:
@@ -373,7 +388,7 @@ def execute(entry_id: str, code: str) -> Result:
             # Код примера — наш собственный, из data/cards/, а не чужой ввод;
             # исполняется изолированно — ради этого гейт и заведён.
             done = subprocess.run(  # noqa: S603
-                [INTERPRETER[0], "-I", "-X", "utf8", FILENAME],
+                [INTERPRETER[0], "-I", "-X", "utf8", "-W", WARN_FILTER, FILENAME],
                 cwd=tmp,
                 env=env,
                 stdin=subprocess.DEVNULL,
@@ -387,6 +402,11 @@ def execute(entry_id: str, code: str) -> Result:
             )
         except subprocess.TimeoutExpired:
             return classify(entry_id, code, "", timed_out=True)
+    return replace(judge(entry_id, code, done), warned=WARNED in done.stderr)
+
+
+def judge(entry_id: str, code: str, done: subprocess.CompletedProcess[str]) -> Result:
+    """Исход завершившегося прогона: вывод сверен с обещаниями, падение отнесено."""
     if done.returncode == 0:
         broken = unmet(code, done.stdout)
         if broken:
@@ -442,6 +462,32 @@ def applicable(
         return False
     after_removal = bool(removed) and since is not None and since >= _version(removed)
     return not removed or after_removal or _version(removed) > version
+
+
+def unrecorded(
+    data: Path, results: list[Result], version: tuple[int, int] | None = None
+) -> list[Result]:
+    """Блоки с DeprecationWarning, чья карточка устаревания не записала (#154).
+
+    Предупреждение законно в двух случаях: карточка объявила ``deprecated`` не
+    позже версии прогона — устарела сама возможность, — или блок называет
+    ``DeprecationWarning`` в тексте: он показывает устаревшую ФОРМУ вызова
+    (``~True``), а не устаревшую возможность. Всё остальное — устаревание,
+    которого карточка не знает: так новая версия языка сообщает о себе раньше,
+    чем её What's New дочитан.
+    """
+    if version is None:
+        version = (sys.version_info.major, sys.version_info.minor)
+    payload = json.loads(data.read_text(encoding="utf-8"))
+    allowed: dict[str, bool] = {}
+    for entry in payload["entries"]:
+        blocks = entry.get("examples") or []
+        deprecated = str(entry.get("deprecated") or "")
+        recorded = bool(deprecated) and _version(deprecated) <= version
+        for number, block in enumerate(blocks, start=1):
+            label = f"{entry['id']} · пример {number}" if len(blocks) > 1 else entry["id"]
+            allowed[label] = recorded or any(WARNED in line for line in block)
+    return [r for r in results if r.warned and not allowed.get(r.entry_id, True)]
 
 
 def examples(data: Path, version: tuple[int, int] | None = None) -> dict[str, str]:
@@ -525,12 +571,23 @@ def main(argv: list[str] | None = None) -> int:
         f"примеров: {len(results)} · исполнились: {tally['ok']} · "
         f"намеренно: {tally['intended']} · окружение: {tally['environment']} · "
         f"находок: {tally['finding']} · вывод расходится: {tally['mismatch']} "
-        f"(потолок {OUTPUT_CEILING})"
+        f"(потолок {OUTPUT_CEILING}) · устаревает: "
+        f"{sum(r.warned for r in results)}"
     )
     if found:
         print("пример падает не там, где обещает:", file=sys.stderr)
         for result in found:
             print(f"  • {result.entry_id}: {result.detail}", file=sys.stderr)
+    silent = unrecorded(args.data, results, version)
+    if silent:
+        print(
+            "пример выдаёт DeprecationWarning, а карточка устаревания не записала "
+            "(поле deprecated пусто или позже версии; или назовите "
+            "DeprecationWarning в самом блоке, если устарела форма вызова):",
+            file=sys.stderr,
+        )
+        for result in silent:
+            print(f"  • {result.entry_id}", file=sys.stderr)
     mismatched = [r for r in results if r.outcome == "mismatch"]
     over = len(mismatched) > OUTPUT_CEILING
     if over:
@@ -541,7 +598,7 @@ def main(argv: list[str] | None = None) -> int:
         )
         for result in mismatched:
             print(f"  • {result.entry_id}: {result.detail}", file=sys.stderr)
-    if found or over:
+    if found or over or silent:
         print(summary, file=sys.stderr)
         return 1
     print(summary)

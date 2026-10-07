@@ -14543,7 +14543,7 @@
     "kind": "term",
     "summary": {
       "ru": "Календарная дата (год, месяц, день) без времени. date.today() — сегодня, weekday() — день недели (0=пн).",
-      "en": "A calendar date (year, month, day) without time."
+      "en": "A calendar date (year, month, day) without time. date.today() gives today, weekday() the day of week (0 = Monday)."
     },
     "body": {
       "ru": "Вечный источник путаницы — нумерация дней недели: weekday() считает с нуля от понедельника, а isoweekday() — с единицы. Несуществующая дата вроде date(2024, 2, 31) роняет ValueError прямо в конструкторе, так что валидировать вручную не нужно, достаточно поймать исключение. Объект неизменяем и «плюс месяц» не умеет: складывать можно только с timedelta, то есть в днях и неделях.",
@@ -16060,7 +16060,7 @@
     "kind": "term",
     "summary": {
       "ru": "Обёртка, принудительно делающая значение членом перечисления (Python 3.11+); полезно для функций/дескрипторов.",
-      "en": "A wrapper forcing a value to become an enum member (3.11+)."
+      "en": "A wrapper that forces a value to become an enum member (Python 3.11+); useful for functions and descriptors."
     },
     "body": {
       "ru": "Нужна ровно там, где обычные правила Enum срабатывают против вас: функция, lambda, дескриптор или вложенный класс в теле перечисления членом не становятся — Python считает их методами класса. Обёртка снимает это исключение и заставляет значение стать полноценным членом с .name и .value. Для обычных чисел и строк она избыточна, а до Python 3.11 приходилось хитрить, заворачивая функцию, например, в functools.partial.",
@@ -17287,7 +17287,7 @@
     "kind": "function",
     "summary": {
       "ru": "Остаток по IEEE 754: x − round(x/y)·y, результат в [−y/2, y/2].",
-      "en": "The IEEE 754 remainder: x − round(x/y)·y."
+      "en": "The IEEE 754 remainder: x − round(x/y)·y, the result lies in [−y/2, y/2]."
     },
     "body": {
       "ru": "Частное округляется к ближайшему целому (ровная половина — к чётному), поэтому знак результата не привязан ни к x, ни к y, а модуль никогда не превышает половину y: remainder(11, 3) даёт -1.0, хотя оба числа положительные. Это ровно то, что нужно для приведения углов и фаз в симметричный диапазон, но не «остаток» в бытовом смысле — для него берите % или math.fmod. Нулевой делитель даёт ValueError.",
@@ -17403,7 +17403,7 @@
     "kind": "function",
     "summary": {
       "ru": "Раскладывает число на мантиссу m и экспоненту e: x = m·2^e, 0.5 ≤ |m| < 1.",
-      "en": "Decompose a number into mantissa m and exponent e: x = m·2^e."
+      "en": "Decomposes a number into mantissa m and exponent e: x = m·2^e, with 0.5 ≤ |m| < 1."
     },
     "body": {
       "ru": "Разложение двоичное, а не десятичное: frexp(8) даёт (0.5, 4), потому что 8 = 0.5·2^4, а не (8.0, 0), как подсказывает привычка к научной записи по основанию 10. Операция точная, без округления, и math.ldexp(*math.frexp(x)) вернёт исходное число бит в бит. Мантисса — float, экспонента — int; для нуля результат (0.0, 0).",
@@ -17517,7 +17517,7 @@
     "kind": "function",
     "summary": {
       "ru": "Обратная frexp: x·2^i (собирает число из мантиссы и экспоненты).",
-      "en": "The inverse of frexp: x·2^i."
+      "en": "The inverse of frexp: x·2**i (builds a number from its mantissa and exponent)."
     },
     "body": {
       "ru": "Умножение на степень двойки — точная операция: сдвигается только экспонента, значащие биты не меняются, поэтому ldexp надёжнее, чем x * 2 ** i, где при большом i промежуточное 2 ** i раздувается в гигантское целое. Если результат не влезает в диапазон float, будет OverflowError, а при слишком маленьком — постепенная потеря точности через субнормальные числа и в пределе 0.0.",
@@ -17688,7 +17688,7 @@
     "kind": "function",
     "summary": {
       "ru": "Евклидово расстояние между двумя точками (последовательностями координат).",
-      "en": "The Euclidean distance between two points."
+      "en": "The Euclidean distance between two points (sequences of coordinates)."
     },
     "body": {
       "ru": "Появился в 3.8; точки — любые последовательности координат любой размерности, но длины обязаны совпадать, иначе ValueError. Внутри считается так же, как hypot: без переполнения на промежуточных квадратах и с меньшей ошибкой округления, чем у ручного корня из суммы квадратов. Если расстояния только сравниваются между собой, дешевле обойтись суммой квадратов, не извлекая корень.",
@@ -18049,7 +18049,7 @@
     "kind": "term",
     "summary": {
       "ru": "Абстрактный базовый класс контекстного менеджера (протокол __enter__/__exit__); любой класс с этими методами — его виртуальный подкласс.",
-      "en": "The ABC for context managers (the __enter__/__exit__ protocol)."
+      "en": "The abstract base class of context managers (the __enter__/__exit__ protocol); any class with these methods is its virtual subclass."
     },
     "body": {
       "ru": "Это не обязанность, а удобство: issubclass проходит для любого класса с __enter__ и __exit__, даже если он ничего не наследовал, — поэтому свой менеджер писать через наследование не нужно. Смысл наследования в том, что базовый класс уже даёт __enter__, возвращающий self, и остаётся описать только __exit__; ещё его удобно указывать в аннотациях типов. Асинхронные менеджеры сюда не попадают — у них отдельный AbstractAsyncContextManager.",
@@ -18220,7 +18220,7 @@
     "kind": "term",
     "summary": {
       "ru": "Асинхронный аналог ExitStack: динамически регистрирует и корректно закрывает несколько (async) контекстных менеджеров (Python 3.7+).",
-      "en": "An async ExitStack: dynamically manage several (async) context managers (3.7+)."
+      "en": "The async counterpart of ExitStack: registers several (async) context managers dynamically and closes them correctly (Python 3.7+)."
     },
     "body": {
       "ru": "Нужен там, где число ресурсов известно только в рантайме: открыть N соединений в цикле нельзя одним async with, а стек примет их по одному и закроет в обратном порядке при выходе. Асинхронные менеджеры регистрируются через enter_async_context() и push_async_exit(), обычные синхронные — через те же enter_context()/callback(), что и у ExitStack; перепутать методы — самая частая ошибка. Ещё приём: pop_all() переносит уже накопленные ресурсы в новый стек, чтобы не закрывать их, если инициализация дошла до конца успешно.",
@@ -18396,7 +18396,7 @@
     "kind": "term",
     "summary": {
       "ru": "Вспомогательный базовый класс с метаклассом ABCMeta: наследование от него делает класс абстрактным (нельзя создать экземпляр при наличии абстрактных методов).",
-      "en": "A helper base class using ABCMeta; subclassing it makes a class abstract."
+      "en": "A helper base class with ABCMeta as its metaclass: subclassing it makes a class abstract (it cannot be instantiated while abstract methods remain)."
     },
     "body": {
       "ru": "Абстрактность проверяется только в момент создания экземпляра: если наследник забыл переопределить хотя бы один абстрактный метод, TypeError прилетит на вызове конструктора, а не при определении класса. Само наследование от ABC ничего не запрещает — потомок без абстрактных методов создаётся спокойно. Если нужна проверка «подходит ли объект по набору методов» без наследования, смотрите в сторону typing.Protocol со структурной типизацией.",
@@ -18823,7 +18823,7 @@
     "kind": "function",
     "summary": {
       "ru": "Пересчитывает набор абстрактных методов класса (напр. после динамического добавления методов; Python 3.10+).",
-      "en": "Recompute a class's set of abstract methods (3.10+)."
+      "en": "Recomputes a class's set of abstract methods (e.g. after methods are added dynamically; Python 3.10+)."
     },
     "body": {
       "ru": "Набор __abstractmethods__ считается один раз, в момент создания класса, поэтому всё, что дописывает или подменяет методы позже (декоратор класса, миксин, ручное присваивание), оставляет его протухшим: класс либо спокойно создаётся с недореализованными методами, либо отказывается создаваться, хотя всё уже реализовано. Функция возвращает тот же самый класс, так что её удобно вешать декоратором.",
@@ -20305,7 +20305,7 @@
     "kind": "term",
     "summary": {
       "ru": "Обёртка над dict с содержимым в атрибуте .data; основа для собственных словарных классов через наследование (в отличие от прямого наследования dict, все методы идут через .data).",
-      "en": "A dict wrapper exposing its contents via .data; a base for custom mapping classes."
+      "en": "A dict wrapper keeping its contents in .data; a base for your own dict classes, since every method goes through .data unlike subclassing dict directly."
     },
     "body": {
       "ru": "Смысл обёртки — в наследовании: если унаследоваться от dict напрямую, переопределённый __setitem__ тихо обойдут update(), setdefault() и сам конструктор, потому что они реализованы на C и пишут в хранилище мимо ваших методов; UserDict проводит через ваш код каждую запись. Плата — скорость и то, что isinstance(obj, dict) даёт False: код, проверяющий тип, ваш объект не примет, туда отдавайте .data.",
@@ -20472,7 +20472,7 @@
     "kind": "term",
     "summary": {
       "ru": "Абстрактный базовый класс всех потоков ввода-вывода (файлов и StringIO/BytesIO); задаёт общий интерфейс close/readable/writable/seekable.",
-      "en": "The abstract base class of all I/O streams (files, StringIO/BytesIO)."
+      "en": "The abstract base class of all I/O streams (files and StringIO/BytesIO); it defines the shared close/readable/writable/seekable interface."
     },
     "body": {
       "ru": "isinstance(obj, io.IOBase) подтверждает только «это поток», но не что у него есть read() или write(): сами эти методы объявлены уже в наследниках, а IOBase задаёт лишь close(), закрытие по with и запросы readable()/writable()/seekable(). Обращение к уже закрытому потоку даёт ValueError с текстом про I/O operation on closed file, а не OSError, — ловить надо именно ValueError.",
@@ -20708,7 +20708,7 @@
     "kind": "term",
     "summary": {
       "ru": "Сырой (небуферизованный) бинарный поток к файлу по имени или дескриптору; низкоуровневая основа, поверх которой open() строит буферизацию.",
-      "en": "A raw (unbuffered) binary stream to a file by name or descriptor."
+      "en": "A raw (unbuffered) binary stream to a file by name or descriptor; the low-level base on which open() builds buffering."
     },
     "body": {
       "ru": "Напрямую его создают редко: open(path, 'rb', buffering=0) возвращает ровно FileIO, а обычный open() надстраивает над ним буфер и текстовую обёртку. Главная ловушка сырого потока — read(n) делает один системный вызов и вправе вернуть меньше n байт задолго до конца файла, поэтому читают либо readall(), либо циклом до пустого результата.",
@@ -20772,7 +20772,7 @@
     "kind": "term",
     "summary": {
       "ru": "Буферизованный поток бинарного чтения поверх сырого потока; сглаживает мелкие read() крупными блоками.",
-      "en": "A buffered binary read stream wrapping a raw stream."
+      "en": "A buffered binary reading stream over a raw stream; it serves many small read() calls from large blocks."
     },
     "body": {
       "ru": "Обычно его не создают руками — именно BufferedReader возвращает open(path, 'rb'), а через .buffer до него можно добраться у текстового файла или у sys.stdin. Полезное отличие от сырого потока: read(n) отдаёт ровно n байт и меньше только на конце файла, а peek() позволяет заглянуть вперёд, не сдвигая позицию. Помните, что read() без аргумента затягивает весь файл в память — большие файлы читайте кусками фиксированного размера или построчно.",
@@ -20892,7 +20892,7 @@
     "kind": "term",
     "summary": {
       "ru": "Буферизованный поток с произвольным доступом (чтение и запись + seek) поверх сырого потока — для файлов, открытых в режиме 'r+b'.",
-      "en": "A buffered random-access stream (read+write+seek) over a raw stream."
+      "en": "A buffered random-access stream (reading, writing and seek) over a raw stream, used for files opened in 'r+b' mode."
     },
     "body": {
       "ru": "Вручную этот класс почти не собирают — его возвращает open(path, 'r+b'), и разница с соседними режимами важнее самого класса: 'r+b' требует существующий файл и не обрезает его, а 'w+b' обнуляет содержимое при открытии. Запись уходит в буфер, поэтому до flush() или close() другой процесс (и даже другой дескриптор того же файла) увидит старые данные — если нужна немедленная видимость, вызывайте flush() явно.",
@@ -20954,7 +20954,7 @@
     "kind": "term",
     "summary": {
       "ru": "Буферизованный объект, объединяющий отдельный поток чтения и отдельный поток записи (например, для сокета или пары каналов).",
-      "en": "A buffered object pairing a separate reader and writer stream."
+      "en": "A buffered object combining a separate reader stream and a separate writer stream (e.g. for a socket or a pair of pipes)."
     },
     "body": {
       "ru": "Класс имеет смысл только для по-настоящему раздельных каналов — сокет, пара пайпов; передавать один и тот же объект и как reader, и как writer нельзя, для двустороннего доступа к одному потоку есть BufferedRandom. Произвольный доступ здесь не поддерживается: seekable() возвращает False, а сам объект не синхронизирует обращения к нижележащим сырым потокам, так что в многопоточном коде на него полагаться не стоит.",
@@ -21017,7 +21017,7 @@
     "kind": "term",
     "summary": {
       "ru": "Инкрементальный декодер, приводящий переводы строк к '\\n' (universal newlines) по мере поступления байтов; используется текстовыми потоками.",
-      "en": "An incremental decoder that normalizes newlines to '\\n' as bytes arrive."
+      "en": "An incremental decoder that translates line endings to '\\n' (universal newlines) as bytes arrive; text streams use it."
     },
     "body": {
       "ru": "Декодер помнит состояние между вызовами: если очередной кусок данных обрывается на '\\r', этот символ придерживается до следующего вызова — пока неизвестно, одиночный это перевод строки или половина '\\r\\n'. Из-за этого decode() иногда возвращает меньше, чем вы подали, и в конце потока нужен завершающий вызов с final=True. Руками его почти не создают: это внутренний помощник TextIOWrapper для файлов, открытых с newline=None.",
@@ -21071,8 +21071,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает переданную кодировку, а если это None — кодировку по умолчанию для текстовых файлов (обычно 'utf-8'); помогает библиотекам корректно проставлять encoding (Python 3.10+).",
-      "en": "Return the given encoding, or the default text encoding if None (3.10+)."
+      "ru": "Возвращает переданную кодировку, а для None — кодировку текста по умолчанию: 'locale', а в режиме UTF-8 — 'utf-8'; помогает библиотекам корректно передавать encoding (3.10+).",
+      "en": "Returns the given encoding, or for None the default text encoding: 'locale', or 'utf-8' in UTF-8 Mode; helps libraries pass encoding on correctly (3.10+)."
     },
     "body": {
       "ru": "Функция ничего не открывает и не проверяет: любую непустую строку она возвращает как есть, включая несуществующее имя кодека — ошибка всплывёт уже в open(). При encoding равном None возвращается не имя кодировки, а строка 'locale' (или 'utf-8', если включён UTF-8-режим), которую open() понимает. Смысл вызывать её в своих обёртках над open() в том, что под -X warn_default_encoding она выдаст EncodingWarning, и благодаря stacklevel=2 предупреждение укажет на того, кто вызвал вашу обёртку, а не на саму обёртку.",
@@ -21130,7 +21130,7 @@
     "kind": "function",
     "summary": {
       "ru": "Открывает файл для чтения как исполняемый код с учётом аудит-хуков безопасности; предпочтительнее open() для загрузки кода (Python 3.8+).",
-      "en": "Open a file for reading as executable code, honoring audit hooks (3.8+)."
+      "en": "Opens a file for reading as executable code, honouring security audit hooks; prefer it over open() for loading code (Python 3.8+)."
     },
     "body": {
       "ru": "Это всегда бинарное чтение: режим 'rb', параметров encoding и newline нет, а путь ожидается абсолютной строкой. Сама функция ничего не проверяет и безопасности не добавляет — ценность в единой точке перехвата: приложение или встраивающая среда может подменить её реализацию (или повесить аудит-хук) и, например, отказаться отдавать неподписанный файл. Через неё же импорт-механизм читает то, что собирается выполнить.",
@@ -21428,7 +21428,7 @@
     "kind": "function",
     "summary": {
       "ru": "Случайное число из логнормального распределения (логарифм подчинён нормальному с mu, sigma); результат всегда положителен.",
-      "en": "A random number from the log-normal distribution; always positive."
+      "en": "A random number from the log-normal distribution (its logarithm is normal with mu, sigma); the result is always positive."
     },
     "body": {
       "ru": "mu и sigma описывают логарифм результата, а не сам результат: медиана выдачи равна exp(mu), а среднее — exp(mu + sigma^2/2). Подставлять сюда желаемое среднее и разброс самих чисел — типичная ошибка. Распределение скошено вправо: длинный хвост больших значений тянет среднее заметно выше медианы, из-за чего оно и годится для моделирования доходов, времени отклика, размеров файлов.",
@@ -21657,7 +21657,7 @@
     "kind": "function",
     "summary": {
       "ru": "Случайный угол из распределения фон Мизеса (кругового аналога нормального) с центром mu и концентрацией kappa; результат в [0, 2π].",
-      "en": "A random angle from the von Mises distribution (mu, kappa); in [0, 2π]."
+      "en": "A random angle from the von Mises distribution (a circular analogue of the normal) with mean mu and concentration kappa; the result is in [0, 2π]."
     },
     "body": {
       "ru": "kappa — мера кучности: при kappa = 0 концентрации нет вовсе и функция выдаёт равномерный угол по всему кругу, а при больших kappa разброс вокруг mu близок к нормальному со стандартным отклонением примерно 1/sqrt(kappa). Помните, что это угол в радианах с заворотом через 2π: усреднять такие значения арифметически нельзя — «среднее» 0.1 и 6.2 радиан даст 3.15, то есть ровно противоположное направление.",
@@ -21771,8 +21771,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Целое число из k случайных бит (0 ≤ результат < 2**k); опирается на воспроизводимое ядро генератора, поэтому под фиксированным seed стабильно между версиями Python.",
-      "en": "An int of k random bits (0 ≤ result < 2**k); reproducible under a fixed seed."
+      "ru": "Целое число из k случайных бит (0 ≤ результат < 2**k); опирается на ядро генератора, поэтому под фиксированным seed воспроизводимо.",
+      "en": "An integer of k random bits (0 <= result < 2**k); it draws on the core generator, so it is reproducible under a fixed seed."
     },
     "body": {
       "ru": "Под капотом Mersenne Twister: по достаточному числу выданных значений его внутреннее состояние восстанавливается, поэтому пароли, токены и ключи генерируют через secrets.randbits() или os.urandom(), а не здесь. Отрицательное k даёт ValueError, а k=0 законно и всегда возвращает 0.",
@@ -21830,7 +21830,7 @@
     "kind": "function",
     "summary": {
       "ru": "Возвращает bytes из n случайных байтов (Python 3.9+); удобно для генерации токенов/солей в некриптографических задачах.",
-      "en": "Return n random bytes as a bytes object (3.9+)."
+      "en": "Returns n random bytes (Python 3.9+); handy for tokens or salts in non-cryptographic tasks."
     },
     "body": {
       "ru": "Настоящее преимущество перед os.urandom — воспроизводимость: под фиксированным seed вернётся та же цепочка байт, и бинарные фикстуры в тестах становятся детерминированными. Для солей, сессионных токенов и вообще всего, что охраняет доступ, берут secrets.token_bytes() — этот генератор предсказуем, если понаблюдать за его выдачей.",
@@ -21944,7 +21944,7 @@
     "kind": "function",
     "summary": {
       "ru": "Восстанавливает внутреннее состояние генератора из объекта, полученного ранее через getstate — генерация продолжится с той же точки.",
-      "en": "Restore the generator's internal state from a getstate() object."
+      "en": "Restores the generator's internal state from an object obtained earlier via getstate, so generation resumes from the same point."
     },
     "body": {
       "ru": "Объект state — непрозрачный кортеж, завязанный на конкретную реализацию генератора: складывать его в файл и подсовывать другой версии Python не стоит, для воспроизводимости надёжнее запомнить seed. И помните, что setstate перематывает общий генератор модуля — откатывается случайность всей программы, включая сторонние библиотеки; если нужна изоляция, заведите свой экземпляр random.Random().",
@@ -22000,7 +22000,7 @@
     "kind": "term",
     "summary": {
       "ru": "Метакласс всех перечислений: именно он превращает класс с атрибутами-константами в Enum (проверяет уникальность, создаёт члены). Актуальное имя с Python 3.11.",
-      "en": "The metaclass of all enumerations; turns a class of constants into an Enum (3.11+ name)."
+      "en": "The metaclass of all enums: it turns a class of constant attributes into an Enum (checks uniqueness, creates members). The current name since Python 3.11."
     },
     "body": {
       "ru": "Напрямую его называют редко, но именно он объясняет, почему у класса-перечисления работают len(Color), обход в цикле, Color['RED'] и Color(1): эти операции определены на метаклассе, а не на самом Enum. До Python 3.11 он назывался EnumMeta, и старое имя оставлено как псевдоним, так что код с ним не сломался. Наследоваться от него имеет смысл только если пишешь свой вид перечисления с изменённым поиском членов.",
@@ -22171,7 +22171,7 @@
     "kind": "function",
     "summary": {
       "ru": "Декоратор класса-перечисления: переносит его члены в глобальное пространство имён модуля (доступ по имени без префикса) и настраивает их repr под «модульный» стиль.",
-      "en": "A class decorator that injects an enum's members into the module globals and adjusts their repr."
+      "en": "A decorator for an enum class: it copies the members into the module's global namespace (usable without the prefix) and gives them a module-style repr."
     },
     "body": {
       "ru": "Декоратор придуман ради стандартной библиотеки, где константы исторически лежат прямо в модуле (re.IGNORECASE, socket.AF_INET), а перечисление добавили позже — он даёт новый класс, не ломая старый способ обращения. В своём коде применять его почти всегда не стоит: имена появляются в globals() в обход обычного присваивания, поэтому линтеры и автодополнение IDE их не видят, а случайное совпадение имён молча затрёт существующую переменную модуля.",
@@ -22951,7 +22951,7 @@
     "kind": "function",
     "summary": {
       "ru": "Возвращает +a (унарный плюс; для чисел — само значение, но может вызывать __pos__).",
-      "en": "Return +a (unary plus)."
+      "en": "Returns +a (unary plus; for numbers the value itself, but it may call __pos__)."
     },
     "body": {
       "ru": "Для int и float pos ничего не меняет, но не всегда бесполезна: у decimal.Decimal унарный плюс применяет точность текущего контекста и округляет значение, а у collections.Counter убирает нулевые и отрицательные счётчики. В собственном классе поведение задаёт __pos__.",
@@ -23010,7 +23010,7 @@
     "kind": "function",
     "summary": {
       "ru": "Побитовое И: a & b (подчёркивание в имени — чтобы не совпасть с ключевым словом `and`).",
-      "en": "Bitwise AND: a & b."
+      "en": "Bitwise AND: a & b (the trailing underscore avoids clashing with the keyword `and`)."
     },
     "body": {
       "ru": "Это побитовое &, а не логическое and: оба аргумента вычисляются всегда, короткого замыкания нет, и результат другой — and_(2, 1) даёт 0, а 2 and 1 даёт 1. Для множеств and_ — пересечение, для bool — логическое И без замыкания. Чтобы проверить, что истинны все элементы, нужна all(), а не reduce с and_.",
@@ -23071,7 +23071,7 @@
     "kind": "function",
     "summary": {
       "ru": "Побитовое ИЛИ: a | b (подчёркивание — чтобы не совпасть с `or`).",
-      "en": "Bitwise OR: a | b."
+      "en": "Bitwise OR: a | b (the underscore avoids clashing with `or`)."
     },
     "body": {
       "ru": "Это побитовое |, а не логическое or: короткого замыкания нет, or_(1, 2) даёт 3, а 1 or 2 даёт 1. Для множеств or_ — объединение, для словарей с Python 3.9 — слияние, где при совпадении ключа побеждает правый: or_({'a': 1}, {'a': 2}) вернёт {'a': 2}. Объединить много множеств: functools.reduce(operator.or_, sets, set()).",
@@ -23132,8 +23132,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Побитовое исключающее ИЛИ: a ^ b.",
-      "en": "Bitwise XOR: a ^ b."
+      "ru": "Побитовое исключающее ИЛИ: a ^ b — единицы там, где бит стоит ровно в одном операнде.",
+      "en": "Bitwise exclusive OR: a ^ b, the bits set in exactly one operand."
     },
     "body": {
       "ru": "Для множеств xor — симметрическая разность: элементы, которые есть ровно в одном из двух. Для bool — «истинно ровно одно из двух», и своего ключевого слова у этой логической операции нет. Классический приём — найти число без пары: functools.reduce(operator.xor, xs) оставляет элемент, встретившийся нечётное число раз.",
@@ -23195,7 +23195,7 @@
     "kind": "function",
     "summary": {
       "ru": "Побитовая инверсия ~a (эквивалентно −a−1 для int).",
-      "en": "Bitwise inversion ~a."
+      "en": "Bitwise inversion ~a (equal to -a-1 for int)."
     },
     "body": {
       "ru": "Для int результат всегда -a - 1, потому что в Python у целых нет фиксированной ширины: ~5 даёт -6, а не 250, как в восьмибитном типе. Для маски нужной ширины добавьте & 0xFF. С bool не применяйте: ~True равно -2, а не False; с Python 3.12 это предупреждение DeprecationWarning, удаление запланировано на 3.16. Для логического отрицания есть not.",
@@ -23311,7 +23311,7 @@
     "kind": "function",
     "summary": {
       "ru": "Сдвиг влево: a << b (умножение на 2**b).",
-      "en": "Left shift: a << b."
+      "en": "Left shift: a << b (multiplication by 2**b)."
     },
     "body": {
       "ru": "У целых Python нет переполнения: lshift(1, 100) честно даёт число из 31 цифры, а не ноль, как в языках с фиксированной шириной. Отрицательный сдвиг поднимает ValueError, а не сдвигает в другую сторону. Сдвиг удобен для битовых масок (1 << n), но для умножения на степень двойки понятнее записать a * 2**n.",
@@ -23368,7 +23368,7 @@
     "kind": "function",
     "summary": {
       "ru": "Сдвиг вправо: a >> b (целочисленное деление на 2**b).",
-      "en": "Right shift: a >> b."
+      "en": "Right shift: a >> b (floor division by 2**b)."
     },
     "body": {
       "ru": "Для отрицательных чисел сдвиг округляет вниз, к минус бесконечности: rshift(-5, 1) даёт -3, а не -2. Это согласовано с floordiv: a >> n равно a // 2**n. Отрицательный сдвиг поднимает ValueError. Чтобы достать отдельный бит, сдвиг сочетают с маской: (a >> k) & 1.",
@@ -23428,7 +23428,7 @@
     "kind": "function",
     "summary": {
       "ru": "Возвращает a == b (функциональный эквивалент `==`).",
-      "en": "Return a == b."
+      "en": "Returns a == b (the function form of `==`)."
     },
     "body": {
       "ru": "Вызывает __eq__ левого операнда, а если тот не умеет сравнивать — правого, поэтому eq(1, 1.0) истинно. Результат не обязан быть bool: массив NumPy вернёт массив поэлементных сравнений. NaN не равен даже себе — eq(nan, nan) даёт False. С functools.partial получается предикат: filter(partial(operator.eq, 0), xs) оставит нули.",
@@ -23779,7 +23779,7 @@
     "kind": "function",
     "summary": {
       "ru": "Проверка тождества: a is b (тот же объект в памяти).",
-      "en": "Identity test: a is b."
+      "en": "Identity test: a is b (the very same object in memory)."
     },
     "body": {
       "ru": "Сравнивает объекты, а не значения, поэтому годится для None, синглтонов-маркеров и проверки «это тот же список, а не копия». Для чисел и строк результат зависит от кэширования интерпретатора: is_(256, 256) обычно истинно, а для больших чисел или собранных строк — нет. Сравнивать значения нужно через eq.",
@@ -23956,7 +23956,7 @@
     "kind": "function",
     "summary": {
       "ru": "Возвращает истинностное значение объекта как bool (эквивалент bool(a)).",
-      "en": "Return the truth value of a as a bool."
+      "en": "Returns the truth value of an object as a bool (the same as bool(a))."
     },
     "body": {
       "ru": "Делает ровно то же, что bool(a). На практике bool короче и понятнее; truth встречается в старом коде и в таблицах операций. filter(None, xs) проверяет истинность сам, поэтому писать filter(operator.truth, xs) нет нужды.",
@@ -24013,7 +24013,7 @@
     "kind": "function",
     "summary": {
       "ru": "Конкатенация двух последовательностей: a + b (списки, строки, кортежи).",
-      "en": "Concatenate two sequences: a + b."
+      "en": "Concatenates two sequences: a + b (lists, strings, tuples)."
     },
     "body": {
       "ru": "Строже, чем add: оба аргумента должны быть последовательностями, поэтому concat(1, 2) поднимает TypeError, а add(1, 2) вернул бы 3. Типы должны совпадать: список с кортежем не склеится. Для множества кусков concat через reduce медленна — каждый шаг копирует всё накопленное. Склеивать много строк быстрее через str.join, много списков — через itertools.chain.",
@@ -24312,7 +24312,7 @@
     "kind": "function",
     "summary": {
       "ru": "Присваивание по ключу/индексу: a[b] = c (мутирует объект).",
-      "en": "Item assignment: a[b] = c."
+      "en": "Assigns by key or index: a[b] = c (mutates the object)."
     },
     "body": {
       "ru": "Возвращает None и меняет объект на месте — результат вызова не нужно никуда присваивать. Полезна там, где присваивание как инструкция недоступно: в лямбде, в обработчике событий, в map ради побочного эффекта. С кортежем или строкой поднимает TypeError: неизменяемые последовательности присваивание по индексу не поддерживают.",
@@ -24430,7 +24430,7 @@
     "kind": "function",
     "summary": {
       "ru": "Оценка длины объекта: точная (len) или предполагаемая через __length_hint__ (для итераторов); второй аргумент — значение по умолчанию.",
-      "en": "Estimate an object's length (exact or via __length_hint__)."
+      "en": "Estimates an object's length: exact via len or approximate via __length_hint__ (for iterators); the second argument is the default."
     },
     "body": {
       "ru": "Это оценка, а не обещание: итератор может выдать больше или меньше. Генератор длины не сообщает вовсе, и length_hint вернёт значение по умолчанию — 0, если не задано иное. Нужна в основном авторам коллекций, чтобы заранее выделить память; в обычном коде для точной длины есть len, а для итератора — list(it).",
@@ -24788,7 +24788,7 @@
     "kind": "function",
     "summary": {
       "ru": "In-place сложение: a += b (для изменяемых типов мутирует a, для неизменяемых — как add).",
-      "en": "In-place addition: a += b."
+      "en": "In-place addition a += b: it mutates a mutable a and behaves like add for an immutable one."
     },
     "body": {
       "ru": "Возвращаемое значение нужно присвоить: iadd(x, 1) для числа не меняет x, потому что int неизменяем, — правильно x = iadd(x, 1). Для списка iadd меняет его на месте и принимает любое итерируемое: iadd([1], (2,)) даёт [1, 2], хотя [1] + (2,) поднимает TypeError. Если на список есть другие ссылки, они увидят изменение.",
@@ -25895,7 +25895,7 @@
     "kind": "function",
     "summary": {
       "ru": "Нормализует регистр и разделители пути; на POSIX возвращает строку без изменений, на Windows приводит к нижнему регистру и меняет / на \\.",
-      "en": "Normalize path case and separators; a no-op on POSIX."
+      "en": "Normalizes path case and separators: unchanged on POSIX, lower-cased with / turned into \\ on Windows."
     },
     "body": {
       "ru": "Нужна для сравнения путей, а не для их показа: на Windows результат в нижнем регистре и с обратными слешами, поэтому выводить его пользователю не стоит. Ссылки не разрешает и '..' не убирает — для полного сравнения сочетайте с normpath или используйте samefile. На macOS файловая система обычно тоже нечувствительна к регистру, но normcase там ничего не меняет.",
@@ -26184,7 +26184,7 @@
     "kind": "function",
     "summary": {
       "ru": "Возвращает нормализованный абсолютный путь (относительный достраивается от текущего каталога).",
-      "en": "Return a normalized absolute version of a path."
+      "en": "Returns a normalized absolute path (a relative one is resolved against the current directory)."
     },
     "body": {
       "ru": "Символические ссылки не разрешает — это normpath(join(os.getcwd(), path)), поэтому для пути через ссылку с '..' результат может указывать не туда. Если нужен настоящий путь на диске, используйте realpath. Результат зависит от текущего каталога в момент вызова: после os.chdir тот же относительный путь даст другой ответ.",
@@ -31097,7 +31097,7 @@
     "kind": "function",
     "summary": {
       "ru": "Запускает новую программу (путь + список аргументов) в отдельном процессе; возвращает PID или код возврата в зависимости от режима.",
-      "en": "Run a new program in a new process (path + args list)."
+      "en": "Runs a new program (a path plus an argument list) in a separate process; returns the PID or the exit code depending on the mode."
     },
     "body": {
       "ru": "Результат зависит от режима: с P_WAIT — код возврата программы, с P_NOWAIT — PID, которого потом нужно дождаться через waitpid. Первым в списке аргументов идёт имя программы. Это старый интерфейс; документация рекомендует subprocess, где есть перехват вывода, таймауты и понятные ошибки.",
@@ -35601,7 +35601,7 @@
     "kind": "function",
     "summary": {
       "ru": "Создаёт жёсткую ссылку на файл (второе имя того же inode).",
-      "en": "Create a hard link to a file."
+      "en": "Creates a hard link to a file (a second name for the same inode)."
     },
     "body": {
       "ru": "Жёсткая ссылка — второе имя тех же данных: изменение через одно имя видно через другое, а данные исчезнут, только когда удалят все имена (счётчик в st_nlink). Ссылка возможна лишь в пределах одной файловой системы, и на каталоги её обычно не создать. На Windows работает с 3.2, но только на NTFS.",
@@ -35913,7 +35913,7 @@
     "kind": "function",
     "summary": {
       "ru": "Меняет права доступа к файлу (режим). На Windows поддерживается лишь бит «только чтение».",
-      "en": "Change a file's permission bits (mode)."
+      "en": "Changes a file's access permissions (mode). On Windows only the read-only bit is supported."
     },
     "body": {
       "ru": "Режим удобно писать в восьмеричной системе: 0o644, а не 644 — десятичное 644 даст совсем другие права. На Windows меняется только флаг «только чтение», остальные биты игнорируются. Для символических прав используйте константы stat, например stat.S_IRUSR | stat.S_IWUSR. Права — не всё: ACL и атрибуты файловой системы chmod не трогает.",
@@ -36710,7 +36710,7 @@
     "kind": "function",
     "summary": {
       "ru": "Открывает канал к команде оболочки: возвращает файловый объект для чтения её вывода или записи ввода.",
-      "en": "Open a pipe to a shell command as a file object."
+      "en": "Opens a pipe to a shell command and returns a file object to read its output or write its input."
     },
     "body": {
       "ru": "Это обёртка над subprocess.Popen с shell=True: строка команды идёт в оболочку, и данные пользователя в ней открывают путь к внедрению команд. Метод close() возвращает None при успехе, иначе закодированный статус — на Unix его переводят через waitstatus_to_exitcode. Ошибка команды не поднимает исключение; для проверок удобнее subprocess.run(..., check=True).",
@@ -39699,7 +39699,7 @@
     "kind": "term",
     "summary": {
       "ru": "Класс-кодер объектов Python → JSON; для сериализации нестандартных типов переопределяют метод default. json.dumps использует его внутри.",
-      "en": "The Python→JSON encoder class; override default() to serialize custom types."
+      "en": "The class that encodes Python objects to JSON; override its default method to serialize unsupported types. json.dumps uses it internally."
     },
     "body": {
       "ru": "На практике свой кодер редко создают вручную — подкласс передают как json.dumps(obj, cls=MyEncoder). Метод default вызывается только для значений, которые кодер не осилил сам, и обязан вернуть уже сериализуемый объект (словарь, список, строку), а не готовый JSON-текст; для всего по-прежнему чужого нужно вызвать super().default(o), чтобы получить честный TypeError. Заодно помни: кортежи превратятся в массивы, а нестроковые ключи словаря будут приведены к строкам.",

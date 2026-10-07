@@ -1523,7 +1523,7 @@
     "kind": "function",
     "summary": {
       "ru": "Маркер недостижимой ветки (напр. в исчерпывающем match): средство проверки типов проверит недостижимость, а во время выполнения всегда бросает AssertionError (Python 3.11+).",
-      "en": "A marker for unreachable code; always raises AssertionError at runtime (3.11+)."
+      "en": "Marks an unreachable branch (e.g. in an exhaustive match): a type checker proves it unreachable, and at run time it always raises AssertionError (3.11+)."
     },
     "body": {
       "ru": "Приём для исчерпывающих match или цепочек if-elif: в финальной, якобы недостижимой ветке средство проверки типов убеждается, что туда не попадает ни один вариант, а стоит добавить новый — и оно ткнёт носом именно в этот вызов. Во время выполнения полезной работы не несёт: раз управление сюда дошло, это уже баг, поэтому всегда бросает AssertionError.",
@@ -1640,7 +1640,7 @@
     "kind": "term",
     "summary": {
       "ru": "Фабрика различимых типов-псевдонимов: создаёт «отдельный» тип поверх базового для проверки типов; во время выполнения вызов возвращает аргумент как есть.",
-      "en": "A factory for distinct type aliases; at runtime the call returns its argument unchanged."
+      "en": "A factory of distinct alias types: it creates a 'separate' type over a base one for type checking; at run time the call returns its argument unchanged."
     },
     "body": {
       "ru": "NewType живёт только для проверяльщика типов: во время выполнения UserId — не класс, isinstance с ним падает, наследоваться от него нельзя, и никакой валидации он не делает. Смысл — отличать UserId от обычного int: простой псевдоним UserId = int взаимозаменяем с int, а NewType заставит проверяльщик ругаться на перепутанные значения.",
@@ -1698,7 +1698,7 @@
     "kind": "term",
     "summary": {
       "ru": "Переменная-спецификация параметров: захватывает сигнатуру вызова (позиционные и именованные) для типизации декораторов/обёрток (Python 3.10+).",
-      "en": "A parameter specification variable capturing a callable's signature (3.10+)."
+      "en": "A parameter specification variable: it captures a call signature (positional and keyword) to type decorators and wrappers (Python 3.10+)."
     },
     "body": {
       "ru": "Нужен, когда пишешь декоратор-обёртку и хочешь сохранить исходную сигнатуру: без ParamSpec обёртку типизируют как Callable[..., T] и теряют параметры, из-за чего проверяльщик перестаёт ловить неправильные вызовы. Работает в паре с Callable и Concatenate; доступен с Python 3.10 (раньше — через typing_extensions).",
@@ -1874,7 +1874,7 @@
     "kind": "term",
     "summary": {
       "ru": "Переменная переменной арности (variadic): захватывает произвольное число типов для типизации обобщений с изменяемым числом параметров (Python 3.11+).",
-      "en": "A variadic type variable capturing an arbitrary number of types (3.11+)."
+      "en": "A variadic type variable: it captures any number of types to type generics with a variable number of parameters (Python 3.11+)."
     },
     "body": {
       "ru": "TypeVarTuple почти никогда не используют в одиночку — его разворачивают звёздочкой или через Unpack внутри Generic, чтобы захватить хвост из произвольного числа типов (канонический случай — форма многомерного массива с заранее неизвестным числом осей). Обычный TypeVar ловит ровно один тип, этот — целую последовательность. С Python 3.12 то же самое пишется встроенным синтаксисом параметров, без обращения к typing.",
@@ -2057,7 +2057,7 @@
     "kind": "term",
     "summary": {
       "ru": "Обобщённый тип файловых объектов (потоков) для аннотаций; параметризуется типом элемента (str или bytes).",
-      "en": "A generic type for file-like objects (streams) in annotations."
+      "en": "A generic type of file objects (streams) for annotations; parameterized by the element type (str or bytes)."
     },
     "body": {
       "ru": "На практике вместо IO[str] и IO[bytes] чаще берут специализированные TextIO и BinaryIO — те же потоки, но с дополнительными атрибутами (encoding, buffer и т.п.) и более читаемым именем. Сам IO нужен, когда параметру важен только факт «это поток» независимо от конкретного класса — результат open(), io.StringIO, обёртка над сокетом.",
@@ -2804,7 +2804,7 @@
     "kind": "function",
     "summary": {
       "ru": "Декоратор, помечающий метод как переопределение метода базового класса; средство проверки типов проверит, что такой метод действительно существует у предка (Python 3.12+).",
-      "en": "A decorator marking a method as overriding a base-class method (3.12+)."
+      "en": "A decorator marking a method as overriding a base-class method; a type checker verifies that the parent really has such a method (Python 3.12+)."
     },
     "body": {
       "ru": "Во время выполнения это no-op (лишь ставит атрибут __override__) — вся польза на стороне проверяльщика типов. Он ловит классическую ошибку: метод в базовом классе переименовали или удалили, и «переопределение» в наследнике молча стало новым несвязанным методом — без @override об этом никто не предупредит.",
@@ -2862,7 +2862,7 @@
     "kind": "function",
     "summary": {
       "ru": "Декоратор, отключающий проверку типов для функции или класса (аннотации игнорируются средством проверки типов).",
-      "en": "A decorator disabling type checking for a function or class."
+      "en": "A decorator that turns off type checking for a function or class (the type checker ignores its annotations)."
     },
     "body": {
       "ru": "На классе действует рекурсивно — снимает проверку сразу со всех методов, тогда как комментарий # type: ignore гасит ровно одну строку. Инструмент грубый, «всё или ничего»; практический смысл он имеет в основном для динамически сгенерированного кода, где аннотации не должны трактоваться как типы.",

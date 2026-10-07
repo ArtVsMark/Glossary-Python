@@ -7763,8 +7763,8 @@
       "en": "Returns the PID (identifier) of the current process. Useful for logging and for giving temporary files unique names."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "После fork у потомка свой PID, поэтому значение, сохранённое до fork, в дочернем процессе уже неверно — вызывайте getpid заново. PID уникален лишь пока процесс жив: после завершения номер может достаться другому процессу. Для уникального имени временного файла надёжнее модуль tempfile.",
+      "en": "After fork the child has its own PID, so a value saved before fork is wrong in the child — call getpid again. A PID is unique only while the process lives: after it exits the number may go to another process. For unique temporary file names the tempfile module is more reliable."
     },
     "syntax": "os.getpid() -> int",
     "status": "ready",
@@ -23860,8 +23860,8 @@
       "en": "Return the parent process id."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Если родитель завершился, на Unix вернётся PID процесса init (1) или назначенного «приёмного» процесса, а на Windows — прежний номер, который мог уже достаться чужому процессу. Поэтому проверять «жив ли родитель» по getppid надёжно только на Unix, сравнивая с исходным значением.",
+      "en": "If the parent has exited, Unix returns the PID of init (1) or of a designated subreaper, while Windows returns the old number, which may already belong to another process. So checking whether the parent is alive via getppid is reliable only on Unix, by comparing with the original value."
     },
     "syntax": "os.getppid()",
     "status": "ready",
@@ -23907,8 +23907,8 @@
       "en": "Set the file-creation mode mask and return the previous value."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Узнать маску, не изменив её, нельзя: стандартный приём — old = os.umask(0); os.umask(old). Маска общая для всего процесса, и между двумя вызовами другой поток может создать файл с нулевой маской. Маска вычитает права, а не задаёт их: при umask 022 файл, созданный с правами 0o666, получит 0o644.",
+      "en": "There is no way to read the mask without changing it: the usual idiom is old = os.umask(0); os.umask(old). The mask is process-wide, and between the two calls another thread may create a file with a zero mask. The mask removes permissions rather than setting them: with umask 022 a file created with 0o666 ends up 0o644."
     },
     "syntax": "os.umask(mask)",
     "status": "ready",
@@ -23952,8 +23952,8 @@
       "en": "Return a named tuple of process times (user/system/…, 5 fields)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Поля user и system — процессорное время, а не время по часам: процесс, который ждал ввода, наберёт его мало. На Windows заполнены только user и system, остальные поля равны нулю. Для замера длительности кода удобнее time.perf_counter, а для процессорного времени текущего процесса — time.process_time.",
+      "en": "The user and system fields are CPU time, not wall-clock time: a process waiting for input accumulates little of it. On Windows only user and system are filled in; the other fields are zero. For timing code time.perf_counter is handier, and for the current process's CPU time time.process_time."
     },
     "syntax": "os.times()",
     "status": "ready",
@@ -24000,8 +24000,8 @@
       "en": "The result type of os.times(): a named tuple (user/system/children_*/elapsed)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Поля children_user и children_system учитывают только дочерние процессы, которых уже дождались через wait: работающие и брошенные потомки не считаются. elapsed отсчитывается от произвольной точки в прошлом, поэтому имеет смысл лишь разность двух замеров. Как и другие результаты os, ведёт себя и как кортеж.",
+      "en": "children_user and children_system count only children that have been reaped with wait: running or abandoned children are not included. elapsed counts from an arbitrary point in the past, so only the difference between two readings is meaningful. Like other os results it also behaves as a tuple."
     },
     "syntax": "os.times_result(...)",
     "status": "ready",
@@ -24047,8 +24047,8 @@
       "en": "Convert a raw wait status (from waitpid) to an exit code (3.9+)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для процесса, убитого сигналом, возвращает отрицательный номер сигнала: при SIGTERM это -15. Так же кодирует returncode модуль subprocess, поэтому их легко сравнивать. Для остановленного, а не завершённого процесса поднимает ValueError. Нужна, чтобы разобрать статус от os.system, os.wait или popen().close() без ручных макросов W*.",
+      "en": "For a process killed by a signal it returns the negative signal number: -15 for SIGTERM. subprocess encodes returncode the same way, so the two compare easily. For a stopped rather than exited process it raises ValueError. It decodes the status from os.system, os.wait or popen().close() without manual W* macros."
     },
     "syntax": "os.waitstatus_to_exitcode(status)",
     "status": "ready",
@@ -24099,8 +24099,8 @@
       "en": "Return the number of logical CPUs (or None if undetermined)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Считает процессоры системы, а не те, что доступны программе: в контейнере с ограничением или при привязке к ядрам реально доступных может быть меньше. Число процессоров, доступных текущему процессу, даёт os.process_cpu_count (3.13+) или len(os.sched_getaffinity(0)) на Linux. Может вернуть None — для размера пула пишите os.cpu_count() or 1.",
+      "en": "It counts the system's processors, not those available to the program: in a limited container or with CPU affinity fewer may actually be usable. The number usable by the current process comes from os.process_cpu_count (3.13+) or len(os.sched_getaffinity(0)) on Linux. It may return None — for a pool size write os.cpu_count() or 1."
     },
     "syntax": "os.cpu_count()",
     "status": "ready",
@@ -24146,8 +24146,8 @@
       "en": "Return n cryptographically strong random bytes from the OS."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Подходит для криптографии: ключей, токенов, соли. Модуль random для этого не годится — он предсказуем. В прикладном коде удобнее модуль secrets, построенный на том же источнике: secrets.token_hex(16) сразу даёт строку. Возвращает байты, а не число и не строку.",
+      "en": "It is suitable for cryptography: keys, tokens, salts. The random module is not — it is predictable. Application code is better served by the secrets module built on the same source: secrets.token_hex(16) yields a string right away. It returns bytes, not a number or a string."
     },
     "syntax": "os.urandom(n)",
     "status": "ready",
@@ -24194,8 +24194,8 @@
       "en": "Return the text message for an errno error code."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для неизвестного кода ошибки не поднимает исключение, а возвращает строку вида 'Unknown error 99999'. Текст зависит от системы и её языковых настроек, поэтому сравнивать сообщения в коде нельзя — сравнивайте числа через модуль errno. У исключения OSError то же описание уже лежит в атрибуте strerror.",
+      "en": "For an unknown error code it does not raise but returns a string like 'Unknown error 99999'. The text depends on the system and its locale, so never compare messages in code — compare numbers via the errno module. An OSError already carries the same description in its strerror attribute."
     },
     "syntax": "os.strerror(code)",
     "status": "ready",
@@ -24434,8 +24434,8 @@
       "en": "Terminate the process immediately with SIGABRT (no cleanup)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Завершает процесс сигналом SIGABRT: обработчики Python, блоки finally, atexit и сброс буферов не выполняются, а на Unix может остаться дамп памяти. Сигнал SIGABRT, установленный через signal.signal, при этом не вызывается. На Windows код завершения процесса — 3. Нужна для аварийного выхода с диагностикой, а не для обычного завершения.",
+      "en": "It ends the process with SIGABRT: Python handlers, finally blocks, atexit and buffer flushing do not run, and on Unix a core dump may be left behind. A SIGABRT handler set via signal.signal is not called. On Windows the exit code is 3. It is for crash-with-diagnostics exits, not ordinary termination."
     },
     "syntax": "os.abort()",
     "status": "ready",
@@ -24481,8 +24481,8 @@
       "en": "Exit the process immediately with status n, skipping Python cleanup."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Не выполняет finally, atexit и не сбрасывает буферы: текст, напечатанный через print в канал или файл, может бесследно пропасть. Правильное место — дочерний процесс после os.fork, чтобы потомок не выполнил код очистки родителя. В обычной программе выходят через sys.exit, который поднимает SystemExit и проходит всю очистку.",
+      "en": "It skips finally and atexit and does not flush buffers: text printed to a pipe or file may vanish without a trace. Its proper place is a child after os.fork, so the child does not run the parent's cleanup code. Ordinary programs exit via sys.exit, which raises SystemExit and runs all cleanup."
     },
     "syntax": "os._exit(n)",
     "status": "ready",
@@ -24524,12 +24524,12 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Выполняет команду в системной оболочке и возвращает её код завершения.",
-      "en": "Run a command in the system shell and return its exit status."
+      "ru": "Выполняет команду в системной оболочке и ждёт её завершения. На Unix возвращает закодированный статус ожидания, на Windows — код возврата.",
+      "en": "Run a command in the system shell and wait for it. Returns the encoded wait status on Unix and the exit code on Windows."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "На Unix возвращает не код возврата, а закодированный статус ожидания: os.system('exit 3') даёт 768, и перевести его помогает os.waitstatus_to_exitcode. На Windows результат — сам код. Команда идёт через оболочку, поэтому строка с данными пользователя открывает путь к внедрению команд. Вывод не перехватывается. Для новой работы рекомендован subprocess.run со списком аргументов.",
+      "en": "On Unix it returns an encoded wait status rather than the exit code: os.system('exit 3') gives 768, and os.waitstatus_to_exitcode converts it. On Windows the result is the code itself. The command goes through a shell, so a string containing user data invites command injection. Output is not captured. New code should use subprocess.run with an argument list."
     },
     "syntax": "os.system(command)",
     "status": "ready",
@@ -25641,8 +25641,8 @@
       "en": "Test whether a child exited normally (via exit). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Первая проверка при разборе статуса: только если она истинна, WEXITSTATUS даёт осмысленный код. Процесс, убитый сигналом, завершился ненормально, и WIFEXITED для него ложна. С Python 3.9 весь разбор заменяет одна функция os.waitstatus_to_exitcode.",
+      "en": "The first check when decoding a status: only if it is true does WEXITSTATUS yield a meaningful code. A process killed by a signal did not exit normally, and WIFEXITED is false for it. Since Python 3.9 a single os.waitstatus_to_exitcode call replaces the whole decoding."
     },
     "syntax": "os.WIFEXITED(...)",
     "status": "ready",
@@ -25692,8 +25692,8 @@
       "en": "Return the exit code of a normally-terminated child. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Имеет смысл только после истинного WIFEXITED: для процесса, убитого сигналом, вернёт бессмысленное число. Даёт младшие 8 бит кода, поэтому sys.exit(256) у потомка превратится в 0. Проще и безопаснее os.waitstatus_to_exitcode, которая сама различает все случаи.",
+      "en": "It is meaningful only after WIFEXITED is true: for a process killed by a signal it returns a meaningless number. It yields the low 8 bits of the code, so sys.exit(256) in the child becomes 0. os.waitstatus_to_exitcode is simpler and safer, as it tells all cases apart itself."
     },
     "syntax": "os.WEXITSTATUS(...)",
     "status": "ready",
@@ -25742,8 +25742,8 @@
       "en": "Test whether a child was terminated by a signal. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Истинна, если процесс убит сигналом — например, kill, нехваткой памяти (SIGKILL) или ошибкой сегментации. Номер сигнала даёт WTERMSIG, имя — signal.Signals(n).name. В оболочке такой процесс обычно показывает код 128 плюс номер сигнала, а в Python — отрицательный номер.",
+      "en": "It is true if the process was killed by a signal — say, by kill, the out-of-memory killer (SIGKILL) or a segmentation fault. WTERMSIG gives the signal number, signal.Signals(n).name its name. A shell usually shows such a process as code 128 plus the signal number; Python shows the negative number."
     },
     "syntax": "os.WIFSIGNALED(...)",
     "status": "ready",
@@ -25791,8 +25791,8 @@
       "en": "Return the signal number that terminated a child. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Имеет смысл только после истинного WIFSIGNALED. Номер удобно превратить в имя: signal.Signals(os.WTERMSIG(status)).name даст, например, 'SIGTERM'. Сигнал 9 (SIGKILL) нельзя перехватить, поэтому у программы не было шанса что-либо сохранить перед завершением.",
+      "en": "It is meaningful only after WIFSIGNALED is true. The number converts to a name easily: signal.Signals(os.WTERMSIG(status)).name gives, for example, 'SIGTERM'. Signal 9 (SIGKILL) cannot be caught, so the program had no chance to save anything before dying."
     },
     "syntax": "os.WTERMSIG(...)",
     "status": "ready",
@@ -25840,8 +25840,8 @@
       "en": "Test whether a child was stopped (not terminated). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Остановленный процесс жив и может продолжиться — это не завершение. Такой статус приходит, только если ожидание шло с флагом WUNTRACED или процесс трассируется. Не путайте с завершением: у остановленного процесса нет кода возврата, и waitstatus_to_exitcode для него поднимет ValueError.",
+      "en": "A stopped process is alive and may continue — it has not exited. This status arrives only when waiting with WUNTRACED or when the process is traced. Do not confuse it with exit: a stopped process has no exit code, and waitstatus_to_exitcode raises ValueError for it."
     },
     "syntax": "os.WIFSTOPPED(...)",
     "status": "ready",
@@ -25889,8 +25889,8 @@
       "en": "Return the signal number that stopped a child. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Имеет смысл только после истинного WIFSTOPPED. Обычно это SIGSTOP или SIGTSTP — последний приходит, когда пользователь нажал Ctrl+Z. Отладчики видят здесь SIGTRAP при каждой остановке трассируемого процесса.",
+      "en": "It is meaningful only after WIFSTOPPED is true. Usually it is SIGSTOP or SIGTSTP — the latter arrives when the user presses Ctrl+Z. Debuggers see SIGTRAP here at every stop of a traced process."
     },
     "syntax": "os.WSTOPSIG(...)",
     "status": "ready",
@@ -25938,8 +25938,8 @@
       "en": "Test whether a stopped child was resumed (SIGCONT). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Такой статус приходит, только если ожидание шло с флагом WCONTINUED: продолжение остановленного процесса сигналом SIGCONT. Нужна в основном оболочкам с управлением заданиями — fg и bg. В обычных программах, которые ждут завершения потомка, встречается редко.",
+      "en": "This status arrives only when waiting with the WCONTINUED flag: a stopped process resumed by SIGCONT. It mostly serves shells with job control — fg and bg. Ordinary programs waiting for a child to exit rarely meet it."
     },
     "syntax": "os.WIFCONTINUED(...)",
     "status": "ready",
@@ -25989,8 +25989,8 @@
       "en": "Test whether a terminated child produced a core dump. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Дамп появится, только если это разрешено: ограничение ulimit -c часто равно нулю, а на современных Linux дампы перехватывает systemd-coredump. Поэтому ложное значение не значит, что падения не было. Проверять имеет смысл только после истинного WIFSIGNALED.",
+      "en": "A dump appears only if allowed: the ulimit -c limit is often zero, and modern Linux hands dumps to systemd-coredump. So a false value does not mean there was no crash. Check it only after WIFSIGNALED is true."
     },
     "syntax": "os.WCOREDUMP(...)",
     "status": "ready",
@@ -26039,8 +26039,8 @@
       "en": "Fork a child process; returns 0 in the child and the child PID in the parent. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Копирует процесс целиком, но в потомке остаётся лишь поток, вызвавший fork: блокировки, захваченные другими потоками, остаются захваченными навсегда. Поэтому с 3.12 fork в многопоточной программе даёт DeprecationWarning, а на macOS fork без exec вообще ненадёжен. Для параллельных задач безопаснее multiprocessing или subprocess; в потомке выходят через os._exit.",
+      "en": "It copies the whole process, but only the thread that called fork survives in the child: locks held by other threads stay held forever. That is why since 3.12 fork in a multithreaded program emits a DeprecationWarning, and on macOS fork without exec is unreliable altogether. For parallel work multiprocessing or subprocess is safer; the child exits via os._exit."
     },
     "syntax": "os.fork(...)",
     "status": "ready",
@@ -26091,8 +26091,8 @@
       "en": "Like fork, but the child gets a new pseudo-terminal; returns (pid, fd). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Потомок получает новый псевдотерминал, поэтому программы внутри него ведут себя как в настоящем терминале: включают цвет, построчную буферизацию и задают вопросы. Родитель читает и пишет через возвращённый дескриптор. Для этого удобнее модуль pty, а для автоматизации диалога с программами — сторонний pexpect.",
+      "en": "The child gets a new pseudo-terminal, so programs inside behave as in a real terminal: they enable colour, line buffering and prompt for input. The parent reads and writes through the returned descriptor. The pty module is handier for this, and the third-party pexpect for automating program dialogues."
     },
     "syntax": "os.forkpty(...)",
     "status": "ready",
@@ -26142,8 +26142,8 @@
       "en": "Register callables run before/after os.fork() in parent and child. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна библиотекам, которые держат блокировки, потоки или соединения: после fork их нужно восстановить в потомке. Обработчики вызываются только для os.fork и подобных вызовов, которые возвращаются в интерпретатор; обычный запуск через subprocess их не вызывает. fork, сделанный кодом на C в обход Python, их тоже не вызовет.",
+      "en": "It serves libraries holding locks, threads or connections that must be reset in the child after fork. Handlers run only for os.fork and similar calls that return to the interpreter; an ordinary subprocess launch does not trigger them. A fork made by C code bypassing Python will not trigger them either."
     },
     "syntax": "os.register_at_fork(...)",
     "status": "ready",
@@ -26193,8 +26193,8 @@
       "en": "Replace the current process with a new program (path + args list)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Первым элементом списка должно идти имя программы: execv('/bin/ls', ['ls', '-l']). Если передать ['-l'], программа решит, что её зовут '-l', и останется без аргументов; пустой список поднимает ValueError. Текущий процесс заменяется целиком — код после вызова не выполнится, а несброшенные буферы пропадут, поэтому перед вызовом делайте sys.stdout.flush().",
+      "en": "The first list item must be the program name: execv('/bin/ls', ['ls', '-l']). Pass ['-l'] and the program thinks its name is '-l' and receives no arguments; an empty list raises ValueError. The current process is replaced entirely — code after the call never runs and unflushed buffers are lost, so call sys.stdout.flush() first."
     },
     "syntax": "os.execv(...)",
     "status": "ready",
@@ -26243,8 +26243,8 @@
       "en": "Like execv, but with an explicit environment dict."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Новая программа получает ровно переданное окружение и ничего больше: если не включить в словарь PATH, HOME или LANG, программа их не увидит. Типичный приём — {**os.environ, 'KEY': 'value'}. Ключи и значения должны быть строками. Как у всех exec, код после успешного вызова не выполнится.",
+      "en": "The new program receives exactly the environment you pass and nothing more: leave out PATH, HOME or LANG and the program will not see them. A common idiom is {**os.environ, 'KEY': 'value'}. Keys and values must be strings. As with every exec, code after a successful call never runs."
     },
     "syntax": "os.execve(...)",
     "status": "ready",
@@ -26293,8 +26293,8 @@
       "en": "Like execv, but arguments are passed inline rather than as a list."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Аргументы перечисляются через запятую, и первым после пути снова идёт имя программы: execl('/bin/echo', 'echo', 'hi'). Пропустив его, вы потеряете первый настоящий аргумент. Удобно, когда число аргументов известно заранее; для списка, собранного в коде, понятнее execv.",
+      "en": "Arguments are listed inline, and the first one after the path is again the program name: execl('/bin/echo', 'echo', 'hi'). Omit it and you lose the first real argument. It is convenient when the number of arguments is fixed; for a list built in code execv reads better."
     },
     "syntax": "os.execl(...)",
     "status": "ready",
@@ -26343,8 +26343,8 @@
       "en": "Like execl, but the last argument is an environment dict."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Последний аргумент — словарь окружения, а не очередной аргумент программы: легко передать его не на то место. Окружение заменяется целиком, поэтому PATH и прочее нужно включить явно. Путь к программе задаётся полностью: поиска по PATH у вариантов без буквы p нет.",
+      "en": "The last argument is the environment dict, not another program argument — easy to misplace. The environment is replaced entirely, so include PATH and the rest explicitly. The program path must be complete: variants without the letter p do not search PATH."
     },
     "syntax": "os.execle(...)",
     "status": "ready",
@@ -26394,8 +26394,8 @@
       "en": "Like execl, but the program is looked up in PATH."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ищет программу по каталогам PATH, как оболочка: execlp('python3', 'python3', '-V'). Если программы нет, поднимается FileNotFoundError. Поиск идёт по PATH текущего окружения, и если его подменили, найдётся не та программа — для чувствительного кода надёжнее полный путь, например из shutil.which.",
+      "en": "It searches PATH directories like a shell: execlp('python3', 'python3', '-V'). A missing program raises FileNotFoundError. The lookup uses the current environment's PATH, and a tampered PATH finds the wrong program — sensitive code is safer with a full path, for instance from shutil.which."
     },
     "syntax": "os.execlp(...)",
     "status": "ready",
@@ -26445,8 +26445,8 @@
       "en": "Like execlp, but with an explicit environment dict."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Сочетает поиск по PATH и новое окружение, и PATH для поиска берётся из переданного словаря, а не из текущего окружения. Если в словаре PATH нет, используется системный путь по умолчанию. Последний аргумент — словарь окружения.",
+      "en": "It combines PATH lookup with a new environment, and the PATH used for the lookup comes from the dict you pass, not from the current environment. Without PATH in the dict a system default path is used. The last argument is the environment dict."
     },
     "syntax": "os.execlpe(...)",
     "status": "ready",
@@ -26495,8 +26495,8 @@
       "en": "Like execv, but the program is looked up in PATH."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Самый удобный вариант для «запустить программу вместо себя»: поиск по PATH и аргументы списком, где первый элемент — имя программы. Так устроены обёртки и лаунчеры, которые готовят окружение и передают управление настоящей программе. Код после успешного вызова не выполнится.",
+      "en": "The handiest variant for \"run a program in my place\": PATH lookup and a list of arguments whose first item is the program name. Wrappers and launchers that prepare an environment and hand over control are built this way. Code after a successful call never runs."
     },
     "syntax": "os.execvp(...)",
     "status": "ready",
@@ -26544,8 +26544,8 @@
       "en": "Like execvp, but with an explicit environment dict."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ищет программу по PATH из переданного окружения, а не из текущего, — поэтому, задав окружение без PATH, можно неожиданно не найти программу. Окружение заменяется целиком. Аргументы списком, первый — имя программы.",
+      "en": "It looks the program up via PATH from the environment you pass, not the current one — so an environment without PATH may unexpectedly fail to find the program. The environment is replaced entirely. Arguments go as a list, the first being the program name."
     },
     "syntax": "os.execvpe(...)",
     "status": "ready",
@@ -26594,8 +26594,8 @@
       "en": "Run a new program in a new process (path + args list)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Результат зависит от режима: с P_WAIT — код возврата программы, с P_NOWAIT — PID, которого потом нужно дождаться через waitpid. Первым в списке аргументов идёт имя программы. Это старый интерфейс; документация рекомендует subprocess, где есть перехват вывода, таймауты и понятные ошибки.",
+      "en": "The result depends on the mode: with P_WAIT it is the program's exit code, with P_NOWAIT a PID you must later reap with waitpid. The first list item is the program name. This is an old interface; the documentation recommends subprocess, which offers output capture, timeouts and clear errors."
     },
     "syntax": "os.spawnv(...)",
     "status": "ready",
@@ -26646,8 +26646,8 @@
       "en": "Like spawnv, but with an explicit environment dict."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Как и у execve, окружение заменяется целиком: без PATH, HOME и LANG программа их не получит. Путь к программе задаётся полностью. Для запуска с изменённым окружением удобнее subprocess.run(args, env={**os.environ, ...}).",
+      "en": "As with execve, the environment is replaced entirely: without PATH, HOME and LANG the program will not get them. The program path must be complete. To run with a modified environment subprocess.run(args, env={**os.environ, ...}) is handier."
     },
     "syntax": "os.spawnve(...)",
     "status": "ready",
@@ -26697,8 +26697,8 @@
       "en": "Like spawnv, but with inline arguments."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Аргументы перечисляются через запятую после режима и пути, и первым снова идёт имя программы: spawnl(os.P_WAIT, '/bin/ls', 'ls', '-l'). Пропуск имени — частая ошибка, после которой программа теряет первый аргумент. В новом коде — subprocess.",
+      "en": "Arguments are listed inline after the mode and path, and the first is again the program name: spawnl(os.P_WAIT, '/bin/ls', 'ls', '-l'). Omitting the name is a common mistake that costs the program its first argument. New code should use subprocess."
     },
     "syntax": "os.spawnl(...)",
     "status": "ready",
@@ -26747,8 +26747,8 @@
       "en": "Like spawnl, but with an environment dict as the last argument."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Последний аргумент — словарь окружения, и оно заменяется целиком. На Windows аргументы склеиваются в одну командную строку, и аргументы с пробелами могут разбиться, — subprocess экранирует их правильно. Путь к программе задаётся полностью.",
+      "en": "The last argument is the environment dict, and it replaces the environment entirely. On Windows the arguments are joined into one command line, and arguments with spaces may split — subprocess quotes them correctly. The program path must be complete."
     },
     "syntax": "os.spawnle(...)",
     "status": "ready",
@@ -26797,8 +26797,8 @@
       "en": "Like spawnl, but the program is looked up in PATH."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ищет программу по PATH. На Windows этой функции нет — переносимый код с поиском по PATH пишут через subprocess, который ищет программу сам, или через shutil.which. Режим P_WAIT возвращает код возврата, P_NOWAIT — PID.",
+      "en": "It searches PATH. It does not exist on Windows — portable code with PATH lookup uses subprocess, which searches by itself, or shutil.which. P_WAIT returns the exit code, P_NOWAIT the PID."
     },
     "syntax": "os.spawnlp(...)",
     "status": "ready",
@@ -26848,8 +26848,8 @@
       "en": "Like spawnlp, but with an explicit environment dict."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Сочетает поиск по PATH и новое окружение; на Windows недоступна. Последний аргумент — словарь окружения, заменяющий текущее целиком. Перед тем как писать новый код на spawn*, взгляните на subprocess.run: он делает то же переносимо и с проверкой ошибок.",
+      "en": "It combines PATH lookup with a new environment and is unavailable on Windows. The last argument is an environment dict that replaces the current one entirely. Before writing new code with spawn*, look at subprocess.run: it does the same portably and with error checking."
     },
     "syntax": "os.spawnlpe(...)",
     "status": "ready",
@@ -26900,8 +26900,8 @@
       "en": "Like spawnv, but the program is looked up in PATH."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ищет программу по PATH, аргументы списком с именем программы первым. На Windows недоступна. С P_NOWAIT не забудьте дождаться потомка через waitpid, иначе на Unix он останется «зомби» до конца работы родителя.",
+      "en": "It searches PATH and takes arguments as a list with the program name first. It is unavailable on Windows. With P_NOWAIT remember to reap the child with waitpid, or on Unix it stays a zombie until the parent exits."
     },
     "syntax": "os.spawnvp(...)",
     "status": "ready",
@@ -26951,8 +26951,8 @@
       "en": "Like spawnvp, but with an explicit environment dict."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Сочетает поиск по PATH, аргументы списком и новое окружение; на Windows недоступна. Окружение заменяется целиком. Все варианты spawn* — исторический интерфейс; subprocess покрывает их возможности и добавляет перехват вывода и таймауты.",
+      "en": "It combines PATH lookup, a list of arguments and a new environment, and is unavailable on Windows. The environment is replaced entirely. All spawn* variants are a historical interface; subprocess covers their abilities and adds output capture and timeouts."
     },
     "syntax": "os.spawnvpe(...)",
     "status": "ready",
@@ -27004,13 +27004,13 @@
       "en": "Launch a program via the posix_spawn syscall; returns the PID (3.8+). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Быстрее fork плюс exec для больших процессов: не нужно копировать адресное пространство родителя. subprocess использует её сам, когда параметры это позволяют. Аргументы и окружение передаются обязательно: posix_spawn(path, argv, env), где argv начинается с имени программы, а env заменяет окружение целиком. Возвращает PID, которого нужно дождаться через waitpid.",
+      "en": "It is faster than fork plus exec for large processes, since the parent's address space need not be copied. subprocess uses it automatically when its parameters allow. Arguments and environment are mandatory: posix_spawn(path, argv, env), where argv starts with the program name and env replaces the environment entirely. It returns a PID that you must reap with waitpid."
     },
     "syntax": "os.posix_spawn(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.posix_spawn",
-    "version": "",
+    "version": "3.8",
     "platforms": [
       "Linux",
       "macOS"
@@ -27055,8 +27055,8 @@
       "en": "Like posix_spawn, but the program is looked up in PATH. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Отличается от posix_spawn поиском программы по PATH — так же, как execvp в C, то есть по PATH вызывающего процесса, а не переданного env. Этим она расходится с os.execvpe, который ищет по PATH из нового окружения. Для предсказуемости передавайте полный путь из shutil.which.",
+      "en": "It differs from posix_spawn by searching PATH for the program — the same way execvp does in C, i.e. using the calling process's PATH rather than the env you pass. That sets it apart from os.execvpe, which searches the new environment's PATH. For predictability pass a full path from shutil.which."
     },
     "syntax": "os.posix_spawnp(...)",
     "status": "ready",
@@ -27106,8 +27106,8 @@
       "en": "Wait for any child to finish; returns (pid, status). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ждёт любого потомка, поэтому в программе, где детей запускают разные части кода — например, ещё и subprocess, — может «украсть» чужой статус. Надёжнее waitpid с конкретным PID. Если потомков нет, поднимается ChildProcessError. Возвращает закодированный статус — переводите через waitstatus_to_exitcode.",
+      "en": "It waits for any child, so in a program where different parts spawn children — subprocess included — it may \"steal\" someone else's status. waitpid with a specific PID is more reliable. With no children it raises ChildProcessError. It returns an encoded status — convert it with waitstatus_to_exitcode."
     },
     "syntax": "os.wait(...)",
     "status": "ready",
@@ -27157,8 +27157,8 @@
       "en": "Wait for a specific child by PID; returns (pid, status)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "С флагом os.WNOHANG не ждёт: если потомок ещё работает, возвращает (0, 0). Статус закодирован — для кода возврата используйте waitstatus_to_exitcode. На Windows первым аргументом передаётся хендл процесса, а не PID, и флаги не поддерживаются. Недождавшийся потомок на Unix остаётся «зомби» и занимает запись в таблице процессов.",
+      "en": "With os.WNOHANG it does not block: if the child is still running it returns (0, 0). The status is encoded — use waitstatus_to_exitcode for the exit code. On Windows the first argument is a process handle, not a PID, and options are not supported. An unreaped child on Unix stays a zombie, occupying a process-table slot."
     },
     "syntax": "os.waitpid(...)",
     "status": "ready",
@@ -27210,8 +27210,8 @@
       "en": "Like wait, but also returns resource-usage info (rusage). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Как wait, ждёт любого потомка, и вдобавок возвращает объект resource.struct_rusage с расходом ресурсов: процессорным временем, пиковой памятью (ru_maxrss), числом переключений. Единицы ru_maxrss различаются: на Linux — килобайты, на macOS — байты.",
+      "en": "Like wait it waits for any child, and in addition returns a resource.struct_rusage object with resource usage: CPU time, peak memory (ru_maxrss), context switches. ru_maxrss units differ: kilobytes on Linux, bytes on macOS."
     },
     "syntax": "os.wait3(...)",
     "status": "ready",
@@ -27261,8 +27261,8 @@
       "en": "Like waitpid, but also returns rusage. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ждёт конкретного потомка и возвращает расход его ресурсов — удобно, чтобы узнать пиковую память или процессорное время запущенной программы без внешних утилит. Единицы ru_maxrss на Linux — килобайты, на macOS — байты. Флаг WNOHANG работает так же, как у waitpid.",
+      "en": "It waits for a specific child and returns its resource usage — handy to learn the peak memory or CPU time of a launched program without external tools. ru_maxrss is in kilobytes on Linux and bytes on macOS. WNOHANG works as with waitpid."
     },
     "syntax": "os.wait4(...)",
     "status": "ready",
@@ -27312,8 +27312,8 @@
       "en": "Flexibly wait for a child's state change; returns a details object. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Гибче waitpid: события выбираются флагами (WEXITED, WSTOPPED, WCONTINUED), а с WNOWAIT статус читается, но потомок остаётся несобранным — его можно дождаться ещё раз. Возвращает уже разобранный объект, а не закодированный статус. С WNOHANG при отсутствии событий возвращает None.",
+      "en": "It is more flexible than waitpid: events are chosen by flags (WEXITED, WSTOPPED, WCONTINUED), and with WNOWAIT the status is read while the child stays unreaped, so it can be waited on again. It returns an already decoded object, not an encoded status. With WNOHANG and no events it returns None."
     },
     "syntax": "os.waitid(...)",
     "status": "ready",
@@ -27365,8 +27365,8 @@
       "en": "The result type of os.waitid(): a named tuple (si_pid, si_uid, …). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Поля уже разобраны: si_code говорит, что случилось (CLD_EXITED, CLD_KILLED, CLD_STOPPED), а si_status — код возврата или номер сигнала в зависимости от si_code. Поэтому si_status нельзя читать без si_code. Как и другие результаты os, ведёт себя и как кортеж.",
+      "en": "The fields come decoded: si_code says what happened (CLD_EXITED, CLD_KILLED, CLD_STOPPED), and si_status is the exit code or the signal number depending on si_code. So si_status must not be read without si_code. Like other os results it also behaves as a tuple."
     },
     "syntax": "os.waitid_result(...)",
     "status": "ready",
@@ -27415,8 +27415,8 @@
       "en": "Send a signal to a process by PID."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "На Unix сигнал 0 ничего не посылает и служит проверкой «процесс жив и мне доступен». На Windows так нельзя: любой сигнал, кроме CTRL_C_EVENT и CTRL_BREAK_EVENT, безусловно завершает процесс с кодом, равным номеру сигнала, — и kill(pid, 0) убьёт его с кодом 0. PID мог уже достаться другому процессу, поэтому посылать сигнал по старому номеру рискованно.",
+      "en": "On Unix signal 0 sends nothing and checks that the process is alive and reachable. Not on Windows: any signal other than CTRL_C_EVENT and CTRL_BREAK_EVENT unconditionally terminates the process with an exit code equal to the signal number — so kill(pid, 0) kills it with code 0. A PID may already belong to another process, so signalling an old number is risky."
     },
     "syntax": "os.kill(...)",
     "status": "ready",
@@ -27468,8 +27468,8 @@
       "en": "Send a signal to a whole process group. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Посылает сигнал всем процессам группы — так останавливают программу вместе со всеми её потомками. Чтобы это работало, потомка запускают в собственной группе или сессии: subprocess.Popen(..., process_group=0) или start_new_session=True, а затем os.killpg(proc.pid, signal.SIGTERM).",
+      "en": "It sends a signal to every process in a group — the way to stop a program together with all its children. For this to work, launch the child in its own group or session: subprocess.Popen(..., process_group=0) or start_new_session=True, then os.killpg(proc.pid, signal.SIGTERM)."
     },
     "syntax": "os.killpg(...)",
     "status": "ready",
@@ -27521,8 +27521,8 @@
       "en": "Increase a process's niceness, lowering its scheduling priority. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Аргумент — прибавка к текущему значению, а не новое значение; возвращается итоговый nice. Больше nice — ниже приоритет. Без прав суперпользователя приоритет можно только понизить, а вернуть обратно уже нельзя. nice(0) просто сообщает текущее значение.",
+      "en": "The argument is an increment to the current value, not a new value; the resulting nice is returned. Higher nice means lower priority. Without superuser rights priority can only be lowered and cannot be restored. nice(0) simply reports the current value."
     },
     "syntax": "os.nice(...)",
     "status": "ready",
@@ -27570,8 +27570,8 @@
       "en": "Return the scheduling priority (nice) of a process/group/user. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Первым аргументом выбирается, чей приоритет нужен: PRIO_PROCESS, PRIO_PGRP или PRIO_USER; ноль во втором аргументе — текущий процесс, группа или пользователь. Значения идут от -20 (высший приоритет) до 19 (низший). В отличие от nice, позволяет узнать приоритет чужого процесса.",
+      "en": "The first argument selects whose priority you want: PRIO_PROCESS, PRIO_PGRP or PRIO_USER; zero as the second argument means the current process, group or user. Values range from -20 (highest priority) to 19 (lowest). Unlike nice, it can read another process's priority."
     },
     "syntax": "os.getpriority(...)",
     "status": "ready",
@@ -27621,8 +27621,8 @@
       "en": "Set the scheduling priority (nice) of a process/group/user. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Задаёт абсолютное значение, а не прибавку, как nice. Повысить приоритет (уменьшить значение) без прав суперпользователя нельзя — будет PermissionError. Для фоновой обработки, которая не должна мешать интерактивной работе, обычно ставят 10 или 19.",
+      "en": "It sets an absolute value rather than an increment as nice does. Raising priority (lowering the value) without superuser rights raises PermissionError. Background processing that must not disturb interactive work usually gets 10 or 19."
     },
     "syntax": "os.setpriority(...)",
     "status": "ready",
@@ -31271,8 +31271,8 @@
       "en": "Open a pipe to a shell command as a file object."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Это обёртка над subprocess.Popen с shell=True: строка команды идёт в оболочку, и данные пользователя в ней открывают путь к внедрению команд. Метод close() возвращает None при успехе, иначе закодированный статус — на Unix его переводят через waitstatus_to_exitcode. Ошибка команды не поднимает исключение; для проверок удобнее subprocess.run(..., check=True).",
+      "en": "It wraps subprocess.Popen with shell=True: the command string goes to a shell, and user data in it invites command injection. close() returns None on success, otherwise an encoded status — on Unix convert it with waitstatus_to_exitcode. A failing command raises no exception; for checks subprocess.run(..., check=True) is handier."
     },
     "syntax": "os.popen(...)",
     "status": "ready",
@@ -31518,8 +31518,8 @@
       "en": "Return a system configuration limit for a path. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ограничения зависят от файловой системы, а не только от ОС: на одном диске имя может быть до 255 байт, на другом — меньше. Допустимые имена параметров перечислены в os.pathconf_names; неизвестное имя даёт ValueError. Ограничение задано в байтах, а не в символах, — кириллица в UTF-8 занимает по два байта.",
+      "en": "Limits depend on the filesystem, not just the OS: one disk may allow 255-byte names, another fewer. Valid parameter names are listed in os.pathconf_names; an unknown name raises ValueError. The limit is in bytes, not characters — Cyrillic in UTF-8 takes two bytes per letter."
     },
     "syntax": "os.pathconf(...)",
     "status": "ready",
@@ -31567,8 +31567,8 @@
       "en": "Like pathconf, but by an open file descriptor. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Отвечает про файловую систему уже открытого файла или каталога, поэтому не зависит от того, что путь с тех пор поменяли. Имена параметров — те же, что у pathconf, их список в os.pathconf_names. Например, PC_PIPE_BUF для канала говорит, какой объём записи гарантированно атомарен.",
+      "en": "It answers for the filesystem of an already open file or directory, so it does not depend on the path having changed since. Parameter names match pathconf and are listed in os.pathconf_names. For example, PC_PIPE_BUF on a pipe tells how large a write is guaranteed atomic."
     },
     "syntax": "os.fpathconf(...)",
     "status": "ready",
@@ -31620,8 +31620,8 @@
       "en": "Return a string system configuration value by name. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает строку или None, если значение не задано. Имена перечислены в os.confstr_names и сильно зависят от системы; например, CS_PATH даёт стандартный PATH для поиска утилит. Неизвестное имя поднимает ValueError. В учебном коде встречается редко.",
+      "en": "It returns a string, or None if the value is undefined. Names are listed in os.confstr_names and vary a lot between systems; CS_PATH, for example, gives the standard PATH for finding utilities. An unknown name raises ValueError. It rarely appears in teaching code."
     },
     "syntax": "os.confstr(...)",
     "status": "ready",
@@ -31671,8 +31671,8 @@
       "en": "Return an integer system configuration value by name. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Числовые параметры системы: размер страницы памяти (SC_PAGE_SIZE), число процессоров в сети (SC_NPROCESSORS_ONLN), предел открытых файлов (SC_OPEN_MAX). Имена — в os.sysconf_names; неизвестное поднимает ValueError. Для числа процессоров переносимее os.cpu_count или os.process_cpu_count.",
+      "en": "Numeric system parameters: memory page size (SC_PAGE_SIZE), online processors (SC_NPROCESSORS_ONLN), the open-files limit (SC_OPEN_MAX). Names are in os.sysconf_names; an unknown one raises ValueError. For the processor count os.cpu_count or os.process_cpu_count is more portable."
     },
     "syntax": "os.sysconf(...)",
     "status": "ready",
@@ -31722,8 +31722,8 @@
       "en": "Return the system load average over 1, 5 and 15 minutes. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Средняя загрузка — это среднее число процессов, готовых к выполнению, а на Linux ещё и ждущих диск; это не проценты. Оценивать её нужно относительно числа процессоров: загрузка 4 на четырёх ядрах — полная занятость, на шестнадцати — лёгкая. Если значение получить нельзя, поднимается OSError.",
+      "en": "Load average is the average number of processes ready to run — on Linux also those waiting for disk; it is not a percentage. Judge it against the processor count: a load of 4 on four cores is full utilisation, on sixteen it is light. If the value cannot be obtained, OSError is raised."
     },
     "syntax": "os.getloadavg(...)",
     "status": "ready",
@@ -31770,8 +31770,8 @@
       "en": "Return information about the operating system (kernel, host, release, machine). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "На Windows её нет; переносимую информацию о системе даёт platform.uname или platform.system. Поле nodename — сетевое имя машины, то же даёт socket.gethostname. Поле release — версия ядра, а не дистрибутива: для имени и версии дистрибутива Linux есть platform.freedesktop_os_release.",
+      "en": "It does not exist on Windows; platform.uname or platform.system give portable system information. nodename is the machine's network name, also available as socket.gethostname. release is the kernel version, not the distribution's: for the Linux distribution name and version use platform.freedesktop_os_release."
     },
     "syntax": "os.uname(...)",
     "status": "ready",
@@ -31820,8 +31820,8 @@
       "en": "The result type of os.uname(): sysname, nodename, release, version, machine. The type exists everywhere; os.uname itself is Unix-only."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Поля доступны по именам и, для совместимости, по индексам как у кортежа из пяти элементов. Значения — строки ядра как есть: machine даёт, например, 'x86_64' или 'arm64', и названия архитектур на разных системах различаются ('aarch64' на Linux против 'arm64' на macOS).",
+      "en": "Fields are accessible by name and, for compatibility, by index as a five-item tuple. Values are raw kernel strings: machine gives, for example, 'x86_64' or 'arm64', and architecture names differ between systems ('aarch64' on Linux versus 'arm64' on macOS)."
     },
     "syntax": "os.uname_result(...)",
     "status": "ready",
@@ -35008,8 +35008,8 @@
       "en": "Start a file or folder with its associated application, like double-clicking it in Explorer; returns as soon as the application is launched, with no way to wait for it. Availability: Windows; the arguments/cwd/show_cmd parameters were added in Python 3.10."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращается сразу после запуска и не сообщает, чем закончилась программа, — дождаться её нельзя. Параметр operation выбирает действие: 'open' по умолчанию, 'print', 'edit'. На macOS и Linux аналога в os нет: используют subprocess.run(['open', path]) и subprocess.run(['xdg-open', path]) соответственно.",
+      "en": "It returns as soon as the program is launched and reports nothing about how it ended — there is no way to wait for it. The operation parameter picks the action: 'open' by default, 'print', 'edit'. macOS and Linux have no counterpart in os: use subprocess.run(['open', path]) and subprocess.run(['xdg-open', path]) respectively."
     },
     "syntax": "os.startfile(path, operation, arguments, cwd, show_cmd)",
     "status": "ready",

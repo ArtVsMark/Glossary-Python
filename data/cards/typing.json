@@ -84,7 +84,11 @@
       "тип вызываемого объекта",
       "аннотация функции как параметра"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.Callable",
+      "collections.abc.Callable",
+      "Callable"
+    ],
     "tags": [
       "typing"
     ],
@@ -139,7 +143,9 @@
       "переменная класса в аннотации",
       "поле класса, а не экземпляра"
     ],
-    "keywords": [],
+    "keywords": [
+      "ClassVar"
+    ],
     "tags": [
       "typing"
     ],
@@ -197,7 +203,9 @@
       "константа в аннотации",
       "запрет переназначения переменной"
     ],
-    "keywords": [],
+    "keywords": [
+      "Final"
+    ],
     "tags": [
       "typing"
     ],
@@ -252,7 +260,12 @@
       "дженерики",
       "параметризация типа"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.Generic",
+      "typing.TypeVar",
+      "Generic",
+      "TypeVar"
+    ],
     "tags": [
       "typing"
     ],
@@ -310,7 +323,14 @@
       "встроенные типы в аннотациях",
       "аннотация списка и словаря"
     ],
-    "keywords": [],
+    "keywords": [
+      "int",
+      "str",
+      "list",
+      "dict",
+      "list[int]",
+      "dict[str, int]"
+    ],
     "tags": [
       "typing"
     ],
@@ -362,7 +382,10 @@
       "тип из конкретных значений",
       "ограничить допустимые значения аргумента"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.Literal",
+      "Literal"
+    ],
     "tags": [
       "typing"
     ],
@@ -417,7 +440,9 @@
       "типизированный именованный кортеж",
       "кортеж с полями и типами"
     ],
-    "keywords": [],
+    "keywords": [
+      "NamedTuple"
+    ],
     "tags": [
       "typing"
     ],
@@ -472,7 +497,12 @@
       "необязательное значение в аннотации",
       "тип, допускающий отсутствие значения"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.Optional",
+      "Optional",
+      "None",
+      "X | None"
+    ],
     "tags": [
       "typing"
     ],
@@ -527,7 +557,9 @@
       "структурная типизация",
       "интерфейс без наследования"
     ],
-    "keywords": [],
+    "keywords": [
+      "Protocol"
+    ],
     "tags": [
       "typing"
     ],
@@ -584,7 +616,9 @@
       "импорт только для аннотаций",
       "циклический импорт при типизации"
     ],
-    "keywords": [],
+    "keywords": [
+      "TYPE_CHECKING"
+    ],
     "tags": [
       "typing"
     ],
@@ -636,7 +670,9 @@
       "типизированный словарь",
       "словарь с фиксированными ключами"
     ],
-    "keywords": [],
+    "keywords": [
+      "TypedDict"
+    ],
     "tags": [
       "typing"
     ],
@@ -692,7 +728,9 @@
       "переменная типа",
       "параметр типа"
     ],
-    "keywords": [],
+    "keywords": [
+      "TypeVar"
+    ],
     "tags": [
       "typing"
     ],
@@ -803,7 +841,10 @@
       "узнать тип элементов из аннотации",
       "разобрать аннотацию на составные типы"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.get_args",
+      "get_args"
+    ],
     "tags": [
       "typing"
     ],
@@ -854,7 +895,10 @@
       "какой контейнер указан в аннотации",
       "убрать параметры у обобщённого типа"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.get_origin",
+      "get_origin"
+    ],
     "tags": [
       "typing"
     ],
@@ -906,7 +950,10 @@
       "прочитать типы параметров во время выполнения",
       "разрешить строковые аннотации"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.get_type_hints",
+      "get_type_hints"
+    ],
     "tags": [
       "typing"
     ],
@@ -964,7 +1011,10 @@
       "список перегрузок функции",
       "все зарегистрированные варианты перегруженной функции"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.get_overloads",
+      "get_overloads"
+    ],
     "tags": [
       "typing"
     ],
@@ -1019,7 +1069,10 @@
       "какие методы требует протокол",
       "имена членов протокола"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.get_protocol_members",
+      "get_protocol_members"
+    ],
     "tags": [
       "typing"
     ],
@@ -1071,7 +1124,10 @@
       "проверить, является ли класс протоколом",
       "это протокол или обычный класс"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.is_protocol",
+      "is_protocol"
+    ],
     "tags": [
       "typing"
     ],
@@ -1121,7 +1177,10 @@
       "проверить, типизированный ли это словарь",
       "создан ли класс словарём с аннотациями"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.is_typeddict",
+      "is_typeddict"
+    ],
     "tags": [
       "typing"
     ],
@@ -1170,7 +1229,10 @@
       "подсказать тип анализатору",
       "обмануть проверку типов"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.cast",
+      "cast"
+    ],
     "tags": [
       "typing"
     ],
@@ -1221,7 +1283,10 @@
       "узнать тип переменной",
       "отладка аннотаций"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.reveal_type",
+      "reveal_type"
+    ],
     "tags": [
       "typing"
     ],
@@ -1272,7 +1337,10 @@
       "сверить тип с ожидаемым",
       "проверка типа при статическом анализе"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.assert_type",
+      "assert_type"
+    ],
     "tags": [
       "typing"
     ],
@@ -1323,7 +1391,10 @@
       "недостижимый код",
       "исчерпывающая проверка вариантов"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.assert_never",
+      "assert_never"
+    ],
     "tags": [
       "typing"
     ],
@@ -1375,7 +1446,10 @@
       "свой класс с параметром типа",
       "дженерики"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.Generic",
+      "Generic"
+    ],
     "tags": [
       "typing"
     ],
@@ -1425,7 +1499,10 @@
       "новый тип поверх существующего",
       "тип-обёртка для проверки типов"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.NewType",
+      "NewType"
+    ],
     "tags": [
       "typing"
     ],
@@ -1477,7 +1554,10 @@
       "сохранить сигнатуру функции",
       "параметры вызова в аннотации"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.ParamSpec",
+      "ParamSpec"
+    ],
     "tags": [
       "typing"
     ],
@@ -1529,7 +1609,10 @@
       "тип P.args",
       "аннотация args для ParamSpec"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.ParamSpecArgs",
+      "ParamSpecArgs"
+    ],
     "tags": [
       "typing"
     ],
@@ -1580,7 +1663,10 @@
       "тип P.kwargs",
       "аннотация kwargs для ParamSpec"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.ParamSpecKwargs",
+      "ParamSpecKwargs"
+    ],
     "tags": [
       "typing"
     ],
@@ -1631,7 +1717,10 @@
       "переменное число типов",
       "обобщение с любым числом параметров"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.TypeVarTuple",
+      "TypeVarTuple"
+    ],
     "tags": [
       "typing"
     ],
@@ -1684,7 +1773,10 @@
       "синоним типа",
       "своё имя для типа"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.TypeAliasType",
+      "TypeAliasType"
+    ],
     "tags": [
       "typing"
     ],
@@ -1737,7 +1829,10 @@
       "отложенная ссылка на тип",
       "тип объявлен ниже по коду"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.ForwardRef",
+      "ForwardRef"
+    ],
     "tags": [
       "typing"
     ],
@@ -1788,7 +1883,10 @@
       "аннотация типа файла",
       "тип файлового объекта"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.IO",
+      "IO"
+    ],
     "tags": [
       "typing"
     ],
@@ -1840,7 +1938,10 @@
       "тип бинарного потока",
       "аннотация двоичного файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.BinaryIO",
+      "BinaryIO"
+    ],
     "tags": [
       "typing"
     ],
@@ -1892,7 +1993,10 @@
       "тип текстового потока",
       "аннотация текстового файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.TextIO",
+      "TextIO"
+    ],
     "tags": [
       "typing"
     ],
@@ -1946,7 +2050,10 @@
       "устаревший синоним строки",
       "строковый тип ради совместимости"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.Text",
+      "Text"
+    ],
     "tags": [
       "typing"
     ],
@@ -1997,7 +2104,10 @@
       "протокол целого числа",
       "объект приводится к целому"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.SupportsInt",
+      "SupportsInt"
+    ],
     "tags": [
       "typing"
     ],
@@ -2048,7 +2158,10 @@
       "протокол вещественного числа",
       "объект приводится к дробному числу"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.SupportsFloat",
+      "SupportsFloat"
+    ],
     "tags": [
       "typing"
     ],
@@ -2099,7 +2212,10 @@
       "протокол комплексного числа",
       "объект приводится к комплексному"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.SupportsComplex",
+      "SupportsComplex"
+    ],
     "tags": [
       "typing"
     ],
@@ -2150,7 +2266,10 @@
       "протокол преобразования в байты",
       "объект умеет превращаться в байты"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.SupportsBytes",
+      "SupportsBytes"
+    ],
     "tags": [
       "typing"
     ],
@@ -2198,7 +2317,10 @@
       "поддерживает взятие модуля",
       "протокол абсолютного значения"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.SupportsAbs",
+      "SupportsAbs"
+    ],
     "tags": [
       "typing"
     ],
@@ -2249,7 +2371,10 @@
       "протокол округления",
       "объект поддерживает округление"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.SupportsRound",
+      "SupportsRound"
+    ],
     "tags": [
       "typing"
     ],
@@ -2300,7 +2425,10 @@
       "объект можно использовать как индекс",
       "протокол индексации"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.SupportsIndex",
+      "SupportsIndex"
+    ],
     "tags": [
       "typing"
     ],
@@ -2352,7 +2480,10 @@
       "несколько сигнатур одной функции",
       "разные варианты вызова функции"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.overload",
+      "overload"
+    ],
     "tags": [
       "typing"
     ],
@@ -2411,7 +2542,10 @@
       "пометить переопределение метода",
       "проверка что метод есть у родителя"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.override",
+      "override"
+    ],
     "tags": [
       "typing"
     ],
@@ -2462,7 +2596,10 @@
       "отключить проверку типов",
       "игнорировать аннотации типов"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.no_type_check",
+      "no_type_check"
+    ],
     "tags": [
       "typing"
     ],
@@ -2510,7 +2647,10 @@
       "декоратор без проверки типов",
       "отключить проверку типов декоратором"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.no_type_check_decorator",
+      "no_type_check_decorator"
+    ],
     "tags": [
       "typing"
     ],
@@ -2565,7 +2705,10 @@
       "протокол с проверкой во время выполнения",
       "утиная типизация с проверкой"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.runtime_checkable",
+      "runtime_checkable"
+    ],
     "tags": [
       "typing"
     ],
@@ -2616,7 +2759,10 @@
       "свой декоратор как dataclass",
       "подсказать проверщику типов поля"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.dataclass_transform",
+      "dataclass_transform"
+    ],
     "tags": [
       "typing"
     ],
@@ -2666,7 +2812,10 @@
       "очистить реестр перегрузок",
       "сбросить overload"
     ],
-    "keywords": [],
+    "keywords": [
+      "typing.clear_overloads",
+      "clear_overloads"
+    ],
     "tags": [
       "typing"
     ],

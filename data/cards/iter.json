@@ -31,7 +31,12 @@
       "асинхронная функция",
       "дождаться результата корутины"
     ],
-    "keywords": [],
+    "keywords": [
+      "async def",
+      "await",
+      "asyncio",
+      "coroutine"
+    ],
     "tags": [
       "iter"
     ],
@@ -85,7 +90,12 @@
       "асинхронный контекстный менеджер",
       "перебор асинхронного итератора"
     ],
-    "keywords": [],
+    "keywords": [
+      "async for",
+      "async with",
+      "__aiter__",
+      "__aenter__"
+    ],
     "tags": [
       "iter"
     ],
@@ -138,7 +148,10 @@
       "фоновая задача",
       "запустить корутину в фоне"
     ],
-    "keywords": [],
+    "keywords": [
+      "asyncio.create_task",
+      "create_task"
+    ],
     "tags": [
       "iter"
     ],
@@ -194,7 +207,10 @@
       "запустить корутины параллельно",
       "дождаться всех задач"
     ],
-    "keywords": [],
+    "keywords": [
+      "asyncio.gather",
+      "gather"
+    ],
     "tags": [
       "iter"
     ],
@@ -246,7 +262,10 @@
       "асинхронная очередь",
       "очередь для корутин"
     ],
-    "keywords": [],
+    "keywords": [
+      "asyncio.Queue",
+      "Queue"
+    ],
     "tags": [
       "iter"
     ],
@@ -303,7 +322,10 @@
       "запустить корутину",
       "запуск асинхронной программы"
     ],
-    "keywords": [],
+    "keywords": [
+      "asyncio.run",
+      "run"
+    ],
     "tags": [
       "iter"
     ],
@@ -360,7 +382,10 @@
       "неблокирующая задержка",
       "подождать в корутине"
     ],
-    "keywords": [],
+    "keywords": [
+      "asyncio.sleep",
+      "sleep"
+    ],
     "tags": [
       "iter"
     ],
@@ -414,7 +439,11 @@
       "возвращать значения по одному",
       "ленивая выдача значений"
     ],
-    "keywords": [],
+    "keywords": [
+      "yield",
+      "generator",
+      "next"
+    ],
     "tags": [
       "iter"
     ],
@@ -584,7 +613,10 @@
       "нарастающий итог",
       "кумулятивная сумма"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.accumulate",
+      "accumulate"
+    ],
     "tags": [
       "iter"
     ],
@@ -640,7 +672,10 @@
       "перебрать несколько списков подряд",
       "объединить итерируемые в одну цепочку"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.chain",
+      "chain"
+    ],
     "tags": [
       "iter"
     ],
@@ -701,7 +736,10 @@
       "группировка по ключу",
       "сгруппировать подряд идущие одинаковые элементы"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.groupby",
+      "groupby"
+    ],
     "tags": [
       "iter"
     ],
@@ -766,7 +804,10 @@
       "срез итератора",
       "взять первые элементы генератора"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.islice",
+      "islice"
+    ],
     "tags": [
       "iter"
     ],
@@ -828,7 +869,10 @@
       "делегирование генератора",
       "вложенные генераторы"
     ],
-    "keywords": [],
+    "keywords": [
+      "yield from",
+      "yield"
+    ],
     "tags": [
       "iter"
     ],
@@ -901,7 +945,13 @@
       "генератор в круглых скобках",
       "ленивая генерация без списка в памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "generator expression",
+      "for",
+      "in",
+      "sum",
+      "any"
+    ],
     "tags": [
       "iter"
     ],
@@ -1071,7 +1121,10 @@
       "нумерация с заданным шагом",
       "бесконечная последовательность чисел"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.count",
+      "count"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1122,7 +1175,10 @@
       "зациклить последовательность",
       "повторять элементы по кругу"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.cycle",
+      "cycle"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1172,7 +1228,10 @@
       "повторить значение несколько раз",
       "последовательность одинаковых элементов"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.repeat",
+      "repeat"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1223,7 +1282,10 @@
       "комбинаторика без повторений",
       "выбрать несколько элементов из набора"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.combinations",
+      "combinations"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1273,7 +1335,10 @@
       "сочетания с повторениями",
       "комбинации с возвращением"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.combinations_with_replacement",
+      "combinations_with_replacement"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1324,7 +1389,10 @@
       "все порядки элементов",
       "перебор всех расстановок"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.permutations",
+      "permutations"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1375,7 +1443,10 @@
       "все комбинации из нескольких списков",
       "замена вложенным циклам"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.product",
+      "product"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1425,7 +1496,10 @@
       "фильтр по маске",
       "выбрать элементы по флагам"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.compress",
+      "compress"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1475,7 +1549,10 @@
       "пропустить элементы пока условие истинно",
       "отбросить начало последовательности"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.dropwhile",
+      "dropwhile"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1526,7 +1603,10 @@
       "остановиться на первом несовпадении",
       "начало последовательности по условию"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.takewhile",
+      "takewhile"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1576,7 +1656,10 @@
       "обратный фильтр",
       "оставить элементы не прошедшие условие"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.filterfalse",
+      "filterfalse"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1626,7 +1709,10 @@
       "применить функцию к кортежам аргументов",
       "отображение с распаковкой аргументов"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.starmap",
+      "starmap"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1677,7 +1763,10 @@
       "пары подряд идущих значений",
       "сравнить соседние элементы списка"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.pairwise",
+      "pairwise"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1728,7 +1817,10 @@
       "нарезать последовательность группами",
       "пачки элементов"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.batched",
+      "batched"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1780,7 +1872,10 @@
       "объединить списки разной длины",
       "заполнить недостающие элементы при объединении"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.zip_longest",
+      "zip_longest"
+    ],
     "tags": [
       "itertools"
     ],
@@ -1831,7 +1926,10 @@
       "копия генератора",
       "несколько независимых итераторов"
     ],
-    "keywords": [],
+    "keywords": [
+      "itertools.tee",
+      "tee"
+    ],
     "tags": [
       "itertools"
     ],

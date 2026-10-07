@@ -399,3 +399,67 @@ def test_ci_runs_examples_on_every_promised_version():
     assert "examples" in ci["jobs"]["check-pr"]["needs"], "матрица держит слияние"
     nxt = (workflows / "python-next.yml").read_text(encoding="utf-8")
     assert "scripts/check_examples.py" in nxt
+
+
+# --------------------------- устаревание (#154) ---------------------------
+
+DEPRECATED_CALL = (
+    "import builtins, warnings\n"
+    "old = getattr(builtins, 'Deprecation' + 'Warning')\n"
+    "warnings.warn('old', old)\n"
+    "print(1)\n"
+)
+"""Предупреждение без имени в тексте: блок, назвавший его, — намеренный показ."""
+
+
+def test_deprecation_warning_is_noticed():
+    assert outcome(DEPRECATED_CALL).warned
+    assert not outcome("print(1)\n").warned
+
+
+def test_warning_from_library_code_is_shown_too():
+    """Без фильтра always предупреждение не из __main__ молчит."""
+    code = (
+        "import warnings\n"
+        "def lib():\n"
+        "    warnings.warn('old', getattr(__builtins__, 'Deprecation' + 'Warning'))\n"
+        "lib()\n"
+    )
+    assert outcome(code).warned
+
+
+def _entries(tmp_path: Path, **card: object) -> Path:
+    entry = {"id": "c", "examples": [["print(1)"]], **card}
+    data = tmp_path / "g.json"
+    data.write_text(json.dumps({"entries": [entry]}), encoding="utf-8")
+    return data
+
+
+@pytest.mark.parametrize(
+    ("card", "silent"),
+    [
+        ({}, ["c"]),
+        ({"deprecated": "3.12"}, []),
+        ({"deprecated": "3.99"}, ["c"]),
+        ({"examples": [["print(1)  # → 1 — DeprecationWarning у этой формы"]]}, []),
+    ],
+)
+def test_unrecorded_deprecation(
+    tmp_path: Path, card: dict[str, object], silent: list[str]
+):
+    data = _entries(tmp_path, **card)
+    warned = [gate.Result("c", "ok", warned=True)]
+    assert [r.entry_id for r in gate.unrecorded(data, warned, (3, 14))] == silent
+
+
+def test_block_naming_the_warning_is_an_intended_demo(tmp_path: Path):
+    """Карточка модуля warnings показывает DeprecationWarning намеренно."""
+    shown = ["import warnings", "warnings.warn('old', DeprecationWarning)"]
+    data = write(tmp_path / "g.json", {"a": [shown]})
+    assert gate.main(["--data", str(data)]) == 0
+
+
+def test_main_fails_on_unrecorded_deprecation(tmp_path: Path, capsys):
+    data = write(tmp_path / "g.json", {"a": [DEPRECATED_CALL.splitlines()]})
+    assert gate.main(["--data", str(data)]) == 1
+    assert "DeprecationWarning" in capsys.readouterr().err

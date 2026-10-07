@@ -17,7 +17,9 @@
     "syntax": "def __add__(self, other): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__add__",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -145,7 +147,9 @@
     "syntax": "class CM:\n    def __enter__(self): return self\n    def __exit__(self, exc_type, exc_val, tb): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -258,7 +262,9 @@
     "syntax": "def __init__(self, params): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__init__",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -355,7 +361,9 @@
     "syntax": "def __len__(self): ...\ndef __getitem__(self, idx): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#emulating-container-types",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -472,7 +480,9 @@
     "syntax": "class C:\n    __slots__ = ('x', 'y')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#slots",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -559,7 +569,9 @@
     "syntax": "def __str__(self): return '...'\ndef __repr__(self): return '...'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__str__",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -649,7 +661,9 @@
     "syntax": "class ИмяКласса:\n    тело",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#class",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -739,7 +753,9 @@
     "syntax": "@classmethod\ndef method(cls, ...): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#classmethod",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -849,7 +865,9 @@
     "syntax": "@property\ndef x(self): return self._x\nproperty(fget=None, fset=None, fdel=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#property",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -989,7 +1007,9 @@
     "syntax": "def method(self): self.x = ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#random-remarks",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1085,7 +1105,9 @@
     "syntax": "@staticmethod\ndef method(...): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#staticmethod",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1165,7 +1187,9 @@
     "syntax": "super().__init__(...)\nsuper().method(...)\nsuper(type, obj_or_type)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#super",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1279,7 +1303,9 @@
     "syntax": "from abc import ABC, abstractmethod\nclass Shape(ABC):\n    @abstractmethod\n    def area(self): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABC",
-    "version": "3.4",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1385,7 +1411,9 @@
     "syntax": "class C:\n    class_attr = 0  # классовый\n    def __init__(self):\n        self.inst_attr = 1  # экземплярный",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#class-and-instance-variables",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1476,7 +1504,9 @@
     "syntax": "self._protected\nself.__private",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#private-variables",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1580,7 +1610,9 @@
     "syntax": "def method(self, ...): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#instance-methods",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1700,7 +1732,9 @@
     "syntax": "class C(A, B): ...\nC.__mro__",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#multiple-inheritance",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1801,7 +1835,9 @@
     "syntax": "class Child(Parent): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#inheritance",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1920,7 +1956,9 @@
     "syntax": "for obj in objects:\n    obj.method()  # разные реализации",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-duck-typing",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],

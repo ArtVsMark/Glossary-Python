@@ -17,7 +17,9 @@
     "syntax": "b\"строка\"  b'строка'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes-objects",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -73,7 +75,9 @@
     "syntax": "f'{expr}'  |  f'{val:.2f}'  |  f'{val!r}'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#f-strings",
-    "version": "3.6",
+    "added": "3.6",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -145,7 +149,9 @@
     "syntax": "'{}'.format(val)  |  '{name}'.format(name=val)  |  '{:.2f}'.format(num)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.format",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -209,7 +215,9 @@
     "syntax": "'sub' in s  |  'sub' not in s",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -269,7 +277,9 @@
     "syntax": "len(s)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#len",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -329,7 +339,9 @@
     "syntax": "r\"строка\"  r'строка'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#raw-string-literals",
-    "version": "3.6",
+    "added": "3.6",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -385,7 +397,9 @@
     "syntax": "s[i]  # i — целое число",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -450,7 +464,9 @@
     "syntax": "s1 + s2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -512,7 +528,9 @@
     "syntax": "s * n  |  n * s",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -571,7 +589,9 @@
     "syntax": "s = 'text' | s = \"text\" | s = '''multi''' | s = r'raw' | s = b'bytes'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#strings",
-    "version": "3.3",
+    "added": "3.3",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -638,7 +658,9 @@
     "syntax": "s1 == s2  |  s1 < s2  |  s1 > s2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#value-comparisons",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -698,7 +720,9 @@
     "syntax": "s[a:b]  |  s[a:b:c]  |  s[::-1]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -764,7 +788,9 @@
     "syntax": "s[i] = x  # TypeError  |  id(s)  |  sys.intern(s)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.intern",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -835,7 +861,9 @@
     "syntax": "\"\"\"текст\"\"\"\n'''текст'''",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals",
-    "version": "3.3",
+    "added": "3.3",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -893,7 +921,9 @@
     "syntax": "'format %s' % value  |  'format %(key)s' % dict",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#printf-style-string-formatting",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -955,7 +985,9 @@
     "syntax": "s.capitalize()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.capitalize",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1005,7 +1037,9 @@
     "syntax": "s.title()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.title",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1056,7 +1090,9 @@
     "syntax": "s.swapcase()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.swapcase",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1106,7 +1142,9 @@
     "syntax": "s.upper()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.upper",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1156,7 +1194,9 @@
     "syntax": "s.lower()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.lower",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1206,7 +1246,9 @@
     "syntax": "s.casefold()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.casefold",
-    "version": "3.3",
+    "added": "3.3",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1256,7 +1298,9 @@
     "syntax": "s.isalnum()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isalnum",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1306,7 +1350,9 @@
     "syntax": "s.isalpha()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isalpha",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1356,7 +1402,9 @@
     "syntax": "s.isdigit()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isdigit",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1407,7 +1455,9 @@
     "syntax": "s.isdecimal()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isdecimal",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1457,7 +1507,9 @@
     "syntax": "s.isnumeric()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isnumeric",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1507,7 +1559,9 @@
     "syntax": "s.isspace()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isspace",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1557,7 +1611,9 @@
     "syntax": "s.islower()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.islower",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1607,7 +1663,9 @@
     "syntax": "s.isupper()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isupper",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1657,7 +1715,9 @@
     "syntax": "s.istitle()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.istitle",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1707,7 +1767,9 @@
     "syntax": "s.isidentifier()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isidentifier",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1756,7 +1818,9 @@
     "syntax": "s.isascii()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isascii",
-    "version": "3.7",
+    "added": "3.7",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1806,7 +1870,9 @@
     "syntax": "s.isprintable()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.isprintable",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1856,7 +1922,9 @@
     "syntax": "s.find(sub[, start[, end]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.find",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1908,7 +1976,9 @@
     "syntax": "s.rfind(sub[, start[, end]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rfind",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1958,7 +2028,9 @@
     "syntax": "s.index(sub[, start[, end]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.index",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2011,7 +2083,9 @@
     "syntax": "s.rindex(sub[, start[, end]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rindex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2063,7 +2137,9 @@
     "syntax": "s.count(sub[, start[, end]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.count",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2115,7 +2191,9 @@
     "syntax": "s.startswith(prefix[, start[, end]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.startswith",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2166,7 +2244,9 @@
     "syntax": "s.endswith(suffix[, start[, end]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.endswith",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2217,7 +2297,9 @@
     "syntax": "s.split(sep=None, maxsplit=-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.split",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2269,7 +2351,9 @@
     "syntax": "s.rsplit(sep=None, maxsplit=-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rsplit",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2319,7 +2403,9 @@
     "syntax": "s.splitlines(keepends=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.splitlines",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2369,7 +2455,9 @@
     "syntax": "s.partition(sep)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.partition",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2419,7 +2507,9 @@
     "syntax": "s.rpartition(sep)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rpartition",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2469,7 +2559,9 @@
     "syntax": "sep.join(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.join",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2522,7 +2614,9 @@
     "syntax": "s.strip([chars])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.strip",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2573,7 +2667,9 @@
     "syntax": "s.lstrip([chars])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.lstrip",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2624,7 +2720,9 @@
     "syntax": "s.rstrip([chars])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rstrip",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2675,7 +2773,9 @@
     "syntax": "s.center(width[, fillchar])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.center",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2726,7 +2826,9 @@
     "syntax": "s.ljust(width[, fillchar])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.ljust",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2777,7 +2879,9 @@
     "syntax": "s.rjust(width[, fillchar])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.rjust",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2828,7 +2932,9 @@
     "syntax": "s.zfill(width)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.zfill",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2879,7 +2985,9 @@
     "syntax": "s.replace(old, new[, count])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.replace",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2931,7 +3039,9 @@
     "syntax": "s.translate(table)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.translate",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2982,7 +3092,9 @@
     "syntax": "str.maketrans(x[, y[, z]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.maketrans",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3036,7 +3148,9 @@
     "syntax": "s.removeprefix(prefix)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.removeprefix",
-    "version": "3.9",
+    "added": "3.9",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3086,7 +3200,9 @@
     "syntax": "s.removesuffix(suffix)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.removesuffix",
-    "version": "3.9",
+    "added": "3.9",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3137,7 +3253,9 @@
     "syntax": "s.expandtabs(tabsize=8)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.expandtabs",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3187,7 +3305,9 @@
     "syntax": "s.encode(encoding='utf-8', errors='strict')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.encode",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3241,7 +3361,9 @@
     "syntax": "s.format_map(mapping)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#str.format_map",
-    "version": "3.2",
+    "added": "3.2",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3293,7 +3415,9 @@
     "syntax": "bytearray.resize(size, /)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.resize",
-    "version": "3.14",
+    "added": "3.14",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],

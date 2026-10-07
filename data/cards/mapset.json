@@ -17,7 +17,9 @@
     "syntax": "d.copy()  import copy; copy.deepcopy(d)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.copy",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -76,7 +78,9 @@
     "syntax": "merged = d1 | d2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
-    "version": "3.9",
+    "added": "3.9",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -132,7 +136,9 @@
     "syntax": "d1 |= d2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
-    "version": "3.9",
+    "added": "3.9",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -185,7 +191,9 @@
     "syntax": "dict.fromkeys(iterable, value=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.fromkeys",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -239,7 +247,9 @@
     "syntax": "frozenset(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -305,7 +315,9 @@
     "syntax": "item in s  |  item not in s",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -372,7 +384,9 @@
     "syntax": "key in d  |  key not in d",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -434,7 +448,9 @@
     "syntax": "d[key1][key2]  |  d.get(k1, {}).get(k2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -509,7 +525,9 @@
     "syntax": "{expr for var in iterable [if cond]}",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#set-displays",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -575,7 +593,9 @@
     "syntax": "d1.update(d2)  |  {**d1, **d2}  |  d1 | d2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
-    "version": "3.9",
+    "added": "3.9",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -647,7 +667,9 @@
     "syntax": "d1 | d2  d1 |= d2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
-    "version": "3.9",
+    "added": "3.9",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -701,7 +723,9 @@
     "syntax": "a | b  |  a & b  |  a - b  |  a ^ b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -777,7 +801,9 @@
     "syntax": "set(lst)  |  a & b  |  a - b  |  a ^ b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -850,7 +876,9 @@
     "syntax": "func(**d)  |  {**d1, **d2}  |  d1 | d2 (Python 3.9+)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -921,7 +949,9 @@
     "syntax": "{k: v for ... in ...}  |  {k: v for ... in ... if cond}",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1000,7 +1030,9 @@
     "syntax": "{a, b}  |  set(iterable)  |  frozenset(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1072,7 +1104,9 @@
     "syntax": "{}  |  dict()  |  {k: v}  |  dict.fromkeys(keys[, val])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1140,7 +1174,9 @@
     "syntax": "sorted(d.items())  |  sorted(d.items(), key=lambda x: x[1])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1203,7 +1239,9 @@
     "syntax": "d.clear()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.clear",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1254,7 +1292,9 @@
     "syntax": "d.copy()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.copy",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1306,7 +1346,9 @@
     "syntax": "d.get(key, default=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.get",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1359,7 +1401,9 @@
     "syntax": "d.items()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.items",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1411,7 +1455,9 @@
     "syntax": "d.keys()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.keys",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1464,7 +1510,9 @@
     "syntax": "d.pop(key, default)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.pop",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1518,7 +1566,9 @@
     "syntax": "d.popitem()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.popitem",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1570,7 +1620,9 @@
     "syntax": "d.setdefault(key, default=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.setdefault",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1621,7 +1673,9 @@
     "syntax": "d.update(other, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1674,7 +1728,9 @@
     "syntax": "d.values()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.values",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1725,7 +1781,9 @@
     "syntax": "del d[key]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1781,7 +1839,9 @@
     "syntax": "d[key]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1838,7 +1898,9 @@
     "syntax": "d[key] = value",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1895,7 +1957,9 @@
     "syntax": "s.add(elem)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.add",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1950,7 +2014,9 @@
     "syntax": "s.update(*iterables)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.update",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2002,7 +2068,9 @@
     "syntax": "s.remove(elem)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.remove",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2055,7 +2123,9 @@
     "syntax": "s.discard(elem)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.discard",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2106,7 +2176,9 @@
     "syntax": "s.pop()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.pop",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2161,7 +2233,9 @@
     "syntax": "s.clear()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.clear",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2212,7 +2286,9 @@
     "syntax": "s.copy()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.copy",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2265,7 +2341,9 @@
     "syntax": "s.union(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.union",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2320,7 +2398,9 @@
     "syntax": "s.intersection(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.intersection",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2374,7 +2454,9 @@
     "syntax": "s.difference(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.difference",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2429,7 +2511,9 @@
     "syntax": "s.symmetric_difference(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.symmetric_difference",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2484,7 +2568,9 @@
     "syntax": "s.difference_update(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.difference_update",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2535,7 +2621,9 @@
     "syntax": "s.intersection_update(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.intersection_update",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2585,7 +2673,9 @@
     "syntax": "s.symmetric_difference_update(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.symmetric_difference_update",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2635,7 +2725,9 @@
     "syntax": "s.issubset(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.issubset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2689,7 +2781,9 @@
     "syntax": "s.issuperset(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.issuperset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2743,7 +2837,9 @@
     "syntax": "s.isdisjoint(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#set.isdisjoint",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2797,7 +2893,9 @@
     "syntax": "f.copy()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.copy",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2850,7 +2948,9 @@
     "syntax": "f.union(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.union",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2904,7 +3004,9 @@
     "syntax": "f.intersection(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.intersection",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2958,7 +3060,9 @@
     "syntax": "f.difference(*others)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.difference",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3011,7 +3115,9 @@
     "syntax": "f.symmetric_difference(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.symmetric_difference",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3065,7 +3171,9 @@
     "syntax": "f.isdisjoint(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.isdisjoint",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3118,7 +3226,9 @@
     "syntax": "f.issubset(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.issubset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3171,7 +3281,9 @@
     "syntax": "f.issuperset(other)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozenset.issuperset",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],

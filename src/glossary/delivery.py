@@ -62,7 +62,7 @@ __all__ = [
 SCHEMA_OF: Final = "карточки глоссария по группам, в форме data/cards/"
 """Чего именно эта версия (правило каталога 164)."""
 
-FORM_MINOR: Final = 1
+FORM_MINOR: Final = 0
 """Минор формы: растёт на новом необязательном поле, сбрасывается с мажором."""
 
 FORM: Final = f"{SCHEMA_VERSION}.{FORM_MINOR}"

@@ -13,7 +13,7 @@
     },
     "schema_version": {
       "type": "integer",
-      "const": 4,
+      "const": 5,
       "description": "Версия формата данных. Версия 1 хранила одноязычную карточку с полями name/group/description; версия 2 приняла форму базы знаний грейдера; версия 3 сделала двуязычными заголовок и подкатегорию; версия 4 добавила platforms."
     },
     "entries": {
@@ -41,7 +41,7 @@
       "type": "object",
       "required": [
         "id", "title", "kind", "summary", "body", "syntax", "status",
-        "docs_url", "version", "platforms", "section", "subcat", "color_group",
+        "docs_url", "added", "deprecated", "removed", "platforms", "section", "subcat", "color_group",
         "aliases", "keywords", "tags", "examples", "related", "related_errors"
       ],
       "additionalProperties": false,
@@ -84,10 +84,20 @@
           "pattern": "^https://docs\\.python\\.org/3/",
           "description": "Ссылка на официальную документацию."
         },
-        "version": {
+        "added": {
+          "type": "string",
+          "pattern": "^(|<?[0-9]+\\.[0-9]+)$",
+          "description": "С какой версии Python возможность есть: N.N; <3.0 — появилась раньше 3.0, ещё в Python 2; 3.0 — пришла с первым выпуском Python 3. Пустая строка — не установлено (правило added)."
+        },
+        "deprecated": {
           "type": "string",
           "pattern": "^(|[0-9]+\\.[0-9]+)$",
-          "description": "Версия Python, в которой возможность появилась. Пустая строка — доступно во всех поддерживаемых версиях."
+          "description": "С какой версии возможность объявлена устаревшей. Пустая строка — не устарела."
+        },
+        "removed": {
+          "type": "string",
+          "pattern": "^(|[0-9]+\\.[0-9]+)$",
+          "description": "В какой версии возможность удалена или удаление запланировано — до какой версии она работает. Пустая строка — работает и сейчас."
         },
         "platforms": {
           "type": "array",

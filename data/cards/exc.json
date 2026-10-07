@@ -17,7 +17,9 @@
     "syntax": "assert condition, 'message'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assert",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -90,7 +92,9 @@
     "syntax": "raise AttributeError('сообщение')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#AttributeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -142,7 +146,9 @@
     "syntax": "try:\n    ...\nexcept Error:\n    ...\nelse:\n    # только при успехе",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#else-clause",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -231,7 +237,9 @@
     "syntax": "raise FileNotFoundError('файл не найден')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FileNotFoundError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -285,7 +293,9 @@
     "syntax": "try:\n    ...\nfinally:\n    cleanup()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#finally",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -377,7 +387,9 @@
     "syntax": "raise ImportError('сообщение')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ImportError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -429,7 +441,9 @@
     "syntax": "raise IndexError('сообщение')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IndexError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -483,7 +497,9 @@
     "syntax": "raise KeyError(key)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#KeyError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -538,7 +554,9 @@
     "syntax": "raise ModuleNotFoundError('No module named ...')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ModuleNotFoundError",
-    "version": "3.6",
+    "added": "3.6",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -590,7 +608,9 @@
     "syntax": "raise NameError('сообщение')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NameError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -640,7 +660,9 @@
     "syntax": "raise NotImplementedError('переопредели метод')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NotImplementedError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -693,7 +715,9 @@
     "syntax": "raise OSError(errno, strerror)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#OSError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -746,7 +770,9 @@
     "syntax": "raise PermissionError('нет доступа')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PermissionError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -810,7 +836,9 @@
     "syntax": "raise ValueError('msg')\nraise RuntimeError('msg') from original",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#raise",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -908,7 +936,9 @@
     "syntax": "raise RecursionError('...')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RecursionError",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -963,7 +993,9 @@
     "syntax": "raise StopIteration",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#StopIteration",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1019,7 +1051,9 @@
     "syntax": "try:\n    ...\nexcept ErrorType:\n    ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-try-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1110,7 +1144,9 @@
     "syntax": "raise TypeError('сообщение')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TypeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1162,7 +1198,9 @@
     "syntax": "raise ValueError('сообщение')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ValueError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1217,7 +1255,9 @@
     "syntax": "BaseException\n  SystemExit, KeyboardInterrupt\n  Exception\n    ValueError, TypeError, IndexError...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseException",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1296,7 +1336,9 @@
     "syntax": "class MyError(Exception):\n    pass",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/errors.html#user-defined-exceptions",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1400,7 +1442,9 @@
     "syntax": "raise BaseException",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseException",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1452,7 +1496,9 @@
     "syntax": "raise Exception",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#Exception",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1503,7 +1549,9 @@
     "syntax": "raise ArithmeticError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ArithmeticError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1554,7 +1602,9 @@
     "syntax": "raise ZeroDivisionError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ZeroDivisionError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1604,7 +1654,9 @@
     "syntax": "raise OverflowError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#OverflowError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1655,7 +1707,9 @@
     "syntax": "raise FloatingPointError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FloatingPointError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1705,7 +1759,9 @@
     "syntax": "raise AssertionError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#AssertionError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1756,7 +1812,9 @@
     "syntax": "raise LookupError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#LookupError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1806,7 +1864,9 @@
     "syntax": "raise RuntimeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RuntimeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1857,7 +1917,9 @@
     "syntax": "raise EOFError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#EOFError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1908,7 +1970,9 @@
     "syntax": "raise KeyboardInterrupt",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#KeyboardInterrupt",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1959,7 +2023,9 @@
     "syntax": "raise SystemExit",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SystemExit",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2010,7 +2076,9 @@
     "syntax": "raise GeneratorExit",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#GeneratorExit",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2060,7 +2128,9 @@
     "syntax": "raise StopAsyncIteration",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#StopAsyncIteration",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2110,7 +2180,9 @@
     "syntax": "raise MemoryError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#MemoryError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2159,7 +2231,9 @@
     "syntax": "raise ReferenceError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ReferenceError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2205,7 +2279,9 @@
     "syntax": "raise SystemError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SystemError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2254,7 +2330,9 @@
     "syntax": "raise BufferError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BufferError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2304,7 +2382,9 @@
     "syntax": "raise UnboundLocalError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnboundLocalError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2354,7 +2434,9 @@
     "syntax": "raise SyntaxError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2405,7 +2487,9 @@
     "syntax": "raise IndentationError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IndentationError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2454,7 +2538,9 @@
     "syntax": "raise TabError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TabError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2503,7 +2589,9 @@
     "syntax": "raise UnicodeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2554,7 +2642,9 @@
     "syntax": "raise UnicodeDecodeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeDecodeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2605,7 +2695,9 @@
     "syntax": "raise UnicodeEncodeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeEncodeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2657,7 +2749,9 @@
     "syntax": "raise UnicodeTranslateError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeTranslateError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2707,7 +2801,9 @@
     "syntax": "raise FileExistsError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FileExistsError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2757,7 +2853,9 @@
     "syntax": "raise IsADirectoryError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#IsADirectoryError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2807,7 +2905,9 @@
     "syntax": "raise NotADirectoryError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#NotADirectoryError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2858,7 +2958,9 @@
     "syntax": "raise InterruptedError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#InterruptedError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2907,7 +3009,9 @@
     "syntax": "raise ChildProcessError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ChildProcessError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2957,7 +3061,9 @@
     "syntax": "raise ProcessLookupError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ProcessLookupError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3007,7 +3113,9 @@
     "syntax": "raise TimeoutError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#TimeoutError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3057,7 +3165,9 @@
     "syntax": "raise BlockingIOError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BlockingIOError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3108,7 +3218,9 @@
     "syntax": "raise ConnectionError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3160,7 +3272,9 @@
     "syntax": "raise ConnectionResetError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionResetError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3210,7 +3324,9 @@
     "syntax": "raise ConnectionRefusedError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionRefusedError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3260,7 +3376,9 @@
     "syntax": "raise ConnectionAbortedError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ConnectionAbortedError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3310,7 +3428,9 @@
     "syntax": "raise BrokenPipeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BrokenPipeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3360,7 +3480,9 @@
     "syntax": "raise ExceptionGroup",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ExceptionGroup",
-    "version": "3.11",
+    "added": "3.11",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3410,7 +3532,9 @@
     "syntax": "raise BaseExceptionGroup",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BaseExceptionGroup",
-    "version": "3.11",
+    "added": "3.11",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3460,7 +3584,9 @@
     "syntax": "raise PythonFinalizationError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PythonFinalizationError",
-    "version": "3.13",
+    "added": "3.13",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3510,7 +3636,9 @@
     "syntax": "raise Warning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#Warning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3561,7 +3689,9 @@
     "syntax": "raise DeprecationWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#DeprecationWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3611,7 +3741,9 @@
     "syntax": "raise PendingDeprecationWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#PendingDeprecationWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3661,7 +3793,9 @@
     "syntax": "raise RuntimeWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#RuntimeWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3711,7 +3845,9 @@
     "syntax": "raise SyntaxWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3761,7 +3897,9 @@
     "syntax": "raise UserWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UserWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3811,7 +3949,9 @@
     "syntax": "raise FutureWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#FutureWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3861,7 +4001,9 @@
     "syntax": "raise ImportWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ImportWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3911,7 +4053,9 @@
     "syntax": "raise UnicodeWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#UnicodeWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3961,7 +4105,9 @@
     "syntax": "raise BytesWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#BytesWarning",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4011,7 +4157,9 @@
     "syntax": "raise ResourceWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#ResourceWarning",
-    "version": "3.2",
+    "added": "3.2",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4061,7 +4209,9 @@
     "syntax": "raise EncodingWarning",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#EncodingWarning",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4111,7 +4261,9 @@
     "syntax": "raise _IncompleteInputError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/exceptions.html#SyntaxError",
-    "version": "3.13",
+    "added": "3.13",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4161,7 +4313,9 @@
     "syntax": "raise json.JSONDecodeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.JSONDecodeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4215,7 +4369,9 @@
     "syntax": "raise re.PatternError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.PatternError",
-    "version": "3.13",
+    "added": "3.13",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4269,7 +4425,9 @@
     "syntax": "raise statistics.StatisticsError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.StatisticsError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4321,7 +4479,9 @@
     "syntax": "raise dataclasses.FrozenInstanceError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.FrozenInstanceError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4374,7 +4534,9 @@
     "syntax": "raise io.UnsupportedOperation",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.UnsupportedOperation",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4427,7 +4589,9 @@
     "syntax": "raise struct.error",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/struct.html#struct.error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4479,7 +4643,9 @@
     "syntax": "raise zlib.error",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/zlib.html#zlib.error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4530,7 +4696,9 @@
     "syntax": "raise copy.Error",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#copy.Error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4582,7 +4750,9 @@
     "syntax": "raise locale.Error",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/locale.html#locale.Error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4630,7 +4800,9 @@
     "syntax": "raise argparse.ArgumentError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/argparse.html#argparse.ArgumentError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4682,7 +4854,9 @@
     "syntax": "raise argparse.ArgumentTypeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/argparse.html#argparse.ArgumentTypeError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4734,7 +4908,9 @@
     "syntax": "raise shutil.Error",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4787,7 +4963,9 @@
     "syntax": "raise shutil.SameFileError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.SameFileError",
-    "version": "3.4",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4839,7 +5017,9 @@
     "syntax": "raise shutil.SpecialFileError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.SpecialFileError",
-    "version": "2.7",
+    "added": "2.7",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4891,7 +5071,9 @@
     "syntax": "raise shutil.ExecError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4943,7 +5125,9 @@
     "syntax": "raise shutil.ReadError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4995,7 +5179,9 @@
     "syntax": "raise shutil.RegistryError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/shutil.html#shutil.Error",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5047,7 +5233,9 @@
     "syntax": "raise threading.BrokenBarrierError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.BrokenBarrierError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5099,7 +5287,9 @@
     "syntax": "raise tokenize.TokenError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/tokenize.html#tokenize.TokenError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5151,7 +5341,9 @@
     "syntax": "raise zipimport.ZipImportError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/zipimport.html#zipimport.ZipImportError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5203,7 +5395,9 @@
     "syntax": "raise signal.ItimerError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/signal.html#signal.ItimerError",
-    "version": "3.3",
+    "added": "3.3",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5263,7 +5457,9 @@
     "syntax": "raise decimal.DecimalException",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.DecimalException",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5316,7 +5512,9 @@
     "syntax": "raise decimal.InvalidOperation",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.InvalidOperation",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5368,7 +5566,9 @@
     "syntax": "raise decimal.DivisionByZero",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.DivisionByZero",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5420,7 +5620,9 @@
     "syntax": "raise decimal.DivisionImpossible",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5472,7 +5674,9 @@
     "syntax": "raise decimal.DivisionUndefined",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5524,7 +5728,9 @@
     "syntax": "raise decimal.Overflow",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Overflow",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5577,7 +5783,9 @@
     "syntax": "raise decimal.Underflow",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Underflow",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5630,7 +5838,9 @@
     "syntax": "raise decimal.Inexact",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Inexact",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5682,7 +5892,9 @@
     "syntax": "raise decimal.Rounded",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Rounded",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5734,7 +5946,9 @@
     "syntax": "raise decimal.Subnormal",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Subnormal",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5786,7 +6000,9 @@
     "syntax": "raise decimal.Clamped",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Clamped",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5838,7 +6054,9 @@
     "syntax": "raise decimal.ConversionSyntax",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5890,7 +6108,9 @@
     "syntax": "raise decimal.FloatOperation",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.FloatOperation",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5942,7 +6162,9 @@
     "syntax": "raise decimal.InvalidContext",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#signals",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5994,7 +6216,9 @@
     "syntax": "raise encodings.CodecRegistryError(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/codecs.html#encodings.CodecRegistryError",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],

@@ -33,7 +33,7 @@ __all__ = [
     "Text",
 ]
 
-SCHEMA_VERSION: Final = 4
+SCHEMA_VERSION: Final = 5
 """Версия формата ``data/glossary.json``.
 
 Версия 1 хранила одноязычную карточку с полями ``name``/``group``/
@@ -43,6 +43,9 @@ SCHEMA_VERSION: Final = 4
 Раздел остаётся ключом — его подписи на двух языках живут в
 :mod:`glossary.taxonomy`, по одной на раздел, а не по копии на карточку.
 Версия 4 добавила ``platforms`` — на каких системах возможность есть (#83).
+Версия 5 заменила ``version`` тремя полями жизненного цикла: ``added`` — с какой
+версии возможность есть (``<3.0`` — ещё с Python 2), ``deprecated`` и
+``removed`` — с какой устарела и до какой работает (#122).
 """
 
 Language = Literal["ru", "en"]
@@ -132,7 +135,9 @@ class Entry:
     syntax: str = ""
     status: str = "ready"
     docs_url: str = ""
-    version: str = ""
+    added: str = ""
+    deprecated: str = ""
+    removed: str = ""
     platforms: tuple[str, ...] = (ALL_OS,)
     section: str = ""
     subcat: Text = field(default_factory=Text)
@@ -160,7 +165,9 @@ class Entry:
             syntax=str(raw.get("syntax", "")),
             status=str(raw.get("status", "")),
             docs_url=str(raw.get("docs_url", "")),
-            version=str(raw.get("version", "")),
+            added=str(raw.get("added", "")),
+            deprecated=str(raw.get("deprecated", "")),
+            removed=str(raw.get("removed", "")),
             platforms=_tuple(raw.get("platforms")),
             section=str(raw.get("section", "")),
             subcat=Text.from_any(raw.get("subcat")),
@@ -262,7 +269,7 @@ class Glossary:
             sections=Counter(e.section for e in self.entries),
             kinds=Counter(e.kind for e in self.entries),
             color_groups=Counter(e.color_group for e in self.entries),
-            versioned=sum(1 for e in self.entries if e.version),
+            versioned=sum(1 for e in self.entries if e.added),
             translated=sum(1 for e in self.entries if e.summary.en and e.body.en),
             with_related=sum(1 for e in self.entries if e.related),
             with_errors=sum(1 for e in self.entries if e.related_errors),

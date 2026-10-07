@@ -125,7 +125,7 @@ def test_markdown_anchors_match_headings(sample_glossary: Glossary):
 
 
 def test_markdown_shows_version_badge():
-    glossary = make_glossary(make_entry(version="3.12"))
+    glossary = make_glossary(make_entry(added="3.12"))
     assert "`3.12`" in get_exporter("markdown").render(glossary)
 
 

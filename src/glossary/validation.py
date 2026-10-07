@@ -8,6 +8,7 @@
 предупреждения формируют бэклог по качеству данных и не блокируют работу.
 """
 
+import itertools
 import re
 import sys
 from collections import Counter, defaultdict
@@ -45,6 +46,8 @@ ID_FORBIDDEN: Final = re.compile(r"""[\s#/?&=%"'<>]""")
 CYRILLIC: Final = re.compile(r"[А-Яа-яЁё]")
 LATIN: Final = re.compile(r"[A-Za-z]")
 VERSION_PATTERN: Final = re.compile(r"^\d+\.\d+$")
+ADDED_PATTERN: Final = re.compile(r"^<?\d+\.\d+$")
+"""``added`` допускает ``<N.N`` — «появилось раньше этой версии» (#122)."""
 DOCS_PREFIX: Final = "https://docs.python.org/3/"
 DUPLICATE_THRESHOLD: Final = 2
 """Начиная со скольких вхождений имя считается дублирующимся."""
@@ -468,15 +471,64 @@ def rule_platforms_summary(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue
                 )
 
 
+def _version_key(version: str) -> tuple[int, int, int]:
+    """Версия для сравнения: ``<3.0`` раньше любой 3.x, в том числе самой 3.0."""
+    before = version.startswith("<")
+    major, minor = (int(part) for part in version.lstrip("<").split("."))
+    return major, minor, -1 if before else 0
+
+
 def rule_version_format(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Маркер версии записан как ``N.N`` либо пуст."""
+    """Версии жизненного цикла записаны верно и идут по порядку.
+
+    ``added`` — ``N.N`` или ``<N.N`` («появилось раньше»: ``<3.0`` — ещё в
+    Python 2), ``deprecated`` и ``removed`` — ``N.N``. Порядок —
+    ``added ≤ deprecated ≤ removed``: возможность не устаревает раньше, чем
+    появилась, и не удаляется раньше, чем устарела.
+    """
     for entry in g.entries:
-        if entry.version and not VERSION_PATTERN.match(entry.version):
+        stages = {
+            "added": (entry.added, ADDED_PATTERN),
+            "deprecated": (entry.deprecated, VERSION_PATTERN),
+            "removed": (entry.removed, VERSION_PATTERN),
+        }
+        valid: list[tuple[str, str]] = []
+        for name, (value, pattern) in stages.items():
+            if not value:
+                continue
+            if not pattern.match(value):
+                yield Issue(
+                    Severity.ERROR,
+                    "version-format",
+                    f"{name} {value!r} не соответствует {pattern.pattern}",
+                    entry.id,
+                )
+                continue
+            valid.append((name, value))
+        for (early, a), (late, b) in itertools.pairwise(valid):
+            if _version_key(a) > _version_key(b):
+                yield Issue(
+                    Severity.ERROR,
+                    "version-format",
+                    f"{late} {b} раньше, чем {early} {a}",
+                    entry.id,
+                )
+
+
+def rule_added(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """У карточки названа версия, с которой возможность есть (#122).
+
+    Пустое значение не отличает «есть с Python 2» от «не проверяли», поэтому
+    давние возможности пишутся ``<3.0``, а пришедшие с Python 3 — ``3.0``.
+    Правило — предупреждение, пока поле заполняется по документации; ошибкой
+    оно станет, когда пустых значений не останется.
+    """
+    for entry in g.entries:
+        if not entry.added:
             yield Issue(
-                Severity.ERROR,
-                "version-format",
-                f"маркер версии {entry.version!r} не соответствует "
-                f"{VERSION_PATTERN.pattern}",
+                Severity.WARNING,
+                "added",
+                "не указано, с какой версии Python возможность есть",
                 entry.id,
             )
 
@@ -513,7 +565,7 @@ def _cyrillic_share(text: str) -> float:
 
 def _from_the_future(version: str) -> bool:
     """Возможность объявлена новее, чем интерпретатор, на котором проверяем."""
-    if not version:
+    if not version or version.startswith("<"):
         return False
     try:
         declared = tuple(int(part) for part in version.split("."))
@@ -543,7 +595,7 @@ def rule_example_compiles(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]
     словами: по нему карточки правятся в ``data/cards/``.
     """
     for entry in g.entries:
-        if not entry.examples or _from_the_future(entry.version):
+        if not entry.examples or _from_the_future(entry.added):
             continue
         try:
             compile("\n".join(entry.examples), f"<{entry.id}>", "exec")
@@ -682,6 +734,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_summary_length,
     rule_body_length,
     rule_version_format,
+    rule_added,
     rule_platforms,
     rule_platforms_summary,
     rule_examples,

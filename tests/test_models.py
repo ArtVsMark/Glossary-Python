@@ -21,7 +21,7 @@ def test_from_dict_fills_missing_fields():
     entry = Entry.from_dict({"id": "x", "title": "x()"})
     assert entry.summary == Text()
     assert entry.body == Text()
-    assert entry.version == ""
+    assert (entry.added, entry.deprecated, entry.removed) == ("", "", "")
     assert entry.examples == ()
 
 
@@ -35,7 +35,9 @@ def test_to_dict_preserves_field_order():
         "syntax",
         "status",
         "docs_url",
-        "version",
+        "added",
+        "deprecated",
+        "removed",
         "platforms",
         "section",
         "subcat",
@@ -61,7 +63,7 @@ def test_text_from_bare_string_lands_in_russian():
 
 
 def test_roundtrip_dict():
-    entry = make_entry(version="3.12")
+    entry = make_entry(added="3.12")
     assert Entry.from_dict(entry.to_dict()) == entry
 
 
@@ -123,7 +125,7 @@ def test_stats_aggregates(sample_glossary: Glossary):
     assert stats.sections["Первый"] == 2
     assert stats.color_groups["module"] == 2
     assert stats.kinds["function"] == 4
-    assert stats.versioned == 0
+    assert stats.versioned == 4
     assert stats.translated == 4
     assert stats.with_errors == 0
     assert stats.avg_summary > 0

@@ -264,3 +264,35 @@ def test_findings_on_the_tree_do_not_grow():
     assert len(mismatched) <= gate.OUTPUT_CEILING, (
         f"вывод расходится в {len(mismatched)} блоках — больше потолка: {mismatched}"
     )
+
+
+@pytest.mark.parametrize(
+    "code",
+    [
+        "# → 3\nprint(3)\n",
+        "import math\n# → 3.14\nprint(math.pi)\n",
+        "from math import pi\n\n# → 3.14\n",
+    ],
+)
+def test_promise_without_code_above_is_orphaned(code: str):
+    assert gate.orphaned(code)
+
+
+@pytest.mark.parametrize(
+    "code",
+    [
+        "print(3)\n# → 3\n",
+        "import math\nprint(math.pi)  # → 3.141592653589793\n",
+        "x = 1\n# комментарий\n# → 1\n",
+        "# Десятичное → другие\nprint(bin(2))  # → 0b10\n",
+        "# age = int(input())  # → преобразование в int\nprint(1)\n",
+    ],
+)
+def test_promise_under_its_code_is_not_orphaned(code: str):
+    assert gate.orphaned(code) == []
+
+
+def test_orphaned_promise_is_a_mismatch_without_running():
+    result = gate.execute("card", "import math\n# → 3\nprint(3)\n")
+    assert result.outcome == "mismatch"
+    assert "без кода над ним" in result.detail

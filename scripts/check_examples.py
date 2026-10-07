@@ -109,6 +109,8 @@ TRAILING_NOTE: Final = re.compile(r"\s*\([^()]*\)\s*$")
 EXCEPTION_NAME: Final = re.compile(
     r"^[A-Z]\w*(?:Error|Exception|Warning|Exit|Interrupt|Iteration)\b"
 )
+IMPORT: Final = re.compile(r"^\s*(?:import\s|from\s+\S+\s+import\s)")
+"""Строка импорта: обещание под ней ничего не обещает о выводе."""
 CALL: Final = re.compile(r"^\s*(?:await\s+)?(?P<name>\w+)\(.*\)\s*$")
 """Строка — вызов функции и только он: ``show(a=1)``, ``await main()``."""
 
@@ -188,6 +190,31 @@ def promises(code: str) -> list[tuple[int, str]]:
         if _prints(source, defined):
             found.append((row, remark.split(ARROW, 1)[1].strip()))
     return found
+
+
+def orphaned(code: str) -> list[int]:
+    """Строки ``# →``, над которыми нет кода, — обещание без того, что обещает.
+
+    Так обещание отрывалось от своего ``print`` при разбиении примера на блоки
+    (#125): строка уходила первой в следующий блок, под импорт, и гейт её не
+    сверял — сверять было не с чем. Под ней прятались неверные обещания.
+    """
+    lines = code.splitlines()
+    rows = []
+    for row, remark in comments(code).items():
+        if (
+            not remark.lstrip("# ").startswith(ARROW)
+            or lines[row - 1].split("#", 1)[0].strip()
+        ):
+            continue
+        above = row - 2
+        while above >= 0 and (
+            not lines[above].strip() or lines[above].lstrip().startswith("#")
+        ):
+            above -= 1
+        if above < 0 or IMPORT.match(lines[above]):
+            rows.append(row)
+    return rows
 
 
 def _squash(text: str) -> str:
@@ -316,6 +343,11 @@ def classify(entry_id: str, code: str, stderr: str, timed_out: bool) -> Result:
 
 def execute(entry_id: str, code: str) -> Result:
     """Исполнить пример в изоляции и отнести исход."""
+    lost = orphaned(code)
+    if lost:
+        return Result(
+            entry_id, "mismatch", f"строка {lost[0]}: обещание «# →» без кода над ним"
+        )
     with tempfile.TemporaryDirectory(prefix="example-") as tmp:
         path = Path(tmp) / FILENAME
         path.write_text(code, encoding="utf-8")

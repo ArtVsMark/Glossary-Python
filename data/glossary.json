@@ -1831,8 +1831,8 @@
     {
       "id": "namedtuple",
       "title": {
-        "ru": "NamedTuple",
-        "en": "NamedTuple"
+        "ru": "typing.NamedTuple",
+        "en": "typing.NamedTuple"
       },
       "kind": "term",
       "summary": {
@@ -1860,7 +1860,8 @@
       "color_group": "typing",
       "aliases": [
         "типизированный именованный кортеж",
-        "кортеж с полями и типами"
+        "кортеж с полями и типами",
+        "NamedTuple"
       ],
       "keywords": [
         "NamedTuple"
@@ -1959,8 +1960,8 @@
     {
       "id": "protocol",
       "title": {
-        "ru": "Protocol",
-        "en": "Protocol"
+        "ru": "typing.Protocol",
+        "en": "typing.Protocol"
       },
       "kind": "term",
       "summary": {
@@ -1989,7 +1990,8 @@
       "aliases": [
         "утиная типизация",
         "структурная типизация",
-        "интерфейс без наследования"
+        "интерфейс без наследования",
+        "Protocol"
       ],
       "keywords": [
         "Protocol"
@@ -2094,8 +2096,8 @@
     {
       "id": "typeddict",
       "title": {
-        "ru": "TypedDict",
-        "en": "TypedDict"
+        "ru": "typing.TypedDict",
+        "en": "typing.TypedDict"
       },
       "kind": "term",
       "summary": {
@@ -2123,7 +2125,8 @@
       "color_group": "typing",
       "aliases": [
         "типизированный словарь",
-        "словарь с фиксированными ключами"
+        "словарь с фиксированными ключами",
+        "TypedDict"
       ],
       "keywords": [
         "TypedDict"
@@ -2160,8 +2163,8 @@
     {
       "id": "typevar",
       "title": {
-        "ru": "TypeVar",
-        "en": "TypeVar"
+        "ru": "typing.TypeVar",
+        "en": "typing.TypeVar"
       },
       "kind": "term",
       "summary": {
@@ -2189,7 +2192,8 @@
       "color_group": "typing",
       "aliases": [
         "переменная типа",
-        "параметр типа"
+        "параметр типа",
+        "TypeVar"
       ],
       "keywords": [
         "TypeVar"
@@ -2315,7 +2319,8 @@
       "color_group": "typing",
       "aliases": [
         "объединение типов",
-        "несколько допустимых типов аргумента"
+        "несколько допустимых типов аргумента",
+        "typing.Union"
       ],
       "keywords": [
         "typing.Union"
@@ -25899,8 +25904,8 @@
     {
       "id": "Future-cf",
       "title": {
-        "ru": "Future",
-        "en": "Future"
+        "ru": "concurrent.futures.Future",
+        "en": "concurrent.futures.Future"
       },
       "kind": "term",
       "summary": {
@@ -25929,7 +25934,8 @@
       "aliases": [
         "результат асинхронной задачи",
         "объект отложенного результата",
-        "проверить, готова ли задача"
+        "проверить, готова ли задача",
+        "Future"
       ],
       "keywords": [
         "Future"
@@ -25956,8 +25962,8 @@
     {
       "id": "ProcessPoolExecutor",
       "title": {
-        "ru": "ProcessPoolExecutor",
-        "en": "ProcessPoolExecutor"
+        "ru": "concurrent.futures.ProcessPoolExecutor",
+        "en": "concurrent.futures.ProcessPoolExecutor"
       },
       "kind": "term",
       "summary": {
@@ -25985,7 +25991,8 @@
       "color_group": "module",
       "aliases": [
         "пул процессов",
-        "параллельные вычисления на нескольких ядрах"
+        "параллельные вычисления на нескольких ядрах",
+        "ProcessPoolExecutor"
       ],
       "keywords": [
         "ProcessPoolExecutor"
@@ -26014,8 +26021,8 @@
     {
       "id": "ThreadPoolExecutor",
       "title": {
-        "ru": "ThreadPoolExecutor",
-        "en": "ThreadPoolExecutor"
+        "ru": "concurrent.futures.ThreadPoolExecutor",
+        "en": "concurrent.futures.ThreadPoolExecutor"
       },
       "kind": "term",
       "summary": {
@@ -26043,7 +26050,8 @@
       "color_group": "module",
       "aliases": [
         "пул потоков",
-        "параллельные задачи ввода-вывода"
+        "параллельные задачи ввода-вывода",
+        "ThreadPoolExecutor"
       ],
       "keywords": [
         "ThreadPoolExecutor"
@@ -28069,7 +28077,8 @@
       "color_group": "module",
       "aliases": [
         "класс для хранения данных",
-        "класс с автоматическим конструктором"
+        "класс с автоматическим конструктором",
+        "dataclasses.dataclass"
       ],
       "keywords": [
         "dataclasses.dataclass",
@@ -30087,8 +30096,8 @@
     {
       "id": "timedelta",
       "title": {
-        "ru": "timedelta",
-        "en": "timedelta"
+        "ru": "datetime.timedelta",
+        "en": "datetime.timedelta"
       },
       "kind": "term",
       "summary": {
@@ -30117,7 +30126,8 @@
       "aliases": [
         "промежуток времени",
         "разница между датами",
-        "прибавить дни к дате"
+        "прибавить дни к дате",
+        "timedelta"
       ],
       "keywords": [
         "timedelta"
@@ -30466,8 +30476,8 @@
     {
       "id": "enum",
       "title": {
-        "ru": "Enum",
-        "en": "Enum"
+        "ru": "enum.Enum",
+        "en": "enum.Enum"
       },
       "kind": "term",
       "summary": {
@@ -30496,7 +30506,8 @@
       "aliases": [
         "перечисление",
         "именованные константы",
-        "набор допустимых значений"
+        "набор допустимых значений",
+        "Enum"
       ],
       "keywords": [
         "Enum"
@@ -31822,7 +31833,8 @@
       "aliases": [
         "запретить дубликаты значений перечисления",
         "проверка уникальности членов перечисления",
-        "запретить псевдонимы членов"
+        "запретить псевдонимы членов",
+        "enum.unique"
       ],
       "keywords": [
         "enum.unique",
@@ -74868,7 +74880,8 @@
       "aliases": [
         "форматирование строки шаблоном",
         "два знака после запятой",
-        "подстановка по имени"
+        "подстановка по имени",
+        "str.format"
       ],
       "keywords": [
         "str.format",

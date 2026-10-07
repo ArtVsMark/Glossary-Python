@@ -1301,8 +1301,8 @@
   {
     "id": "Future-cf",
     "title": {
-      "ru": "Future",
-      "en": "Future"
+      "ru": "concurrent.futures.Future",
+      "en": "concurrent.futures.Future"
     },
     "kind": "term",
     "summary": {
@@ -1330,7 +1330,8 @@
     "aliases": [
       "результат асинхронной задачи",
       "объект отложенного результата",
-      "проверить, готова ли задача"
+      "проверить, готова ли задача",
+      "Future"
     ],
     "keywords": [
       "Future"
@@ -1475,8 +1476,8 @@
   {
     "id": "ProcessPoolExecutor",
     "title": {
-      "ru": "ProcessPoolExecutor",
-      "en": "ProcessPoolExecutor"
+      "ru": "concurrent.futures.ProcessPoolExecutor",
+      "en": "concurrent.futures.ProcessPoolExecutor"
     },
     "kind": "term",
     "summary": {
@@ -1503,7 +1504,8 @@
     },
     "aliases": [
       "пул процессов",
-      "параллельные вычисления на нескольких ядрах"
+      "параллельные вычисления на нескольких ядрах",
+      "ProcessPoolExecutor"
     ],
     "keywords": [
       "ProcessPoolExecutor"
@@ -1532,8 +1534,8 @@
   {
     "id": "ThreadPoolExecutor",
     "title": {
-      "ru": "ThreadPoolExecutor",
-      "en": "ThreadPoolExecutor"
+      "ru": "concurrent.futures.ThreadPoolExecutor",
+      "en": "concurrent.futures.ThreadPoolExecutor"
     },
     "kind": "term",
     "summary": {
@@ -1560,7 +1562,8 @@
     },
     "aliases": [
       "пул потоков",
-      "параллельные задачи ввода-вывода"
+      "параллельные задачи ввода-вывода",
+      "ThreadPoolExecutor"
     ],
     "keywords": [
       "ThreadPoolExecutor"
@@ -3248,7 +3251,8 @@
     },
     "aliases": [
       "класс для хранения данных",
-      "класс с автоматическим конструктором"
+      "класс с автоматическим конструктором",
+      "dataclasses.dataclass"
     ],
     "keywords": [
       "dataclasses.dataclass",
@@ -4527,8 +4531,8 @@
   {
     "id": "enum",
     "title": {
-      "ru": "Enum",
-      "en": "Enum"
+      "ru": "enum.Enum",
+      "en": "enum.Enum"
     },
     "kind": "term",
     "summary": {
@@ -4556,7 +4560,8 @@
     "aliases": [
       "перечисление",
       "именованные константы",
-      "набор допустимых значений"
+      "набор допустимых значений",
+      "Enum"
     ],
     "keywords": [
       "Enum"
@@ -13058,8 +13063,8 @@
   {
     "id": "timedelta",
     "title": {
-      "ru": "timedelta",
-      "en": "timedelta"
+      "ru": "datetime.timedelta",
+      "en": "datetime.timedelta"
     },
     "kind": "term",
     "summary": {
@@ -13087,7 +13092,8 @@
     "aliases": [
       "промежуток времени",
       "разница между датами",
-      "прибавить дни к дате"
+      "прибавить дни к дате",
+      "timedelta"
     ],
     "keywords": [
       "timedelta"
@@ -13215,7 +13221,8 @@
     "aliases": [
       "запретить дубликаты значений перечисления",
       "проверка уникальности членов перечисления",
-      "запретить псевдонимы членов"
+      "запретить псевдонимы членов",
+      "enum.unique"
     ],
     "keywords": [
       "enum.unique",

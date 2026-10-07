@@ -6,10 +6,12 @@
 """
 
 import json
+import sys
 from pathlib import Path
 from typing import Final
 
 import pytest
+import yaml
 
 import check_examples as gate
 
@@ -296,3 +298,86 @@ def test_orphaned_promise_is_a_mismatch_without_running():
     result = gate.execute("card", "import math\n# → 3\nprint(3)\n")
     assert result.outcome == "mismatch"
     assert "без кода над ним" in result.detail
+
+
+# --------------------------- версии Python (#154) ---------------------------
+
+
+@pytest.mark.parametrize(
+    ("entry", "block", "version", "expected"),
+    [
+        ({"added": "<3.0"}, ["print(1)"], (3, 11), True),
+        ({"added": "3.12"}, ["print(1)"], (3, 11), False),
+        ({"added": "3.12"}, ["print(1)"], (3, 12), True),
+        ({"added": "3.0", "removed": "3.13"}, ["print(1)"], (3, 12), True),
+        ({"added": "3.0", "removed": "3.13"}, ["print(1)"], (3, 13), False),
+        ({"added": "3.0"}, ["# Python 3.12+", "print(1)"], (3, 11), False),
+        ({"added": "3.0"}, ["# Python 3.12+", "print(1)"], (3, 12), True),
+        ({"added": "3.0"}, ["# Python 3.13+ (на Windows — 3.12+)"], (3, 12), False),
+        ({}, [], (3, 11), True),
+    ],
+)
+def test_applicable_follows_the_card_promise(
+    entry: dict[str, object], block: list[str], version: tuple[int, int], expected: bool
+):
+    assert gate.applicable(entry, block, version) is expected
+
+
+def test_marker_only_on_the_first_line():
+    """Пометка в середине блока — комментарий, а не обещание версии."""
+    assert gate.applicable({}, ["x = 1", "# Python 3.99+"], (3, 11))
+
+
+def test_examples_skip_what_the_version_does_not_promise(tmp_path: Path):
+    entries = [
+        {
+            "id": "old",
+            "added": "3.0",
+            "examples": [["print(1)"], ["# Python 3.13+", "print(2)"]],
+        },
+        {"id": "new", "added": "3.13", "examples": [["print(3)"]]},
+    ]
+    data = tmp_path / "g.json"
+    data.write_text(json.dumps({"entries": entries}), encoding="utf-8")
+    assert list(gate.examples(data, (3, 12))) == ["old · пример 1"]
+    assert len(gate.examples(data, (3, 13))) == 3
+    assert len(gate.examples(data)) == 3, "без версии — все блоки"
+
+
+def test_version_of_reads_the_interpreter():
+    assert gate.version_of(sys.executable) == sys.version_info[:2]
+
+
+def test_main_runs_examples_with_the_named_interpreter(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr(gate, "INTERPRETER", [sys.executable])
+    data = write(tmp_path / "g.json", {"a": [["print(1)  # → 1"]]})
+    assert gate.main(["--data", str(data), "--python", sys.executable]) == 0
+    major, minor = sys.version_info[:2]
+    assert f"Python {major}.{minor}" in capsys.readouterr().out
+
+
+def test_unknown_interpreter_is_the_third_outcome(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr(gate, "INTERPRETER", list(gate.INTERPRETER))
+    data = write(tmp_path / "g.json", {"a": [["print(1)"]]})
+    absent = str(tmp_path / "нет-python")
+    assert gate.main(["--data", str(data), "--python", absent]) == gate.NOT_RUN
+    assert absent in capsys.readouterr().err, "третий исход называет интерпретатор"
+
+
+@pytest.mark.live_surface
+def test_ci_runs_examples_on_every_promised_version():
+    """Младшие версии исполняет ci.yml, следующую — python-next.yml (#154)."""
+    workflows = gate.ROOT / ".github" / "workflows"
+    ci = yaml.safe_load((workflows / "ci.yml").read_text(encoding="utf-8"))
+    job = ci["jobs"]["examples"]
+    versions = {str(v) for v in job["strategy"]["matrix"]["python-version"]}
+    assert {"3.11", "3.12", "3.13"} <= versions
+    runs = " ".join(str(step.get("run", "")) for step in job["steps"])
+    assert "check_examples.py" in runs and "--python" in runs
+    assert "examples" in ci["jobs"]["check-pr"]["needs"], "матрица держит слияние"
+    nxt = (workflows / "python-next.yml").read_text(encoding="utf-8")
+    assert "scripts/check_examples.py" in nxt

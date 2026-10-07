@@ -6734,5 +6734,73 @@
     "related_errors": [
       "timeouterror"
     ]
+  },
+  {
+    "id": "sqlite3.Warning",
+    "title": {
+      "ru": "sqlite3.Warning",
+      "en": "sqlite3.Warning"
+    },
+    "kind": "exception",
+    "summary": {
+      "ru": "Исключение DB-API для предупреждений базы. Сам модуль sqlite3 его сейчас не возбуждает — класс оставлен для совместимости со стандартом PEP 249.",
+      "en": "The DB-API exception for database warnings. The sqlite3 module itself no longer raises it — the class is kept for PEP 249 compliance."
+    },
+    "body": {
+      "ru": "Несмотря на имя, это не предупреждение: sqlite3.Warning наследует Exception, а не встроенный Warning, поэтому warnings.filterwarnings на него не действует, а except Warning его не поймает. До Python 3.10 включительно его поднимал execute() с двумя SQL-командами в строке; с 3.11 там ProgrammingError, так что старые except sqlite3.Warning больше не срабатывают. В 3.14 класс не устарел, но и не возбуждается модулем.",
+      "en": "Despite the name it is not a warning: sqlite3.Warning derives from Exception, not from the built-in Warning, so warnings.filterwarnings ignores it and except Warning will not catch it. Up to Python 3.10, execute() raised it for a string with two SQL statements; since 3.11 that is ProgrammingError, so old except sqlite3.Warning clauses no longer fire. In 3.14 the class is not deprecated, it is simply never raised by the module."
+    },
+    "syntax": "sqlite3.Warning",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.Warning",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sqlite3",
+    "subcat": {
+      "ru": "исключения",
+      "en": "exceptions"
+    },
+    "aliases": [
+      "предупреждение sqlite",
+      "sqlite3 warning не ловится"
+    ],
+    "keywords": [
+      "sqlite3.Warning",
+      "Warning"
+    ],
+    "tags": [
+      "exc"
+    ],
+    "examples": [
+      [
+        "import sqlite3",
+        "print(issubclass(sqlite3.Warning, Exception))  # → True",
+        "print(issubclass(sqlite3.Warning, Warning))  # → False — это не встроенный Warning",
+        "print(issubclass(sqlite3.Warning, sqlite3.Error))  # → False"
+      ],
+      [
+        "import sqlite3",
+        "conn = sqlite3.connect(':memory:')",
+        "try:",
+        "    conn.execute('SELECT 1; SELECT 2')",
+        "except sqlite3.Warning:",
+        "    print('Warning')",
+        "except sqlite3.ProgrammingError as e:",
+        "    print(type(e).__name__)  # → ProgrammingError — с 3.11, раньше был Warning",
+        "conn.close()"
+      ]
+    ],
+    "related": [
+      "sqlite3.Error",
+      "warning",
+      "exception"
+    ],
+    "related_errors": [
+      "sqlite3.ProgrammingError"
+    ]
   }
 ]

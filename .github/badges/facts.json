@@ -3,15 +3,15 @@
   "schema_of": "факты о проекте-витрине глоссария по договору фактов витрины 1.3: по каждому показателю значение или причина в none",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T18:02:13+00:00",
+  "generated_at": "2026-10-07T19:04:20+00:00",
   "repo": "ArtVsMark/Glossary-Python",
-  "commit": "4913bec7a43f221fccdd0b0f85d0f1cdddedd846",
+  "commit": "2a1236c2792eea40e7ea7a67de619a745b24d13c",
   "ci": {
     "workflow": "ci.yml"
   },
   "glossary": {
     "cards": 1710,
-    "groups": 61,
+    "groups": 62,
     "errors": 0,
     "warnings": 0,
     "completeness_percent": 99.9,
@@ -19,17 +19,17 @@
     "completeness_python": "3.14"
   },
   "rules": {
-    "total": 214,
-    "gate": 74,
+    "total": 216,
+    "gate": 76,
     "document": 39,
     "pipeline": 16,
-    "mechanised": 129,
-    "none": 16,
-    "not_applicable": 69
+    "mechanised": 131,
+    "none": 15,
+    "not_applicable": 70
   },
   "tests": {
-    "functions": 735,
-    "modules": 46
+    "functions": 744,
+    "modules": 47
   },
   "python": {
     "supported": [
@@ -39,7 +39,7 @@
       "3.15"
     ],
     "os": [
-      "ubuntu-latest"
+      "ubuntu-26.04"
     ]
   },
   "checks_per_pr": {
@@ -62,5 +62,5 @@
   ],
   "coverage_percent": 97.7,
   "release": "1.1",
-  "version": "1.1.57"
+  "version": "1.1.65"
 }

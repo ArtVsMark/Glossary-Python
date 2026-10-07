@@ -897,7 +897,7 @@
       "os.path.splitext",
       "os.path.basename",
       "оператор",
-      "path"
+      "pathlib.path"
     ],
     "related_errors": []
   },
@@ -1728,8 +1728,8 @@
       "en": "Joins several dictionaries into a single view. Lookup goes through them in order. maps is the list of dictionaries, new_child() adds a new child level, parents is everything but the first one."
     },
     "body": {
-      "ru": "Главное отличие от {**defaults, **user}: ChainMap не копирует, а держит ссылки на исходные словари, поэтому позже изменённый defaults сразу виден через цепочку. Запись, обновление и удаление затрагивают только первый словарь — удалить ключ, лежащий глубже, нельзя, будет KeyError. Отсюда типичный приём: new_child() для временного слоя настроек, который потом просто выбрасывается.",
-      "en": "The key difference from {**defaults, **user}: ChainMap does not copy, it holds references to the original dicts, so a later change to defaults shows up through the chain immediately. Writes, updates and deletions touch only the first mapping — you cannot delete a key that lives deeper, you get a KeyError. Hence the usual pattern: new_child() for a temporary layer of settings that you later simply discard."
+      "ru": "ChainMap не копирует словари, а держит ссылки на них: изменение исходного словаря сразу видно через цепочку — это принципиальное отличие от снимка {**defaults, **overrides}. Главная ловушка — асимметрия чтения и записи: ключ ищется по всем словарям, но присваивание, pop и del работают только с первым, поэтому удаление ключа, который виден при чтении, но лежит в defaults, падает с KeyError.",
+      "en": "ChainMap stores references rather than copies, so a later change in an underlying dict is visible through the chain right away — unlike the snapshot you get from {**defaults, **overrides}. The trap is the asymmetry between reads and writes: lookups scan every mapping, but assignment, pop and del touch only the first one, so deleting a key that is visible on read but actually lives in defaults raises KeyError."
     },
     "syntax": "collections.ChainMap(*maps)\n.new_child(m=None)\n.parents",
     "status": "ready",
@@ -1746,14 +1746,16 @@
     "aliases": [
       "цепочка словарей",
       "поиск по нескольким словарям",
-      "несколько словарей как один"
+      "несколько словарей как один",
+      "поиск ключа по нескольким словарям"
     ],
     "keywords": [
       "collections.ChainMap",
       "ChainMap"
     ],
     "tags": [
-      "module"
+      "module",
+      "mapset"
     ],
     "examples": [
       "from collections import ChainMap",
@@ -1767,10 +1769,10 @@
       "print(child['size'])  # → 20"
     ],
     "related": [
-      "chainmap",
       "объединение-словарей",
       "dict-merge",
-      "collections.defaultdict"
+      "collections.defaultdict",
+      "dict.update"
     ],
     "related_errors": []
   },
@@ -1786,8 +1788,8 @@
       "en": "A dictionary for counting items. Methods: most_common(n), elements(); it also supports +, -, & and |."
     },
     "body": {
-      "ru": "Обращение к отсутствующему элементу возвращает 0 и, в отличие от defaultdict, ключ в словарь не добавляет — так что проверять наличие через c[x] безопасно. Осторожно с арифметикой: оператор минус выбрасывает нулевые и отрицательные счётчики, а метод subtract() их сохраняет, включая минусы. most_common() без аргумента сортирует всё целиком, при равных счётчиках порядок — как элементы впервые встретились.",
-      "en": "Looking up a missing element returns 0 and, unlike defaultdict, does not insert the key, so testing with c[x] is harmless. Watch the arithmetic: the minus operator drops zero and negative counts, while the subtract() method keeps them, negatives included. most_common() with no argument sorts the whole thing, and ties are ordered by first encounter."
+      "ru": "Обращение к отсутствующему ключу возвращает 0 и, в отличие от defaultdict, не создаёт запись — удобно, но опечатка в ключе так и останется незамеченной вместо KeyError. Ещё одна тонкость: оператор вычитания c1 - c2 выбрасывает нулевые и отрицательные счётчики, а метод subtract() их сохраняет, так что отрицательные значения возможны только через второй вариант. most_common() сортирует по убыванию, а элементы с одинаковым счётчиком идут в порядке первого появления.",
+      "en": "Looking up a missing key returns 0 and, unlike defaultdict, does not insert anything — convenient, but a typo in a key silently yields 0 instead of a KeyError. Note also that the subtraction operator c1 - c2 drops zero and negative counts, while the subtract() method keeps them, so negative counts can only appear via the latter. most_common() sorts by descending count and breaks ties by first-encountered order."
     },
     "syntax": "collections.Counter(iterable_or_mapping=None)",
     "status": "ready",
@@ -1804,23 +1806,42 @@
     "aliases": [
       "подсчёт элементов",
       "частота элементов",
-      "самый частый элемент"
+      "самый частый элемент",
+      "подсчёт повторений",
+      "сколько раз встречается элемент"
     ],
     "keywords": [
       "collections.Counter",
       "Counter"
     ],
     "tags": [
-      "module"
+      "module",
+      "mapset"
     ],
     "examples": [
       "from collections import Counter",
-      "c = Counter('abracadabra')",
-      "print(c)  # → Counter({'a': 5, 'b': 2, 'r': 2, 'c': 1, 'd': 1})",
-      "print(c.most_common(2))  # → [('a', 5), ('b', 2)]",
-      "c2 = Counter({'a': 1, 'b': 2})",
-      "print(c + c2)  # → сложение счётчиков",
-      "print(list(c.elements()))  # → все элементы с повторениями"
+      "c = Counter('aabbccca')",
+      "print(c)",
+      "# → Counter({'a': 3, 'c': 3, 'b': 2})",
+      "print(c.most_common(2))",
+      "# → [('a', 3), ('c', 3)]",
+      "c2 = Counter(['apple', 'banana', 'apple', 'cherry', 'apple'])",
+      "print(c2.most_common(1))",
+      "# → [('apple', 3)]",
+      "c3 = Counter('hello')",
+      "c4 = Counter('world')",
+      "print(c3 + c4)",
+      "# → Counter({'l': 3, 'o': 2, 'h': 1, 'e': 1, 'w': 1, 'r': 1, 'd': 1})",
+      "print(c3 - c4)",
+      "# → Counter({'h': 1, 'e': 1, 'l': 1}) (только положительные)",
+      "print(c3 & c4)",
+      "# → Counter({'l': 1, 'o': 1}) (пересечение, min)",
+      "print(c3 | c4)",
+      "# → Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1, 'w': 1, 'r': 1, 'd': 1}) (объединение, max)",
+      "words = 'the cat sat on the mat'.split()",
+      "wc = Counter(words)",
+      "print(wc.most_common(3))",
+      "# → [('the', 2), ('cat', 1), ('sat', 1)]"
     ],
     "related": [
       "collections.defaultdict",
@@ -1841,8 +1862,8 @@
       "en": "A dictionary with a factory for default values. When a missing key is accessed, the factory creates the value."
     },
     "body": {
-      "ru": "Главная ловушка: простое чтение d[key] тоже вызывает фабрику и вставляет ключ, так что после «проверки» словарь распухает пустыми списками. Хотите просто посмотреть — используйте key in d или d.get(key). Фабрика вызывается без аргументов, то есть значение по умолчанию не может зависеть от ключа; если нужна такая зависимость, переопределяйте __missing__ в наследнике dict.",
-      "en": "The main trap: merely reading d[key] also calls the factory and inserts the key, so after a round of \"checking\" the dict is bloated with empty lists. To just look, use key in d or d.get(key). The factory is called with no arguments, so the default cannot depend on the key; if you need that, subclass dict and override __missing__."
+      "ru": "Фабрика срабатывает на чтении d[key], а значит простое обращение к несуществующему ключу молча создаёт запись и раздувает словарь; если проверяешь наличие ключа, используй in или .get(), они __missing__ не вызывают. Второе — default_factory это вызываемый объект без аргументов, а не готовое значение: нужно defaultdict(list) и defaultdict(int), а не defaultdict([]) или defaultdict(0).",
+      "en": "The factory fires on a read of d[key], so merely touching a missing key silently inserts an entry and grows the dict; use in or .get() when you just want to check, since neither triggers __missing__. Also, default_factory must be a zero-argument callable, not a ready value: write defaultdict(list) or defaultdict(int), never defaultdict([]) or defaultdict(0)."
     },
     "syntax": "collections.defaultdict(default_factory, ...)",
     "status": "ready",
@@ -1858,24 +1879,56 @@
     },
     "aliases": [
       "словарь со значением по умолчанию",
-      "автоматическое создание ключа"
+      "автоматическое создание ключа",
+      "группировка по ключу",
+      "словарь списков"
     ],
     "keywords": [
       "collections.defaultdict",
       "defaultdict"
     ],
     "tags": [
-      "module"
+      "module",
+      "mapset"
     ],
     "examples": [
       "from collections import defaultdict",
-      "d = defaultdict(int)",
-      "d['a'] += 1  # → {'a': 1}, не KeyError",
-      "d2 = defaultdict(list)",
-      "d2['x'].append(1)  # → {'x': [1]}",
-      "d3 = defaultdict(set)",
-      "d3['k'].add('v')  # → {'k': {'v'}}",
-      "print(d['missing'])  # → 0 (int())"
+      "d = defaultdict(list)",
+      "d['fruits'].append('apple')",
+      "d['fruits'].append('banana')",
+      "print(d)",
+      "# → defaultdict(<class 'list'>, {'fruits': ['apple', 'banana']})",
+      "counter = defaultdict(int)",
+      "for c in 'hello world':",
+      "    counter[c] += 1",
+      "    print(dict(counter))",
+      "    # → {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}",
+      "    groups = defaultdict(set)",
+      "    for w in ['cat', 'car', 'dog', 'cow']:",
+      "        groups[w[0]].add(w)",
+      "        print(dict(groups))",
+      "# → {'c': {'cat', 'car', 'cow'}, 'd': {'dog'}}",
+      "from collections import defaultdict",
+      "d2 = defaultdict(lambda: 'unknown')",
+      "d2['key1'] = 'value'",
+      "print(d2['key1'])",
+      "# → 'value'",
+      "print(d2['missing'])",
+      "# → 'unknown'",
+      "dd = defaultdict(dict)",
+      "dd['a']['nested'] = 1",
+      "print(dd)",
+      "# → defaultdict(<class 'dict'>, {'a': {'nested': 1}})",
+      "words = ['apple', 'ant', 'bat', 'ball', 'cat']",
+      "by_letter = defaultdict(list)",
+      "for w in words:",
+      "    by_letter[w[0]].append(w)",
+      "    print(dict(by_letter))",
+      "    # → {'a': ['apple', 'ant'], 'b': ['bat', 'ball'], 'c': ['cat']}",
+      "    nested_dd = defaultdict(lambda: defaultdict(int))",
+      "    nested_dd['row1']['col1'] += 1",
+      "    print(nested_dd['row1']['col1'])",
+      "    # → 1"
     ],
     "related": [
       "dict.setdefault",
@@ -2051,28 +2104,41 @@
     },
     "aliases": [
       "словарь с порядком вставки",
-      "переместить ключ в конец словаря"
+      "переместить ключ в конец словаря",
+      "упорядоченный словарь",
+      "порядок ключей в словаре",
+      "переместить ключ в конец"
     ],
     "keywords": [
       "collections.OrderedDict",
       "OrderedDict"
     ],
     "tags": [
-      "module"
+      "module",
+      "mapset"
     ],
     "examples": [
       "from collections import OrderedDict",
       "od = OrderedDict([('a', 1), ('b', 2), ('c', 3)])",
-      "od.move_to_end('a')  # → 'a' в конец",
-      "print(list(od.keys()))  # → ['b', 'c', 'a']",
-      "od.move_to_end('c', last=False)  # → 'c' в начало",
-      "print(list(od.keys()))  # → ['c', 'b', 'a']",
-      "print(od.popitem(last=True))  # → ('a', 1)"
+      "print(od)",
+      "# → OrderedDict([('a', 1), ('b', 2), ('c', 3)])",
+      "od.move_to_end('a')",
+      "print(od)",
+      "# → OrderedDict([('b', 2), ('c', 3), ('a', 1)])",
+      "od.move_to_end('a', last=False)",
+      "print(list(od.keys())[0])",
+      "# → 'a' (переместить в начало)",
+      "print(od.popitem(last=True))",
+      "# → ('a', 1) (последний)",
+      "print(od.popitem(last=False))",
+      "# → ('b', 2) (первый)"
     ],
     "related": [
       "collections.defaultdict",
       "collections.counter",
-      "dict.popitem"
+      "dict.popitem",
+      "создание-словаря",
+      "сортировка-словаря"
     ],
     "related_errors": []
   },
@@ -4359,29 +4425,46 @@
     "aliases": [
       "свёртка последовательности",
       "накопление результата по списку",
-      "сворачивание в одно значение"
+      "сворачивание в одно значение",
+      "свернуть список в одно значение"
     ],
     "keywords": [
       "functools.reduce",
       "reduce"
     ],
     "tags": [
-      "module"
+      "module",
+      "op"
     ],
     "examples": [
       "from functools import reduce",
-      "print(reduce(lambda a, b: a + b, [1, 2, 3, 4]))  # → 10",
-      "print(reduce(lambda a, b: a * b, range(1, 6)))  # → 120",
-      "print(reduce(lambda a, b: a + b, [], 0))  # → 0  (с initializer)",
-      "print(reduce(max, [3, 1, 4, 1, 5]))  # → 5",
-      "print(reduce(lambda a, b: a + [b], [1, 2, 3], []))  # → [1, 2, 3]"
+      "result = reduce(lambda a, b: a + b, [1,2,3,4,5])",
+      "print(result)  # → 15",
+      "product = reduce(lambda a, b: a * b, [1,2,3,4,5])",
+      "print(product)  # → 120",
+      "maximum = reduce(lambda a, b: a if a > b else b, [3,1,4,1,5,9])",
+      "print(maximum)  # → 9",
+      "words = ['Hello', ' ', 'World']",
+      "sentence = reduce(lambda a, b: a + b, words)",
+      "print(sentence)  # → Hello  World",
+      "# С начальным значением",
+      "total = reduce(lambda a, b: a + b, [1,2,3], 100)",
+      "print(total)  # → 106",
+      "# Подсчёт вхождений",
+      "from collections import Counter",
+      "nums = [1,1,2,3,1]",
+      "result2 = reduce(lambda acc, x: acc + (1 if x==1 else 0), nums, 0)",
+      "print(result2)  # → 3"
     ],
     "related": [
-      "reduce",
       "itertools.accumulate",
-      "sum"
+      "sum",
+      "map",
+      "filter"
     ],
-    "related_errors": []
+    "related_errors": [
+      "TypeError"
+    ]
   },
   {
     "id": "functools.singledispatch",
@@ -7855,117 +7938,6 @@
     "related_errors": []
   },
   {
-    "id": "os-getenv",
-    "title": {
-      "ru": "os.getenv()",
-      "en": "os.getenv()"
-    },
-    "kind": "function",
-    "summary": {
-      "ru": "Возвращает значение переменной окружения по имени. Если переменная не задана, возвращает default (по умолчанию None). Безопаснее, чем os.environ[key].",
-      "en": "Returns the value of an environment variable by name. If the variable is not set it returns default (None by default). Safer than os.environ[key]."
-    },
-    "body": {
-      "ru": "Значение всегда строка, а умолчание возвращается как есть, без преобразования: для числа пишут int(os.getenv('PORT', '8000')), а не int(os.getenv('PORT', 8000)) — второй вариант смешивает типы. Пустая строка и отсутствующая переменная — разные случаи: заданная, но пустая переменная вернёт '', а не default. Читается из os.environ, то есть из снимка, сделанного при старте Python.",
-      "en": "The value is always a string, and the default comes back as is, unconverted: write int(os.getenv('PORT', '8000')) for a number rather than int(os.getenv('PORT', 8000)), which mixes types. An empty variable and a missing one differ: a variable set to an empty string returns '', not the default. It reads from os.environ, a snapshot taken when Python started."
-    },
-    "syntax": "os.getenv(key, default=None)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/os.html#os.getenv",
-    "version": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Модуль os",
-    "subcat": {
-      "ru": "переменные окружения",
-      "en": "environment variables"
-    },
-    "aliases": [
-      "прочитать переменную окружения",
-      "значение переменной окружения по умолчанию",
-      "получить токен из окружения"
-    ],
-    "keywords": [
-      "os.getenv"
-    ],
-    "tags": [
-      "module"
-    ],
-    "examples": [
-      "import os",
-      "db_host = os.getenv('DB_HOST', 'localhost')",
-      "api_key  = os.getenv('API_KEY')  # None если не задана",
-      "if api_key is None:",
-      "    raise EnvironmentError('API_KEY не задана')  # → OSError: EnvironmentError — его псевдоним"
-    ],
-    "related": [
-      "os.environ",
-      "dict.get",
-      "os.unsetenv"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "os-scandir",
-    "title": {
-      "ru": "os.scandir()",
-      "en": "os.scandir()"
-    },
-    "kind": "function",
-    "summary": {
-      "ru": "Эффективный итератор по содержимому директории. Возвращает объекты DirEntry с именем, путём и кешированными атрибутами — быстрее os.listdir() + os.stat().",
-      "en": "An efficient iterator over the contents of a directory. It yields DirEntry objects with the name, the path and cached attributes — faster than os.listdir() + os.stat()."
-    },
-    "body": {
-      "ru": "Используйте как контекстный менеджер или дочитывайте до конца: незакрытый итератор держит дескриптор каталога и выдаёт ResourceWarning. Выигрыш в скорости — в том, что тип записи берётся из того же системного вызова: на Unix is_dir() и is_file() обычно не делают отдельный stat, на Windows и stat() приходит готовым. Порядок записей произвольный, '.' и '..' не выдаются.",
-      "en": "Use it as a context manager or exhaust it: an unclosed iterator keeps the directory descriptor open and emits a ResourceWarning. The speed-up comes from getting the entry type from the same system call: on Unix is_dir() and is_file() usually need no extra stat, and on Windows even stat() comes ready. Entry order is arbitrary, and '.' and '..' are not yielded."
-    },
-    "syntax": "with os.scandir(path='.') as it:\n    for entry in it: ...",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/os.html#os.scandir",
-    "version": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Модуль os",
-    "subcat": {
-      "ru": "файловая система",
-      "en": "file system"
-    },
-    "aliases": [
-      "быстро перебрать файлы в папке",
-      "список файлов с типами",
-      "обойти содержимое каталога"
-    ],
-    "keywords": [
-      "os.scandir"
-    ],
-    "tags": [
-      "module"
-    ],
-    "examples": [
-      "import os, tempfile",
-      "with os.scandir(tempfile.gettempdir()) as it:",
-      "    for entry in it:",
-      "        if entry.is_file():",
-      "            print(entry.name, entry.stat().st_size)  # → ? имя и размер файла",
-      "        elif entry.is_dir():",
-      "            print(entry.name + '/')  # → ? имя вложенного каталога"
-    ],
-    "related": [
-      "os.listdir",
-      "os.DirEntry",
-      "os.stat",
-      ".iterdir"
-    ],
-    "related_errors": [
-      "FileNotFoundError",
-      "NotADirectoryError",
-      "PermissionError"
-    ]
-  },
-  {
     "id": "os.environ",
     "title": {
       "ru": "os.environ",
@@ -8013,7 +7985,7 @@
       "print('MY_VAR' in os.environ)  # → True"
     ],
     "related": [
-      "os-getenv",
+      "os.getenv",
       "os.unsetenv",
       "subprocess-run"
     ],
@@ -8122,7 +8094,7 @@
       "sorted_files = sorted(os.listdir('.'))  # → отсортированный список"
     ],
     "related": [
-      "os-scandir",
+      "os.scandir",
       "os.walk",
       ".iterdir",
       "path.glob"
@@ -8415,62 +8387,7 @@
     "related": [
       "os.listdir",
       "path.rglob",
-      "os-scandir"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "path",
-    "title": {
-      "ru": "pathlib.Path()",
-      "en": "pathlib.Path()"
-    },
-    "kind": "function",
-    "summary": {
-      "ru": "Создаёт объект пути из строки или компонентов. На Windows — WindowsPath, на Unix — PosixPath.",
-      "en": "Creates a path object from a string or from components. On Windows it is a WindowsPath, on Unix a PosixPath."
-    },
-    "body": {
-      "ru": "Конструктор ничего не читает с диска: объект спокойно создаётся и для несуществующего пути, существование проверяют отдельно через exists() или is_file(). При склейке компонентов абсолютный кусок отбрасывает всё, что было слева, — типичная ловушка, когда второй компонент приходит из пользовательского ввода. Собирайте пути оператором / вместо конкатенации строк: разделитель подставится под текущую ОС, а на Windows прямые слэши во входной строке всё равно будут поняты.",
-      "en": "The constructor never touches the filesystem — a Path for a nonexistent location is created just fine, and existence is a separate question for exists() or is_file(). When components are joined, an absolute component throws away everything to its left, which bites when that component comes from user input. Build paths with the / operator rather than string concatenation: the separator follows the host OS, and on Windows forward slashes in the input are still understood."
-    },
-    "syntax": "from pathlib import Path\np = Path('/some/path')",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path",
-    "version": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Модуль pathlib",
-    "subcat": {
-      "ru": "создание",
-      "en": "creation"
-    },
-    "aliases": [
-      "объект пути",
-      "работа с путями",
-      "путь к файлу"
-    ],
-    "keywords": [
-      "pathlib.Path",
-      "Path"
-    ],
-    "tags": [
-      "module"
-    ],
-    "examples": [
-      "from pathlib import Path",
-      "p = Path('/home/user/file.txt')",
-      "str(p) # → '/home/user/file.txt'",
-      "Path('a', 'b', 'c') # → PosixPath('a/b/c')",
-      "Path('/home') / 'user' / 'docs' # → PosixPath('/home/user/docs')",
-      "Path('.') # → PosixPath('.')"
-    ],
-    "related": [
-      "оператор",
-      "pathlib.PurePath",
-      "path.cwd",
-      ".stem-.suffix-.suffixes-.name-.parent-.p"
+      "os.scandir"
     ],
     "related_errors": []
   },
@@ -12560,7 +12477,7 @@
     ],
     "related": [
       "os.path.join",
-      "path",
+      "pathlib.path",
       ".stem-.suffix-.suffixes-.name-.parent-.p"
     ],
     "related_errors": []
@@ -24938,7 +24855,7 @@
     "related": [
       "os.fsencode",
       "os.fsdecode",
-      "path"
+      "pathlib.path"
     ],
     "related_errors": [
       "TypeError"
@@ -24956,8 +24873,8 @@
       "en": "Return an environment variable's value, or default if unset."
     },
     "body": {
-      "ru": "Читает os.environ, то есть снимок окружения на старте Python, — то, что поменяли через os.putenv или код на C, getenv не увидит. Если переменная обязательна, честнее os.environ['KEY'] с KeyError, чем getenv и последующий None где-то дальше по коду. Булевы флаги приходят строками: getenv('DEBUG') == 'false' — тоже непустая, то есть истинная, строка.",
-      "en": "It reads os.environ, a snapshot taken at Python startup — changes made via os.putenv or C code are invisible to getenv. If a variable is mandatory, os.environ['KEY'] with its KeyError is more honest than getenv followed by a None far down the code. Boolean flags arrive as strings: 'false' is a non-empty, i.e. truthy, string."
+      "ru": "Значение всегда строка, а умолчание возвращается как есть, без преобразования: для числа пишут int(os.getenv('PORT', '8000')), а не int(os.getenv('PORT', 8000)) — второй вариант смешивает типы. Пустая строка и отсутствующая переменная — разные случаи: заданная, но пустая переменная вернёт '', а не default. Читается из os.environ, то есть из снимка, сделанного при старте Python.",
+      "en": "The value is always a string, and the default comes back as is, unconverted: write int(os.getenv('PORT', '8000')) for a number rather than int(os.getenv('PORT', 8000)), which mixes types. An empty variable and a missing one differ: a variable set to an empty string returns '', not the default. It reads from os.environ, a snapshot taken when Python started."
     },
     "syntax": "os.getenv(key, default=None)",
     "status": "ready",
@@ -24974,14 +24891,17 @@
     "aliases": [
       "прочитать переменную окружения",
       "значение переменной среды",
-      "переменная окружения или значение по умолчанию"
+      "переменная окружения или значение по умолчанию",
+      "значение переменной окружения по умолчанию",
+      "получить токен из окружения"
     ],
     "keywords": [
       "os.getenv",
       "getenv"
     ],
     "tags": [
-      "os"
+      "os",
+      "module"
     ],
     "examples": [
       "import os",
@@ -24996,7 +24916,8 @@
       "os.environ",
       "os.putenv",
       "os.getenvb",
-      "os.unsetenv"
+      "os.unsetenv",
+      "dict.get"
     ],
     "related_errors": []
   },
@@ -27020,8 +26941,8 @@
       "en": "Return an iterator of os.DirEntry for a directory — more efficient than listdir."
     },
     "body": {
-      "ru": "Возвращает итератор, который держит каталог открытым, — закрывайте его через with. Атрибуты DirEntry кэшируются в момент вызова и не обновляются: если файл изменили после того, как запись прочитана, данные устареют. На этой функции построен os.walk, а обход через scandir заметно быстрее listdir плюс stat на каждое имя.",
-      "en": "It returns an iterator that keeps the directory open — close it with with. DirEntry attributes are cached at the time of the call and never refreshed: if the file changes after the entry was read, the data goes stale. os.walk is built on it, and walking with scandir is noticeably faster than listdir plus a stat per name."
+      "ru": "Используйте как контекстный менеджер или дочитывайте до конца: незакрытый итератор держит дескриптор каталога и выдаёт ResourceWarning. Выигрыш в скорости — в том, что тип записи берётся из того же системного вызова: на Unix is_dir() и is_file() обычно не делают отдельный stat, на Windows и stat() приходит готовым. Порядок записей произвольный, '.' и '..' не выдаются.",
+      "en": "Use it as a context manager or exhaust it: an unclosed iterator keeps the directory descriptor open and emits a ResourceWarning. The speed-up comes from getting the entry type from the same system call: on Unix is_dir() and is_file() usually need no extra stat, and on Windows even stat() comes ready. Entry order is arbitrary, and '.' and '..' are not yielded."
     },
     "syntax": "os.scandir(path)",
     "status": "ready",
@@ -27038,26 +26959,34 @@
     "aliases": [
       "перебрать файлы в папке",
       "файлы каталога с типами",
-      "быстрый обход директории"
+      "быстрый обход директории",
+      "быстро перебрать файлы в папке",
+      "список файлов с типами",
+      "обойти содержимое каталога"
     ],
     "keywords": [
       "os.scandir",
       "scandir"
     ],
     "tags": [
-      "os"
+      "os",
+      "module"
     ],
     "examples": [
-      "import os",
-      "d = os.path.dirname(os.__file__)",
-      "with os.scandir(d) as it:",
-      "    print(any(e.is_file() for e in it))   # → True"
+      "import os, tempfile",
+      "with os.scandir(tempfile.gettempdir()) as it:",
+      "    for entry in it:",
+      "        if entry.is_file():",
+      "            print(entry.name, entry.stat().st_size)  # → ? имя и размер файла",
+      "        elif entry.is_dir():",
+      "            print(entry.name + '/')  # → ? имя вложенного каталога"
     ],
     "related": [
       "os.DirEntry",
       "os.listdir",
       "os.walk",
-      ".iterdir"
+      ".iterdir",
+      "os.stat"
     ],
     "related_errors": [
       "FileNotFoundError",

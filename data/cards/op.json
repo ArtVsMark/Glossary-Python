@@ -2548,8 +2548,8 @@
       "en": "An object-oriented API for filesystem paths. Cross-platform."
     },
     "body": {
-      "ru": "Пути склеиваются оператором /, но если справа стоит абсолютный путь, левая часть просто отбрасывается: Path('/tmp') / '/etc' даёт Path('/etc') — частая причина «файл сохранился не туда». Объекты Path неизменяемы: with_suffix(), parent и прочее возвращают новый путь, а не меняют старый; заворачивать Path в str() перед open() и функциями stdlib не нужно, они принимают Path напрямую.",
-      "en": "Paths are joined with the / operator, but an absolute path on the right discards everything on the left: Path('/tmp') / '/etc' is Path('/etc') — a common reason a file ends up somewhere unexpected. Path objects are immutable, so with_suffix(), parent and friends return a new path instead of mutating the old one, and you do not need str() around a Path: open() and the standard library accept Path directly."
+      "ru": "Конструктор ничего не читает с диска: объект спокойно создаётся и для несуществующего пути, существование проверяют отдельно через exists() или is_file(). При склейке компонентов абсолютный кусок отбрасывает всё, что было слева, — типичная ловушка, когда второй компонент приходит из пользовательского ввода. Собирайте пути оператором / вместо конкатенации строк: разделитель подставится под текущую ОС, а на Windows прямые слэши во входной строке всё равно будут поняты.",
+      "en": "The constructor never touches the filesystem — a Path for a nonexistent location is created just fine, and existence is a separate question for exists() or is_file(). When components are joined, an absolute component throws away everything to its left, which bites when that component comes from user input. Build paths with the / operator rather than string concatenation: the separator follows the host OS, and on Windows forward slashes in the input are still understood."
     },
     "syntax": "from pathlib import Path\np = Path('/some/path')",
     "status": "ready",
@@ -2573,7 +2573,8 @@
       "Path"
     ],
     "tags": [
-      "op"
+      "op",
+      "module"
     ],
     "examples": [
       "from pathlib import Path",
@@ -2605,10 +2606,12 @@
       "print(note.stat().st_size)  # → 19"
     ],
     "related": [
-      "path",
       "os",
       "path.exists",
-      ".stem-.suffix-.suffixes-.name-.parent-.p"
+      ".stem-.suffix-.suffixes-.name-.parent-.p",
+      "оператор",
+      "pathlib.PurePath",
+      "path.cwd"
     ],
     "related_errors": []
   },
@@ -2953,75 +2956,6 @@
       "file.readline"
     ],
     "related_errors": []
-  },
-  {
-    "id": "reduce",
-    "title": {
-      "ru": "functools.reduce()",
-      "en": "functools.reduce()"
-    },
-    "kind": "function",
-    "summary": {
-      "ru": "Сворачивает итерируемый объект в одно значение, последовательно применяя функцию. Из модуля functools.",
-      "en": "Folds an iterable into a single value by applying a function step by step. From the functools module."
-    },
-    "body": {
-      "ru": "В Python 3 reduce вынесли из встроенных в functools намеренно: для суммы, максимума и подобного явные sum(), max(), min() короче и понятнее. Осторожно с пустой последовательностью — без initializer это TypeError, а с ним initializer же и вернётся.",
-      "en": "In Python 3 reduce was deliberately moved out of the builtins into functools: for sums, maxima and the like the explicit sum(), max() and min() are shorter and clearer. Beware the empty sequence — without an initializer it raises TypeError, and with one that initializer is what comes back."
-    },
-    "syntax": "from functools import reduce\nreduce(func, iterable[, initializer])",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/functools.html#functools.reduce",
-    "version": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Функции",
-    "subcat": {
-      "ru": "функциональное",
-      "en": "functional"
-    },
-    "aliases": [
-      "свёртка последовательности",
-      "свернуть список в одно значение",
-      "накопление результата по списку"
-    ],
-    "keywords": [
-      "functools.reduce",
-      "reduce"
-    ],
-    "tags": [
-      "op"
-    ],
-    "examples": [
-      "from functools import reduce",
-      "result = reduce(lambda a, b: a + b, [1,2,3,4,5])",
-      "print(result)  # → 15",
-      "product = reduce(lambda a, b: a * b, [1,2,3,4,5])",
-      "print(product)  # → 120",
-      "maximum = reduce(lambda a, b: a if a > b else b, [3,1,4,1,5,9])",
-      "print(maximum)  # → 9",
-      "words = ['Hello', ' ', 'World']",
-      "sentence = reduce(lambda a, b: a + b, words)",
-      "print(sentence)  # → Hello  World",
-      "# С начальным значением",
-      "total = reduce(lambda a, b: a + b, [1,2,3], 100)",
-      "print(total)  # → 106",
-      "# Подсчёт вхождений",
-      "from collections import Counter",
-      "nums = [1,1,2,3,1]",
-      "result2 = reduce(lambda acc, x: acc + (1 if x==1 else 0), nums, 0)",
-      "print(result2)  # → 3"
-    ],
-    "related": [
-      "functools.reduce",
-      "map",
-      "filter",
-      "sum"
-    ],
-    "related_errors": [
-      "TypeError"
-    ]
   },
   {
     "id": "return",
@@ -8857,7 +8791,7 @@
     "related": [
       "pathlib.PurePosixPath",
       "pathlib.PureWindowsPath",
-      "path"
+      "pathlib.path"
     ],
     "related_errors": []
   },
@@ -9020,7 +8954,7 @@
     ],
     "related": [
       "pathlib.WindowsPath",
-      "path",
+      "pathlib.path",
       "pathlib.PurePosixPath"
     ],
     "related_errors": []
@@ -9074,7 +9008,7 @@
     ],
     "related": [
       "pathlib.PosixPath",
-      "path",
+      "pathlib.path",
       "pathlib.PureWindowsPath"
     ],
     "related_errors": []

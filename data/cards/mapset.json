@@ -1,61 +1,5 @@
 [
   {
-    "id": "chainmap",
-    "title": {
-      "ru": "ChainMap",
-      "en": "ChainMap"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "collections.ChainMap объединяет несколько словарей в единый вид без копирования. Поиск ключа идёт по словарям слева направо. Запись и удаление затрагивают только первый словарь.",
-      "en": "collections.ChainMap joins several dictionaries into a single view without copying them. A key is looked up in the dictionaries from left to right. Writes and deletions affect only the first one."
-    },
-    "body": {
-      "ru": "ChainMap не копирует словари, а держит ссылки на них: изменение исходного словаря сразу видно через цепочку — это принципиальное отличие от снимка {**defaults, **overrides}. Главная ловушка — асимметрия чтения и записи: ключ ищется по всем словарям, но присваивание, pop и del работают только с первым, поэтому удаление ключа, который виден при чтении, но лежит в defaults, падает с KeyError.",
-      "en": "ChainMap stores references rather than copies, so a later change in an underlying dict is visible through the chain right away — unlike the snapshot you get from {**defaults, **overrides}. The trap is the asymmetry between reads and writes: lookups scan every mapping, but assignment, pop and del touch only the first one, so deleting a key that is visible on read but actually lives in defaults raises KeyError."
-    },
-    "syntax": "from collections import ChainMap; ChainMap(*maps)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/collections.html#collections.ChainMap",
-    "version": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Словари (dict)",
-    "subcat": {
-      "ru": "collections",
-      "en": "collections"
-    },
-    "aliases": [
-      "цепочка словарей",
-      "несколько словарей как один",
-      "поиск ключа по нескольким словарям"
-    ],
-    "keywords": [
-      "ChainMap"
-    ],
-    "tags": [
-      "mapset"
-    ],
-    "examples": [
-      "from collections import ChainMap",
-      "defaults = {\"color\": \"red\", \"size\": 10}",
-      "overrides = {\"color\": \"blue\"}",
-      "cm = ChainMap(overrides, defaults)",
-      "print(cm[\"color\"])   # → blue",
-      "print(cm[\"size\"])    # → 10",
-      "print(dict(cm))      # → {'color': 'blue', 'size': 10}",
-      "cm2 = cm.new_child({\"size\": 20})",
-      "print(cm2[\"size\"])   # → 20"
-    ],
-    "related": [
-      "объединение-словарей",
-      "dict-merge",
-      "dict.update"
-    ],
-    "related_errors": []
-  },
-  {
     "id": "copy-deepcopy-словаря",
     "title": {
       "ru": "copy() / deepcopy() словаря",
@@ -111,160 +55,6 @@
       "copy.deepcopy",
       "copy.copy",
       "вложенные-словари"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "counter",
-    "title": {
-      "ru": "Counter",
-      "en": "Counter"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "Counter из collections — словарь для подсчёта. Поддерживает арифметику, most_common, вычитание.",
-      "en": "Counter from collections is a dictionary for counting. It supports arithmetic, most_common and subtraction."
-    },
-    "body": {
-      "ru": "Обращение к отсутствующему ключу возвращает 0 и, в отличие от defaultdict, не создаёт запись — удобно, но опечатка в ключе так и останется незамеченной вместо KeyError. Ещё одна тонкость: оператор вычитания c1 - c2 выбрасывает нулевые и отрицательные счётчики, а метод subtract() их сохраняет, так что отрицательные значения возможны только через второй вариант. most_common() сортирует по убыванию, а элементы с одинаковым счётчиком идут в порядке первого появления.",
-      "en": "Looking up a missing key returns 0 and, unlike defaultdict, does not insert anything — convenient, but a typo in a key silently yields 0 instead of a KeyError. Note also that the subtraction operator c1 - c2 drops zero and negative counts, while the subtract() method keeps them, so negative counts can only appear via the latter. most_common() sorts by descending count and breaks ties by first-encountered order."
-    },
-    "syntax": "from collections import Counter\nc = Counter(iterable)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/collections.html#collections.Counter",
-    "version": "3.1",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Словари (dict)",
-    "subcat": {
-      "ru": "collections",
-      "en": "collections"
-    },
-    "aliases": [
-      "подсчёт повторений",
-      "сколько раз встречается элемент",
-      "самый частый элемент"
-    ],
-    "keywords": [
-      "Counter"
-    ],
-    "tags": [
-      "mapset"
-    ],
-    "examples": [
-      "from collections import Counter",
-      "c = Counter('aabbccca')",
-      "print(c)",
-      "# → Counter({'a': 3, 'c': 3, 'b': 2})",
-      "print(c.most_common(2))",
-      "# → [('a', 3), ('c', 3)]",
-      "c2 = Counter(['apple', 'banana', 'apple', 'cherry', 'apple'])",
-      "print(c2.most_common(1))",
-      "# → [('apple', 3)]",
-      "c3 = Counter('hello')",
-      "c4 = Counter('world')",
-      "print(c3 + c4)",
-      "# → Counter({'l': 3, 'o': 2, 'h': 1, 'e': 1, 'w': 1, 'r': 1, 'd': 1})",
-      "print(c3 - c4)",
-      "# → Counter({'h': 1, 'e': 1, 'l': 1}) (только положительные)",
-      "print(c3 & c4)",
-      "# → Counter({'l': 1, 'o': 1}) (пересечение, min)",
-      "print(c3 | c4)",
-      "# → Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1, 'w': 1, 'r': 1, 'd': 1}) (объединение, max)",
-      "words = 'the cat sat on the mat'.split()",
-      "wc = Counter(words)",
-      "print(wc.most_common(3))",
-      "# → [('the', 2), ('cat', 1), ('sat', 1)]"
-    ],
-    "related": [
-      "defaultdict",
-      "dict.get",
-      "сортировка-словаря"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "defaultdict",
-    "title": {
-      "ru": "defaultdict",
-      "en": "defaultdict"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "defaultdict из collections автоматически создаёт значение по умолчанию при обращении к несуществующему ключу.",
-      "en": "defaultdict from collections creates a default value automatically when a missing key is accessed."
-    },
-    "body": {
-      "ru": "Фабрика срабатывает на чтении d[key], а значит простое обращение к несуществующему ключу молча создаёт запись и раздувает словарь; если проверяешь наличие ключа, используй in или .get(), они __missing__ не вызывают. Второе — default_factory это вызываемый объект без аргументов, а не готовое значение: нужно defaultdict(list) и defaultdict(int), а не defaultdict([]) или defaultdict(0).",
-      "en": "The factory fires on a read of d[key], so merely touching a missing key silently inserts an entry and grows the dict; use in or .get() when you just want to check, since neither triggers __missing__. Also, default_factory must be a zero-argument callable, not a ready value: write defaultdict(list) or defaultdict(int), never defaultdict([]) or defaultdict(0)."
-    },
-    "syntax": "from collections import defaultdict\nd = defaultdict(default_factory)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/collections.html#collections.defaultdict",
-    "version": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Словари (dict)",
-    "subcat": {
-      "ru": "collections",
-      "en": "collections"
-    },
-    "aliases": [
-      "словарь со значением по умолчанию",
-      "группировка по ключу",
-      "словарь списков"
-    ],
-    "keywords": [
-      "defaultdict"
-    ],
-    "tags": [
-      "mapset"
-    ],
-    "examples": [
-      "from collections import defaultdict",
-      "d = defaultdict(list)",
-      "d['fruits'].append('apple')",
-      "d['fruits'].append('banana')",
-      "print(d)",
-      "# → defaultdict(<class 'list'>, {'fruits': ['apple', 'banana']})",
-      "counter = defaultdict(int)",
-      "for c in 'hello world':",
-      "    counter[c] += 1",
-      "    print(dict(counter))",
-      "    # → {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}",
-      "    groups = defaultdict(set)",
-      "    for w in ['cat', 'car', 'dog', 'cow']:",
-      "        groups[w[0]].add(w)",
-      "        print(dict(groups))",
-      "# → {'c': {'cat', 'car', 'cow'}, 'd': {'dog'}}",
-      "from collections import defaultdict",
-      "d2 = defaultdict(lambda: 'unknown')",
-      "d2['key1'] = 'value'",
-      "print(d2['key1'])",
-      "# → 'value'",
-      "print(d2['missing'])",
-      "# → 'unknown'",
-      "dd = defaultdict(dict)",
-      "dd['a']['nested'] = 1",
-      "print(dd)",
-      "# → defaultdict(<class 'dict'>, {'a': {'nested': 1}})",
-      "words = ['apple', 'ant', 'bat', 'ball', 'cat']",
-      "by_letter = defaultdict(list)",
-      "for w in words:",
-      "    by_letter[w[0]].append(w)",
-      "    print(dict(by_letter))",
-      "    # → {'a': ['apple', 'ant'], 'b': ['bat', 'ball'], 'c': ['cat']}",
-      "    nested_dd = defaultdict(lambda: defaultdict(int))",
-      "    nested_dd['row1']['col1'] += 1",
-      "    print(nested_dd['row1']['col1'])",
-      "    # → 1"
-    ],
-    "related": [
-      "dict.setdefault",
-      "dict.get",
-      "counter"
     ],
     "related_errors": []
   },
@@ -427,7 +217,7 @@
     "related": [
       "создание-словаря",
       "словарные-выражения-dict-comprehension",
-      "defaultdict"
+      "collections.defaultdict"
     ],
     "related_errors": []
   },
@@ -623,67 +413,6 @@
       "доступ-d-key",
       "dict.values",
       "in-not-in-для-списков"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "ordereddict",
-    "title": {
-      "ru": "OrderedDict",
-      "en": "OrderedDict"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "OrderedDict из collections гарантирует порядок вставки (в Python 3.7+ обычный dict тоже сохраняет порядок). Имеет move_to_end() и popitem(last=).",
-      "en": "OrderedDict from collections guarantees insertion order (since Python 3.7 a plain dict keeps it too). It also has move_to_end() and popitem(last=)."
-    },
-    "body": {
-      "ru": "Заметное отличие от обычного словаря — сравнение: два OrderedDict равны только при совпадающем порядке ключей, а вот OrderedDict и обычный dict сравниваются как обычные словари, без учёта порядка. Брать OrderedDict сегодня стоит только ради move_to_end() и popitem(last=False) — например, для LRU-кеша; для простого «сохранить порядок вставки» хватает dict, он легче и быстрее.",
-      "en": "The visible difference from a plain dict is equality: two OrderedDicts compare equal only if the key order matches, while an OrderedDict compared against a plain dict is order-insensitive. These days reach for it only when you need move_to_end() or popitem(last=False) — an LRU cache, say; if you just want insertion order preserved, a plain dict is lighter and faster."
-    },
-    "syntax": "from collections import OrderedDict\nod = OrderedDict()",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/collections.html#collections.OrderedDict",
-    "version": "3.1",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Словари (dict)",
-    "subcat": {
-      "ru": "collections",
-      "en": "collections"
-    },
-    "aliases": [
-      "упорядоченный словарь",
-      "порядок ключей в словаре",
-      "переместить ключ в конец"
-    ],
-    "keywords": [
-      "OrderedDict"
-    ],
-    "tags": [
-      "mapset"
-    ],
-    "examples": [
-      "from collections import OrderedDict",
-      "od = OrderedDict([('a', 1), ('b', 2), ('c', 3)])",
-      "print(od)",
-      "# → OrderedDict([('a', 1), ('b', 2), ('c', 3)])",
-      "od.move_to_end('a')",
-      "print(od)",
-      "# → OrderedDict([('b', 2), ('c', 3), ('a', 1)])",
-      "od.move_to_end('a', last=False)",
-      "print(list(od.keys())[0])",
-      "# → 'a' (переместить в начало)",
-      "print(od.popitem(last=True))",
-      "# → ('a', 1) (последний)",
-      "print(od.popitem(last=False))",
-      "# → ('b', 2) (первый)"
-    ],
-    "related": [
-      "создание-словаря",
-      "dict.popitem",
-      "сортировка-словаря"
     ],
     "related_errors": []
   },
@@ -1817,7 +1546,7 @@
     "related": [
       "dict.pop",
       "del-для-словаря",
-      "ordereddict"
+      "collections.ordereddict"
     ],
     "related_errors": [
       "KeyError"
@@ -1869,7 +1598,7 @@
     ],
     "related": [
       "dict.get",
-      "defaultdict",
+      "collections.defaultdict",
       "добавление-изменение-d-key-val"
     ],
     "related_errors": []

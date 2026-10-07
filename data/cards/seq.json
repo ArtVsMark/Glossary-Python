@@ -1739,7 +1739,7 @@
     "related": [
       "list.index",
       "in-not-in-для-списков",
-      "counter",
+      "collections.counter",
       "str.count"
     ],
     "related_errors": []

@@ -1,0 +1,1 @@
+8 пар карточек-дублей слиты в одну с полным именем — `functools.reduce`, `os.getenv`, `os.scandir`, `pathlib.Path`, `collections.Counter`, `defaultdict`, `OrderedDict`, `ChainMap`: тело и примеры взяты из более полной, синонимы и связи объединены, ссылки других карточек перенаправлены, а удалённые id записаны в `data/moved.json` и уходят в выгрузку полем `moved` (#79)

@@ -332,8 +332,8 @@
         "os.environ['PYTHONBREAKPOINT']='0'  # отключить"
       ],
       [
-        "# breakpoint()  # → войти в pdb",
-        "print('Debugging would start here')  # → debug point"
+        "# breakpoint()  # остановит программу и откроет отладчик pdb",
+        "print('Debugging would start here')  # → Debugging would start here"
       ]
     ],
     "related": [

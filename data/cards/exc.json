@@ -1389,7 +1389,7 @@
         "    try:",
         "        bad()",
         "    except Exception as e:",
-        "        print(type(e).__name__)  # → ValueError, TypeError, AttributeError"
+        "        print(type(e).__name__)  # → ValueError / TypeError / AttributeError"
       ]
     ],
     "related": [
@@ -5330,8 +5330,8 @@
         "import shutil",
         "try:",
         "    raise shutil.ExecError",
-        "except shutil.ExecError as e:",
-        "    print(type(e).__name__)   # → ExecError"
+        "except RuntimeError as e:",
+        "    print(type(e).__name__)  # → RuntimeError — с 3.14 ExecError лишь псевдоним"
       ]
     ],
     "related": [

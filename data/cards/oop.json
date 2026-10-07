@@ -565,14 +565,10 @@
         "p = Point(1, 2)",
         "print(p.x, p.y)  # → 1 2",
         "try:",
-        "    p.z = 3  # → AttributeError",
+        "    p.z = 3",
         "except AttributeError as e:",
-        "    print(e)",
-        "# Нет __dict__",
-        "try:",
-        "    print(p.__dict__)",
-        "except AttributeError as e:",
-        "    print(e)  # → __dict__ attribute not defined"
+        "    print(e)  # → 'Point' object has no attribute 'z' and no __dict__ for setting new attributes",
+        "print(hasattr(p, '__dict__'))  # → False — словаря атрибутов нет"
       ],
       [
         "import sys",
@@ -1140,16 +1136,9 @@
         "        self.size = size",
         "    def double(self):",
         "        self.size *= 2",
-        "        b = Box(5)",
-        "        b.double()",
-        "        print(b.size)  # → 10",
-        "class Greeter:",
-        "    def __init__(self, greeting):",
-        "        self.greeting = greeting",
-        "    def greet(self, name):",
-        "        return f'{self.greeting}, {name}!'",
-        "g = Greeter('Hi')",
-        "print(g.greet('Bob'))  # → Hi, Bob!"
+        "b = Box(5)",
+        "b.double()  # то же, что Box.double(b): self — это b",
+        "print(b.size)  # → 10"
       ],
       [
         "class Node:",
@@ -1666,11 +1655,10 @@
         "s = Secret()",
         "print(s.reveal())  # → 42",
         "try:",
-        "    print(s.__secret)  # → AttributeError",
+        "    s.__secret",
         "except AttributeError as e:",
-        "    print(e)",
-        "    # Name mangling",
-        "    print(s._Secret__secret)  # → 42 (доступ через mangling)"
+        "    print(e)  # → 'Secret' object has no attribute '__secret'",
+        "print(s._Secret__secret)  # → 42 — имя искажено, но доступно"
       ],
       [
         "# В наследовании __attr не переопределяется случайно",

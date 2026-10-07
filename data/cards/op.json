@@ -245,8 +245,8 @@
         "print(5 > 3)  # → True",
         "print(True and False)  # → False",
         "print(bool(0), bool(1), bool(\"\"))  # → False True False",
-        "print(bool([]), bool([1]))  # → False True (falsy / truthy)",
-        "print(True + True)  # → 2 (bool является подтипом int)",
+        "print(bool([]), bool([1]))  # → False True — пустое ложно, непустое истинно",
+        "print(True + True)  # → 2 — bool является подтипом int",
         "print(not True)  # → False"
       ]
     ],
@@ -608,21 +608,27 @@
         "for i in range(10):",
         "    if i % 2 == 0:",
         "        continue",
-        "print(i, end=\" \")  # → 1 3 5 7 9",
+        "    print(i, end=\" \")  # → 1 3 5 7 9"
+      ],
+      [
         "for x in [1, 0, 3, 0, 5]:",
         "    if x == 0:",
-        "        continue",
-        "print(100 // x, end=\" \")  # → 100 33 20 (без деления на 0)",
+        "        continue  # пропустить ноль — деления на 0 не будет",
+        "    print(100 // x, end=\" \")  # → 100 33 20"
+      ],
+      [
         "for ch in \"hello world\":",
         "    if ch == \" \":",
         "        continue",
-        "print(ch, end=\"\")  # → helloworld",
+        "    print(ch, end=\"\")  # → helloworld"
+      ],
+      [
         "total = 0",
         "for n in range(1, 11):",
         "    if n % 3 == 0:",
         "        continue",
-        "total += n",
-        "print(total)  # → 37 (сумма 1..10 без кратных 3)"
+        "    total += n",
+        "print(total)  # → 37 — сумма 1..10 без кратных 3"
       ]
     ],
     "related": [
@@ -674,29 +680,14 @@
     "examples": [
       [
         "import csv, io",
-        "# writer",
         "output = io.StringIO()",
         "writer = csv.writer(output)",
-        "writer.writerow(['name','age','city'])",
-        "writer.writerow(['Alice',30,'Moscow'])",
-        "writer.writerow(['Bob',25,'SPb'])",
-        "print(output.getvalue())  # → CSV строки",
-        "# reader",
+        "writer.writerow(['name', 'age'])",
+        "writer.writerow(['Alice', 30])",
+        "print(output.getvalue())  # → name,age / Alice,30",
         "output.seek(0)",
-        "reader = csv.reader(output)",
-        "for row in reader:",
-        "    print(row)",
-        "    # DictWriter",
-        "    output2 = io.StringIO()",
-        "    fields = ['name','age']",
-        "    w = csv.DictWriter(output2, fieldnames=fields)",
-        "    w.writeheader()",
-        "    w.writerow({'name':'Alice','age':30})",
-        "    print(output2.getvalue())",
-        "    # DictReader",
-        "    output2.seek(0)",
-        "    for row in csv.DictReader(output2):",
-        "        print(row)  # → OrderedDict/dict"
+        "for row in csv.reader(output):",
+        "    print(row)  # → ['name', 'age'] / ['Alice', '30'] — всё читается строками"
       ],
       [
         "import csv, io",
@@ -933,23 +924,18 @@
     "examples": [
       [
         "def greet():",
-        "    print('Hello!')  # → Hello!",
+        "    print('Hello!')",
+        "greet()  # → Hello!",
         "def add(a, b):",
-        "    return a + b  # → вернёт сумму",
-        "def square(x):",
-        "    return x * x",
-        "print(square(5))  # → 25",
+        "    return a + b",
+        "print(add(3, 4))  # → 7",
         "def say(name):",
-        "    \"\"\"Docstring.\"\"\"",
-        "    print(f'Hi, {name}')  # → Hi, Alice",
-        "def check(n):",
-        "    if n > 0:",
-        "        return 'pos'",
-        "    return 'non-pos'  # → два return",
+        "    \"\"\"Docstring: первая строка тела — описание функции.\"\"\"",
+        "    print(f'Hi, {name}')",
+        "say('Alice')  # → Hi, Alice",
         "def nothing():",
-        "    pass  # → тело-заглушка",
-        "result = add(3, 4)",
-        "print(result)  # → 7"
+        "    pass  # тело-заглушка",
+        "print(nothing())  # → None — функция без return"
       ]
     ],
     "related": [
@@ -2198,19 +2184,15 @@
     "examples": [
       [
         "import json, os, tempfile",
-        "data = {'name':'Alice','age':30,'langs':['Python','Rust']}",
-        "s = json.dumps(data)",
-        "print(s)  # → {\"name\": \"Alice\", \"age\": 30, ...}",
-        "# indent для форматирования",
-        "print(json.dumps(data, indent=2))  # → красивый JSON",
-        "# loads — из строки",
-        "parsed = json.loads('{\"x\":1,\"y\":[1,2,3]}')",
-        "print(parsed, type(parsed))  # → dict",
-        "# dump/load — через файл",
+        "data = {'name': 'Alice', 'age': 30, 'langs': ['Python', 'Rust']}",
+        "print(json.dumps(data))  # → {\"name\": \"Alice\", \"age\": 30, \"langs\": [\"Python\", \"Rust\"]}",
+        "print(json.dumps(data, indent=2))  # красивый JSON с отступами",
+        "parsed = json.loads('{\"x\": 1, \"y\": [1, 2, 3]}')",
+        "print(parsed, type(parsed))  # → {'x': 1, 'y': [1, 2, 3]} <class 'dict'>",
         "path = os.path.join(tempfile.gettempdir(), 'data.json')",
-        "with open(path,'w') as f:",
+        "with open(path, 'w', encoding='utf-8') as f:",
         "    json.dump(data, f, indent=2)",
-        "with open(path) as f:",
+        "with open(path, encoding='utf-8') as f:",
         "    loaded = json.load(f)",
         "print(loaded['name'])  # → Alice"
       ],
@@ -2669,24 +2651,20 @@
     ],
     "examples": [
       [
-        "# Примеры пишут файлы, поэтому уводим их во временную папку —",
-        "# иначе пример мусорит там, откуда его запустили.",
-        "import os, tempfile",
-        "os.chdir(tempfile.mkdtemp())"
-      ],
-      [
-        "# Запись файла",
+        "# Запись и чтение текстового файла",
         "with open('demo.txt', 'w', encoding='utf-8') as f:",
         "    f.write('Hello, World!')",
-        "# Чтение текстового файла",
         "with open('demo.txt', 'r', encoding='utf-8') as f:",
-        "    content = f.read()",
-        "print(content.strip())  # → Hello, World!"
+        "    print(f.read())  # → Hello, World!"
       ],
       [
-        "# Добавление к файлу",
+        "# Добавление к файлу: режим 'a' пишет в конец",
+        "with open('demo.txt', 'w', encoding='utf-8') as f:",
+        "    f.write('Hello, World!')",
         "with open('demo.txt', 'a', encoding='utf-8') as f:",
-        "    f.write('\\nSecond line')"
+        "    f.write('\\nSecond line')",
+        "with open('demo.txt', encoding='utf-8') as f:",
+        "    print([line.strip() for line in f])  # → ['Hello, World!', 'Second line']"
       ],
       [
         "# Бинарный режим",
@@ -2696,22 +2674,22 @@
         "    print(f.read())  # → b'\\x00\\x01\\x02\\x03'"
       ],
       [
-        "# Создание нового файла (x — ошибка, если существует)",
+        "# Режим 'x' — только создать: если файл уже есть, FileExistsError",
+        "with open('new.txt', 'x', encoding='utf-8') as f:",
+        "    f.write('new')",
         "try:",
-        "    with open('demo.txt', 'x') as f:",
-        "        f.write('new')",
+        "    open('new.txt', 'x')",
         "except FileExistsError:",
-        "    print('файл уже есть')  # → файл уже есть",
-        "# С pathlib",
+        "    print('файл уже есть')  # → файл уже есть"
+      ],
+      [
+        "# encoding='utf-8' обязателен для портируемости: без него кодировка",
+        "# берётся из локали ОС, и файл с другой машины прочитается иначе",
         "from pathlib import Path",
         "path = Path('demo.txt')",
+        "path.write_text('Привет', encoding='utf-8')",
         "with path.open('r', encoding='utf-8') as f:",
-        "    print(f.readline().strip())  # → Hello, World!",
-        "# encoding='utf-8' обязателен для портируемости:",
-        "# без него кодировка берётся из локали ОС, и файл,",
-        "# записанный на одной машине, на другой прочитается иначе.",
-        "with open('demo.txt', 'r', encoding='utf-8') as f:",
-        "    print([line.strip() for line in f])  # → ['Hello, World!', 'Second line']"
+        "    print(f.readline())  # → Привет"
       ]
     ],
     "related": [
@@ -3479,11 +3457,11 @@
         "print(sorted(d, key=d.get))  # → ['b','c','a']"
       ],
       [
-        "# Вторичный ключ",
-        "students = [('Alice',85),('Bob',90),('Carol',85)]",
-        "print(sorted(students, key=lambda s: (-s[1], s[0])))  # → Bob, Alice, Carol",
-        "nums = [3,-1,4,-1,5,-9]",
-        "print(sorted(nums, key=abs))  # → [-1,-1,3,4,5,-9]"
+        "# Вторичный ключ: по убыванию оценки, при равенстве — по имени",
+        "students = [('Alice', 85), ('Bob', 90), ('Carol', 85)]",
+        "print(sorted(students, key=lambda s: (-s[1], s[0])))  # → [('Bob', 90), ('Alice', 85), ('Carol', 85)]",
+        "nums = [3, -1, 4, -1, 5, -9]",
+        "print(sorted(nums, key=abs))  # → [-1, -1, 3, 4, 5, -9]"
       ]
     ],
     "related": [
@@ -3610,14 +3588,13 @@
         "print('Error message', file=sys.stderr)"
       ],
       [
-        "import sys",
-        "# Перенаправление stdout",
-        "import io",
+        "# Перенаправление stdout в буфер",
+        "import io, sys",
         "buffer = io.StringIO()",
         "sys.stdout = buffer",
         "print('captured')",
         "sys.stdout = sys.__stdout__",
-        "print('got:', buffer.getvalue())  # → got: captured\\n"
+        "print('got:', repr(buffer.getvalue()))  # → got: 'captured\\n'"
       ],
       [
         "# input() — высокоуровневый stdin",
@@ -4450,7 +4427,7 @@
         "n = 0b1010",
         "print(get_bit(n, 1))    # → 1",
         "print(bin(set_bit(n, 2)))   # → 0b1110",
-        "print(bin(clear_bit(n, 3))) # → 0b0010"
+        "print(bin(clear_bit(n, 3))) # → 0b10 — ведущие нули bin() не пишет"
       ],
       [
         "# Подсчёт единичных бит (popcount)",
@@ -4948,14 +4925,14 @@
         "import time",
         "def timer(func):",
         "    def wrapper(*args, **kwargs):",
-        "        t = time.time()",
+        "        t = time.perf_counter()",
         "        res = func(*args, **kwargs)",
-        "        print(f'{func.__name__}: {time.time()-t:.4f}s')",
+        "        print(f'{func.__name__}: {time.perf_counter() - t:.2f}s')",
         "        return res",
         "    return wrapper",
         "@timer",
         "def slow(): time.sleep(0.01)",
-        "slow()  # → slow: 0.01s",
+        "slow()  # → ? около slow: 0.01s — зависит от машины",
         "from functools import wraps",
         "def logged(func):",
         "    @wraps(func)",
@@ -4964,8 +4941,8 @@
         "        return func(*a, **kw)",
         "    return wrapper",
         "@logged",
-        "def add(a,b): return a+b",
-        "print(add(1,2))  # → Calling add / 3",
+        "def add(a, b): return a + b",
+        "print(add(1, 2))  # → Calling add / 3",
         "# Декоратор с аргументами",
         "def repeat(n):",
         "    def decorator(func):",
@@ -4976,12 +4953,12 @@
         "    return decorator",
         "@repeat(3)",
         "def hi(): print('hi')",
-        "hi()  # → hi hi hi",
-        "# Стек декораторов",
+        "hi()  # → hi / hi / hi",
+        "# Стек декораторов: применяются снизу вверх",
         "@my_dec",
         "@logged",
         "def greet(name): return f'Hi {name}'",
-        "greet('Alice')  # оба декоратора применяются"
+        "greet('Alice')  # → before / Calling greet / after"
       ],
       [
         "# Декоратор для проверки типа",
@@ -6728,7 +6705,7 @@
         "import random",
         "arr = list(range(100))",
         "arr[50] = -1  # один элемент не на месте",
-        "print(insertion_sort(arr[:])[:5])  # → [−1,0,1,2,3]"
+        "print(insertion_sort(arr[:])[:5])  # → [-1, 0, 1, 2, 3]"
       ]
     ],
     "related": [
@@ -7533,8 +7510,8 @@
         "    a, b = 0, 1",
         "    for _ in range(2, n+1):",
         "        a, b = b, a+b",
-        "        return b",
-        "print([fib_iter(i) for i in range(10)])  # → [0,1,1,2,3,5,8,13,21,34]"
+        "    return b",
+        "print([fib_iter(i) for i in range(10)])  # → [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]"
       ],
       [
         "# Рекурсивно — O(2^n) (медленно!)",
@@ -7554,19 +7531,19 @@
       ],
       [
         "# Генератор Фибоначчи",
+        "from itertools import islice",
         "def fib_gen():",
         "    a, b = 0, 1",
         "    while True:",
         "        yield a",
         "        a, b = b, a+b",
-        "        from itertools import islice",
-        "        print(list(islice(fib_gen(), 10)))  # → [0,1,1,2,3,5,8,13,21,34]",
+        "print(list(islice(fib_gen(), 10)))  # → [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]",
         "# Матричный метод O(log n)",
         "def mat_mul(A, B):",
         "    return [",
-        "[A[0][0]*B[0][0]+A[0][1]*B[1][0], A[0][0]*B[0][1]+A[0][1]*B[1][1]],",
-        "[A[1][0]*B[0][0]+A[1][1]*B[1][0], A[1][0]*B[0][1]+A[1][1]*B[1][1]]",
-        "]",
+        "        [A[0][0]*B[0][0]+A[0][1]*B[1][0], A[0][0]*B[0][1]+A[0][1]*B[1][1]],",
+        "        [A[1][0]*B[0][0]+A[1][1]*B[1][0], A[1][0]*B[0][1]+A[1][1]*B[1][1]],",
+        "    ]",
         "def mat_pow(M, n):",
         "    if n == 1: return M",
         "    if n % 2 == 0:",
@@ -7575,21 +7552,19 @@
         "    return mat_mul(M, mat_pow(M, n-1))",
         "def fib_matrix(n):",
         "    if n == 0: return 0",
-        "    M = [[1,1],[1,0]]",
-        "    return mat_pow(M, n)[0][1]",
+        "    return mat_pow([[1, 1], [1, 0]], n)[0][1]",
         "print(fib_matrix(10))  # → 55"
       ],
       [
-        "# Числа Фибоначчи в программировании",
-        "# Сумма чисел Фибоначчи до N",
+        "# Числа Фибоначчи, не превышающие N",
         "def fib_until(n):",
         "    a, b = 0, 1",
         "    result = []",
         "    while a <= n:",
         "        result.append(a)",
         "        a, b = b, a+b",
-        "        return result",
-        "print(fib_until(100))  # → [0,1,1,2,3,5,8,13,21,34,55,89]"
+        "    return result",
+        "print(fib_until(100))  # → [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]"
       ]
     ],
     "related": [

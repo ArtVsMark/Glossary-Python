@@ -16,6 +16,8 @@ from tests.factories import make_entry, make_glossary
         ("Модуль os", "modules"),
         ("Строки (str)", "types"),
         ("Исключения", "builtins"),
+        # Удалённые модули — модули, как в главе «Removed Modules» (#164).
+        ("Удалённые модули", "modules"),
         ("Раздел, которого нет", taxonomy.OTHER),
     ],
 )

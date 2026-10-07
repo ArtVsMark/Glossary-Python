@@ -603,21 +603,21 @@
     ]
   },
   {
-    "id": ".name-.value",
+    "id": "enum.Enum.name",
     "title": {
-      "ru": ".name / .value",
-      "en": ".name / .value"
+      "ru": "enum.Enum.name",
+      "en": "enum.Enum.name"
     },
     "kind": "term",
     "summary": {
-      "ru": "Каждый элемент перечисления имеет атрибуты .name (строка) и .value (заданное значение).",
-      "en": "Every member of an enumeration has a .name attribute (a string) and a .value attribute (the value given to it)."
+      "ru": "Имя члена перечисления строкой — то, что слева от = в определении класса.",
+      "en": "The name of an enum member as a string — what stands left of = in the class definition."
     },
     "body": {
-      "ru": "Не путайте два способа поиска: Color(1) ищет по значению и совпадает с .value, а Color['RED'] — по имени и совпадает с .name. Сам элемент не равен своему значению: у обычного Enum Color.RED == 1 даёт False, сравнивать нужно либо элементы между собой, либо .value со значением (либо наследоваться от IntEnum/StrEnum). Оба атрибута доступны только на чтение и реализованы так, что поле с именем name или value в перечислении конфликтует с ними.",
-      "en": "Keep the two lookups apart: Color(1) looks up by value and matches .value, while Color['RED'] looks up by name and matches .name. A member is not equal to its value — with a plain Enum, Color.RED == 1 is False, so compare members to members or .value to the raw value (or inherit from IntEnum/StrEnum). Both attributes are read-only and implemented in a way that clashes with a member literally named name or value."
+      "ru": "name удобно для вывода и сериализации, а обратный путь — доступ по имени через квадратные скобки: Color['RED']. Имя нельзя переприсвоить: члены перечисления неизменяемы. У псевдонима (второго имени для того же значения) name совпадает с именем первого, канонического члена.",
+      "en": "name is handy for display and serialisation, and the way back is lookup by name with square brackets: Color['RED']. The name cannot be reassigned: enum members are immutable. An alias (a second name for the same value) reports the name of the first, canonical member."
     },
-    "syntax": "member.name  # → 'RED'\nmember.value # → 1",
+    "syntax": "Color.RED.name  # 'RED'\nColor['RED']    # Color.RED",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Enum.name",
     "added": "3.4",
@@ -632,12 +632,13 @@
       "en": "attributes"
     },
     "aliases": [
-      "имя элемента перечисления",
-      "значение члена перечисления"
+      "имя члена перечисления",
+      "перечисление в строку"
     ],
     "keywords": [
       "name",
-      "value"
+      "Enum",
+      "Color['RED']"
     ],
     "tags": [
       "module"
@@ -646,20 +647,79 @@
       [
         "from enum import Enum",
         "class Color(Enum):",
-        "    RED = 1; GREEN = 2",
-        "Color.RED.name # → 'RED'",
-        "Color.RED.value # → 1",
-        "Color(1).name # → 'RED'",
-        "for c in Color:",
-        "    print(c.name, c.value) # RED 1, GREEN 2"
+        "    RED = 1",
+        "    CRIMSON = 1  # псевдоним RED",
+        "print(Color.RED.name)  # → RED",
+        "print(Color['RED'] is Color.RED)  # → True",
+        "print(Color.CRIMSON.name)  # → RED — у псевдонима имя канонического члена"
       ]
     ],
     "related": [
-      "enum",
-      "auto",
-      "итерация-и-сравнение-enum"
+      "enum.Enum.value",
+      "enum"
     ],
     "related_errors": []
+  },
+  {
+    "id": "enum.Enum.value",
+    "title": {
+      "ru": "enum.Enum.value",
+      "en": "enum.Enum.value"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Значение члена перечисления — то, что справа от = в определении класса.",
+      "en": "The value of an enum member — what stands right of = in the class definition."
+    },
+    "body": {
+      "ru": "Обратный путь — вызов класса со значением: Color(1) вернёт Color.RED, а неизвестное значение даст ValueError. Значение может быть любым объектом, а auto() подставит его само. У IntEnum и StrEnum член и так ведёт себя как число или строка, поэтому .value там нужен реже.",
+      "en": "The way back is calling the class with a value: Color(1) returns Color.RED, while an unknown value raises ValueError. A value can be any object, and auto() fills it in for you. IntEnum and StrEnum members already behave as numbers or strings, so .value is needed there less often."
+    },
+    "syntax": "Color.RED.value  # 1\nColor(1)         # Color.RED",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/enum.html#enum.Enum.value",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль enum",
+    "subcat": {
+      "ru": "атрибуты",
+      "en": "attributes"
+    },
+    "aliases": [
+      "значение члена перечисления",
+      "перечисление в число"
+    ],
+    "keywords": [
+      "value",
+      "Enum",
+      "Color(1)"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "from enum import Enum",
+        "class Color(Enum):",
+        "    RED = 1",
+        "    GREEN = 2",
+        "print(Color.GREEN.value)  # → 2",
+        "print(Color(1))  # → Color.RED",
+        "Color(7)  # → ValueError: 7 is not a valid Color"
+      ]
+    ],
+    "related": [
+      "enum.Enum.name",
+      "enum",
+      "auto"
+    ],
+    "related_errors": [
+      "valueerror"
+    ]
   },
   {
     "id": "path.read_text",
@@ -901,21 +961,21 @@
     ]
   },
   {
-    "id": ".stem-.suffix-.suffixes-.name-.parent-.p",
+    "id": "pathlib.PurePath.name",
     "title": {
-      "ru": ".stem / .suffix / .suffixes / .name / .parent / .parts",
-      "en": ".stem / .suffix / .suffixes / .name / .parent / .parts"
+      "ru": "pathlib.PurePath.name",
+      "en": "pathlib.PurePath.name"
     },
     "kind": "term",
     "summary": {
-      "ru": "Атрибуты объекта Path для доступа к компонентам: имя файла, расширение, родительская директория и т.д.",
-      "en": "Attributes of a Path object that give access to its components: the file name, the extension, the parent directory and so on."
+      "ru": "Последний компонент пути целиком — имя файла с расширением: 'report.tar.gz'.",
+      "en": "The final path component in full — the file name with its extension: 'report.tar.gz'."
     },
     "body": {
-      "ru": "Эти атрибуты только разбирают строку пути и на диск не ходят — они работают и для несуществующего файла. Главная ловушка: .suffix отдаёт лишь последнее расширение вместе с точкой, поэтому у 'file.tar.gz' .stem остаётся 'file.tar', а весь набор даёт .suffixes. У скрытых файлов вроде '.bashrc' расширения нет вообще: .suffix пустой, а ведущая точка считается частью имени.",
-      "en": "These attributes are pure string arithmetic: nothing touches the disk, so they work for paths that do not exist. The usual trap is .suffix returning only the last extension, dot included, so 'file.tar.gz' has .stem 'file.tar' and you need .suffixes for the full list. A dotfile such as '.bashrc' has no suffix at all — the leading dot counts as part of the name."
+      "ru": "У пути, оканчивающегося на каталог, name — имя этого каталога; у корня '/' — пустая строка. Свойство только читает путь как строку и не трогает диск: файла может и не быть. Заменить имя помогает with_name().",
+      "en": "For a path ending in a directory, name is that directory's name; for the root '/' it is an empty string. The property only parses the path as a string and never touches the disk: the file need not exist. with_name() replaces it."
     },
-    "syntax": "p.name, p.stem, p.suffix, p.suffixes, p.parent, p.parts",
+    "syntax": "PurePath(...).name",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.name",
     "added": "3.4",
@@ -930,38 +990,311 @@
       "en": "path components"
     },
     "aliases": [
-      "расширение файла",
-      "имя файла без расширения",
-      "родительская папка"
+      "name пути",
+      "часть пути pathlib"
     ],
     "keywords": [
-      "stem",
-      "suffix",
-      "suffixes",
       "name",
-      "parent",
-      "parts"
+      "PurePath",
+      "pathlib"
     ],
     "tags": [
       "module"
     ],
     "examples": [
       [
-        "from pathlib import Path",
-        "p = Path('/home/user/data/file.tar.gz')",
-        "p.name # → 'file.tar.gz'",
-        "p.stem # → 'file.tar'",
-        "p.suffix # → '.gz'",
-        "p.suffixes # → ['.tar', '.gz']",
-        "p.parent # → PosixPath('/home/user/data')",
-        "p.parts # → ('/', 'home', 'user', 'data', 'file.tar.gz')"
+        "from pathlib import PurePosixPath as P",
+        "p = P('/data/report.tar.gz')",
+        "print(p.name)  # → report.tar.gz",
+        "print(repr(P('/').name))  # → ''",
+        "print(p.with_name('summary.txt'))  # → /data/summary.txt"
       ]
     ],
     "related": [
-      "os.path.splitext",
-      "os.path.basename",
-      "оператор",
+      "pathlib.PurePath.stem",
+      "pathlib.PurePath.suffix",
+      "pathlib.PurePath.parent"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "pathlib.PurePath.stem",
+    "title": {
+      "ru": "pathlib.PurePath.stem",
+      "en": "pathlib.PurePath.stem"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Имя последнего компонента без последнего расширения: у 'report.tar.gz' — 'report.tar'.",
+      "en": "The final component's name without its last suffix: 'report.tar' for 'report.tar.gz'."
+    },
+    "body": {
+      "ru": "Отрезается только последнее расширение, поэтому у архивов вида .tar.gz stem ещё содержит точку. Чтобы снять все расширения, берут name и отрезают ''.join(suffixes). Для смены расширения есть with_suffix(), а с 3.9 — with_stem().",
+      "en": "Only the last suffix is removed, so for archives like .tar.gz the stem still contains a dot. To strip all suffixes, take name and cut off ''.join(suffixes). with_suffix() changes the extension, and since 3.9 with_stem() changes the stem."
+    },
+    "syntax": "PurePath(...).stem",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.stem",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль pathlib",
+    "subcat": {
+      "ru": "части пути",
+      "en": "path components"
+    },
+    "aliases": [
+      "stem пути",
+      "часть пути pathlib"
+    ],
+    "keywords": [
+      "stem",
+      "PurePath",
+      "pathlib"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "from pathlib import PurePosixPath as P",
+        "p = P('/data/report.tar.gz')",
+        "print(p.stem)  # → report.tar",
+        "print(p.name.removesuffix(''.join(p.suffixes)))  # → report",
+        "print(p.with_stem('final'))  # → /data/final.gz"
+      ]
+    ],
+    "related": [
+      "pathlib.PurePath.name",
+      "pathlib.PurePath.suffix",
+      "pathlib.PurePath.suffixes"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "pathlib.PurePath.suffix",
+    "title": {
+      "ru": "pathlib.PurePath.suffix",
+      "en": "pathlib.PurePath.suffix"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Последнее расширение файла вместе с точкой: '.gz'. Нет расширения — пустая строка.",
+      "en": "The file's last extension, dot included: '.gz'. No extension — an empty string."
+    },
+    "body": {
+      "ru": "Скрытый файл без расширения, вроде '.bashrc', суффикса не имеет — точка в начале считается частью имени. Для проверки типа файла сравнивают suffix.lower(), иначе 'PHOTO.JPG' не совпадёт с '.jpg'.",
+      "en": "A hidden file without an extension, such as '.bashrc', has no suffix — the leading dot belongs to the name. To check a file type compare suffix.lower(), otherwise 'PHOTO.JPG' will not match '.jpg'."
+    },
+    "syntax": "PurePath(...).suffix",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.suffix",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль pathlib",
+    "subcat": {
+      "ru": "части пути",
+      "en": "path components"
+    },
+    "aliases": [
+      "suffix пути",
+      "часть пути pathlib"
+    ],
+    "keywords": [
+      "suffix",
+      "PurePath",
+      "pathlib"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "from pathlib import PurePosixPath as P",
+        "print(P('report.tar.gz').suffix)  # → .gz",
+        "print(repr(P('.bashrc').suffix))  # → ''",
+        "print(P('PHOTO.JPG').suffix.lower() == '.jpg')  # → True"
+      ]
+    ],
+    "related": [
+      "pathlib.PurePath.suffixes",
+      "pathlib.PurePath.stem",
+      "pathlib.PurePath.name"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "pathlib.PurePath.suffixes",
+    "title": {
+      "ru": "pathlib.PurePath.suffixes",
+      "en": "pathlib.PurePath.suffixes"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Список всех расширений по порядку: у 'report.tar.gz' — ['.tar', '.gz'].",
+      "en": "A list of all extensions in order: ['.tar', '.gz'] for 'report.tar.gz'."
+    },
+    "body": {
+      "ru": "Точки внутри имени тоже считаются: у 'v1.2.final.txt' получится ['.2', '.final', '.txt'], поэтому suffixes надёжен для известных составных расширений вроде .tar.gz, а не для любых имён с точками.",
+      "en": "Dots inside the name count too: 'v1.2.final.txt' yields ['.2', '.final', '.txt'], so suffixes is reliable for known compound extensions like .tar.gz rather than for arbitrary dotted names."
+    },
+    "syntax": "PurePath(...).suffixes",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.suffixes",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль pathlib",
+    "subcat": {
+      "ru": "части пути",
+      "en": "path components"
+    },
+    "aliases": [
+      "suffixes пути",
+      "часть пути pathlib"
+    ],
+    "keywords": [
+      "suffixes",
+      "PurePath",
+      "pathlib"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "from pathlib import PurePosixPath as P",
+        "print(P('report.tar.gz').suffixes)  # → ['.tar', '.gz']",
+        "print(P('v1.2.final.txt').suffixes)  # → ['.2', '.final', '.txt']",
+        "print(P('notes').suffixes)  # → []"
+      ]
+    ],
+    "related": [
+      "pathlib.PurePath.suffix",
+      "pathlib.PurePath.stem"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "pathlib.PurePath.parent",
+    "title": {
+      "ru": "pathlib.PurePath.parent",
+      "en": "pathlib.PurePath.parent"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Путь без последнего компонента — логический родитель: у '/data/a.txt' это '/data'.",
+      "en": "The path without its last component — the logical parent: '/data' for '/data/a.txt'."
+    },
+    "body": {
+      "ru": "parent работает со строкой пути, а не с диском: у '../x' родитель '..', а у 'a/..' — 'a', без разрешения '..'. Для настоящего родителя сначала вызывают resolve(). Все предки по порядку — в свойстве parents.",
+      "en": "parent works on the path string, not the disk: the parent of '../x' is '..' and of 'a/..' is 'a', with no '..' resolution. For the real parent call resolve() first. All ancestors in order are in the parents property."
+    },
+    "syntax": "PurePath(...).parent",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.parent",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль pathlib",
+    "subcat": {
+      "ru": "части пути",
+      "en": "path components"
+    },
+    "aliases": [
+      "parent пути",
+      "часть пути pathlib"
+    ],
+    "keywords": [
+      "parent",
+      "PurePath",
+      "pathlib"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "from pathlib import PurePosixPath as P",
+        "p = P('/data/2024/report.txt')",
+        "print(p.parent)  # → /data/2024",
+        "print(p.parent.parent)  # → /data",
+        "print(list(p.parents))  # → [PurePosixPath('/data/2024'), PurePosixPath('/data'), PurePosixPath('/')]"
+      ]
+    ],
+    "related": [
+      "pathlib.PurePath.parts",
+      "pathlib.PurePath.name",
       "pathlib.path"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "pathlib.PurePath.parts",
+    "title": {
+      "ru": "pathlib.PurePath.parts",
+      "en": "pathlib.PurePath.parts"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Кортеж компонентов пути: у '/usr/bin/python3' — ('/', 'usr', 'bin', 'python3').",
+      "en": "A tuple of path components: ('/', 'usr', 'bin', 'python3') for '/usr/bin/python3'."
+    },
+    "body": {
+      "ru": "Корень (а на Windows — диск с корнем, 'C:\\\\') идёт отдельным первым элементом. Обратная операция — передать части в конструктор: PurePath(*parts). parts удобен, чтобы проверить, лежит ли путь внутри нужного каталога, или найти в нём определённый компонент.",
+      "en": "The root (on Windows, the drive plus root, 'C:\\\\') comes as a separate first item. The reverse is passing the parts to the constructor: PurePath(*parts). parts is handy for checking whether a path lies inside a given directory or for finding a particular component."
+    },
+    "syntax": "PurePath(...).parts",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.parts",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль pathlib",
+    "subcat": {
+      "ru": "части пути",
+      "en": "path components"
+    },
+    "aliases": [
+      "parts пути",
+      "часть пути pathlib"
+    ],
+    "keywords": [
+      "parts",
+      "PurePath",
+      "pathlib"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "from pathlib import PurePosixPath as P, PureWindowsPath as W",
+        "print(P('/usr/bin/python3').parts)  # → ('/', 'usr', 'bin', 'python3')",
+        "print(W('C:/Users/anna').parts)  # → ('C:\\\\', 'Users', 'anna')",
+        "print('bin' in P('/usr/bin/python3').parts)  # → True"
+      ]
+    ],
+    "related": [
+      "pathlib.PurePath.parent",
+      "pathlib.PurePath.name",
+      "pathlib.PurePath"
     ],
     "related_errors": []
   },
@@ -1258,10 +1591,10 @@
   {
     "id": "__copy__-__deepcopy__",
     "title": {
-      "ru": "__copy__() / __deepcopy__()",
-      "en": "__copy__() / __deepcopy__()"
+      "ru": "Протокол копирования",
+      "en": "Copy protocol"
     },
-    "kind": "function",
+    "kind": "term",
     "summary": {
       "ru": "Методы для настройки поведения copy.copy() и copy.deepcopy() в пользовательских классах.",
       "en": "The methods that customize how copy.copy() and copy.deepcopy() behave for your own classes."
@@ -1312,9 +1645,136 @@
       ]
     ],
     "related": [
+      "__copy__",
+      "__deepcopy__",
       "copy.deepcopy",
       "copy.copy",
       "ловушки-копирования"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__copy__",
+    "title": {
+      "ru": "__copy__",
+      "en": "__copy__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод, который вызывает copy.copy(obj), если он определён: своя логика поверхностной копии.",
+      "en": "The method copy.copy(obj) calls when it is defined: custom logic for a shallow copy."
+    },
+    "body": {
+      "ru": "Без __copy__ модуль copy копирует объект сам: создаёт экземпляр того же класса и переносит его __dict__ — вложенные объекты остаются общими. Свой __copy__ нужен, когда часть состояния копировать нельзя или не нужно: соединение, кэш, счётчик. Метод не принимает аргументов кроме self.",
+      "en": "Without __copy__ the copy module copies the object itself: it creates an instance of the same class and transfers its __dict__, leaving nested objects shared. A custom __copy__ is needed when part of the state must not or need not be copied: a connection, a cache, a counter. The method takes no arguments besides self."
+    },
+    "syntax": "def __copy__(self): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/copy.html#object.__copy__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль copy",
+    "subcat": {
+      "ru": "кастомизация",
+      "en": "customization"
+    },
+    "aliases": [
+      "своя поверхностная копия",
+      "управлять copy.copy"
+    ],
+    "keywords": [
+      "__copy__",
+      "copy.copy"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import copy",
+        "class Doc:",
+        "    def __init__(self, text):",
+        "        self.text, self.cache = text, {'len': len(text)}",
+        "    def __copy__(self):",
+        "        return Doc(self.text)  # кэш у копии свой, а не общий",
+        "a = Doc('abc')",
+        "b = copy.copy(a)",
+        "print(b.text, b.cache is a.cache)  # → abc False"
+      ]
+    ],
+    "related": [
+      "__copy__-__deepcopy__",
+      "__deepcopy__",
+      "copy.copy"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__deepcopy__",
+    "title": {
+      "ru": "__deepcopy__",
+      "en": "__deepcopy__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод, который вызывает copy.deepcopy(obj): своя глубокая копия. Принимает словарь memo уже скопированного.",
+      "en": "The method copy.deepcopy(obj) calls: a custom deep copy. It receives the memo dict of what has already been copied."
+    },
+    "body": {
+      "ru": "memo — словарь id(оригинал) → копия: его нужно передавать во вложенные deepcopy, иначе циклические ссылки уйдут в бесконечную рекурсию, а общие объекты раздвоятся. Свою копию стоит записать в memo до копирования полей — тогда ссылка объекта на самого себя тоже разрешится.",
+      "en": "memo maps id(original) to copy: pass it on to nested deepcopy calls, otherwise circular references recurse forever and shared objects get duplicated. Record your own copy in memo before copying fields — then a reference from the object to itself resolves too."
+    },
+    "syntax": "def __deepcopy__(self, memo): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/copy.html#object.__deepcopy__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль copy",
+    "subcat": {
+      "ru": "кастомизация",
+      "en": "customization"
+    },
+    "aliases": [
+      "своя глубокая копия",
+      "управлять copy.deepcopy"
+    ],
+    "keywords": [
+      "__deepcopy__",
+      "copy.deepcopy",
+      "memo"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import copy",
+        "class Node:",
+        "    def __init__(self, items):",
+        "        self.items = items",
+        "    def __deepcopy__(self, memo):",
+        "        clone = Node(None)",
+        "        memo[id(self)] = clone",
+        "        clone.items = copy.deepcopy(self.items, memo)",
+        "        return clone",
+        "a = Node([[1, 2]])",
+        "b = copy.deepcopy(a)",
+        "b.items[0].append(3)",
+        "print(a.items, b.items)  # → [[1, 2]] [[1, 2, 3]]"
+      ]
+    ],
+    "related": [
+      "__copy__-__deepcopy__",
+      "__copy__",
+      "copy.deepcopy"
     ],
     "related_errors": []
   },
@@ -1439,7 +1899,7 @@
     ],
     "related": [
       "enum",
-      ".name-.value",
+      "enum.Enum.name",
       "valueerror"
     ],
     "related_errors": [
@@ -1560,7 +2020,7 @@
     ],
     "related": [
       "enum",
-      ".name-.value",
+      "enum.Enum.name",
       "unique"
     ],
     "related_errors": []
@@ -2753,7 +3213,7 @@
       "copy.copy",
       "__copy__-__deepcopy__",
       "ловушки-копирования",
-      "copy-deepcopy-словаря"
+      "dict.copy"
     ],
     "related_errors": []
   },
@@ -4117,10 +4577,10 @@
       ]
     ],
     "related": [
-      ".name-.value",
+      "enum.Enum.name",
       "auto",
-      "intenum-strenum",
-      "flag-intflag"
+      "enum.IntEnum",
+      "enum.Flag"
     ],
     "related_errors": []
   },
@@ -4434,7 +4894,7 @@
     ],
     "related": [
       "file-buffering",
-      "print-file-flush",
+      "print",
       "file.write",
       "буферизация"
     ],
@@ -4563,68 +5023,6 @@
       "file-tell",
       "file.write",
       "open"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "flag-intflag",
-    "title": {
-      "ru": "Flag / IntFlag",
-      "en": "Flag / IntFlag"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "Flag и IntFlag поддерживают битовые операции: объединение через |, проверку через &.",
-      "en": "Flag and IntFlag support bitwise operations: members are combined with | and tested with &."
-    },
-    "body": {
-      "ru": "Результат & — это снова флаг, а не bool; пустой флаг ложен, поэтому проверку принадлежности удобнее писать оператором in, чем сравнивать с нулём. IntFlag наследуется от int, и его члены незаметно утекают в арифметику, ключи словарей и сериализацию как обычные числа — если такая совместимость не нужна, берите Flag. Начиная с 3.11 составной флаг можно итерировать: он отдаёт входящие в него одиночные биты.",
-      "en": "An & of two flags yields a flag, not a bool; the empty flag is falsy, so membership reads better with the in operator than with a comparison against zero. IntFlag subclasses int, so its members quietly leak into arithmetic, dict keys and serialization as plain numbers — pick Flag when you do not need that compatibility. Since 3.11 a composite flag is iterable and yields the single-bit members it is made of."
-    },
-    "syntax": "from enum import Flag, IntFlag\nclass Perm(Flag):\n    R = 1; W = 2; X = 4",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/enum.html#enum.Flag",
-    "added": "3.6",
-    "deprecated": "",
-    "removed": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Модуль enum",
-    "subcat": {
-      "ru": "флаги",
-      "en": "flags"
-    },
-    "aliases": [
-      "битовые операции с флагами",
-      "объединить и проверить флаги",
-      "права доступа флагами"
-    ],
-    "keywords": [
-      "Flag",
-      "IntFlag"
-    ],
-    "tags": [
-      "module"
-    ],
-    "examples": [
-      [
-        "from enum import Flag, auto",
-        "class Perm(Flag):",
-        "    READ = auto()",
-        "    WRITE = auto()",
-        "    EXEC = auto()",
-        "rw = Perm.READ | Perm.WRITE",
-        "Perm.READ in rw # → True",
-        "Perm.EXEC in rw # → False",
-        "rw & Perm.WRITE # → <Perm.WRITE: 2>"
-      ]
-    ],
-    "related": [
-      "enum.Flag",
-      "enum.IntFlag",
-      "битовые-операции",
-      "intenum-strenum"
     ],
     "related_errors": []
   },
@@ -5638,70 +6036,6 @@
     ]
   },
   {
-    "id": "intenum-strenum",
-    "title": {
-      "ru": "IntEnum / StrEnum",
-      "en": "IntEnum / StrEnum"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "IntEnum — перечисление, совместимое с int. StrEnum — совместимое со str (Python 3.11+).",
-      "en": "IntEnum is an enumeration compatible with int. StrEnum is compatible with str (Python 3.11+)."
-    },
-    "body": {
-      "ru": "Совместимость работает в обе стороны и без типобезопасности: член IntEnum равен обычному числу, а значит и члену совсем другого IntEnum с тем же значением — это цена за то, чтобы значение принимали старый код, БД и бинарные протоколы. Отличие от обычного Enum заметнее всего при выводе: str() и f-строка дают само число или строку, тогда как обычный Enum напечатает имя вида Color.RED. В StrEnum вызов auto() подставляет имя члена в нижнем регистре, а не порядковый номер.",
-      "en": "The compatibility cuts both ways and costs you type safety: an IntEnum member equals a plain number, and therefore also equals a member of a completely unrelated IntEnum holding the same value — that is the price of being accepted by legacy code, databases and binary protocols. The difference from a plain Enum shows up in output: str() and f-strings give the bare number or string, while a plain Enum prints a name like Color.RED. In StrEnum, auto() fills in the member name lowercased rather than a counter."
-    },
-    "syntax": "class X(IntEnum): ...\nclass Y(StrEnum): ...",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/enum.html#enum.IntEnum",
-    "added": "3.11",
-    "deprecated": "",
-    "removed": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Модуль enum",
-    "subcat": {
-      "ru": "базовый",
-      "en": "basics"
-    },
-    "aliases": [
-      "смешанные перечисления с числом и строкой",
-      "разница числового и строкового перечисления"
-    ],
-    "keywords": [
-      "IntEnum",
-      "StrEnum"
-    ],
-    "tags": [
-      "module"
-    ],
-    "examples": [
-      [
-        "from enum import IntEnum",
-        "class Prio(IntEnum):",
-        "    LOW = 1; MED = 2; HIGH = 3",
-        "Prio.HIGH > Prio.LOW # → True",
-        "Prio.MED + 1 # → 3"
-      ],
-      [
-        "from enum import StrEnum",
-        "class Status(StrEnum):",
-        "    OK = 'ok'; ERR = 'error'",
-        "Status.OK == 'ok' # → True",
-        "f'status: {Status.ERR}' # → 'status: error'"
-      ]
-    ],
-    "related": [
-      "enum",
-      "enum.IntEnum",
-      "enum.StrEnum",
-      "flag-intflag"
-    ],
-    "related_errors": []
-  },
-  {
     "id": "io.bytesio",
     "title": {
       "ru": "io.BytesIO",
@@ -5820,7 +6154,7 @@
       "io.bytesio",
       "io.textiowrapper",
       "open",
-      "sys.stdin-sys.stdout-sys.stderr"
+      "sys.stdin"
     ],
     "related_errors": []
   },
@@ -6117,7 +6451,7 @@
     "related": [
       "logging-FileHandler",
       "logging-Handler",
-      "sys.stdin-sys.stdout-sys.stderr"
+      "sys.stdin"
     ],
     "related_errors": []
   },
@@ -8829,7 +9163,7 @@
       "os.path.split",
       "оператор",
       "os.path.normpath",
-      "os.sep-os.linesep-os.pathsep"
+      "os.sep"
     ],
     "related_errors": [
       "TypeError"
@@ -8889,7 +9223,7 @@
     ],
     "related": [
       "os.path.split",
-      ".stem-.suffix-.suffixes-.name-.parent-.p",
+      "pathlib.PurePath.stem",
       "os.path.basename",
       "os.path.splitdrive"
     ],
@@ -8959,21 +9293,21 @@
     ]
   },
   {
-    "id": "os.sep-os.linesep-os.pathsep",
+    "id": "os.sep",
     "title": {
-      "ru": "os.sep / os.linesep / os.pathsep",
-      "en": "os.sep / os.linesep / os.pathsep"
+      "ru": "os.sep",
+      "en": "os.sep"
     },
     "kind": "term",
     "summary": {
-      "ru": "Системные разделители: sep — разделитель пути ('/' или '\\\\'), linesep — перевод строки, pathsep — разделитель PATH (':' или ';').",
-      "en": "The system separators: sep — the path separator ('/' or '\\\\'), linesep — the line terminator, pathsep — the PATH separator (':' or ';')."
+      "ru": "Разделитель компонентов пути в этой системе: '/' на Unix и macOS, '\\\\' на Windows.",
+      "en": "The path component separator on this system: '/' on Unix and macOS, '\\\\' on Windows."
     },
     "body": {
-      "ru": "os.linesep не нужен при записи текста: файл, открытый в текстовом режиме, сам переводит '\\n' в системный конец строки, и запись os.linesep на Windows даст '\\r\\r\\n'. Для сборки путей вместо os.sep лучше os.path.join или pathlib. Windows принимает и '/', поэтому os.altsep там равен '/', а на Unix — None. pathsep нужен для разбора переменных вроде PATH и PYTHONPATH.",
-      "en": "You do not need os.linesep when writing text: a file opened in text mode translates '\\n' to the platform line ending itself, and writing os.linesep on Windows yields '\\r\\r\\n'. For building paths prefer os.path.join or pathlib over os.sep. Windows accepts '/' as well, so os.altsep is '/' there and None on Unix. pathsep is for splitting variables such as PATH and PYTHONPATH."
+      "ru": "Склеивать пути через os.sep вручную не нужно: os.path.join и pathlib делают это сами и правильно обрабатывают крайние случаи. Windows понимает и '/', поэтому там есть ещё os.altsep = '/', а на Unix он None. os.sep нужен скорее для разбора уже готовых путей.",
+      "en": "There is no need to glue paths with os.sep by hand: os.path.join and pathlib do it and handle the edge cases correctly. Windows also understands '/', so it has os.altsep = '/', while on Unix that is None. os.sep is mostly useful for taking existing paths apart."
     },
-    "syntax": "os.sep      # '/' на Unix, '\\\\' на Windows\nos.linesep  # '\\n' на Unix, '\\r\\n' на Windows\nos.pathsep  # ':' на Unix, ';' на Windows",
+    "syntax": "os.sep  # '/' на Unix, '\\\\' на Windows",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sep",
     "added": "<3.0",
@@ -8989,13 +9323,12 @@
     },
     "aliases": [
       "разделитель пути",
-      "перевод строки в системе",
-      "разделитель path"
+      "слеш или обратный слеш"
     ],
     "keywords": [
       "os.sep",
-      "os.linesep",
-      "os.pathsep"
+      "os.altsep",
+      "разделитель пути"
     ],
     "tags": [
       "module"
@@ -9003,17 +9336,129 @@
     "examples": [
       [
         "import os",
-        "print(repr(os.sep))  # → '/'",
-        "print(repr(os.linesep))  # → '\\n'",
-        "print(repr(os.pathsep))  # → ':'",
-        "paths = os.environ['PATH'].split(os.pathsep)  # → список директорий PATH",
-        "full_path = 'home' + os.sep + 'user'  # → 'home/user'"
+        "print(repr(os.sep))  # → ? '/' на Unix, '\\\\' на Windows",
+        "print('home/user/file.txt'.replace('/', os.sep).split(os.sep))  # → ['home', 'user', 'file.txt']",
+        "print(os.path.join('home', 'user'))  # → ? home/user — так собирают пути"
       ]
     ],
     "related": [
-      "os.path.join",
-      "оператор",
+      "os.linesep",
+      "os.pathsep",
+      "os.path.join"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "os.linesep",
+    "title": {
+      "ru": "os.linesep",
+      "en": "os.linesep"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Последовательность конца строки в этой системе: '\\n' на Unix и macOS, '\\r\\n' на Windows.",
+      "en": "The line terminator on this system: '\\n' on Unix and macOS, '\\r\\n' on Windows."
+    },
+    "body": {
+      "ru": "Для текстовых файлов os.linesep не нужен и даже вреден: файл в текстовом режиме сам переводит '\\n' в системный конец строки, и запись os.linesep на Windows даст '\\r\\r\\n'. Пишите '\\n'. os.linesep пригождается при работе с байтами и в двоичном режиме.",
+      "en": "Text files do not need os.linesep and are even harmed by it: a file in text mode translates '\\n' to the platform line ending itself, so writing os.linesep on Windows produces '\\r\\r\\n'. Write '\\n'. os.linesep is useful when working with bytes or in binary mode."
+    },
+    "syntax": "os.linesep  # '\\n' на Unix, '\\r\\n' на Windows",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/os.html#os.linesep",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль os",
+    "subcat": {
+      "ru": "константы",
+      "en": "constants"
+    },
+    "aliases": [
+      "перевод строки в системе",
+      "конец строки windows"
+    ],
+    "keywords": [
+      "os.linesep",
+      "\\r\\n",
+      "конец строки"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import os",
+        "print(repr(os.linesep))  # → ? '\\n' на Unix, '\\r\\n' на Windows",
+        "with open('t.txt', 'w', encoding='utf-8') as f:",
+        "    f.write('a\\nb\\n')  # в текстовом режиме пишут '\\n' — перевод сделает файл",
+        "with open('t.txt', encoding='utf-8') as f:",
+        "    print(f.read().splitlines())  # → ['a', 'b']"
+      ]
+    ],
+    "related": [
+      "os.sep",
+      "os.pathsep",
       "str.splitlines"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "os.pathsep",
+    "title": {
+      "ru": "os.pathsep",
+      "en": "os.pathsep"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Разделитель списка путей в переменных вроде PATH: ':' на Unix и macOS, ';' на Windows.",
+      "en": "The separator of path lists in variables such as PATH: ':' on Unix and macOS, ';' on Windows."
+    },
+    "body": {
+      "ru": "Не путать с os.sep: sep разделяет компоненты одного пути, pathsep — несколько путей в одной строке. Он нужен для разбора PATH, PYTHONPATH и похожих переменных, а также для сборки их значения перед запуском подпроцесса.",
+      "en": "Not to be confused with os.sep: sep separates the components of one path, pathsep separates several paths in a single string. It is used to split PATH, PYTHONPATH and similar variables, and to build their value before launching a subprocess."
+    },
+    "syntax": "os.pathsep  # ':' на Unix, ';' на Windows",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/os.html#os.pathsep",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль os",
+    "subcat": {
+      "ru": "константы",
+      "en": "constants"
+    },
+    "aliases": [
+      "разделитель path",
+      "разобрать переменную path"
+    ],
+    "keywords": [
+      "os.pathsep",
+      "PATH",
+      "PYTHONPATH"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import os",
+        "print(repr(os.pathsep))  # → ? ':' на Unix, ';' на Windows",
+        "dirs = os.pathsep.join(['/usr/bin', '/bin'])",
+        "print(dirs.split(os.pathsep))  # → ['/usr/bin', '/bin']"
+      ]
+    ],
+    "related": [
+      "os.sep",
+      "os.linesep",
+      "os.environ"
     ],
     "related_errors": []
   },
@@ -11217,7 +11662,7 @@
     "related": [
       "subprocess-Popen",
       "subprocess-run",
-      "sys.stdin-sys.stdout-sys.stderr"
+      "sys.stdin"
     ],
     "related_errors": []
   },
@@ -11879,21 +12324,21 @@
     "related_errors": []
   },
   {
-    "id": "sys.stdin-sys.stdout-sys.stderr",
+    "id": "sys.stdin",
     "title": {
-      "ru": "sys.stdin / sys.stdout / sys.stderr",
-      "en": "sys.stdin / sys.stdout / sys.stderr"
+      "ru": "sys.stdin",
+      "en": "sys.stdin"
     },
     "kind": "term",
     "summary": {
-      "ru": "Стандартные потоки ввода/вывода/ошибок. Можно перенаправлять для тестирования или записи в файл.",
-      "en": "The standard input, output and error streams. They can be redirected for testing or to write to a file."
+      "ru": "Стандартный поток ввода — текстовый файловый объект. Из него читают input() и цикл for line in sys.stdin.",
+      "en": "The standard input stream — a text file object. input() and the for line in sys.stdin loop read from it."
     },
     "body": {
-      "ru": "Когда вывод уходит в файл или пайп, stdout буферизуется блоками, а stderr отдаётся построчно — поэтому в логе сообщения print и трейсбеки часто оказываются вперемешку не в том порядке; лечится print(..., flush=True) или запуском python -u. Учтите, что sys.stdout.write() принимает только строку и сам перевод строки не дописывает, а оригиналы потоков всегда лежат в sys.__stdout__ и sys.__stderr__, если вы что-то подменили.",
-      "en": "When output goes to a file or a pipe, stdout is block-buffered while stderr stays line-buffered, so print messages and tracebacks often land in the log out of order; fix it with print(..., flush=True) or by running python -u. Note that sys.stdout.write() takes a string only and adds no newline of its own, and the untouched originals are always kept in sys.__stdout__ and sys.__stderr__ if you swapped a stream out."
+      "ru": "Строки приходят вместе с '\\n' на конце, поэтому почти всегда нужен .strip() — иначе сравнение с ожидаемым ответом развалится на невидимом символе. Цикл for line in sys.stdin заканчивается только на конце ввода (Ctrl+D в терминале, Ctrl+Z и Enter на Windows), поэтому задачи с неизвестным числом строк читают именно так. sys.stdin.read() забирает весь ввод одной строкой.",
+      "en": "Lines arrive with their trailing '\\n', so .strip() is almost always needed — otherwise a comparison with the expected answer fails on an invisible character. for line in sys.stdin stops only at end of input (Ctrl+D in a terminal, Ctrl+Z then Enter on Windows), which is how problems with an unknown number of lines are read. sys.stdin.read() takes the whole input as one string."
     },
-    "syntax": "sys.stdin   # TextIOWrapper (чтение)\nsys.stdout  # TextIOWrapper (запись)\nsys.stderr  # TextIOWrapper (ошибки)",
+    "syntax": "import sys\nfor line in sys.stdin:\n    ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.stdin",
     "added": "<3.0",
@@ -11908,14 +12353,81 @@
       "en": "streams"
     },
     "aliases": [
-      "стандартные потоки ввода и вывода",
-      "перенаправить вывод программы",
-      "вывод в поток ошибок"
+      "стандартный ввод",
+      "чтение всех строк ввода",
+      "ввод до конца файла"
     ],
     "keywords": [
       "sys.stdin",
+      "stdin",
+      "input",
+      "readline",
+      "read"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import io, sys",
+        "sys.stdin = io.StringIO('3 4\\n5 6\\n')  # так ввод подставят тесты: python main.py < input.txt",
+        "for line in sys.stdin:",
+        "    a, b = map(int, line.split())",
+        "    print(a + b)  # → 7 / 11"
+      ],
+      [
+        "import io, sys",
+        "sys.stdin = io.StringIO('hello\\n')",
+        "line = sys.stdin.readline()",
+        "print(repr(line), repr(line.strip()))  # → 'hello\\n' 'hello'"
+      ]
+    ],
+    "related": [
       "sys.stdout",
-      "sys.stderr"
+      "sys.stderr",
+      "input"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.stdout",
+    "title": {
+      "ru": "sys.stdout",
+      "en": "sys.stdout"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Стандартный поток вывода — текстовый файловый объект, куда по умолчанию пишет print().",
+      "en": "The standard output stream — a text file object print() writes to by default."
+    },
+    "body": {
+      "ru": "Когда вывод уходит в файл или конвейер, sys.stdout буферизуется блоками, и строки появляются позже, чем ожидаешь, — помогает print(..., flush=True) или sys.stdout.flush(). sys.stdout можно подменить объектом с методом write, например io.StringIO, чтобы перехватить вывод; исходный поток всегда доступен как sys.__stdout__.",
+      "en": "When output goes to a file or a pipe, sys.stdout is block-buffered and lines appear later than expected — print(..., flush=True) or sys.stdout.flush() helps. sys.stdout can be replaced by any object with a write method, such as io.StringIO, to capture output; the original stream is always available as sys.__stdout__."
+    },
+    "syntax": "import sys\nsys.stdout.write('text\\n')",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.stdout",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "потоки",
+      "en": "streams"
+    },
+    "aliases": [
+      "стандартный вывод",
+      "перехватить вывод print"
+    ],
+    "keywords": [
+      "sys.stdout",
+      "stdout",
+      "print",
+      "flush",
+      "write"
     ],
     "tags": [
       "module"
@@ -11923,37 +12435,97 @@
     "examples": [
       [
         "import sys",
-        "sys.stdout.write('hello\\n')  # → hello",
-        "sys.stderr.write('error!\\n')  # → error! (в stderr)",
-        "print('msg', file=sys.stderr)  # → msg в поток ошибок",
-        "print(sys.stdin.encoding)  # → 'utf-8'",
-        "print(sys.stdout.encoding)  # → 'utf-8'"
+        "n = sys.stdout.write('hello\\n')  # → hello",
+        "print(n)  # → 6 — write возвращает число записанных символов"
+      ],
+      [
+        "import io, sys",
+        "buffer = io.StringIO()",
+        "sys.stdout = buffer",
+        "print('captured')",
+        "sys.stdout = sys.__stdout__",
+        "print(repr(buffer.getvalue()))  # → 'captured\\n'"
       ]
     ],
     "related": [
-      "stdin-stdout",
-      "input",
+      "sys.stdin",
+      "sys.stderr",
       "print",
-      "contextlib.redirect_stdout"
+      "буферизация"
     ],
     "related_errors": []
   },
   {
-    "id": "sys.version-sys.platform-sys.implementat",
+    "id": "sys.stderr",
     "title": {
-      "ru": "sys.version / sys.platform / sys.implementation",
-      "en": "sys.version / sys.platform / sys.implementation"
+      "ru": "sys.stderr",
+      "en": "sys.stderr"
     },
     "kind": "term",
     "summary": {
-      "ru": "sys.version — строка версии Python. sys.platform — ОС ('linux', 'win32', 'darwin'). sys.implementation — детали реализации (CPython и т.д.).",
-      "en": "sys.version — the Python version as a string. sys.platform — the OS ('linux', 'win32', 'darwin'). sys.implementation — details of the implementation (CPython and so on)."
+      "ru": "Стандартный поток ошибок. Сюда пишут трассировки и диагностику, чтобы не смешивать их с результатом.",
+      "en": "The standard error stream. Tracebacks and diagnostics go here so they do not mix with the result."
     },
     "body": {
-      "ru": "Проверку «Python не ниже такой-то версии» делают сравнением кортежей: if sys.version_info >= (3, 10). Разбирать строку sys.version не стоит — в ней кроме цифр лежат дата сборки и версия компилятора. На Windows sys.platform равен 'win32' даже в 64-битной сборке, на macOS — 'darwin', на Linux — 'linux'; если нужно лишь «винда или нет», проще глянуть os.name.",
-      "en": "To require a minimum version, compare tuples: if sys.version_info >= (3, 10). Do not parse the sys.version string — it also carries the build date and the compiler version. On Windows sys.platform is 'win32' even in a 64-bit build, on macOS it is 'darwin', on Linux 'linux'; for a plain \"Windows or not\" check, os.name is simpler."
+      "ru": "stderr не буферизуется блоками, поэтому сообщения видны сразу, даже если stdout перенаправлен в файл. Проверяющие системы обычно сравнивают только stdout: отладочная печать в stderr не испортит ответ, а печать в stdout — испортит. Пишут туда через print(..., file=sys.stderr).",
+      "en": "stderr is not block-buffered, so messages show up immediately even when stdout is redirected to a file. Judging systems usually compare stdout only: debug output to stderr does not spoil the answer, while output to stdout does. Write to it with print(..., file=sys.stderr)."
     },
-    "syntax": "sys.version        # str\nsys.version_info   # named tuple (major, minor, micro)\nsys.platform       # str\nsys.implementation # namespace",
+    "syntax": "print('ошибка', file=sys.stderr)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.stderr",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "потоки",
+      "en": "streams"
+    },
+    "aliases": [
+      "поток ошибок",
+      "отладочная печать не в ответ"
+    ],
+    "keywords": [
+      "sys.stderr",
+      "stderr",
+      "file=sys.stderr"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "print('debug: x = 42', file=sys.stderr)  # в поток ошибок, ответ не испорчен",
+        "print('42')  # → 42 — ответ идёт в stdout"
+      ]
+    ],
+    "related": [
+      "sys.stdout",
+      "sys.stdin",
+      "print"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.version",
+    "title": {
+      "ru": "sys.version",
+      "en": "sys.version"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Строка с версией интерпретатора и сведениями о сборке. Для сравнения версий — sys.version_info.",
+      "en": "A string with the interpreter version and build details. Compare versions with sys.version_info."
+    },
+    "body": {
+      "ru": "Строку sys.version не разбирают и не сравнивают: '3.10' < '3.9' как строки. Для проверок есть кортеж sys.version_info — его сравнивают с кортежем: sys.version_info >= (3, 10). Поля major, minor и micro доступны и по именам.",
+      "en": "sys.version is not meant to be parsed or compared: as strings '3.10' < '3.9'. Checks use the tuple sys.version_info, compared with a tuple: sys.version_info >= (3, 10). Its major, minor and micro fields are also available by name."
+    },
+    "syntax": "sys.version\nsys.version_info >= (3, 10)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.version",
     "added": "<3.0",
@@ -11968,14 +12540,13 @@
       "en": "information"
     },
     "aliases": [
-      "версия питона",
-      "узнать операционную систему",
-      "на какой системе запущен код"
+      "версия python в коде",
+      "проверить версию интерпретатора"
     ],
     "keywords": [
       "sys.version",
-      "sys.platform",
-      "sys.implementation"
+      "sys.version_info",
+      "версия Python"
     ],
     "tags": [
       "module"
@@ -11984,16 +12555,130 @@
       [
         "import sys",
         "print(sys.version)  # → ? например 3.14.0 (main, Oct  7 2025, ...)",
-        "print(sys.version_info[:2] >= (3, 8))  # → True — так сравнивают версии",
-        "print(sys.version_info.major)  # → 3",
-        "print(sys.platform)  # → ? linux, darwin или win32",
-        "print(sys.implementation.name)  # → ? cpython для стандартного интерпретатора"
+        "print(sys.version_info >= (3, 8))  # → True",
+        "print('3.10' < '3.9', (3, 10) < (3, 9))  # → True False — строки сравнивают посимвольно"
       ]
     ],
     "related": [
-      "os.sep-os.linesep-os.pathsep",
-      "sys.path",
-      "sys.modules"
+      "sys.platform",
+      "sys.implementation"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.platform",
+    "title": {
+      "ru": "sys.platform",
+      "en": "sys.platform"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Идентификатор платформы: 'linux', 'darwin' на macOS, 'win32' на Windows — даже 64-битной.",
+      "en": "The platform identifier: 'linux', 'darwin' on macOS, 'win32' on Windows — even 64-bit Windows."
+    },
+    "body": {
+      "ru": "Проверяют через startswith: на старых версиях Linux давал 'linux2', а FreeBSD — 'freebsd14'. Значение фиксируется при сборке интерпретатора, поэтому подходит для выбора ветки кода. Для подробностей о машине есть модуль platform, а os.name различает только 'posix' и 'nt'.",
+      "en": "Check it with startswith: older Linux versions gave 'linux2' and FreeBSD gives 'freebsd14'. The value is fixed when the interpreter is built, so it suits choosing a code branch. For machine details use the platform module; os.name only distinguishes 'posix' and 'nt'."
+    },
+    "syntax": "sys.platform.startswith('linux')",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.platform",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "информация",
+      "en": "information"
+    },
+    "aliases": [
+      "на какой системе запущен код",
+      "определить windows или linux"
+    ],
+    "keywords": [
+      "sys.platform",
+      "win32",
+      "darwin",
+      "linux",
+      "os.name"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "print(sys.platform)  # → ? linux, darwin или win32",
+        "if sys.platform.startswith('win'):",
+        "    newline = '\\r\\n'",
+        "else:",
+        "    newline = '\\n'",
+        "print(sys.platform in {'linux', 'darwin', 'win32'} or sys.platform.startswith('freebsd'))  # → ? True на распространённых системах"
+      ]
+    ],
+    "related": [
+      "sys.version",
+      "sys.implementation",
+      "sys.path"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.implementation",
+    "title": {
+      "ru": "sys.implementation",
+      "en": "sys.implementation"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Сведения о реализации Python: name ('cpython', 'pypy'), версия реализации и cache_tag для .pyc.",
+      "en": "Details of the Python implementation: name ('cpython', 'pypy'), the implementation version and cache_tag for .pyc."
+    },
+    "body": {
+      "ru": "Python — язык, а у него несколько реализаций, и sys.version_info говорит о версии языка, а не о том, кто его исполняет. sys.implementation.name различает CPython, PyPy и другие: так обходят особенности конкретного интерпретатора. cache_tag — часть имени файлов в __pycache__, например 'cpython-314'.",
+      "en": "Python is a language with several implementations, and sys.version_info states the language version, not who runs it. sys.implementation.name tells CPython, PyPy and others apart, which is how interpreter-specific quirks are worked around. cache_tag is part of the file names in __pycache__, e.g. 'cpython-314'."
+    },
+    "syntax": "sys.implementation.name",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.implementation",
+    "added": "3.3",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "информация",
+      "en": "information"
+    },
+    "aliases": [
+      "какой интерпретатор python",
+      "cpython или pypy"
+    ],
+    "keywords": [
+      "sys.implementation",
+      "cpython",
+      "pypy",
+      "cache_tag"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "print(sys.implementation.name)  # → ? cpython у стандартного интерпретатора",
+        "print(sys.implementation.cache_tag)  # → ? например cpython-314",
+        "print(sys.implementation.version.major)  # → 3"
+      ]
+    ],
+    "related": [
+      "sys.version",
+      "sys.platform"
     ],
     "related_errors": []
   },
@@ -13210,9 +13895,9 @@
     ],
     "related": [
       "enum",
-      ".name-.value",
+      "enum.Enum.name",
       "is-is-not",
-      "intenum-strenum"
+      "enum.IntEnum"
     ],
     "related_errors": []
   },
@@ -13479,7 +14164,7 @@
     "related": [
       "os.path.join",
       "pathlib.path",
-      ".stem-.suffix-.suffixes-.name-.parent-.p"
+      "pathlib.PurePath.stem"
     ],
     "related_errors": []
   },
@@ -15087,11 +15772,14 @@
     },
     "aliases": [
       "числовое перечисление",
-      "перечисление вместо числовых констант"
+      "перечисление вместо числовых констант",
+      "смешанные перечисления с числом и строкой",
+      "разница числового и строкового перечисления"
     ],
     "keywords": [
       "enum.IntEnum",
-      "IntEnum"
+      "IntEnum",
+      "StrEnum"
     ],
     "tags": [
       "enum"
@@ -15108,9 +15796,10 @@
     ],
     "related": [
       "enum.StrEnum",
-      "intenum-strenum",
       "enum.ReprEnum",
-      "enum.IntFlag"
+      "enum.IntFlag",
+      "enum",
+      "enum.Flag"
     ],
     "related_errors": []
   },
@@ -15166,7 +15855,6 @@
     ],
     "related": [
       "enum.IntEnum",
-      "intenum-strenum",
       "enum.ReprEnum"
     ],
     "related_errors": []
@@ -15202,11 +15890,15 @@
     },
     "aliases": [
       "перечисление битовых флагов",
-      "набор флагов как класс"
+      "набор флагов как класс",
+      "битовые операции с флагами",
+      "объединить и проверить флаги",
+      "права доступа флагами"
     ],
     "keywords": [
       "enum.Flag",
-      "Flag"
+      "Flag",
+      "IntFlag"
     ],
     "tags": [
       "enum"
@@ -15224,9 +15916,10 @@
     ],
     "related": [
       "enum.IntFlag",
-      "flag-intflag",
       "enum.FlagBoundary",
-      "побитовые-операторы"
+      "побитовые-операторы",
+      "битовые-операции",
+      "enum.IntEnum"
     ],
     "related_errors": []
   },
@@ -15281,7 +15974,6 @@
     ],
     "related": [
       "enum.Flag",
-      "flag-intflag",
       "enum.IntEnum",
       "битовые-операции"
     ],
@@ -15346,8 +16038,7 @@
     ],
     "related": [
       "enum.IntEnum",
-      "enum.StrEnum",
-      "intenum-strenum"
+      "enum.StrEnum"
     ],
     "related_errors": []
   },
@@ -15461,7 +16152,7 @@
     "related": [
       "enum.member",
       "enum",
-      ".name-.value"
+      "enum.Enum.name"
     ],
     "related_errors": []
   },
@@ -17217,7 +17908,7 @@
     ],
     "related": [
       "contextlib.redirect_stderr",
-      "sys.stdin-sys.stdout-sys.stderr",
+      "sys.stdin",
       "io.stringio",
       "print"
     ],
@@ -17274,7 +17965,7 @@
     ],
     "related": [
       "contextlib.redirect_stdout",
-      "sys.stdin-sys.stdout-sys.stderr",
+      "sys.stdin",
       "io.stringio"
     ],
     "related_errors": []
@@ -18285,7 +18976,7 @@
     "related": [
       "collections.abc.Iterator",
       "collections.abc.Collection",
-      "iter-next"
+      "iter"
     ],
     "related_errors": []
   },
@@ -18343,7 +19034,7 @@
       "collections.abc.Iterable",
       "collections.abc.Generator",
       "итератор-__iter__-__next__",
-      "iter-next"
+      "iter"
     ],
     "related_errors": []
   },
@@ -21757,7 +22448,7 @@
     "related": [
       "enum.pickle_by_global_name",
       "pickle",
-      ".name-.value"
+      "enum.Enum.name"
     ],
     "related_errors": []
   },
@@ -23775,7 +24466,7 @@
     "related": [
       "len",
       "__len__-__getitem__-__setitem__-__contai",
-      "iter-next"
+      "iter"
     ],
     "related_errors": []
   },
@@ -25238,7 +25929,7 @@
     "related": [
       "os.path.normpath",
       "os.path.samefile",
-      "os.sep-os.linesep-os.pathsep"
+      "os.sep"
     ],
     "related_errors": []
   },
@@ -27573,7 +28264,7 @@
     "related": [
       "os.isatty",
       "io.text_encoding",
-      "sys.stdin-sys.stdout-sys.stderr"
+      "sys.stdin"
     ],
     "related_errors": []
   },
@@ -27691,7 +28382,7 @@
     "related": [
       "os.get_terminal_size",
       "os.device_encoding",
-      "sys.stdin-sys.stdout-sys.stderr"
+      "sys.stdin"
     ],
     "related_errors": []
   },
@@ -36657,7 +37348,7 @@
     ],
     "related": [
       "os.uname_result",
-      "sys.version-sys.platform-sys.implementat",
+      "sys.version",
       "os.sysconf"
     ],
     "related_errors": []

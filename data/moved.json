@@ -7,5 +7,17 @@
   "counter": "collections.counter",
   "defaultdict": "collections.defaultdict",
   "ordereddict": "collections.ordereddict",
-  "chainmap": "collections.chainmap"
+  "chainmap": "collections.chainmap",
+  "iter-next": "iter",
+  "flag-intflag": "enum.Flag",
+  "intenum-strenum": "enum.IntEnum",
+  "print-file-flush": "print",
+  "copy-deepcopy-словаря": "dict.copy",
+  "__str__-__repr__": "repr-vs-str",
+  ".name-.value": "enum.Enum.name",
+  "os.sep-os.linesep-os.pathsep": "os.sep",
+  ".stem-.suffix-.suffixes-.name-.parent-.p": "pathlib.PurePath.stem",
+  "sys.stdin-sys.stdout-sys.stderr": "sys.stdin",
+  "stdin-stdout": "sys.stdin",
+  "sys.version-sys.platform-sys.implementat": "sys.version"
 }

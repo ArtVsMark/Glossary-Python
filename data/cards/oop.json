@@ -2,8 +2,8 @@
   {
     "id": "__add__-__mul__-__eq__-__lt__-и-оператор",
     "title": {
-      "ru": "__add__ / __mul__ / __eq__ / __lt__ и операторные методы",
-      "en": "__add__ / __mul__ / __eq__ / __lt__ and operator methods"
+      "ru": "Операторные методы",
+      "en": "Operator methods"
     },
     "kind": "term",
     "summary": {
@@ -136,18 +136,284 @@
       ]
     ],
     "related": [
+      "__add__",
+      "__mul__",
+      "__eq__",
+      "__lt__",
       "functools.total_ordering",
       "dataclass-order-true",
       "операторы-сравнения",
-      "__str__-__repr__"
+      "repr-vs-str"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__add__",
+    "title": {
+      "ru": "__add__",
+      "en": "__add__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод оператора +: a + b вызывает a.__add__(b). Вернув NotImplemented, метод передаёт ход b.__radd__(a).",
+      "en": "The method behind +: a + b calls a.__add__(b). Returning NotImplemented hands the turn to b.__radd__(a)."
+    },
+    "body": {
+      "ru": "Если __add__ не умеет складывать с объектом такого типа, нужно вернуть NotImplemented, а не бросить TypeError: тогда Python попробует отражённый __radd__ второго операнда и только потом сообщит об ошибке. Операция a += b сначала ищет __iadd__ и лишь без него откатывается к __add__ — у неизменяемых типов так и задумано.",
+      "en": "When __add__ cannot handle the other operand's type it should return NotImplemented rather than raise TypeError: Python then tries the reflected __radd__ of the right operand and only after that reports an error. a += b looks for __iadd__ first and falls back to __add__ only without it — which is exactly how immutable types are meant to work."
+    },
+    "syntax": "def __add__(self, other): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__add__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "сложение своих объектов",
+      "перегрузка плюса"
+    ],
+    "keywords": [
+      "__add__",
+      "__radd__",
+      "__iadd__",
+      "+",
+      "NotImplemented"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Money:",
+        "    def __init__(self, amount):",
+        "        self.amount = amount",
+        "    def __add__(self, other):",
+        "        if not isinstance(other, Money):",
+        "            return NotImplemented",
+        "        return Money(self.amount + other.amount)",
+        "print((Money(5) + Money(7)).amount)  # → 12"
+      ],
+      [
+        "class Money:",
+        "    def __init__(self, amount):",
+        "        self.amount = amount",
+        "    def __add__(self, other):",
+        "        return NotImplemented",
+        "Money(1) + 2  # → TypeError: unsupported operand type(s) for +"
+      ]
+    ],
+    "related": [
+      "__add__-__mul__-__eq__-__lt__-и-оператор",
+      "__mul__",
+      "сложение"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
+  },
+  {
+    "id": "__mul__",
+    "title": {
+      "ru": "__mul__",
+      "en": "__mul__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод оператора *: a * b вызывает a.__mul__(b); отражённый __rmul__ срабатывает для 3 * a.",
+      "en": "The method behind *: a * b calls a.__mul__(b); the reflected __rmul__ handles 3 * a."
+    },
+    "body": {
+      "ru": "Умножение на число с обеих сторон требует двух методов: __mul__ для v * 3 и __rmul__ для 3 * v — у int нет способа умножиться на ваш объект, и он вернёт NotImplemented. Последовательности используют __mul__ для повторения: [0] * 3 — это list.__mul__.",
+      "en": "Multiplying by a number on either side needs two methods: __mul__ for v * 3 and __rmul__ for 3 * v — int has no way to multiply by your object and returns NotImplemented. Sequences use __mul__ for repetition: [0] * 3 is list.__mul__."
+    },
+    "syntax": "def __mul__(self, other): ...\ndef __rmul__(self, other): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__mul__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "умножение своих объектов",
+      "перегрузка умножения"
+    ],
+    "keywords": [
+      "__mul__",
+      "__rmul__",
+      "*"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Vec:",
+        "    def __init__(self, x, y):",
+        "        self.x, self.y = x, y",
+        "    def __mul__(self, k):",
+        "        return Vec(self.x * k, self.y * k)",
+        "    __rmul__ = __mul__",
+        "    def __repr__(self):",
+        "        return f'Vec({self.x}, {self.y})'",
+        "print(Vec(1, 2) * 3)  # → Vec(3, 6)",
+        "print(3 * Vec(1, 2))  # → Vec(3, 6) — сработал __rmul__"
+      ]
+    ],
+    "related": [
+      "__add__-__mul__-__eq__-__lt__-и-оператор",
+      "__add__",
+      "умножение"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__eq__",
+    "title": {
+      "ru": "__eq__",
+      "en": "__eq__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод оператора ==. Без него объекты равны, только если это один и тот же объект, как для is.",
+      "en": "The method behind ==. Without it two objects are equal only when they are the same object, as with is."
+    },
+    "body": {
+      "ru": "Определив __eq__, класс теряет __hash__: его экземпляры больше нельзя класть в set и делать ключами dict, пока не определён и __hash__ — согласованный с равенством. != Python 3 выводит сам, инвертируя __eq__. Для чужого типа возвращают NotImplemented, а не False: тогда Python спросит второй операнд.",
+      "en": "Defining __eq__ removes __hash__: instances can no longer go into a set or serve as dict keys until a __hash__ consistent with equality is defined too. Python 3 derives != itself by inverting __eq__. For a foreign type return NotImplemented rather than False, so Python asks the other operand."
+    },
+    "syntax": "def __eq__(self, other): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__eq__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "сравнение на равенство своих объектов",
+      "переопределить =="
+    ],
+    "keywords": [
+      "__eq__",
+      "__ne__",
+      "__hash__",
+      "=="
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Point:",
+        "    def __init__(self, x, y):",
+        "        self.x, self.y = x, y",
+        "    def __eq__(self, other):",
+        "        if not isinstance(other, Point):",
+        "            return NotImplemented",
+        "        return (self.x, self.y) == (other.x, other.y)",
+        "print(Point(1, 2) == Point(1, 2))  # → True",
+        "print(Point(1, 2) != Point(3, 4))  # → True — != выведен из __eq__",
+        "print(Point.__hash__)  # → None — без __hash__ в set не положить"
+      ]
+    ],
+    "related": [
+      "__add__-__mul__-__eq__-__lt__-и-оператор",
+      "__lt__",
+      "hash"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__lt__",
+    "title": {
+      "ru": "__lt__",
+      "en": "__lt__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод оператора <. Его одного хватает, чтобы sorted() и min() умели упорядочивать объекты.",
+      "en": "The method behind <. On its own it is enough for sorted() and min() to order objects."
+    },
+    "body": {
+      "ru": "sorted, min, max и heapq сравнивают только через <, поэтому для сортировки достаточно __lt__. Операторы >, <= и >= сами из него не выводятся — их даёт декоратор functools.total_ordering по __eq__ и одному из сравнений. Для a > b при отсутствии __gt__ Python пробует отражённое b < a.",
+      "en": "sorted, min, max and heapq compare only with <, so __lt__ alone is enough for sorting. The operators >, <= and >= are not derived from it automatically — functools.total_ordering supplies them from __eq__ and one comparison. For a > b without __gt__ Python tries the reflected b < a."
+    },
+    "syntax": "def __lt__(self, other): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__lt__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "сортировка своих объектов",
+      "сравнение меньше"
+    ],
+    "keywords": [
+      "__lt__",
+      "__gt__",
+      "__le__",
+      "__ge__",
+      "<",
+      "total_ordering"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Version:",
+        "    def __init__(self, major, minor):",
+        "        self.v = (major, minor)",
+        "    def __lt__(self, other):",
+        "        return self.v < other.v",
+        "    def __repr__(self):",
+        "        return f'{self.v[0]}.{self.v[1]}'",
+        "print(sorted([Version(3, 12), Version(3, 9), Version(3, 11)]))  # → [3.9, 3.11, 3.12]",
+        "print(Version(3, 9) > Version(3, 8))  # → True — отражённое Version(3, 8) < Version(3, 9)"
+      ]
+    ],
+    "related": [
+      "__add__-__mul__-__eq__-__lt__-и-оператор",
+      "__eq__",
+      "functools.total_ordering",
+      "sorted"
     ],
     "related_errors": []
   },
   {
     "id": "__enter__-__exit__",
     "title": {
-      "ru": "__enter__ / __exit__",
-      "en": "__enter__ / __exit__"
+      "ru": "Протокол контекстного менеджера",
+      "en": "Context manager protocol"
     },
     "kind": "term",
     "summary": {
@@ -264,9 +530,134 @@
       ]
     ],
     "related": [
+      "__enter__",
+      "__exit__",
       "contextlib.contextmanager",
       "open",
       "contextlib.exitstack"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__enter__",
+    "title": {
+      "ru": "__enter__",
+      "en": "__enter__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод входа в блок with. То, что он вернул, связывается с именем после as.",
+      "en": "The method run on entering a with block. Whatever it returns is bound to the name after as."
+    },
+    "body": {
+      "ru": "Обычно __enter__ возвращает self, но не обязан: open() возвращает сам файл, а менеджер блокировки может не возвращать ничего. Если __enter__ бросил исключение, тело with не выполняется и __exit__ не вызывается — ресурс, захваченный до ошибки, освобождают внутри самого __enter__.",
+      "en": "__enter__ usually returns self but does not have to: open() returns the file itself, while a lock manager may return nothing. If __enter__ raises, the with body never runs and __exit__ is not called — anything acquired before the error must be released inside __enter__ itself."
+    },
+    "syntax": "def __enter__(self): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__enter__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "контекст. менеджер",
+      "en": "context manager"
+    },
+    "aliases": [
+      "вход в блок with",
+      "что попадает в as"
+    ],
+    "keywords": [
+      "__enter__",
+      "with",
+      "as"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Connection:",
+        "    def __enter__(self):",
+        "        print('connect')",
+        "        return 'conn#1'",
+        "    def __exit__(self, *exc):",
+        "        print('close')",
+        "with Connection() as c:",
+        "    print(c)  # → connect / conn#1 / close"
+      ]
+    ],
+    "related": [
+      "__enter__-__exit__",
+      "__exit__",
+      "contextlib.contextmanager"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__exit__",
+    "title": {
+      "ru": "__exit__",
+      "en": "__exit__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод выхода из блока with: вызывается всегда, даже при исключении, и получает его тип, значение и трассировку.",
+      "en": "The method run on leaving a with block: always called, even on an exception, and given its type, value and traceback."
+    },
+    "body": {
+      "ru": "При обычном выходе все три аргумента — None. Вернув истинное значение, __exit__ подавляет исключение, и выполнение продолжится после with; по умолчанию возвращают None или False, иначе ошибки исчезают молча. Именно __exit__ гарантирует закрытие файла и освобождение блокировки.",
+      "en": "On a normal exit all three arguments are None. Returning a true value suppresses the exception and execution continues after the with; the default is to return None or False, otherwise errors vanish silently. __exit__ is what guarantees the file gets closed and the lock released."
+    },
+    "syntax": "def __exit__(self, exc_type, exc_value, traceback): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__exit__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "контекст. менеджер",
+      "en": "context manager"
+    },
+    "aliases": [
+      "выход из блока with",
+      "подавить исключение в with"
+    ],
+    "keywords": [
+      "__exit__",
+      "with",
+      "exc_type"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Guard:",
+        "    def __enter__(self):",
+        "        return self",
+        "    def __exit__(self, exc_type, exc, tb):",
+        "        print('exit:', exc_type.__name__ if exc_type else None)",
+        "        return exc_type is ZeroDivisionError  # подавить только деление на ноль",
+        "with Guard():",
+        "    pass  # → exit: None",
+        "with Guard():",
+        "    1 / 0  # → exit: ZeroDivisionError",
+        "print('продолжаем')  # → продолжаем — исключение подавлено"
+      ]
+    ],
+    "related": [
+      "__enter__-__exit__",
+      "__enter__",
+      "contextlib.suppress"
     ],
     "related_errors": []
   },
@@ -386,8 +777,8 @@
   {
     "id": "__len__-__getitem__-__setitem__-__contai",
     "title": {
-      "ru": "__len__ / __getitem__ / __setitem__ / __contains__",
-      "en": "__len__ / __getitem__ / __setitem__ / __contains__"
+      "ru": "Протокол контейнера",
+      "en": "Container protocol"
     },
     "kind": "term",
     "summary": {
@@ -509,10 +900,272 @@
       ]
     ],
     "related": [
+      "__len__",
+      "__getitem__",
+      "__setitem__",
+      "__contains__",
       "len",
       "итератор-__iter__-__next__",
       "collections.abc.Sequence",
       "slice"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__len__",
+    "title": {
+      "ru": "__len__",
+      "en": "__len__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод, который вызывает len(obj). Обязан вернуть целое число не меньше нуля.",
+      "en": "The method len(obj) calls. It must return a non-negative integer."
+    },
+    "body": {
+      "ru": "Кроме len(), __len__ задаёт истинность: объект без __bool__ ложен, когда __len__ вернул 0, — поэтому if container: работает и для своих коллекций. Отрицательное или нецелое значение даёт ValueError или TypeError прямо в вызове len().",
+      "en": "Besides len(), __len__ defines truthiness: an object without __bool__ is false when __len__ returns 0, which is why if container: works for your own collections too. A negative or non-integer value raises ValueError or TypeError right inside len()."
+    },
+    "syntax": "def __len__(self) -> int: ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__len__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "длина своего объекта",
+      "поддержать len"
+    ],
+    "keywords": [
+      "__len__",
+      "len",
+      "__bool__"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Deck:",
+        "    def __init__(self, cards):",
+        "        self.cards = list(cards)",
+        "    def __len__(self):",
+        "        return len(self.cards)",
+        "d = Deck('AKQ')",
+        "print(len(d))  # → 3",
+        "print(bool(Deck('')))  # → False — пустая колода ложна"
+      ]
+    ],
+    "related": [
+      "__len__-__getitem__-__setitem__-__contai",
+      "len",
+      "__getitem__"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__getitem__",
+    "title": {
+      "ru": "__getitem__",
+      "en": "__getitem__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод чтения по индексу или ключу: obj[k] вызывает obj.__getitem__(k). Срез приходит объектом slice.",
+      "en": "The method behind indexing: obj[k] calls obj.__getitem__(k). A slice arrives as a slice object."
+    },
+    "body": {
+      "ru": "Одного __getitem__ с целыми индексами хватает, чтобы объект стал итерируемым: for перебирает 0, 1, 2… до IndexError. Для отображений принято бросать KeyError, для последовательностей — IndexError: на этом различии держатся dict.get и итерация. Запись obj[1:3] передаёт slice(1, 3, None).",
+      "en": "A __getitem__ with integer indexes is enough to make an object iterable: for walks 0, 1, 2… until IndexError. Mappings conventionally raise KeyError and sequences IndexError — dict.get and iteration rely on that difference. obj[1:3] passes slice(1, 3, None)."
+    },
+    "syntax": "def __getitem__(self, key): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__getitem__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "доступ по индексу к своему объекту",
+      "квадратные скобки у своего класса"
+    ],
+    "keywords": [
+      "__getitem__",
+      "[]",
+      "slice",
+      "IndexError",
+      "KeyError"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Squares:",
+        "    def __getitem__(self, i):",
+        "        if i >= 5:",
+        "            raise IndexError(i)",
+        "        return i * i",
+        "s = Squares()",
+        "print(s[3])  # → 9",
+        "print(list(s))  # → [0, 1, 4, 9, 16] — итерация через __getitem__"
+      ],
+      [
+        "class Show:",
+        "    def __getitem__(self, key):",
+        "        return key",
+        "print(Show()[1:3])  # → slice(1, 3, None)"
+      ]
+    ],
+    "related": [
+      "__len__-__getitem__-__setitem__-__contai",
+      "__setitem__",
+      "__len__"
+    ],
+    "related_errors": [
+      "indexerror",
+      "keyerror"
+    ]
+  },
+  {
+    "id": "__setitem__",
+    "title": {
+      "ru": "__setitem__",
+      "en": "__setitem__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод записи по индексу или ключу: obj[k] = v вызывает obj.__setitem__(k, v).",
+      "en": "The method behind item assignment: obj[k] = v calls obj.__setitem__(k, v)."
+    },
+    "body": {
+      "ru": "Без __setitem__ присваивание по индексу даёт TypeError: 'object does not support item assignment' — так ведут себя кортежи и строки. Парный метод __delitem__ отвечает за del obj[k]. В __setitem__ удобно проверять значение до записи — это место для валидации.",
+      "en": "Without __setitem__ item assignment raises TypeError: 'object does not support item assignment' — the way tuples and strings behave. The companion __delitem__ handles del obj[k]. __setitem__ is a natural place to validate the value before storing it."
+    },
+    "syntax": "def __setitem__(self, key, value): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__setitem__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "присваивание по индексу своему объекту",
+      "запись по ключу"
+    ],
+    "keywords": [
+      "__setitem__",
+      "__delitem__",
+      "[]="
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Grades:",
+        "    def __init__(self):",
+        "        self._data = {}",
+        "    def __setitem__(self, name, score):",
+        "        if not 0 <= score <= 100:",
+        "            raise ValueError(f'оценка {score} вне 0..100')",
+        "        self._data[name] = score",
+        "    def __getitem__(self, name):",
+        "        return self._data[name]",
+        "g = Grades()",
+        "g['Анна'] = 95",
+        "print(g['Анна'])  # → 95",
+        "g['Борис'] = 120  # → ValueError: оценка 120 вне 0..100"
+      ]
+    ],
+    "related": [
+      "__len__-__getitem__-__setitem__-__contai",
+      "__getitem__"
+    ],
+    "related_errors": [
+      "typeerror",
+      "valueerror"
+    ]
+  },
+  {
+    "id": "__contains__",
+    "title": {
+      "ru": "__contains__",
+      "en": "__contains__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод оператора in: x in obj вызывает obj.__contains__(x). Без него in перебирает объект целиком.",
+      "en": "The method behind in: x in obj calls obj.__contains__(x). Without it, in iterates over the whole object."
+    },
+    "body": {
+      "ru": "Если __contains__ нет, Python откатывается к итерации — через __iter__ или __getitem__ — и сравнивает элементы по очереди, то есть O(n). Свой __contains__ позволяет сделать проверку быстрой: множество и словарь отвечают за O(1). Оператор not in — тот же вызов с отрицанием.",
+      "en": "Without __contains__ Python falls back to iteration — via __iter__ or __getitem__ — comparing items one by one, which is O(n). Your own __contains__ can make the check fast: sets and dicts answer in O(1). not in is the same call, negated."
+    },
+    "syntax": "def __contains__(self, item) -> bool: ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__contains__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "оператор in для своего класса",
+      "проверка вхождения"
+    ],
+    "keywords": [
+      "__contains__",
+      "in",
+      "not in"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Range:",
+        "    def __init__(self, lo, hi):",
+        "        self.lo, self.hi = lo, hi",
+        "    def __contains__(self, x):",
+        "        return self.lo <= x < self.hi",
+        "r = Range(0, 10**9)",
+        "print(5 in r)  # → True — без перебора миллиарда чисел",
+        "print(-1 not in r)  # → True"
+      ]
+    ],
+    "related": [
+      "__len__-__getitem__-__setitem__-__contai",
+      "__getitem__",
+      "in-not-in-для-множеств-o-1"
     ],
     "related_errors": []
   },
@@ -610,21 +1263,21 @@
     "related_errors": []
   },
   {
-    "id": "__str__-__repr__",
+    "id": "__str__",
     "title": {
-      "ru": "__str__ / __repr__",
-      "en": "__str__ / __repr__"
+      "ru": "__str__",
+      "en": "__str__"
     },
-    "kind": "term",
+    "kind": "function",
     "summary": {
-      "ru": "__str__ — читаемое представление для print(). __repr__ — отладочное, воспроизводимое. repr() вызывает __repr__.",
-      "en": "__str__ — the readable representation used by print(). __repr__ — the debugging one, meant to be reproducible. repr() calls __repr__."
+      "ru": "Метод, который вызывают str(obj), print() и f-строка: читаемое представление объекта для человека.",
+      "en": "The method str(obj), print() and f-strings call: a readable representation of the object for people."
     },
     "body": {
-      "ru": "Если __str__ не задан, print() и str() откатываются к __repr__ — но не наоборот, поэтому минимум, который стоит определять, это __repr__. Вложенные элементы контейнер всегда показывает через __repr__: print([p]) выведет repr, а не str, даже если у p есть __str__.",
-      "en": "If __str__ is missing, print() and str() fall back to __repr__ — but not the other way round, so __repr__ is the one to define if you define only one. A container always shows its elements via __repr__: print([p]) uses repr, not str, even when p has a __str__."
+      "ru": "Если __str__ не определён, str() берёт __repr__ — поэтому достаточно определить один __repr__, а __str__ добавлять, когда пользователю нужен другой, «красивый» вид. Контейнеры печатают свои элементы через repr, а не str: print([obj]) покажет __repr__.",
+      "en": "Without __str__, str() falls back to __repr__ — so a single __repr__ is enough, and __str__ is added only when users need a different, friendlier form. Containers print their items with repr, not str: print([obj]) shows __repr__."
     },
-    "syntax": "def __str__(self): return '...'\ndef __repr__(self): return '...'",
+    "syntax": "def __str__(self) -> str: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__str__",
     "added": "<3.0",
@@ -639,13 +1292,78 @@
       "en": "magic methods"
     },
     "aliases": [
-      "строковое представление объекта",
-      "как объект выводится в print",
-      "отладочное представление"
+      "красивый вывод объекта",
+      "как print показывает объект"
     ],
     "keywords": [
       "__str__",
-      "__repr__"
+      "str",
+      "print",
+      "f-string"
+    ],
+    "tags": [
+      "oop"
+    ],
+    "examples": [
+      [
+        "class Temp:",
+        "    def __init__(self, c):",
+        "        self.c = c",
+        "    def __str__(self):",
+        "        return f'{self.c} °C'",
+        "    def __repr__(self):",
+        "        return f'Temp({self.c})'",
+        "t = Temp(21)",
+        "print(t)  # → 21 °C",
+        "print(f'Сейчас {t}')  # → Сейчас 21 °C",
+        "print([t])  # → [Temp(21)] — элементы списка печатаются через repr"
+      ]
+    ],
+    "related": [
+      "repr-vs-str",
+      "__repr__",
+      "str",
+      "print"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__repr__",
+    "title": {
+      "ru": "__repr__",
+      "en": "__repr__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод, который вызывают repr(obj) и консоль: однозначное представление объекта для разработчика.",
+      "en": "The method repr(obj) and the console call: an unambiguous representation of the object for developers."
+    },
+    "body": {
+      "ru": "Хороший __repr__ похож на выражение, которым объект можно создать заново: Point(1, 2). Он же служит запасным __str__, поэтому определяют его в первую очередь. Встроенная заглушка выводит <__main__.Point object at 0x…> — ни отладке, ни логам от неё пользы нет.",
+      "en": "A good __repr__ looks like the expression that recreates the object: Point(1, 2). It also serves as the fallback __str__, which is why it is the one to define first. The built-in default prints <__main__.Point object at 0x…>, useless in both debugging and logs."
+    },
+    "syntax": "def __repr__(self) -> str: ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__repr__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "магические методы",
+      "en": "magic methods"
+    },
+    "aliases": [
+      "представление объекта для отладки",
+      "что показывает консоль"
+    ],
+    "keywords": [
+      "__repr__",
+      "repr",
+      "!r"
     ],
     "tags": [
       "oop"
@@ -654,52 +1372,19 @@
       [
         "class Point:",
         "    def __init__(self, x, y):",
-        "        self.x = x; self.y = y",
+        "        self.x, self.y = x, y",
         "    def __repr__(self):",
-        "        return f'Point({self.x}, {self.y})'",
-        "    def __str__(self):",
-        "        return f'({self.x}, {self.y})'",
-        "p = Point(3, 4)",
-        "print(p)       # → (3, 4) — __str__",
-        "print(repr(p)) # → Point(3, 4) — __repr__",
-        "# Если только __repr__ — используется и для str",
-        "class Vec:",
-        "    def __init__(self, x, y):",
-        "        self.x = x; self.y = y",
-        "    def __repr__(self):",
-        "        return f'Vec({self.x},{self.y})'",
-        "print(Vec(1,2))  # → Vec(1,2)",
-        "class Fraction:",
-        "    def __init__(self, n, d):",
-        "        self.n = n; self.d = d",
-        "    def __str__(self):",
-        "        return f'{self.n}/{self.d}'",
-        "    def __repr__(self):",
-        "        return f'Fraction({self.n}, {self.d})'",
-        "f = Fraction(1, 3)",
-        "print(f)       # → 1/3",
-        "print(repr(f)) # → Fraction(1, 3)",
-        "# В списках используется __repr__",
-        "p2 = Point(1, 2)",
-        "print([p2])  # → [Point(1, 2)]",
-        "class Temperature:",
-        "    def __init__(self, c):",
-        "        self.c = c",
-        "    def __repr__(self):",
-        "        return f'Temperature({self.c})'",
-        "    def __str__(self):",
-        "        return f'{self.c}°C'",
-        "t = Temperature(100)",
-        "print(str(t), repr(t))  # → 100°C Temperature(100)",
-        "# f-string использует __str__",
-        "print(f'{Point(1,2)}')  # → (1, 2)",
-        "print(f'{Point(1,2)!r}')  # → Point(1, 2)"
+        "        return f'Point({self.x!r}, {self.y!r})'",
+        "p = Point(1, 2)",
+        "print(repr(p))  # → Point(1, 2)",
+        "print(p)  # → Point(1, 2) — __str__ нет, взят __repr__",
+        "print(f'{p!r}')  # → Point(1, 2)"
       ]
     ],
     "related": [
       "repr-vs-str",
-      "repr",
-      "format"
+      "__str__",
+      "repr"
     ],
     "related_errors": []
   },

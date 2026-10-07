@@ -747,8 +747,7 @@
     ],
     "related": [
       "sep",
-      "print",
-      "print-file-flush"
+      "print"
     ],
     "related_errors": []
   },
@@ -1563,10 +1562,14 @@
     "aliases": [
       "получить итератор",
       "создать итератор из последовательности",
-      "ручной перебор элементов"
+      "ручной перебор элементов",
+      "создать итератор из коллекции",
+      "получить следующий элемент",
+      "ручной перебор без цикла"
     ],
     "keywords": [
-      "iter"
+      "iter",
+      "next"
     ],
     "tags": [
       "builtin"
@@ -1585,13 +1588,37 @@
         "for line in iter(f.readline, ''):",
         "    print(line.strip())",
         "    print(list(iter(range(5))))  # → [0,1,2,3,4]"
+      ],
+      [
+        "it = iter([1,2,3])",
+        "print(next(it))  # → 1",
+        "print(next(it))  # → 2",
+        "print(next(it))  # → 3",
+        "print(next(it, 'end'))  # → end"
+      ],
+      [
+        "# iter со sentinel: вызывать, пока не вернёт ''",
+        "import io",
+        "f = io.StringIO('line1\\nline2\\n')",
+        "for line in iter(f.readline, ''):",
+        "    print(line.strip())  # → line1 / line2",
+        "for ch in iter('hello'):",
+        "    print(ch, end='')  # → hello",
+        "print()",
+        "print(next(iter([]), None))  # → None — default вместо StopIteration"
+      ],
+      [
+        "# Бесконечный итератор + islice",
+        "from itertools import islice, count",
+        "it4 = count(1)",
+        "print(list(islice(it4, 5)))  # → [1,2,3,4,5]"
       ]
     ],
     "related": [
       "next",
       "итератор-__iter__-__next__",
       "stopiteration",
-      "iter-next"
+      "generator-function-yield"
     ],
     "related_errors": []
   },
@@ -2003,7 +2030,7 @@
       "class",
       "наследование",
       "type",
-      "__str__-__repr__"
+      "repr-vs-str"
     ],
     "related_errors": []
   },
@@ -2151,10 +2178,17 @@
     "aliases": [
       "вывод на экран",
       "печать в консоль",
-      "напечатать результат"
+      "напечатать результат",
+      "печать в файл",
+      "перенаправление вывода",
+      "сброс буфера вывода"
     ],
     "keywords": [
-      "print"
+      "print",
+      "file",
+      "flush",
+      "sys.stdout",
+      "sys.stderr"
     ],
     "tags": [
       "builtin"
@@ -2180,61 +2214,7 @@
       [
         "with open(\"_test.txt\", \"w\") as f:",
         "    print(\"в файл\", file=f)  # на экран ничего — строка ушла в файл"
-      ]
-    ],
-    "related": [
-      "input",
-      "sep",
-      "end",
-      "f-строки"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "print-file-flush",
-    "title": {
-      "ru": "print(file=, flush=)",
-      "en": "print(file=, flush=)"
-    },
-    "kind": "function",
-    "summary": {
-      "ru": "Параметр file= перенаправляет вывод в произвольный файловый объект (по умолчанию sys.stdout). flush=True немедленно сбрасывает внутренний буфер потока, не дожидаясь его заполнения.",
-      "en": "The file= parameter redirects the output to any file object (sys.stdout by default). flush=True flushes the stream's internal buffer immediately instead of waiting for it to fill up."
-    },
-    "body": {
-      "ru": "Буферизация зависит от того, куда идёт вывод: в терминале stdout сбрасывается построчно, а при перенаправлении в файл или пайп копится блоками по несколько килобайт, поэтому вперемешку со stderr (он всегда построчный) строки в логе могут встать в неожиданном порядке. flush=True это чинит, но заметно замедляет вывод, если звать его в цикле на миллион строк. file= ничего не открывает и не закрывает — объект вы открываете сами, лучше через with.",
-      "en": "Buffering depends on where the output goes: stdout flushes line by line on a terminal, but piles up in multi-kilobyte blocks once redirected to a file or a pipe, so lines interleaved with stderr (always line-buffered) can land in a surprising order. flush=True fixes that ordering but costs real time in a million-iteration loop. file= neither opens nor closes anything — you supply an already-open object, ideally from a with block."
-    },
-    "syntax": "print(*objects, sep=\" \", end=\"\\n\", file=sys.stdout, flush=False)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/functions.html#print",
-    "added": "<3.0",
-    "deprecated": "",
-    "removed": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Ввод и вывод",
-    "subcat": {
-      "ru": "вывод",
-      "en": "output"
-    },
-    "aliases": [
-      "печать в файл",
-      "перенаправление вывода",
-      "сброс буфера вывода"
-    ],
-    "keywords": [
-      "print",
-      "file",
-      "flush",
-      "sys.stdout",
-      "sys.stderr"
-    ],
-    "tags": [
-      "builtin"
-    ],
-    "examples": [
+      ],
       [
         "import sys",
         "print(\"ошибка!\", file=sys.stderr)  # → ошибка! (в stderr)",
@@ -2253,8 +2233,11 @@
       ]
     ],
     "related": [
-      "print",
-      "sys.stdin-sys.stdout-sys.stderr",
+      "input",
+      "sep",
+      "end",
+      "f-строки",
+      "sys.stdin",
       "file-flush",
       "буферизация"
     ],
@@ -2311,7 +2294,6 @@
     ],
     "related": [
       "repr-vs-str",
-      "__str__-__repr__",
       "str",
       "ascii"
     ],
@@ -2349,7 +2331,9 @@
     "aliases": [
       "строковое представление объекта",
       "отладочное представление объекта",
-      "как объект печатается в консоли"
+      "как объект печатается в консоли",
+      "как объект выводится в print",
+      "отладочное представление"
     ],
     "keywords": [
       "repr",
@@ -2369,13 +2353,57 @@
         "print(repr(None))       # → None",
         "print(str([1, 2]))      # → [1, 2]",
         "print(repr([1, 2]))     # → [1, 2]"
+      ],
+      [
+        "class Point:",
+        "    def __init__(self, x, y):",
+        "        self.x = x; self.y = y",
+        "    def __repr__(self):",
+        "        return f'Point({self.x}, {self.y})'",
+        "    def __str__(self):",
+        "        return f'({self.x}, {self.y})'",
+        "p = Point(3, 4)",
+        "print(p)       # → (3, 4) — __str__",
+        "print(repr(p)) # → Point(3, 4) — __repr__",
+        "# Если только __repr__ — используется и для str",
+        "class Vec:",
+        "    def __init__(self, x, y):",
+        "        self.x = x; self.y = y",
+        "    def __repr__(self):",
+        "        return f'Vec({self.x},{self.y})'",
+        "print(Vec(1,2))  # → Vec(1,2)",
+        "class Fraction:",
+        "    def __init__(self, n, d):",
+        "        self.n = n; self.d = d",
+        "    def __str__(self):",
+        "        return f'{self.n}/{self.d}'",
+        "    def __repr__(self):",
+        "        return f'Fraction({self.n}, {self.d})'",
+        "f = Fraction(1, 3)",
+        "print(f)       # → 1/3",
+        "print(repr(f)) # → Fraction(1, 3)",
+        "# В списках используется __repr__",
+        "p2 = Point(1, 2)",
+        "print([p2])  # → [Point(1, 2)]",
+        "class Temperature:",
+        "    def __init__(self, c):",
+        "        self.c = c",
+        "    def __repr__(self):",
+        "        return f'Temperature({self.c})'",
+        "    def __str__(self):",
+        "        return f'{self.c}°C'",
+        "t = Temperature(100)",
+        "print(str(t), repr(t))  # → 100°C Temperature(100)",
+        "# f-string использует __str__",
+        "print(f'{Point(1,2)}')  # → (1, 2)",
+        "print(f'{Point(1,2)!r}')  # → Point(1, 2)"
       ]
     ],
     "related": [
       "repr",
-      "__str__-__repr__",
       "str",
-      "print"
+      "print",
+      "format"
     ],
     "related_errors": []
   },

@@ -705,10 +705,10 @@ def test_same_method_name_on_different_types_is_not_a_duplicate():
     assert list(rule_duplicate_title(glossary, CFG)) == []
 
 
-def test_section_size_warns_on_thin_section():
+def test_section_size_rejects_thin_section():
     glossary = make_glossary(make_entry(id="a", section="Крошечный"))
     issues = list(rule_section_size(glossary, CFG))
-    assert issues[0].severity is Severity.WARNING
+    assert issues[0].severity is Severity.ERROR
 
 
 def test_validate_accepts_custom_rule_set():

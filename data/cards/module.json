@@ -3895,10 +3895,10 @@
   {
     "id": "datetime.strftime",
     "title": {
-      "ru": "datetime.strftime",
-      "en": "datetime.strftime"
+      "ru": "datetime.datetime.strftime()",
+      "en": "datetime.datetime.strftime()"
     },
-    "kind": "term",
+    "kind": "function",
     "summary": {
       "ru": "Форматирует объект datetime в строку по шаблону формата (коды %Y, %m, %d, %H и т.д.).",
       "en": "Formats a datetime object into a string following a format template (the codes %Y, %m, %d, %H and so on)."
@@ -3927,6 +3927,7 @@
       "вывести дату в нужном формате"
     ],
     "keywords": [
+      "datetime.datetime.strftime",
       "datetime.strftime",
       "strftime"
     ],
@@ -3954,10 +3955,10 @@
   {
     "id": "datetime.strptime",
     "title": {
-      "ru": "datetime.strptime",
-      "en": "datetime.strptime"
+      "ru": "datetime.datetime.strptime()",
+      "en": "datetime.datetime.strptime()"
     },
-    "kind": "term",
+    "kind": "function",
     "summary": {
       "ru": "Парсит строку в объект datetime по шаблону формата (коды %Y, %m, %d и т.д.). Обратная операция для strftime().",
       "en": "Parses a string into a datetime object following a format template (the codes %Y, %m, %d and so on). The inverse of strftime()."
@@ -3986,6 +3987,7 @@
       "распарсить дату по шаблону"
     ],
     "keywords": [
+      "datetime.datetime.strptime",
       "datetime.strptime",
       "strptime"
     ],

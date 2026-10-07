@@ -8589,8 +8589,8 @@
       "en": "Geometric mean (the n-th root of the product)."
     },
     "body": {
-      "ru": "Берут его там, где величины перемножаются, а не складываются: средний коэффициент роста за несколько периодов — это геометрическое среднее, арифметическое его завышает. Ноль или отрицательное значение в данных дают не ноль в ответе, а StatisticsError. Результат — float, посчитанный без гарантий точности до последнего разряда, так что сравнивать его через == не стоит.",
-      "en": "Reach for it when values multiply rather than add: an average growth factor over several periods is a geometric mean, and the arithmetic mean overstates it. A zero or a negative value raises StatisticsError instead of returning zero. The result is a float computed with no exactness guarantees, so don't compare it with ==."
+      "ru": "Берут его там, где величины перемножаются, а не складываются: средний коэффициент роста за несколько периодов — это геометрическое среднее, арифметическое его завышает. Отрицательное значение в данных даёт StatisticsError, а ноль с Python 3.13 молча даёт ответ 0.0 (до 3.13 — тоже StatisticsError). Результат — float, посчитанный без гарантий точности до последнего разряда, так что сравнивать его через == не стоит.",
+      "en": "Reach for it when values multiply rather than add: an average growth factor over several periods is a geometric mean, and the arithmetic mean overstates it. A negative value raises StatisticsError, while a zero has quietly returned 0.0 since Python 3.13 (earlier versions raise StatisticsError for it too). The result is a float computed with no exactness guarantees, so don't compare it with ==."
     },
     "syntax": "statistics.geometric_mean(data)",
     "status": "ready",

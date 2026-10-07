@@ -36087,8 +36087,8 @@
         "en": "An efficient iterator over the contents of a directory. It yields DirEntry objects with the name, the path and cached attributes — faster than os.listdir() + os.stat()."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Используйте как контекстный менеджер или дочитывайте до конца: незакрытый итератор держит дескриптор каталога и выдаёт ResourceWarning. Выигрыш в скорости — в том, что тип записи берётся из того же системного вызова: на Unix is_dir() и is_file() обычно не делают отдельный stat, на Windows и stat() приходит готовым. Порядок записей произвольный, '.' и '..' не выдаются.",
+        "en": "Use it as a context manager or exhaust it: an unclosed iterator keeps the directory descriptor open and emits a ResourceWarning. The speed-up comes from getting the entry type from the same system call: on Unix is_dir() and is_file() usually need no extra stat, and on Windows even stat() comes ready. Entry order is arbitrary, and '.' and '..' are not yielded."
       },
       "syntax": "with os.scandir(path='.') as it:\n    for entry in it: ...",
       "status": "ready",
@@ -36143,8 +36143,8 @@
         "en": "The item type yielded by os.scandir(): name, path, and cached is_file()/is_dir()/stat()."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Объект живёт недолго: он хранит данные на момент чтения каталога и не следит за изменениями. is_dir() и is_file() по умолчанию проходят по ссылке; is_symlink() — нет. Путь entry.path строится от аргумента scandir, поэтому для относительного аргумента и путь будет относительным. Реализует os.PathLike и годится для open().",
+        "en": "The object is short-lived: it captures data as of reading the directory and does not track changes. is_dir() and is_file() follow symlinks by default; is_symlink() does not. entry.path is built from the scandir argument, so a relative argument gives a relative path. It implements os.PathLike and works with open()."
       },
       "syntax": "entry.name  # os.DirEntry",
       "status": "ready",
@@ -36692,8 +36692,8 @@
         "en": "Check access permissions for a path (R_OK/W_OK/X_OK/F_OK)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Проверяет права реального, а не эффективного пользователя, — она задумана для программ с setuid. Проверка заранее создаёт гонку: между access и open файл могут подменить, и документация прямо советует вместо этого открыть файл и обработать ошибку. Для root ответ почти всегда «можно», даже если файл защищён от записи.",
+        "en": "It checks permissions for the real, not the effective, user — it was designed for setuid programs. Checking in advance creates a race: the file can be swapped between access and open, and the documentation explicitly advises opening the file and handling the error instead. For root the answer is almost always \"allowed\", even for write-protected files."
       },
       "syntax": "os.access(path, mode)",
       "status": "ready",
@@ -36793,8 +36793,8 @@
         "en": "Change a file's permission bits (mode)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Режим удобно писать в восьмеричной системе: 0o644, а не 644 — десятичное 644 даст совсем другие права. На Windows меняется только флаг «только чтение», остальные биты игнорируются. Для символических прав используйте константы stat, например stat.S_IRUSR | stat.S_IWUSR. Права — не всё: ACL и атрибуты файловой системы chmod не трогает.",
+        "en": "Write the mode in octal: 0o644, not 644 — decimal 644 means entirely different permissions. On Windows only the read-only flag changes and other bits are ignored. For symbolic permissions use stat constants such as stat.S_IRUSR | stat.S_IWUSR. Permissions are not everything: chmod does not touch ACLs or filesystem attributes."
       },
       "syntax": "os.chmod(...)",
       "status": "ready",
@@ -36846,8 +36846,8 @@
         "en": "Change a file's owner (uid) and group (gid). Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Передать владельца по имени нельзя — нужны числовые uid и gid; имена переводятся через pwd.getpwnam и grp.getgrnam, а shutil.chown делает это сам. Значение -1 оставляет поле без изменений. Менять владельца обычно может только root.",
+        "en": "You cannot pass owner names — numeric uid and gid are required; translate names with pwd.getpwnam and grp.getgrnam, or let shutil.chown do it. A value of -1 leaves that field unchanged. Usually only root may change ownership."
       },
       "syntax": "os.chown(...)",
       "status": "ready",
@@ -36954,8 +36954,8 @@
         "en": "Close a file descriptor."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Повторное закрытие поднимает OSError, но опаснее другое: номер дескриптора тут же может получить другой открытый файл, и лишний close закроет уже его. Дескриптор, обёрнутый в файловый объект через os.fdopen или open(fd), закрывайте через сам объект — иначе при сборке мусора объект попробует закрыть уже чужой номер.",
+        "en": "Closing twice raises OSError, but the worse danger is that the number may already belong to another open file, and a stray close shuts that one instead. If the descriptor is wrapped in a file object via os.fdopen or open(fd), close it through the object — otherwise the object will later close a number that is no longer its own."
       },
       "syntax": "os.close(fd)",
       "status": "ready",
@@ -37002,8 +37002,8 @@
         "en": "Close all file descriptors in the range [fd_low, fd_high), ignoring errors."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Ошибки закрытия молча игнорируются, поэтому функцию применяют в дочернем процессе после fork, чтобы не унаследовать лишние дескрипторы. Верхняя граница не входит в диапазон. В обычном коде она почти не нужна: subprocess по умолчанию закрывает лишние дескрипторы сам (close_fds=True).",
+        "en": "Errors are silently ignored, which is why it is used in a child after fork to shed inherited descriptors. The upper bound is excluded. Ordinary code rarely needs it: subprocess closes extra descriptors by itself by default (close_fds=True)."
       },
       "syntax": "os.closerange(fd_low, fd_high)",
       "status": "ready",
@@ -37101,8 +37101,8 @@
         "en": "Copy a range of bytes between files in the kernel (3.8+). Availability: Linux."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Копирует данные внутри ядра, а на файловых системах с поддержкой reflink, например Btrfs и XFS, может вовсе не копировать блоки, а сослаться на них. shutil.copyfile на Linux использует её сам, когда это возможно. Может скопировать меньше запрошенного — вызывайте в цикле до нулевого результата.",
+        "en": "It copies data inside the kernel, and on filesystems with reflink support such as Btrfs and XFS it may share blocks instead of copying them. shutil.copyfile on Linux uses it automatically when possible. It may copy less than requested — call it in a loop until it returns zero."
       },
       "syntax": "os.copy_file_range(...)",
       "status": "ready",
@@ -37299,8 +37299,8 @@
         "en": "Duplicate a file descriptor, returning a new one."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Новый дескриптор разделяет с исходным позицию в файле и флаги: lseek через один сдвигает и другой. С Python 3.4 копия по умолчанию не наследуется дочерними процессами. Типичное применение — сохранить копию стандартного вывода перед перенаправлением, чтобы потом вернуть его через dup2.",
+        "en": "The new descriptor shares the file position and flags with the original: lseek on one moves the other. Since Python 3.4 the copy is non-inheritable by default. A typical use is saving a copy of stdout before redirecting it, so dup2 can restore it later."
       },
       "syntax": "os.dup(fd)",
       "status": "ready",
@@ -37349,8 +37349,8 @@
         "en": "Duplicate fd onto fd2 (closing fd2 first if needed) and return fd2."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Если fd2 был открыт, он закрывается молча, — так перенаправляют стандартные потоки на уровне ОС: dup2(fileno, 1) отправит в файл и вывод дочерних программ, и вывод библиотек на C. Простая замена sys.stdout этого не делает. По умолчанию новый дескриптор наследуется (inheritable=True).",
+        "en": "If fd2 was open it is closed silently — this is how standard streams are redirected at the OS level: dup2(fileno, 1) sends the output of child programs and C libraries to the file as well. Merely replacing sys.stdout does not achieve that. The new descriptor is inheritable by default (inheritable=True)."
       },
       "syntax": "os.dup2(fd, fd2)",
       "status": "ready",
@@ -38052,12 +38052,12 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Как chmod, но по открытому файловому дескриптору. Доступно на Unix.",
-        "en": "Like chmod, but by an open file descriptor. Availability: Unix."
+        "ru": "Как chmod, но по открытому файловому дескриптору. На Windows — с Python 3.13 и только флаг «только чтение».",
+        "en": "Like chmod, but on an open file descriptor. On Windows since Python 3.13, and only the read-only flag."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Меняет права у уже открытого файла, а не у пути, поэтому не попадает в гонку, когда файл между проверкой и сменой прав подменили. Типичный приём — создать файл с ограниченными правами сразу, через os.open с mode, а не открыть и потом сужать права. На Windows доступна с 3.13 и меняет только флаг «только чтение».",
+        "en": "It changes permissions on an already open file rather than a path, so it is immune to the race where the file is swapped between check and change. A common pattern is to create the file with restricted permissions from the start via os.open with mode, rather than open it and narrow permissions afterwards. On Windows it exists since 3.13 and changes only the read-only flag."
       },
       "syntax": "os.fchmod(...)",
       "status": "ready",
@@ -38110,8 +38110,8 @@
         "en": "Like chown, but by an open file descriptor. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Как и другие функции по дескриптору, защищает от гонок: владелец меняется у того файла, который открыт, даже если путь к нему успели подменить. Значение -1 оставляет uid или gid без изменений. Требует прав root, как и chown.",
+        "en": "Like other descriptor-based functions it guards against races: ownership changes on the file that is open, even if its path has been swapped. A value of -1 leaves uid or gid unchanged. It needs root, just like chown."
       },
       "syntax": "os.fchown(...)",
       "status": "ready",
@@ -38164,8 +38164,8 @@
         "en": "Like fsync, but flushes only data, not all metadata. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Быстрее fsync, потому что не ждёт записи метаданных, не нужных для чтения данных, — например времени изменения. Размер файла при этом сохраняется. Нет на macOS; переносимый код использует fsync, а там, где fdatasync нужна ради скорости, проверяют hasattr(os, 'fdatasync').",
+        "en": "It is faster than fsync because it does not wait for metadata unneeded for reading the data back, such as modification time. The file size is still persisted. It is missing on macOS; portable code uses fsync, and where fdatasync is wanted for speed, check hasattr(os, 'fdatasync')."
       },
       "syntax": "os.fdatasync(...)",
       "status": "ready",
@@ -38215,8 +38215,8 @@
         "en": "Wrap a file descriptor in a Python file object (like open())."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Файловый объект забирает дескриптор себе: закрытие объекта закрывает и дескриптор, поэтому вызывать os.close после этого нельзя. Если дескриптор нужно сохранить, передайте closefd=False. По сути это open(fd, ...), и параметры у неё те же — режим, кодировка, буферизация.",
+        "en": "The file object takes ownership of the descriptor: closing the object closes the descriptor, so do not call os.close afterwards. Pass closefd=False to keep the descriptor alive. It is essentially open(fd, ...) and takes the same parameters — mode, encoding, buffering."
       },
       "syntax": "os.fdopen(fd, mode)",
       "status": "ready",
@@ -38423,8 +38423,8 @@
         "en": "Decode a path (bytes) to str using the filesystem encoding."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Недекодируемые байты не вызывают ошибку, а превращаются в суррогатные символы: такая строка годится для повторного открытия файла, но при печати или записи в UTF-8 вызовет UnicodeEncodeError. Для показа пользователю безопаснее repr() или decode с errors='replace'. str возвращается без изменений.",
+        "en": "Undecodable bytes raise no error but become surrogate characters: such a string works for reopening the file, yet printing it or writing it as UTF-8 raises UnicodeEncodeError. For display repr() or decode with errors='replace' is safer. str passes through unchanged."
       },
       "syntax": "os.fsdecode(path)",
       "status": "ready",
@@ -38471,8 +38471,8 @@
         "en": "Encode a path (str) to bytes using the filesystem encoding."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Использует кодировку файловой системы и обработчик surrogateescape, поэтому имя, прочитанное как str с недекодируемыми байтами, возвращается в исходные байты без потерь. bytes возвращаются без изменений. Нужна, когда системный вызов или внешняя библиотека принимает путь только байтами.",
+        "en": "It uses the filesystem encoding with the surrogateescape handler, so a name read as str with undecodable bytes turns back into the original bytes losslessly. bytes pass through unchanged. Use it when a system call or external library accepts paths only as bytes."
       },
       "syntax": "os.fsencode(path)",
       "status": "ready",
@@ -38520,8 +38520,8 @@
         "en": "Return the path as str/bytes, calling __fspath__ if present (e.g. Path)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Это протокол путей из PEP 519: функция, принимающая путь, вызывает os.fspath и так одинаково работает со строкой, байтами и pathlib.Path. Чтобы свой класс понимался как путь, достаточно определить __fspath__. Число или None дают TypeError, а не строку '1' или 'None', — поэтому функция удобна и как проверка аргумента.",
+        "en": "It implements the path protocol from PEP 519: a function that takes a path calls os.fspath and thus treats str, bytes and pathlib.Path alike. Defining __fspath__ makes your own class usable as a path. A number or None raises TypeError rather than becoming '1' or 'None', so it doubles as an argument check."
       },
       "syntax": "os.fspath(path)",
       "status": "ready",
@@ -38572,8 +38572,8 @@
         "en": "Return an os.stat_result for an open file descriptor."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Описывает именно открытый файл, даже если его с тех пор переименовали, удалили или подменили на диске. Поэтому её применяют против гонок: сначала открыть, потом проверить fstat, а не наоборот. Для файлового объекта Python то же самое — os.fstat(f.fileno()).",
+        "en": "It describes the file that is actually open, even if it was renamed, deleted or replaced on disk since. That is why it guards against races: open first, then check with fstat, not the other way round. For a Python file object the same is os.fstat(f.fileno())."
       },
       "syntax": "os.fstat(fd)",
       "status": "ready",
@@ -38620,8 +38620,8 @@
         "en": "Like statvfs, but by an open file descriptor. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Отвечает про файловую систему того файла, который открыт, — даже если путь к нему с тех пор переименовали или смонтировали поверх другую систему. Поля те же, что у statvfs: свободное для пользователя место — f_bavail * f_frsize. На Windows недоступна, переносимая альтернатива — shutil.disk_usage.",
+        "en": "It reports on the filesystem of the file that is open — even if its path was renamed or another filesystem was mounted over it since. The fields match statvfs: user-available space is f_bavail * f_frsize. It is unavailable on Windows; shutil.disk_usage is the portable alternative."
       },
       "syntax": "os.fstatvfs(...)",
       "status": "ready",
@@ -38673,8 +38673,8 @@
         "en": "Flush a file descriptor's buffers to disk."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Сбрасывает на диск буферы ОС, но не буферы Python: сначала вызовите f.flush(), потом os.fsync(f.fileno()). Для надёжного создания файла этого мало — новое имя живёт в каталоге, и на Linux нужен fsync и для дескриптора каталога. Вызов дорогой, на медленных дисках — миллисекунды, поэтому после каждой мелкой записи его не делают.",
+        "en": "It flushes OS buffers to disk, but not Python's: call f.flush() first, then os.fsync(f.fileno()). That is not enough for durable file creation — the new name lives in the directory, and on Linux the directory's descriptor needs fsync too. The call is expensive, milliseconds on slow disks, so it is not issued after every small write."
       },
       "syntax": "os.fsync(...)",
       "status": "ready",
@@ -38724,8 +38724,8 @@
         "en": "Truncate the file behind a descriptor to a given length."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Может и уменьшить, и увеличить файл: при увеличении хвост заполняется нулевыми байтами. Позицию дескриптора не меняет, поэтому после усечения запись может пойти за новым концом и оставить «дыру». Для файлового объекта Python удобнее f.truncate(n) — он учитывает буферы.",
+        "en": "It can both shrink and grow a file: growing fills the tail with zero bytes. It does not move the descriptor position, so a later write may land past the new end and leave a hole. For a Python file object f.truncate(n) is handier, as it accounts for buffers."
       },
       "syntax": "os.ftruncate(fd, length)",
       "status": "ready",
@@ -38822,12 +38822,12 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Проверяет, находится ли дескриптор в блокирующем режиме ввода-вывода. Доступно на Unix.",
-        "en": "Check whether a descriptor is in blocking I/O mode. Availability: Unix."
+        "ru": "Проверяет, находится ли дескриптор в блокирующем режиме ввода-вывода. На Windows — с Python 3.12 и только для каналов.",
+        "en": "Check whether a descriptor is in blocking I/O mode. On Windows since Python 3.12, and for pipes only."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Неблокирующий дескриптор возвращает ошибку BlockingIOError вместо ожидания, если данных нет. Так работают asyncio и selectors: они переводят сокеты и каналы в неблокирующий режим. На Windows с 3.12 поддерживаются только каналы.",
+        "en": "A non-blocking descriptor raises BlockingIOError instead of waiting when no data is available. asyncio and selectors work this way: they switch sockets and pipes to non-blocking mode. On Windows, since 3.12, only pipes are supported."
       },
       "syntax": "os.get_blocking(...)",
       "status": "ready",
@@ -38923,8 +38923,8 @@
         "en": "Windows only: returns the \"inheritable\" flag (a bool) of the specified Windows handle; the cross-platform counterpart for file descriptors is os.get_inheritable(). Python 3.4+."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Работает с хендлами Windows (HANDLE), а не с номерами дескрипторов C: например, с тем, что вернул msvcrt.get_osfhandle. Нужна при передаче хендлов дочерним процессам через subprocess с параметром startupinfo. В обычном коде достаточно os.get_inheritable для файловых дескрипторов.",
+        "en": "It works with Windows HANDLEs, not C descriptor numbers — for example, what msvcrt.get_osfhandle returns. It matters when passing handles to child processes via subprocess with startupinfo. In ordinary code os.get_inheritable on file descriptors is enough."
       },
       "syntax": "os.get_handle_inheritable(handle, /)",
       "status": "ready",
@@ -38982,8 +38982,8 @@
         "en": "Check whether a file descriptor is inheritable by child processes."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "С Python 3.4 (PEP 446) все дескрипторы, создаваемые Python, по умолчанию не наследуются — дочерняя программа не получит случайно открытые файлы и сокеты родителя. Исключение — стандартные 0, 1 и 2. Функция нужна, чтобы проверить флаг перед запуском программы через exec или spawn.",
+        "en": "Since Python 3.4 (PEP 446) every descriptor Python creates is non-inheritable by default — a child program will not accidentally get the parent's open files and sockets. The exception is the standard 0, 1 and 2. The function lets you check the flag before launching a program via exec or spawn."
       },
       "syntax": "os.get_inheritable(fd)",
       "status": "ready",
@@ -39869,8 +39869,8 @@
         "en": "Return random bytes directly from the system getrandom source. Availability: Linux."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для прикладного кода удобнее secrets или os.urandom: они переносимы и не требуют флагов. Функция может заблокироваться при раннем старте системы, пока генератор не накопил энтропию; флаг GRND_NONBLOCK превращает ожидание в BlockingIOError. Модуль random для паролей и токенов не годится — он предсказуем.",
+        "en": "Application code is better served by secrets or os.urandom: they are portable and need no flags. The function may block early in boot until the generator has gathered entropy; the GRND_NONBLOCK flag turns the wait into BlockingIOError. The random module is unsuitable for passwords and tokens — it is predictable."
       },
       "syntax": "os.getrandom(...)",
       "status": "ready",
@@ -40430,8 +40430,8 @@
         "en": "Changes the mode of the symlink itself rather than its target; equivalent to os.chmod(path, mode, follow_symlinks=False). Available on macOS/BSD and on Windows (3.13+), not on Linux."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "На Linux её нет вовсе: hasattr(os, 'lchmod') ложно, а chmod(path, mode, follow_symlinks=False) поднимает NotImplementedError. Причина в том, что права самой ссылки в Linux не используются. Переносимый код должен проверять наличие функции или os.chmod in os.supports_follow_symlinks.",
+        "en": "It does not exist on Linux at all: hasattr(os, 'lchmod') is false, and chmod(path, mode, follow_symlinks=False) raises NotImplementedError. The reason is that Linux does not use a link's own permissions. Portable code should check for the function or for os.chmod in os.supports_follow_symlinks."
       },
       "syntax": "os.lchmod(path, mode)",
       "status": "ready",
@@ -40492,8 +40492,8 @@
         "en": "Like chown, but affects the symlink itself, not its target. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Меняет владельца самой ссылки, а не файла, на который она указывает. Это важно при восстановлении архивов и копировании деревьев: chown прошёл бы по ссылке и поменял владельца у цели, возможно, вне копируемого дерева. Тот же результат даёт os.chown(path, uid, gid, follow_symlinks=False).",
+        "en": "It changes the owner of the link itself, not of its target. That matters when restoring archives and copying trees: chown would follow the link and change the target's owner, possibly outside the tree being copied. os.chown(path, uid, gid, follow_symlinks=False) does the same."
       },
       "syntax": "os.lchown(...)",
       "status": "ready",
@@ -40546,8 +40546,8 @@
         "en": "Create a hard link to a file."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Жёсткая ссылка — второе имя тех же данных: изменение через одно имя видно через другое, а данные исчезнут, только когда удалят все имена (счётчик в st_nlink). Ссылка возможна лишь в пределах одной файловой системы, и на каталоги её обычно не создать. На Windows работает с 3.2, но только на NTFS.",
+        "en": "A hard link is a second name for the same data: a change through one name is visible through the other, and the data disappears only when every name is removed (counted in st_nlink). Links work only within one filesystem and usually cannot point to directories. On Windows they work since 3.2, on NTFS only."
       },
       "syntax": "os.link(...)",
       "status": "ready",
@@ -40654,8 +40654,8 @@
         "en": "Windows only: returns a list of drive names on the system (like C:\\ or D:\\ ); the function does not test drives for accessibility. Python 3.12+."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Список включает все буквы, даже если носитель не вставлен или сетевой диск недоступен, — обращение к такому диску может зависнуть или поднять ошибку. Чтобы понять, готов ли диск, проверяйте его отдельно. В Unix аналогичной функции нет: там всё дерево начинается с одного корня.",
+        "en": "The list includes every drive letter, even with no media inserted or an unreachable network drive — accessing such a drive may hang or raise. Check each drive separately to see whether it is ready. Unix has no counterpart: there the whole tree starts at a single root."
       },
       "syntax": "os.listdrives()",
       "status": "ready",
@@ -40713,8 +40713,8 @@
         "en": "Returns the list of mount points for a volume; the volume is given as a GUID path from os.listvolumes(). Windows only, Python 3.12+."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Принимает GUID-путь тома вида \\\\?\\Volume{…}\\, полученный из os.listvolumes, и возвращает его точки монтирования: букву диска или каталог. У тома их может быть несколько или ни одной — тогда к нему нет пути, привычного пользователю.",
+        "en": "It takes a volume GUID path like \\\\?\\Volume{…}\\, obtained from os.listvolumes, and returns its mount points: a drive letter or a directory. A volume can have several or none — in which case there is no user-friendly path to it."
       },
       "syntax": "os.listmounts(volume)",
       "status": "ready",
@@ -40771,8 +40771,8 @@
         "en": "Returns the list of volumes in the system as GUID paths; use os.listmounts() to get their mount points. Windows only, Python 3.12+."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Возвращает тома, а не диски: среди них могут быть служебные разделы без буквы, например раздел восстановления. Для показа пользователю переводите их через os.listmounts. Если нужны только привычные буквы дисков, проще os.listdrives.",
+        "en": "It returns volumes, not drives: the list may include hidden partitions with no letter, such as a recovery partition. Translate them via os.listmounts before showing users. If you only need the familiar drive letters, os.listdrives is simpler."
       },
       "syntax": "os.listvolumes()",
       "status": "ready",
@@ -40881,8 +40881,8 @@
         "en": "Apply or release a POSIX lock on a file region (by fd). Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Блокировка рекомендательная: она мешает только тем, кто тоже вызывает lockf, а обычное чтение и запись проходят. Привязана к процессу и снимается при закрытии любого дескриптора этого файла в процессе — даже другого. Для блокировок между процессами в Python чаще используют fcntl.flock, а переносимого решения в стандартной библиотеке нет.",
+        "en": "The lock is advisory: it only stops others who also call lockf, while plain reads and writes go through. It belongs to the process and is released when any descriptor for that file is closed in the process — even a different one. For inter-process locking Python code more often uses fcntl.flock, and the standard library has no portable solution."
       },
       "syntax": "os.lockf(...)",
       "status": "ready",
@@ -40980,8 +40980,8 @@
         "en": "Move a descriptor's read/write position and return the new offset."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Возвращает новую позицию, поэтому lseek(fd, 0, os.SEEK_END) — быстрый способ узнать размер открытого файла, а lseek(fd, 0, os.SEEK_CUR) — текущую позицию. Позицию разделяют все копии дескриптора, полученные через dup или наследование. Сдвиг за конец файла сам по себе файл не увеличивает — это сделает только последующая запись.",
+        "en": "It returns the new position, so lseek(fd, 0, os.SEEK_END) is a quick way to get an open file's size and lseek(fd, 0, os.SEEK_CUR) gives the current position. All copies of the descriptor made by dup or inheritance share the position. Seeking past the end does not grow the file by itself — only a subsequent write does."
       },
       "syntax": "os.lseek(fd, pos, whence)",
       "status": "ready",
@@ -41029,8 +41029,8 @@
         "en": "Like stat, but does not follow symlinks (describes the link itself)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Нужна, чтобы отличить ссылку от того, на что она указывает: stat.S_ISLNK(os.lstat(p).st_mode). Для битой ссылки работает без ошибки, тогда как os.stat поднимет FileNotFoundError. Для обычного файла результат совпадает с os.stat. Тот же результат даёт os.stat(p, follow_symlinks=False).",
+        "en": "Use it to tell a link from what it points to: stat.S_ISLNK(os.lstat(p).st_mode). It works on a broken link, where os.stat would raise FileNotFoundError. For a regular file the result equals os.stat. os.stat(p, follow_symlinks=False) gives the same result."
       },
       "syntax": "os.lstat(path)",
       "status": "ready",
@@ -41387,8 +41387,8 @@
         "en": "Create a named pipe (FIFO). Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Именованный канал виден как файл, но данных на диске не хранит: открытие на чтение блокируется, пока кто-нибудь не откроет его на запись, и наоборот. Поэтому открыть FIFO на чтение и запись в одном потоке не получится — программа зависнет. Права, как у mkdir, проходят через umask.",
+        "en": "A named pipe looks like a file but stores no data on disk: opening it for reading blocks until someone opens it for writing, and vice versa. So you cannot open a FIFO for reading and writing in one thread — the program hangs. Permissions pass through the umask, as with mkdir."
       },
       "syntax": "os.mkfifo(...)",
       "status": "ready",
@@ -41440,8 +41440,8 @@
         "en": "Create a filesystem node (device special file, FIFO, etc.). Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Создание файлов устройств требует прав root; без них доступны только обычные файлы и каналы. Тип узла задаётся битами в mode (stat.S_IFCHR, stat.S_IFBLK), а номер устройства собирается через os.makedev. В обычном коде для каналов понятнее os.mkfifo.",
+        "en": "Creating device files requires root; without it only regular files and pipes are possible. The node type is set by bits in mode (stat.S_IFCHR, stat.S_IFBLK), and the device number is built with os.makedev. For pipes os.mkfifo reads more clearly in everyday code."
       },
       "syntax": "os.mknod(...)",
       "status": "ready",
@@ -43315,8 +43315,8 @@
         "en": "Create a pipe: return a (read_fd, write_fd) pair."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Чтение из канала блокируется, пока в него не запишут, а запись — пока буфер полон (на Linux около 64 КиБ). Классическая взаимная блокировка — писать в канал и читать его в одном потоке. Конец данных читатель увидит, только когда закрыты все копии конца для записи, включая унаследованные дочерним процессом. С 3.4 дескрипторы не наследуются по умолчанию.",
+        "en": "Reading a pipe blocks until someone writes, and writing blocks while the buffer is full (about 64 KiB on Linux). Writing to and reading from a pipe in one thread is a classic deadlock. The reader sees end of data only after every copy of the write end is closed, including those inherited by a child. Since 3.4 the descriptors are non-inheritable by default."
       },
       "syntax": "os.pipe()",
       "status": "ready",
@@ -43718,8 +43718,8 @@
         "en": "Read n bytes from a descriptor at a given offset without moving the position. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Не трогает общую позицию дескриптора, поэтому несколько потоков могут читать разные участки одного файла без блокировок вокруг seek плюс read. Как и os.read, может вернуть меньше запрошенного; пустой результат — смещение за концом файла. На Windows её нет.",
+        "en": "It leaves the shared descriptor position untouched, so several threads can read different parts of one file without locking around seek plus read. Like os.read it may return fewer bytes than requested; an empty result means the offset is past the end. It is not available on Windows."
       },
       "syntax": "os.pread(...)",
       "status": "ready",
@@ -43772,8 +43772,8 @@
         "en": "Like pread, but scatters into multiple buffers at an offset. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Сочетает pread и readv: читает с заданного смещения сразу в несколько буферов одним системным вызовом. Буферы заполняются по порядку, и последний может остаться частично пустым — смотрите возвращённое число байт. Поддерживает флаги вроде RWF_NOWAIT; это низкоуровневый инструмент для серверов и баз данных, а не для учебных задач.",
+        "en": "It combines pread and readv: reads from a given offset into several buffers in one system call. Buffers fill in order, and the last may stay partly empty — check the returned byte count. It supports flags such as RWF_NOWAIT; it is a low-level tool for servers and databases rather than everyday tasks."
       },
       "syntax": "os.preadv(...)",
       "status": "ready",
@@ -43924,8 +43924,8 @@
         "en": "Write bytes to a descriptor at a given offset without moving the position. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Пишет по указанному смещению, не сдвигая общую позицию, — удобно для записи в разные участки файла из нескольких потоков. Если файл открыт с O_APPEND, на Linux данные всё равно уйдут в конец, несмотря на смещение. Может записать не всё — проверяйте возвращённое число.",
+        "en": "It writes at the given offset without moving the shared position — handy for writing different regions of a file from several threads. If the file was opened with O_APPEND, Linux still appends the data at the end, ignoring the offset. It may write only part of the data — check the returned count."
       },
       "syntax": "os.pwrite(...)",
       "status": "ready",
@@ -43977,8 +43977,8 @@
         "en": "Like pwrite, but gathers from multiple buffers at an offset. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Записывает несколько буферов по заданному смещению одним системным вызовом, не сдвигая общую позицию. Экономит склейку данных в один bytes перед записью. Как и другие функции записи, может записать не всё. Флаги вроде RWF_DSYNC позволяют сделать запись синхронной без отдельного fsync.",
+        "en": "It writes several buffers at a given offset in one system call without moving the shared position. It saves concatenating data into one bytes object first. Like other write functions it may write only part of the data. Flags such as RWF_DSYNC make the write synchronous without a separate fsync."
       },
       "syntax": "os.pwritev(...)",
       "status": "ready",
@@ -44028,8 +44028,8 @@
         "en": "Read up to n bytes from a file descriptor, returning bytes."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Может вернуть меньше n байт, даже если данные ещё будут, — особенно для каналов, сокетов и терминалов, поэтому читать нужно в цикле. Пустой результат b'' означает конец файла. Работает с байтами и мимо буферов Python; для обычной работы с файлами удобнее open().",
+        "en": "It may return fewer than n bytes even if more data is coming — especially on pipes, sockets and terminals — so read in a loop. An empty b'' result means end of file. It works with bytes and bypasses Python's buffers; for everyday file work open() is more convenient."
       },
       "syntax": "os.read(fd, n)",
       "status": "ready",
@@ -44079,8 +44079,8 @@
         "en": "Reads from a file descriptor into a pre-allocated mutable buffer (bytearray/memoryview) and returns the number of bytes read, without creating a new bytes object. Python 3.14+."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Пишет данные прямо в переданный bytearray или memoryview и возвращает число прочитанных байт — без создания нового объекта bytes на каждое чтение. Это экономит память и время в циклах чтения больших потоков, особенно со срезом memoryview на свободную часть буфера. Как и os.read, может прочитать меньше места в буфере; 0 — конец файла.",
+        "en": "It writes data straight into the given bytearray or memoryview and returns the byte count — no new bytes object per read. That saves memory and time in loops over large streams, especially with a memoryview slice over the free part of the buffer. Like os.read it may fill less than the buffer; 0 means end of file."
       },
       "syntax": "os.readinto(fd, buffer, /)",
       "status": "ready",
@@ -44140,8 +44140,8 @@
         "en": "Return the path a symbolic link points to."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Возвращает цель ровно так, как она записана в ссылке: относительная цель останется относительной — относительно каталога ссылки, а не текущего. Полный путь даёт os.path.realpath. Для пути, который не является ссылкой, поднимается OSError. Цель может вовсе не существовать.",
+        "en": "It returns the target exactly as stored in the link: a relative target stays relative — to the link's directory, not the current one. os.path.realpath gives the full path. A path that is not a link raises OSError. The target may not exist at all."
       },
       "syntax": "os.readlink(...)",
       "status": "ready",
@@ -44193,8 +44193,8 @@
         "en": "Read from a descriptor into multiple buffers (scatter read). Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Заполняет переданные изменяемые буферы по порядку — например, bytearray для заголовка фиксированной длины и второй для тела — и возвращает общее число прочитанных байт. Буферы не пересоздаются, поэтому лишних копий нет. Если данных меньше, чем места, последние буферы остаются недозаполненными.",
+        "en": "It fills the given mutable buffers in order — say, one bytearray for a fixed-size header and another for the body — and returns the total bytes read. The buffers are reused, so no extra copies are made. If there is less data than room, the later buffers stay partly filled."
       },
       "syntax": "os.readv(...)",
       "status": "ready",
@@ -44684,8 +44684,8 @@
         "en": "Return an iterator of os.DirEntry for a directory — more efficient than listdir."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Возвращает итератор, который держит каталог открытым, — закрывайте его через with. Атрибуты DirEntry кэшируются в момент вызова и не обновляются: если файл изменили после того, как запись прочитана, данные устареют. На этой функции построен os.walk, а обход через scandir заметно быстрее listdir плюс stat на каждое имя.",
+        "en": "It returns an iterator that keeps the directory open — close it with with. DirEntry attributes are cached at the time of the call and never refreshed: if the file changes after the entry was read, the data goes stale. os.walk is built on it, and walking with scandir is noticeably faster than listdir plus a stat per name."
       },
       "syntax": "os.scandir(path)",
       "status": "ready",
@@ -45289,8 +45289,8 @@
         "en": "Copy data between descriptors in the kernel, without a user-space buffer. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Данные не проходят через память Python, поэтому так быстро отдают файлы в сокет — на этом построен socket.sendfile. Может передать не всё запрошенное, возвращает число отправленных байт. Сигнатура и допустимые типы дескрипторов различаются между Linux и macOS, поэтому в переносимом коде удобнее высокоуровневый socket.sendfile.",
+        "en": "Data never passes through Python's memory, which is why it serves files to sockets so quickly — socket.sendfile is built on it. It may transfer less than requested and returns the bytes sent. The signature and the allowed descriptor types differ between Linux and macOS, so portable code is better off with the higher-level socket.sendfile."
       },
       "syntax": "os.sendfile(...)",
       "status": "ready",
@@ -45340,8 +45340,8 @@
         "en": "The system separators: sep — the path separator ('/' or '\\\\'), linesep — the line terminator, pathsep — the PATH separator (':' or ';')."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "os.linesep не нужен при записи текста: файл, открытый в текстовом режиме, сам переводит '\\n' в системный конец строки, и запись os.linesep на Windows даст '\\r\\r\\n'. Для сборки путей вместо os.sep лучше os.path.join или pathlib. Windows принимает и '/', поэтому os.altsep там равен '/', а на Unix — None. pathsep нужен для разбора переменных вроде PATH и PYTHONPATH.",
+        "en": "You do not need os.linesep when writing text: a file opened in text mode translates '\\n' to the platform line ending itself, and writing os.linesep on Windows yields '\\r\\r\\n'. For building paths prefer os.path.join or pathlib over os.sep. Windows accepts '/' as well, so os.altsep is '/' there and None on Unix. pathsep is for splitting variables such as PATH and PYTHONPATH."
       },
       "syntax": "os.sep      # '/' на Unix, '\\\\' на Windows\nos.linesep  # '\\n' на Unix, '\\r\\n' на Windows\nos.pathsep  # ':' на Unix, ';' на Windows",
       "status": "ready",
@@ -45388,12 +45388,12 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Переключает дескриптор между блокирующим и неблокирующим режимом. Доступно на Unix.",
-        "en": "Set a descriptor's blocking/non-blocking I/O mode. Availability: Unix."
+        "ru": "Переключает дескриптор между блокирующим и неблокирующим режимом. На Windows — с Python 3.12 и только для каналов.",
+        "en": "Switch a descriptor between blocking and non-blocking mode. On Windows since Python 3.12, and for pipes only."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "После перевода в неблокирующий режим os.read и os.write не ждут, а поднимают BlockingIOError; код должен быть готов к этому и к частичным записям. Флаг принадлежит открытому файлу, а не номеру: копии через dup и унаследованные дочерним процессом меняются вместе. На Windows с 3.12 работает только для каналов.",
+        "en": "Once non-blocking, os.read and os.write no longer wait but raise BlockingIOError; the code must expect that and partial writes. The flag belongs to the open file, not the number: dup copies and descriptors inherited by children change together. On Windows, since 3.12, it works for pipes only."
       },
       "syntax": "os.set_blocking(...)",
       "status": "ready",
@@ -45441,8 +45441,8 @@
         "en": "Sets the inheritable flag of a Windows handle for child processes; Windows only — use os.set_inheritable() for regular file descriptors."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Меняет флаг наследования у хендла Windows, а не у номера дескриптора C. С Python 3.4 создаваемые хендлы по умолчанию не наследуются, и эта функция нужна, чтобы явно отдать хендл дочернему процессу. Помните, что наследуются все помеченные хендлы — в subprocess для точечной передачи есть STARTUPINFO.lpAttributeList с handle_list.",
+        "en": "It changes the inheritance flag of a Windows HANDLE, not a C descriptor number. Since Python 3.4 created handles are non-inheritable by default, and this function lets you explicitly hand one to a child. Remember that every flagged handle is inherited — for targeted passing subprocess offers STARTUPINFO.lpAttributeList with handle_list."
       },
       "syntax": "os.set_handle_inheritable(handle, inheritable, /)",
       "status": "ready",
@@ -45505,8 +45505,8 @@
         "en": "Set whether a file descriptor is inheritable by child processes."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Нужна, когда дочерней программе действительно надо передать дескриптор, например конец канала. В subprocess для этого есть параметр pass_fds, и он удобнее: флаг ставится только для конкретного запуска. Флаг принадлежит дескриптору, а не файлу: у копии через dup он свой.",
+        "en": "Use it when a child program really needs a descriptor, such as a pipe end. subprocess offers the pass_fds parameter for this, which is handier: the flag is set only for that launch. The flag belongs to the descriptor, not the file: a dup copy has its own."
       },
       "syntax": "os.set_inheritable(fd, inheritable)",
       "status": "ready",
@@ -46743,8 +46743,8 @@
         "en": "Move data between descriptors via a pipe without user-space copies (3.10+). Availability: Linux."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Один из дескрипторов обязан быть каналом: данные перемещаются через буфер канала без копирования в память процесса. Типичный путь — сокет → канал → файл. Это узкоспециальный инструмент для серверов на Linux; в обычном коде достаточно shutil.copyfileobj или sendfile.",
+        "en": "One of the descriptors must be a pipe: data moves through the pipe buffer without copying into process memory. A typical route is socket → pipe → file. It is a niche tool for Linux servers; everyday code is fine with shutil.copyfileobj or sendfile."
       },
       "syntax": "os.splice(...)",
       "status": "ready",
@@ -46859,8 +46859,8 @@
         "en": "Return an os.stat_result with a file's metadata."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Следует по символическим ссылкам: для битой ссылки поднимает FileNotFoundError — саму ссылку описывает lstat. Время доступно с наносекундной точностью в полях *_ns. Права и тип лежат вместе в st_mode, и разбирать их удобно модулем stat: stat.S_ISDIR(st.st_mode), stat.filemode(st.st_mode) даёт строку вида '-rw-r--r--'.",
+        "en": "It follows symlinks: a broken link raises FileNotFoundError — use lstat to describe the link itself. Times are available with nanosecond precision in the *_ns fields. Permissions and type share st_mode, and the stat module decodes them: stat.S_ISDIR(st.st_mode), and stat.filemode(st.st_mode) gives a string like '-rw-r--r--'."
       },
       "syntax": "os.stat(path)",
       "status": "ready",
@@ -46912,8 +46912,8 @@
         "en": "The result type of os.stat()/os.fstat(): has st_size, st_mode, st_mtime, etc."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Ведёт себя и как объект с полями, и как кортеж из десяти элементов — индексы остались для совместимости, но поля читаются понятнее: st.st_size вместо st[6]. Целые секунды в индексах против дробных в полях — частый источник путаницы. Набор дополнительных полей зависит от системы: st_birthtime, например, есть не везде.",
+        "en": "It behaves both as an object with fields and as a ten-item tuple — the indices remain for compatibility, but fields read more clearly: st.st_size instead of st[6]. Integer seconds via indices versus float seconds via fields are a common source of confusion. Extra fields depend on the platform: st_birthtime, for example, is not available everywhere."
       },
       "syntax": "os.stat(path)  # → os.stat_result",
       "status": "ready",
@@ -46962,8 +46962,8 @@
         "en": "Return filesystem statistics for a path (block size, free space). Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Свободное место для обычного пользователя — f_bavail * f_frsize, а не f_bfree: часть блоков зарезервирована для root. Переносимый и более простой способ узнать место на диске — shutil.disk_usage, он работает и на Windows. Нужна, когда интересны детали: число inode, флаги монтирования, максимальная длина имени.",
+        "en": "Free space for an ordinary user is f_bavail * f_frsize, not f_bfree: some blocks are reserved for root. shutil.disk_usage is the portable and simpler way to get disk space and works on Windows too. Use statvfs when details matter: inode counts, mount flags, maximum name length."
       },
       "syntax": "os.statvfs(...)",
       "status": "ready",
@@ -47010,12 +47010,12 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Тип результата os.statvfs(): поля f_bsize, f_blocks, f_bfree и др. Доступно на Unix.",
-        "en": "The result type of os.statvfs(): f_bsize, f_blocks, f_bfree, etc. Availability: Unix."
+        "ru": "Тип результата os.statvfs(): поля f_bsize, f_frsize, f_blocks, f_bfree, f_bavail и др. Сам тип есть везде, а функции statvfs и fstatvfs — только на Unix.",
+        "en": "Result type of os.statvfs(): fields f_bsize, f_frsize, f_blocks, f_bfree, f_bavail and more. The type exists everywhere; statvfs and fstatvfs are Unix-only."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Поля различают размер блока для выделения (f_frsize) и предпочтительный размер ввода-вывода (f_bsize) — для подсчёта места нужен первый. f_bfree считает все свободные блоки, а f_bavail — доступные обычному пользователю. Как и stat_result, ведёт себя и как кортеж. Сам тип есть в модуле на любой системе, но получить его значение через statvfs можно только на Unix.",
+        "en": "The fields distinguish the allocation block size (f_frsize) from the preferred I/O size (f_bsize) — use the former to compute space. f_bfree counts all free blocks, while f_bavail counts those available to ordinary users. Like stat_result it also behaves as a tuple. The type exists in the module everywhere, but only Unix can produce a value via statvfs."
       },
       "syntax": "os.statvfs_result(...)",
       "status": "ready",
@@ -47107,12 +47107,12 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Создаёт символическую ссылку на путь. Доступно на Unix.",
-        "en": "Create a symbolic link to a path. Availability: Unix."
+        "ru": "Создаёт символическую ссылку на путь. На Windows требует прав администратора или режима разработчика.",
+        "en": "Create a symbolic link to a path. On Windows it needs administrator rights or developer mode."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Порядок аргументов как у команды ln -s: сначала цель, потом имя ссылки. Относительная цель отсчитывается от каталога ссылки, а не от текущего каталога, — частая ошибка. Цель проверяется не при создании, а при использовании, поэтому битая ссылка создаётся без ошибки. На Windows нужны права администратора или режим разработчика, а для каталога — target_is_directory=True.",
+        "en": "Argument order matches ln -s: target first, then the link name. A relative target is resolved from the link's directory, not from the current directory — a common mistake. The target is checked on use, not at creation, so a broken link is created without error. On Windows you need admin rights or developer mode, and target_is_directory=True for a directory."
       },
       "syntax": "os.symlink(...)",
       "status": "ready",
@@ -47164,8 +47164,8 @@
         "en": "Flush all filesystem buffers to disk. Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Сбрасывает буферы всех файловых систем сразу, а не одного файла, и потому медленна и неизбирательна. Для своих данных правильнее fsync конкретного файла. Нужна разве что перед отключением носителя или в системных утилитах.",
+        "en": "It flushes buffers of every filesystem at once rather than one file, which makes it slow and indiscriminate. For your own data fsync on the specific file is right. It is mostly useful before unplugging media or in system utilities."
       },
       "syntax": "os.sync(...)",
       "status": "ready",
@@ -47818,8 +47818,8 @@
         "en": "Truncate the file at a path to a given length."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Принимает путь, а не дескриптор, — файл не нужно открывать. Увеличение заполняет хвост нулями, а на файловых системах с разреженными файлами место на диске при этом может не выделяться. На Windows работает с Python 3.5. Если файл уже открыт, безопаснее os.ftruncate по его дескриптору.",
+        "en": "It takes a path, not a descriptor, so the file need not be opened. Growing fills the tail with zeros, and on filesystems with sparse files no disk space may actually be allocated. On Windows it works since Python 3.5. If the file is already open, os.ftruncate on its descriptor is safer."
       },
       "syntax": "os.truncate(path, length)",
       "status": "ready",
@@ -48321,8 +48321,8 @@
         "en": "Set a file's access and modification times (atime, mtime)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Без второго аргумента ставит текущее время — так работает команда touch для существующего файла. Кортеж (atime, mtime) принимает секунды, а параметр ns — наносекунды; передать оба нельзя. Сборочные системы и rsync сравнивают mtime, поэтому utime помогает при копировании сохранить исходные даты — это и делает shutil.copystat.",
+        "en": "Without a second argument it sets the current time — what touch does to an existing file. The (atime, mtime) tuple takes seconds and the ns parameter takes nanoseconds; you cannot pass both. Build systems and rsync compare mtime, so utime helps preserve original dates when copying — which is what shutil.copystat does."
       },
       "syntax": "os.utime(...)",
       "status": "ready",
@@ -48793,8 +48793,8 @@
         "en": "Write bytes to a file descriptor, returning the number written."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Может записать не всё: возвращённое число бывает меньше длины данных, особенно для неблокирующих дескрипторов и каналов, поэтому дописывать остаток нужно в цикле. Буферизации нет — каждый вызов становится системным вызовом, и много мелких записей работают медленно.",
+        "en": "It may write only part of the data: the returned count can be less than the length, especially on non-blocking descriptors and pipes, so write the rest in a loop. There is no buffering — each call is a system call, so many small writes are slow."
       },
       "syntax": "os.write(fd, data)",
       "status": "ready",
@@ -48844,8 +48844,8 @@
         "en": "Write to a descriptor from multiple buffers (gather write). Availability: Unix."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Записывает несколько байтовых объектов одним системным вызовом — без предварительной склейки b''.join и без нескольких отдельных write. Это сокращает число переключений в ядро при отправке заголовка и тела. Может записать не всё, и тогда остаток, возможно с середины одного из буферов, нужно дописать самостоятельно.",
+        "en": "It writes several bytes-like objects in one system call — no b''.join beforehand and no separate writes. That cuts kernel round-trips when sending a header and a body. It may write only part of the data, and the rest, possibly from the middle of one buffer, must then be written by you."
       },
       "syntax": "os.writev(...)",
       "status": "ready",

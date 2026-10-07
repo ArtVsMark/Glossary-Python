@@ -1369,7 +1369,9 @@
         "            raise ValueError('radius < 0')",
         "        self.area = 3.14 * self.radius ** 2",
         "c = Circle(3.0)",
-        "c.area # → 28.26",
+        "c.area # → 28.26"
+      ],
+      [
         "# Circle(-1) # → ValueError"
       ]
     ],
@@ -1954,10 +1956,16 @@
         "c = Counter('aabbccca')",
         "print(c)",
         "# → Counter({'a': 3, 'c': 3, 'b': 2})",
-        "print(c.most_common(2))",
+        "print(c.most_common(2))"
+      ],
+      [
+        "from collections import Counter",
         "# → [('a', 3), ('c', 3)]",
         "c2 = Counter(['apple', 'banana', 'apple', 'cherry', 'apple'])",
-        "print(c2.most_common(1))",
+        "print(c2.most_common(1))"
+      ],
+      [
+        "from collections import Counter",
         "# → [('apple', 3)]",
         "c3 = Counter('hello')",
         "c4 = Counter('world')",
@@ -1967,11 +1975,16 @@
         "# → Counter({'h': 1, 'e': 1, 'l': 1}) (только положительные)",
         "print(c3 & c4)",
         "# → Counter({'l': 1, 'o': 1}) (пересечение, min)",
-        "print(c3 | c4)",
+        "print(c3 | c4)"
+      ],
+      [
+        "from collections import Counter",
         "# → Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1, 'w': 1, 'r': 1, 'd': 1}) (объединение, max)",
         "words = 'the cat sat on the mat'.split()",
         "wc = Counter(words)",
-        "print(wc.most_common(3))",
+        "print(wc.most_common(3))"
+      ],
+      [
         "# → [('the', 2), ('cat', 1), ('sat', 1)]"
       ]
     ],
@@ -2031,39 +2044,35 @@
         "d = defaultdict(list)",
         "d['fruits'].append('apple')",
         "d['fruits'].append('banana')",
-        "print(d)",
-        "# → defaultdict(<class 'list'>, {'fruits': ['apple', 'banana']})",
+        "print(d)  # → defaultdict(<class 'list'>, {'fruits': ['apple', 'banana']})"
+      ],
+      [
+        "from collections import defaultdict",
         "counter = defaultdict(int)",
-        "for c in 'hello world':",
+        "for c in 'hello':",
         "    counter[c] += 1",
-        "    print(dict(counter))",
-        "    # → {'h': 1, 'e': 1, 'l': 3, 'o': 2, ' ': 1, 'w': 1, 'r': 1, 'd': 1}",
-        "    groups = defaultdict(set)",
-        "    for w in ['cat', 'car', 'dog', 'cow']:",
-        "        groups[w[0]].add(w)",
-        "        print(dict(groups))",
-        "# → {'c': {'cat', 'car', 'cow'}, 'd': {'dog'}}",
+        "print(dict(counter))  # → {'h': 1, 'e': 1, 'l': 2, 'o': 1}"
+      ],
+      [
+        "from collections import defaultdict",
+        "by_letter = defaultdict(list)",
+        "for w in ['apple', 'ant', 'bat', 'ball', 'cat']:",
+        "    by_letter[w[0]].append(w)",
+        "print(dict(by_letter))  # → {'a': ['apple', 'ant'], 'b': ['bat', 'ball'], 'c': ['cat']}"
+      ],
+      [
         "from collections import defaultdict",
         "d2 = defaultdict(lambda: 'unknown')",
         "d2['key1'] = 'value'",
-        "print(d2['key1'])",
-        "# → 'value'",
-        "print(d2['missing'])",
-        "# → 'unknown'",
-        "dd = defaultdict(dict)",
-        "dd['a']['nested'] = 1",
-        "print(dd)",
-        "# → defaultdict(<class 'dict'>, {'a': {'nested': 1}})",
-        "words = ['apple', 'ant', 'bat', 'ball', 'cat']",
-        "by_letter = defaultdict(list)",
-        "for w in words:",
-        "    by_letter[w[0]].append(w)",
-        "    print(dict(by_letter))",
-        "    # → {'a': ['apple', 'ant'], 'b': ['bat', 'ball'], 'c': ['cat']}",
-        "    nested_dd = defaultdict(lambda: defaultdict(int))",
-        "    nested_dd['row1']['col1'] += 1",
-        "    print(nested_dd['row1']['col1'])",
-        "    # → 1"
+        "print(d2['key1'])  # → value",
+        "print(d2['missing'])  # → unknown — и ключ 'missing' теперь в словаре",
+        "print(len(d2))  # → 2"
+      ],
+      [
+        "from collections import defaultdict",
+        "grid = defaultdict(lambda: defaultdict(int))",
+        "grid['row1']['col1'] += 1",
+        "print(grid['row1']['col1'])  # → 1"
       ]
     ],
     "related": [
@@ -2117,40 +2126,43 @@
     "examples": [
       [
         "from collections import deque",
-        "d = deque([1,2,3])",
-        "d.append(4)      # → deque([1,2,3,4])",
-        "d.appendleft(0)  # → deque([0,1,2,3,4])",
-        "print(d)  # → deque([0,1,2,3,4])",
-        "d.pop()          # → 4",
-        "d.popleft()      # → 0",
-        "print(d)  # → deque([1,2,3])",
-        "# rotate",
-        "d2 = deque([1,2,3,4,5])",
-        "d2.rotate(2)",
-        "print(d2)  # → deque([4,5,1,2,3])",
-        "d2.rotate(-1)",
-        "print(d2)  # → deque([5,1,2,3,4])",
+        "d = deque([1, 2, 3])",
+        "d.append(4)",
+        "d.appendleft(0)",
+        "print(d)  # → deque([0, 1, 2, 3, 4])",
+        "print(d.pop(), d.popleft())  # → 4 0",
+        "print(d)  # → deque([1, 2, 3])"
+      ],
+      [
+        "from collections import deque",
+        "d = deque([1, 2, 3, 4, 5])",
+        "d.rotate(2)",
+        "print(d)  # → deque([4, 5, 1, 2, 3])",
+        "d.rotate(-1)",
+        "print(d)  # → deque([5, 1, 2, 3, 4])"
+      ],
+      [
         "# maxlen — скользящее окно",
+        "from collections import deque",
         "last3 = deque(maxlen=3)",
         "for x in range(6):",
         "    last3.append(x)",
-        "    print(list(last3))",
-        "    # → [0] [0,1] [0,1,2] [1,2,3] [2,3,4] [3,4,5]",
-        "    # Очередь (FIFO)",
-        "    queue = deque()",
-        "    queue.append('a'); queue.append('b'); queue.append('c')",
-        "    print(queue.popleft())  # → a",
-        "    print(queue.popleft())  # → b",
-        "    # Стек (LIFO)",
-        "    stack = deque()",
-        "    stack.append(1); stack.append(2); stack.append(3)",
-        "    print(stack.pop())  # → 3",
-        "    print(stack.pop())  # → 2",
-        "    # extend / extendleft",
-        "    d3 = deque([1,2,3])",
-        "    d3.extend([4,5])",
-        "    d3.extendleft([0,-1])",
-        "    print(d3)  # → deque([-1,0,1,2,3,4,5])"
+        "print(list(last3))  # → [3, 4, 5]"
+      ],
+      [
+        "# Очередь (FIFO) и стек (LIFO)",
+        "from collections import deque",
+        "queue = deque(['a', 'b', 'c'])",
+        "print(queue.popleft())  # → a",
+        "stack = deque([1, 2, 3])",
+        "print(stack.pop())  # → 3"
+      ],
+      [
+        "from collections import deque",
+        "d = deque([1, 2, 3])",
+        "d.extend([4, 5])",
+        "d.extendleft([0, -1])",
+        "print(d)  # → deque([-1, 0, 1, 2, 3, 4, 5]) — extendleft разворачивает порядок"
       ]
     ],
     "related": [
@@ -2277,7 +2289,9 @@
         "# → 'a' (переместить в начало)",
         "print(od.popitem(last=True))",
         "# → ('a', 1) (последний)",
-        "print(od.popitem(last=False))",
+        "print(od.popitem(last=False))"
+      ],
+      [
         "# → ('b', 2) (первый)"
       ]
     ],
@@ -2520,7 +2534,10 @@
       [
         "from contextlib import nullcontext",
         "with nullcontext('value') as v:",
-        "    print(v) # → 'value'",
+        "    print(v) # → 'value'"
+      ],
+      [
+        "from contextlib import nullcontext",
         "def process(cm=None):",
         "    with cm or nullcontext():",
         "        return 42",
@@ -2577,23 +2594,27 @@
     ],
     "examples": [
       [
+        "import os",
         "from contextlib import suppress",
         "with suppress(FileNotFoundError):",
-        "    import os",
-        "    os.remove('/nonexistent_file')  # → тихо игнорируется",
-        "    print('Continued normally')  # → Continued normally",
-        "    with suppress(KeyError):",
-        "        d = {'a': 1}",
-        "        print(d['missing'])  # → подавлено",
-        "        print('ok')  # → ok",
-        "    with suppress(ZeroDivisionError, ValueError):",
-        "        x = 1/0  # → подавлено",
-        "# Сравни с try/except pass",
+        "    os.remove('/nonexistent_file')  # исключение подавлено",
+        "print('Continued normally')  # → Continued normally"
+      ],
+      [
+        "from contextlib import suppress",
+        "with suppress(KeyError):",
+        "    d = {'a': 1}",
+        "    print(d['missing'])  # KeyError подавлен — печати нет",
+        "    print('недостижимо')",
+        "print('ok')  # → ok — блок прерван на первой ошибке"
+      ],
+      [
+        "# Эквивалент через try/except",
         "import os",
         "try:",
         "    os.remove('no_file')",
         "except FileNotFoundError:",
-        "    pass  # эквивалент suppress"
+        "    pass"
       ]
     ],
     "related": [
@@ -2782,7 +2803,10 @@
         "print(p.x, p.y)  # → 1.0 2.0",
         "# __eq__ автоматически",
         "print(Point(1,2) == Point(1,2))  # → True",
-        "print(Point(1,2) == Point(1,3))  # → False",
+        "print(Point(1,2) == Point(1,3))  # → False"
+      ],
+      [
+        "from dataclasses import dataclass",
         "from dataclasses import dataclass, field",
         "@dataclass",
         "class Inventory:",
@@ -2791,7 +2815,11 @@
         "    count: int = field(default=0, repr=False)",
         "inv = Inventory('store')",
         "inv.items.append('apple')",
-        "print(inv)  # → Inventory(name='store', items=['apple'])",
+        "print(inv)  # → Inventory(name='store', items=['apple'])"
+      ],
+      [
+        "from dataclasses import dataclass",
+        "from dataclasses import dataclass, field",
         "# frozen=True — неизменяемый",
         "@dataclass(frozen=True)",
         "class ImmutablePoint:",
@@ -2801,7 +2829,11 @@
         "try:",
         "    ip.x = 5  # присваивание во frozen-dataclass запрещено",
         "except Exception as e:",
-        "    print(e)  # → cannot assign to field 'x'",
+        "    print(e)  # → cannot assign to field 'x'"
+      ],
+      [
+        "from dataclasses import dataclass",
+        "from dataclasses import dataclass, field",
         "# __post_init__",
         "@dataclass",
         "class Circle:",
@@ -2811,14 +2843,22 @@
         "        import math",
         "        self.area = math.pi * self.radius**2",
         "c = Circle(5)",
-        "print(round(c.area, 2))  # → 78.54",
+        "print(round(c.area, 2))  # → 78.54"
+      ],
+      [
+        "from dataclasses import dataclass",
+        "from dataclasses import dataclass, field",
         "# order=True — для сравнения",
         "@dataclass(order=True)",
         "class Student:",
         "    grade: int",
         "    name: str",
         "students = [Student(85,'Bob'), Student(90,'Alice')]",
-        "print([s.name for s in sorted(students)])  # → ['Bob', 'Alice']",
+        "print([s.name for s in sorted(students)])  # → ['Bob', 'Alice']"
+      ],
+      [
+        "from dataclasses import dataclass",
+        "from dataclasses import dataclass, field",
         "# Наследование dataclass",
         "@dataclass",
         "class Animal:",
@@ -3825,7 +3865,10 @@
       [
         "from datetime import datetime, timezone",
         "dt = datetime(2024, 1, 1, tzinfo=timezone.utc)",
-        "print(dt.timestamp())  # 1704067200.0",
+        "print(dt.timestamp())  # 1704067200.0"
+      ],
+      [
+        "from datetime import datetime, timezone",
         "# обратно: datetime из timestamp",
         "from datetime import datetime",
         "dt2 = datetime.fromtimestamp(1704067200, tz=timezone.utc)"
@@ -3937,7 +3980,10 @@
       [
         "from datetime import datetime",
         "dt = datetime.utcfromtimestamp(1704067200)",
-        "print(dt)  # 2024-01-01 00:00:00  (naive, UTC)",
+        "print(dt)  # 2024-01-01 00:00:00  (naive, UTC)"
+      ],
+      [
+        "from datetime import datetime",
         "# современная альтернатива:",
         "from datetime import timezone",
         "dt2 = datetime.fromtimestamp(1704067200, tz=timezone.utc)"
@@ -4239,7 +4285,9 @@
       [
         "# без буфера — только в бинарном режиме",
         "with open('raw.bin', 'wb', buffering=0) as f:",
-        "    f.write(b'\\x00\\x01')",
+        "    f.write(b'\\x00\\x01')"
+      ],
+      [
         "# построчная буферизация — только в текстовом режиме",
         "with open('out.txt', 'w', buffering=1) as f:",
         "    f.write('строка\\n')   # уходит на диск на каждом переводе строки",
@@ -4365,7 +4413,10 @@
       [
         "import sys",
         "# немедленный вывод без буферизации",
-        "print('загрузка...', end='', flush=True)",
+        "print('загрузка...', end='', flush=True)"
+      ],
+      [
+        "import sys",
         "# или явно:",
         "sys.stdout.write('статус')",
         "sys.stdout.flush()",
@@ -4489,7 +4540,10 @@
         "# очистить файл",
         "with open('data.txt', 'r+') as f:",
         "    f.truncate(0)",
-        "print(os.path.getsize('data.txt'))  # → 0",
+        "print(os.path.getsize('data.txt'))  # → 0"
+      ],
+      [
+        "import os",
         "# обрезать до 100 байт",
         "with open('big.bin', 'wb') as f:",
         "    f.write(bytes(1000))",
@@ -4685,7 +4739,9 @@
         "add10 = partial(add, 10)",
         "print(add10(5))  # → 15",
         "print_sep = partial(print, sep=', ')",
-        "print_sep(1, 2, 3)  # → 1, 2, 3",
+        "print_sep(1, 2, 3)  # → 1, 2, 3"
+      ],
+      [
         "# partial с методом",
         "from functools import partial",
         "int2 = partial(int, base=2)",
@@ -4753,10 +4809,16 @@
         "print(maximum)  # → 9",
         "words = ['Hello', ' ', 'World']",
         "sentence = reduce(lambda a, b: a + b, words)",
-        "print(sentence)  # → Hello  World",
+        "print(sentence)  # → Hello  World"
+      ],
+      [
+        "from functools import reduce",
         "# С начальным значением",
         "total = reduce(lambda a, b: a + b, [1,2,3], 100)",
-        "print(total)  # → 106",
+        "print(total)  # → 106"
+      ],
+      [
+        "from functools import reduce",
         "# Подсчёт вхождений",
         "from collections import Counter",
         "nums = [1,1,2,3,1]",
@@ -5070,7 +5132,10 @@
       [
         "import hashlib",
         "h = hashlib.md5(b'hello world')",
-        "print(h.hexdigest())  # → 5eb63bbbe01eeed093cb22bb8f5acdc3",
+        "print(h.hexdigest())  # → 5eb63bbbe01eeed093cb22bb8f5acdc3"
+      ],
+      [
+        "import hashlib",
         "# хеш файла: файл читается в бинарном режиме",
         "with open('file.txt', 'wb') as f:",
         "    f.write(b'hello world')",
@@ -5131,7 +5196,10 @@
       [
         "import hashlib",
         "h = hashlib.sha256(b'secret data')",
-        "print(len(h.hexdigest()))  # → 64 — шестнадцатеричных символов",
+        "print(len(h.hexdigest()))  # → 64 — шестнадцатеричных символов"
+      ],
+      [
+        "import hashlib",
         "# постепенная загрузка большого файла: память не зависит от его размера",
         "with open('bigfile.bin', 'wb') as f:",
         "    f.write(b'x' * 200_000)",
@@ -5492,7 +5560,9 @@
         "data = [3, 1, 4, 1, 5, 9, 2, 6]",
         "heapq.nlargest(3, data) # → [9, 6, 5]",
         "records = [{'v': 5}, {'v': 1}, {'v': 9}]",
-        "heapq.nlargest(2, records, key=lambda x: x['v'])",
+        "heapq.nlargest(2, records, key=lambda x: x['v'])"
+      ],
+      [
         "# → [{'v': 9}, {'v': 5}]"
       ]
     ],
@@ -5606,7 +5676,9 @@
         "class Prio(IntEnum):",
         "    LOW = 1; MED = 2; HIGH = 3",
         "Prio.HIGH > Prio.LOW # → True",
-        "Prio.MED + 1 # → 3",
+        "Prio.MED + 1 # → 3"
+      ],
+      [
         "from enum import StrEnum",
         "class Status(StrEnum):",
         "    OK = 'ok'; ERR = 'error'",
@@ -5790,7 +5862,10 @@
         "import io",
         "raw = io.BytesIO(b'hello')",
         "wrapper = io.TextIOWrapper(raw, encoding='utf-8')",
-        "wrapper.read() # → 'hello'",
+        "wrapper.read() # → 'hello'"
+      ],
+      [
+        "import io",
         "# Запись:",
         "buf = io.BytesIO()",
         "tw = io.TextIOWrapper(buf, encoding='utf-8')",
@@ -6253,7 +6328,10 @@
         "import logging",
         "logger = logging.getLogger(__name__)",
         "logger.setLevel(logging.DEBUG)",
-        "logger.info('сообщение из модуля')",
+        "logger.info('сообщение из модуля')"
+      ],
+      [
+        "import logging",
         "# иерархия",
         "parent = logging.getLogger('app')",
         "child  = logging.getLogger('app.db')  # наследует настройки parent"
@@ -6837,10 +6915,16 @@
         "print(math.degrees(math.pi/2))    # → 90.0",
         "print(math.degrees(2*math.pi))    # → 360.0",
         "print(math.degrees(0))            # → 0.0",
-        "print(math.degrees(math.pi/4))    # → 45.0",
+        "print(math.degrees(math.pi/4))    # → 45.0"
+      ],
+      [
+        "import math",
         "# Не ровно 30.0! math.pi/6 не представим в double точно, и ошибка видна в ответе.",
         "# помечено средозависимым: карточка учит НАЛИЧИЮ погрешности, а не её цифрам.",
-        "print(math.degrees(math.pi/6))    # → ?  (29.999999999999996 на Linux/x86-64; хвост зависит от libm)",
+        "print(math.degrees(math.pi/6))    # → ?  (29.999999999999996 на Linux/x86-64; хвост зависит от libm)"
+      ],
+      [
+        "import math",
         "# Сравнивать такие значения нужно с допуском, а не на равенство:",
         "print(math.isclose(math.degrees(math.pi/6), 30.0))  # → True",
         "print(round(math.degrees(math.pi/6), 10))  # → 30.0"
@@ -7192,13 +7276,21 @@
         "print(sum([0.1] * 10))         # → 1.0",
         "print(math.fsum([0.1] * 10))   # → 1.0",
         "print(sum([0.1, 0.2, 0.3]))       # → 0.6",
-        "print(math.fsum([0.1, 0.2, 0.3]))  # → 0.6",
+        "print(math.fsum([0.1, 0.2, 0.3]))  # → 0.6"
+      ],
+      [
+        "import math",
         "# Разница между sum и fsum зависит от версии: компенсация во встроенной sum",
         "# крепнет от релиза к релизу. Этот случай на 3.12/3.13 даёт 0.0, на 3.14 — 1.0,",
         "print(sum([1e100, 1, -1e100]))        # → ?  (0.0 на 3.12/3.13, 1.0 на 3.14)",
-        "print(math.fsum([1e100, 1, -1e100]))  # → 1.0 (fsum считает точно)",
+        "print(math.fsum([1e100, 1, -1e100]))  # → 1.0 (fsum считает точно)"
+      ],
+      [
         "# поэтому ожидание помечено средозависимым. А fsum точен на любой версии:",
-        "print(sum([1, 1e100, -1e100, 1]))        # → 1.0 (порядок слагаемых меняет ответ)",
+        "print(sum([1, 1e100, -1e100, 1]))        # → 1.0 (порядок слагаемых меняет ответ)"
+      ],
+      [
+        "import math",
         "# Устойчивая иллюстрация: здесь sum теряет единицу на ВСЕХ версиях, fsum — нет.",
         "print(math.fsum([1, 1e100, -1e100, 1]))  # → 2.0"
       ]
@@ -9207,7 +9299,9 @@
         "print(random.choice([1,2,3,4,5]))  # → случайный элемент",
         "print(random.choice('abcdef'))     # → случайный символ",
         "faces = ['♠','♥','♦','♣']",
-        "print(random.choice(faces))  # → случайная масть",
+        "print(random.choice(faces))  # → случайная масть"
+      ],
+      [
         "import random",
         "result = [random.choice(['heads','tails']) for _ in range(5)]",
         "print(result)",
@@ -9449,7 +9543,10 @@
         "import random",
         "random.seed(42)",
         "print(random.random())  # → 0.6394...",
-        "print(random.random())  # → 0.0250...",
+        "print(random.random())  # → 0.0250..."
+      ],
+      [
+        "import random",
         "# Масштабирование на [a, b):",
         "a, b = 5, 10",
         "x = a + (b-a) * random.random()",
@@ -9695,7 +9792,9 @@
         "print(deck)  # → перемешанная колода",
         "words = ['alpha','beta','gamma','delta']",
         "random.shuffle(words)",
-        "print(words)  # → случайный порядок",
+        "print(words)  # → случайный порядок"
+      ],
+      [
         "# Копия перемешанная:",
         "import random",
         "original = [1,2,3,4,5]",
@@ -10578,7 +10677,10 @@
       [
         "import string",
         "print(string.ascii_letters)  # → abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-        "print(len(string.ascii_letters))  # → 52",
+        "print(len(string.ascii_letters))  # → 52"
+      ],
+      [
+        "import string",
         "import random",
         "pwd = ''.join(random.choices(string.ascii_letters, k=8))  # → случайный пароль 8 символов",
         "all_alpha = [c for c in 'Hello1' if c in string.ascii_letters]  # → ['H','e','l','l','o']",
@@ -10752,7 +10854,10 @@
         "import string",
         "print(string.digits)  # → 0123456789",
         "print('5' in string.digits)  # → True",
-        "digits_only = [c for c in 'abc123' if c in string.digits]  # → ['1','2','3']",
+        "digits_only = [c for c in 'abc123' if c in string.digits]  # → ['1','2','3']"
+      ],
+      [
+        "import string",
         "import random",
         "pin = ''.join(random.choices(string.digits, k=4))  # → '4-значный PIN'",
         "print(len(string.digits))  # → 10"
@@ -11284,7 +11389,10 @@
         "import subprocess",
         "# простой запуск",
         "result = subprocess.run(['ls', '-la'], capture_output=True, text=True)",
-        "print(result.stdout)",
+        "print(result.stdout)"
+      ],
+      [
+        "import subprocess",
         "# проверка кода возврата",
         "subprocess.run(['python', '--version'], check=True)  # CalledProcessError при ошибке"
       ]
@@ -11344,13 +11452,11 @@
     "examples": [
       [
         "import sys",
-        "print(sys.argv)  # → ['script.py', 'arg1', 'arg2']",
-        "script_name = sys.argv[0]  # → 'script.py'",
-        "if len(sys.argv) > 1:",
-        "    first_arg = sys.argv[1]  # → первый аргумент",
-        "    for arg in sys.argv[1:]:",
-        "        print(arg)  # → вывод всех аргументов",
-        "        print(len(sys.argv))  # → кол-во аргументов включая имя скрипта"
+        "sys.argv = ['script.py', 'arg1', 'arg2']  # так его заполнит: python script.py arg1 arg2",
+        "print(sys.argv)  # → ['script.py', 'arg1', 'arg2'] — первым идёт имя скрипта",
+        "for arg in sys.argv[1:]:",
+        "    print(arg)  # → arg1 / arg2",
+        "print(len(sys.argv) - 1)  # → 2 — число аргументов без имени скрипта"
       ]
     ],
     "related": [
@@ -11404,19 +11510,15 @@
     "examples": [
       [
         "import sys",
-        "try:",
-        "    sys.exit(0)",
-        "except SystemExit as e:",
-        "    print(e.code)  # → 0",
+        "for code in (0, 1, 'Error!'):",
         "    try:",
-        "        sys.exit(1)",
+        "        sys.exit(code)",
         "    except SystemExit as e:",
-        "        print(e.code)  # → 1",
-        "    try:",
-        "        sys.exit('Error!')",
-        "    except SystemExit as e:",
-        "        print(e.code)  # → Error!",
-        "        print(isinstance(SystemExit(), BaseException))  # → True"
+        "        print(e.code)  # → 0 / 1 / Error!"
+      ],
+      [
+        "print(issubclass(SystemExit, Exception))  # → False — except Exception его не ловит",
+        "print(issubclass(SystemExit, BaseException))  # → True"
       ]
     ],
     "related": [
@@ -11475,7 +11577,9 @@
         "print(isinstance(sys.getrecursionlimit(), int))  # → True",
         "sys.setrecursionlimit(2000)",
         "print(sys.getrecursionlimit())  # → 2000",
-        "sys.setrecursionlimit(1000)  # вернули значение по умолчанию",
+        "sys.setrecursionlimit(1000)  # вернули значение по умолчанию"
+      ],
+      [
         "def deep(n): return deep(n + 1)",
         "print(deep(0))  # → RecursionError"
       ]
@@ -11704,7 +11808,10 @@
         "print('os' in sys.modules)  # → True",
         "print(type(sys.modules['os']))  # → <class 'module'>",
         "print(len(sys.modules))  # → кол-во загруженных модулей",
-        "del sys.modules['os']  # → принудительная выгрузка",
+        "del sys.modules['os']  # → принудительная выгрузка"
+      ],
+      [
+        "import os",
         "import os  # → повторная загрузка"
       ]
     ],
@@ -11936,7 +12043,10 @@
     "examples": [
       [
         "import threading",
-        "ready = threading.Event()",
+        "ready = threading.Event()"
+      ],
+      [
+        "import threading",
         "def producer():",
         "    print('данные готовы')",
         "    ready.set()",
@@ -12122,7 +12232,10 @@
     "examples": [
       [
         "import threading",
-        "sem = threading.Semaphore(3)  # не более 3 одновременно",
+        "sem = threading.Semaphore(3)  # не более 3 одновременно"
+      ],
+      [
+        "import threading",
         "def task(i):",
         "    with sem:",
         "        print(f'выполняю {i}')",
@@ -13284,12 +13397,18 @@
         "# Mutable default — антипаттерн:",
         "def bad(lst=[]):",
         "    lst.append(1); return lst",
-        "bad(); bad() # → [1, 1]  один объект!",
+        "bad(); bad() # → [1, 1]  один объект!"
+      ],
+      [
+        "import copy",
         "# Циклическая ссылка:",
         "a = []",
         "a.append(a)",
         "b = copy.deepcopy(a)  # deepcopy справляется",
-        "b is a # → False",
+        "b is a # → False"
+      ],
+      [
+        "import copy",
         "# Shallow: одинаковые вложенные объекты",
         "x = [[0]*3]*3",
         "y = copy.copy(x)",
@@ -13354,7 +13473,10 @@
         "base = Path('/home/user')",
         "p = base / 'docs' / 'report.txt'",
         "str(p) # → '/home/user/docs/report.txt'",
-        "Path('/etc') / 'nginx' / 'nginx.conf'",
+        "Path('/etc') / 'nginx' / 'nginx.conf'"
+      ],
+      [
+        "from pathlib import Path",
         "# → PosixPath('/etc/nginx/nginx.conf')",
         "Path('src') / Path('main.py') # → PosixPath('src/main.py')"
       ]
@@ -15213,10 +15335,16 @@
     "examples": [
       [
         "import enum",
-        "print(issubclass(enum.IntEnum, enum.ReprEnum))   # → True",
+        "print(issubclass(enum.IntEnum, enum.ReprEnum))   # → True"
+      ],
+      [
+        "import enum",
         "class Size(int, enum.ReprEnum): BIG = 10",
         "print(Size.BIG)   # → 10",
-        "print(repr(Size.BIG))   # → <Size.BIG: 10>",
+        "print(repr(Size.BIG))   # → <Size.BIG: 10>"
+      ],
+      [
+        "import enum",
         "class Plain(enum.Enum): BIG = 10",
         "print(Plain.BIG)   # → Plain.BIG"
       ]
@@ -15503,9 +15631,15 @@
       [
         "import enum",
         "print(enum.FlagBoundary.STRICT.name)   # → STRICT",
-        "print(list(enum.FlagBoundary.__members__))   # → ['STRICT', 'CONFORM', 'EJECT', 'KEEP']",
+        "print(list(enum.FlagBoundary.__members__))   # → ['STRICT', 'CONFORM', 'EJECT', 'KEEP']"
+      ],
+      [
+        "import enum",
         "class Perm(enum.Flag): R = 1; W = 2",
-        "print(Perm(5))   # → ValueError",
+        "print(Perm(5))   # → ValueError"
+      ],
+      [
+        "import enum",
         "class Soft(enum.Flag, boundary=enum.CONFORM): R = 1; W = 2",
         "print(Soft(5).value)   # → 1"
       ]
@@ -17020,7 +17154,10 @@
         "print(fma(2, 3, 4))      # → 10.0",
         "print(fma(2.5, 4, -1))   # → 9.0",
         "print(fma(0.5, 10, 3))   # → 8.0",
-        "print(type(fma(2, 3, 4)))  # → <class 'float'>",
+        "print(type(fma(2, 3, 4)))  # → <class 'float'>"
+      ],
+      [
+        "import math",
         "# Вот та самая разница в одном округлении. На 3.13+ она видна, на 3.12",
         "# подстановка выше даёт ровно то же выражение, что и справа.",
         "print(fma(0.1, 0.1, -0.01) <= 0.1 * 0.1 - 0.01)  # → ?  (аппаратный fma и порядок округления зависят от платформы)",
@@ -17658,7 +17795,10 @@
     "examples": [
       [
         "import abc",
-        "print(type(abc.ABC) is abc.ABCMeta)   # → True",
+        "print(type(abc.ABC) is abc.ABCMeta)   # → True"
+      ],
+      [
+        "import abc",
         "class Shape(metaclass=abc.ABCMeta):",
         "    @abc.abstractmethod",
         "    def area(self): return 0",
@@ -17780,7 +17920,10 @@
       [
         "import abc",
         "print(callable(abc.abstractproperty))   # → True",
-        "print(issubclass(abc.abstractproperty, property))   # → True",
+        "print(issubclass(abc.abstractproperty, property))   # → True"
+      ],
+      [
+        "import abc",
         "class Shape(abc.ABC): area = abc.abstractproperty(lambda self: 0)",
         "print(Shape.__abstractmethods__)   # → frozenset({'area'})",
         "print(Shape())   # → TypeError (класс абстрактный)"
@@ -17837,7 +17980,10 @@
       [
         "import abc",
         "print(callable(abc.abstractclassmethod))            # → True",
-        "print(issubclass(abc.abstractclassmethod, classmethod))   # → True",
+        "print(issubclass(abc.abstractclassmethod, classmethod))   # → True"
+      ],
+      [
+        "import abc",
         "class Base(abc.ABC):",
         "    @abc.abstractclassmethod",
         "    def create(cls): ...",
@@ -17901,7 +18047,10 @@
       [
         "import abc",
         "print(callable(abc.abstractstaticmethod))   # → True",
-        "print(issubclass(abc.abstractstaticmethod, staticmethod))   # → True",
+        "print(issubclass(abc.abstractstaticmethod, staticmethod))   # → True"
+      ],
+      [
+        "import abc",
         "class Base(abc.ABC): make = abc.abstractstaticmethod(lambda: 1)",
         "print(Base.__abstractmethods__)   # → frozenset({'make'})",
         "print(Base())   # → TypeError (не реализован make)"
@@ -18014,7 +18163,10 @@
       [
         "import abc",
         "class C: pass",
-        "print(abc.update_abstractmethods(C) is C)   # → True",
+        "print(abc.update_abstractmethods(C) is C)   # → True"
+      ],
+      [
+        "import abc",
         "class Base(abc.ABC): pass",
         "Base.run = abc.abstractmethod(lambda self: None)",
         "print(abc.update_abstractmethods(Base).__abstractmethods__)   # → frozenset({'run'})"
@@ -19154,12 +19306,17 @@
       [
         "import collections.abc as abc",
         "# ByteString объявлен устаревшим в 3.12 и УДАЛЁН в 3.14: обращаться к нему нельзя.",
-        "print(hasattr(abc, 'ByteString'))   # → ? True до 3.14, False начиная с 3.14",
+        "print(hasattr(abc, 'ByteString'))   # → ? True до 3.14, False начиная с 3.14"
+      ],
+      [
         "# Замена — проверка по конкретным типам:",
         "print(isinstance(b'x', (bytes, bytearray, memoryview)))   # → True",
         "print(isinstance(bytearray(b'x'), (bytes, bytearray, memoryview)))   # → True",
         "print(isinstance(memoryview(b'x'), (bytes, bytearray, memoryview)))   # → True",
-        "print(isinstance('x', (bytes, bytearray, memoryview)))   # → False",
+        "print(isinstance('x', (bytes, bytearray, memoryview)))   # → False"
+      ],
+      [
+        "import collections.abc as abc",
         "# Либо abc.Buffer (появился в 3.12) — он про поддержку буферного протокола:",
         "print(isinstance(b'x', abc.Buffer))   # → True",
         "print(isinstance('x', abc.Buffer))   # → False"
@@ -21238,7 +21395,10 @@
       [
         "import enum",
         "print(enum.EnumMeta is enum.EnumType)   # → True",
-        "print(enum.EnumMeta.__name__)   # → EnumType",
+        "print(enum.EnumMeta.__name__)   # → EnumType"
+      ],
+      [
+        "import enum",
         "class Color(enum.Enum): RED = 1; GREEN = 2",
         "print(type(Color) is enum.EnumMeta)   # → True",
         "print(len(Color))   # → 2",
@@ -21351,7 +21511,10 @@
       [
         "import enum, re",
         "print(callable(enum.global_enum))   # → True",
-        "print(repr(re.IGNORECASE))   # → re.IGNORECASE",
+        "print(repr(re.IGNORECASE))   # → re.IGNORECASE"
+      ],
+      [
+        "import enum, re",
         "@enum.global_enum",
         "class Color(enum.Enum): RED = 1; GREEN = 2",
         "print(RED is Color.RED)   # → True",
@@ -21412,7 +21575,10 @@
         "print(callable(enum.global_enum_repr))   # → True",
         "print(enum.global_enum_repr(enum.FlagBoundary.STRICT))   # → enum.STRICT",
         "print(enum.global_enum_repr(re.RegexFlag.IGNORECASE))   # → re.IGNORECASE",
-        "print(repr(re.IGNORECASE))   # → re.IGNORECASE",
+        "print(repr(re.IGNORECASE))   # → re.IGNORECASE"
+      ],
+      [
+        "import enum, re",
         "class Color(enum.Enum): RED = 1",
         "print(repr(Color.RED))   # → <Color.RED: 1>"
       ]
@@ -25708,7 +25874,10 @@
         "print(os.path.lexists(os.__file__))   # → True",
         "print(os.path.lexists('нет-такого-файла.txt'))   # → False",
         "print(os.path.lexists(os.path.dirname(os.__file__)))   # → True",
-        "print(os.path.exists(os.__file__), os.path.lexists(os.__file__))   # → True True",
+        "print(os.path.exists(os.__file__), os.path.lexists(os.__file__))   # → True True"
+      ],
+      [
+        "import os",
         "# на Unix: os.symlink('нет-такой-цели', 'битая') — после этого os.path.exists('битая') даст False, а os.path.lexists('битая') даст True"
       ]
     ],
@@ -29768,7 +29937,10 @@
         "import os",
         "args = ['ls', '-l', '/tmp']   # args[0] — имя программы, каким её увидит сама программа",
         "print(args[0], len(args))   # → ls 3",
-        "print(os.execv('ls', args))   # → FileNotFoundError: execv не ищет в PATH, нужен полный путь",
+        "print(os.execv('ls', args))   # → FileNotFoundError: execv не ищет в PATH, нужен полный путь"
+      ],
+      [
+        "import os",
         "# os.execv('/bin/ls', args)   # только Unix: текущий процесс заменяется на ls, строки ниже уже не выполнятся"
       ]
     ],
@@ -29828,7 +30000,10 @@
         "import os",
         "env = {'PATH': '/usr/bin:/bin', 'LANG': 'C'}   # новая программа получит РОВНО эти переменные, os.environ не наследуется",
         "print(sorted(env))   # → ['LANG', 'PATH']",
-        "print(os.execve('/нет/такой/программы', ['prog'], env))   # → FileNotFoundError",
+        "print(os.execve('/нет/такой/программы', ['prog'], env))   # → FileNotFoundError"
+      ],
+      [
+        "import os",
         "# os.execve('/usr/bin/env', ['env'], env)   # только Unix: env напечатает LANG и PATH; с env={} программа стартует вообще без PATH и HOME"
       ]
     ],
@@ -30071,7 +30246,10 @@
         "import os",
         "env = {'PATH': '/usr/bin:/bin', 'LANG': 'C'}   # словарь окружения — ПОСЛЕДНИЙ аргумент, после всех argv",
         "print(sorted(env))   # → ['LANG', 'PATH']",
-        "print(os.execlpe('нет-такой-программы', 'нет-такой-программы', env))   # → FileNotFoundError: ни в одном каталоге PATH ничего не нашлось",
+        "print(os.execlpe('нет-такой-программы', 'нет-такой-программы', env))   # → FileNotFoundError: ни в одном каталоге PATH ничего не нашлось"
+      ],
+      [
+        "import os",
         "# os.execlpe('env', 'env', env)   # только Unix: аргументы перечислены подряд (l), программа ищется в PATH (p), окружение задано явно (e) — env напечатает только LANG и PATH"
       ]
     ],
@@ -30130,7 +30308,10 @@
         "import os",
         "args = ['ls', '-l']   # аргументы списком (v), имя программы — без пути",
         "print(len(os.get_exec_path()) > 0)   # → True — именно в этих каталогах (PATH) execvp ищет программу",
-        "print(os.execvp('нет-такой-программы', ['нет-такой-программы']))   # → FileNotFoundError: ни в одном каталоге PATH не нашлось",
+        "print(os.execvp('нет-такой-программы', ['нет-такой-программы']))   # → FileNotFoundError: ни в одном каталоге PATH не нашлось"
+      ],
+      [
+        "import os",
         "# os.execvp('ls', args)   # только Unix: найдёт /bin/ls в PATH и заменит текущий процесс — строки ниже не выполнятся"
       ]
     ],
@@ -30190,7 +30371,10 @@
         "import os",
         "env = {'PATH': '/usr/bin:/bin', 'LC_ALL': 'C'}   # PATH для поиска берётся из ЭТОГО словаря, а не из os.environ",
         "print(sorted(env))   # → ['LC_ALL', 'PATH']",
-        "print(os.execvpe('нет-такой-программы', ['нет-такой-программы'], env))   # → FileNotFoundError: в PATH из env ничего не нашлось",
+        "print(os.execvpe('нет-такой-программы', ['нет-такой-программы'], env))   # → FileNotFoundError: в PATH из env ничего не нашлось"
+      ],
+      [
+        "import os",
         "# os.execvpe('env', ['env'], env)   # только Unix: env найдётся в /usr/bin и напечатает LC_ALL и PATH; если в словаре нет PATH, поиск идёт по os.defpath"
       ]
     ],
@@ -31296,7 +31480,11 @@
         "import os",
         "import signal",
         "pgid = os.getpgid(0)   # → ? только Unix: id группы текущего процесса, например 12345",
-        "os.killpg(pgid, 0)   # → ? только Unix: сигнал не посылается, проверяется лишь существование группы",
+        "os.killpg(pgid, 0)   # → ? только Unix: сигнал не посылается, проверяется лишь существование группы"
+      ],
+      [
+        "import os",
+        "import signal",
         "import subprocess; proc = subprocess.Popen(['sleep', '60'], start_new_session=True)   # → ? потомок запущен в собственной группе процессов",
         "os.killpg(os.getpgid(proc.pid), signal.SIGTERM)   # → ? только Unix: завершает всю группу потомка целиком (os.kill снял бы лишь один процесс)",
         "os.killpg(999999, signal.SIGTERM)   # → ProcessLookupError: группы процессов с таким id нет"
@@ -31479,7 +31667,10 @@
         "import os",
         "os.setpriority(os.PRIO_PROCESS, 0, 10)   # → ? только Unix: None; текущему процессу (who=0) назначен nice 10 — значение задаётся, а не прибавляется, как в os.nice",
         "print(os.getpriority(os.PRIO_PROCESS, 0))   # → ? только Unix: 10",
-        "os.setpriority(os.PRIO_PGRP, 0, 15)   # → ? только Unix: nice 15 сразу всей группе процессов",
+        "os.setpriority(os.PRIO_PGRP, 0, 15)   # → ? только Unix: nice 15 сразу всей группе процессов"
+      ],
+      [
+        "import os",
         "import subprocess; proc = subprocess.Popen(['sleep', '60'])   # → ? фоновый потомок запущен",
         "os.setpriority(os.PRIO_PROCESS, proc.pid, 19)   # → ? только Unix: тяжёлая фоновая задача понижена до минимального приоритета",
         "os.setpriority(os.PRIO_PROCESS, 0, -5)   # → ? только Unix: PermissionError без прав root — повышать приоритет нельзя"
@@ -39688,7 +39879,10 @@
         "print(hasattr(os, 'chmod'))  # → True (os.chmod есть везде, os.lchmod — не везде)",
         "print(callable(getattr(os, 'lchmod', os.chmod)))  # → True (на Linux берём запасной os.chmod)",
         "print(oct(stat.S_IMODE(0o100644)))  # → 0o644 (mode задаётся восьмеричным числом)",
-        "print(stat.S_IMODE(0o100755) == 0o755)  # → True",
+        "print(stat.S_IMODE(0o100755) == 0o755)  # → True"
+      ],
+      [
+        "import os, stat",
         "# os.lchmod(path, 0o644) ≡ os.chmod(path, 0o644, follow_symlinks=False)"
       ]
     ],
@@ -40186,7 +40380,10 @@
         "print(hasattr(os, 'startfile') == (sys.platform == 'win32'))   # → True",
         "print(not hasattr(os, 'startfile') or callable(os.startfile))   # → True",
         "opener = getattr(os, 'startfile', None)   # None на Linux/macOS",
-        "print(opener is None or 'startfile' in repr(opener))   # → True",
+        "print(opener is None or 'startfile' in repr(opener))   # → True"
+      ],
+      [
+        "import os, sys",
         "# os.startfile('report.pdf')   # Windows: открыть файл в ассоциированном приложении"
       ]
     ],

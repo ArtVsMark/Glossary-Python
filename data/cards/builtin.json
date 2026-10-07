@@ -45,7 +45,9 @@
         "os = __import__('os')",
         "print(os.sep)  # → /",
         "json = __import__('json')",
-        "print(json.dumps({'a':1}))  # → {\"a\":1}",
+        "print(json.dumps({'a':1}))  # → {\"a\":1}"
+      ],
+      [
         "import importlib",
         "re = importlib.import_module('re')",
         "print(re.match(r'\\d+','123').group())  # → 123"
@@ -158,7 +160,9 @@
         "print(any([False,False]))  # → False",
         "print(any([]))  # → False",
         "print(any(x<0 for x in [1,-1,3]))  # → True",
-        "print(any(x==5 for x in range(10)))  # → True",
+        "print(any(x==5 for x in range(10)))  # → True"
+      ],
+      [
         "# ленивое вычисление — остановится на первом True",
         "print(any(x > 100 for x in range(10**6)))  # → True"
       ]
@@ -325,7 +329,9 @@
         "# breakpoint() — вставляет точку останова",
         "# Устанавливается через PYTHONBREAKPOINT env",
         "import os",
-        "os.environ['PYTHONBREAKPOINT']='0'  # отключить",
+        "os.environ['PYTHONBREAKPOINT']='0'  # отключить"
+      ],
+      [
         "# breakpoint()  # → войти в pdb",
         "print('Debugging would start here')  # → debug point"
       ]
@@ -381,7 +387,9 @@
         "print(callable(print))    # → True",
         "print(callable(len))      # → True",
         "print(callable(42))       # → False",
-        "print(callable(lambda: 0))  # → True",
+        "print(callable(lambda: 0))  # → True"
+      ],
+      [
         "class A:",
         "    def __call__(self): pass",
         "print(callable(A()))  # → True"
@@ -669,7 +677,9 @@
     "examples": [
       [
         "print(dir([])[:5])  # → ? первые пять атрибутов списка (состав зависит от версии Python)",
-        "print('append' in dir([]))  # → True",
+        "print('append' in dir([]))  # → True"
+      ],
+      [
         "class A:",
         "    x = 1",
         "    def f(self): pass",
@@ -841,12 +851,16 @@
     ],
     "examples": [
       [
-        "exec('x = 1 + 2')",
+        "exec('x = 1 + 2')"
+      ],
+      [
         "# print(x)  # x есть в локальном пространстве?",
         "g = {}",
         "exec('y = 42', g)",
         "print(g['y'])  # → 42",
-        "exec('for i in range(3): print(i)')  # → 0 1 2",
+        "exec('for i in range(3): print(i)')  # → 0 1 2"
+      ],
+      [
         "def make_func(name):",
         "    exec(f'def {name}(): return \"{name}\"', globals())",
         "make_func('hello')",
@@ -1258,7 +1272,9 @@
         "help(len)  # → выводит справку о len",
         "help(str.upper)  # → справка о методе",
         "help(list)  # → все методы списка",
-        "print(len.__doc__[:30])  # → Return the number of items...",
+        "print(len.__doc__[:30])  # → Return the number of items..."
+      ],
+      [
         "import math; help(math.sqrt)  # → sqrt справка"
       ]
     ],
@@ -1371,7 +1387,9 @@
         "print(id(x) == id(y))  # → True (одно и то же имя, один объект)",
         "print(id(42) == id(42))  # → True (маленькие целые интернированы)",
         "a = 'hello'; b = 'hello'",
-        "print(id(a) == id(b))  # → True (интернирование строк)",
+        "print(id(a) == id(b))  # → True (интернирование строк)"
+      ],
+      [
         "# Ловушка: id([]) == id([]) даёт True, и это НЕ значит «один объект».",
         "# Первый список освобождается сразу после вычисления id, и второй получает",
         "# тот же адрес. Сравнивать так нельзя — объекты должны быть ЖИВЫ:",
@@ -1496,7 +1514,9 @@
       [
         "print(issubclass(bool, int))   # → True",
         "print(issubclass(int, object))  # → True",
-        "print(issubclass(list, (list,tuple)))  # → True",
+        "print(issubclass(list, (list,tuple)))  # → True"
+      ],
+      [
         "class A: pass",
         "class B(A): pass",
         "print(issubclass(B, A))  # → True",
@@ -1556,7 +1576,9 @@
         "it = iter([1,2,3])",
         "print(next(it), next(it))  # → 1 2",
         "it2 = iter('hello')",
-        "print(list(it2))  # → ['h','e','l','l','o']",
+        "print(list(it2))  # → ['h','e','l','l','o']"
+      ],
+      [
         "# sentinel-вариант",
         "from io import StringIO",
         "f = StringIO('a\\nb\\nc')",
@@ -1675,7 +1697,9 @@
         "def f():",
         "    x = 10; y = 20",
         "    return locals()",
-        "print(f())  # → {'x':10,'y':20}",
+        "print(f())  # → {'x':10,'y':20}"
+      ],
+      [
         "def g(a, b):",
         "    c = a+b",
         "    print('c' in locals())  # → True",
@@ -1967,7 +1991,9 @@
         "o = object()",
         "print(type(o))  # → <class 'object'>",
         "print(isinstance(42, object))  # → True",
-        "print(isinstance('hi', object))  # → True",
+        "print(isinstance('hi', object))  # → True"
+      ],
+      [
         "class A(object): pass  # явно наследуется",
         "print(A.__bases__)  # → (<class 'object'>,)",
         "print(dir(object())[:2])  # → ['__class__', '__delattr__']"
@@ -2137,15 +2163,23 @@
       [
         "print(\"Hello, World!\")  # → Hello, World!",
         "print(\"a\", \"b\", \"c\", sep=\"-\")  # → a-b-c",
-        "print(\"Нет переноса\", end=\"\")  # → Нет переноса",
         "print(\"x =\", 42, \"y =\", 3.14)  # → x = 42 y = 3.14",
         "name = \"Анна\"; age = 25",
         "print(f\"{name} — {age} лет\")  # → Анна — 25 лет",
-        "print(f\"{3.14159:.2f}\")  # → 3.14",
+        "print(f\"{3.14159:.2f}\")  # → 3.14"
+      ],
+      [
+        "print(\"Нет переноса\", end=\"\")",
+        "print(\"!\")  # → Нет переноса!"
+      ],
+      [
+        "import sys",
+        "print(\"ошибка\", file=sys.stderr)  # → ошибка (в поток ошибок, а не в stdout)",
+        "print(\"сразу\", flush=True)  # → сразу (буфер сброшен немедленно)"
+      ],
+      [
         "with open(\"_test.txt\", \"w\") as f:",
-        "    print(\"в файл\", file=f)  # записывает строку в файл",
-        "    import sys; print(\"!\", flush=True, end=\"\", file=sys.stdout)  # → !",
-        "    import sys; print(\"ошибка\", file=sys.stderr)  # → в поток ошибок"
+        "    print(\"в файл\", file=f)  # на экран ничего — строка ушла в файл"
       ]
     ],
     "related": [
@@ -2203,13 +2237,19 @@
     "examples": [
       [
         "import sys",
-        "print(\"ошибка!\", file=sys.stderr)  # → выводит в stderr",
-        "print(\".\", end=\"\", flush=True)  # → без буфера, без переноса строки",
+        "print(\"ошибка!\", file=sys.stderr)  # → ошибка! (в stderr)",
+        "print(1, 2, 3, sep=\"-\", file=sys.stdout, flush=True)  # → 1-2-3",
+        "print(\".\", end=\"\", flush=True)  # → . — без буфера и без переноса строки"
+      ],
+      [
         "with open(\"_gloss_test.txt\", \"w\") as f:",
-        "    print(\"запись\", file=f)  # → пишет строку в файл",
-        "    import io; buf = io.StringIO()",
-        "    print(\"в буфер\", file=buf); print(buf.getvalue())  # → в буфер",
-        "    print(1, 2, 3, sep=\"-\", file=sys.stdout, flush=True)  # → 1-2-3"
+        "    print(\"запись\", file=f)  # на экран ничего — строка ушла в файл"
+      ],
+      [
+        "import io",
+        "buf = io.StringIO()",
+        "print(\"в буфер\", file=buf)",
+        "print(buf.getvalue(), end='')  # → в буфер"
       ]
     ],
     "related": [
@@ -2381,12 +2421,14 @@
     ],
     "examples": [
       [
-        "print(list(reversed([1,2,3,4,5])))  # → [5,4,3,2,1]",
-        "print(list(reversed('hello')))  # → ['o','l','l','e','h']",
-        "print(list(reversed(range(5))))  # → [4,3,2,1,0]",
-        "for x in reversed([1,2,3]):",
-        "    print(x, end=' ')  # → 3 2 1",
-        "    print(''.join(reversed('hello')))  # → olleh"
+        "print(list(reversed([1, 2, 3, 4, 5])))  # → [5, 4, 3, 2, 1]",
+        "print(list(reversed('hello')))  # → ['o', 'l', 'l', 'e', 'h']",
+        "print(list(reversed(range(5))))  # → [4, 3, 2, 1, 0]",
+        "print(''.join(reversed('hello')))  # → olleh"
+      ],
+      [
+        "for x in reversed([1, 2, 3]):",
+        "    print(x, end=' ')  # → 3 2 1"
       ]
     ],
     "related": [

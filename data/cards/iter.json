@@ -357,7 +357,10 @@
         "async def main():",
         "    return 42",
         "result = asyncio.run(main())",
-        "result # → 42",
+        "result # → 42"
+      ],
+      [
+        "import asyncio",
         "async def hello():",
         "    print('start')",
         "    await asyncio.sleep(0)",
@@ -588,7 +591,9 @@
         "print(next(it))  # → 1",
         "print(next(it))  # → 2",
         "print(next(it))  # → 3",
-        "print(next(it, 'end'))  # → end",
+        "print(next(it, 'end'))  # → end"
+      ],
+      [
         "# iter со sentinel",
         "import io",
         "f = io.StringIO('line1\\nline2\\n')",
@@ -600,7 +605,9 @@
         "        print(ch, end='')  # → hello",
         "        # next с default предотвращает исключение",
         "        it3 = iter([])",
-        "        print(next(it3, None))  # → None",
+        "        print(next(it3, None))  # → None"
+      ],
+      [
         "# Бесконечный итератор + islice",
         "from itertools import islice, count",
         "it4 = count(1)",
@@ -661,13 +668,25 @@
     "examples": [
       [
         "from itertools import accumulate",
-        "print(list(accumulate([1,2,3,4,5])))  # → [1,3,6,10,15] (накопленные суммы)",
+        "print(list(accumulate([1,2,3,4,5])))  # → [1,3,6,10,15] (накопленные суммы)"
+      ],
+      [
+        "from itertools import accumulate",
         "import operator",
-        "print(list(accumulate([1,2,3,4,5], operator.mul)))  # → [1,2,6,24,120] (факториалы)",
+        "print(list(accumulate([1,2,3,4,5], operator.mul)))  # → [1,2,6,24,120] (факториалы)"
+      ],
+      [
+        "from itertools import accumulate",
         "# running max",
-        "print(list(accumulate([3,1,4,1,5,9,2,6], max)))  # → [3,3,4,4,5,9,9,9]",
+        "print(list(accumulate([3,1,4,1,5,9,2,6], max)))  # → [3,3,4,4,5,9,9,9]"
+      ],
+      [
+        "from itertools import accumulate",
         "# С начальным значением (Python 3.8+)",
-        "print(list(accumulate([1,2,3], initial=100)))  # → [100,101,103,106]",
+        "print(list(accumulate([1,2,3], initial=100)))  # → [100,101,103,106]"
+      ],
+      [
+        "from itertools import accumulate",
         "# Применение в финансах (баланс счёта)",
         "transactions = [1000, -200, -50, 300, -100]",
         "balances = list(accumulate(transactions))",
@@ -725,20 +744,35 @@
       [
         "from itertools import chain",
         "result = list(chain([1,2],[3,4],[5,6]))",
-        "print(result)  # → [1,2,3,4,5,6]",
+        "print(result)  # → [1,2,3,4,5,6]"
+      ],
+      [
+        "from itertools import chain",
         "# chain.from_iterable",
         "matrix = [[1,2],[3,4],[5,6]]",
         "flat = list(chain.from_iterable(matrix))",
-        "print(flat)  # → [1,2,3,4,5,6]",
+        "print(flat)  # → [1,2,3,4,5,6]"
+      ],
+      [
+        "from itertools import chain",
         "# Объединение строк",
         "words = list(chain('hello', ' ', 'world'))",
-        "print(''.join(words))  # → hello world",
+        "print(''.join(words))  # → hello world"
+      ],
+      [
+        "from itertools import chain",
         "# С генераторами",
         "def gen1(): yield 1; yield 2",
         "def gen2(): yield 3; yield 4",
-        "print(list(chain(gen1(), gen2())))  # → [1,2,3,4]",
+        "print(list(chain(gen1(), gen2())))  # → [1,2,3,4]"
+      ],
+      [
+        "from itertools import chain",
         "# chain vs list + list",
-        "a = range(1000000); b = range(1000000)",
+        "a = range(1000000); b = range(1000000)"
+      ],
+      [
+        "from itertools import chain",
         "# chain(a,b) — без создания списка в памяти!"
       ]
     ],
@@ -866,7 +900,10 @@
         "from itertools import islice",
         "print(list(islice(range(100), 5)))  # → [0,1,2,3,4]",
         "print(list(islice(range(100), 2, 7)))  # → [2,3,4,5,6]",
-        "print(list(islice(range(100), 0, 10, 2)))  # → [0,2,4,6,8]",
+        "print(list(islice(range(100), 0, 10, 2)))  # → [0,2,4,6,8]"
+      ],
+      [
+        "from itertools import islice",
         "# Первые N строк файла (ленивый)",
         "# with open('big.txt') as f:",
         "#     head = list(islice(f, 10))",
@@ -935,24 +972,32 @@
         "def chain(*iterables):",
         "    for it in iterables:",
         "        yield from it",
-        "print(list(chain([1,2],[3,4],[5])))  # → [1,2,3,4,5]",
+        "print(list(chain([1,2],[3,4],[5])))  # → [1,2,3,4,5]"
+      ],
+      [
         "def flatten(lst):",
         "    for item in lst:",
         "        if isinstance(item, list):",
         "            yield from flatten(item)",
         "        else:",
         "            yield item",
-        "print(list(flatten([1,[2,[3,4]],5])))  # → [1,2,3,4,5]",
+        "print(list(flatten([1,[2,[3,4]],5])))  # → [1,2,3,4,5]"
+      ],
+      [
         "def gen_a():",
         "    yield 1; yield 2",
         "def gen_b():",
         "    yield from gen_a()",
         "    yield 3",
-        "print(list(gen_b()))  # → [1,2,3]",
+        "print(list(gen_b()))  # → [1,2,3]"
+      ],
+      [
         "# yield from с range",
         "def gen_range(n):",
         "    yield from range(n)",
-        "print(list(gen_range(5)))  # → [0,1,2,3,4]",
+        "print(list(gen_range(5)))  # → [0,1,2,3,4]"
+      ],
+      [
         "# yield from возвращает значение (return в под-генераторе)",
         "def sub():",
         "    yield 1; yield 2",
@@ -1017,18 +1062,28 @@
       [
         "gen = (x**2 for x in range(5))",
         "print(type(gen))  # → generator",
-        "print(list(gen))  # → [0,1,4,9,16]",
+        "print(list(gen))  # → [0,1,4,9,16]"
+      ],
+      [
         "# Ленивость — память не расходуется",
         "big_gen = (x**2 for x in range(10**6))",
         "print(next(big_gen))  # → 0",
-        "print(next(big_gen))  # → 1",
+        "print(next(big_gen))  # → 1"
+      ],
+      [
         "# sum с генератором",
-        "print(sum(x**2 for x in range(10)))  # → 285",
+        "print(sum(x**2 for x in range(10)))  # → 285"
+      ],
+      [
         "# Фильтрация",
         "evens = (x for x in range(20) if x%2==0)",
-        "print(list(evens))  # → [0,2,4,6,8,10,12,14,16,18]",
+        "print(list(evens))  # → [0,2,4,6,8,10,12,14,16,18]"
+      ],
+      [
         "# В функции — скобки не нужны",
-        "print(max(len(s) for s in ['hi','hello','ok']))  # → 5",
+        "print(max(len(s) for s in ['hi','hello','ok']))  # → 5"
+      ],
+      [
         "# Вложенный генератор",
         "matrix = [[1,2],[3,4],[5,6]]",
         "flat = (x for row in matrix for x in row)",
@@ -1098,7 +1153,9 @@
         "        self.current += 1",
         "        return val",
         "for x in CountUp(1, 4):",
-        "    print(x, end=' ')  # → 1 2 3",
+        "    print(x, end=' ')  # → 1 2 3"
+      ],
+      [
         "class Squares:",
         "    def __init__(self, n):",
         "        self.i = 0; self.n = n",
@@ -1108,11 +1165,15 @@
         "        val = self.i**2",
         "        self.i += 1",
         "        return val",
-        "print(list(Squares(5)))  # → [0,1,4,9,16]",
+        "print(list(Squares(5)))  # → [0,1,4,9,16]"
+      ],
+      [
         "# Итератор — одноразовый!",
         "it = iter([1,2,3])",
         "print(list(it))  # → [1,2,3]",
-        "print(list(it))  # → [] исчерпан!",
+        "print(list(it))  # → [] исчерпан!"
+      ],
+      [
         "class FibIter:",
         "    def __init__(self, max_n):",
         "        self.a, self.b = 0, 1",
@@ -1123,7 +1184,9 @@
         "        val = self.a",
         "        self.a, self.b = self.b, self.a+self.b",
         "        return val",
-        "print(list(FibIter(50)))  # → [0,1,1,2,3,5,8,13,21,34]",
+        "print(list(FibIter(50)))  # → [0,1,1,2,3,5,8,13,21,34]"
+      ],
+      [
         "# for цикл использует __iter__/__next__",
         "lst = [10, 20, 30]",
         "it = iter(lst)",
@@ -1131,7 +1194,9 @@
         "    try:",
         "        print(next(it))",
         "    except StopIteration:",
-        "        break  # → 10 20 30",
+        "        break  # → 10 20 30"
+      ],
+      [
         "class Reversed:",
         "    def __init__(self, data):",
         "        self.data = data",

@@ -103,10 +103,16 @@
         "from typing import Callable",
         "def apply(f: Callable[[int], int], x: int) -> int:",
         "    return f(x)",
-        "print(apply(lambda x: x * 2, 5))  # → 10",
+        "print(apply(lambda x: x * 2, 5))  # → 10"
+      ],
+      [
+        "from typing import Callable",
         "def run(cb: Callable[[], None]) -> None:",
         "    cb()",
-        "run(lambda: print('called'))  # → called",
+        "run(lambda: print('called'))  # → called"
+      ],
+      [
+        "from typing import Callable",
         "def transform(data: list, fn: Callable[[int], int]) -> list:",
         "    return [fn(x) for x in data]",
         "print(transform([1, 2, 3], lambda x: x ** 2))  # → [1, 4, 9]",
@@ -167,7 +173,10 @@
         "    def __init__(self): Counter.count += 1",
         "c1 = Counter()",
         "c2 = Counter()",
-        "print(Counter.count)  # → 2",
+        "print(Counter.count)  # → 2"
+      ],
+      [
+        "from typing import ClassVar",
         "class Config:",
         "    debug: ClassVar[bool] = False",
         "    host: str = 'localhost'",
@@ -229,7 +238,10 @@
         "MAX_SIZE: Final = 100",
         "PI: Final[float] = 3.14159",
         "print(MAX_SIZE)  # → 100",
-        "print(PI)  # → 3.14159",
+        "print(PI)  # → 3.14159"
+      ],
+      [
+        "from typing import Final",
         "class Config:",
         "    HOST: Final = 'localhost'",
         "    PORT: Final[int] = 8080",
@@ -360,7 +372,9 @@
       [
         "def greet(name: str) -> str:",
         "    return f'Hello, {name}'",
-        "print(greet('Alice'))  # → Hello, Alice!",
+        "print(greet('Alice'))  # → Hello, Alice!"
+      ],
+      [
         "def total(nums: list[int]) -> int:",
         "    return sum(nums)",
         "print(total([1, 2, 3]))  # → 6",
@@ -418,12 +432,17 @@
     "examples": [
       [
         "from typing import Literal",
-        "Mode = Literal['r', 'w', 'a']",
+        "Mode = Literal['r', 'w', 'a']"
+      ],
+      [
+        "from typing import Literal",
         "def open_file(path: str, mode: Mode) -> None:",
         "    print(f'open {path} as {mode}')",
         "open_file('f.txt', 'r')  # → open f.txt as r",
         "open_file('f.txt', 'w')  # → open f.txt as w",
-        "Direction = Literal['N', 'S', 'E', 'W']",
+        "Direction = Literal['N', 'S', 'E', 'W']"
+      ],
+      [
         "def move(d: Direction) -> str:",
         "    return f'Moving {d}'",
         "print(move('N'))  # → Moving N",
@@ -547,7 +566,9 @@
         "    return name if name else None",
         "print(find('Alice'))  # → Alice",
         "print(find(''))  # → None",
-        "result: Optional[int] = None  # → допустимо",
+        "result: Optional[int] = None  # → допустимо"
+      ],
+      [
         "def greet(name: str | None = None) -> str:",
         "    return f'Hi, {name or \"stranger\"}'",
         "print(greet())  # → Hi, stranger"
@@ -610,12 +631,20 @@
         "    def draw(self) -> None: print('O')",
         "class Square:",
         "    def draw(self) -> None: print('[]')",
-        "    def render(shape: Drawable) -> None:",
-        "        shape.draw()",
-        "        render(Circle())  # → O",
-        "        render(Square())  # → []",
-        "        print(isinstance(Circle(), object))  # → True",
-        "        print(hasattr(Circle(), 'draw'))  # → True"
+        "def render(shape: Drawable) -> None:",
+        "    shape.draw()",
+        "render(Circle())  # → O",
+        "render(Square())  # → []"
+      ],
+      [
+        "from typing import Protocol, runtime_checkable",
+        "@runtime_checkable",
+        "class Drawable(Protocol):",
+        "    def draw(self) -> None: ...",
+        "class Circle:",
+        "    def draw(self) -> None: print('O')",
+        "print(isinstance(Circle(), Drawable))  # → True — наследовать не нужно",
+        "print(isinstance(42, Drawable))  # → False"
       ]
     ],
     "related": [
@@ -669,7 +698,10 @@
         "from typing import TYPE_CHECKING",
         "print(TYPE_CHECKING)  # → False  (в рантайме)",
         "if TYPE_CHECKING:",
-        "    from collections import OrderedDict",
+        "    from collections import OrderedDict"
+      ],
+      [
+        "from typing import TYPE_CHECKING",
         "def process(path: 'str') -> None:",
         "    print(path)",
         "process('test')  # → test",
@@ -730,7 +762,10 @@
         "    y: float",
         "p: Point = {'x': 1.0, 'y': 2.0}",
         "print(p['x'])  # → 1.0",
-        "print(p['y'])  # → 2.0",
+        "print(p['y'])  # → 2.0"
+      ],
+      [
+        "from typing import TypedDict",
         "class User(TypedDict, total=False):",
         "    name: str",
         "    age: int",
@@ -787,12 +822,17 @@
     "examples": [
       [
         "from typing import TypeVar",
-        "T = TypeVar('T')",
+        "T = TypeVar('T')"
+      ],
+      [
+        "from typing import TypeVar",
         "def first(lst: list[T]) -> T:",
         "    return lst[0]",
         "print(first([1, 2, 3]))  # → 1",
         "print(first(['a', 'b']))  # → 'a'",
-        "N = TypeVar('N', int, float)",
+        "N = TypeVar('N', int, float)"
+      ],
+      [
         "def double(x: N) -> N:",
         "    return x * 2",
         "print(double(3))  # → 6",
@@ -851,7 +891,9 @@
         "def double(x: Union[int, float]) -> Union[int, float]:",
         "    return x * 2",
         "print(double(3))  # → 6",
-        "print(double(1.5))  # → 3.0",
+        "print(double(1.5))  # → 3.0"
+      ],
+      [
         "def parse(val: int | str) -> str:",
         "    return str(val)",
         "print(parse(42))  # → '42'",
@@ -1028,12 +1070,21 @@
         "from typing import get_type_hints",
         "def f(x: int) -> bool: ...",
         "print(get_type_hints(f)['x'] is int)   # → True",
-        "print(get_type_hints(f)['return'] is bool)   # → True",
+        "print(get_type_hints(f)['return'] is bool)   # → True"
+      ],
+      [
+        "from typing import get_type_hints",
         "def g(x: 'int') -> 'str': ...",
         "print(g.__annotations__['x'])   # → int",
-        "print(get_type_hints(g)['x'] is int)   # → True",
+        "print(get_type_hints(g)['x'] is int)   # → True"
+      ],
+      [
+        "from typing import get_type_hints",
         "class Point: x: int; y: int",
-        "print(sorted(get_type_hints(Point)))   # → ['x', 'y']",
+        "print(sorted(get_type_hints(Point)))   # → ['x', 'y']"
+      ],
+      [
+        "from typing import get_type_hints",
         "def h(a, b): ...",
         "print(get_type_hints(h))   # → {}"
       ]
@@ -1091,7 +1142,10 @@
     "examples": [
       [
         "from typing import overload, get_overloads, clear_overloads",
-        "print(get_overloads(len) == [])   # → True",
+        "print(get_overloads(len) == [])   # → True"
+      ],
+      [
+        "from typing import overload, get_overloads, clear_overloads",
         "@overload",
         "def parse(x: int) -> int: ...",
         "@overload",
@@ -1851,7 +1905,9 @@
         "from typing import TypeVarTuple, Unpack",
         "Ts = TypeVarTuple('Ts')",
         "print(Ts.__name__)   # → Ts",
-        "print(Unpack[Ts])   # → typing.Unpack[Ts]",
+        "print(Unpack[Ts])   # → typing.Unpack[Ts]"
+      ],
+      [
         "def pack[*Us](*args: *Us) -> tuple[*Us]: return args",
         "print(pack(1, 'a', True))   # → (1, 'a', True)",
         "print(pack())   # → ()",
@@ -1971,7 +2027,10 @@
         "from typing import ForwardRef, Optional, get_type_hints",
         "print(ForwardRef('int').__forward_arg__)   # → int",
         "print(type(Optional['Node'].__args__[0]) is ForwardRef)   # → True",
-        "print(type(list['Node'].__args__[0]) is ForwardRef)   # → False",
+        "print(type(list['Node'].__args__[0]) is ForwardRef)   # → False"
+      ],
+      [
+        "from typing import ForwardRef, Optional, get_type_hints",
         "def f(x: 'int') -> None: pass",
         "print(get_type_hints(f)['x'] is int)   # → True",
         "print(isinstance(ForwardRef('int'), type))   # → False"
@@ -2029,7 +2088,11 @@
         "from typing import IO",
         "import io",
         "print(IO.__name__)   # → IO",
-        "print(IO[str])   # → typing.IO[str]",
+        "print(IO[str])   # → typing.IO[str]"
+      ],
+      [
+        "from typing import IO",
+        "import io",
         "def read_all(stream: IO[str]) -> str: return stream.read()",
         "print(read_all(io.StringIO('hello world')))   # → hello world",
         "print(isinstance(io.StringIO(), IO))   # → False"
@@ -2088,7 +2151,11 @@
         "from typing import IO, BinaryIO",
         "import io",
         "print(BinaryIO.__name__)   # → BinaryIO",
-        "print(issubclass(BinaryIO, IO))   # → True",
+        "print(issubclass(BinaryIO, IO))   # → True"
+      ],
+      [
+        "from typing import IO, BinaryIO",
+        "import io",
         "def read_head(f: BinaryIO) -> bytes: return f.read(4)",
         "print(read_head.__annotations__['f'] is BinaryIO)   # → True",
         "print(read_head(io.BytesIO(b'binary data')))   # → b'bina'",
@@ -2146,9 +2213,17 @@
       [
         "from typing import IO, TextIO",
         "import io",
-        "print(TextIO.__name__)   # → TextIO",
+        "print(TextIO.__name__)   # → TextIO"
+      ],
+      [
+        "from typing import IO, TextIO",
+        "import io",
         "def read_all(f: TextIO) -> str: return f.read()",
-        "print(read_all(io.StringIO('hello')))   # → hello",
+        "print(read_all(io.StringIO('hello')))   # → hello"
+      ],
+      [
+        "from typing import IO, TextIO",
+        "import io",
         "def first_word(f: TextIO) -> str: return f.read().split()[0]",
         "print(first_word(io.StringIO('раз два три')))   # → раз",
         "print(issubclass(TextIO, IO))   # → True",
@@ -2209,7 +2284,10 @@
         "print(Text is str)   # → True",
         "print(Text.__name__)   # → str",
         "print(Text(42) + '!')   # → 42!",
-        "print(isinstance('hello', Text))   # → True",
+        "print(isinstance('hello', Text))   # → True"
+      ],
+      [
+        "from typing import Text",
         "def shout(s: Text) -> Text: return s.upper()",
         "print(shout('hi'))   # → HI"
       ]
@@ -2266,7 +2344,10 @@
         "from typing import SupportsInt",
         "print(isinstance(5, SupportsInt))   # → True",
         "print(isinstance(2.9, SupportsInt))  # → True",
-        "print(isinstance('5', SupportsInt))  # → False",
+        "print(isinstance('5', SupportsInt))  # → False"
+      ],
+      [
+        "from typing import SupportsInt",
         "class Rome: __int__ = lambda self: 4",
         "print(isinstance(Rome(), SupportsInt))  # → True",
         "print(int(Rome()))  # → 4"
@@ -2324,7 +2405,10 @@
         "from typing import SupportsFloat",
         "print(isinstance(5, SupportsFloat))   # → True",
         "print(isinstance('3.14', SupportsFloat))  # → False",
-        "print(issubclass(complex, SupportsFloat))  # → False",
+        "print(issubclass(complex, SupportsFloat))  # → False"
+      ],
+      [
+        "from typing import SupportsFloat",
         "class Celsius: __float__ = lambda self: 36.6",
         "print(isinstance(Celsius(), SupportsFloat))  # → True",
         "print(float(Celsius()))  # → 36.6"
@@ -2382,7 +2466,10 @@
         "from typing import SupportsComplex",
         "print(isinstance(3j, SupportsComplex))   # → True",
         "print(isinstance(5, SupportsComplex))  # → False",
-        "print(isinstance('3+4j', SupportsComplex))  # → False",
+        "print(isinstance('3+4j', SupportsComplex))  # → False"
+      ],
+      [
+        "from typing import SupportsComplex",
         "class Vec: __complex__ = lambda self: 1+2j",
         "print(isinstance(Vec(), SupportsComplex))  # → True",
         "print(complex(Vec()))  # → (1+2j)"
@@ -2494,7 +2581,10 @@
       [
         "from typing import SupportsAbs",
         "print(isinstance(5, SupportsAbs))   # → True",
-        "print(isinstance('abc', SupportsAbs))  # → False",
+        "print(isinstance('abc', SupportsAbs))  # → False"
+      ],
+      [
+        "from typing import SupportsAbs",
         "class Money: __abs__ = lambda self: 42",
         "print(isinstance(Money(), SupportsAbs))  # → True",
         "print(abs(Money()))  # → 42",
@@ -2611,7 +2701,10 @@
         "from typing import SupportsIndex",
         "print(isinstance(5, SupportsIndex))   # → True",
         "print(isinstance(2.5, SupportsIndex))  # → False",
-        "print(isinstance(True, SupportsIndex))  # → True",
+        "print(isinstance(True, SupportsIndex))  # → True"
+      ],
+      [
+        "from typing import SupportsIndex",
         "class Idx: __index__ = lambda self: 1",
         "print(isinstance(Idx(), SupportsIndex))  # → True",
         "print('abc'[Idx()])  # → b"
@@ -2668,7 +2761,10 @@
     "examples": [
       [
         "from typing import overload, get_overloads",
-        "print(callable(overload))   # → True",
+        "print(callable(overload))   # → True"
+      ],
+      [
+        "from typing import overload, get_overloads",
         "@overload",
         "def double(x: int) -> int: ...",
         "@overload",
@@ -2676,7 +2772,10 @@
         "def double(x): return x * 2   # реализация идёт последней, без @overload",
         "print(double(5))   # → 10",
         "print(double('ab'))   # → abab",
-        "print(len(get_overloads(double)))   # → 2",
+        "print(len(get_overloads(double)))   # → 2"
+      ],
+      [
+        "from typing import overload, get_overloads",
         "@overload",
         "def solo(x: int) -> int: ...",
         "print(solo(1))   # → NotImplementedError (перегрузка без реализации)"
@@ -2847,7 +2946,10 @@
     "examples": [
       [
         "from typing import no_type_check_decorator",
-        "print(callable(no_type_check_decorator))   # → True",
+        "print(callable(no_type_check_decorator))   # → True"
+      ],
+      [
+        "from typing import no_type_check_decorator",
         "def logged(func): return func   # обычный декоратор",
         "marking = no_type_check_decorator(logged)   # тот же декоратор + пометка no_type_check",
         "@marking",
@@ -2967,7 +3069,10 @@
     "examples": [
       [
         "from typing import dataclass_transform",
-        "print(callable(dataclass_transform))   # → True",
+        "print(callable(dataclass_transform))   # → True"
+      ],
+      [
+        "from typing import dataclass_transform",
         "def model(cls): return cls   # «фабрика» в стиле dataclass",
         "print(dataclass_transform()(model) is model)   # → True",
         "model = dataclass_transform(order_default=True)(model); print(model.__dataclass_transform__['order_default'])   # → True",
@@ -3024,7 +3129,10 @@
     "examples": [
       [
         "from typing import overload, get_overloads, clear_overloads",
-        "print(clear_overloads() is None)   # → True",
+        "print(clear_overloads() is None)   # → True"
+      ],
+      [
+        "from typing import overload, get_overloads, clear_overloads",
         "def dup(x: int) -> int: ...   # заглушка будущей перегрузки",
         "_ = overload(dup); print(len(get_overloads(dup)))   # → 1",
         "clear_overloads(); print(get_overloads(dup))   # → []",

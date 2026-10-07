@@ -2410,6 +2410,95 @@
       "related_errors": []
     },
     {
+      "id": "del-statement",
+      "title": {
+        "ru": "del",
+        "en": "del"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Оператор del удаляет имя, элемент, срез или атрибут. Удаляется ссылка, а не объект: объект живёт, пока на него ссылается что-то ещё.",
+        "en": "The del statement removes a name, an item, a slice or an attribute. It removes a reference, not the object: the object lives while anything else still refers to it."
+      },
+      "body": {
+        "ru": "После del x обращение к x даёт NameError, а внутри функции — UnboundLocalError. Если на список ссылается ещё b, del a не трогает данные: список удаляет сборщик мусора, когда пропадёт последняя ссылка, и только тогда вызывается __del__ — так что del obj и obj.__del__() вовсе не одно и то же. Чтобы очистить список, который видят другие имена, нужен del a[:] или a.clear(), а не del a. del lst[i] сдвигает хвост, поэтому удалять по индексам в цикле вперёд нельзя — индексы уплывают.",
+        "en": "After del x, using x raises NameError, and inside a function UnboundLocalError. If b also refers to the list, del a leaves the data alone: the garbage collector frees the list once the last reference is gone, and only then is __del__ called — so del obj and obj.__del__() are not the same thing at all. To empty a list that other names see, use del a[:] or a.clear(), not del a. del lst[i] shifts the tail, so deleting by index while looping forward goes wrong — the indices drift."
+      },
+      "syntax": "del name\ndel seq[i]\ndel seq[start:stop:step]\ndel d[key]\ndel obj.attr",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-del-statement",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Арифметика и операторы",
+      "subcat": {
+        "ru": "присваивание",
+        "en": "assignment"
+      },
+      "color_group": "op",
+      "aliases": [
+        "удалить переменную",
+        "удалить элемент по индексу",
+        "почему del не освобождает память"
+      ],
+      "keywords": [
+        "del",
+        "__del__",
+        "__delitem__",
+        "__delattr__",
+        "NameError"
+      ],
+      "tags": [
+        "op"
+      ],
+      "examples": [
+        [
+          "a = [1, 2, 3]",
+          "b = a",
+          "del a  # удалили имя, а не список",
+          "print(b)  # → [1, 2, 3]",
+          "print(a)  # → NameError: name 'a' is not defined"
+        ],
+        [
+          "nums = list(range(10))",
+          "del nums[::2]",
+          "print(nums)  # → [1, 3, 5, 7, 9]",
+          "d = {'x': 1, 'y': 2}",
+          "del d['x']",
+          "print(d)  # → {'y': 2}",
+          "class P:",
+          "    pass",
+          "p = P()",
+          "p.age = 30",
+          "del p.age",
+          "print(hasattr(p, 'age'))  # → False"
+        ],
+        [
+          "class Res:",
+          "    def __del__(self):",
+          "        print('объект удалён')",
+          "r = Res()",
+          "alias = r",
+          "del r",
+          "print('после del r')  # → после del r — объект ещё жив",
+          "del alias  # → объект удалён — ушла последняя ссылка (CPython)"
+        ]
+      ],
+      "related": [
+        "del-для-списка",
+        "del-для-словаря",
+        "delattr",
+        "operator.delitem"
+      ],
+      "related_errors": [
+        "nameerror",
+        "unboundlocalerror"
+      ]
+    },
+    {
       "id": "divmod",
       "title": {
         "ru": "divmod()",
@@ -2591,6 +2680,83 @@
         "f-строки"
       ],
       "related_errors": []
+    },
+    {
+      "id": "underscore",
+      "title": {
+        "ru": "_",
+        "en": "_"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Подчёркивание _ — имя для ненужного значения по соглашению, шаблон «всё что угодно» в case _, последний результат в REPL и разделитель разрядов в 1_000_000.",
+        "en": "The underscore _ is the conventional name for an unwanted value, the catch-all pattern in case _, the last result in the REPL, and the digit separator in 1_000_000."
+      },
+      "body": {
+        "ru": "Как переменная _ — обычное имя: Python его не «выбрасывает», значение хранится до следующего присваивания. Это ломает код с gettext, где _ — функция перевода: for _ in range(3) затирает её, и _('текст') падает с TypeError. В match _ — мягкое ключевое слово: case _ совпадает всегда и ничего не связывает, поэтому прежнее значение переменной _ не меняется. В интерактивном интерпретаторе _ хранит результат последнего выражения — но только пока вы сами не присвоили _, после этого механизм молчит. В числах _ разделяет разряды и на значение не влияет.",
+        "en": "As a variable, _ is an ordinary name: Python does not throw anything away, the value is kept until the next assignment. That breaks code using gettext, where _ is the translation function: for _ in range(3) overwrites it, and _('text') fails with TypeError. In match, _ is a soft keyword: case _ always matches and binds nothing, so the old value of the variable _ stays. The interactive interpreter stores the last expression result in _ — but only until you assign _ yourself, then it stops updating. In numbers, _ separates digits and does not change the value."
+      },
+      "syntax": "for _ in range(n): ...\nfirst, _, last = triple\ncase _:\n1_000_000",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#soft-keywords",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Арифметика и операторы",
+      "subcat": {
+        "ru": "присваивание",
+        "en": "assignment"
+      },
+      "color_group": "op",
+      "aliases": [
+        "что значит нижнее подчёркивание",
+        "for _ in range",
+        "case _ в match"
+      ],
+      "keywords": [
+        "_",
+        "case _",
+        "1_000_000",
+        "gettext",
+        "soft keyword"
+      ],
+      "tags": [
+        "op"
+      ],
+      "examples": [
+        [
+          "first, _, last = (1, 2, 3)",
+          "print(first, last)  # → 1 3",
+          "print(_)  # → 2 — значение не выброшено",
+          "print(1_000_000 + 1)  # → 1000001"
+        ],
+        [
+          "_ = 'старое'",
+          "match 42:",
+          "    case _:",
+          "        print('совпало')  # → совпало",
+          "print(_)  # → старое — case _ ничего не связывает"
+        ],
+        [
+          "import gettext",
+          "_ = gettext.gettext",
+          "for _ in range(2):",
+          "    pass",
+          "_('Привет')  # → TypeError: 'int' object is not callable"
+        ]
+      ],
+      "related": [
+        "match-case",
+        "распаковка-кортежа",
+        "числовые-литералы",
+        "for"
+      ],
+      "related_errors": [
+        "typeerror"
+      ]
     },
     {
       "id": "walrus-operator",
@@ -23188,6 +23354,89 @@
         "операции-над-множествами"
       ],
       "related_errors": []
+    },
+    {
+      "id": "import-from-import",
+      "title": {
+        "ru": "import / from … import",
+        "en": "import / from … import"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Подключает модуль: import m даёт имя m, from m import x — имя x, as переименовывает. Точка в начале (from . import x) — импорт относительно своего пакета.",
+        "en": "Loads a module: import m binds the name m, from m import x binds x, and as renames. A leading dot (from . import x) imports relative to the current package."
+      },
+      "body": {
+        "ru": "Модуль выполняется один раз — при первом импорте — и кэшируется в sys.modules: повторный import его не перечитывает, поэтому правка файла в уже запущенной программе не видна. from m import x копирует ссылку в момент импорта: если потом присвоить m.x новое значение, ваш x останется старым. from m import * берёт имена из __all__, а без него — все имена без подчёркивания в начале. При циклическом импорте второй модуль получает первый недовыполненным, и from a import x падает с ImportError «partially initialized module». Относительный импорт работает только внутри пакета: в файле, запущенном напрямую (python file.py), он падает — запускайте python -m пакет.модуль.",
+        "en": "A module runs once, on the first import, and is cached in sys.modules: importing it again does not reread the file, so edits made while the program runs are not seen. from m import x copies the reference at import time: if m.x is later rebound, your x keeps the old value. from m import * takes the names listed in __all__, or, without it, every name not starting with an underscore. In a circular import the second module gets the first one half-executed, and from a import x fails with ImportError \"partially initialized module\". Relative imports work only inside a package: in a file run directly (python file.py) they fail — run it as python -m package.module instead."
+      },
+      "syntax": "import module [as name]\nfrom module import name [as alias], …\nfrom module import *\nfrom . import sibling\nfrom ..pkg import name",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-import-statement",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модули и импорт",
+      "subcat": {
+        "ru": "импорт",
+        "en": "import"
+      },
+      "color_group": "op",
+      "aliases": [
+        "подключить модуль",
+        "импортировать функцию из другого файла",
+        "attempted relative import with no known parent package"
+      ],
+      "keywords": [
+        "import",
+        "from",
+        "as",
+        "__all__",
+        "sys.modules",
+        "from . import",
+        "partially initialized module"
+      ],
+      "tags": [
+        "op"
+      ],
+      "examples": [
+        [
+          "import math",
+          "from math import pi",
+          "math.pi = 3  # переприсвоили имя в модуле",
+          "print(math.pi)  # → 3",
+          "print(pi)  # → 3.141592653589793 — у нас осталась старая ссылка"
+        ],
+        [
+          "import sys",
+          "sys.path.insert(0, '.')  # искать модули и в текущем каталоге",
+          "with open('greet.py', 'w', encoding='utf-8') as f:",
+          "    f.write(\"print('модуль выполняется')\\n__all__ = ['hello']\\ndef hello(): return 'hi'\\ndef _hidden(): pass\\n\")",
+          "import greet  # → модуль выполняется",
+          "import greet  # повторно не выполняется: модуль уже в sys.modules",
+          "print('greet' in sys.modules)  # → True",
+          "from greet import *",
+          "print(hello())  # → hi",
+          "print('_hidden' in dir())  # → False"
+        ],
+        [
+          "# файл запущен напрямую, а не как часть пакета",
+          "from . import helper  # → ImportError: attempted relative import with no known parent package"
+        ]
+      ],
+      "related": [
+        "sys.modules",
+        "__import__",
+        "modulenotfounderror",
+        "type_checking"
+      ],
+      "related_errors": [
+        "importerror",
+        "modulenotfounderror"
+      ]
     },
     {
       "id": "abc.ABC",
@@ -85830,6 +86079,90 @@
       ]
     },
     {
+      "id": "with-statement",
+      "title": {
+        "ru": "with",
+        "en": "with"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Оператор with выполняет блок под контекстным менеджером: __exit__ вызывается при любом выходе из блока — обычном, по return или по исключению.",
+        "en": "The with statement runs a block under a context manager: __exit__ is called on any exit from the block — normal, via return, or by an exception."
+      },
+      "body": {
+        "ru": "with гарантирует уборку (закрыть файл, отпустить блокировку), но не ловит ошибку: исключение летит дальше, если __exit__ не вернул True — так работает contextlib.suppress, и так же легко случайно проглотить все ошибки. Несколько менеджеров пишутся через запятую и закрываются в обратном порядке; с 3.10 их можно взять в скобки и разнести по строкам. Переменная после as не исчезает после блока: файл f остаётся доступен как объект, но уже закрыт, и f.read() даст ValueError. И as получает результат __enter__, а не сам менеджер — у open() это одно и то же, у других менеджеров нет.",
+        "en": "with guarantees cleanup (closing a file, releasing a lock) but does not catch the error: the exception propagates unless __exit__ returns True — that is how contextlib.suppress works, and how you can swallow every error by accident. Several managers are separated by commas and exit in reverse order; since 3.10 they can be wrapped in parentheses across lines. The name after as survives the block: the file f is still there as an object but already closed, so f.read() raises ValueError. And as receives what __enter__ returns, not the manager itself — the same thing for open(), but not for every manager."
+      },
+      "syntax": "with expr as name:\n    ...\nwith a as x, b as y:\n    ...\nwith (\n    open('a') as fa,\n    open('b') as fb,\n):\n    ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-with-statement",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "ООП",
+      "subcat": {
+        "ru": "контекст. менеджер",
+        "en": "context manager"
+      },
+      "color_group": "op",
+      "aliases": [
+        "автоматически закрыть файл",
+        "контекстный менеджер with",
+        "with open as"
+      ],
+      "keywords": [
+        "with",
+        "as",
+        "__enter__",
+        "__exit__",
+        "contextlib"
+      ],
+      "tags": [
+        "op"
+      ],
+      "examples": [
+        [
+          "with open('a.txt', 'w', encoding='utf-8') as f:",
+          "    f.write('данные')",
+          "print(f.closed)  # → True — имя f живо, но файл закрыт"
+        ],
+        [
+          "class Tag:",
+          "    def __init__(self, name, swallow=False):",
+          "        self.name, self.swallow = name, swallow",
+          "    def __enter__(self):",
+          "        print('вход', self.name)",
+          "        return self.name.upper()",
+          "    def __exit__(self, exc_type, exc, tb):",
+          "        print('выход', self.name, exc_type.__name__ if exc_type else None)",
+          "        return self.swallow  # True — исключение подавлено",
+          "with (",
+          "    Tag('a', swallow=True) as x,",
+          "    Tag('b') as y,",
+          "):",
+          "    print(x, y)  # → A B",
+          "    1 / 0",
+          "print('дошли сюда')  # → дошли сюда"
+        ],
+        [
+          "from contextlib import suppress",
+          "with suppress(FileNotFoundError):",
+          "    open('нет-такого.txt')",
+          "print('ошибка подавлена')  # → ошибка подавлена"
+        ]
+      ],
+      "related": [
+        "__enter__-__exit__",
+        "async-for-async-with",
+        "contextlib.suppress",
+        "contextlib.contextmanager"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "абстрактные-классы",
       "title": {
         "ru": "Абстрактные классы",
@@ -99224,6 +99557,81 @@
       "related_errors": [
         "TypeError"
       ]
+    },
+    {
+      "id": "pass",
+      "title": {
+        "ru": "pass",
+        "en": "pass"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Пустой оператор: ничего не делает. Нужен там, где синтаксис требует блок, а кода ещё нет — тело функции, класса, ветки if или except.",
+        "en": "The empty statement: it does nothing. It fills a place where the syntax demands a block but there is no code yet — a function, class, if or except body."
+      },
+      "body": {
+        "ru": "Частая ошибка — считать, что pass в цикле пропускает итерацию: он не делает ничего, и код после него в той же итерации выполняется. Пропускает остаток итерации continue. Вместо pass можно написать ... (Ellipsis) — это выражение-значение, которое тоже ничего не делает; по соглашению ... ставят в заглушках и протоколах, а pass — где пустота намеренная. Опасный случай — except: pass: ошибка исчезает без следа, и искать её потом приходится вслепую.",
+        "en": "A common mistake is to think pass inside a loop skips the iteration: it does nothing, and the code after it in the same iteration still runs. Skipping the rest of the iteration is what continue does. You can write ... (Ellipsis) instead of pass — an expression that also does nothing; by convention ... marks stubs and protocols, while pass marks an intentionally empty block. The risky case is except: pass — the error vanishes without a trace, and you end up hunting it blind."
+      },
+      "syntax": "def todo():\n    pass",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-pass-statement",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Циклы",
+      "subcat": {
+        "ru": "управление",
+        "en": "control"
+      },
+      "color_group": "op",
+      "aliases": [
+        "пустой блок кода",
+        "заглушка функции",
+        "чем pass отличается от continue"
+      ],
+      "keywords": [
+        "pass",
+        "continue",
+        "Ellipsis",
+        "..."
+      ],
+      "tags": [
+        "op"
+      ],
+      "examples": [
+        [
+          "out_pass, out_cont = [], []",
+          "for i in range(4):",
+          "    if i % 2:",
+          "        pass  # ничего не делает",
+          "    out_pass.append(i)",
+          "for i in range(4):",
+          "    if i % 2:",
+          "        continue  # переходит к следующей итерации",
+          "    out_cont.append(i)",
+          "print(out_pass)  # → [0, 1, 2, 3]",
+          "print(out_cont)  # → [0, 2]"
+        ],
+        [
+          "class Plugin:",
+          "    pass",
+          "def later():",
+          "    ...",
+          "print(later())  # → None",
+          "print(Plugin.__name__)  # → Plugin"
+        ]
+      ],
+      "related": [
+        "continue",
+        "ellipsis-...",
+        "def",
+        "class"
+      ],
+      "related_errors": []
     },
     {
       "id": "range",

@@ -95,7 +95,7 @@ MODULE_SCOPE: Final = "<module>"
 EXCEPTION_LINE: Final = re.compile(r"^(?P<name>[A-Za-z_][\w.]*)(?::|$)")
 NAME: Final = re.compile(r"[A-Za-z_][\w.]*")
 
-OUTPUT_CEILING: Final = 50
+OUTPUT_CEILING: Final = 0
 """Блоков, чей вывод расходится с обещанным. Опускается вместе с правкой карточек
 (#125) и только вниз; на нуле превышение станет обычной находкой."""
 

@@ -417,6 +417,7 @@
           "print(lcm(12, 18)) # → 36"
         ],
         [
+          "# Python 3.9+",
           "# Стандартная библиотека",
           "import math",
           "print(math.gcd(48, 36))    # → 12",
@@ -433,6 +434,7 @@
           "print(extended_gcd(48, 18))  # → (6, -1, 3), то есть 48*(-1)+18*3=6"
         ],
         [
+          "# Python 3.9+",
           "# Несколько чисел",
           "from functools import reduce",
           "import math",
@@ -1942,6 +1944,7 @@
           "result: Optional[int] = None  # → допустимо"
         ],
         [
+          "# Python 3.10+",
           "def greet(name: str | None = None) -> str:",
           "    return f'Hi, {name or \"stranger\"}'",
           "print(greet())  # → Hi, stranger"
@@ -2201,6 +2204,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "from typing import TypeVar",
           "T = TypeVar('T')",
           "def first(lst: list[T]) -> T:",
@@ -2266,6 +2270,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "from typing import Any",
           "def log(value: Any) -> None: print(value)",
           "log(42)  # → 42",
@@ -2333,6 +2338,7 @@
           "print(double(1.5))  # → 3.0"
         ],
         [
+          "# Python 3.10+",
           "def parse(val: int | str) -> str:",
           "    return str(val)",
           "print(parse(42))  # → '42'",
@@ -2730,6 +2736,7 @@
           "print(1_000_000 + 1)  # → 1000001"
         ],
         [
+          "# Python 3.10+",
           "_ = 'старое'",
           "match 42:",
           "    case _:",
@@ -28459,6 +28466,7 @@
           "print(parser.parse_args(['--verb']))  # → Namespace(n=1, verbose=True) — префикс опции"
         ],
         [
+          "# Python 3.9+",
           "import argparse",
           "parser = argparse.ArgumentParser(prog='app', exit_on_error=False)",
           "parser.add_argument('--n', type=int)",
@@ -29995,6 +30003,7 @@
           "print(callable(Box()), isinstance(Box(), Callable))  # → True False — края расходятся"
         ],
         [
+          "# Python 3.9+",
           "from collections.abc import Callable",
           "def apply(f: Callable[[int], str], x: int) -> str:",
           "    return f(x)",
@@ -32586,6 +32595,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import contextlib",
           "import asyncio",
           "print(hasattr(contextlib.aclosing, '__call__'))   # → True",
@@ -36817,6 +36827,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import enum",
           "print(enum.EnumMeta is enum.EnumType)   # → True",
           "print(enum.EnumMeta.__name__)   # → EnumType"
@@ -39491,6 +39502,7 @@
           "print(h.digest_size, len(h.hexdigest()))  # → 20 40"
         ],
         [
+          "# Python 3.9+",
           "import hashlib",
           "# не для защиты, а для совместимости — так и говорим",
           "h = hashlib.sha1(b'abc', usedforsecurity=False)",
@@ -40012,6 +40024,7 @@
           "print(h.hexdigest(16)[:16])  # → 5881092dd818bf5c — короткий выход — префикс"
         ],
         [
+          "# Python 3.9+",
           "import hashlib",
           "try:",
           "    hashlib.shake_128(b'abc').hexdigest()",
@@ -46452,6 +46465,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "import math",
           "print(math.gcd(12, 8))    # → 4",
           "print(math.gcd(100, 75))  # → 25",
@@ -49208,6 +49222,7 @@
       ],
       "examples": [
         [
+          "# Python 3.10+",
           "import operator",
           "print(operator.index(5))                   # → 5",
           "print(operator.index(True))                # → 1",
@@ -49447,6 +49462,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "import operator",
           "print(operator.ior(5, 2))   # → 7",
           "read, write = 4, 2   # типовой сценарий: объединение битовых флагов",
@@ -51446,6 +51462,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "import os",
           "status = os.system('exit 7')  # → ? только Unix: статус в формате wait(), здесь 1792 (7 << 8)",
           "print(os.WEXITSTATUS(status))  # → 7 — код выхода команды",
@@ -59414,6 +59431,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "import os",
           "print(os.path.isabs(os.path.realpath('.')))   # → True",
           "lib = os.path.dirname(os.__file__)",
@@ -65013,6 +65031,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "import os",
           "print(os.system('echo привет'))   # → сначала оболочка печатает «привет», потом 0 — код успешного завершения",
           "code = os.system('exit 3')",
@@ -66650,6 +66669,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "import os",
           "pid = os.fork()   # → ? только Unix: 0 в дочернем процессе, PID потомка в родительском",
           "if pid == 0: os._exit(7)   # → ? потомок сразу завершается с кодом возврата 7",
@@ -67150,10 +67170,13 @@
       "examples": [
         [
           "from pathlib import Path",
-          "p = Path('/tmp')",
-          "list(p.glob('*.txt')) # → все .txt в /tmp",
-          "list(p.glob('*/*.py')) # → .py на уровень глубже",
-          "list(Path('.').glob('**/*.py')) # → все .py рекурсивно"
+          "root = Path('glob_demo')",
+          "(root / 'pkg').mkdir(parents=True, exist_ok=True)",
+          "for name in ('a.txt', 'b.txt', 'main.py', 'pkg/util.py'):",
+          "    (root / name).touch()",
+          "print(sorted(p.name for p in root.glob('*.txt')))  # → ['a.txt', 'b.txt']",
+          "print([p.name for p in root.glob('*/*.py')])  # → ['util.py'] — на уровень глубже",
+          "print(sorted(p.name for p in root.glob('**/*.py')))  # → ['main.py', 'util.py'] — рекурсивно"
         ]
       ],
       "related": [
@@ -68359,6 +68382,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "from pathlib import PurePosixPath as P",
           "p = P('/data/report.tar.gz')",
           "print(p.stem)  # → report.tar",
@@ -69263,6 +69287,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "import random",
           "random.seed(0)",
           "print(random.getrandbits(8))   # → 216",
@@ -69438,6 +69463,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import random",
           "print(isinstance(random.normalvariate(0.0, 1.0), float))   # → True",
           "print(isinstance(random.normalvariate(), float))   # → True",
@@ -74189,6 +74215,7 @@
           "print(issubclass(sqlite3.Warning, sqlite3.Error))  # → False"
         ],
         [
+          "# Python 3.11+",
           "import sqlite3",
           "conn = sqlite3.connect(':memory:')",
           "try:",
@@ -74454,6 +74481,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import sqlite3",
           "import sys",
           "conn = sqlite3.connect(':memory:')",
@@ -74524,6 +74552,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import sqlite3",
           "from decimal import Decimal",
           "conn = sqlite3.connect(':memory:')",
@@ -74993,6 +75022,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import statistics",
           "print(statistics.fmean([1, 2, 3, 4]))   # → 2.5",
           "print(statistics.fmean([4, 5, 3, 5]))   # → 4.25",
@@ -75110,6 +75140,7 @@
       ],
       "examples": [
         [
+          "# Python 3.10+",
           "import statistics",
           "print(statistics.harmonic_mean([1, 2, 4]))   # → 1.7142857142857142",
           "print(statistics.harmonic_mean([10, 40]))   # → 16.0",
@@ -75169,6 +75200,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import statistics",
           "r = statistics.linear_regression([1, 2, 3], [2, 4, 6])",
           "print(round(r.slope, 1), round(r.intercept, 1))   # → 2.0 0.0",
@@ -78034,12 +78066,13 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import sys",
           "try:",
           "    1 / 0",
           "except ZeroDivisionError:",
           "    t, v, tb = sys.exc_info()",
-          "    print(t.__name__, v, tb.tb_lineno)  # → ZeroDivisionError division by zero 3",
+          "    print(t.__name__, v, tb.tb_lineno)  # → ZeroDivisionError division by zero 4",
           "    print(v is sys.exception())  # → True",
           "print(sys.exc_info())  # → (None, None, None)"
         ]
@@ -82363,6 +82396,7 @@
       ],
       "examples": [
         [
+          "# Python 3.10+",
           "import threading",
           "errors = []",
           "def log_error(args):",
@@ -85166,6 +85200,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "from typing import ForwardRef, Optional, get_type_hints",
           "print(ForwardRef('int').__forward_arg__)   # → int",
           "print(type(Optional['Node'].__args__[0]) is ForwardRef)   # → True",
@@ -85707,6 +85742,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "from typing import SupportsComplex",
           "print(isinstance(3j, SupportsComplex))   # → True",
           "print(isinstance(5, SupportsComplex))  # → False",
@@ -86395,6 +86431,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "from typing import cast",
           "print(cast(int, 42))   # → 42",
           "print(type(cast(str, 42)).__name__)   # → int",
@@ -86708,6 +86745,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "from typing import final",
           "@final",
           "class Leaf:",
@@ -86780,6 +86818,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "from typing import get_args, get_origin, Literal",
           "print(get_args(list[int]) == (int,))   # → True",
           "print([t.__name__ for t in get_args(dict[str, int])])   # → ['str', 'int']",
@@ -86839,6 +86878,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "from typing import get_origin, get_args, Union",
           "print(get_origin(list[int]) is list)   # → True",
           "print(get_origin(dict[str, int]) is dict)   # → True",
@@ -87337,10 +87377,12 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "from typing import overload, get_overloads",
           "print(callable(overload))   # → True"
         ],
         [
+          "# Python 3.11+",
           "from typing import overload, get_overloads",
           "@overload",
           "def double(x: int) -> int: ...",
@@ -87352,6 +87394,7 @@
           "print(len(get_overloads(double)))   # → 2"
         ],
         [
+          "# Python 3.11+",
           "from typing import overload, get_overloads",
           "@overload",
           "def solo(x: int) -> int: ...",
@@ -88369,6 +88412,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import unittest",
           "unittest.addModuleCleanup(print, 'first registered')",
           "unittest.addModuleCleanup(print, 'second registered')",
@@ -88545,6 +88589,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "import unittest",
           "def broken():",
           "    raise ValueError('cleanup failed')",
@@ -92370,6 +92415,7 @@
           "print(f.closed)  # → True — имя f живо, но файл закрыт"
         ],
         [
+          "# Python 3.9+",
           "class Tag:",
           "    def __init__(self, name, swallow=False):",
           "        self.name, self.swallow = name, swallow",
@@ -94360,6 +94406,7 @@
       ],
       "examples": [
         [
+          "# Python 3.9+",
           "d1 = {'a': 1, 'b': 2}",
           "d2 = {'b': 20, 'c': 3}",
           "d1.update(d2)",
@@ -94380,6 +94427,7 @@
           "# → {'a': 1, 'b': 2} (** не изменяет оригинал)"
         ],
         [
+          "# Python 3.9+",
           "d5 = {'a': 1}",
           "d5 |= {'b': 2, 'a': 99}",
           "print(d5)",
@@ -104682,6 +104730,7 @@
           "name: str"
         ],
         [
+          "# Python 3.9+",
           "def get_items() -> list[int]:",
           "    return [1, 2, 3]"
         ]
@@ -106931,6 +106980,7 @@
       ],
       "examples": [
         [
+          "# Python 3.11+",
           "from decimal import Decimal, localcontext",
           "with localcontext(prec=5):",
           "    x = Decimal(1) / 3",

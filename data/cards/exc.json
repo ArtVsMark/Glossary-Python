@@ -6782,6 +6782,7 @@
         "print(issubclass(sqlite3.Warning, sqlite3.Error))  # → False"
       ],
       [
+        "# Python 3.11+",
         "import sqlite3",
         "conn = sqlite3.connect(':memory:')",
         "try:",

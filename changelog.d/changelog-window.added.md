@@ -1,1 +1,0 @@
-Окно журнала: CHANGELOG.md держит три последних выпуска, четвёртый краснит changelog.py --check; --rotate (make changelog-rotate) переносит старые разделы в docs/changelog-archive.md дословно (правило каталога 108)

@@ -6528,5 +6528,211 @@
       "unicodeerror"
     ],
     "related_errors": []
+  },
+  {
+    "id": "subprocess.CalledProcessError",
+    "title": {
+      "ru": "subprocess.CalledProcessError",
+      "en": "subprocess.CalledProcessError"
+    },
+    "kind": "exception",
+    "summary": {
+      "ru": "Исключение: дочерний процесс завершился с ненулевым кодом, а вызов просил это проверить (run с check=True, check_call, check_output).",
+      "en": "Raised when a child process exits with a non-zero status and the call asked for that check (run with check=True, check_call, check_output)."
+    },
+    "body": {
+      "ru": "Возбуждают его только «проверяющие» вызовы: run() без check=True, call() и Popen ненулевой код молча возвращают числом. Атрибуты stdout и stderr заполнены, лишь если вывод перехватывался (capture_output=True или check_output), иначе там None — и причину падения из исключения уже не достать. Это не OSError: если программы нет вовсе, прилетит FileNotFoundError, и except CalledProcessError его не поймает.",
+      "en": "Only the checking calls raise it: run() without check=True, call() and Popen just hand back the non-zero code as a number. The stdout and stderr attributes are filled only when output was captured (capture_output=True or check_output); otherwise they are None and the reason for the failure is lost. It is not an OSError: a missing program raises FileNotFoundError, which except CalledProcessError does not catch."
+    },
+    "syntax": "except subprocess.CalledProcessError as e:  # e.returncode, e.cmd, e.stdout, e.stderr",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.CalledProcessError",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": "module exceptions"
+    },
+    "aliases": [
+      "команда завершилась с ошибкой",
+      "ненулевой код возврата",
+      "check=True исключение"
+    ],
+    "keywords": [
+      "subprocess.CalledProcessError",
+      "CalledProcessError",
+      "returncode",
+      "check"
+    ],
+    "tags": [
+      "exc"
+    ],
+    "examples": [
+      [
+        "import subprocess, sys",
+        "code = 'import sys; sys.stderr.write(\"нет файла\"); sys.exit(3)'",
+        "try:",
+        "    subprocess.run([sys.executable, '-c', code], check=True,",
+        "                   capture_output=True, text=True)",
+        "except subprocess.CalledProcessError as e:",
+        "    print(e.returncode)  # → 3",
+        "    print(e.stderr)  # → нет файла"
+      ],
+      [
+        "import subprocess, sys",
+        "cmd = [sys.executable, '-c', 'import sys; sys.exit(2)']",
+        "r = subprocess.run(cmd)  # без check исключения нет",
+        "print(r.returncode)  # → 2"
+      ]
+    ],
+    "related": [
+      "subprocess-run",
+      "subprocess-check_output",
+      "subprocess.check_call",
+      "subprocess.SubprocessError"
+    ],
+    "related_errors": [
+      "filenotfounderror"
+    ]
+  },
+  {
+    "id": "subprocess.SubprocessError",
+    "title": {
+      "ru": "subprocess.SubprocessError",
+      "en": "subprocess.SubprocessError"
+    },
+    "kind": "exception",
+    "summary": {
+      "ru": "Базовый класс исключений модуля subprocess: от него наследуют CalledProcessError и TimeoutExpired.",
+      "en": "The base class of the subprocess module's own exceptions: CalledProcessError and TimeoutExpired inherit from it."
+    },
+    "body": {
+      "ru": "Ловит он не всё, что может случиться при запуске: если программа не найдена или нет прав, Popen поднимает FileNotFoundError или PermissionError — это OSError, а не SubprocessError. Надёжный перехват ошибок запуска — except (subprocess.SubprocessError, OSError). Наследуется прямо от Exception, поэтому TimeoutExpired не ловится и через встроенный TimeoutError.",
+      "en": "It does not cover everything that can go wrong at launch: a missing program or missing permissions make Popen raise FileNotFoundError or PermissionError, which are OSError, not SubprocessError. To catch launch failures reliably use except (subprocess.SubprocessError, OSError). It derives straight from Exception, so TimeoutExpired is not caught by the built-in TimeoutError either."
+    },
+    "syntax": "except subprocess.SubprocessError:",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.SubprocessError",
+    "added": "3.3",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": "module exceptions"
+    },
+    "aliases": [
+      "общая ошибка subprocess",
+      "поймать все ошибки запуска процесса"
+    ],
+    "keywords": [
+      "subprocess.SubprocessError",
+      "SubprocessError"
+    ],
+    "tags": [
+      "exc"
+    ],
+    "examples": [
+      [
+        "import subprocess",
+        "print(issubclass(subprocess.TimeoutExpired, subprocess.SubprocessError))  # → True",
+        "print(issubclass(FileNotFoundError, subprocess.SubprocessError))  # → False"
+      ],
+      [
+        "import subprocess",
+        "try:",
+        "    subprocess.run(['no-such-program-xyz'])",
+        "except (subprocess.SubprocessError, OSError) as e:",
+        "    print(type(e).__name__)  # → FileNotFoundError"
+      ]
+    ],
+    "related": [
+      "subprocess.CalledProcessError",
+      "subprocess.TimeoutExpired",
+      "subprocess-run"
+    ],
+    "related_errors": [
+      "oserror",
+      "filenotfounderror"
+    ]
+  },
+  {
+    "id": "subprocess.TimeoutExpired",
+    "title": {
+      "ru": "subprocess.TimeoutExpired",
+      "en": "subprocess.TimeoutExpired"
+    },
+    "kind": "exception",
+    "summary": {
+      "ru": "Исключение: дочерний процесс не уложился в timeout, переданный run, call, check_output или Popen.wait/communicate.",
+      "en": "Raised when a child process does not finish within the timeout given to run, call, check_output or Popen.wait/communicate."
+    },
+    "body": {
+      "ru": "run() перед тем как поднять его, убивает дочерний процесс, а Popen.wait(timeout) и communicate(timeout) — нет: процесс продолжает работать, и его надо добить proc.kill() и дочитать communicate(). Атрибуты output/stderr содержат bytes даже при text=True. Это не подкласс встроенного TimeoutError: except TimeoutError его пропустит.",
+      "en": "run() kills the child before raising it, but Popen.wait(timeout) and communicate(timeout) do not: the process keeps running, and you must call proc.kill() and then communicate() to reap it. The output/stderr attributes hold bytes even with text=True. It is not a subclass of the built-in TimeoutError, so except TimeoutError lets it through."
+    },
+    "syntax": "except subprocess.TimeoutExpired as e:  # e.cmd, e.timeout, e.output, e.stderr",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.TimeoutExpired",
+    "added": "3.3",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Исключения",
+    "subcat": {
+      "ru": "модульные исключения",
+      "en": "module exceptions"
+    },
+    "aliases": [
+      "процесс завис ограничить время",
+      "таймаут дочернего процесса"
+    ],
+    "keywords": [
+      "subprocess.TimeoutExpired",
+      "TimeoutExpired",
+      "timeout"
+    ],
+    "tags": [
+      "exc"
+    ],
+    "examples": [
+      [
+        "import subprocess, sys",
+        "cmd = [sys.executable, '-c', 'import time; time.sleep(5)']",
+        "try:",
+        "    subprocess.run(cmd, timeout=0.5)",
+        "except subprocess.TimeoutExpired as e:",
+        "    print(e.timeout)  # → 0.5",
+        "print(issubclass(subprocess.TimeoutExpired, TimeoutError))  # → False"
+      ],
+      [
+        "import subprocess, sys",
+        "p = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(5)'])",
+        "try:",
+        "    p.wait(timeout=0.3)",
+        "except subprocess.TimeoutExpired:",
+        "    print(p.poll())  # → None — процесс ещё жив",
+        "    p.kill()",
+        "    p.wait()"
+      ]
+    ],
+    "related": [
+      "subprocess-run",
+      "subprocess-Popen",
+      "subprocess.SubprocessError"
+    ],
+    "related_errors": [
+      "timeouterror"
+    ]
   }
 ]

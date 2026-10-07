@@ -219,7 +219,7 @@ def test_stats_json_output(data_file: Path):
     assert payload["total"] == 2
     assert payload["sections"] == {"Раздел": 2}
     assert payload["kinds"] == {"function": 2}
-    assert payload["versioned"] == 0
+    assert payload["versioned"] == 2
 
 
 # --------------------------- objections ---------------------------

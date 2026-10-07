@@ -17,7 +17,9 @@
     "syntax": "async def name() -> T:\n    result = await other_coroutine()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#coroutine-function-definition",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -76,7 +78,9 @@
     "syntax": "async for item in aiter: ...\nasync with ctx_manager() as obj: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-async-for-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -135,7 +139,9 @@
     "syntax": "task = asyncio.create_task(coro())",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task",
-    "version": "3.7",
+    "added": "3.7",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -194,7 +200,9 @@
     "syntax": "results = await asyncio.gather(coro1, coro2, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.gather",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -249,7 +257,9 @@
     "syntax": "q = asyncio.Queue(maxsize=0)\nawait q.put(item)\nitem = await q.get()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-queue.html#asyncio.Queue",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -309,7 +319,9 @@
     "syntax": "asyncio.run(coro)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-runner.html#asyncio.run",
-    "version": "3.7",
+    "added": "3.7",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -368,7 +380,9 @@
     "syntax": "await asyncio.sleep(seconds)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -425,7 +439,9 @@
     "syntax": "def gen():\n    yield value",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -527,7 +543,9 @@
     "syntax": "it = iter(obj)\nnext(it, default)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#iter",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -599,7 +617,9 @@
     "syntax": "from itertools import accumulate\naccumulate(iterable, func=operator.add)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -659,7 +679,9 @@
     "syntax": "from itertools import chain\nchain(a, b, c)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.chain",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -723,7 +745,9 @@
     "syntax": "from itertools import groupby\ngroupby(iterable, key=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.groupby",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -791,7 +815,9 @@
     "syntax": "from itertools import islice\nislice(iterable, stop)\nislice(iterable, start, stop[, step])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.islice",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -856,7 +882,9 @@
     "syntax": "yield from iterable",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -932,7 +960,9 @@
     "syntax": "(expr for x in iterable if condition)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#generator-expressions",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1000,7 +1030,9 @@
     "syntax": "class Iter:\n    def __iter__(self): return self\n    def __next__(self): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-iterator",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1107,7 +1139,9 @@
     "syntax": "itertools.count(start=0, step=1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.count",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1162,7 +1196,9 @@
     "syntax": "itertools.cycle(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.cycle",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1215,7 +1251,9 @@
     "syntax": "itertools.repeat(obj, times)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.repeat",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1268,7 +1306,9 @@
     "syntax": "itertools.combinations(iterable, r)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1322,7 +1362,9 @@
     "syntax": "itertools.combinations_with_replacement(iterable, r)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations_with_replacement",
-    "version": "3.1",
+    "added": "3.1",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1375,7 +1417,9 @@
     "syntax": "itertools.permutations(iterable, r=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.permutations",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1429,7 +1473,9 @@
     "syntax": "itertools.product(*iterables, repeat=1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.product",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1483,7 +1529,9 @@
     "syntax": "itertools.compress(data, selectors)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.compress",
-    "version": "3.1",
+    "added": "3.1",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1536,7 +1584,9 @@
     "syntax": "itertools.dropwhile(predicate, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.dropwhile",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1589,7 +1639,9 @@
     "syntax": "itertools.takewhile(predicate, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.takewhile",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1643,7 +1695,9 @@
     "syntax": "itertools.filterfalse(predicate, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.filterfalse",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1696,7 +1750,9 @@
     "syntax": "itertools.starmap(function, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.starmap",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1749,7 +1805,9 @@
     "syntax": "itertools.pairwise(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.pairwise",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1803,7 +1861,9 @@
     "syntax": "itertools.batched(iterable, n)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.batched",
-    "version": "3.12",
+    "added": "3.12",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1859,7 +1919,9 @@
     "syntax": "itertools.zip_longest(*iterables, fillvalue=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.zip_longest",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1912,7 +1974,9 @@
     "syntax": "itertools.tee(iterable, n=2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.tee",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],

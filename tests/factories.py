@@ -39,7 +39,7 @@ def make_entry(**overrides: Any) -> Entry:
         "syntax": "sample() -> None",
         "status": "ready",
         "docs_url": "https://docs.python.org/3/library/functions.html#sample",
-        "version": "",
+        "added": "3.0",
         "section": "Раздел",
         "subcat": Text(ru="подкатегория", en="subcategory"),
         "color_group": "builtin",

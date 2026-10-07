@@ -55,7 +55,7 @@ class MarkdownExporter:
                 yield from self._entry_lines(entry)
 
     def _entry_lines(self, entry: Entry) -> Iterator[str]:
-        version = f" `{entry.version}`" if entry.version else ""
+        version = f" `{entry.added}`" if entry.added else ""
         yield f"### {entry.title.get(self._language)}{version}"
         yield ""
         subcat = entry.subcat.get(self._language)

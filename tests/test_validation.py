@@ -13,6 +13,7 @@ from glossary.validation import (
     ValidationConfig,
     ValidationReport,
     _cyrillic_share,
+    rule_added,
     rule_body_length,
     rule_color_group,
     rule_docs_url,
@@ -382,14 +383,51 @@ def test_body_length_warns_on_stub():
 
 @pytest.mark.parametrize("version", ["3", "3.x", "python3.9", "3.12+"])
 def test_version_format_rejects_malformed(version: str):
-    glossary = make_glossary(make_entry(version=version))
+    glossary = make_glossary(make_entry(added=version))
     issues = list(rule_version_format(glossary, CFG))
     assert issues[0].severity is Severity.ERROR
 
 
 def test_version_format_accepts_canonical_and_empty():
-    glossary = make_glossary(make_entry(version="3.12"), make_entry(version=""))
+    glossary = make_glossary(make_entry(added="3.12"), make_entry(added=""))
     assert list(rule_version_format(glossary, CFG)) == []
+
+
+def test_added_accepts_before_marker():
+    """``<3.0`` — «появилось раньше 3.0», ещё в Python 2 (#122)."""
+    glossary = make_glossary(make_entry(added="<3.0", deprecated="3.12", removed="3.14"))
+    assert list(rule_version_format(glossary, CFG)) == []
+
+
+def test_before_marker_is_only_for_added():
+    """Устаревают и удаляются в конкретной версии, а не «когда-то раньше»."""
+    glossary = make_glossary(make_entry(deprecated="<3.5"))
+    issues = list(rule_version_format(glossary, CFG))
+    assert issues and "deprecated" in issues[0].message
+
+
+def test_lifecycle_must_go_forward():
+    """Нельзя устареть раньше, чем появиться, и удалиться раньше, чем устареть."""
+    glossary = make_glossary(make_entry(added="3.12", deprecated="3.9", removed="3.8"))
+    messages = [i.message for i in rule_version_format(glossary, CFG)]
+    assert len(messages) == 2
+    assert "deprecated 3.9 раньше, чем added 3.12" in messages[0]
+
+
+def test_before_marker_precedes_the_same_version():
+    """``<3.0`` раньше самой 3.0: удаление в 3.0 после появления в Python 2 законно."""
+    glossary = make_glossary(make_entry(added="<3.0", removed="3.0"))
+    assert list(rule_version_format(glossary, CFG)) == []
+
+
+def test_missing_added_is_a_warning_for_now():
+    """Пустое added не отличает «есть с Python 2» от «не проверяли» (#122)."""
+    issues = list(rule_added(make_glossary(make_entry(added="")), CFG))
+    assert [i.severity for i in issues] == [Severity.WARNING]
+
+
+def test_filled_added_passes():
+    assert list(rule_added(make_glossary(make_entry(added="<3.0")), CFG)) == []
 
 
 def test_examples_warns_when_absent():
@@ -426,20 +464,20 @@ def test_example_compiles_skips_syntax_from_a_newer_python():
     Находка была бы не о карточке, а о том, чем её проверяли.
     """
     glossary = make_glossary(
-        make_entry(version="3.99", examples=("совершенно ((( не питон",))
+        make_entry(added="3.99", examples=("совершенно ((( не питон",))
     )
     assert list(rule_example_compiles(glossary, CFG)) == []
 
 
 def test_example_compiles_still_judges_a_current_version():
     """Пропуск — только для будущего, а не для всякой карточки с версией."""
-    glossary = make_glossary(make_entry(version="3.0", examples=("def f(:",)))
+    glossary = make_glossary(make_entry(added="3.0", examples=("def f(:",)))
     assert list(rule_example_compiles(glossary, CFG))
 
 
 def test_example_compiles_ignores_a_malformed_version_marker():
     """Форму маркера судит другое правило; здесь она не должна глушить проверку."""
-    glossary = make_glossary(make_entry(version="не-версия", examples=("def f(:",)))
+    glossary = make_glossary(make_entry(added="не-версия", examples=("def f(:",)))
     assert list(rule_example_compiles(glossary, CFG))
 
 
@@ -527,6 +565,7 @@ def test_all_rules_are_registered():
         rule_translated,
         rule_unique_id,
         rule_version_format,
+        rule_added,
     }
     assert set(RULES) == expected
 
@@ -539,7 +578,7 @@ def test_rule_names_are_unique_and_stable():
             kind="ничто",
             color_group="нет",
             docs_url="https://ya.ru",
-            version="4.0.1",
+            added="4.0.1",
             related=("нет-такого",),
         )
     )
@@ -554,6 +593,7 @@ def test_rule_names_are_unique_and_stable():
         "id-format",
         "kind",
         "label-translated",
+        "added",
         "platforms",
         "platforms-summary",
         "related-errors-resolve",

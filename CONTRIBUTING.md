@@ -78,7 +78,9 @@ git add data/cards data/glossary.json python_glossary.html
 | `aliases` / `keywords` | Синонимы и ключевые слова — по ним работает поиск |
 | `examples` | Исполняемый код: строка кода — элемент массива, с результатом в комментариях |
 | `related` / `related_errors` | Идентификаторы существующих карточек |
-| `version` | Вид `N.N` либо пустая строка |
+| `added` | С какой версии есть: `N.N`; `<3.0` — появилось ещё в Python 2; `3.0` — пришло с Python 3 |
+| `deprecated` | С какой версии устарело: `N.N` либо пустая строка |
+| `removed` | В какой версии удалено или будет удалено — до какой работает: `N.N` либо пустая строка |
 | `platforms` | `["AllOS"]` — везде; иначе подмножество `Linux`, `macOS`, `Windows`. По директиве `availability` документации: Unix и POSIX — `Linux` и `macOS` |
 | `docs_url` | Конкретный раздел или якорь на docs.python.org, не корень |
 

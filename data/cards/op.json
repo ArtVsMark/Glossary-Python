@@ -17,7 +17,9 @@
     "syntax": "abs(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#abs",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -71,7 +73,9 @@
     "syntax": "a and b | a or b | not a",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#boolean-operations-and-or-not",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -134,7 +138,9 @@
     "syntax": "def f(*args): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#arbitrary-argument-lists",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -202,7 +208,9 @@
     "syntax": "bool([x])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#bool",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -257,7 +265,9 @@
     "syntax": "break",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#break",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -326,7 +336,9 @@
     "syntax": "bytearray(n)  bytearray(iterable)  bytearray(b\"...\")  bytearray(source, encoding)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-bytearray",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -380,7 +392,9 @@
     "syntax": "bytes(n)  bytes(iterable)  b\"...\"  bytes.fromhex(hex_str)  bytes(source, encoding)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-bytes",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -436,7 +450,9 @@
     "syntax": "import cmath\ncmath.sqrt(-1)  # → 1j",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/cmath.html",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -489,7 +505,9 @@
     "syntax": "complex(real, imag)  a+bj  z.real  z.imag  abs(z)  z.conjugate()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#complex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -543,7 +561,9 @@
     "syntax": "continue",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#continue",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -608,7 +628,9 @@
     "syntax": "import csv\ncsv.reader(f)\ncsv.writer(f)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -691,7 +713,9 @@
     "syntax": "from decimal import Decimal\nDecimal('1.1') + Decimal('2.2')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Decimal",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -746,7 +770,9 @@
     "syntax": "decimal.getcontext()\ndecimal.getcontext().prec = 50",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.getcontext",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -798,7 +824,9 @@
     "syntax": "decimal.setcontext(ctx)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.setcontext",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -847,7 +875,9 @@
     "syntax": "def имя(параметры):\n    тело",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#def",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -913,7 +943,9 @@
     "syntax": "divmod(a, b) -> (a // b, a % b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#divmod",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -971,7 +1003,9 @@
     "syntax": "...  Ellipsis  type(...) -> ellipsis",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/constants.html#Ellipsis",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1026,7 +1060,9 @@
     "syntax": "for/while ...:\n    ...\nelse:\n    блок_если_не_break",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#else-clauses-on-loops",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1093,7 +1129,9 @@
     "syntax": "enumerate(iterable, start=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#enumerate",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1155,7 +1193,9 @@
     "syntax": "filter(func, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#filter",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1226,7 +1266,9 @@
     "syntax": "float([x])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#float",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1283,7 +1325,9 @@
     "syntax": "for переменная in итерируемое:\n    блок",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#for",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1346,7 +1390,9 @@
     "syntax": "for item in reversed(sequence): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#reversed",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1404,7 +1450,9 @@
     "syntax": "from fractions import Fraction\nFraction(1, 3)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/fractions.html#fractions.Fraction",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1458,7 +1506,9 @@
     "syntax": "global x\nnonlocal y",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-global-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1557,7 +1607,9 @@
     "syntax": "if условие:\n    блок",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#if",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1622,7 +1674,9 @@
     "syntax": "if условие1:\n    ...\nelif условие2:\n    ...\nelse:\n    ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-if-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1689,7 +1743,9 @@
     "syntax": "if условие:\n    блок1\nelse:\n    блок2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-if-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1755,7 +1811,9 @@
     "syntax": "элемент in коллекция -> bool",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#in",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1813,7 +1871,9 @@
     "syntax": "int([x]) | int(x, base)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#int",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1868,7 +1928,9 @@
     "syntax": "a is b | a is not b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#identity-comparisons",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1927,7 +1989,9 @@
     "syntax": "isinstance(object, classinfo) -> bool",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#isinstance",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -1987,7 +2051,9 @@
     "syntax": "import json\njson.dumps(obj)\njson.loads(s)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2067,7 +2133,9 @@
     "syntax": "def f(**kwargs): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#keyword-arguments",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2139,7 +2207,9 @@
     "syntax": "lambda параметры: выражение",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#lambda",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2206,7 +2276,9 @@
     "syntax": "map(func, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#map",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2280,7 +2352,9 @@
     "syntax": "match subject:\n    case pattern1: ...\n    case pattern2 if guard: ...\n    case _: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-match-statement",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2343,7 +2417,9 @@
     "syntax": "None",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#the-null-object",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2399,7 +2475,9 @@
     "syntax": "open(path, mode='r', encoding=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2487,7 +2565,9 @@
     "syntax": "import os\nos.getcwd()\nos.listdir()\nos.path.join()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2554,7 +2634,9 @@
     "syntax": "from pathlib import Path\np = Path('/some/path')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2633,7 +2715,9 @@
     "syntax": "import pickle\npickle.dump(obj, f)\npickle.load(f)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2705,7 +2789,9 @@
     "syntax": "pow(base, exp[, mod])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#pow",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2760,7 +2846,9 @@
     "syntax": "range(stop) | range(start, stop) | range(start, stop, step)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-range",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2818,7 +2906,9 @@
     "syntax": "f.read(size=-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase.read",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2871,7 +2961,9 @@
     "syntax": "f.readline(size=-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.readline",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2923,7 +3015,9 @@
     "syntax": "f.readlines(hint=-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.readlines",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -2975,7 +3069,9 @@
     "syntax": "return значение",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#return",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3054,7 +3150,9 @@
     "syntax": "round(number[, ndigits])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#round",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3109,7 +3207,9 @@
     "syntax": "sorted(iterable, key=None, reverse=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3179,7 +3279,9 @@
     "syntax": "statistics.quantiles(data, n=4, method='exclusive')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.quantiles",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3233,7 +3335,9 @@
     "syntax": "import sys\nfor line in sys.stdin: ...\nprint(..., file=sys.stdout)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3306,7 +3410,9 @@
     "syntax": "str([object]) | \"текст\" | 'текст'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-str",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3364,7 +3470,9 @@
     "syntax": "type(object) -> type\ntype(name, bases, dict) -> type",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#type",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3422,7 +3530,9 @@
     "syntax": "variable := expression",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#assignment-expressions",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3480,7 +3590,9 @@
     "syntax": "while условие:\n    блок",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#while",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3546,7 +3658,9 @@
     "syntax": "f.write(s)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase.write",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3598,7 +3712,9 @@
     "syntax": "f.writelines(lines)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.writelines",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3647,7 +3763,9 @@
     "syntax": "zip(*iterables)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3711,7 +3829,9 @@
     "syntax": "zip(*iterables, strict=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3768,7 +3888,9 @@
     "syntax": "def f(x: int) -> str: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3849,7 +3971,9 @@
     "syntax": "def binary_search(arr, target):",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -3959,7 +4083,9 @@
     "syntax": "a & b  # AND\na | b  # OR\na ^ b  # XOR\n~a     # NOT\na << n # left shift\na >> n # right shift",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4050,7 +4176,9 @@
     "syntax": "if условие1:\n    if условие2:\n        блок",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-if-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4117,7 +4245,9 @@
     "syntax": "for i in ...:\n    for j in ...:\n        блок",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-for-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4189,7 +4319,9 @@
     "syntax": "class F:\n    def __call__(self, x): ...\nf = F()\nf(10)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__call__",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4272,7 +4404,9 @@
     "syntax": "a - b | -a",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4328,7 +4462,9 @@
     "syntax": "lo, hi = 0, len(arr)-1\nwhile lo < hi: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4432,7 +4568,9 @@
     "syntax": "@decorator\ndef func(): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-decorator",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4546,7 +4684,9 @@
     "syntax": "a / b -> float",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4605,7 +4745,9 @@
     "syntax": "def outer():\n    x = 10\n    def inner():\n        return x\n    return inner",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-closure-variable",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4696,7 +4838,9 @@
     "syntax": "for line in f:\n    ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4772,7 +4916,9 @@
     "syntax": "x = 10  # глобальная\ndef f():\n    x = 5  # локальная",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/executionmodel.html#resolution-of-names",
-    "version": "3.12",
+    "added": "3.12",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4859,7 +5005,9 @@
     "syntax": "def gcd(a, b):\n    while b: a, b = b, a%b\n    return a",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.gcd",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -4945,7 +5093,9 @@
     "syntax": "for d in str(abs(n)): | while n > 0: d = n % 10; n //= 10",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5013,7 +5163,9 @@
     "syntax": "x op= value  # эквивалент x = x op value",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#augmented-assignment-statements",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5073,7 +5225,9 @@
     "syntax": "a == b | a != b | a > b | a < b | a >= b | a <= b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5137,7 +5291,9 @@
     "syntax": "a % b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5198,7 +5354,9 @@
     "syntax": "from collections import deque\nqueue = deque()\nqueue.append(x)   # enqueue\nqueue.popleft()   # dequeue",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.deque",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5298,7 +5456,9 @@
     "syntax": "def f(a, b): ...\nf(1, 2)  # позиционные\nf(a=1, b=2)  # ключевые",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-parameter",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5364,7 +5524,9 @@
     "syntax": "def f(x, y=10): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/controlflow.html#default-argument-values",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5435,7 +5597,9 @@
     "syntax": "a & b  a | b  a ^ b  ~a  a << n  a >> n",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bitwise-operations-on-integer-types",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5494,7 +5658,9 @@
     "syntax": "int(x) | float(x) | str(x) | bool(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#int",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5557,7 +5723,9 @@
     "syntax": "prefix[i] = prefix[i-1] + arr[i]\nsum(l, r) = prefix[r] - prefix[l-1]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
-    "version": "3.2",
+    "added": "3.2",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5651,7 +5819,9 @@
     "syntax": "( ) → ** → -x → * / // % → + -",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#operator-precedence",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5709,7 +5879,9 @@
     "syntax": "for x, y in iterable: ...\nfor a, b, c in iterable: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-for-statement",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5771,7 +5943,9 @@
     "syntax": "def f(n):\n    if n == 0: return 1\n    return n * f(n-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.setrecursionlimit",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5857,7 +6031,9 @@
     "syntax": "bin(n), oct(n), hex(n)\nint(s, base)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#bin",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -5947,7 +6123,9 @@
     "syntax": "a + b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6003,7 +6181,9 @@
     "syntax": "def insertion_sort(arr):",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6098,7 +6278,9 @@
     "syntax": "def selection_sort(arr):",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6193,7 +6375,9 @@
     "syntax": "def bubble_sort(arr):",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6290,7 +6474,9 @@
     "syntax": "stack = []\nstack.append(x)  # push\nstack.pop()      # pop",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#using-lists-as-stacks",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6407,7 +6593,9 @@
     "syntax": "a ** b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#the-power-operator",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6464,7 +6652,9 @@
     "syntax": "значение_если_истина if условие else значение_если_ложь",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#conditional-expressions",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6529,7 +6719,9 @@
     "syntax": "a * b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6584,7 +6776,9 @@
     "syntax": "d = {}\nd[key] = value\nd.get(key, default)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6673,7 +6867,9 @@
     "syntax": "a // b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "version": "3.5",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6731,7 +6927,9 @@
     "syntax": "a < b < c  a == b == c  a <= b >= c",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6788,7 +6986,9 @@
     "syntax": "def fib(n): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/introduction.html#first-steps-towards-programming",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6892,7 +7092,9 @@
     "syntax": "n.bit_length()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.bit_length",
-    "version": "3.1",
+    "added": "3.1",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6943,7 +7145,9 @@
     "syntax": "n.bit_count()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.bit_count",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -6993,7 +7197,9 @@
     "syntax": "n.to_bytes(length=1, byteorder='big', *, signed=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.to_bytes",
-    "version": "3.2",
+    "added": "3.2",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7047,7 +7253,9 @@
     "syntax": "int.from_bytes(bytes, byteorder='big', *, signed=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.from_bytes",
-    "version": "3.2",
+    "added": "3.2",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7100,7 +7308,9 @@
     "syntax": "n.as_integer_ratio()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.as_integer_ratio",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7153,7 +7363,9 @@
     "syntax": "n.conjugate()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7206,7 +7418,9 @@
     "syntax": "n.is_integer()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#int.is_integer",
-    "version": "3.12",
+    "added": "3.12",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7259,7 +7473,9 @@
     "syntax": "x.is_integer()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.is_integer",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7309,7 +7525,9 @@
     "syntax": "x.as_integer_ratio()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.as_integer_ratio",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7359,7 +7577,9 @@
     "syntax": "x.hex()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.hex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7412,7 +7632,9 @@
     "syntax": "float.fromhex(s)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.fromhex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7467,7 +7689,9 @@
     "syntax": "x.conjugate()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7520,7 +7744,9 @@
     "syntax": "z.conjugate()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#numeric-types-int-float-complex",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7574,7 +7800,9 @@
     "syntax": "json.dumps(obj, *, indent=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.dumps",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7630,7 +7858,9 @@
     "syntax": "json.loads(s)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.loads",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7687,7 +7917,9 @@
     "syntax": "json.dump(obj, fp)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.dump",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7742,7 +7974,9 @@
     "syntax": "json.load(fp)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.load",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7798,7 +8032,9 @@
     "syntax": "statistics.mean(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.mean",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7853,7 +8089,9 @@
     "syntax": "statistics.fmean(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.fmean",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7906,7 +8144,9 @@
     "syntax": "statistics.geometric_mean(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.geometric_mean",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -7960,7 +8200,9 @@
     "syntax": "statistics.harmonic_mean(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.harmonic_mean",
-    "version": "3.6",
+    "added": "3.6",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8013,7 +8255,9 @@
     "syntax": "statistics.median(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8068,7 +8312,9 @@
     "syntax": "statistics.median_low(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median_low",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8121,7 +8367,9 @@
     "syntax": "statistics.median_high(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median_high",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8174,7 +8422,9 @@
     "syntax": "statistics.median_grouped(data, interval=1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.median_grouped",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8228,7 +8478,9 @@
     "syntax": "statistics.mode(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.mode",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8283,7 +8535,9 @@
     "syntax": "statistics.multimode(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.multimode",
-    "version": "3.8",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8336,7 +8590,9 @@
     "syntax": "statistics.stdev(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.stdev",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8391,7 +8647,9 @@
     "syntax": "statistics.pstdev(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.pstdev",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8443,7 +8701,9 @@
     "syntax": "statistics.variance(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.variance",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8496,7 +8756,9 @@
     "syntax": "statistics.pvariance(data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.pvariance",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8548,7 +8810,9 @@
     "syntax": "statistics.correlation(x, y)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.correlation",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8601,7 +8865,9 @@
     "syntax": "statistics.covariance(x, y)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.covariance",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8655,7 +8921,9 @@
     "syntax": "statistics.linear_regression(x, y)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.linear_regression",
-    "version": "3.10",
+    "added": "3.10",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8710,7 +8978,9 @@
     "syntax": "statistics.NormalDist(mu=0.0, sigma=1.0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.NormalDist",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8762,7 +9032,9 @@
     "syntax": "pathlib.PurePath(*segments)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8813,7 +9085,9 @@
     "syntax": "pathlib.PurePosixPath(*segments)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePosixPath",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8867,7 +9141,9 @@
     "syntax": "pathlib.PureWindowsPath(*segments)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PureWindowsPath",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8923,7 +9199,9 @@
     "syntax": "pathlib.PosixPath(*segments)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -8977,7 +9255,9 @@
     "syntax": "pathlib.WindowsPath(*segments)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.WindowsPath",
-    "version": "",
+    "added": "",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -9031,7 +9311,9 @@
     "syntax": "classmethod complex.from_number(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#complex.from_number",
-    "version": "3.14",
+    "added": "3.14",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],
@@ -9088,7 +9370,9 @@
     "syntax": "float.from_number(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#float.from_number",
-    "version": "3.14",
+    "added": "3.14",
+    "deprecated": "",
+    "removed": "",
     "platforms": [
       "AllOS"
     ],

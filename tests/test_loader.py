@@ -71,9 +71,7 @@ def test_entry_must_be_object(tmp_path: Path):
 
 
 def test_dump_then_load_roundtrip(tmp_path: Path):
-    original = make_glossary(
-        make_entry(id="alpha"), make_entry(id="beta", version="3.12+")
-    )
+    original = make_glossary(make_entry(id="alpha"), make_entry(id="beta", added="3.12+"))
     target = dump_glossary(original, tmp_path / "out.json")
     assert load_glossary(target).entries == original.entries
 

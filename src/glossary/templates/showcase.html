@@ -206,6 +206,7 @@ a{color:inherit}
 .badge.cg{background:color-mix(in srgb,var(--cg) 14%,transparent);color:var(--cg)}
 .badge.ver{background:color-mix(in srgb,var(--accent) 13%,transparent);color:var(--accent-ink)}
 .badge.plat{border:1px dashed var(--faint)}
+.badge.ver.old{text-decoration:line-through;text-decoration-thickness:1px;opacity:.85}
 .subcat{font-size:11.5px;color:var(--faint);margin-bottom:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .summary{
   font-size:14px;color:var(--text);margin-bottom:11px;
@@ -404,7 +405,7 @@ const STORE = { theme:"glossary-theme", lang:"glossary-lang" };
 
 const I18N = {
   ru:{
-    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)",
+    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)", deprecated:"устарело в", deprecatedHint:"Объявлено устаревшим в этой версии Python и может быть удалено", removed:"до", removedHint:"Удалено или будет удалено в этой версии Python: работает в версиях раньше неё",
     download:"Скачать", downloaded:"Готово", theme:"Сменить тему",
     search:"Поиск по имени, синонимам, ключевым словам…",
     bySection:"По разделам", kind:"Вид", group:"Раздел", moduleWord:"модуль",
@@ -419,7 +420,7 @@ const I18N = {
     resetHint:"Удалить сохранённые тему и язык"
   },
   en:{
-    title:"Python Glossary", subtitle:"Standard library reference", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)",
+    title:"Python Glossary", subtitle:"Standard library reference", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
     download:"Download", downloaded:"Saved", theme:"Toggle theme",
     search:"Search by name, alias, keyword…",
     bySection:"By section", kind:"Kind", group:"Section", moduleWord:"module",
@@ -558,7 +559,14 @@ const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 function cardHtml(d){
   const cgv = CG_VAR[d.color_group] || "var(--c-op)";
-  const ver = d.version ? `<span class="badge ver">Python ${esc(d.version)}</span>` : "";
+  /* Жизненный цикл (#122): «<3.0» — есть с давних времён, значок не нужен. */
+  const since = d.added && !d.added.startsWith("<")
+    ? `<span class="badge ver">Python ${esc(d.added)}+</span>` : "";
+  const gone = d.removed
+    ? `<span class="badge ver old" title="${esc(t("removedHint"))}">${esc(t("removed"))} ${esc(d.removed)}</span>`
+    : d.deprecated
+      ? `<span class="badge ver old" title="${esc(t("deprecatedHint"))}">${esc(t("deprecated"))} ${esc(d.deprecated)}</span>` : "";
+  const ver = since + gone;
   /* AllOS — «везде»: значок нужен только ограничению, на тысяче карточек он был бы шумом. */
   const plat = (d.platforms && d.platforms.length && !d.platforms.includes("AllOS"))
     ? `<span class="badge plat" title="${esc(t("platformsHint"))}">${d.platforms.map(esc).join(" · ")}</span>` : "";

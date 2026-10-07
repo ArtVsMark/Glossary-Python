@@ -315,6 +315,15 @@ def test_orphaned_promise_is_a_mismatch_without_running():
         ({"added": "3.0"}, ["# Python 3.12+", "print(1)"], (3, 12), True),
         ({"added": "3.0"}, ["# Python 3.13+ (на Windows — 3.12+)"], (3, 12), False),
         ({}, [], (3, 11), True),
+        # Удалённое (#164): блок без пометки живёт до removed,
+        ({"added": "3.0", "removed": "3.12"}, ["import imp"], (3, 11), True),
+        ({"added": "3.0", "removed": "3.12"}, ["import imp"], (3, 12), False),
+        # пометка не раньше removed — жизнь после удаления,
+        ({"added": "3.0", "removed": "3.12"}, ["# Python 3.12+"], (3, 13), True),
+        ({"added": "3.0", "removed": "3.12"}, ["# Python 3.12+"], (3, 11), False),
+        # пометка раньше removed — внутри окна карточки.
+        ({"added": "3.0", "removed": "3.17"}, ["# Python 3.12+"], (3, 13), True),
+        ({"added": "3.0", "removed": "3.17"}, ["# Python 3.12+"], (3, 17), False),
     ],
 )
 def test_applicable_follows_the_card_promise(

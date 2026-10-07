@@ -6883,7 +6883,10 @@
       "ru": "как число",
       "en": "as a number"
     },
-    "aliases": [],
+    "aliases": [
+      "сопряжённое целого числа",
+      "conjugate у int"
+    ],
     "keywords": [],
     "tags": [
       "int"
@@ -6930,7 +6933,10 @@
       "ru": "как дробь",
       "en": "as a fraction"
     },
-    "aliases": [],
+    "aliases": [
+      "целое ли число",
+      "is_integer у int"
+    ],
     "keywords": [],
     "tags": [
       "int"
@@ -7173,7 +7179,10 @@
       "ru": "как число",
       "en": "as a number"
     },
-    "aliases": [],
+    "aliases": [
+      "сопряжённое вещественного числа",
+      "conjugate у float"
+    ],
     "keywords": [],
     "tags": [
       "float"

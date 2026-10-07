@@ -4748,7 +4748,10 @@
       "ru": "bytearray — выравнивание",
       "en": "bytearray — padding"
     },
-    "aliases": [],
+    "aliases": [
+      "заменить табуляции пробелами в байтах",
+      "развернуть табы в bytearray"
+    ],
     "keywords": [],
     "tags": [
       "bytearray"
@@ -6318,7 +6321,10 @@
       "ru": "bytearray — проверки is*",
       "en": "bytearray — is* checks"
     },
-    "aliases": [],
+    "aliases": [
+      "каждое слово с заглавной в байтах",
+      "проверка заголовочного регистра bytearray"
+    ],
     "keywords": [],
     "tags": [
       "bytearray"

@@ -238,9 +238,15 @@ def _run_in_python(cases: list[tuple[dict[str, str], str, str]]) -> list[bool]:
         + "([d, v, m]) => inPython(d, v, m))));"
     )
     done = subprocess.run(  # noqa: S603 — исполняется наш шаблон
-        [node, "-e", script], capture_output=True, text=True, check=True, timeout=30
+        [node, "-e", script],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        check=True,
+        timeout=30,
     )
-    return json.loads(done.stdout)
+    answers: list[bool] = json.loads(done.stdout)
+    return answers
 
 
 @pytest.mark.live_surface

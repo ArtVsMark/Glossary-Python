@@ -26189,8 +26189,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Заменяет текущий процесс новой программой (путь + список аргументов); при успехе не возвращается. Доступно на Unix.",
-      "en": "Replace the current process with a new program (path + args list). Availability: Unix."
+      "ru": "Заменяет текущий процесс новой программой (путь + список аргументов); при успехе не возвращается.",
+      "en": "Replace the current process with a new program (path + args list)."
     },
     "body": {
       "ru": "",
@@ -26239,8 +26239,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как execv, но с явным словарём переменных окружения для новой программы. Доступно на Unix.",
-      "en": "Like execv, but with an explicit environment dict. Availability: Unix."
+      "ru": "Как execv, но с явным словарём переменных окружения для новой программы.",
+      "en": "Like execv, but with an explicit environment dict."
     },
     "body": {
       "ru": "",
@@ -26289,8 +26289,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как execv, но аргументы передаются перечислением, а не списком. Доступно на Unix.",
-      "en": "Like execv, but arguments are passed inline rather than as a list. Availability: Unix."
+      "ru": "Как execv, но аргументы передаются перечислением, а не списком.",
+      "en": "Like execv, but arguments are passed inline rather than as a list."
     },
     "body": {
       "ru": "",
@@ -26339,8 +26339,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как execl, но с окружением (последний аргумент — словарь env). Доступно на Unix.",
-      "en": "Like execl, but the last argument is an environment dict. Availability: Unix."
+      "ru": "Как execl, но с окружением (последний аргумент — словарь env).",
+      "en": "Like execl, but the last argument is an environment dict."
     },
     "body": {
       "ru": "",
@@ -26390,8 +26390,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как execl, но программа ищется в каталогах PATH. Доступно на Unix.",
-      "en": "Like execl, but the program is looked up in PATH. Availability: Unix."
+      "ru": "Как execl, но программа ищется в каталогах PATH.",
+      "en": "Like execl, but the program is looked up in PATH."
     },
     "body": {
       "ru": "",
@@ -26441,8 +26441,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как execlp, но с явным окружением (последний аргумент — словарь env). Доступно на Unix.",
-      "en": "Like execlp, but with an explicit environment dict. Availability: Unix."
+      "ru": "Как execlp, но с явным окружением (последний аргумент — словарь env).",
+      "en": "Like execlp, but with an explicit environment dict."
     },
     "body": {
       "ru": "",
@@ -26491,8 +26491,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как execv, но программа ищется в каталогах PATH. Доступно на Unix.",
-      "en": "Like execv, but the program is looked up in PATH. Availability: Unix."
+      "ru": "Как execv, но программа ищется в каталогах PATH.",
+      "en": "Like execv, but the program is looked up in PATH."
     },
     "body": {
       "ru": "",
@@ -26540,8 +26540,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как execvp, но с явным окружением. Доступно на Unix.",
-      "en": "Like execvp, but with an explicit environment dict. Availability: Unix."
+      "ru": "Как execvp, но с явным окружением.",
+      "en": "Like execvp, but with an explicit environment dict."
     },
     "body": {
       "ru": "",
@@ -26590,8 +26590,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Запускает новую программу (путь + список аргументов) в отдельном процессе; возвращает PID или код возврата в зависимости от режима. Доступно на Unix.",
-      "en": "Run a new program in a new process (path + args list). Availability: Unix."
+      "ru": "Запускает новую программу (путь + список аргументов) в отдельном процессе; возвращает PID или код возврата в зависимости от режима.",
+      "en": "Run a new program in a new process (path + args list)."
     },
     "body": {
       "ru": "",
@@ -26642,8 +26642,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как spawnv, но с явным окружением. Доступно на Unix.",
-      "en": "Like spawnv, but with an explicit environment dict. Availability: Unix."
+      "ru": "Как spawnv, но с явным окружением.",
+      "en": "Like spawnv, but with an explicit environment dict."
     },
     "body": {
       "ru": "",
@@ -26693,8 +26693,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как spawnv, но аргументы перечислением. Доступно на Unix.",
-      "en": "Like spawnv, but with inline arguments. Availability: Unix."
+      "ru": "Как spawnv, но аргументы перечислением.",
+      "en": "Like spawnv, but with inline arguments."
     },
     "body": {
       "ru": "",
@@ -26743,8 +26743,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как spawnl, но с окружением (последний аргумент — env). Доступно на Unix.",
-      "en": "Like spawnl, but with an environment dict as the last argument. Availability: Unix."
+      "ru": "Как spawnl, но с окружением (последний аргумент — env).",
+      "en": "Like spawnl, but with an environment dict as the last argument."
     },
     "body": {
       "ru": "",
@@ -26793,8 +26793,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как spawnl, но программа ищется в PATH. Доступно на Unix.",
-      "en": "Like spawnl, but the program is looked up in PATH. Availability: Unix."
+      "ru": "Как spawnl, но программа ищется в PATH.",
+      "en": "Like spawnl, but the program is looked up in PATH."
     },
     "body": {
       "ru": "",
@@ -26805,7 +26805,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnlp",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -26843,8 +26844,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как spawnlp, но с явным окружением. Доступно на Unix.",
-      "en": "Like spawnlp, but with an explicit environment dict. Availability: Unix."
+      "ru": "Как spawnlp, но с явным окружением.",
+      "en": "Like spawnlp, but with an explicit environment dict."
     },
     "body": {
       "ru": "",
@@ -26855,7 +26856,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnlpe",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -26894,8 +26896,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как spawnv, но программа ищется в PATH. Доступно на Unix.",
-      "en": "Like spawnv, but the program is looked up in PATH. Availability: Unix."
+      "ru": "Как spawnv, но программа ищется в PATH.",
+      "en": "Like spawnv, but the program is looked up in PATH."
     },
     "body": {
       "ru": "",
@@ -26906,7 +26908,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnvp",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -26944,8 +26947,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как spawnvp, но с явным окружением. Доступно на Unix.",
-      "en": "Like spawnvp, but with an explicit environment dict. Availability: Unix."
+      "ru": "Как spawnvp, но с явным окружением.",
+      "en": "Like spawnvp, but with an explicit environment dict."
     },
     "body": {
       "ru": "",
@@ -26956,7 +26959,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnvpe",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -27149,8 +27153,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Ждёт завершения конкретного дочернего процесса по PID; возвращает (pid, статус). Доступно на Unix.",
-      "en": "Wait for a specific child by PID; returns (pid, status). Availability: Unix."
+      "ru": "Ждёт завершения конкретного дочернего процесса по PID; возвращает (pid, статус).",
+      "en": "Wait for a specific child by PID; returns (pid, status)."
     },
     "body": {
       "ru": "",
@@ -27407,8 +27411,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Посылает сигнал процессу по PID. Доступно на Unix.",
-      "en": "Send a signal to a process by PID. Availability: Unix."
+      "ru": "Посылает сигнал процессу по PID.",
+      "en": "Send a signal to a process by PID."
     },
     "body": {
       "ru": "",
@@ -27665,8 +27669,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Добровольно уступает процессор другим готовым к выполнению процессам. Доступно на Unix.",
-      "en": "Voluntarily yield the CPU to other runnable processes. Availability: Unix."
+      "ru": "Добровольно уступает процессор другим готовым к выполнению процессам.",
+      "en": "Voluntarily yield the CPU to other runnable processes."
     },
     "body": {
       "ru": "",
@@ -27677,7 +27681,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_yield",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -27713,8 +27718,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает множество ядер CPU, на которых разрешено выполняться процессу. Доступно на Unix.",
-      "en": "Return the set of CPUs a process is allowed to run on. Availability: Unix."
+      "ru": "Возвращает множество ядер CPU, на которых разрешено выполняться процессу.",
+      "en": "Return the set of CPUs a process is allowed to run on."
     },
     "body": {
       "ru": "",
@@ -27725,7 +27730,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getaffinity",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -27763,8 +27768,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Задаёт множество ядер CPU, на которых разрешено выполняться процессу (привязка к ядрам). Доступно на Unix.",
-      "en": "Set the CPUs a process is allowed to run on (CPU affinity). Availability: Unix."
+      "ru": "Задаёт множество ядер CPU, на которых разрешено выполняться процессу (привязка к ядрам).",
+      "en": "Set the CPUs a process is allowed to run on (CPU affinity)."
     },
     "body": {
       "ru": "",
@@ -27775,7 +27780,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setaffinity",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -27814,8 +27819,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает политику планирования процесса (напр. SCHED_OTHER/SCHED_FIFO). Доступно на Unix.",
-      "en": "Return a process's scheduling policy (e.g. SCHED_OTHER/SCHED_FIFO). Availability: Unix."
+      "ru": "Возвращает политику планирования процесса (напр. SCHED_OTHER/SCHED_FIFO).",
+      "en": "Return a process's scheduling policy (e.g. SCHED_OTHER/SCHED_FIFO)."
     },
     "body": {
       "ru": "",
@@ -27826,7 +27831,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getscheduler",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -27862,8 +27867,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Задаёт политику планирования и параметры процесса. Доступно на Unix.",
-      "en": "Set a process's scheduling policy and parameters. Availability: Unix."
+      "ru": "Задаёт политику планирования и параметры процесса.",
+      "en": "Set a process's scheduling policy and parameters."
     },
     "body": {
       "ru": "",
@@ -27874,7 +27879,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setscheduler",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -27913,8 +27918,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает параметры планирования процесса (приоритет реального времени). Доступно на Unix.",
-      "en": "Return a process's scheduling parameters (RT priority). Availability: Unix."
+      "ru": "Возвращает параметры планирования процесса (приоритет реального времени).",
+      "en": "Return a process's scheduling parameters (RT priority)."
     },
     "body": {
       "ru": "",
@@ -27925,7 +27930,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getparam",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -27961,8 +27966,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Задаёт параметры планирования процесса. Доступно на Unix.",
-      "en": "Set a process's scheduling parameters. Availability: Unix."
+      "ru": "Задаёт параметры планирования процесса.",
+      "en": "Set a process's scheduling parameters."
     },
     "body": {
       "ru": "",
@@ -27973,7 +27978,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setparam",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -28011,8 +28016,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает максимальный приоритет для заданной политики планирования. Доступно на Unix.",
-      "en": "Return the maximum priority for a scheduling policy. Availability: Unix."
+      "ru": "Возвращает максимальный приоритет для заданной политики планирования.",
+      "en": "Return the maximum priority for a scheduling policy."
     },
     "body": {
       "ru": "",
@@ -28023,7 +28028,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_get_priority_max",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -28061,8 +28067,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает минимальный приоритет для заданной политики планирования. Доступно на Unix.",
-      "en": "Return the minimum priority for a scheduling policy. Availability: Unix."
+      "ru": "Возвращает минимальный приоритет для заданной политики планирования.",
+      "en": "Return the minimum priority for a scheduling policy."
     },
     "body": {
       "ru": "",
@@ -28073,7 +28079,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_get_priority_min",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -28111,8 +28118,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает квант времени round-robin для процесса (политика SCHED_RR). Доступно на Unix.",
-      "en": "Return the round-robin time quantum for a process (SCHED_RR). Availability: Unix."
+      "ru": "Возвращает квант времени round-robin для процесса (политика SCHED_RR).",
+      "en": "Return the round-robin time quantum for a process (SCHED_RR)."
     },
     "body": {
       "ru": "",
@@ -28123,7 +28130,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_rr_get_interval",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -28159,8 +28166,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Тип-контейнер параметров планирования (поле sched_priority) для sched_setscheduler/sched_setparam. Доступно на Unix.",
-      "en": "A container type for scheduling parameters (sched_priority). Availability: Unix."
+      "ru": "Тип-контейнер параметров планирования (поле sched_priority) для sched_setscheduler/sched_setparam.",
+      "en": "A container type for scheduling parameters (sched_priority)."
     },
     "body": {
       "ru": "",
@@ -28171,7 +28178,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_param",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -28592,8 +28600,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает имя пользователя, вошедшего в управляющий терминал процесса. Доступно на Unix.",
-      "en": "Return the name of the user logged in on the controlling terminal. Availability: Unix."
+      "ru": "Возвращает имя пользователя, вошедшего в управляющий терминал процесса.",
+      "en": "Return the name of the user logged in on the controlling terminal."
     },
     "body": {
       "ru": "",
@@ -31808,8 +31816,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Тип результата os.uname(): поля sysname, nodename, release, version, machine. Доступно на Unix.",
-      "en": "The result type of os.uname(): sysname, nodename, release, version, machine. Availability: Unix."
+      "ru": "Тип результата os.uname(): поля sysname, nodename, release, version, machine. Сам тип есть везде, а функция os.uname — только на Unix.",
+      "en": "The result type of os.uname(): sysname, nodename, release, version, machine. The type exists everywhere; os.uname itself is Unix-only."
     },
     "body": {
       "ru": "",
@@ -32365,8 +32373,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает значение расширенного атрибута файла по имени. Доступно на Linux.",
-      "en": "Return the value of a file's extended attribute by name. Availability: Linux."
+      "ru": "Возвращает значение расширенного атрибута файла по имени.",
+      "en": "Return the value of a file's extended attribute by name."
     },
     "body": {
       "ru": "",
@@ -32377,7 +32385,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.getxattr",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -32416,8 +32424,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Устанавливает расширенный атрибут файла. Доступно на Linux.",
-      "en": "Set an extended attribute on a file. Availability: Linux."
+      "ru": "Устанавливает расширенный атрибут файла.",
+      "en": "Set an extended attribute on a file."
     },
     "body": {
       "ru": "",
@@ -32428,7 +32436,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.setxattr",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -32467,8 +32475,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает список имён расширенных атрибутов файла. Доступно на Linux.",
-      "en": "Return the list of a file's extended attribute names. Availability: Linux."
+      "ru": "Возвращает список имён расширенных атрибутов файла.",
+      "en": "Return the list of a file's extended attribute names."
     },
     "body": {
       "ru": "",
@@ -32479,7 +32487,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.listxattr",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -32518,8 +32526,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Удаляет расширенный атрибут файла. Доступно на Linux.",
-      "en": "Remove an extended attribute from a file. Availability: Linux."
+      "ru": "Удаляет расширенный атрибут файла.",
+      "en": "Remove an extended attribute from a file."
     },
     "body": {
       "ru": "",
@@ -32530,7 +32538,7 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.removexattr",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -33455,8 +33463,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Извлекает старший номер (major) из идентификатора устройства (напр. из st_rdev). Доступно на Unix.",
-      "en": "Extract the major device number from a raw device id. Availability: Unix."
+      "ru": "Извлекает старший номер (major) из идентификатора устройства (напр. из st_rdev).",
+      "en": "Extract the major device number from a raw device id."
     },
     "body": {
       "ru": "",
@@ -33467,7 +33475,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.major",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -33503,8 +33512,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Извлекает младший номер (minor) из идентификатора устройства. Доступно на Unix.",
-      "en": "Extract the minor device number from a raw device id. Availability: Unix."
+      "ru": "Извлекает младший номер (minor) из идентификатора устройства.",
+      "en": "Extract the minor device number from a raw device id."
     },
     "body": {
       "ru": "",
@@ -33515,7 +33524,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.minor",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {
@@ -33551,8 +33561,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Собирает идентификатор устройства из старшего и младшего номеров (обратное major/minor). Доступно на Unix.",
-      "en": "Compose a raw device id from major and minor numbers. Availability: Unix."
+      "ru": "Собирает идентификатор устройства из старшего и младшего номеров (обратное major/minor).",
+      "en": "Compose a raw device id from major and minor numbers."
     },
     "body": {
       "ru": "",
@@ -33563,7 +33573,8 @@
     "docs_url": "https://docs.python.org/3/library/os.html#os.makedev",
     "version": "",
     "platforms": [
-      "AllOS"
+      "Linux",
+      "macOS"
     ],
     "section": "Модуль os",
     "subcat": {

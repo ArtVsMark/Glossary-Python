@@ -14157,11 +14157,10 @@
         "base = Path('/home/user')",
         "p = base / 'docs' / 'report.txt'",
         "str(p) # → '/home/user/docs/report.txt'",
-        "Path('/etc') / 'nginx' / 'nginx.conf'"
+        "Path('/etc') / 'nginx' / 'nginx.conf'  # → PosixPath('/etc/nginx/nginx.conf')"
       ],
       [
         "from pathlib import Path",
-        "# → PosixPath('/etc/nginx/nginx.conf')",
         "Path('src') / Path('main.py') # → PosixPath('src/main.py')"
       ]
     ],

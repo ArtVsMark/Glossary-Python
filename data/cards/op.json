@@ -8232,7 +8232,7 @@
     "kind": "function",
     "summary": {
       "ru": "Сериализует объект Python в JSON-строку (dict/list/str/int/float/bool/None).",
-      "en": "Serialize a Python object to a JSON string."
+      "en": "Serializes a Python object to a JSON string (dict, list, str, int, float, bool, None)."
     },
     "body": {
       "ru": "В JSON ключи бывают только строковыми: dumps({1: 'a'}) даст {\"1\": \"a\"}, и после обратного разбора ключ останется строкой — тип не восстановится. Всё, что вне dict/list/tuple/str/int/float/bool/None (set, datetime, Decimal, свои классы), роняет TypeError; такие объекты переводят через параметр default. Ещё nan и inf сериализуются как NaN/Infinity — Python их прочитает, а строгий чужой парсер откажется.",
@@ -8703,7 +8703,7 @@
     "kind": "function",
     "summary": {
       "ru": "Медиана — среднее значение отсортированных данных (для чётной длины — среднее двух центральных).",
-      "en": "Median — the middle value of sorted data."
+      "en": "The median: the middle value of sorted data (for an even length, the mean of the two middle values)."
     },
     "body": {
       "ru": "Предварительно сортировать данные не нужно — median() сортирует сама, отсюда и цена O(n log n). При чётной длине она усредняет два центральных значения, поэтому результат бывает дробным и может вообще отсутствовать в исходных данных; если нужен реальный элемент выборки, берите median_low() или median_high(). Пустая последовательность даёт StatisticsError, а не ноль и не None.",
@@ -9393,7 +9393,7 @@
     "kind": "function",
     "summary": {
       "ru": "Линейная регрессия: наклон и точка пересечения (slope, intercept) методом наименьших квадратов (Python 3.10+).",
-      "en": "Linear regression: slope and intercept by least squares (3.10+)."
+      "en": "Linear regression: the slope and intercept of the least-squares line (Python 3.10+)."
     },
     "body": {
       "ru": "Подгонка несимметрична: x считается независимой переменной, y — зависимой, и от перестановки аргументов прямая получается другая. О том, насколько хорошо линия описывает данные, функция не говорит ничего — силу связи оценивает statistics.correlation. Точек нужно минимум две, и значения x не должны быть все одинаковыми, иначе StatisticsError.",

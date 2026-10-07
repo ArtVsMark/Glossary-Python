@@ -1747,7 +1747,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Результат арифметической операции слишком велик для типа (обычно float): math.exp(1000).",
-      "en": "The result of an arithmetic operation is too large to represent (typically for float)."
+      "en": "The result of an arithmetic operation is too large for its type (typically float): math.exp(1000)."
     },
     "body": {
       "ru": "Целые в Python неограниченной точности, поэтому обычная int-арифметика такого исключения не даёт — оно про float и си-шные типы под капотом. Причём переполнение самого float молчаливое: 1e308 * 10 просто вернёт inf, зато функции math и попытка перевести гигантский int во float честно бросают OverflowError. Оборачивать в try имеет смысл конкретное вычисление, а не всю программу.",
@@ -1856,7 +1856,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Условие оператора assert оказалось ложным: assert x > 0.",
-      "en": "An assert statement's condition was false."
+      "en": "The condition of an assert statement was false: assert x > 0."
     },
     "body": {
       "ru": "assert — проверка собственных допущений, а не валидация пользовательского ввода: при запуске интерпретатора с флагом -O все assert выбрасываются из байткода, и проверка бесследно исчезает. Классическая ловушка — assert (x > 0, 'сообщение'): скобки превращают аргументы в непустой кортеж, который всегда истинен, поэтому такой assert не сработает никогда. Правильно писать без скобок: assert x > 0, 'сообщение'.",
@@ -2449,7 +2449,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Операция с buffer-протоколом невозможна (напр. изменение размера при экспортированном буфере).",
-      "en": "A buffer-related operation could not be performed."
+      "en": "A buffer-protocol operation is impossible (e.g. resizing a bytearray while a buffer is exported)."
     },
     "body": {
       "ru": "На практике почти всегда один и тот же сценарий: пока на bytearray жив memoryview, менять размер нельзя — append, extend, del и resize упадут. Лечится это не обёрткой в try/except, а освобождением представления: mv.release() или удаление последней ссылки на него, после чего буфер снова можно изменять.",
@@ -2557,7 +2557,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Синтаксически некорректный код (обнаруживается при компиляции): eval('1 +').",
-      "en": "Syntactically invalid code, detected at compile time."
+      "en": "Syntactically invalid code, detected at compile time: eval('1 +')."
     },
     "body": {
       "ru": "Обернуть собственный сломанный код в try/except невозможно: файл разбирается целиком до запуска, и ошибка возникает раньше, чем выполнится первая строка. Перехват осмыслен только для кода, компилируемого на лету — eval(), exec(), compile(), импорт стороннего модуля. У объекта есть msg, filename, lineno, offset и text, по ним показывают точное место; IndentationError и TabError — его подклассы.",
@@ -2773,7 +2773,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Не удалось декодировать байты в строку: b'\\xff'.decode('utf-8').",
-      "en": "Failed to decode bytes into a string."
+      "en": "Bytes could not be decoded into a string, e.g. b'\\xff'.decode('utf-8')."
     },
     "body": {
       "ru": "Почти всегда виноваты не данные, а неверно угаданная кодировка: open() без encoding= берёт кодировку системы, поэтому файл в UTF-8 спокойно читается на Linux и падает на Windows с cp1251. Ловить это исключение обычно бессмысленно — правильнее явно передать encoding='utf-8', а если битые байты действительно ожидаемы, добавить errors='replace' или 'ignore'. У объекта есть поля encoding, object, start, end и reason: они показывают точную позицию байта, на котором декодер сдался.",
@@ -3101,7 +3101,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Системный вызов был прерван сигналом (подкласс OSError). В современном Python обычно повторяется автоматически.",
-      "en": "A system call was interrupted by a signal (a subclass of OSError)."
+      "en": "A system call was interrupted by a signal (a subclass of OSError). Modern Python usually retries such calls automatically."
     },
     "body": {
       "ru": "После PEP 475 (Python 3.5) прерванные сигналом системные вызовы Python повторяет сам, поэтому вручную писать цикл «поймал — повторил вызов» больше не нужно, и в обычном коде это исключение практически не всплывает. Не путай с Ctrl+C: там прилетит KeyboardInterrupt, а не InterruptedError. Как подкласс OSError оно спокойно ловится общим except OSError вместе с остальными ошибками ввода-вывода.",
@@ -3968,7 +3968,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Сомнительное поведение во время выполнения.",
-      "en": "Dubious runtime behavior."
+      "en": "Warns about dubious behaviour at run time."
     },
     "body": {
       "ru": "В отличие от ResourceWarning показывается по умолчанию, но лишь один раз для каждого места в коде, поэтому внутри цикла легко решить, что проблема исчезла. Самый частый случай в учебном коде — coroutine ... was never awaited: корутину вызвали, но не дождались через await или asyncio.run, и её тело просто не выполнилось. Перехватывать предупреждение бессмысленно, чинить надо причину.",
@@ -4022,7 +4022,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Сомнительный синтаксис (напр. подозрительное сравнение).",
-      "en": "Dubious syntax."
+      "en": "Warns about dubious syntax (e.g. a suspicious comparison such as x is 1)."
     },
     "body": {
       "ru": "Это предупреждение, а не ошибка: компилятор печатает его один раз и продолжает работу, так что до except дело обычно не доходит. Чаще всего студент ловит его на сравнении is с литералом (нужно ==) и на нераспознанной escape-последовательности в обычной строке — с Python 3.12 такая строка даёт именно SyntaxWarning, лечится r-префиксом. Чтобы такие места падали, а не проскакивали, запускайте с ключом -W error::SyntaxWarning.",
@@ -4130,7 +4130,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Изменение поведения в будущем, предназначенное для конечных пользователей.",
-      "en": "A coming behavior change aimed at end users."
+      "en": "Warns end users about behaviour that will change in a future version."
     },
     "body": {
       "ru": "Это предупреждение, а не ошибка: его не поднимают через raise, а выдают через warnings.warn(..., FutureWarning), после чего программа спокойно продолжает работать. Отличие от DeprecationWarning — в адресате: FutureWarning виден по умолчанию и обращён к тем, кто просто пользуется библиотекой, а DeprecationWarning по умолчанию показывается только в __main__ и адресован разработчикам. Если хотите, чтобы такое предупреждение роняло прогон (например, в тестах), запускайте с -W error::FutureWarning.",
@@ -4624,7 +4624,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Некорректные данные для статистической функции: statistics.mean([]).",
-      "en": "Inappropriate argument value (of correct type)"
+      "en": "Invalid data for a statistics function, e.g. statistics.mean([])."
     },
     "body": {
       "ru": "Почти всегда за ним стоит пустая или слишком короткая выборка: mean и median требуют хотя бы одно значение, variance и stdev — минимум два. Проверить длину данных до вызова обычно честнее, чем ловить исключение постфактум. Класс наследует ValueError, так что привычный except ValueError сработает — но заодно проглотит и другие ошибки значений.",
@@ -4680,7 +4680,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Попытка изменить поле frozen-dataclass (@dataclass(frozen=True)).",
-      "en": "Attribute not found"
+      "en": "Raised on an attempt to set or delete a field of a frozen dataclass (@dataclass(frozen=True))."
     },
     "body": {
       "ru": "Это подкласс AttributeError, поэтому широкий except AttributeError проглотит его незаметно — ловите именно FrozenInstanceError, если хотите отличить попытку записи в frozen-объект от опечатки в имени атрибута. И помните, что frozen=True запрещает только присваивание и удаление атрибутов самого объекта: список или словарь, лежащий в поле, по-прежнему меняется на месте, так что неизменяемость тут поверхностная. Чтобы получить объект с другим значением поля, делают изменённую копию через dataclasses.replace().",
@@ -4737,7 +4737,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Операция не поддержана потоком (напр. запись в файл, открытый для чтения; подкласс OSError и ValueError).",
-      "en": "Base class for I/O related errors"
+      "en": "The stream does not support the operation (e.g. writing to a file opened for reading); a subclass of OSError and ValueError."
     },
     "body": {
       "ru": "Возникает не из-за плохих данных, а из-за режима открытия: запись в файл, открытый на 'r', чтение из 'w', seek() по непозиционируемому потоку вроде stdin или пайпа. Вместо ловли исключения обычно правильнее спросить сам поток: writable(), readable(), seekable(). Учтите двойное наследование от OSError и ValueError — блок except ValueError перехватит его тоже, и это часто оказывается сюрпризом.",
@@ -4794,7 +4794,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Ошибка упаковки/распаковки struct (несоответствие формата и данных).",
-      "en": "Common base class for all non-exit exceptions"
+      "en": "A struct packing or unpacking error (the format does not match the data)."
     },
     "body": {
       "ru": "Две основные причины: при unpack длина буфера не совпадает со struct.calcsize(формат) — для чтения только начала есть unpack_from — либо значение не влезает в код формата, как 300 в 'B'. Учтите и то, что по умолчанию размеры считаются нативными, с выравниванием; предсказуемую раскладку дают префиксы '<', '>' или '='. Наследуется напрямую от Exception, а не от ValueError, поэтому привычный except ValueError его пропустит.",
@@ -4850,7 +4850,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Ошибка сжатия/распаковки zlib (напр. повреждённые данные).",
-      "en": "Common base class for all non-exit exceptions"
+      "en": "A zlib compression or decompression error (e.g. corrupted data)."
     },
     "body": {
       "ru": "Наследуется прямо от Exception, а не от ValueError или OSError, поэтому привычные except ValueError и except OSError его не поймают. Самая частая причина — скормить zlib.decompress данные не того формата: у gzip другой заголовок (нужен wbits=16+zlib.MAX_WBITS или модуль gzip), а обрезанный поток падает как неполный, а не возвращает то, что успело распаковаться. Если данные приходят кусками, распаковывайте через zlib.decompressobj.",
@@ -4905,7 +4905,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Ошибка операции копирования в модуле copy.",
-      "en": "Common base class for all non-exit exceptions"
+      "en": "Raised by the copy module when an object cannot be copied."
     },
     "body": {
       "ru": "Одной этой ловушки мало: большинство некопируемых объектов (сокеты, блокировки, открытые файлы) падают с TypeError из pickle-механизма, а copy.Error достаётся лишь тем, у кого нет ни __copy__/__deepcopy__, ни __reduce_ex__. Поэтому при копировании чужих объектов ловите copy.Error и TypeError вместе — либо вообще не копируйте то, что держит внешний ресурс.",
@@ -4961,7 +4961,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Ошибка модуля locale (напр. неизвестная локаль в setlocale).",
-      "en": "Common base class for all non-exit exceptions"
+      "en": "An error in the locale module (e.g. an unknown locale passed to setlocale)."
     },
     "body": {
       "ru": "Главная причина — имя локали, которого нет в системе: строка вроде 'ru_RU.UTF-8' работает на Linux и macOS, а на Windows нужна 'Russian_Russia.1251', так что зашитое в код имя ломает переносимость. Разумная реакция — не падать, а поймать ошибку и остаться на локали по умолчанию (пустая строка '' берёт системную). Помните, что setlocale меняет состояние всего процесса и не потокобезопасен, поэтому дёргать его посреди работы программы — плохая идея.",
@@ -5125,7 +5125,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Базовая ошибка операций shutil (напр. copytree собрала несколько ошибок).",
-      "en": "Base class for I/O related errors"
+      "en": "The base error of shutil operations (e.g. copytree collecting several errors)."
     },
     "body": {
       "ru": "Это про многофайловые операции: copytree не останавливается на первом сбое, а копирует что может и в конце бросает одну Error, у которой args[0] — список кортежей (источник, назначение, причина). Значит, разбирать надо именно этот список, а не одно сообщение, иначе потеряете часть отказов. Класс наследует OSError, поэтому общий except OSError его тоже перехватит.",
@@ -5238,7 +5238,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Операция над специальным файлом (сокет/устройство), который нельзя скопировать как обычный.",
-      "en": "Raised when trying to do a kind of operation (e.g"
+      "en": "An operation hit a special file (a socket or device) that cannot be copied like a regular one."
     },
     "body": {
       "ru": "copyfile отсеивает только именованные каналы (FIFO) — сокеты и файлы-устройства не проверяются, так что копирование чего-нибудь вроде /dev/zero просто будет читать бесконечно. Класс наследуется от OSError, а не от shutil.Error, поэтому except shutil.Error его пропустит. На Windows встретить его практически негде: FIFO там не объекты файловой системы.",
@@ -5462,7 +5462,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Barrier сломан (сброшен/таймаут), пока поток ждал на нём.",
-      "en": "Unspecified run-time error"
+      "en": "A Barrier was broken (reset or timed out) while a thread was waiting on it."
     },
     "body": {
       "ru": "Главная деталь: если хотя бы один поток вышел из wait() по таймауту, барьер ломается для всех — исключение получат и остальные участники, а не только опоздавший. Тот же эффект даёт явный abort(), которым намеренно разблокируют застрявшие потоки. Вернуть барьер в строй можно только через reset(), причём в момент, когда на нём никто не ждёт.",
@@ -5518,7 +5518,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Ошибка токенизации Python-исходника (напр. незакрытая скобка/строка).",
-      "en": "Common base class for all non-exit exceptions"
+      "en": "An error while tokenizing Python source (e.g. an unclosed bracket or string)."
     },
     "body": {
       "ru": "Это сигнал «исходник оборвался на полуслове»: не закрыта скобка или тройная кавычка, и токенизатор дошёл до конца ввода внутри конструкции. Про синтаксис вообще речи нет — tokenize не разбирает грамматику, так что бессмысленный, но корректно разбитый на токены код пройдёт без жалоб. В интерактивных инструментах эта ошибка обычно значит не «отвергнуть ввод», а «попросить ещё одну строку».",
@@ -5574,7 +5574,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Не удалось импортировать модуль из ZIP-архива (подкласс ImportError).",
-      "en": "Import can't find module, or can't find name in module"
+      "en": "A module could not be imported from a ZIP archive (a subclass of ImportError)."
     },
     "body": {
       "ru": "Наследуется от ImportError, так что обычный except ImportError его уже перехватывает — отдельная ветка нужна, только когда важно отличить проблему с самим архивом от просто отсутствующего модуля. Порождает его модуль zipimport: конструктор zipimporter(path) бросает эту ошибку, если путь не указывает на читаемый ZIP-архив. Вручную такое исключение почти никто не поднимает — оно всплывает само, когда в sys.path оказывается .zip.",
@@ -5630,7 +5630,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Ошибка setitimer/getitimer (подкласс OSError).",
-      "en": "Base class for I/O related errors"
+      "en": "An error from setitimer or getitimer (a subclass of OSError)."
     },
     "body": {
       "ru": "Появляется только вокруг signal.setitimer() и getitimer() — например, при отрицательном интервале или неизвестном типе таймера. Обе функции существуют лишь на Unix: на Windows их просто нет, и обращение даст AttributeError, а не это исключение. Наследуется от OSError, поэтому широкий except OSError его тоже перехватит.",
@@ -5694,7 +5694,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Базовый класс всех сигналов-исключений модуля decimal (подкласс ArithmeticError).",
-      "en": "Base class for arithmetic errors"
+      "en": "The base class of all decimal signal exceptions (a subclass of ArithmeticError)."
     },
     "body": {
       "ru": "Общий предок всех сигналов decimal и одновременно подкласс ArithmeticError, так что except ArithmeticError перехватит и его — удобно, но слишком широко, если рядом возможны обычные деления и переполнения. Главное, чего не видно из имени: большинство сигналов по умолчанию вообще не поднимаются. В стандартном контексте включены ловушки только для InvalidOperation, DivisionByZero и Overflow, остальные условия просто ставят флаг в контексте, и обнаружить их можно лишь по этому флагу.",
@@ -5751,7 +5751,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Недопустимая операция decimal (напр. Decimal('nan') в сравнении, деление 0/0).",
-      "en": "Base class for arithmetic errors"
+      "en": "An invalid decimal operation (e.g. an ordering comparison with Decimal('nan'), or 0/0)."
     },
     "body": {
       "ru": "Частая ловушка на разборе ввода: Decimal(\"abc\") кидает именно InvalidOperation, а не ValueError, как int(\"abc\"), поэтому привычный except ValueError вокруг чтения числа её не поймает (общий except ArithmeticError — поймает). Ловушка на этот сигнал включена в контексте по умолчанию; если снять её через getcontext().traps, операция молча вернёт NaN, и дальше этот NaN протечёт через все вычисления, не выдав себя ничем, кроме липкого флага в getcontext().flags.",
@@ -5807,7 +5807,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Деление ненулевого Decimal на ноль (аналог ZeroDivisionError для decimal).",
-      "en": "Second argument to a division or modulo operation was zero"
+      "en": "A non-zero Decimal was divided by zero (the decimal counterpart of ZeroDivisionError)."
     },
     "body": {
       "ru": "Класс наследуется и от DecimalException, и от встроенного ZeroDivisionError, поэтому привычный except ZeroDivisionError сработает и на Decimal — отдельная ветка нужна, только если вы различаете источники ошибки. Деление нуля на ноль сюда не относится: это неопределённость, и она сигнализируется как InvalidOperation. И если выключить ловушку в контексте, исключения не будет — операция вернёт бесконечность соответствующего знака.",
@@ -5863,7 +5863,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Целочисленное деление decimal не может дать корректный результат.",
-      "en": "Base class for arithmetic errors"
+      "en": "Decimal integer division cannot produce a correct result."
     },
     "body": {
       "ru": "Речь не про обычное деление, а про целочисленное: сигнал возникает, когда целая часть результата // или divmod требует больше цифр, чем precision текущего контекста. Это подкласс InvalidOperation, а его ловушка в контексте по умолчанию включена, поэтому исключение действительно вылетает; со снятой ловушкой вместо него вернётся NaN. Чинится увеличением precision, а не перехватом.",
@@ -5919,7 +5919,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Деление 0/0 в decimal (результат не определён).",
-      "en": "Second argument to a division or modulo operation was zero"
+      "en": "Decimal division 0/0 was attempted (the result is undefined)."
     },
     "body": {
       "ru": "Срабатывает именно на 0/0 — деление ненулевого числа на ноль даёт другой сигнал, DivisionByZero. Класс наследует сразу и InvalidOperation, и ZeroDivisionError, так что обычный except ZeroDivisionError его тоже поймает. Ловушка InvalidOperation включена по умолчанию; если её снять, операция молча вернёт NaN.",
@@ -5975,7 +5975,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Экспонента результата decimal превысила максимум контекста.",
-      "en": "Base class for arithmetic errors"
+      "en": "The exponent of a decimal result exceeded the context maximum."
     },
     "body": {
       "ru": "Это не встроенный OverflowError — перехватывать нужно именно decimal.Overflow (или общий ArithmeticError). Порог задаёт Emax текущего контекста, а он по умолчанию равен 999999, так что на практике сигнал видят только после сужения контекста вручную. Ловушка включена по умолчанию; если её снять, результатом станет либо Infinity, либо наибольшее конечное число — что именно, решает режим округления.",
@@ -6032,7 +6032,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Результат decimal слишком мал (субнормализован и округлён к нулю).",
-      "en": "Base class for arithmetic errors"
+      "en": "A decimal result is too small: it became subnormal and was rounded to zero."
     },
     "body": {
       "ru": "Underflow наследуется сразу от Subnormal, Inexact и Rounded, поэтому широкий except decimal.Subnormal перехватит и его — более конкретные классы ставьте раньше в цепочке except. Ловушка по умолчанию выключена: без неё результат просто становится нулём нужного знака, и такое молчаливое обнуление легко принять за ошибку в собственной формуле, хотя это переполнение вниз по Emin.",
@@ -6089,7 +6089,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Округление decimal отбросило ненулевые разряды (результат неточен).",
-      "en": "Base class for arithmetic errors"
+      "en": "Decimal rounding discarded non-zero digits (the result is inexact)."
     },
     "body": {
       "ru": "Ловушка по умолчанию выключена — сигнал просто взводит флаг в context.flags, а округлённый результат возвращается как ни в чём не бывало. Её включают, когда важно узнать, что цифры реально потерялись: например, что сумма не разделилась нацело. Не путать с Rounded: тот взводится при любом отбрасывании разрядов, даже нулевых, а Inexact — только когда отброшено что-то значащее.",
@@ -6145,7 +6145,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Результат decimal был округлён (даже если точность не потеряна).",
-      "en": "Base class for arithmetic errors"
+      "en": "A decimal result was rounded (even if no precision was lost)."
     },
     "body": {
       "ru": "Это сигнал, а не обычная ошибка: ловушка на него по умолчанию выключена, и узнать о срабатывании можно через getcontext().flags[decimal.Rounded] — флаг липкий, сам не сбрасывается, чистить его надо руками (clear_flags). Не путать с Inexact: Rounded срабатывает при любом отбрасывании цифр, даже если отброшены нули и значение не изменилось, а Inexact — только когда действительно потеряна ненулевая часть.",
@@ -6201,7 +6201,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Результат decimal субнормален (экспонента ниже Emin).",
-      "en": "Base class for arithmetic errors"
+      "en": "A decimal result is subnormal (its exponent is below Emin)."
     },
     "body": {
       "ru": "Ловушка на этот сигнал по умолчанию выключена, а при дефолтном Emin, равном -999999, он практически недостижим — вы его увидите, только если сузите контекст вручную. Сам по себе Subnormal не значит, что результат испорчен: он лишь предупреждает, что число ушло ниже Emin и представлено меньшим числом значащих цифр. Реальная потеря — это уже Underflow, то есть субнормальный и одновременно неточный результат.",
@@ -6257,7 +6257,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Экспонента результата decimal изменена, чтобы уложиться в допустимый диапазон.",
-      "en": "Base class for arithmetic errors"
+      "en": "The exponent of a decimal result was changed to fit the allowed range."
     },
     "body": {
       "ru": "Clamped — сигнал, а не обычная ошибка: в стандартном контексте ловушка для него выключена, вычисление продолжается молча, и факт срабатывания виден только по флагу в контексте. Чтобы он действительно поднялся как исключение, ловушку включают в контексте вручную. Само число при этом не портится — подгоняются экспонента и число нулей в записи, поэтому сигнал важен, когда вам принципиально точное представление (например, количество знаков после запятой), а не значение.",
@@ -6313,7 +6313,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Некорректная строка при создании Decimal из строки.",
-      "en": "Base class for arithmetic errors"
+      "en": "An invalid string was given when creating a Decimal from a string."
     },
     "body": {
       "ru": "Ловить этот класс напрямую бесполезно: на некорректной строке decimal поднимает InvalidOperation, а ConversionSyntax — лишь имя уточняющего условия, а не то, что реально прилетит в except. Пишите except decimal.InvalidOperation. А если ловушку InvalidOperation в контексте выключить, исключения не будет вовсе — вместо него вернётся Decimal NaN, и ошибку придётся замечать по флагу контекста или проверкой is_nan().",
@@ -6369,7 +6369,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Смешивание Decimal и float при включённой ловушке FloatOperation.",
-      "en": "Base class for arithmetic errors"
+      "en": "Decimal and float were mixed while the FloatOperation trap is enabled."
     },
     "body": {
       "ru": "По умолчанию ловушка выключена: смешивать Decimal и float в конструкторе и в сравнениях можно, факт смешения лишь молча взводит флаг в контексте. Включают её осознанно — чтобы отловить случайно затесавшийся float в денежных расчётах. Даже с включённой ловушкой тихими остаются сравнения на равенство и явные преобразования вроде Decimal.from_float(), а сам класс наследуется ещё и от TypeError.",
@@ -6425,7 +6425,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Недопустимая настройка контекста decimal.",
-      "en": "Base class for arithmetic errors"
+      "en": "A decimal context was configured with an invalid setting."
     },
     "body": {
       "ru": "Говорит не о плохих данных, а об испорченном контексте: неизвестный или неподдерживаемый режим округления либо precision за пределами возможностей реализации. Подкласс InvalidOperation, ловушка которого включена по умолчанию; без ловушки операция вернёт NaN. Причину искать там, где Context собирали руками, а не в самой арифметике.",

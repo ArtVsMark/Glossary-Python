@@ -341,7 +341,16 @@ def test_examples_skip_what_the_version_does_not_promise(tmp_path: Path):
     data.write_text(json.dumps({"entries": entries}), encoding="utf-8")
     assert list(gate.examples(data, (3, 12))) == ["old · пример 1"]
     assert len(gate.examples(data, (3, 13))) == 3
-    assert len(gate.examples(data)) == 3, "без версии — все блоки"
+    assert len(gate.examples(data)) == 3, "без версии — версия интерпретатора гейта"
+
+
+def test_default_version_is_the_running_interpreter(tmp_path: Path):
+    """Карточка новее интерпретатора не исполняется и без явной версии."""
+    future = f"{sys.version_info.major}.{sys.version_info.minor + 1}"
+    entries = [{"id": "future", "added": future, "examples": [["print(1)"]]}]
+    data = tmp_path / "g.json"
+    data.write_text(json.dumps({"entries": entries}), encoding="utf-8")
+    assert gate.examples(data) == {}
 
 
 def test_version_of_reads_the_interpreter():

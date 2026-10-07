@@ -438,13 +438,20 @@ def examples(data: Path, version: tuple[int, int] | None = None) -> dict[str, st
     Блок исполняется сам по себе, в своём процессе (#125): пример, который
     держится на определении из соседнего, — находка, а не случайность склейки.
     Метка — ``id`` карточки, а у карточки с несколькими блоками ещё и номер.
+
+    Версия по умолчанию — интерпретатора, который запустил гейт, а не «все
+    блоки»: карточка 3.15 на 3.14 не обещает ничего, и прогон её там — ложная
+    находка. Умолчание «все» однажды так и сработало: живая половина набора
+    краснела на первой же карточке новее планки.
     """
+    if version is None:
+        version = (sys.version_info.major, sys.version_info.minor)
     payload = json.loads(data.read_text(encoding="utf-8"))
     codes: dict[str, str] = {}
     for entry in payload["entries"]:
         blocks = entry.get("examples") or []
         for number, block in enumerate(blocks, start=1):
-            if version is not None and not applicable(entry, block, version):
+            if not applicable(entry, block, version):
                 continue
             label = f"{entry['id']} · пример {number}" if len(blocks) > 1 else entry["id"]
             codes[label] = "\n".join(block) + "\n"

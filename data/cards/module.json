@@ -7613,8 +7613,8 @@
       "en": "Returns the value of an environment variable by name. If the variable is not set it returns default (None by default). Safer than os.environ[key]."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Значение всегда строка, а умолчание возвращается как есть, без преобразования: для числа пишут int(os.getenv('PORT', '8000')), а не int(os.getenv('PORT', 8000)) — второй вариант смешивает типы. Пустая строка и отсутствующая переменная — разные случаи: заданная, но пустая переменная вернёт '', а не default. Читается из os.environ, то есть из снимка, сделанного при старте Python.",
+      "en": "The value is always a string, and the default comes back as is, unconverted: write int(os.getenv('PORT', '8000')) for a number rather than int(os.getenv('PORT', 8000)), which mixes types. An empty variable and a missing one differ: a variable set to an empty string returns '', not the default. It reads from os.environ, a snapshot taken when Python started."
     },
     "syntax": "os.getenv(key, default=None)",
     "status": "ready",
@@ -7716,8 +7716,8 @@
       "en": "The dictionary of environment variables. It supports get(), item assignment and pop(). Changes are inherited by child processes."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Это снимок окружения на момент первого импорта os, а не живое окно в него: изменения, сделанные мимо os.environ — через os.putenv или кодом на C, — здесь не видны (с 3.14 перечитать можно os.reload_environ). Ключи и значения — только строки: os.environ['N'] = 1 поднимает TypeError. На Windows ключи приводятся к верхнему регистру. Удаление ключа через del или pop снимает переменную и для дочерних процессов.",
+      "en": "It is a snapshot taken when os is first imported, not a live view: changes made behind its back — through os.putenv or C code — are not visible (since 3.14 os.reload_environ re-reads them). Keys and values must be strings: os.environ['N'] = 1 raises TypeError. On Windows keys are upper-cased. Removing a key with del or pop unsets the variable for child processes too."
     },
     "syntax": "os.environ  # os._Environ (MutableMapping)\nos.environ.get(key, default=None)\nos.environ[key] = value",
     "status": "ready",
@@ -7811,8 +7811,8 @@
       "en": "Returns the list of file and folder names in the given directory (unsorted). The current directory by default."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Порядок произвольный и зависит от файловой системы — для стабильного вывода оберните в sorted(). Специальные '.' и '..' в список не попадают. Возвращаются только имена, без пути: открывать файл нужно через os.path.join(path, name). Если нужен ещё и тип записи, os.scandir быстрее — он не делает отдельный stat на каждое имя. Путь типа bytes даёт имена типа bytes.",
+      "en": "The order is arbitrary and depends on the filesystem — wrap the call in sorted() for stable output. The special '.' and '..' entries are not included. Only bare names come back, so open a file via os.path.join(path, name). If you also need each entry's type, os.scandir is faster because it avoids a separate stat per name. A bytes path yields bytes names."
     },
     "syntax": "os.listdir(path='.') -> list[str]",
     "status": "ready",
@@ -7863,8 +7863,8 @@
       "en": "Joins the components of a path the way the OS expects. An absolute component discards everything before it."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Абсолютный компонент отбрасывает всё, что было до него: join('data', '/etc/passwd') вернёт '/etc/passwd'. Поэтому склеивать базовый каталог с именем от пользователя опасно — проверьте результат через realpath и commonpath. Пустой последний компонент добавляет разделитель: join('a', '') даёт 'a/'. Для новой работы удобнее pathlib.Path и оператор /, но поведение с абсолютным компонентом у него то же.",
+      "en": "An absolute component discards everything before it: join('data', '/etc/passwd') returns '/etc/passwd'. That makes joining a base directory with a user-supplied name dangerous — verify the result with realpath and commonpath. An empty last component adds a separator: join('a', '') gives 'a/'. For new code pathlib.Path with / is handier, but it treats an absolute component the same way."
     },
     "syntax": "os.path.join(path, *paths) -> str",
     "status": "ready",
@@ -7914,8 +7914,8 @@
       "en": "Splits a path into the pair (root, ext), where ext is the file extension including the dot. Handy for changing an extension."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Отрезает только последнее расширение: splitext('a.tar.gz') даёт ('a.tar', '.gz'), а не ('a', '.tar.gz'). Ведущая точка расширением не считается: splitext('.bashrc') вернёт ('.bashrc', ''). Точка в имени каталога тоже не мешает: splitext('dir.d/file') — расширения нет. Сравнивая расширения, приводите регистр: на Windows '.TXT' и '.txt' — один и тот же тип.",
+      "en": "It cuts only the last extension: splitext('a.tar.gz') gives ('a.tar', '.gz'), not ('a', '.tar.gz'). A leading dot is not an extension: splitext('.bashrc') returns ('.bashrc', ''). A dot in a directory name is ignored as well: splitext('dir.d/file') has no extension. When comparing extensions normalise case: on Windows '.TXT' and '.txt' are the same type."
     },
     "syntax": "os.path.splitext(path) -> (root, ext)",
     "status": "ready",
@@ -7963,8 +7963,8 @@
       "en": "Delete a file; directories need os.rmdir() (or shutil.rmtree() for a non-empty tree). Exact synonym of os.unlink()."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для каталога поднимает исключение — на Linux IsADirectoryError, на других системах PermissionError или OSError. На Windows файл, открытый другим процессом, удалить нельзя — будет PermissionError; на Unix удаление пройдёт, а место освободится, когда файл закроют. Если файла может не быть, ловите FileNotFoundError, а не проверяйте exists заранее: между проверкой и удалением файл может исчезнуть.",
+      "en": "On a directory it raises — IsADirectoryError on Linux, PermissionError or OSError elsewhere. On Windows a file held open by another process cannot be removed and you get PermissionError; on Unix the removal succeeds and the space is freed once the file is closed. If the file may be absent, catch FileNotFoundError instead of checking exists first: the file can vanish between the check and the call."
     },
     "syntax": "os.remove(path)",
     "status": "ready",
@@ -8070,8 +8070,8 @@
       "en": "A generator that walks a directory tree. For every folder it yields (dirpath, dirnames, filenames)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Чтобы не заходить в ненужные каталоги, меняйте список dirnames на месте при topdown=True: dirnames[:] = [d for d in dirnames if d != '.git']. Присваивание новому имени не сработает — walk смотрит на тот же список. По умолчанию ошибки чтения каталогов молча пропускаются: недоступная папка просто не попадёт в обход; передайте onerror, чтобы о них узнать. По символическим ссылкам на каталоги walk не идёт, пока не задан followlinks=True.",
+      "en": "To skip directories, edit dirnames in place with topdown=True: dirnames[:] = [d for d in dirnames if d != '.git']. Rebinding the name does not work — walk looks at the very same list. By default errors reading directories are silently skipped: an unreadable folder simply drops out of the walk; pass onerror to hear about them. walk does not descend into symlinked directories unless followlinks=True."
     },
     "syntax": "os.walk(top, topdown=True, onerror=None, followlinks=False)",
     "status": "ready",
@@ -22090,8 +22090,8 @@
       "en": "Return the final component of a path (the file/dir name)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для пути с завершающим разделителем возвращает пустую строку: basename('a/b/') даёт '', а не 'b', — в отличие от утилиты basename в Unix. Если путь мог прийти со слешем на конце, уберите его через rstrip('/') или нормализуйте normpath. Файловую систему функция не трогает, это чистая работа со строкой.",
+      "en": "For a path ending in a separator it returns an empty string: basename('a/b/') gives '', not 'b' — unlike the Unix basename utility. If a path may arrive with a trailing slash, strip it with rstrip('/') or normalise it with normpath. The function never touches the filesystem; it is pure string handling."
     },
     "syntax": "os.path.basename(path)",
     "status": "ready",
@@ -22135,8 +22135,8 @@
       "en": "Return the path without its final component (the parent directory)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для голого имени файла возвращает пустую строку, а не '.': dirname('file.txt') даёт ''. Передать такой результат в os.listdir или os.makedirs — частая ошибка; подставляйте dirname(p) or '.'. Путь с завершающим слешем трактуется как каталог: dirname('a/b/') вернёт 'a/b'. Файловую систему функция не трогает.",
+      "en": "For a bare file name it returns an empty string, not '.': dirname('file.txt') gives ''. Passing that result to os.listdir or os.makedirs is a common bug; use dirname(p) or '.'. A trailing slash makes the path a directory: dirname('a/b/') returns 'a/b'. The function never touches the filesystem."
     },
     "syntax": "os.path.dirname(path)",
     "status": "ready",
@@ -22180,8 +22180,8 @@
       "en": "Split a path into a (head, tail) pair — dirname and basename together."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает пару, которую можно собрать обратно: join(*split(p)) даёт эквивалентный путь. При завершающем слеше имя пустое: split('a/b/') вернёт ('a/b', ''). Делит только по последнему разделителю; чтобы разобрать путь на все компоненты, удобнее pathlib.Path(p).parts.",
+      "en": "It returns a pair that rebuilds the path: join(*split(p)) gives an equivalent path. With a trailing slash the name is empty: split('a/b/') returns ('a/b', ''). It splits at the last separator only; to break a path into all its components pathlib.Path(p).parts is handier."
     },
     "syntax": "os.path.split(path)",
     "status": "ready",
@@ -22224,8 +22224,8 @@
       "en": "Split a path into a (drive, rest) pair; the drive is empty on non-Windows."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна для кода, который обрабатывает пути Windows: на Unix диск всегда пустой. Сетевой путь UNC считается диском целиком: ntpath.splitdrive('//server/share/x') вернёт ('//server/share', '/x'). Учтите, что 'C:x' — путь относительно текущего каталога диска C, а не корня: это видно, если разобрать его через splitroot.",
+      "en": "It matters for code handling Windows paths: on Unix the drive is always empty. A UNC network path counts as a whole drive: ntpath.splitdrive('//server/share/x') returns ('//server/share', '/x'). Note that 'C:x' is relative to the current directory of drive C, not to its root — splitroot makes that visible."
     },
     "syntax": "os.path.splitdrive(path)",
     "status": "ready",
@@ -22273,8 +22273,8 @@
       "en": "Split a path into a (drive, root, tail) triple (3.12+)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Отделяет корень от диска, и это позволяет различить пути, которые splitdrive путает: ntpath.splitroot('C:a') даёт ('C:', '', 'a') — корня нет, путь относительный. На POSIX ровно два ведущих слеша сохраняются как корень, три и больше сводятся к одному: splitroot('//x') даёт ('', '//', 'x'), а splitroot('///x') — ('', '/', '//x'). Появилась в Python 3.12.",
+      "en": "It separates the root from the drive, which tells apart paths that splitdrive conflates: ntpath.splitroot('C:a') gives ('C:', '', 'a') — no root, so the path is relative. On POSIX exactly two leading slashes are kept as the root, while three or more collapse to one: splitroot('//x') gives ('', '//', 'x'), and splitroot('///x') gives ('', '/', '//x'). Added in Python 3.12."
     },
     "syntax": "os.path.splitroot(path)",
     "status": "ready",
@@ -22321,8 +22321,8 @@
       "en": "Normalize path case and separators; a no-op on POSIX."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна для сравнения путей, а не для их показа: на Windows результат в нижнем регистре и с обратными слешами, поэтому выводить его пользователю не стоит. Ссылки не разрешает и '..' не убирает — для полного сравнения сочетайте с normpath или используйте samefile. На macOS файловая система обычно тоже нечувствительна к регистру, но normcase там ничего не меняет.",
+      "en": "It is for comparing paths, not displaying them: on Windows the result is lower-cased with backslashes, so do not show it to users. It neither resolves links nor removes '..' — combine it with normpath for a full comparison, or use samefile. On macOS the filesystem is usually case-insensitive too, yet normcase changes nothing there."
     },
     "syntax": "os.path.normcase(path)",
     "status": "ready",
@@ -22367,8 +22367,8 @@
       "en": "Collapse redundant separators and up-level references (`.`/`..`)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Работает со строкой, не глядя на диск, и потому может изменить смысл пути: если 'a' — символическая ссылка, то 'a/../b' на диске и нормализованное 'b' — разные места. Для настоящего пути на диске нужна realpath. Пустая строка превращается в '.'. Два ведущих слеша на POSIX сохраняются ('//a'), три и больше сводятся к одному.",
+      "en": "It works on the string without looking at the disk, so it may change a path's meaning: if 'a' is a symlink, 'a/../b' on disk and the normalised 'b' are different places. For the real on-disk path use realpath. An empty string becomes '.'. Two leading slashes are kept on POSIX ('//a'), while three or more collapse to one."
     },
     "syntax": "os.path.normpath(path)",
     "status": "ready",
@@ -22415,8 +22415,8 @@
       "en": "Return the longest common prefix of a list of strings — character-wise, not path-aware."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Сравнивает символы, а не компоненты, поэтому для путей даёт неверный ответ: commonprefix(['/usr/lib', '/usr/local']) вернёт '/usr/l' — такого каталога нет. Для путей нужна commonpath. Сама функция полезна для любых строк, например чтобы найти общее начало списка слов.",
+      "en": "It compares characters, not components, so for paths it gives a wrong answer: commonprefix(['/usr/lib', '/usr/local']) returns '/usr/l' — no such directory. Use commonpath for paths. The function itself is fine for any strings, e.g. finding the shared start of a word list."
     },
     "syntax": "os.path.commonprefix(list)",
     "status": "ready",
@@ -22462,8 +22462,8 @@
       "en": "Return the longest common sub-path of a list — component-wise."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Подходит для проверки «путь лежит внутри каталога»: commonpath([base, target]) == base, если оба пути предварительно прогнаны через realpath. Абсолютные и относительные пути смешивать нельзя, как и передавать пустой список, — оба случая поднимают ValueError. На Windows пути на разных дисках тоже дают ValueError.",
+      "en": "It suits the \"is this path inside that directory\" check: commonpath([base, target]) == base, provided both paths went through realpath first. Mixing absolute and relative paths raises ValueError, as does an empty list. On Windows paths on different drives raise ValueError too."
     },
     "syntax": "os.path.commonpath(paths)",
     "status": "ready",
@@ -22512,8 +22512,8 @@
       "en": "Return a path to `path` relative to the `start` directory."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Считает путь по строкам и на диск не смотрит, поэтому работает и для несуществующих путей, но не учитывает символические ссылки. По умолчанию start — текущий каталог, то есть результат зависит от того, откуда запущена программа. На Windows для путей на разных дисках поднимается ValueError: относительного пути между C: и D: не бывает.",
+      "en": "It computes the path from strings without touching the disk, so it works for paths that do not exist but ignores symlinks. By default start is the current directory, so the result depends on where the program was launched from. On Windows paths on different drives raise ValueError: there is no relative path between C: and D:."
     },
     "syntax": "os.path.relpath(path, start)",
     "status": "ready",
@@ -22560,8 +22560,8 @@
       "en": "Return a normalized absolute version of a path."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Символические ссылки не разрешает — это normpath(join(os.getcwd(), path)), поэтому для пути через ссылку с '..' результат может указывать не туда. Если нужен настоящий путь на диске, используйте realpath. Результат зависит от текущего каталога в момент вызова: после os.chdir тот же относительный путь даст другой ответ.",
+      "en": "It does not resolve symlinks — it is normpath(join(os.getcwd(), path)), so for a path that goes through a link and then '..' the result can point elsewhere. For the true on-disk path use realpath. The result depends on the current directory at call time: after os.chdir the same relative path yields a different answer."
     },
     "syntax": "os.path.abspath(path)",
     "status": "ready",
@@ -22608,8 +22608,8 @@
       "en": "Return the canonical path, resolving any symlinks."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для несуществующего пути ошибки не будет: функция разрешит то, что есть, а остаток присоединит как есть. Чтобы получить FileNotFoundError, передайте strict=True (с Python 3.10). Это правильный шаг перед проверкой «файл внутри разрешённого каталога»: сначала realpath, потом commonpath, — иначе обход через символическую ссылку пройдёт незамеченным.",
+      "en": "For a path that does not exist there is no error: the function resolves what it can and appends the rest unchanged. Pass strict=True (Python 3.10+) to get FileNotFoundError instead. It is the right first step before an \"is this file inside the allowed directory\" check: realpath first, then commonpath — otherwise an escape through a symlink goes unnoticed."
     },
     "syntax": "os.path.realpath(path)",
     "status": "ready",
@@ -22658,8 +22658,8 @@
       "en": "Expand a leading `~` (or `~user`) to the user's home directory."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Раскрывает тильду только в начале пути: 'a~b' останется как есть. Если пользователя ~name нет, путь возвращается без изменений и без ошибки — проверяйте результат. На Unix домашний каталог берётся из переменной HOME, на Windows — из USERPROFILE. Интерпретатор сам тильду в путях не раскрывает: open('~/x') ищет каталог с именем '~'.",
+      "en": "It expands a tilde only at the start of a path: 'a~b' is left alone. If ~name names no existing user, the path comes back unchanged and without an error — check the result. On Unix the home directory comes from HOME, on Windows from USERPROFILE. The interpreter itself never expands tildes: open('~/x') looks for a directory literally named '~'."
     },
     "syntax": "os.path.expanduser(path)",
     "status": "ready",
@@ -22706,8 +22706,8 @@
       "en": "Expand environment variables of the form `$VAR`/`${VAR}` in a path."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Неизвестные переменные остаются в строке как есть, без ошибки: '$NOPE/x' не изменится, и опечатка в имени незаметно даст путь со знаком доллара. Не применяйте её к строкам, пришедшим от пользователя или из сети: так можно вытащить значения переменных окружения, например секретов. Для шаблонов надёжнее string.Template.substitute — он поднимает KeyError на отсутствующем имени.",
+      "en": "Unknown variables stay in the string unchanged, without an error: '$NOPE/x' is left as is, so a typo silently yields a path with a dollar sign. Do not apply it to strings from users or the network: it can leak environment values such as secrets. For templates string.Template.substitute is more reliable — it raises KeyError on a missing name."
     },
     "syntax": "os.path.expandvars(path)",
     "status": "ready",
@@ -22754,8 +22754,8 @@
       "en": "Check whether a path is absolute."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Правила зависят от системы. На Windows с Python 3.13 путь с одним ведущим слешем, '/foo', абсолютным не считается: он отсчитывается от корня текущего диска. 'C:foo' тоже не абсолютный — это путь относительно текущего каталога диска C. На Unix абсолютен любой путь со слешем в начале.",
+      "en": "The rules depend on the platform. On Windows since Python 3.13 a path with one leading slash, '/foo', is not absolute: it is relative to the root of the current drive. 'C:foo' is not absolute either — it is relative to the current directory of drive C. On Unix any path starting with a slash is absolute."
     },
     "syntax": "os.path.isabs(path)",
     "status": "ready",
@@ -22802,8 +22802,8 @@
       "en": "Check whether a path exists (following symlinks)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ответ устаревает сразу после вызова: файл может появиться или исчезнуть до следующей строки, поэтому надёжнее открыть файл и поймать FileNotFoundError. False приходит и тогда, когда пути нет, и когда нет прав заглянуть в каталог, — эти случаи не различить. По символической ссылке функция проходит: битая ссылка даёт False, хотя сама ссылка на диске есть. Принимает и номер открытого дескриптора.",
+      "en": "The answer is stale as soon as you get it: the file can appear or vanish before the next line, so it is safer to open it and catch FileNotFoundError. False comes back both when the path is missing and when you lack permission to look into its directory — the cases are indistinguishable. It follows symlinks: a broken link reports False although the link itself is on disk. It also accepts an open file descriptor number."
     },
     "syntax": "os.path.exists(path)",
     "status": "ready",
@@ -22847,8 +22847,8 @@
       "en": "Like exists, but does not follow symlinks (True even for a broken link)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна там, где важна сама ссылка, а не её цель: перед созданием символической ссылки или при уборке битых ссылок. exists и lexists вместе позволяют найти битую ссылку: lexists(p) and not exists(p). На системах без символических ссылок ведёт себя как exists.",
+      "en": "Use it when the link itself matters, not its target: before creating a symlink or while cleaning up broken ones. Together exists and lexists detect a broken link: lexists(p) and not exists(p). On systems without symlinks it behaves like exists."
     },
     "syntax": "os.path.lexists(path)",
     "status": "ready",
@@ -22894,8 +22894,8 @@
       "en": "Check whether a path exists and is a directory."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "False объединяет два разных случая: пути нет вовсе или путь есть, но это файл. Если разница важна, спрашивайте exists отдельно. Символическая ссылка на каталог считается каталогом. Проверка перед созданием — гонка: вместо if not isdir(p): mkdir(p) пишите os.makedirs(p, exist_ok=True).",
+      "en": "A False answer merges two cases: the path is missing, or it exists but is a file. Ask exists separately when the difference matters. A symlink to a directory counts as a directory. Checking before creating is a race: instead of if not isdir(p): mkdir(p) write os.makedirs(p, exist_ok=True)."
     },
     "syntax": "os.path.isdir(path)",
     "status": "ready",
@@ -22939,8 +22939,8 @@
       "en": "Check whether a path exists and is a regular file."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "«Обычный файл» понимается буквально: сокеты, именованные каналы и файлы устройств существуют, но isfile вернёт для них False. Ссылка на файл считается файлом. not isfile(p) ещё не значит «каталог» — путь может просто отсутствовать. Для чтения надёжнее сразу открыть файл и обработать исключение, чем проверять заранее.",
+      "en": "\"Regular file\" is meant literally: sockets, named pipes and device files exist, yet isfile returns False for them. A link to a file counts as a file. not isfile(p) does not mean \"directory\" — the path may simply be missing. For reading it is safer to open the file and handle the exception than to check first."
     },
     "syntax": "os.path.isfile(path)",
     "status": "ready",
@@ -22984,8 +22984,8 @@
       "en": "Check whether a path is a symbolic link (False if it does not exist)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Смотрит на сам путь, не проходя по ссылке: битая ссылка даёт True. На Windows символические ссылки требуют прав или режима разработчика, а junction-точки islink не распознаёт — для них есть isjunction. Если ссылок в системе нет, функция всегда возвращает False.",
+      "en": "It looks at the path itself without following it: a broken link gives True. On Windows symlinks need privileges or developer mode, and islink does not recognise junction points — use isjunction for those. Where the system has no symlinks the function always returns False."
     },
     "syntax": "os.path.islink(path)",
     "status": "ready",
@@ -23032,8 +23032,8 @@
       "en": "Check whether a path is a filesystem mount point."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "На POSIX проверка строится на сравнении устройства и inode с родительским каталогом, поэтому привязанное монтирование (bind mount) в пределах одной файловой системы может остаться незамеченным, а подтом btrfs на Linux, наоборот, всегда считается точкой монтирования. На Windows корень диска и сетевая папка UNC — всегда точки монтирования.",
+      "en": "On POSIX the check compares the device and inode with the parent directory, so a bind mount within the same filesystem may go unnoticed, while a btrfs subvolume on Linux always counts as a mount point. On Windows a drive root and a UNC share are always mount points."
     },
     "syntax": "os.path.ismount(path)",
     "status": "ready",
@@ -23080,8 +23080,8 @@
       "en": "Check whether a path is a Windows junction (always False on other OSes; 3.12+)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Junction — механизм NTFS, похожий на символическую ссылку на каталог, но не требующий особых прав; так устроены, например, некоторые системные папки. islink его не распознаёт, поэтому код, обходящий дерево на Windows, должен проверять обе функции, иначе рискует уйти в цикл. На других системах всегда False, ошибки не будет.",
+      "en": "A junction is an NTFS mechanism similar to a symlink to a directory but needing no special privileges; some system folders are built this way. islink does not recognise it, so code walking a tree on Windows should check both functions or risk an endless loop. On other systems it always returns False, never an error."
     },
     "syntax": "os.path.isjunction(path)",
     "status": "ready",
@@ -23127,8 +23127,8 @@
       "en": "Check whether a path is on a Dev Drive (a Windows feature; False elsewhere; 3.12+)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Dev Drive — том Windows, оптимизированный под исходники, сборку и кэши пакетов. Функция нужна инструментам, которые решают, где держать кэш или временные файлы. Появилась в Python 3.12 только для Windows, а с 3.13 доступна везде и на системах без Dev Drive всегда возвращает False. Для пути без распознаваемого диска может поднять ошибку.",
+      "en": "A Dev Drive is a Windows volume tuned for source code, builds and package caches. The function serves tools deciding where to keep caches or temporary files. It arrived in Python 3.12 for Windows only; since 3.13 it is available everywhere and always returns False on systems without Dev Drives. It may raise for a path with no recognisable drive."
     },
     "syntax": "os.path.isdevdrive(path)",
     "status": "ready",
@@ -23174,8 +23174,8 @@
       "en": "Return the size of a file in bytes."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для каталога возвращает размер служебной записи каталога (на Linux обычно 4096), а не суммарный объём содержимого — его нужно считать обходом. Для отсутствующего пути поднимает FileNotFoundError, а не возвращает 0. Размер разреженного файла может превышать место, которое он реально занимает на диске.",
+      "en": "For a directory it returns the size of the directory entry itself (usually 4096 on Linux), not the total of its contents — that needs a walk. A missing path raises FileNotFoundError rather than returning 0. A sparse file's size can exceed the space it actually occupies on disk."
     },
     "syntax": "os.path.getsize(path)",
     "status": "ready",
@@ -23226,8 +23226,8 @@
       "en": "Return the last-modification time of a file (seconds since the epoch)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Точность зависит от файловой системы: у FAT она две секунды, поэтому сравнение «файл изменился» по равенству времени ненадёжно, и сборочные инструменты сравнивают ещё и размер. Время отсчитывается в секундах с эпохи UTC; для читаемого вида передайте его в datetime.fromtimestamp. Если нужна наносекундная точность, используйте os.stat(path).st_mtime_ns.",
+      "en": "Precision depends on the filesystem: FAT has two-second resolution, so equality of times is an unreliable \"file changed\" test, and build tools compare the size as well. The value is seconds since the UTC epoch; pass it to datetime.fromtimestamp for a readable form. For nanosecond precision use os.stat(path).st_mtime_ns."
     },
     "syntax": "os.path.getmtime(path)",
     "status": "ready",
@@ -23277,8 +23277,8 @@
       "en": "Return the last-access time of a file (seconds since the epoch)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Значению часто нельзя верить: Linux обычно монтирует диски с параметром relatime или noatime, и время доступа обновляется редко или вовсе нет. Поэтому строить на нём логику вроде «удалить давно не открывавшиеся файлы» рискованно. Само чтение файла, если atime всё же обновляется, сдвигает это время.",
+      "en": "The value is often untrustworthy: Linux usually mounts disks with relatime or noatime, so access time is updated rarely or not at all. Basing logic such as \"delete files not opened for a long time\" on it is therefore risky. Reading the file itself, where atime is updated, moves the value."
     },
     "syntax": "os.path.getatime(path)",
     "status": "ready",
@@ -23328,8 +23328,8 @@
       "en": "Return the metadata-change time (POSIX) or creation time (Windows) of a file."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Смысл зависит от системы: на Unix это время последнего изменения метаданных — прав, владельца, числа ссылок, — а не время создания; на Windows — время создания. Поэтому «дата создания файла» через getctime переносимо не получить. Где система хранит время создания, его даёт os.stat(path).st_birthtime.",
+      "en": "Its meaning depends on the system: on Unix it is the time of the last metadata change — permissions, owner, link count — not creation; on Windows it is the creation time. So getctime cannot portably give a \"file creation date\". Where the system records creation time, os.stat(path).st_birthtime provides it."
     },
     "syntax": "os.path.getctime(path)",
     "status": "ready",
@@ -23377,8 +23377,8 @@
       "en": "Check whether two paths refer to the same file (by device and inode)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Распознаёт один файл под разными именами: жёсткие ссылки, символические ссылки, пути с '..' и разным регистром. Это надёжнее сравнения строк путей. Оба пути должны существовать, иначе поднимется FileNotFoundError. Полезна, например, чтобы не скопировать файл сам в себя.",
+      "en": "It recognises one file under different names: hard links, symlinks, paths with '..' and different letter case. That is more reliable than comparing path strings. Both paths must exist, or FileNotFoundError is raised. It helps, for instance, to avoid copying a file onto itself."
     },
     "syntax": "os.path.samefile(p1, p2)",
     "status": "ready",
@@ -23428,8 +23428,8 @@
       "en": "Check whether two os.stat_result objects describe the same file."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Сравнивает уже полученные результаты os.stat по номеру устройства и inode. Нужна, когда stat уже вызван и повторно обращаться к диску не хочется, например при обходе дерева с проверкой на зацикливание. Результат stat — снимок: если файл с тех пор заменили, сравнение этого не покажет.",
+      "en": "It compares existing os.stat results by device number and inode. Use it when stat has already been called and you want to avoid hitting the disk again, e.g. walking a tree while guarding against loops. A stat result is a snapshot: if the file was replaced since, the comparison will not show it."
     },
     "syntax": "os.path.samestat(s1, s2)",
     "status": "ready",
@@ -23479,8 +23479,8 @@
       "en": "Check whether two file descriptors refer to the same file."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Работает с номерами дескрипторов, а не с путями, поэтому видит именно открытые объекты, даже если файл с тех пор переименовали или удалили. Полезна, чтобы понять, что два дескриптора, полученные разными путями, ведут к одному файлу и запись через один отразится в другом.",
+      "en": "It works on descriptor numbers, not paths, so it sees the open objects themselves even if the file was renamed or deleted since. It helps to learn that two descriptors obtained through different paths lead to one file, so writing through one shows up in the other."
     },
     "syntax": "os.path.sameopenfile(fd1, fd2)",
     "status": "ready",
@@ -23670,8 +23670,8 @@
       "en": "Return an environment variable's value, or default if unset."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Читает os.environ, то есть снимок окружения на старте Python, — то, что поменяли через os.putenv или код на C, getenv не увидит. Если переменная обязательна, честнее os.environ['KEY'] с KeyError, чем getenv и последующий None где-то дальше по коду. Булевы флаги приходят строками: getenv('DEBUG') == 'false' — тоже непустая, то есть истинная, строка.",
+      "en": "It reads os.environ, a snapshot taken at Python startup — changes made via os.putenv or C code are invisible to getenv. If a variable is mandatory, os.environ['KEY'] with its KeyError is more honest than getenv followed by a None far down the code. Boolean flags arrive as strings: 'false' is a non-empty, i.e. truthy, string."
     },
     "syntax": "os.getenv(key, default=None)",
     "status": "ready",
@@ -23719,8 +23719,8 @@
       "en": "Set an environment variable at the OS level (for child processes)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Не обновляет os.environ: после putenv('X', '1') выражение 'X' in os.environ ложно. Поэтому почти всегда правильнее писать os.environ['X'] = '1' — это вызовет putenv само и сохранит согласованность. Изменение видят дочерние процессы, запущенные после вызова. На macOS и FreeBSD многократная установка переменных может приводить к утечкам памяти.",
+      "en": "It does not update os.environ: after putenv('X', '1') the expression 'X' in os.environ is false. So os.environ['X'] = '1' is almost always better — it calls putenv itself and keeps things consistent. Child processes started after the call see the change. On macOS and FreeBSD repeatedly setting variables may leak memory."
     },
     "syntax": "os.putenv(key, value)",
     "status": "ready",
@@ -23766,8 +23766,8 @@
       "en": "Unset an environment variable at the OS level."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Как и putenv, не трогает os.environ: удалённая переменная продолжит там значиться. Правильнее os.environ.pop('X', None) — это снимет переменную и для ОС, и для словаря, а второй аргумент избавит от KeyError, если её нет. Чтобы дочернему процессу не передать переменную, проще дать ему своё окружение через параметр env в subprocess.",
+      "en": "Like putenv, it leaves os.environ untouched: the removed variable will still be listed there. os.environ.pop('X', None) is better — it unsets the variable for the OS and the mapping alike, and the default avoids KeyError when it is absent. To keep a variable from a child process, it is simpler to give that process its own environment via env in subprocess."
     },
     "syntax": "os.unsetenv(key)",
     "status": "ready",
@@ -23814,8 +23814,8 @@
       "en": "Return the list of directories searched for executables (from PATH)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Читает PATH из os.environ в момент вызова или из переданного словаря env — так можно узнать, где будет искать программы дочерний процесс с другим окружением. Пустые элементы PATH и текущий каталог не отфильтровываются. Чтобы найти конкретную программу, вызывать её поиск вручную не нужно: shutil.which делает это с учётом расширений Windows.",
+      "en": "It reads PATH from os.environ at call time, or from an env mapping you pass — useful to see where a child with a different environment will look for programs. Empty PATH entries and the current directory are not filtered out. To find a specific program you need not search by hand: shutil.which does it, including Windows extensions."
     },
     "syntax": "os.get_exec_path()",
     "status": "ready",
@@ -24575,8 +24575,8 @@
       "en": "Return the current working directory as a str."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Текущий каталог — свойство всего процесса, а не потока и не модуля, поэтому относительные пути в программе зависят от того, откуда её запустили. Для файлов рядом со скриптом надёжнее pathlib.Path(__file__).parent. Если текущий каталог удалили, getcwd поднимет FileNotFoundError.",
+      "en": "The current directory belongs to the whole process, not a thread or module, so relative paths in a program depend on where it was launched from. For files next to the script pathlib.Path(__file__).parent is more reliable. If the current directory has been deleted, getcwd raises FileNotFoundError."
     },
     "syntax": "os.getcwd() -> str",
     "status": "ready",
@@ -24619,8 +24619,8 @@
       "en": "Return the current working directory as bytes."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна, когда имя каталога не декодируется в текущей кодировке файловой системы: байты вернутся как есть. В обычном коде достаточно getcwd — на Unix он не теряет такие имена, а сохраняет недекодируемые байты суррогатами, и os.fsencode вернёт исходные байты. С Python 3.8 на Windows используется UTF-8.",
+      "en": "Use it when the directory name does not decode in the current filesystem encoding: you get the raw bytes. In ordinary code getcwd is enough — on Unix it keeps such names by mapping undecodable bytes to surrogates, and os.fsencode restores the original bytes. Since Python 3.8 Windows uses UTF-8 here."
     },
     "syntax": "os.getcwdb()",
     "status": "ready",
@@ -29964,8 +29964,8 @@
       "en": "Change the process's current working directory."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Меняет каталог для всего процесса сразу — в том числе для всех потоков и библиотек, — поэтому в многопоточной программе и в библиотечном коде её лучше избегать. Если смена нужна временно, используйте contextlib.chdir (Python 3.11+): он вернёт прежний каталог даже при исключении. Вместо смены каталога часто достаточно передавать абсолютные пути.",
+      "en": "It changes the directory for the whole process — every thread and library included — so avoid it in multithreaded programs and library code. When the change is temporary use contextlib.chdir (Python 3.11+): it restores the previous directory even on an exception. Passing absolute paths often removes the need to change directory at all."
     },
     "syntax": "os.chdir(path) -> None",
     "status": "ready",
@@ -30015,8 +30015,8 @@
       "en": "Create a single directory at the given path."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Создаёт ровно один уровень: если родителя нет, будет FileNotFoundError, — для цепочки каталогов нужна os.makedirs. Уже существующий каталог даёт FileExistsError. Параметр mode проходит через umask процесса: mkdir(p, 0o777) при типичном umask 022 создаст каталог с правами 0o755.",
+      "en": "It creates exactly one level: a missing parent raises FileNotFoundError — a chain of directories needs os.makedirs. An existing directory raises FileExistsError. The mode passes through the process umask: mkdir(p, 0o777) with the usual umask 022 creates a directory with 0o755."
     },
     "syntax": "os.mkdir(...)",
     "status": "ready",
@@ -30068,8 +30068,8 @@
       "en": "Recursively create a directory and any missing parents."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "exist_ok=True гасит ошибку, только если на месте уже каталог: обычный файл с тем же именем всё равно даст FileExistsError. Это безопасная замена гонке if not exists: makedirs. Параметр mode применяется только к последнему каталогу, промежуточные создаются с правами по umask. Документация предупреждает: компоненты '..' в создаваемой части пути сбивают функцию с толку.",
+      "en": "exist_ok=True suppresses the error only if a directory is already there: a regular file with the same name still raises FileExistsError. It is a safe replacement for the if not exists: makedirs race. The mode applies only to the leaf; intermediate directories get permissions from the umask. The documentation warns that '..' components in the part being created confuse the function."
     },
     "syntax": "os.makedirs(name, mode=0o777, exist_ok=False)",
     "status": "ready",
@@ -30121,8 +30121,8 @@
       "en": "Remove an empty directory."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Удаляет только пустой каталог: если внутри что-то есть, будет OSError. Для дерева целиком нужна shutil.rmtree — и с ней стоит быть осторожнее, чем с rmdir, потому что она удаляет без вопросов. На Windows каталог, открытый как текущий в другом процессе, удалить не получится.",
+      "en": "It removes only an empty directory: anything inside gives OSError. A whole tree needs shutil.rmtree — and that deserves more caution than rmdir, since it deletes without asking. On Windows a directory that is another process's current directory cannot be removed."
     },
     "syntax": "os.rmdir(path)",
     "status": "ready",
@@ -30173,8 +30173,8 @@
       "en": "Remove a directory and any parents that become empty."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "После удаления конечного каталога поднимается вверх по пути и удаляет опустевших родителей, пока не встретит непустой — ошибку на нём молча игнорирует. Поэтому removedirs('a/b/c') может удалить и 'a', если он опустел. Исключение поднимается, только если не удалось удалить сам конечный каталог.",
+      "en": "After removing the leaf it walks up the path removing parents that became empty, until it meets a non-empty one — and silently ignores the error there. So removedirs('a/b/c') may delete 'a' too if it ends up empty. An exception is raised only if the leaf itself could not be removed."
     },
     "syntax": "os.removedirs(...)",
     "status": "ready",
@@ -30224,8 +30224,8 @@
       "en": "Rename or move a file/directory."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Поведение при существующей цели зависит от системы: на Windows всегда FileExistsError, на Unix файл молча заменяется. Для переносимой замены есть os.replace. Между разными файловыми системами перенос может не пройти — для этого shutil.move. На POSIX удачное переименование атомарно, поэтому запись «во временный файл, потом rename» — стандартный способ обновить файл без полуготового состояния.",
+      "en": "Behaviour with an existing destination is platform-dependent: Windows always raises FileExistsError, Unix silently replaces a file. For portable replacement there is os.replace. A move across filesystems may fail — use shutil.move for that. On POSIX a successful rename is atomic, so \"write to a temp file, then rename\" is the standard way to update a file without a half-written state."
     },
     "syntax": "os.rename(src, dst)",
     "status": "ready",
@@ -30282,8 +30282,8 @@
       "en": "Like rename, but creates missing target dirs and prunes empty source dirs."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "После переноса удаляет опустевшие каталоги исходного пути через removedirs — так можно случайно убрать каталоги, которые должны были остаться пустыми. Если не хватит прав на удаление, новые каталоги останутся созданными, а операция завершится ошибкой. Для простого переноса с созданием каталогов назначения понятнее makedirs и replace по отдельности.",
+      "en": "After moving it prunes the emptied source directories with removedirs — which may remove directories that were meant to stay, empty. If permissions do not allow the removal, the new directories remain and the call fails. For a plain move that creates destination directories, separate makedirs and replace calls read more clearly."
     },
     "syntax": "os.renames(...)",
     "status": "ready",
@@ -30496,8 +30496,8 @@
       "en": "Remove a file (a synonym of os.remove)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Делает то же, что os.remove: имя unlink пришло из Unix, где удаление файла — это удаление ссылки на него; данные исчезают, когда на файл не остаётся ни ссылок, ни открытых дескрипторов. В pathlib то же действие — Path.unlink(missing_ok=True), который не поднимает ошибку для отсутствующего файла.",
+      "en": "It does the same as os.remove: the name unlink comes from Unix, where deleting a file means removing a link to it; the data disappears once no links and no open descriptors remain. In pathlib the same action is Path.unlink(missing_ok=True), which does not raise for a missing file."
     },
     "syntax": "os.unlink(...)",
     "status": "ready",
@@ -30757,8 +30757,8 @@
       "en": "Change the process's root directory (needs privilege). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Требует прав суперпользователя и не является механизмом безопасности: процесс с правами root может выбраться из chroot, а текущий каталог при смене корня не меняется — его нужно сменить отдельно. Для изоляции приложений используют контейнеры и пространства имён. В учебных задачах chroot почти не встречается.",
+      "en": "It needs superuser privileges and is not a security mechanism: a process running as root can escape a chroot, and the current directory is not changed along with the root — change it separately. Applications are isolated with containers and namespaces. chroot rarely appears in teaching tasks."
     },
     "syntax": "os.chroot(...)",
     "status": "ready",
@@ -31061,8 +31061,8 @@
       "en": "Change the working directory to the one given by an open fd. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Дескриптор должен указывать на открытый каталог, а не на файл. Полезна, чтобы вернуться в каталог, даже если его переименовали или путь к нему стал недоступен: дескриптор держит сам каталог, а не путь. С Python 3.3 то же делает os.chdir(fd).",
+      "en": "The descriptor must refer to an open directory, not a file. It helps to return to a directory even if it was renamed or its path became unreachable: the descriptor holds the directory itself, not a path. Since Python 3.3 os.chdir(fd) does the same."
     },
     "syntax": "os.fchdir(...)",
     "status": "ready",
@@ -31310,8 +31310,8 @@
       "en": "Like os.walk, but also yields a directory file descriptor. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Выдаёт дескриптор каталога, и операции относительно него (stat(name, dir_fd=fd)) защищают от подмены каталога символической ссылкой посреди обхода. Дескриптор действителен только до следующего шага — чтобы сохранить его, сделайте os.dup. В отличие от других функций, по умолчанию не следует по ссылкам (follow_symlinks=False).",
+      "en": "It yields a directory descriptor, and operations relative to it (stat(name, dir_fd=fd)) guard against a directory being swapped for a symlink mid-walk. The descriptor is valid only until the next step — call os.dup to keep it. Unlike other functions it does not follow symlinks by default (follow_symlinks=False)."
     },
     "syntax": "os.fwalk(...)",
     "status": "ready",
@@ -31859,8 +31859,8 @@
       "en": "Like getenv, but the key and value are bytes; Unix only. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна, когда значение переменной не декодируется в кодировке файловой системы, например путь в чужой кодировке. Работает поверх os.environb и доступна только там, где os.supports_bytes_environ истинно — на Windows её нет. В обычном коде достаточно os.getenv: на Unix недекодируемые байты сохраняются суррогатами.",
+      "en": "Use it when a variable's value does not decode in the filesystem encoding, e.g. a path in a foreign encoding. It works on os.environb and exists only where os.supports_bytes_environ is true — not on Windows. In ordinary code os.getenv is enough: on Unix undecodable bytes survive as surrogates."
     },
     "syntax": "os.getenvb(...)",
     "status": "ready",
@@ -34763,8 +34763,8 @@
       "en": "Checks whether a pathname is reserved on the current system: on Windows these are NUL, CON, COM1, names with colons, wildcards, or a trailing dot/space. Windows only, Python 3.13+."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна при создании файлов из пользовательских имён на Windows: файл с именем CON или NUL создать нельзя, а запись в такой путь уходит в устройство. Проверяется последний компонент и каждый каталог пути. Сохранить такое имя можно, добавив префикс или изменив его, — проверять стоит до создания файла, а не после ошибки.",
+      "en": "It matters when creating files from user-supplied names on Windows: a file named CON or NUL cannot be created, and writing to such a path goes to a device. Every component of the path is checked. Such a name can be saved with a prefix or an alteration — check before creating the file, not after an error."
     },
     "syntax": "os.path.isreserved(path)",
     "status": "ready",
@@ -34878,8 +34878,8 @@
       "en": "Reloads the process environment into os.environ/os.environb — e.g. after os.putenv() or changes made outside Python. Python 3.14+, not thread-safe."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нужна, когда окружение процесса меняли мимо os.environ — через os.putenv, расширение на C или встроенный интерпретатор. Не потокобезопасна: если другой поток в этот момент читает os.environ или вызывает getenv, он может получить пустой результат. Появилась в Python 3.14; на более ранних версиях окружение после старта синхронизировать нечем.",
+      "en": "Use it when the process environment was changed behind os.environ's back — via os.putenv, a C extension or an embedding application. It is not thread-safe: another thread reading os.environ or calling getenv at that moment may get an empty result. Added in Python 3.14; earlier versions offer no way to resync the environment after startup."
     },
     "syntax": "os.reload_environ()",
     "status": "ready",

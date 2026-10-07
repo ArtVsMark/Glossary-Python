@@ -145,6 +145,8 @@ a{color:inherit}
 .chip .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .chip .cnt{font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
 .chip.active .cnt{color:var(--accent-ink)}
+/* Ноль — «нажмёшь, и ничего не останется»: кнопка остаётся на месте, но тише. */
+.chip.zero{opacity:.45}
 
 /* ---------- раскладка ---------- */
 .layout{max-width:1520px;margin:0 auto;padding:22px 26px 80px;display:flex;gap:16px;align-items:flex-start}
@@ -494,8 +496,6 @@ const BY_LOWER = new Map(DATA.map(d => [d.id.toLowerCase(), d]));
 const resolve = ref => BY_ID.get(ref) || BY_LOWER.get(String(ref).toLowerCase());
 const SECTIONS = [];
 DATA.forEach(d => { if(!SECTIONS.includes(d.section)) SECTIONS.push(d.section); });
-const SECTION_COUNT = Object.create(null);
-DATA.forEach(d => { SECTION_COUNT[d.section] = (SECTION_COUNT[d.section]||0) + 1; });
 const FAM_COUNT = Object.create(null);
 DATA.forEach(d => { FAM_COUNT[famOf(d)] = (FAM_COUNT[famOf(d)]||0) + 1; });
 const KIND_COUNT = Object.create(null);
@@ -571,13 +571,24 @@ function inPython(d, v, mode){
   return v ? d[mode] === v : Boolean(d[mode]);
 }
 
-function matches(d){
-  if((state.py || state.pyMode) && !inPython(d, state.py, state.pyMode)) return false;
-  if(state.kind && d.kind !== state.kind) return false;
-  if(state.fam && famOf(d) !== state.fam) return false;
-  if(state.section && d.section !== state.section) return false;
+/* Счётчик на кнопке отвечает «сколько останется, если нажать»: он считается
+   по всем остальным фильтрам и поиску, но без фильтра своего ряда. Иначе в
+   ряду стояли бы числа по всему глоссарию, а на экране — совсем другие. */
+function matchesExcept(d, skip){
+  if(!skip.has("py") && (state.py || state.pyMode) && !inPython(d, state.py, state.pyMode)) return false;
+  if(!skip.has("kind") && state.kind && d.kind !== state.kind) return false;
+  if(!skip.has("fam") && state.fam && famOf(d) !== state.fam) return false;
+  if(!skip.has("section") && state.section && d.section !== state.section) return false;
   if(state.q && !haystack(d).includes(state.q)) return false;
   return true;
+}
+const NO_SKIP = new Set();
+function matches(d){ return matchesExcept(d, NO_SKIP); }
+function pool(...skip){ const set = new Set(skip); return DATA.filter(d => matchesExcept(d, set)); }
+function tally(list, key){
+  const out = Object.create(null);
+  list.forEach(d => { const k = key(d); out[k] = (out[k] || 0) + 1; });
+  return out;
 }
 
 const collator = new Intl.Collator("ru", {sensitivity:"base", numeric:true});
@@ -684,7 +695,7 @@ function drawChunk(){
   let prev = drawn > 0 ? visible[drawn-1].section : null;
   for(const d of slice){
     if(state.sort === "sec" && d.section !== prev){
-      html += `<div class="sec-head"><h2>${esc(sectionBadge(d.section))}</h2><span>${SECTION_COUNT[d.section]}</span></div>`;
+      html += `<div class="sec-head"><h2>${esc(sectionBadge(d.section))}</h2><span>${VISIBLE_IN[d.section]}</span></div>`;
       prev = d.section;
     }
     html += cardHtml(d);
@@ -693,14 +704,17 @@ function drawChunk(){
   drawn += slice.length;
 }
 
+let VISIBLE_IN = Object.create(null);
 function render(){
   visible = sorted(DATA.filter(matches));
+  VISIBLE_IN = tally(visible, d => d.section);
   grid.innerHTML = "";
   drawn = 0;
   drawChunk();
   empty.classList.toggle("show", visible.length === 0);
   counter.innerHTML = `${t("shown")}: <b>${visible.length}</b> ${t("of")} ${DATA.length}`;
   updateRail();
+  buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); buildPyFilters();
 }
 
 new IntersectionObserver(entries => {
@@ -711,24 +725,28 @@ new IntersectionObserver(entries => {
 function chip(label, active, count, color){
   const dot = color ? `<span class="dot" style="background:${color}"></span>` : "";
   const cnt = count === undefined ? "" : `<span class="cnt">${count}</span>`;
-  return `<button class="chip${active ? " active" : ""}" type="button">${dot}${label}${cnt}</button>`;
+  const zero = count === 0 && !active ? " zero" : "";
+  return `<button class="chip${active ? " active" : ""}${zero}" type="button">${dot}${label}${cnt}</button>`;
 }
 
 function buildKindFilters(){
   const box = $("#kindFilters");
+  // Порядок — по всему глоссарию, чтобы кнопки не прыгали при каждом фильтре.
   const kinds = Object.keys(KIND_COUNT).sort((a,b) => KIND_COUNT[b] - KIND_COUNT[a]);
+  const base = pool("kind"), counts = tally(base, d => d.kind);
   box.innerHTML = `<span class="fil-label">${t("kind")}</span>` +
-    chip(t("all"), state.kind === "", DATA.length) +
-    kinds.map(k => chip(t(k) || k, state.kind === k, KIND_COUNT[k])).join("");
+    chip(t("all"), state.kind === "", base.length) +
+    kinds.map(k => chip(t(k) || k, state.kind === k, counts[k] || 0)).join("");
   box.querySelectorAll(".chip").forEach((b,i) => {
-    b.onclick = () => { state.kind = i === 0 ? "" : kinds[i-1]; buildKindFilters(); render(); };
+    b.onclick = () => { state.kind = i === 0 ? "" : kinds[i-1]; render(); };
   });
 }
 
 function buildPyFilters(){
   const box = $("#pyFilters");
   const versions = MODE_VERSIONS[state.pyMode];
-  const count = v => DATA.filter(d => inPython(d, v, state.pyMode)).length;
+  const base = pool("py");
+  const count = v => base.filter(d => inPython(d, v, state.pyMode)).length;
   box.innerHTML = `<span class="fil-label" title="${esc(t("pyHint"))}">Python</span>` +
     chip(t("all"), state.py === "", count("")) +
     versions.map(v => chip(v, state.py === v, count(v))).join("") +
@@ -742,9 +760,9 @@ function buildPyFilters(){
           state.pyMode = state.pyMode === mode ? "" : mode;
           // Версия, в которой у нового режима событий нет, дала бы пустой экран.
           if(!MODE_VERSIONS[state.pyMode].includes(state.py)) state.py = "";
-          buildPyFilters(); render();
+          render();
         }
-      : () => { state.py = i === 0 ? "" : versions[i-1]; buildPyFilters(); render(); };
+      : () => { state.py = i === 0 ? "" : versions[i-1]; render(); };
   });
 }
 
@@ -754,15 +772,17 @@ function buildPyFilters(){
 function buildFamilyFilters(){
   const box = $("#familyFilters");
   const fams = NAV.groups.filter(g => FAM_COUNT[g]);
+  // Выбор семейства сбрасывает раздел, поэтому раздел в счёт семейств не входит.
+  const base = pool("fam", "section"), counts = tally(base, famOf);
   box.innerHTML = `<span class="fil-label">${t("group")}</span>` +
-    chip(t("all"), state.fam === "", DATA.length) +
-    fams.map(g => chip(esc(NAV.labels[g][LANG]), state.fam === g, FAM_COUNT[g])).join("");
+    chip(t("all"), state.fam === "", base.length) +
+    fams.map(g => chip(esc(NAV.labels[g][LANG]), state.fam === g, counts[g] || 0)).join("");
   box.querySelectorAll(".chip").forEach((b,i) => {
     b.onclick = () => {
       const fam = i === 0 ? "" : fams[i-1];
       state.fam = state.fam === fam ? "" : fam;
       state.section = "";
-      buildFamilyFilters(); buildSectionFilters(); render();
+      render();
     };
   });
 }
@@ -773,15 +793,15 @@ function buildSectionFilters(){
   if(!state.fam){ box.innerHTML = ""; return; }
   const secs = SECTIONS.filter(s => (NAV.sections[s] || {}).group === state.fam)
     .sort((a,b) => collator.compare(sectionLabel(a), sectionLabel(b)));
-  const famTotal = FAM_COUNT[state.fam] || 0;
+  const base = pool("section"), counts = tally(base, d => d.section);
   box.innerHTML = `<span class="fil-label">${esc(NAV.labels[state.fam][LANG])}</span>` +
-    chip(t("all"), state.section === "", famTotal) +
-    secs.map(s => chip(esc(sectionLabel(s)), state.section === s, SECTION_COUNT[s])).join("");
+    chip(t("all"), state.section === "", base.length) +
+    secs.map(s => chip(esc(sectionLabel(s)), state.section === s, counts[s] || 0)).join("");
   box.querySelectorAll(".chip").forEach((b,i) => {
     b.onclick = () => {
       const sec = i === 0 ? "" : secs[i-1];
       state.section = state.section === sec ? "" : sec;
-      buildSectionFilters(); render();
+      render();
     };
   });
 }

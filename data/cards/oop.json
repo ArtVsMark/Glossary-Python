@@ -17,7 +17,7 @@
     "syntax": "def __add__(self, other): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__add__",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -147,7 +147,7 @@
     "syntax": "class CM:\n    def __enter__(self): return self\n    def __exit__(self, exc_type, exc_val, tb): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#with-statement-context-managers",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -262,7 +262,7 @@
     "syntax": "def __init__(self, params): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__init__",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -361,7 +361,7 @@
     "syntax": "def __len__(self): ...\ndef __getitem__(self, idx): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#emulating-container-types",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -480,7 +480,7 @@
     "syntax": "class C:\n    __slots__ = ('x', 'y')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#slots",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -569,7 +569,7 @@
     "syntax": "def __str__(self): return '...'\ndef __repr__(self): return '...'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__str__",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -661,7 +661,7 @@
     "syntax": "class ИмяКласса:\n    тело",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#class",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -753,7 +753,7 @@
     "syntax": "@classmethod\ndef method(cls, ...): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#classmethod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -865,7 +865,7 @@
     "syntax": "@property\ndef x(self): return self._x\nproperty(fget=None, fset=None, fdel=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#property",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1007,7 +1007,7 @@
     "syntax": "def method(self): self.x = ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#random-remarks",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1105,7 +1105,7 @@
     "syntax": "@staticmethod\ndef method(...): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#staticmethod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1187,7 +1187,7 @@
     "syntax": "super().__init__(...)\nsuper().method(...)\nsuper(type, obj_or_type)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#super",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1411,7 +1411,7 @@
     "syntax": "class C:\n    class_attr = 0  # классовый\n    def __init__(self):\n        self.inst_attr = 1  # экземплярный",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#class-and-instance-variables",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1504,7 +1504,7 @@
     "syntax": "self._protected\nself.__private",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#private-variables",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1610,7 +1610,7 @@
     "syntax": "def method(self, ...): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/datamodel.html#instance-methods",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1732,7 +1732,7 @@
     "syntax": "class C(A, B): ...\nC.__mro__",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#multiple-inheritance",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1835,7 +1835,7 @@
     "syntax": "class Child(Parent): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/classes.html#inheritance",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1956,7 +1956,7 @@
     "syntax": "for obj in objects:\n    obj.method()  # разные реализации",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-duck-typing",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [

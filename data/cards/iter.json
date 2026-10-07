@@ -17,7 +17,7 @@
     "syntax": "async def name() -> T:\n    result = await other_coroutine()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#coroutine-function-definition",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -78,7 +78,7 @@
     "syntax": "async for item in aiter: ...\nasync with ctx_manager() as obj: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-async-for-statement",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -200,7 +200,7 @@
     "syntax": "results = await asyncio.gather(coro1, coro2, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.gather",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -257,7 +257,7 @@
     "syntax": "q = asyncio.Queue(maxsize=0)\nawait q.put(item)\nitem = await q.get()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-queue.html#asyncio.Queue",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -380,7 +380,7 @@
     "syntax": "await asyncio.sleep(seconds)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -439,7 +439,7 @@
     "syntax": "def gen():\n    yield value",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -543,7 +543,7 @@
     "syntax": "it = iter(obj)\nnext(it, default)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#iter",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -617,7 +617,7 @@
     "syntax": "from itertools import accumulate\naccumulate(iterable, func=operator.add)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
-    "added": "",
+    "added": "3.2",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -679,7 +679,7 @@
     "syntax": "from itertools import chain\nchain(a, b, c)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.chain",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -745,7 +745,7 @@
     "syntax": "from itertools import groupby\ngroupby(iterable, key=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.groupby",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -815,7 +815,7 @@
     "syntax": "from itertools import islice\nislice(iterable, stop)\nislice(iterable, start, stop[, step])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.islice",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -882,7 +882,7 @@
     "syntax": "yield from iterable",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#yield-expressions",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -960,7 +960,7 @@
     "syntax": "(expr for x in iterable if condition)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#generator-expressions",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1030,7 +1030,7 @@
     "syntax": "class Iter:\n    def __iter__(self): return self\n    def __next__(self): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-iterator",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1139,7 +1139,7 @@
     "syntax": "itertools.count(start=0, step=1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.count",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1196,7 +1196,7 @@
     "syntax": "itertools.cycle(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.cycle",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1251,7 +1251,7 @@
     "syntax": "itertools.repeat(obj, times)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.repeat",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1306,7 +1306,7 @@
     "syntax": "itertools.combinations(iterable, r)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1417,7 +1417,7 @@
     "syntax": "itertools.permutations(iterable, r=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.permutations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1473,7 +1473,7 @@
     "syntax": "itertools.product(*iterables, repeat=1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.product",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1584,7 +1584,7 @@
     "syntax": "itertools.dropwhile(predicate, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.dropwhile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1639,7 +1639,7 @@
     "syntax": "itertools.takewhile(predicate, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.takewhile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1695,7 +1695,7 @@
     "syntax": "itertools.filterfalse(predicate, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.filterfalse",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1750,7 +1750,7 @@
     "syntax": "itertools.starmap(function, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.starmap",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1919,7 +1919,7 @@
     "syntax": "itertools.zip_longest(*iterables, fillvalue=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.zip_longest",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1974,7 +1974,7 @@
     "syntax": "itertools.tee(iterable, n=2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.tee",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [

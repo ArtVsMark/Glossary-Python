@@ -17,7 +17,7 @@
     "syntax": "p.exists()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.exists",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -72,7 +72,7 @@
     "syntax": "p.is_file()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.is_file",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -127,7 +127,7 @@
     "syntax": "p.is_dir()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.is_dir",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -181,7 +181,7 @@
     "syntax": "p.glob('*.py')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.glob",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -234,7 +234,7 @@
     "syntax": "p.rglob('*.txt')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.rglob",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -288,7 +288,7 @@
     "syntax": "for item in p.iterdir(): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.iterdir",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -357,7 +357,7 @@
     "syntax": "p.mkdir(parents=True, exist_ok=True)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.mkdir",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -424,7 +424,7 @@
     "syntax": "p.unlink(missing_ok=True)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.unlink",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -483,7 +483,7 @@
     "syntax": "p.rename(target)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.rename",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -542,7 +542,7 @@
     "syntax": "p.replace(target)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.replace",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -600,7 +600,7 @@
     "syntax": "member.name  # → 'RED'\nmember.value # → 1",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Enum.name",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -888,7 +888,7 @@
     "syntax": "p.name, p.stem, p.suffix, p.suffixes, p.parent, p.parts",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.name",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -951,7 +951,7 @@
     "syntax": "f = executor.submit(fn, *args)\nf.result()   # блокирует до готовности\nf.done()     # True если завершён\nf.cancel()   # отменить, если ещё не запущен",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Future",
-    "added": "",
+    "added": "3.2",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1005,7 +1005,7 @@
     "syntax": "# GIL — концепция, не синтаксис",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/glossary.html#term-global-interpreter-lock",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1063,7 +1063,7 @@
     "syntax": "from unittest.mock import MagicMock\nm = MagicMock()\nm.method.return_value = 42",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.mock.html#unittest.mock.MagicMock",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1119,7 +1119,7 @@
     "syntax": "with ProcessPoolExecutor(max_workers=N) as ex:\n    future = ex.submit(fn, *args)\n    results = ex.map(fn, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ProcessPoolExecutor",
-    "added": "",
+    "added": "3.2",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1174,7 +1174,7 @@
     "syntax": "with ThreadPoolExecutor(max_workers=N) as ex:\n    future = ex.submit(fn, *args)\n    results = ex.map(fn, iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor",
-    "added": "",
+    "added": "3.2",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1231,7 +1231,7 @@
     "syntax": "def __copy__(self): ...\ndef __deepcopy__(self, memo): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#object.__copy__",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1292,7 +1292,7 @@
     "syntax": "def __post_init__(self): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.__post_init__",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1414,7 +1414,7 @@
     "syntax": "from concurrent.futures import as_completed\nfor future in as_completed(fs): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.as_completed",
-    "added": "",
+    "added": "3.2",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1471,7 +1471,7 @@
     "syntax": "from enum import auto\nclass X(Enum):\n    A = auto()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.auto",
-    "added": "",
+    "added": "3.6",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1529,7 +1529,7 @@
     "syntax": "bisect.bisect(a, x)  # то же что bisect_right",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.bisect",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1584,7 +1584,7 @@
     "syntax": "bisect.bisect_left(a, x, lo=0, hi=len(a))",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.bisect_left",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1637,7 +1637,7 @@
     "syntax": "bisect.bisect_right(a, x, lo=0, hi=len(a))",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.bisect_right",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1690,7 +1690,7 @@
     "syntax": "bisect.insort_left(a, x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.insort_left",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1742,7 +1742,7 @@
     "syntax": "bisect.insort_right(a, x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#bisect.insort_right",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1796,7 +1796,7 @@
     "syntax": "collections.ChainMap(*maps)\n.new_child(m=None)\n.parents",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.ChainMap",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1934,7 +1934,7 @@
     "syntax": "collections.defaultdict(default_factory, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.defaultdict",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2023,7 +2023,7 @@
     "syntax": "from collections import deque\ndeque(iterable=(), maxlen=None)\n.appendleft(x) / .popleft() / .rotate(n)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.deque",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2109,7 +2109,7 @@
     "syntax": "collections.namedtuple(typename, field_names)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.namedtuple",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2234,7 +2234,7 @@
     "syntax": "contextlib.closing(thing)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.closing",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2293,7 +2293,7 @@
     "syntax": "@contextlib.contextmanager\ndef my_cm(): ...; yield value; ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.contextmanager",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2537,7 +2537,7 @@
     "syntax": "copy.copy(obj)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#copy.copy",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2597,7 +2597,7 @@
     "syntax": "import copy\ncopy.deepcopy(obj, memo=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html#copy.deepcopy",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2767,7 +2767,7 @@
     "syntax": "@dataclass(frozen=True)\nclass Pt:\n    x: int; y: int",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#frozen-instances",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2893,7 +2893,7 @@
     "syntax": "dataclasses.fields(class_or_instance)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.fields",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2953,7 +2953,7 @@
     "syntax": "dataclasses.replace(obj, **changes)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.replace",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3013,7 +3013,7 @@
     "syntax": "d1 - d2\nd + timedelta(days=n)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#date-objects",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3074,7 +3074,7 @@
     "syntax": "from datetime import date\ndate.today()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date.today",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3182,7 +3182,7 @@
     "syntax": "from datetime import datetime\ndatetime.now(tz=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.now",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3237,8 +3237,8 @@
     "syntax": "from datetime import datetime\ndatetime.utcnow()  # deprecated, 3.12+",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.utcnow",
-    "added": "",
-    "deprecated": "",
+    "added": "<3.0",
+    "deprecated": "3.12",
     "removed": "",
     "platforms": [
       "AllOS"
@@ -3289,7 +3289,7 @@
     "syntax": "dt.strftime(format)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.strftime",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3346,7 +3346,7 @@
     "syntax": "datetime.strptime(date_string, format)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.strptime",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3404,7 +3404,7 @@
     "syntax": "dt.astimezone(tz=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.astimezone",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3458,7 +3458,7 @@
     "syntax": "datetime.combine(date, time, tzinfo=self.tzinfo)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.combine",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3513,7 +3513,7 @@
     "syntax": "datetime.fromtimestamp(timestamp, tz=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.fromtimestamp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3570,7 +3570,7 @@
     "syntax": "date.isoweekday() -> int  # 1=Mon … 7=Sun",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date.isoweekday",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3621,7 +3621,7 @@
     "syntax": "dt.replace(year=, month=, day=, hour=, minute=, second=, microsecond=, tzinfo=)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.replace",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3732,7 +3732,7 @@
     "syntax": "datetime.timetuple() -> time.struct_time",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.timetuple",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3786,8 +3786,8 @@
     "syntax": "datetime.utcfromtimestamp(timestamp)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.utcfromtimestamp",
-    "added": "",
-    "deprecated": "",
+    "added": "<3.0",
+    "deprecated": "3.12",
     "removed": "",
     "platforms": [
       "AllOS"
@@ -3843,7 +3843,7 @@
     "syntax": "date.weekday() -> int  # 0=Mon … 6=Sun",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date.weekday",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3899,7 +3899,7 @@
     "syntax": "from enum import Enum\nclass Color(Enum):\n    RED = 1",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Enum",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3957,7 +3957,7 @@
     "syntax": "future = executor.submit(fn, *args, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.submit",
-    "added": "",
+    "added": "3.2",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4076,7 +4076,7 @@
     "syntax": "open(file, mode='r', buffering=-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4137,7 +4137,7 @@
     "syntax": "open(file, encoding='utf-8', errors='strict')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4199,7 +4199,7 @@
     "syntax": "file.flush()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.flush",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4258,7 +4258,7 @@
     "syntax": "file.tell() -> int",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.tell",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4315,7 +4315,7 @@
     "syntax": "file.truncate(size=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase.truncate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4377,7 +4377,7 @@
     "syntax": "from enum import Flag, IntFlag\nclass Perm(Flag):\n    R = 1; W = 2; X = 4",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Flag",
-    "added": "",
+    "added": "3.6",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4499,7 +4499,7 @@
     "syntax": "from functools import partial\nfunctools.partial(func, /, *args, **kwargs) -> partial",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.partial",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4565,7 +4565,7 @@
     "syntax": "functools.reduce(function, iterable[, initializer])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.reduce",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4762,7 +4762,7 @@
     "syntax": "@functools.wraps(wrapped)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.wraps",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4826,7 +4826,7 @@
     "syntax": "i = bisect.bisect(breakpoints, x)  # номер диапазона\nlabels[i]                          # метка диапазона",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#examples",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4883,7 +4883,7 @@
     "syntax": "hashlib.md5(data=b'', usedforsecurity=True)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/hashlib.html#hashlib.md5",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4941,7 +4941,7 @@
     "syntax": "hashlib.sha256(data=b'')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/hashlib.html#hashlib.sha256",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5003,7 +5003,7 @@
     "syntax": "heapq.heapify(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heapify",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5062,7 +5062,7 @@
     "syntax": "heapq.heappush(heap, item)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappush",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5119,7 +5119,7 @@
     "syntax": "heapq.heappop(heap)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappop",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5176,7 +5176,7 @@
     "syntax": "heapq.heapreplace(heap, item)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heapreplace",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5232,7 +5232,7 @@
     "syntax": "heapq.heappushpop(heap, item)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappushpop",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5287,7 +5287,7 @@
     "syntax": "heapq.nlargest(n, iterable, key=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.nlargest",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5343,7 +5343,7 @@
     "syntax": "heapq.nsmallest(n, iterable, key=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.nsmallest",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5458,7 +5458,7 @@
     "syntax": "io.BytesIO(initial_bytes=b'')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BytesIO",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5517,7 +5517,7 @@
     "syntax": "io.StringIO(initial_value='', newline='\\n')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.StringIO",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5577,7 +5577,7 @@
     "syntax": "io.TextIOWrapper(buffer, encoding=None, errors=None, newline=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOWrapper",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5637,7 +5637,7 @@
     "syntax": "handler = logging.FileHandler(filename, mode='a', encoding=None, delay=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.handlers.html#logging.FileHandler",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5692,7 +5692,7 @@
     "syntax": "fmt = logging.Formatter(fmt=None, datefmt=None, style='%')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.Formatter",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5750,7 +5750,7 @@
     "syntax": "handler.setLevel(level)\nhandler.setFormatter(formatter)\nlogger.addHandler(handler)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.Handler",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5804,7 +5804,7 @@
     "syntax": "handler = logging.StreamHandler(stream=None)  # None → sys.stderr",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5861,7 +5861,7 @@
     "syntax": "logging.basicConfig(level=, format=, filename=, filemode=, encoding=)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.basicConfig",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5917,7 +5917,7 @@
     "syntax": "logging.debug(msg, *args, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.debug",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5970,7 +5970,7 @@
     "syntax": "logging.error(msg, *args, exc_info=False, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.error",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6024,7 +6024,7 @@
     "syntax": "logger = logging.getLogger(name)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.getLogger",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6080,7 +6080,7 @@
     "syntax": "logging.info(msg, *args, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.info",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6133,7 +6133,7 @@
     "syntax": "logging.warning(msg, *args, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/logging.html#logging.warning",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6187,7 +6187,7 @@
     "syntax": "math.acos(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.acos",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6244,7 +6244,7 @@
     "syntax": "math.asin(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.asin",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6301,7 +6301,7 @@
     "syntax": "math.atan(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.atan",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6358,7 +6358,7 @@
     "syntax": "math.atan2(y, x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.atan2",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6415,7 +6415,7 @@
     "syntax": "math.ceil(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.ceil",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6529,7 +6529,7 @@
     "syntax": "math.cos(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.cos",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6586,7 +6586,7 @@
     "syntax": "math.degrees(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.degrees",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6646,7 +6646,7 @@
     "syntax": "math.e",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.e",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6702,7 +6702,7 @@
     "syntax": "math.exp(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.exp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6758,7 +6758,7 @@
     "syntax": "math.fabs(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.fabs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6814,7 +6814,7 @@
     "syntax": "math.factorial(n)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.factorial",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6870,7 +6870,7 @@
     "syntax": "math.floor(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.floor",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6927,7 +6927,7 @@
     "syntax": "math.fsum(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.fsum",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7048,7 +7048,7 @@
     "syntax": "math.hypot(*coordinates)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.hypot",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7274,7 +7274,7 @@
     "syntax": "math.isinf(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.isinf",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7331,7 +7331,7 @@
     "syntax": "math.isnan(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.isnan",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7444,7 +7444,7 @@
     "syntax": "math.log(x[, base])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.log",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7502,7 +7502,7 @@
     "syntax": "math.log10(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.log10",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7726,7 +7726,7 @@
     "syntax": "math.pi",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.pi",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7783,7 +7783,7 @@
     "syntax": "math.pow(x, y)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.pow",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7895,7 +7895,7 @@
     "syntax": "math.radians(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.radians",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7951,7 +7951,7 @@
     "syntax": "math.sin(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.sin",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8009,7 +8009,7 @@
     "syntax": "math.sqrt(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.sqrt",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8066,7 +8066,7 @@
     "syntax": "math.tan(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.tan",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8178,7 +8178,7 @@
     "syntax": "math.trunc(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.trunc",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8235,7 +8235,7 @@
     "syntax": "os.environ  # os._Environ (MutableMapping)\nos.environ.get(key, default=None)\nos.environ[key] = value",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.environ",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8291,7 +8291,7 @@
     "syntax": "os.getpid() -> int",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getpid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8348,7 +8348,7 @@
     "syntax": "os.listdir(path='.') -> list[str]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.listdir",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8409,7 +8409,7 @@
     "syntax": "os.path.join(path, *paths) -> str",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.join",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8469,7 +8469,7 @@
     "syntax": "os.path.splitext(path) -> (root, ext)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.splitext",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8527,7 +8527,7 @@
     "syntax": "os.remove(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.remove",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8588,7 +8588,7 @@
     "syntax": "os.sep      # '/' на Unix, '\\\\' на Windows\nos.linesep  # '\\n' на Unix, '\\r\\n' на Windows\nos.pathsep  # ':' на Unix, ';' на Windows",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sep",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8645,7 +8645,7 @@
     "syntax": "os.walk(top, topdown=True, onerror=None, followlinks=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.walk",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8758,7 +8758,7 @@
     "syntax": "Path.cwd()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.cwd",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8812,7 +8812,7 @@
     "syntax": "p.stat()\np.stat().st_size\np.stat().st_mtime",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.stat",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8875,7 +8875,7 @@
     "syntax": "random.choice(seq)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.choice",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -8994,7 +8994,7 @@
     "syntax": "random.gauss(mu=0.0, sigma=1.0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.gauss",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9052,7 +9052,7 @@
     "syntax": "random.randint(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.randint",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9111,7 +9111,7 @@
     "syntax": "random.random()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.random",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9170,7 +9170,7 @@
     "syntax": "random.randrange(stop)\nrandom.randrange(start, stop[, step])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.randrange",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9228,7 +9228,7 @@
     "syntax": "random.sample(population, k)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.sample",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9287,7 +9287,7 @@
     "syntax": "random.seed(a=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.seed",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9345,7 +9345,7 @@
     "syntax": "random.shuffle(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.shuffle",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9409,7 +9409,7 @@
     "syntax": "random.SystemRandom()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.SystemRandom",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9469,7 +9469,7 @@
     "syntax": "random.uniform(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.uniform",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9526,7 +9526,7 @@
     "syntax": "(?P<name>pattern)\nmatch.group('name')\nmatch.groupdict()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.group",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9587,7 +9587,7 @@
     "syntax": "re.compile(pattern, flags=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.compile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9645,7 +9645,7 @@
     "syntax": "re.escape(pattern) -> str",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.escape",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9703,7 +9703,7 @@
     "syntax": "re.findall(pattern, string, flags=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.findall",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9758,7 +9758,7 @@
     "syntax": "re.finditer(pattern, string, flags=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.finditer",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9869,7 +9869,7 @@
     "syntax": "m.group(n=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.group",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9926,7 +9926,7 @@
     "syntax": "m.groups(default=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.groups",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -9983,7 +9983,7 @@
     "syntax": "m.groupdict(default=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Match.groupdict",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10037,7 +10037,7 @@
     "syntax": "re.match(pattern, string, flags=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.match",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10092,7 +10092,7 @@
     "syntax": "re.search(pattern, string, flags=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.search",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10148,7 +10148,7 @@
     "syntax": "re.split(pattern, string, maxsplit=0, flags=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.split",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10203,7 +10203,7 @@
     "syntax": "string.ascii_letters  # 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.ascii_letters",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10260,7 +10260,7 @@
     "syntax": "string.ascii_lowercase  # 'abcdefghijklmnopqrstuvwxyz'\nstring.ascii_uppercase  # 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.ascii_lowercase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10316,7 +10316,7 @@
     "syntax": "string.capwords(s, sep=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.capwords",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10371,7 +10371,7 @@
     "syntax": "string.digits  # '0123456789'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.digits",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10427,7 +10427,7 @@
     "syntax": "string.hexdigits  # '0123456789abcdefABCDEF'\nstring.octdigits  # '01234567'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.hexdigits",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10483,7 +10483,7 @@
     "syntax": "string.printable  # digits + letters + punctuation + whitespace",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.printable",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10539,7 +10539,7 @@
     "syntax": "string.punctuation  # '!\"#$%&\\'()*+,-./:;<=>?@[\\\\]^_`{|}~'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.punctuation",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10595,7 +10595,7 @@
     "syntax": "string.Template(template_string)\nt.substitute(mapping, **kwargs)\nt.safe_substitute(mapping, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.Template",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10654,7 +10654,7 @@
     "syntax": "string.whitespace  # ' \\t\\n\\r\\x0b\\x0c'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.whitespace",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10710,7 +10710,7 @@
     "syntax": "subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.PIPE",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -10944,7 +10944,7 @@
     "syntax": "sys.argv  # list[str]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.argv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11002,7 +11002,7 @@
     "syntax": "sys.exit(status=0)\n# status: int или str",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.exit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11068,7 +11068,7 @@
     "syntax": "sys.getrecursionlimit() -> int",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.getrecursionlimit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11123,7 +11123,7 @@
     "syntax": "sys.setrecursionlimit(limit: int) -> None",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.setrecursionlimit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11174,7 +11174,7 @@
     "syntax": "sys.getsizeof(object, default=...) -> int",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.getsizeof",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11230,7 +11230,7 @@
     "syntax": "sys.intern(string: str) -> str",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.intern",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11288,7 +11288,7 @@
     "syntax": "sys.modules  # dict[str, ModuleType]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.modules",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11345,7 +11345,7 @@
     "syntax": "sys.path  # list[str]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.path",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11401,7 +11401,7 @@
     "syntax": "sys.stdin   # TextIOWrapper (чтение)\nsys.stdout  # TextIOWrapper (запись)\nsys.stderr  # TextIOWrapper (ошибки)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.stdin",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11459,7 +11459,7 @@
     "syntax": "sys.version        # str\nsys.version_info   # named tuple (major, minor, micro)\nsys.platform       # str\nsys.implementation # namespace",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.version",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11516,7 +11516,7 @@
     "syntax": "e = threading.Event()\ne.set() / e.clear() / e.wait() / e.is_set()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Event",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11578,7 +11578,7 @@
     "syntax": "lock = threading.Lock()\nlock.acquire() / lock.release()\nwith lock: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Lock",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11639,7 +11639,7 @@
     "syntax": "rlock = threading.RLock()\nwith rlock: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.RLock",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11696,7 +11696,7 @@
     "syntax": "sem = threading.Semaphore(n)\nwith sem: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Semaphore",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11755,7 +11755,7 @@
     "syntax": "t = threading.Thread(target=func, args=(), kwargs={}, daemon=False)\nt.start()\nt.join()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/threading.html#threading.Thread",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11814,7 +11814,7 @@
     "syntax": "from datetime import time\ntime(hour, minute, second, microsecond)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.time",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11871,7 +11871,7 @@
     "syntax": "from datetime import timedelta\ntimedelta(days=0, seconds=0, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.timedelta",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11931,7 +11931,7 @@
     "syntax": "from datetime import timezone\ndatetime.now(timezone.utc)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#aware-and-naive-objects",
-    "added": "",
+    "added": "3.2",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -11995,7 +11995,7 @@
     "syntax": "from enum import unique\n@unique\nclass X(Enum): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.unique",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12056,7 +12056,7 @@
     "syntax": "class MyTests(unittest.TestCase):\n    def test_something(self): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12115,7 +12115,7 @@
     "syntax": "self.assertEqual(first, second, msg=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertEqual",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12170,7 +12170,7 @@
     "syntax": "with self.assertRaises(ExcType): ...\nself.assertRaises(ExcType, callable, *args)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertRaises",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12227,7 +12227,7 @@
     "syntax": "from unittest.mock import patch\n@patch('module.ClassName')\ndef test(self, mock_cls): ...\n\nwith patch('module.func') as m: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.mock.html#unittest.mock.patch",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12286,7 +12286,7 @@
     "syntax": "def setUp(self): ...    # до каждого теста",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.setUp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12340,7 +12340,7 @@
     "syntax": "def tearDown(self): ... # после каждого теста",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/unittest.html#unittest.TestCase.tearDown",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12393,7 +12393,7 @@
     "syntax": "i = bisect_left(a, x)\nif i < len(a) and a[i] == x: found",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/bisect.html#searching-sorted-lists",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12453,7 +12453,7 @@
     "syntax": "open(file, buffering=-1)  # -1 авто, 0 без буфера (только binary), 1 строчный\nstream.flush()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#buffered-streams",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12512,7 +12512,7 @@
     "syntax": "(?P<name>...) именованная\n(?:...) не захватывающая\n(?=...) lookahead\n(?!...) negative lookahead\n(?<=...) lookbehind",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#regular-expression-syntax",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12571,7 +12571,7 @@
     "syntax": "(d2 - d1).days",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.timedelta.days",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12753,7 +12753,7 @@
     "syntax": "heapq.heappush(pq, (priority, task))\npriority, task = heapq.heappop(pq)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappush",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12815,7 +12815,7 @@
     "syntax": "# Используй copy/deepcopy для безопасного копирования мутируемых объектов",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/copy.html",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12883,7 +12883,7 @@
     "syntax": "Path('dir') / 'subdir' / 'file.txt'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/pathlib.html#operators",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -12942,7 +12942,7 @@
     "syntax": ". ^ $ * + ? {n,m} [] | () \\ \\d \\w \\s",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#regular-expression-syntax",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13003,7 +13003,7 @@
     "syntax": "re.IGNORECASE (re.I), re.MULTILINE (re.M), re.DOTALL (re.S), re.VERBOSE (re.X)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.IGNORECASE",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13231,7 +13231,7 @@
     "syntax": "functools.update_wrapper(wrapper, wrapped)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.update_wrapper",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13287,7 +13287,7 @@
     "syntax": "datetime.date(year, month, day)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.date",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13343,7 +13343,7 @@
     "syntax": "datetime.datetime(year, month, day, hour=0, minute=0, second=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13397,7 +13397,7 @@
     "syntax": "datetime.time(hour=0, minute=0, second=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.time",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13504,7 +13504,7 @@
     "syntax": "class MyTz(datetime.tzinfo): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.tzinfo",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13562,7 +13562,7 @@
     "syntax": "textwrap.dedent(text)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.dedent",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13673,7 +13673,7 @@
     "syntax": "textwrap.wrap(text, width=70)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.wrap",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13728,7 +13728,7 @@
     "syntax": "textwrap.fill(text, width=70)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.fill",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13839,7 +13839,7 @@
     "syntax": "textwrap.TextWrapper(width=70, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/textwrap.html#textwrap.TextWrapper",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13895,7 +13895,7 @@
     "syntax": "dataclasses.asdict(instance)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.asdict",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13954,7 +13954,7 @@
     "syntax": "dataclasses.astuple(instance)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.astuple",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14011,7 +14011,7 @@
     "syntax": "dataclasses.is_dataclass(obj)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.is_dataclass",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14127,7 +14127,7 @@
     "syntax": "field: dataclasses.InitVar[T]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.InitVar",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14184,7 +14184,7 @@
     "syntax": "re.sub(pattern, repl, string, count=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.sub",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14240,7 +14240,7 @@
     "syntax": "re.subn(pattern, repl, string, count=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.subn",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14296,7 +14296,7 @@
     "syntax": "re.purge()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.purge",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14350,7 +14350,7 @@
     "syntax": "re.compile(pattern) -> re.Pattern",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/re.html#re.Pattern",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14461,7 +14461,7 @@
     "syntax": "class C(enum.IntEnum): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.IntEnum",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14572,7 +14572,7 @@
     "syntax": "class C(enum.Flag): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.Flag",
-    "added": "",
+    "added": "3.6",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -14629,7 +14629,7 @@
     "syntax": "class C(enum.IntFlag): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.IntFlag",
-    "added": "",
+    "added": "3.6",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15245,7 +15245,7 @@
     "syntax": "math.log1p(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.log1p",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15302,7 +15302,7 @@
     "syntax": "math.sinh(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.sinh",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15357,7 +15357,7 @@
     "syntax": "math.cosh(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.cosh",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15412,7 +15412,7 @@
     "syntax": "math.tanh(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.tanh",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15467,7 +15467,7 @@
     "syntax": "math.asinh(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.asinh",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15522,7 +15522,7 @@
     "syntax": "math.acosh(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.acosh",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15579,7 +15579,7 @@
     "syntax": "math.atanh(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.atanh",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15861,7 +15861,7 @@
     "syntax": "math.fmod(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.fmod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -15976,7 +15976,7 @@
     "syntax": "math.copysign(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.copysign",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -16031,7 +16031,7 @@
     "syntax": "math.frexp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.frexp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -16086,7 +16086,7 @@
     "syntax": "math.modf(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.modf",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -16141,7 +16141,7 @@
     "syntax": "math.ldexp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.ldexp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -16817,7 +16817,7 @@
     "syntax": "async with contextlib.AsyncExitStack() as stack: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/contextlib.html#contextlib.AsyncExitStack",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17045,7 +17045,7 @@
     "syntax": "class C(metaclass=abc.ABCMeta): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABCMeta",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17104,7 +17104,7 @@
     "syntax": "@abc.abstractmethod",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractmethod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17162,8 +17162,8 @@
     "syntax": "@abc.abstractproperty  # deprecated",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractproperty",
-    "added": "",
-    "deprecated": "",
+    "added": "<3.0",
+    "deprecated": "3.3",
     "removed": "",
     "platforms": [
       "AllOS"
@@ -17218,7 +17218,7 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractclassmethod",
     "added": "3.2",
-    "deprecated": "",
+    "deprecated": "3.3",
     "removed": "",
     "platforms": [
       "AllOS"
@@ -17280,7 +17280,7 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.abstractstaticmethod",
     "added": "3.2",
-    "deprecated": "",
+    "deprecated": "3.3",
     "removed": "",
     "platforms": [
       "AllOS"
@@ -17443,7 +17443,7 @@
     "syntax": "string.Formatter().format(template, *args, **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/string.html#string.Formatter",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17500,7 +17500,7 @@
     "syntax": "isinstance(obj, collections.abc.Iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17554,7 +17554,7 @@
     "syntax": "isinstance(obj, collections.abc.Iterator)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17717,7 +17717,7 @@
     "syntax": "isinstance(obj, collections.abc.Sized)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Sized",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17771,7 +17771,7 @@
     "syntax": "isinstance(obj, collections.abc.Container)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Container",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17880,7 +17880,7 @@
     "syntax": "isinstance(obj, collections.abc.Hashable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Hashable",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17936,7 +17936,7 @@
     "syntax": "isinstance(obj, collections.abc.Sequence)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -17991,7 +17991,7 @@
     "syntax": "isinstance(obj, collections.abc.MutableSequence)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSequence",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18046,7 +18046,7 @@
     "syntax": "isinstance(obj, collections.abc.Mapping)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18101,7 +18101,7 @@
     "syntax": "isinstance(obj, collections.abc.MutableMapping)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableMapping",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18156,7 +18156,7 @@
     "syntax": "isinstance(obj, collections.abc.MutableSet)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MutableSet",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18211,7 +18211,7 @@
     "syntax": "isinstance(obj, collections.abc.KeysView)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.KeysView",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18266,7 +18266,7 @@
     "syntax": "isinstance(obj, collections.abc.ValuesView)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.ValuesView",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18325,7 +18325,7 @@
     "syntax": "isinstance(obj, collections.abc.ItemsView)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.ItemsView",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18380,7 +18380,7 @@
     "syntax": "isinstance(obj, collections.abc.MappingView)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.MappingView",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18489,9 +18489,9 @@
     "syntax": "isinstance(obj, collections.abc.ByteString)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.ByteString",
-    "added": "",
-    "deprecated": "",
-    "removed": "",
+    "added": "3.3",
+    "deprecated": "3.12",
+    "removed": "3.17",
     "platforms": [
       "AllOS"
     ],
@@ -18810,7 +18810,7 @@
     "syntax": "class MyDict(collections.UserDict): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.UserDict",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18863,7 +18863,7 @@
     "syntax": "class MyList(collections.UserList): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.UserList",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18916,7 +18916,7 @@
     "syntax": "class MyStr(collections.UserString): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.UserString",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -18971,7 +18971,7 @@
     "syntax": "issubclass(cls, io.IOBase)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IOBase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19029,7 +19029,7 @@
     "syntax": "issubclass(cls, io.RawIOBase)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.RawIOBase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19085,7 +19085,7 @@
     "syntax": "issubclass(cls, io.BufferedIOBase)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedIOBase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19143,7 +19143,7 @@
     "syntax": "issubclass(cls, io.TextIOBase)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.TextIOBase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19199,7 +19199,7 @@
     "syntax": "io.FileIO(name, mode='r')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.FileIO",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19261,7 +19261,7 @@
     "syntax": "io.BufferedReader(raw)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedReader",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19321,7 +19321,7 @@
     "syntax": "io.BufferedWriter(raw)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedWriter",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19377,7 +19377,7 @@
     "syntax": "io.BufferedRandom(raw)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedRandom",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19437,7 +19437,7 @@
     "syntax": "io.BufferedRWPair(reader, writer)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.BufferedRWPair",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19498,7 +19498,7 @@
     "syntax": "io.IncrementalNewlineDecoder(decoder, translate)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/io.html#io.IncrementalNewlineDecoder",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19666,7 +19666,7 @@
     "syntax": "random.betavariate(alpha, beta)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.betavariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19781,7 +19781,7 @@
     "syntax": "random.expovariate(lambd=1.0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.expovariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19838,7 +19838,7 @@
     "syntax": "random.gammavariate(alpha, beta)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.gammavariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19895,7 +19895,7 @@
     "syntax": "random.lognormvariate(mu, sigma)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.lognormvariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -19950,7 +19950,7 @@
     "syntax": "random.normalvariate(mu=0.0, sigma=1.0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.normalvariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20006,7 +20006,7 @@
     "syntax": "random.paretovariate(alpha)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.paretovariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20061,7 +20061,7 @@
     "syntax": "random.triangular(low=0.0, high=1.0, mode=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.triangular",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20116,7 +20116,7 @@
     "syntax": "random.vonmisesvariate(mu, kappa)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.vonmisesvariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20172,7 +20172,7 @@
     "syntax": "random.weibullvariate(alpha, beta)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.weibullvariate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20227,7 +20227,7 @@
     "syntax": "random.getrandbits(k)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.getrandbits",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20338,7 +20338,7 @@
     "syntax": "state = random.getstate()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.getstate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20393,7 +20393,7 @@
     "syntax": "random.setstate(state)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/random.html#random.setstate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20500,7 +20500,7 @@
     "syntax": "enum.EnumMeta is enum.EnumType",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumType",
-    "added": "",
+    "added": "3.11",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -20948,7 +20948,7 @@
     "syntax": "operator.add(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.add",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21007,7 +21007,7 @@
     "syntax": "operator.sub(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.sub",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21066,7 +21066,7 @@
     "syntax": "operator.mul(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.mul",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21123,7 +21123,7 @@
     "syntax": "operator.truediv(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.truediv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21183,7 +21183,7 @@
     "syntax": "operator.floordiv(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.floordiv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21242,7 +21242,7 @@
     "syntax": "operator.mod(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.mod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21300,7 +21300,7 @@
     "syntax": "operator.neg(a)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.neg",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21357,7 +21357,7 @@
     "syntax": "operator.pos(a)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.pos",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21414,7 +21414,7 @@
     "syntax": "operator.and_(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.and_",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21473,7 +21473,7 @@
     "syntax": "operator.or_(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.or_",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21533,7 +21533,7 @@
     "syntax": "operator.xor(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.xor",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21593,7 +21593,7 @@
     "syntax": "operator.invert(a)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.invert",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21650,7 +21650,7 @@
     "syntax": "operator.inv(a)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.inv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21705,7 +21705,7 @@
     "syntax": "operator.lshift(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.lshift",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21760,7 +21760,7 @@
     "syntax": "operator.rshift(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.rshift",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21818,7 +21818,7 @@
     "syntax": "operator.eq(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.eq",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21873,7 +21873,7 @@
     "syntax": "operator.ne(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ne",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21929,7 +21929,7 @@
     "syntax": "operator.lt(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.lt",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -21985,7 +21985,7 @@
     "syntax": "operator.le(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.le",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22041,7 +22041,7 @@
     "syntax": "operator.gt(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.gt",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22099,7 +22099,7 @@
     "syntax": "operator.ge(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ge",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22157,7 +22157,7 @@
     "syntax": "operator.is_(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.is_",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22215,7 +22215,7 @@
     "syntax": "operator.is_not(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.is_not",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22272,7 +22272,7 @@
     "syntax": "operator.not_(a)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.not_",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22328,7 +22328,7 @@
     "syntax": "operator.truth(a)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.truth",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22383,7 +22383,7 @@
     "syntax": "operator.concat(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.concat",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22441,7 +22441,7 @@
     "syntax": "operator.contains(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.contains",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22498,7 +22498,7 @@
     "syntax": "operator.countOf(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.countOf",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22555,7 +22555,7 @@
     "syntax": "operator.indexOf(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.indexOf",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22612,7 +22612,7 @@
     "syntax": "operator.getitem(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.getitem",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22672,7 +22672,7 @@
     "syntax": "operator.setitem(a, b, c)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.setitem",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22728,7 +22728,7 @@
     "syntax": "operator.delitem(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.delitem",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22842,7 +22842,7 @@
     "syntax": "operator.matmul(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.matmul",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -22952,7 +22952,7 @@
     "syntax": "f = operator.itemgetter(index)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.itemgetter",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23014,7 +23014,7 @@
     "syntax": "f = operator.attrgetter('attr')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.attrgetter",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23073,7 +23073,7 @@
     "syntax": "f = operator.methodcaller('method', *args)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.methodcaller",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23132,7 +23132,7 @@
     "syntax": "operator.iadd(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.iadd",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23193,7 +23193,7 @@
     "syntax": "operator.isub(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.isub",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23249,7 +23249,7 @@
     "syntax": "operator.imul(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.imul",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23306,7 +23306,7 @@
     "syntax": "operator.itruediv(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.itruediv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23364,7 +23364,7 @@
     "syntax": "operator.ifloordiv(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ifloordiv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23421,7 +23421,7 @@
     "syntax": "operator.imod(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.imod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23478,7 +23478,7 @@
     "syntax": "operator.ipow(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ipow",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23534,7 +23534,7 @@
     "syntax": "operator.iand(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.iand",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23592,7 +23592,7 @@
     "syntax": "operator.ior(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ior",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23650,7 +23650,7 @@
     "syntax": "operator.ixor(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ixor",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23708,7 +23708,7 @@
     "syntax": "operator.ilshift(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.ilshift",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23763,7 +23763,7 @@
     "syntax": "operator.irshift(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.irshift",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23819,7 +23819,7 @@
     "syntax": "operator.iconcat(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.iconcat",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23877,7 +23877,7 @@
     "syntax": "operator.imatmul(a, b)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.imatmul",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23930,7 +23930,7 @@
     "syntax": "os.path.basename(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.basename",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -23983,7 +23983,7 @@
     "syntax": "os.path.dirname(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.dirname",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24036,7 +24036,7 @@
     "syntax": "os.path.split(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.split",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24088,7 +24088,7 @@
     "syntax": "os.path.splitdrive(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.splitdrive",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24201,7 +24201,7 @@
     "syntax": "os.path.normcase(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.normcase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24255,7 +24255,7 @@
     "syntax": "os.path.normpath(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.normpath",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24311,7 +24311,7 @@
     "syntax": "os.path.commonprefix(list)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.commonprefix",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24424,7 +24424,7 @@
     "syntax": "os.path.relpath(path, start)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.relpath",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24480,7 +24480,7 @@
     "syntax": "os.path.abspath(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.abspath",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24536,7 +24536,7 @@
     "syntax": "os.path.realpath(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.realpath",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24594,7 +24594,7 @@
     "syntax": "os.path.expanduser(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.expanduser",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24650,7 +24650,7 @@
     "syntax": "os.path.expandvars(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.expandvars",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24706,7 +24706,7 @@
     "syntax": "os.path.isabs(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isabs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24762,7 +24762,7 @@
     "syntax": "os.path.exists(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.exists",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24816,7 +24816,7 @@
     "syntax": "os.path.lexists(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.lexists",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24871,7 +24871,7 @@
     "syntax": "os.path.isdir(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isdir",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24924,7 +24924,7 @@
     "syntax": "os.path.isfile(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.isfile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -24978,7 +24978,7 @@
     "syntax": "os.path.islink(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.islink",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25034,7 +25034,7 @@
     "syntax": "os.path.ismount(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.ismount",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25200,7 +25200,7 @@
     "syntax": "os.path.getsize(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getsize",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25261,7 +25261,7 @@
     "syntax": "os.path.getmtime(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getmtime",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25320,7 +25320,7 @@
     "syntax": "os.path.getatime(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getatime",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25379,7 +25379,7 @@
     "syntax": "os.path.getctime(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.getctime",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25436,7 +25436,7 @@
     "syntax": "os.path.samefile(p1, p2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.samefile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25495,7 +25495,7 @@
     "syntax": "os.path.samestat(s1, s2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.samestat",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25554,7 +25554,7 @@
     "syntax": "os.path.sameopenfile(fd1, fd2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.sameopenfile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25777,7 +25777,7 @@
     "syntax": "os.getenv(key, default=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getenv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25839,7 +25839,7 @@
     "syntax": "os.putenv(key, value)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.putenv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -25894,7 +25894,7 @@
     "syntax": "os.unsetenv(key)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.unsetenv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26004,7 +26004,7 @@
     "syntax": "os.getppid()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getppid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26059,7 +26059,7 @@
     "syntax": "os.umask(mask)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.umask",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26112,7 +26112,7 @@
     "syntax": "os.times()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.times",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26168,7 +26168,7 @@
     "syntax": "os.times_result(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.times",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26339,7 +26339,7 @@
     "syntax": "os.urandom(n)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.urandom",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26396,7 +26396,7 @@
     "syntax": "os.strerror(code)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.strerror",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26451,7 +26451,7 @@
     "syntax": "os.device_encoding(fd)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.device_encoding",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26507,7 +26507,7 @@
     "syntax": "os.get_terminal_size()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.get_terminal_size",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26566,7 +26566,7 @@
     "syntax": "os.isatty(fd)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.isatty",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26621,7 +26621,7 @@
     "syntax": "os.terminal_size((cols, lines))",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.terminal_size",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26678,7 +26678,7 @@
     "syntax": "os.abort()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.abort",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26733,7 +26733,7 @@
     "syntax": "os._exit(n)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os._exit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26788,7 +26788,7 @@
     "syntax": "os.system(command)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.system",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26844,7 +26844,7 @@
     "syntax": "os.getcwd() -> str",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getcwd",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26897,7 +26897,7 @@
     "syntax": "os.getcwdb()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getcwdb",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -26952,7 +26952,7 @@
     "syntax": "os.close(fd)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.close",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27007,7 +27007,7 @@
     "syntax": "os.closerange(fd_low, fd_high)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.closerange",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27061,7 +27061,7 @@
     "syntax": "os.dup(fd)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.dup",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27118,7 +27118,7 @@
     "syntax": "os.dup2(fd, fd2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.dup2",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27175,7 +27175,7 @@
     "syntax": "os.read(fd, n)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.read",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27233,7 +27233,7 @@
     "syntax": "os.write(fd, data)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.write",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27291,7 +27291,7 @@
     "syntax": "os.lseek(fd, pos, whence)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lseek",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27348,7 +27348,7 @@
     "syntax": "os.fstat(fd)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fstat",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27403,7 +27403,7 @@
     "syntax": "os.ftruncate(fd, length)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.ftruncate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27462,7 +27462,7 @@
     "syntax": "os.fdopen(fd, mode)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fdopen",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27518,7 +27518,7 @@
     "syntax": "os.pipe()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pipe",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27572,7 +27572,7 @@
     "syntax": "os.get_inheritable(fd)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.get_inheritable",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27628,7 +27628,7 @@
     "syntax": "os.set_inheritable(fd, inheritable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.set_inheritable",
-    "added": "",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27743,7 +27743,7 @@
     "syntax": "os.access(path, mode)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.access",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27800,7 +27800,7 @@
     "syntax": "os.stat(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.stat",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27861,7 +27861,7 @@
     "syntax": "os.lstat(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lstat",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27921,7 +27921,7 @@
     "syntax": "os.scandir(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.scandir",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -27988,7 +27988,7 @@
     "syntax": "os.stat(path)  # → os.stat_result",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.stat_result",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28045,7 +28045,7 @@
     "syntax": "entry.name  # os.DirEntry",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.DirEntry",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28099,7 +28099,7 @@
     "syntax": "os.WIFEXITED(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFEXITED",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28158,7 +28158,7 @@
     "syntax": "os.WEXITSTATUS(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WEXITSTATUS",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28216,7 +28216,7 @@
     "syntax": "os.WIFSIGNALED(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFSIGNALED",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28273,7 +28273,7 @@
     "syntax": "os.WTERMSIG(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WTERMSIG",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28330,7 +28330,7 @@
     "syntax": "os.WIFSTOPPED(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFSTOPPED",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28387,7 +28387,7 @@
     "syntax": "os.WSTOPSIG(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WSTOPSIG",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28444,7 +28444,7 @@
     "syntax": "os.WIFCONTINUED(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WIFCONTINUED",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28503,7 +28503,7 @@
     "syntax": "os.WCOREDUMP(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.WCOREDUMP",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28561,7 +28561,7 @@
     "syntax": "os.fork(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fork",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28621,7 +28621,7 @@
     "syntax": "os.forkpty(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.forkpty",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28739,7 +28739,7 @@
     "syntax": "os.execv(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28797,7 +28797,7 @@
     "syntax": "os.execve(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execve",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28855,7 +28855,7 @@
     "syntax": "os.execl(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execl",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28913,7 +28913,7 @@
     "syntax": "os.execle(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execle",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28972,7 +28972,7 @@
     "syntax": "os.execlp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execlp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29031,7 +29031,7 @@
     "syntax": "os.execlpe(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execlpe",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29089,7 +29089,7 @@
     "syntax": "os.execvp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execvp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29146,7 +29146,7 @@
     "syntax": "os.execvpe(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.execvpe",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29204,7 +29204,7 @@
     "syntax": "os.spawnv(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnv",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29264,7 +29264,7 @@
     "syntax": "os.spawnve(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnve",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29323,7 +29323,7 @@
     "syntax": "os.spawnl(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnl",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29381,7 +29381,7 @@
     "syntax": "os.spawnle(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnle",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29439,7 +29439,7 @@
     "syntax": "os.spawnlp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnlp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29498,7 +29498,7 @@
     "syntax": "os.spawnlpe(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnlpe",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29558,7 +29558,7 @@
     "syntax": "os.spawnvp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnvp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29617,7 +29617,7 @@
     "syntax": "os.spawnvpe(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.spawnvpe",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29796,7 +29796,7 @@
     "syntax": "os.wait(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.wait",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29855,7 +29855,7 @@
     "syntax": "os.waitpid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.waitpid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29916,7 +29916,7 @@
     "syntax": "os.wait3(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.wait3",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -29975,7 +29975,7 @@
     "syntax": "os.wait4(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.wait4",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30095,7 +30095,7 @@
     "syntax": "os.waitid_result(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.waitid",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30153,7 +30153,7 @@
     "syntax": "os.kill(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.kill",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30215,7 +30215,7 @@
     "syntax": "os.killpg(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.killpg",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30276,7 +30276,7 @@
     "syntax": "os.nice(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.nice",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30452,7 +30452,7 @@
     "syntax": "os.sched_yield(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_yield",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30509,7 +30509,7 @@
     "syntax": "os.sched_getaffinity(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getaffinity",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30567,7 +30567,7 @@
     "syntax": "os.sched_setaffinity(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setaffinity",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30626,7 +30626,7 @@
     "syntax": "os.sched_getscheduler(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getscheduler",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30682,7 +30682,7 @@
     "syntax": "os.sched_setscheduler(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setscheduler",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30741,7 +30741,7 @@
     "syntax": "os.sched_getparam(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_getparam",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30797,7 +30797,7 @@
     "syntax": "os.sched_setparam(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_setparam",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30855,7 +30855,7 @@
     "syntax": "os.sched_get_priority_max(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_get_priority_max",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30914,7 +30914,7 @@
     "syntax": "os.sched_get_priority_min(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_get_priority_min",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -30973,7 +30973,7 @@
     "syntax": "os.sched_rr_get_interval(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_rr_get_interval",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31029,7 +31029,7 @@
     "syntax": "os.sched_param(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sched_param",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31087,7 +31087,7 @@
     "syntax": "os.getuid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getuid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31145,7 +31145,7 @@
     "syntax": "os.geteuid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.geteuid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31201,7 +31201,7 @@
     "syntax": "os.getgid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getgid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31256,7 +31256,7 @@
     "syntax": "os.getegid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getegid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31424,7 +31424,7 @@
     "syntax": "os.getgroups(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getgroups",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31536,7 +31536,7 @@
     "syntax": "os.getlogin(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getlogin",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31593,7 +31593,7 @@
     "syntax": "os.setuid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setuid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31652,7 +31652,7 @@
     "syntax": "os.seteuid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.seteuid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31711,7 +31711,7 @@
     "syntax": "os.setgid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setgid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31770,7 +31770,7 @@
     "syntax": "os.setegid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setegid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31829,7 +31829,7 @@
     "syntax": "os.setreuid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setreuid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -31888,7 +31888,7 @@
     "syntax": "os.setregid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setregid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32063,7 +32063,7 @@
     "syntax": "os.setgroups(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setgroups",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32183,7 +32183,7 @@
     "syntax": "os.getpgid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getpgid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32242,7 +32242,7 @@
     "syntax": "os.getpgrp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getpgrp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32299,7 +32299,7 @@
     "syntax": "os.getsid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getsid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32358,7 +32358,7 @@
     "syntax": "os.setpgid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setpgid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32415,7 +32415,7 @@
     "syntax": "os.setpgrp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setpgrp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32472,7 +32472,7 @@
     "syntax": "os.setsid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setsid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32532,7 +32532,7 @@
     "syntax": "os.tcgetpgrp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.tcgetpgrp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32590,7 +32590,7 @@
     "syntax": "os.tcsetpgrp(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.tcsetpgrp",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32649,7 +32649,7 @@
     "syntax": "os.ctermid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.ctermid",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -32707,7 +32707,7 @@
     "syntax": "os.openpty(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.openpty",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33002,7 +33002,7 @@
     "syntax": "os.ttyname(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.ttyname",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33121,7 +33121,7 @@
     "syntax": "os.chdir(path) -> None",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chdir",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33180,7 +33180,7 @@
     "syntax": "os.mkdir(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.mkdir",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33241,7 +33241,7 @@
     "syntax": "os.makedirs(name, mode=0o777, exist_ok=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.makedirs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33303,7 +33303,7 @@
     "syntax": "os.rmdir(path)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.rmdir",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33363,7 +33363,7 @@
     "syntax": "os.removedirs(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.removedirs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33422,7 +33422,7 @@
     "syntax": "os.rename(src, dst)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.rename",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33489,7 +33489,7 @@
     "syntax": "os.renames(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.renames",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33553,7 +33553,7 @@
     "syntax": "os.link(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.link",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33615,7 +33615,7 @@
     "syntax": "os.symlink(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.symlink",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33676,7 +33676,7 @@
     "syntax": "os.readlink(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.readlink",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33736,7 +33736,7 @@
     "syntax": "os.unlink(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.unlink",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33795,7 +33795,7 @@
     "syntax": "os.utime(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.utime",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33855,7 +33855,7 @@
     "syntax": "os.chmod(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chmod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33916,7 +33916,7 @@
     "syntax": "os.chown(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chown",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33978,7 +33978,7 @@
     "syntax": "os.lchown(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lchown",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34039,7 +34039,7 @@
     "syntax": "os.chroot(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.chroot",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34099,7 +34099,7 @@
     "syntax": "os.mkfifo(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.mkfifo",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34159,7 +34159,7 @@
     "syntax": "os.mknod(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.mknod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34219,7 +34219,7 @@
     "syntax": "os.fsync(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fsync",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34278,7 +34278,7 @@
     "syntax": "os.fdatasync(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fdatasync",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34392,7 +34392,7 @@
     "syntax": "os.fchdir(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fchdir",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34451,7 +34451,7 @@
     "syntax": "os.fchmod(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fchmod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34512,7 +34512,7 @@
     "syntax": "os.fchown(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fchown",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34626,7 +34626,7 @@
     "syntax": "os.popen(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.popen",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34738,7 +34738,7 @@
     "syntax": "os.statvfs(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.statvfs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34797,7 +34797,7 @@
     "syntax": "os.fstatvfs(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fstatvfs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34857,7 +34857,7 @@
     "syntax": "os.statvfs_result(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.statvfs_result",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34913,7 +34913,7 @@
     "syntax": "os.pathconf(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.pathconf",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34970,7 +34970,7 @@
     "syntax": "os.fpathconf(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fpathconf",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35031,7 +35031,7 @@
     "syntax": "os.confstr(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.confstr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35090,7 +35090,7 @@
     "syntax": "os.sysconf(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.sysconf",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35149,7 +35149,7 @@
     "syntax": "os.getloadavg(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getloadavg",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35206,7 +35206,7 @@
     "syntax": "os.uname(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.uname",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35265,7 +35265,7 @@
     "syntax": "os.uname_result(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.uname_result",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35910,7 +35910,7 @@
     "syntax": "os.getxattr(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getxattr",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35969,7 +35969,7 @@
     "syntax": "os.setxattr(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setxattr",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -36028,7 +36028,7 @@
     "syntax": "os.listxattr(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.listxattr",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -36087,7 +36087,7 @@
     "syntax": "os.removexattr(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.removexattr",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -37176,7 +37176,7 @@
     "syntax": "os.major(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.major",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -37233,7 +37233,7 @@
     "syntax": "os.minor(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.minor",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -37290,7 +37290,7 @@
     "syntax": "os.makedev(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.makedev",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -37460,7 +37460,7 @@
     "syntax": "json.JSONDecoder().decode(s)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.JSONDecoder",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -37515,7 +37515,7 @@
     "syntax": "json.JSONEncoder().encode(obj)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/json.html#json.JSONEncoder",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -37570,7 +37570,7 @@
     "syntax": "slice(start, stop, step)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#slice",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -37922,7 +37922,7 @@
     "syntax": "ctypes.ArgumentError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.ArgumentError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -38094,7 +38094,7 @@
     "syntax": "operator.index(a)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/operator.html#operator.index",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -38328,7 +38328,7 @@
     "syntax": "os.lchmod(path, mode)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.lchmod",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -38811,7 +38811,7 @@
     "syntax": "os.startfile(path, operation, arguments, cwd, show_cmd)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.startfile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -38929,7 +38929,7 @@
     "syntax": "sqlite3.DataError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.DataError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -38986,7 +38986,7 @@
     "syntax": "raise sqlite3.DatabaseError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.DatabaseError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39040,7 +39040,7 @@
     "syntax": "raise sqlite3.Error",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.Error",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39095,7 +39095,7 @@
     "syntax": "raise sqlite3.IntegrityError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.IntegrityError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39151,7 +39151,7 @@
     "syntax": "sqlite3.InterfaceError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.InterfaceError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39208,7 +39208,7 @@
     "syntax": "sqlite3.InternalError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.InternalError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39265,7 +39265,7 @@
     "syntax": "sqlite3.NotSupportedError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.NotSupportedError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39322,7 +39322,7 @@
     "syntax": "sqlite3.OperationalError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.OperationalError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39378,7 +39378,7 @@
     "syntax": "sqlite3.ProgrammingError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sqlite3.html#sqlite3.ProgrammingError",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39434,7 +39434,7 @@
     "syntax": "def __eq__(self, other):\n    if not isinstance(other, Point):\n        return NotImplemented",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/constants.html#NotImplemented",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39623,7 +39623,7 @@
     "syntax": "lib = ctypes.CDLL(name)\nlib.func.argtypes = [ctypes.c_int]\nlib.func.restype = ctypes.c_int",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.CDLL",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39686,7 +39686,7 @@
     "syntax": "x = ctypes.c_int(42)\nx.value  # → 42",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.c_int",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39749,7 +39749,7 @@
     "syntax": "class Point(ctypes.Structure):\n    _fields_ = [('x', ctypes.c_int), ('y', ctypes.c_int)]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.Structure",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -39812,7 +39812,7 @@
     "syntax": "lib.func(ctypes.byref(x))",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.byref",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [

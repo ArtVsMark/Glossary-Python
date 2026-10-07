@@ -17,7 +17,7 @@
     "syntax": "from typing import Any\nx: Any = ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Any",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -73,7 +73,7 @@
     "syntax": "from typing import Callable\nCallable[[ArgType, ...], ReturnType]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Callable",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -254,7 +254,7 @@
     "syntax": "from typing import Generic, TypeVar\nT = TypeVar('T')\nclass MyClass(Generic[T]): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Generic",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -441,7 +441,7 @@
     "syntax": "from typing import NamedTuple\nclass MyTuple(NamedTuple):\n    field: type",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.NamedTuple",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -679,7 +679,7 @@
     "syntax": "from typing import TypedDict\nclass MyDict(TypedDict):\n    key: type",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypedDict",
-    "added": "",
+    "added": "3.8",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -739,7 +739,7 @@
     "syntax": "from typing import TypeVar\nT = TypeVar('T')\nT = TypeVar('T', bound=SomeType)\nT = TypeVar('T', int, str)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TypeVar",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -968,7 +968,7 @@
     "syntax": "typing.get_type_hints(obj)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.get_type_hints",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1257,7 +1257,7 @@
     "syntax": "typing.cast(typ, value)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.cast",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1482,7 +1482,7 @@
     "syntax": "class C(typing.Generic[T]): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Generic",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1538,7 +1538,7 @@
     "syntax": "UserId = typing.NewType('UserId', int)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.NewType",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1936,7 +1936,7 @@
     "syntax": "def f(stream: typing.IO[str]) -> None: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.IO",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1993,7 +1993,7 @@
     "syntax": "def f(stream: typing.BinaryIO) -> None: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.BinaryIO",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2050,7 +2050,7 @@
     "syntax": "def f(stream: typing.TextIO) -> None: ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.TextIO",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2110,7 +2110,7 @@
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Text",
     "added": "3.5",
-    "deprecated": "",
+    "deprecated": "3.11",
     "removed": "",
     "platforms": [
       "AllOS"
@@ -2165,7 +2165,7 @@
     "syntax": "isinstance(obj, typing.SupportsInt)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsInt",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2221,7 +2221,7 @@
     "syntax": "isinstance(obj, typing.SupportsFloat)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsFloat",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2277,7 +2277,7 @@
     "syntax": "isinstance(obj, typing.SupportsComplex)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsComplex",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2333,7 +2333,7 @@
     "syntax": "isinstance(obj, typing.SupportsBytes)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsBytes",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2386,7 +2386,7 @@
     "syntax": "isinstance(obj, typing.SupportsAbs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsAbs",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2442,7 +2442,7 @@
     "syntax": "isinstance(obj, typing.SupportsRound)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.SupportsRound",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2554,7 +2554,7 @@
     "syntax": "@typing.overload",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.overload",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2675,7 +2675,7 @@
     "syntax": "@typing.no_type_check",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.no_type_check",
-    "added": "",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2728,9 +2728,9 @@
     "syntax": "@typing.no_type_check_decorator(some_decorator)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.no_type_check_decorator",
-    "added": "",
-    "deprecated": "",
-    "removed": "",
+    "added": "3.5",
+    "deprecated": "3.13",
+    "removed": "3.15",
     "platforms": [
       "AllOS"
     ],

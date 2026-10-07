@@ -16,6 +16,7 @@ from glossary.validation import (
     rule_added,
     rule_body_length,
     rule_color_group,
+    rule_deprecated_text,
     rule_docs_url,
     rule_duplicate_title,
     rule_example_compiles,
@@ -426,6 +427,52 @@ def test_missing_added_is_an_error():
     assert [i.severity for i in issues] == [Severity.ERROR]
 
 
+def _summary(en: str) -> Text:
+    return Text(ru="Сводка", en=en)
+
+
+@pytest.mark.parametrize(
+    "en",
+    [
+        "Deprecated: an abstract property.",
+        "A deprecated method — prefer fromtimestamp().",
+        "Returns UTC time. Deprecated since 3.12.",
+    ],
+)
+def test_deprecated_summary_requires_the_field(en: str):
+    entry = make_entry(summary=_summary(en))
+    issues = list(rule_deprecated_text(make_glossary(entry), CFG))
+    assert [(i.rule, i.severity) for i in issues] == [("deprecated-text", Severity.ERROR)]
+
+
+def test_removal_in_summary_requires_removed():
+    summary = _summary("Deprecated (removal in 3.17).")
+    entry = make_entry(summary=summary, deprecated="3.12")
+    issues = list(rule_deprecated_text(make_glossary(entry), CFG))
+    assert [i.message for i in issues] == [
+        "сводка называет версию удаления, а поле removed пусто"
+    ]
+
+
+@pytest.mark.parametrize(
+    "en",
+    [
+        "Use of a deprecated feature, aimed at developers.",
+        "A feature that will be deprecated in the future.",
+        "Return the sum.",
+    ],
+)
+def test_other_mentions_of_deprecation_pass(en: str):
+    entry = make_entry(summary=_summary(en))
+    assert list(rule_deprecated_text(make_glossary(entry), CFG)) == []
+
+
+def test_filled_lifecycle_passes():
+    summary = _summary("Deprecated (removal in 3.17).")
+    entry = make_entry(summary=summary, deprecated="3.12", removed="3.17")
+    assert list(rule_deprecated_text(make_glossary(entry), CFG)) == []
+
+
 def test_filled_added_passes():
     assert list(rule_added(make_glossary(make_entry(added="<3.0")), CFG)) == []
 
@@ -606,6 +653,7 @@ def test_all_rules_are_registered():
         rule_unique_id,
         rule_version_format,
         rule_added,
+        rule_deprecated_text,
     }
     assert set(RULES) == expected
 
@@ -634,6 +682,7 @@ def test_rule_names_are_unique_and_stable():
         "kind",
         "label-translated",
         "added",
+        "deprecated-text",
         "platforms",
         "platforms-summary",
         "related-errors-resolve",

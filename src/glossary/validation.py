@@ -609,20 +609,51 @@ def rule_related_errors_resolve(g: Glossary, cfg: ValidationConfig) -> Iterator[
                 )
 
 
+def _title_key(title: str) -> str:
+    """Заголовок для сравнения: без регистра и без ``()`` вызова на конце."""
+    return title.strip().removesuffix("()").lower()
+
+
 def rule_duplicate_title(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Одинаковые имена в разных разделах — кандидаты на слияние."""
+    """Две карточки об одном объекте — ошибка: правку получит одна из них.
+
+    Дубль ловится двумя способами. Первый — одинаковый английский заголовок
+    после нормализации: ``os.getenv`` и ``os.getenv()`` — одно и то же. Второй —
+    голое имя и полное имя с одной ссылкой на документацию: ``Counter`` и
+    ``collections.Counter``. Буквальное сравнение пропускало оба случая, и
+    8 пар прожили незамеченными, пока их не слили (#79).
+
+    Совпадение последнего сегмента без общей ссылки дублем не считается:
+    ``str.count`` и ``list.count`` — разные методы.
+    """
     by_title: defaultdict[str, list[Entry]] = defaultdict(list)
     for entry in g.entries:
-        by_title[entry.title.ru].append(entry)
+        by_title[_title_key(entry.title.en)].append(entry)
     for title, group in by_title.items():
         if len(group) < DUPLICATE_THRESHOLD:
             continue
         where = ", ".join(f"{e.id} ({e.section})" for e in group)
         yield Issue(
-            Severity.WARNING,
+            Severity.ERROR,
             "duplicate-title",
             f"имя {title!r} встречается {len(group)} раза: {where}",
         )
+    qualified: defaultdict[tuple[str, str], list[Entry]] = defaultdict(list)
+    for entry in g.entries:
+        key = _title_key(entry.title.en)
+        if "." in key:
+            qualified[key.rsplit(".", 1)[1], entry.docs_url].append(entry)
+    for entry in g.entries:
+        key = _title_key(entry.title.en)
+        if "." in key:
+            continue
+        for twin in qualified.get((key, entry.docs_url), []):
+            yield Issue(
+                Severity.ERROR,
+                "duplicate-title",
+                f"{entry.id} и {twin.id} — одно имя ({key!r} и "
+                f"{_title_key(twin.title.en)!r}) и одна ссылка на документацию",
+            )
 
 
 def rule_section_size(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:

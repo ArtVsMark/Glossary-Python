@@ -9,6 +9,8 @@
 """
 
 import builtins
+import importlib
+import inspect
 import itertools
 import re
 import sys
@@ -111,6 +113,9 @@ class ValidationConfig:
     min_body: int = 60
     min_examples: int = 1
     min_section_size: int = 2
+    min_translation_ratio: float = 0.6
+    max_translation_ratio: float = 1.8
+    """Пропорция длин en/ru, вне которой перевод скорее теряет или добавляет смысл."""
     max_foreign_script: float = 0.15
     """Доля кириллицы, выше которой английская половина считается непереведённой.
 
@@ -586,6 +591,97 @@ def rule_inherited_summary(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue
         )
 
 
+QUALIFIED_NAME: Final = re.compile(r"[A-Za-z_]\w*(?:\.[A-Za-z_]\w*)+")
+"""Полное имя с точкой: ``datetime.datetime.now``. Голое имя — часто понятие."""
+UNSAFE_MODULES: Final = frozenset(
+    {"antigravity", "this", "idlelib", "turtle", "turtledemo", "tkinter"}
+)
+"""Модули с побочным действием при импорте: браузер, печать, окно."""
+CURRENT_SYSTEM: Final = {"win32": "Windows", "darwin": "macOS"}.get(sys.platform, "Linux")
+
+
+def _resolves(name: str) -> bool | None:
+    """Разрешается ли полное имя в объект; ``None`` — проверить нечем.
+
+    Модуль ищется самым длинным импортируемым префиксом, остальное — атрибутами.
+    """
+    parts = name.split(".")
+    if hasattr(builtins, parts[0]):
+        target: object = getattr(builtins, parts[0])
+        rest = parts[1:]
+    elif parts[0] in sys.stdlib_module_names and parts[0] not in UNSAFE_MODULES:
+        for cut in range(len(parts), 0, -1):
+            try:
+                target = importlib.import_module(".".join(parts[:cut]))
+            except ImportError:
+                continue
+            rest = parts[cut:]
+            break
+        else:
+            return False
+    else:
+        return None
+    for part in rest:
+        try:
+            target = getattr(target, part)
+        except AttributeError:
+            # Ленивое имя модуля (PEP 562) видно только обычному чтению,
+            # дескриптор вроде enum.Enum.name — только статическому.
+            try:
+                target = inspect.getattr_static(target, part)
+            except AttributeError:
+                return False
+    return True
+
+
+def rule_title_resolves(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Полное имя в заголовке существует в Python (#86).
+
+    Полнота сопоставляет карточки с языком по заголовку, а витрина ведёт по
+    нему поиск: ``datetime.strftime`` не находился ни там, ни там — в модуле
+    такого имени нет, есть метод ``datetime.datetime.strftime``. Проверяются
+    только имена с точкой из встроенных и стандартной библиотеки; карточка,
+    недоступная на этой системе, удалённая или новее интерпретатора, пропускается.
+    """
+    running = (sys.version_info.major, sys.version_info.minor, 0)
+    for entry in g.entries:
+        name = entry.title.en.removeprefix("@").removesuffix("()")
+        if not QUALIFIED_NAME.fullmatch(name) or entry.removed:
+            continue
+        if ALL_OS not in entry.platforms and CURRENT_SYSTEM not in entry.platforms:
+            continue
+        if entry.added and _version_key(entry.added) > running:
+            continue
+        if _resolves(name) is False:
+            yield Issue(
+                Severity.ERROR,
+                "title-resolves",
+                f"имени {name} в Python {running[0]}.{running[1]} нет",
+                entry.id,
+            )
+
+
+def rule_translation_length(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Английская половина не короче и не длиннее русской в разы (#85).
+
+    Длина — не смысл, но сильный его признак: сводки, в которых английская
+    половина была втрое короче, теряли диапазоны, платформы и оговорки, а у
+    26 исключений в ней стоял docstring чужого класса.
+    """
+    for entry in g.entries:
+        for name, text in (("summary", entry.summary), ("body", entry.body)):
+            if not text.ru or not text.en:
+                continue
+            ratio = len(text.en) / len(text.ru)
+            if not cfg.min_translation_ratio <= ratio <= cfg.max_translation_ratio:
+                yield Issue(
+                    Severity.WARNING,
+                    "translation-length",
+                    f"{name}: английская половина в {ratio:.2f} от русской",
+                    entry.id,
+                )
+
+
 LISTED_NAMES: Final = re.compile(r"\S\s*/\s*\S")
 """Заголовок перечисляет имена через косую черту: «iter() / next()»."""
 
@@ -837,6 +933,8 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_added,
     rule_deprecated_text,
     rule_inherited_summary,
+    rule_title_resolves,
+    rule_translation_length,
     rule_platforms,
     rule_platforms_summary,
     rule_examples,

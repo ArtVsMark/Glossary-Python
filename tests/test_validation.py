@@ -527,6 +527,46 @@ def test_duplicate_title_reports_all_locations():
     issues = list(rule_duplicate_title(glossary, CFG))
     assert len(issues) == 1
     assert "Первый" in issues[0].message and "Второй" in issues[0].message
+    assert issues[0].severity is Severity.ERROR
+
+
+def test_call_parentheses_do_not_hide_a_duplicate():
+    """``os.getenv`` и ``os.getenv()`` — одна функция: так прожили 4 пары (#79)."""
+    glossary = make_glossary(
+        make_entry(id="a", title=Text("os.getenv", "os.getenv")),
+        make_entry(id="b", title=Text("os.getenv()", "os.getenv()")),
+    )
+    assert len(list(rule_duplicate_title(glossary, CFG))) == 1
+
+
+def test_bare_and_qualified_name_with_one_docs_link_are_a_duplicate():
+    """``Counter`` и ``collections.Counter`` с одной ссылкой — одна карточка дважды."""
+    url = "https://docs.python.org/3/library/collections.html#collections.Counter"
+    glossary = make_glossary(
+        make_entry(id="a", title=Text("Counter", "Counter"), docs_url=url),
+        make_entry(
+            id="b", title=Text("collections.Counter", "collections.Counter"), docs_url=url
+        ),
+    )
+    issues = list(rule_duplicate_title(glossary, CFG))
+    assert len(issues) == 1 and "a и b" in issues[0].message
+
+
+def test_same_method_name_on_different_types_is_not_a_duplicate():
+    """``str.count`` и ``list.count`` — разные методы с разными ссылками."""
+    glossary = make_glossary(
+        make_entry(
+            id="a",
+            title=Text("str.count", "str.count"),
+            docs_url="https://docs.python.org/3/library/stdtypes.html#str.count",
+        ),
+        make_entry(
+            id="b",
+            title=Text("count", "count"),
+            docs_url="https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
+        ),
+    )
+    assert list(rule_duplicate_title(glossary, CFG)) == []
 
 
 def test_section_size_warns_on_thin_section():

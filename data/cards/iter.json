@@ -399,7 +399,7 @@
       "ru": "Главная ошибка — оставить в корутине time.sleep(): он замораживает весь поток вместе с event loop, и параллельные задачи встают, хотя код внешне выглядит асинхронным. Указанное время — минимум, а не точность: возврат произойдёт не раньше него, но насколько позже — зависит от загруженности цикла. Вызов asyncio.sleep(0) — идиома «уступить управление»: спать не нужно, но другим готовым задачам дают шанс поработать.",
       "en": "The classic mistake is leaving time.sleep() inside a coroutine: it freezes the whole thread along with the event loop, so every concurrent task stalls even though the code looks asynchronous. The delay is a lower bound, not a guarantee — you never resume earlier, but how much later depends on how busy the loop is. asyncio.sleep(0) is the idiom for yielding control: no real waiting, just a chance for other ready tasks to run."
     },
-    "syntax": "await asyncio.sleep(seconds)",
+    "syntax": "await asyncio.sleep(delay, result=None)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/asyncio-task.html#asyncio.sleep",
     "added": "3.4",

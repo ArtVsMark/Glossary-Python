@@ -11935,7 +11935,7 @@
       "ru": "SystemExit наследуется от BaseException, а не от Exception: except Exception его пропустит, а вот голый except: или except BaseException молча съест выход, и программа поедет дальше — блоки finally при этом отрабатывают всегда. Если аргумент не число, объект печатается в stderr, а код возврата будет 1: sys.exit('файл не найден') — это сообщение об ошибке, а не успешное завершение.",
       "en": "SystemExit inherits from BaseException, not Exception, so except Exception lets it through while a bare except: or except BaseException silently swallows the exit and the program keeps running; finally blocks always execute either way. A non-integer argument is printed to stderr and the exit status becomes 1, so sys.exit('file not found') reports a failure, not a clean finish."
     },
-    "syntax": "sys.exit(status=0)\n# status: int или str",
+    "syntax": "sys.exit([arg])\n# arg: None или 0 — успех, другое число — ошибка, строка — в stderr и код 1",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/sys.html#sys.exit",
     "added": "<3.0",
@@ -14444,7 +14444,7 @@
       "ru": "Нужен только там, где порядок нельзя выразить одним ключом, потому что решение зависит сразу от пары элементов — классика вроде «склеить числа так, чтобы получилось наибольшее». В остальных случаях обычный key= быстрее: ключ считается один раз на элемент, а функция сравнения дёргается порядка n log n раз, да ещё через объект-обёртку. И cmp должна возвращать отрицательное число, ноль или положительное, а не True/False.",
       "en": "Reach for it only when the ordering cannot be expressed as a single key because the decision depends on a pair of elements at once — the classic case is arranging numbers to form the largest possible number. Otherwise a plain key= wins: the key is computed once per element, while a comparison function is called about n log n times through a wrapper object. Also, cmp must return a negative number, zero or a positive number — not True/False."
     },
-    "syntax": "functools.cmp_to_key(cmp_func)",
+    "syntax": "functools.cmp_to_key(func)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functools.html#functools.cmp_to_key",
     "added": "<3.0",
@@ -15189,7 +15189,7 @@
       "ru": "Это не дешёвый снимок __dict__: asdict рекурсивно обходит вложенные датаклассы, списки, кортежи и словари, а всё остальное копирует через copy.deepcopy — на больших структурах это заметно дороже, чем кажется. Результат ещё не готов к json.dumps: datetime, Decimal, set и прочие объекты остаются собой, а поля ClassVar и InitVar в словарь не попадают. Если нужна просто плоская копия атрибутов, дешевле взять vars(obj).",
       "en": "This is not a cheap view of __dict__: asdict walks nested dataclasses, lists, tuples and dicts recursively and deep-copies everything else, which costs real time on large structures. The result is not automatically JSON-ready either — datetime, Decimal, set and friends come back as themselves, and ClassVar/InitVar fields are excluded. When a flat copy of the attributes is enough, vars(obj) is far cheaper."
     },
-    "syntax": "dataclasses.asdict(instance)",
+    "syntax": "dataclasses.asdict(obj, *, dict_factory=dict)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.asdict",
     "added": "3.7",
@@ -15250,7 +15250,7 @@
       "ru": "Кортеж теряет имена, поэтому код, который его распаковывает, ломается молча, стоит переставить или добавить поле в классе — для сериализации и хранения надёжнее asdict. Как и asdict, функция рекурсивная и копирует значения через deepcopy, так что вложенный датакласс станет вложенным кортежем, а не ссылкой на исходный объект. Уместно там, где нужен именно короткий позиционный набор: распаковка, ключ сортировки, передача в функцию через *.",
       "en": "A tuple drops the field names, so any code unpacking it breaks silently the moment fields are reordered or inserted — for serialization and storage asdict is the safer choice. Like asdict it recurses and deep-copies, so a nested dataclass becomes a nested tuple rather than a reference to the original object. Reach for it when you genuinely want a short positional bundle: unpacking, a sort key, or splatting into a call."
     },
-    "syntax": "dataclasses.astuple(instance)",
+    "syntax": "dataclasses.astuple(obj, *, tuple_factory=tuple)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.astuple",
     "added": "3.7",
@@ -15366,7 +15366,7 @@
       "ru": "Нужен редко: если поля известны заранее, обычный декоратор @dataclass читается лучше и виден статическим анализаторам, а make_dataclass строит класс во время выполнения, поэтому IDE о его полях ничего не знает. Элементом списка полей может быть не только имя, но и пара (имя, тип) или тройка с field(); у голого имени тип считается typing.Any. Чтобы экземпляры такого класса пиклились, присвойте результат переменной уровня модуля с тем же именем, что передали первым аргументом.",
       "en": "Rarely the right tool: when the fields are known up front, a plain @dataclass decorator reads better and is visible to type checkers, while make_dataclass builds the class at runtime so your IDE knows nothing about its fields. A field entry can be a bare name, a (name, type) pair, or a triple with field(); a bare name gets typing.Any. For instances to be picklable, bind the result to a module-level variable whose name matches the first argument."
     },
-    "syntax": "dataclasses.make_dataclass(name, fields)",
+    "syntax": "dataclasses.make_dataclass(cls_name, fields, *, bases=(), namespace=None, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.make_dataclass",
     "added": "3.7",
@@ -27334,7 +27334,7 @@
       "ru": "Работает с номерами дескрипторов, а не с путями, поэтому видит именно открытые объекты, даже если файл с тех пор переименовали или удалили. Полезна, чтобы понять, что два дескриптора, полученные разными путями, ведут к одному файлу и запись через один отразится в другом.",
       "en": "It works on descriptor numbers, not paths, so it sees the open objects themselves even if the file was renamed or deleted since. It helps to learn that two descriptors obtained through different paths lead to one file, so writing through one shows up in the other."
     },
-    "syntax": "os.path.sameopenfile(fd1, fd2)",
+    "syntax": "os.path.sameopenfile(fp1, fp2)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.sameopenfile",
     "added": "<3.0",
@@ -27389,7 +27389,7 @@
       "ru": "Использует кодировку файловой системы и обработчик surrogateescape, поэтому имя, прочитанное как str с недекодируемыми байтами, возвращается в исходные байты без потерь. bytes возвращаются без изменений. Нужна, когда системный вызов или внешняя библиотека принимает путь только байтами.",
       "en": "It uses the filesystem encoding with the surrogateescape handler, so a name read as str with undecodable bytes turns back into the original bytes losslessly. bytes pass through unchanged. Use it when a system call or external library accepts paths only as bytes."
     },
-    "syntax": "os.fsencode(path)",
+    "syntax": "os.fsencode(filename)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fsencode",
     "added": "3.2",
@@ -27447,7 +27447,7 @@
       "ru": "Недекодируемые байты не вызывают ошибку, а превращаются в суррогатные символы: такая строка годится для повторного открытия файла, но при печати или записи в UTF-8 вызовет UnicodeEncodeError. Для показа пользователю безопаснее repr() или decode с errors='replace'. str возвращается без изменений.",
       "en": "Undecodable bytes raise no error but become surrogate characters: such a string works for reopening the file, yet printing it or writing it as UTF-8 raises UnicodeEncodeError. For display repr() or decode with errors='replace' is safer. str passes through unchanged."
     },
-    "syntax": "os.fsdecode(path)",
+    "syntax": "os.fsdecode(filename)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.fsdecode",
     "added": "3.2",
@@ -48268,7 +48268,7 @@
       "ru": "Результат не зависит от часового пояса машины, поэтому gmtime(0) везде — 1 января 1970, 00:00. Дробная часть секунд отбрасывается. Обратная функция — calendar.timegm(), а не mktime(): mktime() считает кортеж местным временем и даст сдвиг на величину пояса. Для работы с датами удобнее datetime.fromtimestamp(ts, tz=timezone.utc).",
       "en": "The result does not depend on the machine's time zone, so gmtime(0) is 1 January 1970, 00:00 everywhere. Fractions of a second are dropped. The inverse is calendar.timegm(), not mktime(): mktime() treats the tuple as local time and shifts it by the zone offset. For date work, datetime.fromtimestamp(ts, tz=timezone.utc) is more convenient."
     },
-    "syntax": "time.gmtime(seconds=None)",
+    "syntax": "time.gmtime([secs])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/time.html#time.gmtime",
     "added": "<3.0",
@@ -48327,7 +48327,7 @@
       "ru": "Один и тот же timestamp даёт разные часы на разных машинах: пояс берётся из настроек ОС или переменной TZ, поэтому на сервере в UTC «местное» время совсем не московское. tm_isdst=1 означает, что действует летнее время. Даты вне диапазона платформы дают OverflowError или OSError — на Windows уже для отрицательных значений.",
       "en": "The same timestamp gives different hours on different machines: the zone comes from OS settings or the TZ variable, so on a UTC server 'local' time is not Moscow time at all. tm_isdst=1 means daylight saving time is in effect. Dates outside the platform range raise OverflowError or OSError — on Windows already for negative values."
     },
-    "syntax": "time.localtime(seconds=None)",
+    "syntax": "time.localtime([secs])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/time.html#time.localtime",
     "added": "<3.0",
@@ -48505,7 +48505,7 @@
       "ru": "Время местное, поэтому ctime(0) в Москве — 03:00, а не полночь. Несмотря на имя, к ctime файлов (os.path.getctime — время изменения метаданных, на Windows — создания) функция отношения не имеет; но удобно показывает результат getctime() читаемо. Формат, как у asctime(), фиксирован и английский.",
       "en": "The time is local, so ctime(0) in Moscow is 03:00, not midnight. Despite the name, it has nothing to do with a file's ctime (os.path.getctime — metadata change time, creation time on Windows), though it is a handy way to show a getctime() result readably. As with asctime(), the format is fixed and English."
     },
-    "syntax": "time.ctime(seconds=None)",
+    "syntax": "time.ctime([secs])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/time.html#time.ctime",
     "added": "<3.0",
@@ -85700,7 +85700,7 @@
       "ru": "Настройка меняется для всего процесса, а не для одного вызова, — удобнее завести свой TextCalendar(firstweekday=6). Экземпляры классов и weekday() её не видят: weekday() всегда считает понедельник нулём. Номер вне 0–6 даёт IllegalWeekdayError; для воскресенья пишут calendar.SUNDAY, а не 7.",
       "en": "The setting changes for the whole process, not for a single call — it is often cleaner to create your own TextCalendar(firstweekday=6). Class instances and weekday() ignore it: weekday() always counts Monday as zero. A number outside 0–6 raises IllegalWeekdayError; write calendar.SUNDAY for Sunday, not 7."
     },
-    "syntax": "calendar.setfirstweekday(weekday)",
+    "syntax": "calendar.setfirstweekday(firstweekday)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/calendar.html#calendar.setfirstweekday",
     "added": "<3.0",
@@ -86290,10 +86290,10 @@
       "en": "Returns a header string with weekday names abbreviated to the given width."
     },
     "body": {
-      "ru": "Ширина n обрезает названия: 2 даёт Mo Tu, 3 — Mon Tue, а от 9 выводятся полные имена. Порядок дней следует глобальной setfirstweekday(), а язык — локали процесса. Для собственного заголовка с другим первым днём лучше TextCalendar(firstweekday).formatweekheader(n).",
-      "en": "The width n truncates the names: 2 gives Mo Tu, 3 gives Mon Tue, and from 9 upwards full names are printed. The order follows the global setfirstweekday(), and the language follows the process locale. For your own header with another first day prefer TextCalendar(firstweekday).formatweekheader(n)."
+      "ru": "Ширина width обрезает названия: 2 даёт Mo Tu, 3 — Mon Tue, а от 9 выводятся полные имена. Порядок дней следует глобальной setfirstweekday(), а язык — локали процесса. Для собственного заголовка с другим первым днём лучше TextCalendar(firstweekday).formatweekheader(width).",
+      "en": "The width truncates the names: 2 gives Mo Tu, 3 gives Mon Tue, and from 9 upwards full names are printed. The order follows the global setfirstweekday(), and the language follows the process locale. For your own header with another first day prefer TextCalendar(firstweekday).formatweekheader(width)."
     },
-    "syntax": "calendar.weekheader(n)",
+    "syntax": "calendar.weekheader(width)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/calendar.html#calendar.weekheader",
     "added": "<3.0",
@@ -108363,7 +108363,7 @@
       "ru": "Для пойманного исключения e.__traceback__ указывает на кадр, где исключение поймали, а не где возникло: чтобы попасть в место ошибки, идут по tb_next до конца. code_context читается из файла и равен None, если исходника нет (exec, REPL); context=0 не читает файл вовсе и быстрее. Путь в filename зависит от машины.",
       "en": "For a caught exception, e.__traceback__ points at the frame that caught it, not the one that raised it: follow tb_next to the end to reach the failing line. code_context is read from the file and is None when there is no source (exec, REPL); context=0 skips reading the file and is faster. The filename path is machine-specific."
     },
-    "syntax": "inspect.getframeinfo(frame_or_traceback, context=1)",
+    "syntax": "inspect.getframeinfo(frame, context=1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/inspect.html#inspect.getframeinfo",
     "added": "<3.0",

@@ -1041,8 +1041,8 @@
       "en": "Return a dict of an object's type hints, with forward references resolved."
     },
     "body": {
-      "ru": "Отличается от прямого чтения obj.__annotations__ тем, что вычисляет строковые аннотации в настоящие объекты: под from __future__ import annotations (PEP 563) все аннотации хранятся как строки, и только get_type_hints превращает их обратно в типы, разрешая forward-ссылки в глобалах объекта (иначе NameError, если имя недоступно). Для класса вдобавок собирает аннотации по всей цепочке наследования, а метаданные Annotated по умолчанию отбрасывает — чтобы их сохранить, передай include_extras=True.",
-      "en": "Unlike reading obj.__annotations__ directly, it evaluates string annotations into real type objects: under from __future__ import annotations (PEP 563) every annotation is stored as a string, and only get_type_hints turns them back into types, resolving forward references in the object's globals (raising NameError if a name isn't reachable). For a class it also merges annotations across the whole inheritance chain, and it drops Annotated metadata by default — pass include_extras=True to keep it."
+      "ru": "Отличается от прямого чтения obj.__annotations__ тем, что вычисляет строковые аннотации в настоящие объекты: под from __future__ import annotations (PEP 563) все аннотации хранятся как строки, и get_type_hints превращает их обратно в типы (то же умеет annotationlib.get_annotations(obj, eval_str=True)), разрешая forward-ссылки в глобалах объекта (иначе NameError, если имя недоступно). Для класса вдобавок собирает аннотации по всей цепочке наследования, а метаданные Annotated по умолчанию отбрасывает — чтобы их сохранить, передай include_extras=True.",
+      "en": "Unlike reading obj.__annotations__ directly, it evaluates string annotations into real type objects: under from __future__ import annotations (PEP 563) every annotation is stored as a string, and get_type_hints turns them back into types (annotationlib.get_annotations(obj, eval_str=True) can do this too), resolving forward references in the object's globals (raising NameError if a name isn't reachable). For a class it also merges annotations across the whole inheritance chain, and it drops Annotated metadata by default — pass include_extras=True to keep it."
     },
     "syntax": "typing.get_type_hints(obj)",
     "status": "ready",
@@ -1938,8 +1938,8 @@
       "en": "The type of objects created by the `type X = ...` statement (type aliases; 3.12+)."
     },
     "body": {
-      "ru": "Экземпляры создаёт не конструктор, а инструкция type X = ... (PEP 695). Её правая часть вычисляется лениво — только при обращении к X.__value__, — поэтому псевдоним может ссылаться на ещё не определённые имена или на самого себя (рекурсивные типы) без кавычек-строк.",
-      "en": "Instances come from the type X = ... statement (PEP 695), not from a constructor. Its right-hand side is evaluated lazily — only when you access X.__value__ — so an alias can reference names not yet defined, or itself for recursive types, without quoting them as strings."
+      "ru": "Обычно экземпляры создаёт инструкция type X = ... (PEP 695); конструктор TypeAliasType(name, value) появился в той же 3.12 и нужен, когда псевдоним создаётся во время выполнения; для версий до 3.12 его берут из typing_extensions. У инструкции type правая часть вычисляется лениво — только при обращении к X.__value__, — поэтому псевдоним может ссылаться на ещё не определённые имена или на самого себя (рекурсивные типы) без кавычек-строк.",
+      "en": "Instances usually come from the type X = ... statement (PEP 695); the TypeAliasType(name, value) constructor arrived in the same 3.12 and is for creating an alias at run time; versions before 3.12 take it from typing_extensions. With the type statement the right-hand side is evaluated lazily — only when you access X.__value__ — so an alias can reference names not yet defined, or itself for recursive types, without quoting them as strings."
     },
     "syntax": "type X = int  # X — экземпляр TypeAliasType",
     "status": "ready",
@@ -1998,8 +1998,8 @@
       "en": "The internal representation of a string (forward) annotation; keeps the source in __forward_arg__."
     },
     "body": {
-      "ru": "Руками его почти никогда не создают — Python сам заворачивает в ForwardRef любую аннотацию, записанную строкой (например 'Node' для ссылки на ещё не определённый класс). Разворачивает эти отложенные ссылки в настоящие типы уже typing.get_type_hints().",
-      "en": "You almost never build one by hand — Python wraps any annotation written as a string (say 'Node', referring to a not-yet-defined class) into a ForwardRef itself. It is typing.get_type_hints() that later resolves these deferred references back into real types."
+      "ru": "Руками его почти никогда не создают — ForwardRef появляется сам, когда строку (например 'Node' для ссылки на ещё не определённый класс) передают в обобщение typing: Optional['Node'] или List['Node']. Строковая аннотация функции при этом остаётся в __annotations__ обычной str, а list['Node'] тоже хранит строку. Разворачивает эти отложенные ссылки в настоящие типы уже typing.get_type_hints().",
+      "en": "You almost never build one by hand — a ForwardRef appears on its own when a string (say 'Node', referring to a not-yet-defined class) is passed to a typing generic such as Optional['Node'] or List['Node']. A string annotation on a function stays a plain str in __annotations__, and list['Node'] keeps the string too. It is typing.get_type_hints() that later resolves these deferred references back into real types."
     },
     "syntax": "typing.ForwardRef('SomeType')",
     "status": "ready",

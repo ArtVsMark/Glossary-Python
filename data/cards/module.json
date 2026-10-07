@@ -4887,13 +4887,14 @@
         "print('загрузка...', end='', flush=True)"
       ],
       [
-        "import sys",
+        "import os, sys",
         "# или явно:",
         "sys.stdout.write('статус')",
         "sys.stdout.flush()",
         "with open('log.txt', 'w') as f:",
         "    f.write('событие')",
-        "    f.flush()  # сразу на диск"
+        "    f.flush()  # данные отданы ОС, но ещё не обязательно на диске",
+        "    os.fsync(f.fileno())  # а вот теперь — на диске"
       ]
     ],
     "related": [
@@ -4912,8 +4913,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает текущую позицию курсора в файле в байтах. Используй вместе с seek() для навигации по файлу.",
-      "en": "Returns the current position of the cursor in the file, in bytes. Use it together with seek() to move around a file."
+      "ru": "Возвращает текущую позицию в файле: в бинарном режиме — смещение в байтах, в текстовом — непрозрачное число для seek().",
+      "en": "Returns the current position in the file: a byte offset in binary mode, an opaque number meant for seek() in text mode."
     },
     "body": {
       "ru": "В бинарном режиме tell() отдаёт настоящее смещение в байтах, а в текстовом — непрозрачное число: с ним нельзя делать арифметику, единственное законное применение — вернуть его обратно в seek(). Поэтому, если нужно прыгать на N байт вперёд и считать позиции, файл открывают с 'b'. В текстовом режиме ещё и переводы строк транслируются, так что число из tell() не совпадает с количеством прочитанных символов.",
@@ -9274,13 +9275,13 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
-        "os.close(fd)",
-        "os.remove(p)",
-        "print(os.path.exists(p))   # → False",
-        "if os.path.exists('temp.txt'):",
-        "    os.remove('temp.txt')  # → безопасное удаление"
+        "open('temp.txt', 'w').close()",
+        "os.remove('temp.txt')",
+        "print(os.path.exists('temp.txt'))   # → False",
+        "try:",
+        "    os.remove('temp.txt')   # файла уже нет",
+        "except FileNotFoundError:",
+        "    print('файла нет')   # → файла нет — ловим исключение, а не проверяем exists заранее"
       ]
     ],
     "related": [
@@ -12047,8 +12048,8 @@
       "en": "Set the maximum recursion depth; too high a value can crash the process with a stack overflow — the limit is a safeguard, not a hard guarantee."
     },
     "body": {
-      "ru": "Поднять предел — не значит починить бесконечную рекурсию: ловимый RecursionError просто сменится жёстким падением всего процесса по переполнению стека, уже без traceback. Опустить предел ниже текущей глубины тоже не выйдет — сам вызов поднимет RecursionError. Если алгоритм честно уходит вглубь на десятки тысяч шагов, его переписывают итеративно со своим стеком, а не крутят лимит.",
-      "en": "Raising the limit does not fix runaway recursion — it only trades a catchable RecursionError for a hard crash of the whole process on stack overflow, with no traceback. Lowering it below the current depth fails as well: the call itself raises RecursionError. If an algorithm genuinely needs tens of thousands of levels, rewrite it iteratively with an explicit stack instead of tuning the limit."
+      "ru": "Поднять предел — не значит починить бесконечную рекурсию: RecursionError лишь придёт позже, съев больше памяти, а слишком высокий предел на некоторых платформах может обрушить весь процесс по переполнению стека, уже без traceback. Опустить предел ниже текущей глубины тоже не выйдет — сам вызов поднимет RecursionError. Если алгоритм честно уходит вглубь на десятки тысяч шагов, его переписывают итеративно со своим стеком, а не крутят лимит.",
+      "en": "Raising the limit does not fix runaway recursion — the RecursionError merely arrives later after eating more memory, and on some platforms a too-high limit can crash the whole process on stack overflow, with no traceback. Lowering it below the current depth fails as well: the call itself raises RecursionError. If an algorithm genuinely needs tens of thousands of levels, rewrite it iteratively with an explicit stack instead of tuning the limit."
     },
     "syntax": "sys.setrecursionlimit(limit: int) -> None",
     "status": "ready",
@@ -12254,11 +12255,16 @@
         "print('os' in sys.modules)  # → True",
         "print(type(sys.modules['os']))  # → <class 'module'>",
         "print(len(sys.modules))  # → кол-во загруженных модулей",
-        "del sys.modules['os']  # → принудительная выгрузка"
+        "del sys.modules['os']  # убрали из кэша — сам модуль из памяти не выгружен",
+        "import os as os2",
+        "print(os2 is os)  # → False — тело модуля выполнено заново, старый объект жив"
       ],
       [
-        "import os",
-        "import os  # → повторная загрузка"
+        "import sys",
+        "import json",
+        "first = sys.modules['json']",
+        "import json  # повторный import берёт модуль из кэша",
+        "print(sys.modules['json'] is first)  # → True — тело модуля не выполнялось заново"
       ]
     ],
     "related": [
@@ -18334,8 +18340,8 @@
       "en": "An async context manager ensuring aclose() is called on exit (3.10+)."
     },
     "body": {
-      "ru": "Главный случай — асинхронные генераторы с try/finally: если выйти из async for через break или исключение, финализация генератора не произойдёт сразу, её отложат до shutdown_asyncgens() у цикла событий, то есть в непредсказуемый момент. aclosing делает закрытие детерминированным ровно в точке выхода из блока. Работает только с объектами, у которых есть aclose(); для синхронного close() — обычный closing().",
-      "en": "The main case is async generators with try/finally: if you leave an async for via break or an exception, the generator is not finalized right there — cleanup is deferred to the event loop's shutdown_asyncgens(), at an unpredictable moment. aclosing makes the teardown happen deterministically where the block ends. It only works with objects exposing aclose(); for a plain sync close() use closing() instead."
+      "ru": "Главный случай — асинхронные генераторы с try/finally: если выйти из async for через break или исключение, финализация генератора не произойдёт сразу: цикл событий выполнит aclose() позже, отдельной задачей после сборки генератора (а не доживших — в shutdown_asyncgens()), то есть в непредсказуемый момент и вне контекста итерации. aclosing делает закрытие детерминированным ровно в точке выхода из блока. Работает только с объектами, у которых есть aclose(); для синхронного close() — обычный closing().",
+      "en": "The main case is async generators with try/finally: if you leave an async for via break or an exception, the generator is not finalized right there — the event loop runs aclose() later as a separate task once the generator is collected (or in shutdown_asyncgens() for survivors), at an unpredictable moment and outside the iteration's context. aclosing makes the teardown happen deterministically where the block ends. It only works with objects exposing aclose(); for a plain sync close() use closing() instead."
     },
     "syntax": "async with contextlib.aclosing(thing): ...",
     "status": "ready",
@@ -25834,8 +25840,8 @@
       "en": "Split a path into a (drive, root, tail) triple (3.12+)."
     },
     "body": {
-      "ru": "Отделяет корень от диска, и это позволяет различить пути, которые splitdrive путает: ntpath.splitroot('C:a') даёт ('C:', '', 'a') — корня нет, путь относительный. На POSIX ровно два ведущих слеша сохраняются как корень, три и больше сводятся к одному: splitroot('//x') даёт ('', '//', 'x'), а splitroot('///x') — ('', '/', '//x'). Появилась в Python 3.12.",
-      "en": "It separates the root from the drive, which tells apart paths that splitdrive conflates: ntpath.splitroot('C:a') gives ('C:', '', 'a') — no root, so the path is relative. On POSIX exactly two leading slashes are kept as the root, while three or more collapse to one: splitroot('//x') gives ('', '//', 'x'), and splitroot('///x') gives ('', '/', '//x'). Added in Python 3.12."
+      "ru": "Отделяет корень от диска, и это позволяет различить пути, которые splitdrive путает: ntpath.splitroot('C:a') даёт ('C:', '', 'a') — корня нет, путь относительный. На POSIX ровно два ведущих слеша сохраняются как корень, при трёх и больше корнем становится один слеш, а остальные уходят в остаток без изменений: splitroot('//x') даёт ('', '//', 'x'), а splitroot('///x') — ('', '/', '//x'). Появилась в Python 3.12.",
+      "en": "It separates the root from the drive, which tells apart paths that splitdrive conflates: ntpath.splitroot('C:a') gives ('C:', '', 'a') — no root, so the path is relative. On POSIX exactly two leading slashes are kept as the root, while with three or more the root is a single slash and the rest stay in the tail unchanged: splitroot('//x') gives ('', '//', 'x'), and splitroot('///x') gives ('', '/', '//x'). Added in Python 3.12."
     },
     "syntax": "os.path.splitroot(path)",
     "status": "ready",
@@ -26126,7 +26132,7 @@
       "ru": "Считает путь по строкам и на диск не смотрит, поэтому работает и для несуществующих путей, но не учитывает символические ссылки. По умолчанию start — текущий каталог, то есть результат зависит от того, откуда запущена программа. На Windows для путей на разных дисках поднимается ValueError: относительного пути между C: и D: не бывает.",
       "en": "It computes the path from strings without touching the disk, so it works for paths that do not exist but ignores symlinks. By default start is the current directory, so the result depends on where the program was launched from. On Windows paths on different drives raise ValueError: there is no relative path between C: and D:."
     },
-    "syntax": "os.path.relpath(path, start)",
+    "syntax": "os.path.relpath(path, start=os.curdir)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.path.html#os.path.relpath",
     "added": "<3.0",
@@ -26962,10 +26968,9 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
         "print(os.path.getsize(os.__file__) > 0)   # → True",
         "print(os.path.getsize(os.__file__) == os.stat(os.__file__).st_size)   # → True — getsize это os.stat(path).st_size",
-        "tmp = os.path.join(tempfile.gettempdir(), 'grader_demo.txt')",
+        "tmp = 'grader_demo.txt'   # файл в текущем каталоге",
         "with open(tmp, 'w', encoding='utf-8') as f: f.write('hello')",
         "print(os.path.getsize(tmp))   # → 5",
         "print(round(os.path.getsize(os.__file__) / 1024, 1))   # → ? размер в килобайтах, например 42.3",
@@ -27740,7 +27745,7 @@
         "print(os.get_exec_path({'PATH': os.pathsep.join(['/usr/bin', '/bin'])}))   # → ['/usr/bin', '/bin']",
         "print(os.get_exec_path() == os.environ['PATH'].split(os.pathsep))   # → True — это просто PATH, разбитый по os.pathsep",
         "print(os.get_exec_path({'PATH': ''}))   # → [''] — пустой PATH даёт один пустой элемент, то есть текущий каталог",
-        "print(os.get_exec_path({}))   # → если ключа PATH нет, берётся os.defpath, например ['', '/bin', '/usr/bin']"
+        "print(os.get_exec_path({}))   # → если ключа PATH нет, берётся os.defpath: на Linux ['/bin', '/usr/bin']"
       ]
     ],
     "related": [
@@ -27938,7 +27943,7 @@
     "syntax": "os.times_result(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.times",
-    "added": "<3.0",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -28168,8 +28173,8 @@
       "en": "Return the text message for an errno error code."
     },
     "body": {
-      "ru": "Для неизвестного кода ошибки не поднимает исключение, а возвращает строку вида 'Unknown error 99999'. Текст зависит от системы и её языковых настроек, поэтому сравнивать сообщения в коде нельзя — сравнивайте числа через модуль errno. У исключения OSError то же описание уже лежит в атрибуте strerror.",
-      "en": "For an unknown error code it does not raise but returns a string like 'Unknown error 99999'. The text depends on the system and its locale, so never compare messages in code — compare numbers via the errno module. An OSError already carries the same description in its strerror attribute."
+      "ru": "Для неизвестного кода на Linux и macOS исключения нет — вернётся строка вида 'Unknown error 99999'; на платформах, где C-функция strerror возвращает NULL, поднимается ValueError. Текст зависит от системы и её языковых настроек, поэтому сравнивать сообщения в коде нельзя — сравнивайте числа через модуль errno. У исключения OSError то же описание уже лежит в атрибуте strerror.",
+      "en": "For an unknown error code Linux and macOS do not raise but return a string like 'Unknown error 99999'; on platforms where the C strerror returns NULL, ValueError is raised. The text depends on the system and its locale, so never compare messages in code — compare numbers via the errno module. An OSError already carries the same description in its strerror attribute."
     },
     "syntax": "os.strerror(code)",
     "status": "ready",
@@ -29242,13 +29247,12 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
+        "fd = os.open('trunc_demo.txt', os.O_RDWR | os.O_CREAT | os.O_TRUNC)",
         "os.write(fd, b'hello')",
         "os.ftruncate(fd, 2)",
         "os.close(fd)",
-        "print(os.path.getsize(p))   # → 2",
-        "os.remove(p)"
+        "print(os.path.getsize('trunc_demo.txt'))   # → 2",
+        "os.remove('trunc_demo.txt')"
       ]
     ],
     "related": [
@@ -29532,13 +29536,11 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
-        "os.write(fd, b'hello')",
-        "os.close(fd)",
-        "os.truncate(p, 2)",
-        "print(os.path.getsize(p))   # → 2",
-        "os.remove(p)"
+        "with open('hello.txt', 'wb') as f:",
+        "    f.write(b'hello')",
+        "os.truncate('hello.txt', 2)",
+        "print(os.path.getsize('hello.txt'))   # → 2",
+        "os.remove('hello.txt')"
       ]
     ],
     "related": [
@@ -30819,7 +30821,7 @@
         "env = {'GREETING': 'привет', 'PATH': '/usr/bin:/bin'}",
         "os.execle('/bin/sh', 'sh', '-c', 'echo $GREETING', env)   # → ? только Unix: процесс замещается на sh и печатает «привет» — переменная взята из переданного env",
         "os.execle('/usr/bin/env', 'env', {})   # → ? только Unix: новый процесс стартует с пустым окружением, env не печатает ни строки",
-        "os.execle('/bin/sh', 'sh', '-c', 'echo $GREETING')   # → TypeError: последний аргумент execle обязан быть словарём окружения, а не аргументом команды",
+        "os.execle('/bin/sh', 'sh', '-c', 'echo $GREETING')   # → AttributeError: 'str' object has no attribute 'keys' — последний аргумент execle обязан быть словарём окружения, а не аргументом команды",
         "os.execl('/bin/sh', 'sh', '-c', 'echo $GREETING')   # → ? только Unix: у execl своего env нет — программа наследует окружение текущего процесса"
       ]
     ],
@@ -31190,7 +31192,7 @@
         "import sys",
         "env = {**os.environ, 'GREETING': 'hello'}   # env заменяет окружение целиком, поэтому его копируют из os.environ",
         "print(env['GREETING'])   # → hello",
-        "print(os.spawnv(os.P_WAIT, sys.executable, ['python', '-c', 'pass']))   # → 0 (spawnve отличается только тем, что берёт env последним аргументом)",
+        "print(os.spawnve(os.P_WAIT, sys.executable, ['python', '-c', 'import os; print(os.environ[\"GREETING\"])'], env))   # → сначала потомок печатает hello, затем 0 — код выхода",
         "print('PATH' in os.environ)   # → True",
         "print('PATH' in {'GREETING': 'hello'})   # → False (с таким «голым» env дочерний процесс останется без PATH)"
       ]
@@ -31680,7 +31682,7 @@
         "import os",
         "pid = os.posix_spawnp('echo', ['echo', 'привет'], os.environ)  # → ? только Unix: находит echo в PATH, возвращает PID потомка, например 12345",
         "print(os.waitpid(pid, 0)[1])  # → ? только Unix: 0 — потомок напечатал «привет» и завершился успешно",
-        "pid = os.posix_spawnp('sh', ['sh', '-c', 'exit 3'], {'PATH': '/bin:/usr/bin'})  # → ? только Unix: PATH берётся из переданного env, потомок выйдет с кодом 3",
+        "pid = os.posix_spawnp('sh', ['sh', '-c', 'exit 3'], {'PATH': '/bin:/usr/bin'})  # → ? только Unix: программу ищут по PATH вызывающего процесса, а не по env — env получит только потомок; он выйдет с кодом 3",
         "os.posix_spawnp('нет-такой-программы', ['нет-такой-программы'], os.environ)  # → FileNotFoundError: в PATH ничего не найдено"
       ]
     ],
@@ -33287,7 +33289,7 @@
     "syntax": "os.getresuid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getresuid",
-    "added": "3.2",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33345,7 +33347,7 @@
     "syntax": "os.getresgid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.getresgid",
-    "added": "3.2",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33934,8 +33936,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Задаёт реальный, эффективный и сохранённый UID. Доступно на Unix.",
-      "en": "Set the real, effective and saved user ids. Availability: Unix."
+      "ru": "Задаёт реальный, эффективный и сохранённый UID. Доступно на Linux.",
+      "en": "Set the real, effective and saved user ids. Availability: Linux."
     },
     "body": {
       "ru": "Задаёт все три UID явно — самый предсказуемый способ окончательно сбросить привилегии: setresuid(uid, uid, uid). -1 оставляет значение без изменений. Доступна на Linux и некоторых BSD, на macOS её нет.",
@@ -33944,7 +33946,7 @@
     "syntax": "os.setresuid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setresuid",
-    "added": "3.2",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -33994,8 +33996,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Задаёт реальный, эффективный и сохранённый GID. Доступно на Unix.",
-      "en": "Set the real, effective and saved group ids. Availability: Unix."
+      "ru": "Задаёт реальный, эффективный и сохранённый GID. Доступно на Linux.",
+      "en": "Set the real, effective and saved group ids. Availability: Linux."
     },
     "body": {
       "ru": "Задаёт реальный, эффективный и сохранённый GID явно. При сбросе привилегий вызывается до setresuid. -1 оставляет значение без изменений. Как и setresuid, на macOS отсутствует.",
@@ -34004,7 +34006,7 @@
     "syntax": "os.setresgid(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.setresgid",
-    "added": "3.2",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -34125,7 +34127,7 @@
     "syntax": "os.initgroups(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.initgroups",
-    "added": "3.2",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -35244,8 +35246,8 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "base = tempfile.mkdtemp()",
+        "base = 'mkdir_demo'",
+        "os.mkdir(base)",
         "d = os.path.join(base, 'sub')",
         "os.mkdir(d)",
         "print(os.path.isdir(d))   # → True",
@@ -35308,8 +35310,7 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "base = tempfile.mkdtemp()",
+        "base = 'makedirs_demo'",
         "d = os.path.join(base, 'a', 'b')",
         "os.makedirs(d)",
         "print(os.path.isdir(d))   # → True",
@@ -35371,10 +35372,9 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "d = tempfile.mkdtemp()",
-        "os.rmdir(d)",
-        "print(os.path.exists(d))   # → False",
+        "os.mkdir('empty_dir')",
+        "os.rmdir('empty_dir')",
+        "print(os.path.exists('empty_dir'))   # → False",
         "os.makedirs('a/b/c', exist_ok=True)",
         "os.rmdir('a/b/c')  # → удаляет только пустую c",
         "print(os.path.isdir('a/b'))  # → True"
@@ -35433,12 +35433,9 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "base = tempfile.mkdtemp()",
-        "d = os.path.join(base, 'a', 'b')",
-        "os.makedirs(d)",
-        "os.removedirs(d)",
-        "print(os.path.exists(base))   # → False"
+        "os.makedirs('a/b/c')",
+        "os.removedirs('a/b/c')",
+        "print(os.path.exists('a'))   # → False — вслед за c удалены опустевшие b и a"
       ]
     ],
     "related": [
@@ -35495,13 +35492,6 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
-        "os.close(fd)",
-        "p2 = p + '_r'",
-        "os.rename(p, p2)",
-        "print(os.path.exists(p2) and not os.path.exists(p))   # → True",
-        "os.remove(p2)",
         "open('old.txt', 'w').close()",
         "os.rename('old.txt', 'new.txt')   # переименование в том же каталоге",
         "print(os.path.exists('new.txt'))   # → True",
@@ -35563,16 +35553,11 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "base = tempfile.mkdtemp()",
-        "fd, p = tempfile.mkstemp(dir=base)",
-        "os.close(fd)",
-        "p2 = os.path.join(base, 'sub', 'f')",
-        "os.renames(p, p2)",
-        "print(os.path.isfile(p2))   # → True",
-        "os.remove(p2)",
-        "os.rmdir(os.path.dirname(p2))",
-        "os.rmdir(base)"
+        "os.makedirs('src')",
+        "open('src/f.txt', 'w').close()",
+        "os.renames('src/f.txt', 'dst/sub/f.txt')",
+        "print(os.path.isfile('dst/sub/f.txt'))   # → True — недостающие dst/sub созданы",
+        "print(os.path.exists('src'))   # → False — опустевший исходный каталог убран"
       ]
     ],
     "related": [
@@ -35629,14 +35614,11 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
-        "os.close(fd)",
-        "p2 = p + '_l'",
-        "os.link(p, p2)",
-        "print(os.path.exists(p2))   # → True",
-        "os.remove(p2)",
-        "os.remove(p)"
+        "open('link_src.txt', 'w').close()",
+        "os.link('link_src.txt', 'link_src.txt_l')",
+        "print(os.path.exists('link_src.txt_l'))   # → True",
+        "os.remove('link_src.txt_l')",
+        "os.remove('link_src.txt')"
       ]
     ],
     "related": [
@@ -35757,12 +35739,12 @@
     "examples": [
       [
         "import os",
+        "open('data.txt', 'w').close()   # цель ссылки — обычный файл",
         "os.symlink('data.txt', 'link.txt')   # → ? только Unix: создаёт ссылку link.txt на data.txt",
         "print(os.readlink('link.txt'))   # → ? data.txt — «сырая» цель ссылки, ровно как она записана",
-        "print(os.path.realpath('link.txt'))   # → ? data.txt — realpath разворачивает цель в абсолютный путь",
+        "print(os.path.realpath('link.txt') == os.path.abspath('data.txt'))   # → ? True — realpath разворачивает цель в абсолютный путь",
         "print(os.path.islink('link.txt'))   # → True — проверка перед вызовом readlink",
-        "print(os.readlink('data.txt'))   # → OSError (EINVAL) — обычный файл не является символической ссылкой",
-        "print(os.readlink('нет-такой-ссылки'))   # → FileNotFoundError"
+        "print(os.readlink('data.txt'))   # → OSError (EINVAL) — обычный файл не является символической ссылкой"
       ]
     ],
     "related": [
@@ -35818,11 +35800,9 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
-        "os.close(fd)",
-        "os.unlink(p)",
-        "print(os.path.exists(p))   # → False"
+        "open('temp.txt', 'w').close()",
+        "os.unlink('temp.txt')",
+        "print(os.path.exists('temp.txt'))   # → False"
       ]
     ],
     "related": [
@@ -35880,12 +35860,10 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
-        "os.close(fd)",
-        "os.utime(p, (100, 200))",
-        "print(os.path.getmtime(p))   # → 200.0",
-        "os.remove(p)"
+        "open('stamp.txt', 'w').close()",
+        "os.utime('stamp.txt', (100, 200))",
+        "print(os.path.getmtime('stamp.txt'))   # → 200.0",
+        "os.remove('stamp.txt')"
       ]
     ],
     "related": [
@@ -36070,6 +36048,7 @@
     "examples": [
       [
         "import os",
+        "open('target.txt', 'w').close()  # → ? файл-цель: без него os.chown по ссылке ниже упадёт с FileNotFoundError",
         "os.symlink('target.txt', 'link.txt')  # → ? только Unix: создаём символическую ссылку для опытов",
         "os.lchown('link.txt', os.getuid(), os.getgid())  # → ? только Unix: меняется владелец САМОЙ ссылки, файл target.txt не тронут",
         "os.chown('link.txt', os.getuid(), os.getgid())  # → ? только Unix: в отличие от lchown идёт ПО ссылке и правит владельца target.txt",
@@ -36318,12 +36297,11 @@
     "examples": [
       [
         "import os",
-        "import tempfile",
-        "fd, p = tempfile.mkstemp()",
+        "fd = os.open('fsync_demo.txt', os.O_WRONLY | os.O_CREAT | os.O_TRUNC)",
         "os.write(fd, b'x')",
         "print(os.fsync(fd) is None)   # → True",
         "os.close(fd)",
-        "os.remove(p)"
+        "os.remove('fsync_demo.txt')"
       ]
     ],
     "related": [
@@ -36379,7 +36357,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/data.log', os.O_WRONLY | os.O_CREAT)   # → ? дескриптор открытого файла, например 3",
+        "fd = os.open('data.log', os.O_WRONLY | os.O_CREAT)   # → ? дескриптор открытого файла, например 3",
         "print(os.write(fd, b'payload\\n'))   # → 8",
         "os.fdatasync(fd)   # → ? только Unix: None; данные гарантированно на диске, метаданные вроде времени изменения могут остаться в кеше",
         "os.fsync(fd)   # → ? None; в отличие от fdatasync сбрасывает и метаданные — надёжнее, но дороже",
@@ -36441,7 +36419,7 @@
       [
         "import os",
         "os.sync()   # → None — буферы всех смонтированных файловых систем сброшены на диск",
-        "fd = os.open('/tmp/report.txt', os.O_WRONLY | os.O_CREAT)   # → ? дескриптор открытого файла, например 3",
+        "fd = os.open('report.txt', os.O_WRONLY | os.O_CREAT)   # → ? дескриптор открытого файла, например 3",
         "print(os.write(fd, b'done\\n'))   # → 5",
         "os.sync()   # → ? только Unix: записанная строка теперь точно на диске — так страхуются перед перезагрузкой или снятием питания",
         "os.fsync(fd)   # → ? None; сбрасывает только этот файл — точечнее и дешевле, чем синхронизация всей системы"
@@ -36589,8 +36567,8 @@
       "en": "Like chown, but by an open file descriptor. Availability: Unix."
     },
     "body": {
-      "ru": "Как и другие функции по дескриптору, защищает от гонок: владелец меняется у того файла, который открыт, даже если путь к нему успели подменить. Значение -1 оставляет uid или gid без изменений. Требует прав root, как и chown.",
-      "en": "Like other descriptor-based functions it guards against races: ownership changes on the file that is open, even if its path has been swapped. A value of -1 leaves uid or gid unchanged. It needs root, just like chown."
+      "ru": "Как и другие функции по дескриптору, защищает от гонок: владелец меняется у того файла, который открыт, даже если путь к нему успели подменить. Значение -1 оставляет uid или gid без изменений. Отдать файл чужому владельцу может только root, как и в chown; владелец своего файла может и без него оставить владельцем себя и сменить группу на одну из своих.",
+      "en": "Like other descriptor-based functions it guards against races: ownership changes on the file that is open, even if its path has been swapped. A value of -1 leaves uid or gid unchanged. Giving the file to another owner needs root, as with chown; a file's owner can, without it, keep themselves as owner and switch to one of their own groups."
     },
     "syntax": "os.fchown(...)",
     "status": "ready",
@@ -36685,7 +36663,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/counter.dat', os.O_RDWR | os.O_CREAT)   # → ? только Unix: дескриптор файла, который будем блокировать",
+        "fd = os.open('counter.dat', os.O_RDWR | os.O_CREAT)   # → ? только Unix: дескриптор файла, который будем блокировать",
         "os.lockf(fd, os.F_LOCK, 0)   # → ? только Unix: захватывает файл целиком (len=0), ждёт, пока его освободит другой процесс",
         "os.lockf(fd, os.F_ULOCK, 0)   # → ? только Unix: снимает блокировку, ничего не возвращает",
         "os.lockf(fd, os.F_TLOCK, 100)   # → ? только Unix: пробует занять 100 байт от текущей позиции без ожидания; занято другим процессом — BlockingIOError",
@@ -36797,11 +36775,12 @@
     "examples": [
       [
         "import os",
-        "step = next(os.fwalk('/etc'))",
+        "walker = os.fwalk('/etc')  # генератор держим в переменной: пока он жив, жив и дескриптор каталога",
+        "step = next(walker)",
         "print(len(step))  # → 4 — (dirpath, dirnames, filenames, dirfd); у os.walk элементов 3",
         "print(step[0])  # → ? только Unix: /etc — обход начинается с корня дерева",
         "print(os.stat(step[2][0], dir_fd=step[3]).st_size)  # → ? только Unix: размер первого файла в /etc, полученный через дескриптор каталога, а не по пути — ради этого fwalk и берут",
-        "print(list(os.fwalk('/нет-такого')))  # → [] — несуществующий каталог молча даёт пустой обход, как и os.walk"
+        "print(list(os.fwalk('/нет-такого')))  # → FileNotFoundError — в отличие от os.walk, который на несуществующем каталоге молча даёт []"
       ]
     ],
     "related": [
@@ -37517,7 +37496,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/pread_demo.txt', os.O_RDWR | os.O_CREAT)  # временный файл только для примера",
+        "fd = os.open('pread_demo.txt', os.O_RDWR | os.O_CREAT)  # временный файл только для примера",
         "print(os.write(fd, b'Hello, world!'))  # → 13 — записали 13 байт, текущее смещение стало 13",
         "print(os.pread(fd, 5, 0))  # → b'Hello' — читаем 5 байт с позиции 0",
         "print(os.lseek(fd, 0, os.SEEK_CUR))  # → 13 — pread не сдвинул текущее смещение файла, в отличие от os.read",
@@ -37580,7 +37559,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/pwrite-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
+        "fd = os.open('pwrite-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
         "print(os.pwrite(fd, b'0123456789', 0))  # → 10 — записано байт начиная со смещения 0",
         "print(os.pwrite(fd, b'XY', 4))  # → 2 — точечная правка двух байтов в середине файла",
         "print(os.pread(fd, 10, 0))  # → b'0123XY6789'",
@@ -37605,8 +37584,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как pread, но читает сразу в несколько буферов (scatter read) с заданной позиции. Доступно на Unix.",
-      "en": "Like pread, but scatters into multiple buffers at an offset. Availability: Unix."
+      "ru": "Как pread, но читает сразу в несколько буферов (scatter read) с заданной позиции. Доступно на Linux.",
+      "en": "Like pread, but scatters into multiple buffers at an offset. Availability: Linux."
     },
     "body": {
       "ru": "Сочетает pread и readv: читает с заданного смещения сразу в несколько буферов одним системным вызовом. Буферы заполняются по порядку, и последний может остаться частично пустым — смотрите возвращённое число байт. Поддерживает флаги вроде RWF_NOWAIT; это низкоуровневый инструмент для серверов и баз данных, а не для учебных задач.",
@@ -37641,7 +37620,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/preadv-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
+        "fd = os.open('preadv-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
         "print(os.pwrite(fd, b'HEADERBODY', 0))  # → 10 — подготовили данные, позиция fd осталась в начале",
         "bufs = [bytearray(6), bytearray(4)]  # scatter-чтение: заголовок и тело в разные буферы",
         "print(os.preadv(fd, bufs, 0), bytes(bufs[0]), bytes(bufs[1]))  # → ? только Unix: 10 b'HEADER' b'BODY'",
@@ -37665,8 +37644,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Как pwrite, но пишет сразу из нескольких буферов (gather write) по заданной позиции. Доступно на Unix.",
-      "en": "Like pwrite, but gathers from multiple buffers at an offset. Availability: Unix."
+      "ru": "Как pwrite, но пишет сразу из нескольких буферов (gather write) по заданной позиции. Доступно на Linux.",
+      "en": "Like pwrite, but gathers from multiple buffers at an offset. Availability: Linux."
     },
     "body": {
       "ru": "Записывает несколько буферов по заданному смещению одним системным вызовом, не сдвигая общую позицию. Экономит склейку данных в один bytes перед записью. Как и другие функции записи, может записать не всё. Флаги вроде RWF_DSYNC позволяют сделать запись синхронной без отдельного fsync.",
@@ -37701,7 +37680,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/pwritev-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
+        "fd = os.open('pwritev-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
         "parts = [b'HEADER', b'BODY']  # gather-запись: заголовок и тело лежат в разных буферах",
         "print(os.pwritev(fd, parts, 0))  # → 10 — обе части ушли одним системным вызовом",
         "print(os.pread(fd, 10, 0))  # → b'HEADERBODY' — буферы склеены подряд, без разделителей",
@@ -37762,7 +37741,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/readv-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
+        "fd = os.open('readv-demo.bin', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
         "print(os.pwrite(fd, b'HEADERBODY', 0))  # → 10 — подготовили данные, позиция fd осталась в начале",
         "bufs = [bytearray(6), bytearray(4)]  # scatter-чтение: заголовок и тело в разные буферы",
         "print(os.readv(fd, bufs), bytes(bufs[0]), bytes(bufs[1]))  # → ? только Unix: 10 b'HEADER' b'BODY'",
@@ -37823,7 +37802,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/writev-demo.txt', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
+        "fd = os.open('writev-demo.txt', os.O_RDWR | os.O_CREAT | os.O_TRUNC)  # временный файл для опытов",
         "print(os.writev(fd, [b'name;', b'age\\n']))  # → 9 — обе части записаны одним системным вызовом",
         "print(os.writev(fd, [b'Ann;', b'20\\n']))  # → 7 — writev пишет с текущей позиции, дописывая в конец",
         "print(os.pread(fd, 16, 0))  # → b'name;age\\nAnn;20\\n'",
@@ -37884,9 +37863,9 @@
     "examples": [
       [
         "import os",
-        "src = os.open('/tmp/send_src.txt', os.O_RDWR | os.O_CREAT | os.O_TRUNC)   # временный файл-источник",
+        "src = os.open('send_src.txt', os.O_RDWR | os.O_CREAT | os.O_TRUNC)   # временный файл-источник",
         "print(os.write(src, b'hello world!'))   # → 12 — подготовили 12 байт данных",
-        "dst = os.open('/tmp/send_dst.txt', os.O_WRONLY | os.O_CREAT | os.O_TRUNC)   # приёмник; на практике сюда подставляют дескриптор сокета",
+        "dst = os.open('send_dst.txt', os.O_WRONLY | os.O_CREAT | os.O_TRUNC)   # приёмник; на практике сюда подставляют дескриптор сокета",
         "print(os.sendfile(dst, src, 0, 5))   # → 5 — ядро переслало b'hello' с нулевого смещения, минуя память процесса",
         "print(os.sendfile(dst, src, 5, 100))   # → 7 — отправлен остаток файла, count можно брать с запасом",
         "print(os.sendfile(dst, src, 12, 10))   # → 0 — смещение за концом файла, отправлять нечего"
@@ -37943,9 +37922,9 @@
     "examples": [
       [
         "import os",
-        "src = os.open('/tmp/copy_src.txt', os.O_RDWR | os.O_CREAT | os.O_TRUNC)   # временный файл-источник",
+        "src = os.open('copy_src.txt', os.O_RDWR | os.O_CREAT | os.O_TRUNC)   # файл-источник в текущем каталоге",
         "print(os.write(src, b'hello world!'))   # → 12 — записали 12 байт без буферизации Python",
-        "dst = os.open('/tmp/copy_dst.txt', os.O_WRONLY | os.O_CREAT | os.O_TRUNC)   # временный файл-приёмник",
+        "dst = os.open('copy_dst.txt', os.O_WRONLY | os.O_CREAT | os.O_TRUNC)   # файл-приёмник в текущем каталоге",
         "print(os.copy_file_range(src, dst, 12, offset_src=0))   # → 12 — ядро скопировало байты, минуя буфер Python",
         "print(os.copy_file_range(src, dst, 12, offset_src=12))   # → 0 — за концом файла копировать нечего"
       ]
@@ -38396,8 +38375,8 @@
       "en": "Add a value to an eventfd counter. Availability: Linux."
     },
     "body": {
-      "ru": "Прибавляет число к счётчику и будит ждущих читателей. Значение должно быть положительным и меньше 2**64 - 1; при переполнении запись блокируется, а в неблокирующем режиме поднимает BlockingIOError.",
-      "en": "It adds a number to the counter and wakes waiting readers. The value must be positive and below 2**64 - 1; on overflow the write blocks, or raises BlockingIOError in non-blocking mode."
+      "ru": "Прибавляет число к счётчику и будит ждущих читателей. Значение должно быть неотрицательным (0 допустим и ничего не меняет) и меньше 2**64 - 1; при переполнении запись блокируется, а в неблокирующем режиме поднимает BlockingIOError.",
+      "en": "It adds a number to the counter and wakes waiting readers. The value must be non-negative (0 is allowed and changes nothing) and below 2**64 - 1; on overflow the write blocks, or raises BlockingIOError in non-blocking mode."
     },
     "syntax": "os.eventfd_write(...)",
     "status": "ready",
@@ -39046,8 +39025,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Сообщает ядру о предполагаемом характере доступа к файлу (последовательный/случайный) для оптимизации кеша. Доступно на Unix.",
-      "en": "Advise the kernel about the expected file access pattern. Availability: Unix."
+      "ru": "Сообщает ядру о предполагаемом характере доступа к файлу (последовательный/случайный) для оптимизации кеша. Доступно на Linux.",
+      "en": "Advise the kernel about the expected file access pattern. Availability: Linux."
     },
     "body": {
       "ru": "Только совет: ядро может его проигнорировать, и на правильность программы он не влияет. POSIX_FADV_SEQUENTIAL ускоряет чтение больших файлов подряд, а POSIX_FADV_DONTNEED позволяет не засорять кэш страниц файлом, который больше не понадобится. Длина 0 означает «до конца файла».",
@@ -39082,7 +39061,9 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/report.csv', os.O_RDONLY)   # → ? только Unix: небольшой номер дескриптора, например 3",
+        "with open('report.csv', 'w') as f:",
+        "    f.write('a,b\\n1,2\\n')   # файл для примера — в текущем каталоге",
+        "fd = os.open('report.csv', os.O_RDONLY)   # → ? только Unix: небольшой номер дескриптора, например 3",
         "os.posix_fadvise(fd, 0, 0, os.POSIX_FADV_SEQUENTIAL)   # → ? только Unix: подсказка «читать будем подряд»; length=0 означает «до конца файла»",
         "os.posix_fadvise(fd, 0, 65536, os.POSIX_FADV_WILLNEED)   # → ? только Unix: ядро заранее подтянет первые 64 КБ файла в кеш",
         "os.posix_fadvise(fd, 0, 0, os.POSIX_FADV_DONTNEED)   # → ? только Unix: после однопроходного чтения просим освободить кеш под этот файл",
@@ -39106,8 +39087,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Заранее выделяет место на диске под файл заданного размера. Доступно на Unix.",
-      "en": "Pre-allocate disk space for a file of a given size. Availability: Unix."
+      "ru": "Заранее выделяет место на диске под файл заданного размера. Доступно на Linux.",
+      "en": "Pre-allocate disk space for a file of a given size. Availability: Linux."
     },
     "body": {
       "ru": "В отличие от truncate, действительно выделяет место на диске: нехватка места обнаружится сразу, а не посреди записи. Размер файла при необходимости увеличивается. На файловых системах без нужной поддержки библиотека может эмулировать выделение записью нулей, и это медленно.",
@@ -39142,7 +39123,7 @@
     "examples": [
       [
         "import os",
-        "fd = os.open('/tmp/big.bin', os.O_WRONLY | os.O_CREAT)   # → ? только Unix: дескриптор нового файла, например 3",
+        "fd = os.open('big.bin', os.O_WRONLY | os.O_CREAT)   # → ? только Unix: дескриптор нового файла, например 3",
         "os.posix_fallocate(fd, 0, 1024 * 1024)   # → ? только Unix: на диске заранее выделен 1 МБ под файл",
         "print(os.fstat(fd).st_size)   # → 1048576 — файл сразу нужного размера, хотя не записано ни байта",
         "os.ftruncate(fd, 8 * 1024 * 1024)   # → ? размер вырастет до 8 МБ, но место НЕ резервируется — выйдет «дырявый» (sparse) файл",
@@ -41042,7 +41023,7 @@
       "ru": "Возвращается сразу после запуска и не сообщает, чем закончилась программа, — дождаться её нельзя. Параметр operation выбирает действие: 'open' по умолчанию, 'print', 'edit'. На macOS и Linux аналога в os нет: используют subprocess.run(['open', path]) и subprocess.run(['xdg-open', path]) соответственно.",
       "en": "It returns as soon as the program is launched and reports nothing about how it ended — there is no way to wait for it. The operation parameter picks the action: 'open' by default, 'print', 'edit'. macOS and Linux have no counterpart in os: use subprocess.run(['open', path]) and subprocess.run(['xdg-open', path]) respectively."
     },
-    "syntax": "os.startfile(path, operation, arguments, cwd, show_cmd)",
+    "syntax": "os.startfile(path[, operation][, arguments][, cwd][, show_cmd])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/os.html#os.startfile",
     "added": "<3.0",
@@ -46146,8 +46127,8 @@
       "en": "Registers a dialect under a string name so you can later pass just dialect='name' to reader and writer."
     },
     "body": {
-      "ru": "Реестр диалектов общий на весь процесс: повторная регистрация того же имени молча заменяет прежний диалект — даже встроенный 'excel', и тогда dialect='excel' в чужом коде начнёт значить другое (вызов без dialect при этом не изменится). Параметры можно передать без класса: register_dialect('semi', delimiter=';') возьмёт остальное из excel. Для разовой настройки достаточно передать delimiter= прямо в reader.",
-      "en": "The dialect registry is shared by the whole process: registering the same name again silently replaces the old dialect — even the built-in 'excel', after which dialect='excel' in other code means something else (a call without dialect is not affected). Parameters can be passed without a class: register_dialect('semi', delimiter=';') takes the rest from excel. For a one-off tweak, just pass delimiter= to reader directly."
+      "ru": "Реестр диалектов общий на весь процесс: повторная регистрация того же имени молча заменяет прежний диалект — даже встроенный 'excel', и тогда dialect='excel' в чужом коде начнёт значить другое (reader и writer без dialect это не затронет, а DictReader и DictWriter — затронет: у них по умолчанию dialect='excel' строкой). Параметры можно передать без класса: register_dialect('semi', delimiter=';') возьмёт остальное из excel. Для разовой настройки достаточно передать delimiter= прямо в reader.",
+      "en": "The dialect registry is shared by the whole process: registering the same name again silently replaces the old dialect — even the built-in 'excel', after which dialect='excel' in other code means something else (reader and writer without dialect are not affected, but DictReader and DictWriter are: their default is the string dialect='excel'). Parameters can be passed without a class: register_dialect('semi', delimiter=';') takes the rest from excel. For a one-off tweak, just pass delimiter= to reader directly."
     },
     "syntax": "csv.register_dialect(name, dialect='excel', **fmtparams)",
     "status": "ready",
@@ -54639,7 +54620,7 @@
       "en": "Returns a (type, exception, traceback) tuple for the exception being handled, or (None, None, None) when no handler is running."
     },
     "body": {
-      "ru": "Это старая форма: с Python 3.11 тот же результат даёт sys.exception() одним объектом, а тип и трассировка выводятся из него. Пустой кортеж — не ошибка: вызов вне except (или после него) честно возвращает три None, и распаковка t, v, tb = sys.exc_info() пройдёт, а t.__name__ упадёт уже с AttributeError. Трассировку не храните в долгоживущих объектах — она держит кадры со всеми локальными переменными и мешает освобождению памяти.",
+      "ru": "Это старая форма: с Python 3.11 тот же результат даёт sys.exception() одним объектом, а тип и трассировка выводятся из него. Кортеж из трёх None — не ошибка: вызов вне except (или после него) честно возвращает три None, и распаковка t, v, tb = sys.exc_info() пройдёт, а t.__name__ упадёт уже с AttributeError. Трассировку не храните в долгоживущих объектах — она держит кадры со всеми локальными переменными и мешает освобождению памяти.",
       "en": "This is the old form: since Python 3.11 sys.exception() gives the same thing as one object, and the type and traceback follow from it. An all-None tuple is not an error: calling it outside (or after) except returns three Nones, so unpacking t, v, tb = sys.exc_info() works and t.__name__ fails later with AttributeError. Do not keep the traceback in long-lived objects — it pins frames with all their locals and delays freeing memory."
     },
     "syntax": "exc_type, exc_value, exc_tb = sys.exc_info()",
@@ -55192,8 +55173,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Устанавливает функцию профилирования: её вызывают на входе и выходе из функций, включая встроенные. На этом построен cProfile.",
-      "en": "Sets a profiling function called on entry to and exit from functions, built-ins included. cProfile is built on it."
+      "ru": "Устанавливает функцию профилирования: её вызывают на входе и выходе из функций, включая встроенные. До Python 3.12 на этом был построен cProfile.",
+      "en": "Sets a profiling function called on entry to and exit from functions, built-ins included. cProfile was built on it before Python 3.12."
     },
     "body": {
       "ru": "В отличие от settrace, событий по строкам нет, зато видны вызовы функций на C: 'c_call', 'c_return', 'c_exception' — при них arg — сама встроенная функция. Возвращаемое значение игнорируется. Действует на текущий поток: новым потокам — threading.setprofile(), всем сразу — threading.setprofile_all_threads() (3.12). Не забудьте sys.setprofile(None): его собственный вызов тоже попадёт в журнал.",
@@ -55266,8 +55247,8 @@
       "en": "Returns the profiling function set with sys.setprofile(), or None — for example, to swap it temporarily and restore it later."
     },
     "body": {
-      "ru": "Профилировщик и трассировщик — два разных слота: getprofile() не видит того, что поставлено через settrace(), и наоборот. Под cProfile здесь стоит не функция на Python, а сам объект профилировщика. Сохраняйте старое значение перед своей установкой и возвращайте его в finally, иначе выключите чужой профилировщик.",
-      "en": "The profiler and the tracer are two separate slots: getprofile() does not see what settrace() installed, and vice versa. Under cProfile the slot holds the profiler object itself, not a Python function. Save the old value before installing yours and restore it in finally, or you will switch off someone else's profiler."
+      "ru": "Профилировщик и трассировщик — два разных слота: getprofile() не видит того, что поставлено через settrace(), и наоборот. cProfile с Python 3.12 работает через sys.monitoring, поэтому под ним getprofile() возвращает None — слот видит только то, что поставлено через sys.setprofile(). Сохраняйте старое значение перед своей установкой и возвращайте его в finally, иначе выключите чужой профилировщик.",
+      "en": "The profiler and the tracer are two separate slots: getprofile() does not see what settrace() installed, and vice versa. Since Python 3.12 cProfile runs on sys.monitoring, so under it getprofile() returns None — the slot shows only what sys.setprofile() installed. Save the old value before installing yours and restore it in finally, or you will switch off someone else's profiler."
     },
     "syntax": "sys.getprofile()",
     "status": "ready",
@@ -55871,8 +55852,8 @@
       "en": "Returns the error handler for file names: 'surrogateescape' on Linux and macOS, 'surrogatepass' on Windows."
     },
     "body": {
-      "ru": "На Linux имя файла — любые байты, не обязательно правильный UTF-8. Такие байты Python прячет в «суррогаты» вида \\udcff, и os.listdir() не падает. Но строку с ними нельзя напечатать или записать в UTF-8 — возникнет UnicodeEncodeError «surrogates not allowed». Обратно в байты её переводит только os.fsencode().",
-      "en": "On Linux a file name is any bytes, not necessarily valid UTF-8. Python hides such bytes as surrogates like \\udcff, so os.listdir() does not fail. But a string holding them cannot be printed or written as UTF-8 — you get UnicodeEncodeError 'surrogates not allowed'. Only os.fsencode() turns it back into the bytes."
+      "ru": "На Linux имя файла — любые байты, не обязательно правильный UTF-8. Такие байты Python прячет в «суррогаты» вида \\udcff, и os.listdir() не падает. Но строку с ними нельзя напечатать или записать в UTF-8 — возникнет UnicodeEncodeError «surrogates not allowed». Обратно в исходные байты её переводит os.fsencode() (или encode с тем же обработчиком 'surrogateescape'), а не простой encode('utf-8').",
+      "en": "On Linux a file name is any bytes, not necessarily valid UTF-8. Python hides such bytes as surrogates like \\udcff, so os.listdir() does not fail. But a string holding them cannot be printed or written as UTF-8 — you get UnicodeEncodeError 'surrogates not allowed'. os.fsencode() (or encode with the same 'surrogateescape' handler) turns it back into the original bytes, a plain encode('utf-8') does not."
     },
     "syntax": "sys.getfilesystemencodeerrors()",
     "status": "ready",
@@ -56376,8 +56357,8 @@
       "en": "Returns the asynchronous generator hooks (firstiter, finalizer) installed by the event loop — to close abandoned async generators."
     },
     "body": {
-      "ru": "Вне цикла событий оба поля — None; внутри asyncio.run() их ставит сам asyncio. Именно поэтому async-генератор, брошенный посреди async for, закрывается в loop.shutdown_asyncgens(), а не теряет свой finally. Пишущим прикладной код эти хуки не нужны — они для авторов своих циклов событий.",
-      "en": "Outside an event loop both fields are None; inside asyncio.run() asyncio installs them. That is why an async generator abandoned mid async for gets closed by loop.shutdown_asyncgens() instead of losing its finally. Application code does not need these hooks — they are for people writing their own event loops."
+      "ru": "Вне цикла событий оба поля — None; внутри asyncio.run() их ставит сам asyncio. Именно поэтому async-генератор, брошенный посреди async for, не теряет свой finally: хук finalizer ставит его aclose() в цикл событий, а дожившие до конца закрывает loop.shutdown_asyncgens(). Пишущим прикладной код эти хуки не нужны — они для авторов своих циклов событий.",
+      "en": "Outside an event loop both fields are None; inside asyncio.run() asyncio installs them. That is why an async generator abandoned mid async for does not lose its finally: the finalizer hook schedules its aclose() on the event loop, and loop.shutdown_asyncgens() closes any still alive at the end. Application code does not need these hooks — they are for people writing their own event loops."
     },
     "syntax": "sys.get_asyncgen_hooks()",
     "status": "ready",

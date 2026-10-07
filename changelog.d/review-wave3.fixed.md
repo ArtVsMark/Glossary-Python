@@ -1,1 +1,0 @@
-Вычитка волны 3 (#81): оставшиеся модули — 590 карточек, 70 находок исправлено: сравнение naive и aware datetime, sqlite3.DataError, free-threaded сборка 3.14, partial/partialmethod/reduce в 3.14, deepcopy модулей и файлов, random.choice на словаре, примеры threading с потоками внутри невызываемой функции

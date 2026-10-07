@@ -1,1 +1,0 @@
-Английские сводки 96 карточек сверены с русскими: у 26 исключений в английской половине стоял docstring базового класса («Base class for arithmetic errors», «Attribute not found»), у остальных выпала часть смысла; две русские сводки исправлены по документации — `io.text_encoding` и `random.getrandbits` (#85)

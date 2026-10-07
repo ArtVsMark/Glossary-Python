@@ -1,1 +1,0 @@
-60 карточек удалённого из Python 3.9–3.15: модули imp, distutils, asyncore, asynchat, smtpd, binhex, девятнадцать модулей PEP 594 и lib2to3; asyncio.coroutine, псевдонимы ABC в collections, псевдонимы assert в unittest, inspect.getargspec и другие — с версией удаления и заменой (#164)

@@ -1,1 +1,0 @@
-полнота узнаёт 13 уже описанных сущностей: карточки `ThreadPoolExecutor`, `ProcessPoolExecutor`, `Future`, `NamedTuple`, `Protocol`, `TypedDict`, `TypeVar`, `Enum`, `timedelta` названы полным именем с модулем, у `Union[X, Y]`, `format()`, `@dataclass` и `@unique` полное имя стало синонимом; не описано 258 вместо 271 (#80)

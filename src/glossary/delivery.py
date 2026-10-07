@@ -30,7 +30,17 @@
 (форма 4.1, #79). Карточку сливают с дублем, и её ``id`` исчезает, а у
 потребителя на него остались ссылки. Без списка такая ссылка молча ведёт в
 пустоту; со списком потребитель перенаправляет её сам. Источник — файл
-``data/moved.json`` рядом с каталогом карточек.
+``data/moved.json`` рядом с каталогом карточек: переезды лежат под ключом
+``moves``, пояснения — рядом. Прежде пояснением считался любой ключ с ``_``, и
+переезд карточки ``__str__-__repr__`` молча выпадал из выгрузки (#172): id
+вправе начинаться с подчёркивания, а пояснение — нет.
+
+``navigation`` — как разложить карточки по разделам и семействам и как их
+подписать (форма 6.1): порядок семейств, их подписи ``{ru, en}`` и раздел →
+``{group, ru, en}``. Это та же таблица, что получает витрина
+(:func:`glossary.taxonomy.table`): классификация живёт в одном месте, и
+потребителю не нужно держать свою копию, которая разойдётся с нашей на первом
+новом разделе (правило 214; так она и появилась у грейдера — #1573).
 """
 
 import copy
@@ -42,6 +52,7 @@ from glossary.contracts import envelope
 from glossary.errors import DataFormatError
 from glossary.loader import digest, project_root
 from glossary.models import COLOR_GROUPS, SCHEMA_VERSION
+from glossary.taxonomy import table
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -62,7 +73,7 @@ __all__ = [
 SCHEMA_OF: Final = "карточки глоссария по группам, в форме data/cards/"
 """Чего именно эта версия (правило каталога 164)."""
 
-FORM_MINOR: Final = 0
+FORM_MINOR: Final = 1
 """Минор формы: растёт на новом необязательном поле, сбрасывается с мажором."""
 
 FORM: Final = f"{SCHEMA_VERSION}.{FORM_MINOR}"
@@ -72,6 +83,9 @@ CARD_SCHEMA: Final = "data/glossary.schema.json"
 
 MOVED_FILE: Final = "moved.json"
 """Файл переездов — рядом с каталогом карточек: ``data/moved.json``."""
+
+MOVES_KEY: Final = "moves"
+"""Ключ, под которым в файле лежат переезды; остальные ключи — пояснения."""
 
 
 def groups_of(entries: list[Entry]) -> dict[str, list[dict[str, Any]]]:
@@ -109,7 +123,9 @@ def moved(
         raw = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         raise DataFormatError(f"{path}: не JSON — {exc}") from exc
-    mapping = {k: v for k, v in raw.items() if not k.startswith("_")}
+    mapping = raw.get(MOVES_KEY) if isinstance(raw, dict) else None
+    if not isinstance(mapping, dict):
+        raise DataFormatError(f"{path}: переезды лежат объектом под ключом {MOVES_KEY!r}")
     if not all(isinstance(v, str) for v in mapping.values()):
         raise DataFormatError(f"{path}: новый id должен быть строкой")
     if ids:
@@ -142,6 +158,9 @@ def collect(directory: Path | None = None) -> dict[str, Any]:
         },
         "groups": groups,
         "moved": moved(directory, published),
+        "navigation": table(
+            sorted({card["section"] for cards in groups.values() for card in cards})
+        ),
     }
 
 
@@ -163,6 +182,11 @@ def schema() -> dict[str, Any]:
     entry["required"] = [name for name in entry["required"] if name != "color_group"]
     entry["properties"].pop("color_group", None)
     text = {"type": "string", "minLength": 1}
+    defs["label"] = {
+        "type": "object",
+        "required": ["ru", "en"],
+        "properties": {"ru": text, "en": text},
+    }
     return {
         "$schema": cards["$schema"],
         "title": "Glossary-Python delivery",
@@ -201,6 +225,29 @@ def schema() -> dict[str, Any]:
                 "type": "object",
                 "description": "Куда переехали слитые карточки: старый id → новый.",
                 "additionalProperties": {"type": "string", "minLength": 1},
+            },
+            "navigation": {
+                "type": "object",
+                "description": (
+                    "Разделы и семейства: порядок семейств, их подписи и "
+                    "раздел → {group, ru, en}. Та же таблица, что у витрины."
+                ),
+                "required": ["groups", "labels", "sections"],
+                "properties": {
+                    "groups": {"type": "array", "items": text},
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {"$ref": "#/$defs/label"},
+                    },
+                    "sections": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "allOf": [{"$ref": "#/$defs/label"}],
+                            "required": ["group"],
+                            "properties": {"group": text},
+                        },
+                    },
+                },
             },
             "groups": {
                 "type": "object",

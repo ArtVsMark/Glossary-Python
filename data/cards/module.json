@@ -24241,8 +24241,8 @@
       "en": "Return the encoding of the device tied to a file descriptor, or None."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для дескриптора, не связанного с терминалом, — файла, канала, перенаправленного вывода — возвращает None. Поэтому кодировку вывода программы, запущенной с перенаправлением, по ней не узнать; в режиме UTF-8 (с Python 3.7) стандартные потоки используют UTF-8 независимо от терминала. Проверить текущую кодировку проще через sys.stdout.encoding.",
+      "en": "For a descriptor not attached to a terminal — a file, pipe or redirected output — it returns None. So it cannot tell the output encoding of a program run with redirection; in UTF-8 mode (since Python 3.7) the standard streams use UTF-8 regardless of the terminal. sys.stdout.encoding is the simpler way to check the current encoding."
     },
     "syntax": "os.device_encoding(fd)",
     "status": "ready",
@@ -24289,8 +24289,8 @@
       "en": "Return the terminal size (columns, lines); raises OSError if not a terminal."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "При выводе в файл или канал поднимает OSError, поэтому код, который форматирует вывод по ширине, падает под перенаправлением и в CI. Для обычных программ нужна shutil.get_terminal_size: она учитывает переменные COLUMNS и LINES и при отсутствии терминала возвращает запасное значение (80, 24).",
+      "en": "With output going to a file or pipe it raises OSError, so code that formats output to the terminal width crashes under redirection and in CI. Ordinary programs want shutil.get_terminal_size: it honours the COLUMNS and LINES variables and falls back to (80, 24) when there is no terminal."
     },
     "syntax": "os.get_terminal_size()",
     "status": "ready",
@@ -24339,8 +24339,8 @@
       "en": "Check whether a file descriptor is attached to a terminal (tty)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Позволяет вести себя по-разному в терминале и под перенаправлением: включать цвет и прогресс-бары только для человека, а в файл писать чистый текст. Для файлового объекта то же даёт метод sys.stdout.isatty(). На Windows консоль тоже считается терминалом, а вывод в канал — нет.",
+      "en": "It lets a program behave differently in a terminal and under redirection: enable colour and progress bars only for a human, write plain text to a file. For a file object sys.stdout.isatty() does the same. On Windows the console counts as a terminal, a pipe does not."
     },
     "syntax": "os.isatty(fd)",
     "status": "ready",
@@ -24385,8 +24385,8 @@
       "en": "The result type of os.get_terminal_size(): a named tuple (columns, lines)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Ведёт себя как именованный кортеж: поля columns и lines доступны и по имени, и по индексу, поэтому распаковка cols, rows = os.get_terminal_size() работает. Его же возвращает shutil.get_terminal_size. Размер — снимок: если пользователь изменил окно, нужно запросить заново (на Unix об этом сообщает сигнал SIGWINCH).",
+      "en": "It behaves like a named tuple: columns and lines are available by name and by index, so cols, rows = os.get_terminal_size() works. shutil.get_terminal_size returns it as well. The size is a snapshot: if the user resizes the window, query again (on Unix the SIGWINCH signal announces it)."
     },
     "syntax": "os.terminal_size((cols, lines))",
     "status": "ready",
@@ -27673,8 +27673,8 @@
       "en": "Voluntarily yield the CPU to other runnable processes."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Уступает процессор, но не гарантирует, что другой поток или процесс действительно получит время: если ждущих нет, вызов сразу возвращается. Для ожидания условия она не годится — цикл с sched_yield расходует процессор впустую. В Python потоки ждут через threading.Event, Condition или очереди.",
+      "en": "It yields the CPU but does not guarantee that another thread or process actually runs: with nobody waiting the call returns at once. It is no way to wait for a condition — a loop around sched_yield burns CPU. Python threads wait with threading.Event, Condition or queues."
     },
     "syntax": "os.sched_yield(...)",
     "status": "ready",
@@ -27722,8 +27722,8 @@
       "en": "Return the set of CPUs a process is allowed to run on."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает множество номеров процессоров, на которых процессу разрешено работать, — с учётом ограничений контейнера и taskset. Поэтому len(os.sched_getaffinity(0)) точнее os.cpu_count для размера пула. Ноль вместо PID означает текущий процесс. С 3.13 переносимый ответ даёт os.process_cpu_count.",
+      "en": "It returns the set of CPU numbers the process may run on — honouring container limits and taskset. So len(os.sched_getaffinity(0)) sizes a pool better than os.cpu_count. Zero instead of a PID means the current process. Since 3.13 os.process_cpu_count gives a portable answer."
     },
     "syntax": "os.sched_getaffinity(...)",
     "status": "ready",
@@ -27772,8 +27772,8 @@
       "en": "Set the CPUs a process is allowed to run on (CPU affinity)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Привязывает процесс к заданным ядрам — полезно для замеров производительности, чтобы результаты не скакали из-за переездов между ядрами. Потоки, созданные позже, наследуют привязку. Сузить набор можно без особых прав, а влиять на чужой процесс — только с правами на него.",
+      "en": "It pins a process to the given CPUs — useful in benchmarks so results do not jitter as the process migrates between cores. Threads created later inherit the affinity. Narrowing the set needs no special rights; changing another process requires permission over it."
     },
     "syntax": "os.sched_setaffinity(...)",
     "status": "ready",
@@ -27823,8 +27823,8 @@
       "en": "Return a process's scheduling policy (e.g. SCHED_OTHER/SCHED_FIFO)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Обычные процессы работают с политикой SCHED_OTHER, для которой приоритет задаётся через nice. Политики реального времени SCHED_FIFO и SCHED_RR имеют собственные приоритеты от 1 до 99 и вытесняют все обычные процессы. Ноль вместо PID — текущий процесс.",
+      "en": "Ordinary processes run under SCHED_OTHER, where priority is set via nice. The real-time policies SCHED_FIFO and SCHED_RR have their own priorities from 1 to 99 and preempt every ordinary process. Zero instead of a PID means the current process."
     },
     "syntax": "os.sched_getscheduler(...)",
     "status": "ready",
@@ -27871,8 +27871,8 @@
       "en": "Set a process's scheduling policy and parameters."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Переход на политику реального времени требует прав суперпользователя или CAP_SYS_NICE и опасен: зациклившийся процесс с SCHED_FIFO может занять ядро целиком и подвесить систему. Параметры передаются объектом os.sched_param с полем sched_priority. Для учебных задач почти не нужна.",
+      "en": "Switching to a real-time policy needs superuser rights or CAP_SYS_NICE and is dangerous: a looping SCHED_FIFO process can monopolise a core and hang the system. Parameters are passed as an os.sched_param object with a sched_priority field. Teaching tasks almost never need it."
     },
     "syntax": "os.sched_setscheduler(...)",
     "status": "ready",
@@ -27922,8 +27922,8 @@
       "en": "Return a process's scheduling parameters (RT priority)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает объект os.sched_param; его поле sched_priority имеет смысл для политик реального времени, а для обычной SCHED_OTHER равно нулю. Приоритет nice обычного процесса здесь не виден — его даёт os.getpriority.",
+      "en": "It returns an os.sched_param object; its sched_priority field matters for real-time policies and is zero for ordinary SCHED_OTHER. An ordinary process's nice priority is not visible here — os.getpriority reports it."
     },
     "syntax": "os.sched_getparam(...)",
     "status": "ready",
@@ -27970,8 +27970,8 @@
       "en": "Set a process's scheduling parameters."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Меняет приоритет внутри текущей политики, не меняя саму политику. Для SCHED_OTHER допустим только ноль; для политик реального времени — значения от sched_get_priority_min до sched_get_priority_max. Повышение приоритета требует прав.",
+      "en": "It changes the priority within the current policy without changing the policy. SCHED_OTHER accepts only zero; real-time policies accept values from sched_get_priority_min to sched_get_priority_max. Raising priority requires privileges."
     },
     "syntax": "os.sched_setparam(...)",
     "status": "ready",
@@ -28020,8 +28020,8 @@
       "en": "Return the maximum priority for a scheduling policy."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Допустимый диапазон зависит от политики: на Linux для SCHED_FIFO и SCHED_RR это 1–99, а для SCHED_OTHER — ровно 0. Поэтому жёстко прописывать числа в коде не стоит — спрашивайте границы у системы этой функцией и sched_get_priority_min.",
+      "en": "The valid range depends on the policy: on Linux SCHED_FIFO and SCHED_RR allow 1–99, while SCHED_OTHER allows exactly 0. So do not hard-code numbers — ask the system for the bounds with this function and sched_get_priority_min."
     },
     "syntax": "os.sched_get_priority_max(...)",
     "status": "ready",
@@ -28071,8 +28071,8 @@
       "en": "Return the minimum priority for a scheduling policy."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Нижняя граница приоритета для политики: для SCHED_OTHER — 0, для политик реального времени на Linux — 1. Больший номер у политик реального времени означает более высокий приоритет — в отличие от nice, где больше значит ниже.",
+      "en": "The lower priority bound for a policy: 0 for SCHED_OTHER, 1 for real-time policies on Linux. For real-time policies a larger number means higher priority — the opposite of nice, where larger means lower."
     },
     "syntax": "os.sched_get_priority_min(...)",
     "status": "ready",
@@ -28122,8 +28122,8 @@
       "en": "Return the round-robin time quantum for a process (SCHED_RR)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает квант в секундах, который процесс получает при политике SCHED_RR, прежде чем уступить процессор процессу того же приоритета. Для процесса с другой политикой ответ может быть нулём или не иметь смысла. Нужна в основном при отладке систем реального времени.",
+      "en": "It returns, in seconds, the time slice a SCHED_RR process gets before yielding to a process of the same priority. For a process under another policy the answer may be zero or meaningless. It mostly helps when debugging real-time systems."
     },
     "syntax": "os.sched_rr_get_interval(...)",
     "status": "ready",
@@ -28170,8 +28170,8 @@
       "en": "A container type for scheduling parameters (sched_priority)."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Неизменяемый контейнер с единственным полем sched_priority: os.sched_param(10). Передаётся в sched_setscheduler и sched_setparam и возвращается sched_getparam. Значение должно попадать в диапазон, который сообщают sched_get_priority_min и sched_get_priority_max для выбранной политики.",
+      "en": "An immutable container with a single field, sched_priority: os.sched_param(10). It is passed to sched_setscheduler and sched_setparam and returned by sched_getparam. The value must lie within the range reported by sched_get_priority_min and sched_get_priority_max for the chosen policy."
     },
     "syntax": "os.sched_param(...)",
     "status": "ready",
@@ -28220,8 +28220,8 @@
       "en": "Return the process's real user id (UID). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Реальный UID — пользователь, запустивший процесс; права же проверяются по эффективному, который у программ с битом setuid отличается. Ноль означает root. Имя пользователя по UID даёт pwd.getpwuid(os.getuid()).pw_name — надёжнее, чем getlogin.",
+      "en": "The real UID is the user who started the process; permissions, however, are checked against the effective UID, which differs for setuid programs. Zero means root. pwd.getpwuid(os.getuid()).pw_name gives the user name — more reliably than getlogin."
     },
     "syntax": "os.getuid(...)",
     "status": "ready",
@@ -28269,8 +28269,8 @@
       "en": "Return the process's effective user id. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "По эффективному UID ядро проверяет права доступа. Проверка «запущено ли от root» пишется как os.geteuid() == 0, а не по getuid. У программы с битом setuid эффективный UID равен владельцу файла программы, а реальный — тому, кто её запустил.",
+      "en": "The kernel checks access rights against the effective UID. The \"running as root\" check is os.geteuid() == 0, not getuid. For a setuid program the effective UID equals the owner of the program file, while the real UID is whoever launched it."
     },
     "syntax": "os.geteuid(...)",
     "status": "ready",
@@ -28317,8 +28317,8 @@
       "en": "Return the process's real group id (GID). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Реальный GID — основная группа пользователя, запустившего процесс. Права доступа проверяются по эффективному GID и дополнительным группам, которые дают getegid и getgroups. Имя группы по GID даёт grp.getgrgid(os.getgid()).gr_name.",
+      "en": "The real GID is the primary group of the user who started the process. Access is checked against the effective GID and supplementary groups, given by getegid and getgroups. grp.getgrgid(os.getgid()).gr_name gives the group name."
     },
     "syntax": "os.getgid(...)",
     "status": "ready",
@@ -28364,8 +28364,8 @@
       "en": "Return the process's effective group id. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Эффективный GID участвует в проверке прав вместе с дополнительными группами. У программы с битом setgid он равен группе файла программы. Файлы, создаваемые процессом, обычно получают в качестве группы именно его, если каталог не помечен битом setgid.",
+      "en": "The effective GID takes part in permission checks together with supplementary groups. For a setgid program it equals the group of the program file. Files the process creates usually get it as their group, unless the directory has the setgid bit."
     },
     "syntax": "os.getegid(...)",
     "status": "ready",
@@ -28412,8 +28412,8 @@
       "en": "Return the (real, effective, saved) user ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает сразу три UID: реальный, эффективный и сохранённый. Сохранённый позволяет программе временно сбросить привилегии через seteuid и затем вернуть их. Нужна при аудите программ, работающих с правами, чтобы убедиться, что привилегии сброшены во всех трёх местах.",
+      "en": "It returns all three UIDs at once: real, effective and saved. The saved one lets a program drop privileges temporarily via seteuid and regain them later. It helps when auditing privileged programs, to confirm privileges were dropped in all three places."
     },
     "syntax": "os.getresuid(...)",
     "status": "ready",
@@ -28460,8 +28460,8 @@
       "en": "Return the (real, effective, saved) group ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Как getresuid, но для групп: реальный, эффективный и сохранённый GID. При окончательном сбросе привилегий все три должны стать одинаковыми, иначе процесс сможет вернуть себе группу. Дополнительные группы сюда не входят — их показывает getgroups.",
+      "en": "Like getresuid, but for groups: the real, effective and saved GID. After permanently dropping privileges all three should match, or the process could regain the group. Supplementary groups are not included — getgroups shows them."
     },
     "syntax": "os.getresgid(...)",
     "status": "ready",
@@ -28508,8 +28508,8 @@
       "en": "Return the list of supplemental group ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает дополнительные группы текущего процесса; основная группа может в список не войти. На macOS список может быть неполным или зависеть от версии системы, о чём предупреждает документация. Группы, назначенные пользователю после входа, процесс увидит только в новой сессии.",
+      "en": "It returns the current process's supplementary groups; the primary group may be absent from the list. On macOS the list may be incomplete or version-dependent, as the documentation warns. Groups assigned to the user after login show up only in a new session."
     },
     "syntax": "os.getgroups(...)",
     "status": "ready",
@@ -28556,8 +28556,8 @@
       "en": "Return the group ids a user belongs to (by name and base GID). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "В отличие от getgroups, отвечает про пользователя по базе групп, а не про текущий процесс: getgrouplist('alice', gid). Поэтому видит и группы, назначенные недавно. Второй аргумент — основная группа пользователя, и она включается в результат.",
+      "en": "Unlike getgroups it answers about a user from the group database, not about the current process: getgrouplist('alice', gid). So it also sees recently assigned groups. The second argument is the user's primary group, which is included in the result."
     },
     "syntax": "os.getgrouplist(...)",
     "status": "ready",
@@ -28604,8 +28604,8 @@
       "en": "Return the name of the user logged in on the controlling terminal."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Без управляющего терминала — в cron, systemd, контейнере, CI — поднимает OSError. Документация прямо советует getpass.getuser или pwd.getpwuid(os.getuid()).pw_name: первая смотрит переменные окружения LOGNAME и USER, вторая — реальный UID. На Windows возвращает имя вошедшего пользователя.",
+      "en": "Without a controlling terminal — under cron, systemd, a container or CI — it raises OSError. The documentation explicitly recommends getpass.getuser or pwd.getpwuid(os.getuid()).pw_name: the former checks the LOGNAME and USER variables, the latter the real UID. On Windows it returns the logged-in user's name."
     },
     "syntax": "os.getlogin(...)",
     "status": "ready",
@@ -28653,8 +28653,8 @@
       "en": "Set the process's real user id (needs privilege). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для процесса root меняет все три UID разом, поэтому сброс привилегий необратим. Порядок важен: сначала setgroups и setgid, потом setuid — после смены UID права менять группы уже нет. Ошибка смены поднимает исключение; не проверять её — уязвимость, процесс останется root.",
+      "en": "For a root process it changes all three UIDs at once, so dropping privileges is irreversible. Order matters: setgroups and setgid first, then setuid — once the UID changes there is no right to change groups any more. A failure raises an exception; ignoring it is a vulnerability, leaving the process root."
     },
     "syntax": "os.setuid(...)",
     "status": "ready",
@@ -28704,8 +28704,8 @@
       "en": "Set the process's effective user id. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Меняет только эффективный UID, а сохранённый остаётся прежним, — поэтому привилегии можно временно сбросить и затем вернуть. Это удобно для коротких операций от имени пользователя, но не защищает от уязвимостей: взломанный код тоже может вернуть права. Для окончательного сброса нужна setuid.",
+      "en": "It changes only the effective UID while the saved one stays, so privileges can be dropped temporarily and regained. That suits short operations on a user's behalf but offers no protection against exploits: compromised code can regain them too. For a permanent drop use setuid."
     },
     "syntax": "os.seteuid(...)",
     "status": "ready",
@@ -28755,8 +28755,8 @@
       "en": "Set the process's real group id. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Вызывайте до setuid: после смены UID у процесса уже не будет права менять группу. Для полного сброса нужно ещё убрать дополнительные группы через setgroups([]) или задать их initgroups — иначе процесс сохранит доступ через группы root.",
+      "en": "Call it before setuid: after the UID changes the process no longer has the right to change its group. A full drop also needs supplementary groups cleared via setgroups([]) or set via initgroups — otherwise the process keeps access through root's groups."
     },
     "syntax": "os.setgid(...)",
     "status": "ready",
@@ -28806,8 +28806,8 @@
       "en": "Set the process's effective group id. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Меняет только эффективную группу, сохранённая остаётся, поэтому изменение обратимо. Как и seteuid, подходит для временного действия от имени другой группы, но не для окончательного сброса прав.",
+      "en": "It changes only the effective group while the saved one stays, so the change is reversible. Like seteuid, it suits temporary action on behalf of another group, not a permanent drop of privileges."
     },
     "syntax": "os.setegid(...)",
     "status": "ready",
@@ -28857,8 +28857,8 @@
       "en": "Set both the real and effective user ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Задаёт реальный и эффективный UID одним вызовом; -1 оставляет значение без изменений. Правила, когда при этом меняется и сохранённый UID, различаются между системами, поэтому для предсказуемого сброса привилегий на Linux удобнее setresuid.",
+      "en": "It sets the real and effective UID in one call; -1 leaves a value unchanged. When the saved UID changes too differs between systems, so on Linux setresuid is handier for a predictable privilege drop."
     },
     "syntax": "os.setreuid(...)",
     "status": "ready",
@@ -28908,8 +28908,8 @@
       "en": "Set both the real and effective group ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Задаёт реальный и эффективный GID одним вызовом; -1 оставляет значение без изменений. Как и setreuid, неявно влияет на сохранённый GID по правилам, зависящим от системы. Вызывайте до смены UID.",
+      "en": "It sets the real and effective GID in one call; -1 leaves a value unchanged. Like setreuid, it affects the saved GID implicitly by system-dependent rules. Call it before changing the UID."
     },
     "syntax": "os.setregid(...)",
     "status": "ready",
@@ -28959,8 +28959,8 @@
       "en": "Set the real, effective and saved user ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Задаёт все три UID явно — самый предсказуемый способ окончательно сбросить привилегии: setresuid(uid, uid, uid). -1 оставляет значение без изменений. Доступна на Linux и некоторых BSD, на macOS её нет.",
+      "en": "It sets all three UIDs explicitly — the most predictable way to drop privileges for good: setresuid(uid, uid, uid). -1 leaves a value unchanged. It exists on Linux and some BSDs, not on macOS."
     },
     "syntax": "os.setresuid(...)",
     "status": "ready",
@@ -29009,8 +29009,8 @@
       "en": "Set the real, effective and saved group ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Задаёт реальный, эффективный и сохранённый GID явно. При сбросе привилегий вызывается до setresuid. -1 оставляет значение без изменений. Как и setresuid, на macOS отсутствует.",
+      "en": "It sets the real, effective and saved GID explicitly. When dropping privileges it is called before setresuid. -1 leaves a value unchanged. Like setresuid, it is missing on macOS."
     },
     "syntax": "os.setresgid(...)",
     "status": "ready",
@@ -29059,8 +29059,8 @@
       "en": "Set the process's supplemental group ids. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Требует прав root. Пустой список setgroups([]) снимает все дополнительные группы — важный шаг сброса привилегий, который часто забывают. Вызывается до setgid и setuid. На macOS число групп может быть ограничено.",
+      "en": "It requires root. An empty list, setgroups([]), removes all supplementary groups — an important, often forgotten step of dropping privileges. Call it before setgid and setuid. On macOS the number of groups may be limited."
     },
     "syntax": "os.setgroups(...)",
     "status": "ready",
@@ -29110,8 +29110,8 @@
       "en": "Initialize the supplemental groups from a username and base GID. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Задаёт дополнительные группы так, как их получил бы пользователь при входе: initgroups('alice', gid) читает базу групп. Это правильный шаг перед setgid и setuid, когда сервис переходит от root к обычному пользователю. Требует прав root.",
+      "en": "It sets supplementary groups as the user would get them at login: initgroups('alice', gid) reads the group database. It is the right step before setgid and setuid when a service switches from root to an ordinary user. It requires root."
     },
     "syntax": "os.initgroups(...)",
     "status": "ready",
@@ -29163,8 +29163,8 @@
       "en": "Return the process-group id (PGID) of a given PID. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Группа процессов объединяет конвейер, запущенный оболочкой, — например, все команды в cmd1 | cmd2. Сигнал Ctrl+C терминал посылает всей группе переднего плана. Ноль вместо PID означает текущий процесс; для несуществующего PID поднимается ProcessLookupError.",
+      "en": "A process group unites a pipeline started by a shell — all commands in cmd1 | cmd2, for example. The terminal sends Ctrl+C to the whole foreground group. Zero instead of a PID means the current process; a non-existent PID raises ProcessLookupError."
     },
     "syntax": "os.getpgid(...)",
     "status": "ready",
@@ -29214,8 +29214,8 @@
       "en": "Return the current process's process-group id. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "То же, что os.getpgid(0). Если результат равен os.getpid(), процесс — лидер своей группы. Номер группы нужен, чтобы послать сигнал всей группе через os.killpg.",
+      "en": "The same as os.getpgid(0). If the result equals os.getpid(), the process leads its own group. The group number is needed to signal the whole group via os.killpg."
     },
     "syntax": "os.getpgrp(...)",
     "status": "ready",
@@ -29263,8 +29263,8 @@
       "en": "Return the session id (SID) of a given PID. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Сессия объединяет группы процессов, привязанные к одному терминалу: всё, что запущено в одном окне терминала, обычно принадлежит одной сессии. При закрытии терминала сессия получает SIGHUP. Ноль вместо PID — текущий процесс.",
+      "en": "A session groups the process groups tied to one terminal: everything started in one terminal window usually belongs to one session. When the terminal closes, the session receives SIGHUP. Zero instead of a PID means the current process."
     },
     "syntax": "os.getsid(...)",
     "status": "ready",
@@ -29314,8 +29314,8 @@
       "en": "Place a process into a given process group. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Переводит процесс в другую группу, обычно сразу после fork: os.setpgid(0, 0) делает потомка лидером собственной группы. Так оболочки отделяют задания друг от друга. Переносить можно только себя или своих потомков и только в пределах одной сессии. В subprocess то же даёт параметр process_group.",
+      "en": "It moves a process into another group, usually right after fork: os.setpgid(0, 0) makes the child lead its own group. Shells separate jobs this way. You may move only yourself or your children, and only within one session. subprocess offers the same via process_group."
     },
     "syntax": "os.setpgid(...)",
     "status": "ready",
@@ -29363,8 +29363,8 @@
       "en": "Make the current process a process-group leader. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "То же, что os.setpgid(0, 0): процесс становится лидером новой группы. После этого Ctrl+C в терминале, адресованный группе переднего плана, до него может не дойти. Удобно, чтобы затем остановить процесс вместе с потомками одним killpg.",
+      "en": "The same as os.setpgid(0, 0): the process becomes the leader of a new group. After that Ctrl+C in the terminal, aimed at the foreground group, may no longer reach it. It is handy for later stopping the process with its children via a single killpg."
     },
     "syntax": "os.setpgrp(...)",
     "status": "ready",
@@ -29412,8 +29412,8 @@
       "en": "Create a new session with the process as leader (detach from terminal). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Лидер группы вызвать её не может — будет PermissionError, поэтому сначала делают fork и вызывают setsid в потомке. Новая сессия не имеет управляющего терминала, и закрытие терминала больше не убьёт процесс сигналом SIGHUP. В subprocess то же даёт start_new_session=True.",
+      "en": "A group leader cannot call it — it raises PermissionError — so the usual pattern is fork first, then setsid in the child. The new session has no controlling terminal, so closing the terminal no longer kills the process with SIGHUP. subprocess offers the same via start_new_session=True."
     },
     "syntax": "os.setsid(...)",
     "status": "ready",
@@ -29463,8 +29463,8 @@
       "en": "Return the process group controlling a terminal (by fd). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Сообщает, какая группа процессов сейчас на переднем плане терминала, то есть получает ввод с клавиатуры и сигналы от Ctrl+C. Если это не ваша группа, процесс работает в фоне. Для дескриптора, не связанного с терминалом, поднимается OSError.",
+      "en": "It reports which process group is in the terminal's foreground, i.e. receives keyboard input and Ctrl+C signals. If it is not your group, the process runs in the background. A descriptor not attached to a terminal raises OSError."
     },
     "syntax": "os.tcgetpgrp(...)",
     "status": "ready",
@@ -29513,8 +29513,8 @@
       "en": "Set the process group controlling a terminal. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Передаёт передний план терминала другой группе — так оболочка выполняет команду fg. Фоновый процесс, вызвавший её, может получить сигнал SIGTTOU и остановиться, если не блокирует его. Нужна в основном авторам оболочек.",
+      "en": "It hands the terminal's foreground to another group — how a shell implements fg. A background process calling it may receive SIGTTOU and stop unless it blocks the signal. It mostly serves shell authors."
     },
     "syntax": "os.tcsetpgrp(...)",
     "status": "ready",
@@ -29564,8 +29564,8 @@
       "en": "Return the path of the controlling terminal. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Обычно возвращает просто '/dev/tty' — универсальное имя управляющего терминала, а не путь к конкретному устройству вроде /dev/pts/3. Конкретное имя даёт os.ttyname для дескриптора терминала. Открыть '/dev/tty' можно, даже если стандартные потоки перенаправлены, — так программы спрашивают пароль.",
+      "en": "It usually returns just '/dev/tty' — the generic name of the controlling terminal, not a specific device path like /dev/pts/3. os.ttyname on a terminal descriptor gives the specific name. '/dev/tty' can be opened even when the standard streams are redirected — that is how programs ask for passwords."
     },
     "syntax": "os.ctermid(...)",
     "status": "ready",
@@ -29614,8 +29614,8 @@
       "en": "Open a new pseudo-terminal pair; returns (master, slave) fds. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает пару: в ведомый конец (slave) пишет и из него читает программа, считая его терминалом, а ведущий (master) держит управляющая сторона. Так работают эмуляторы терминалов и инструменты автоматизации. Оба дескриптора не наследуются по умолчанию; удобная обёртка — модуль pty.",
+      "en": "It returns a pair: the program reads and writes the slave end believing it is a terminal, while the controlling side holds the master. Terminal emulators and automation tools work this way. Both descriptors are non-inheritable by default; the pty module is a convenient wrapper."
     },
     "syntax": "os.openpty(...)",
     "status": "ready",
@@ -29664,8 +29664,8 @@
       "en": "Open a pseudo-terminal master device and return its fd. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Первый шаг переносимой последовательности: posix_openpt, затем grantpt, unlockpt и ptsname, чтобы узнать путь к ведомому концу. Флаг os.O_NOCTTY не даёт новому терминалу стать управляющим для текущего процесса. Если нужна просто пара дескрипторов, короче os.openpty. Появилась в Python 3.13.",
+      "en": "The first step of the portable sequence: posix_openpt, then grantpt, unlockpt and ptsname to learn the slave path. The os.O_NOCTTY flag keeps the new terminal from becoming the current process's controlling terminal. If you simply need a pair of descriptors, os.openpty is shorter. Added in Python 3.13."
     },
     "syntax": "os.posix_openpt(...)",
     "status": "ready",
@@ -29716,8 +29716,8 @@
       "en": "Grant access to the slave pseudo-terminal (by master fd). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Настраивает владельца и права ведомого устройства псевдотерминала так, чтобы его мог открыть текущий пользователь. Вызывается после posix_openpt и до unlockpt. На современных системах с devpts часто ничего не меняет, но переносимый код вызывает её всегда.",
+      "en": "It sets the owner and permissions of the pseudo-terminal slave so the current user can open it. It is called after posix_openpt and before unlockpt. On modern systems with devpts it often changes nothing, but portable code always calls it."
     },
     "syntax": "os.grantpt(...)",
     "status": "ready",
@@ -29766,8 +29766,8 @@
       "en": "Unlock the slave pseudo-terminal for opening. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Без этого вызова ведомое устройство нельзя открыть — попытка завершится ошибкой. Защищает от того, чтобы кто-то открыл ведомый конец раньше, чем ведущая сторона его настроила. Порядок: posix_openpt, grantpt, unlockpt, ptsname.",
+      "en": "Without this call the slave device cannot be opened — the attempt fails. It prevents anyone from opening the slave before the master side has set it up. The order is posix_openpt, grantpt, unlockpt, ptsname."
     },
     "syntax": "os.unlockpt(...)",
     "status": "ready",
@@ -29817,8 +29817,8 @@
       "en": "Return the path of the slave pseudo-terminal (by master fd). Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает путь ведомого устройства, например '/dev/pts/4', по дескриптору ведущего. Этот путь открывают в потомке, чтобы сделать его терминалом. Вызывается после unlockpt; для дескриптора, не являющегося ведущим концом псевдотерминала, поднимает OSError.",
+      "en": "It returns the slave device path, such as '/dev/pts/4', from the master descriptor. The child opens this path to make it its terminal. Call it after unlockpt; for a descriptor that is not a pseudo-terminal master it raises OSError."
     },
     "syntax": "os.ptsname(...)",
     "status": "ready",
@@ -29869,8 +29869,8 @@
       "en": "Return the terminal path associated with a file descriptor. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для дескриптора, не связанного с терминалом, поднимает OSError, поэтому прежде стоит проверить os.isatty. Возвращает конкретное устройство, например '/dev/pts/0', — в отличие от ctermid, который даёт общее '/dev/tty'.",
+      "en": "For a descriptor not attached to a terminal it raises OSError, so check os.isatty first. It returns the specific device, such as '/dev/pts/0' — unlike ctermid, which gives the generic '/dev/tty'."
     },
     "syntax": "os.ttyname(...)",
     "status": "ready",
@@ -29920,8 +29920,8 @@
       "en": "Make a file descriptor the controlling terminal of the process. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Делает переданный дескриптор управляющим терминалом и стандартными потоками текущего процесса: создаёт новую сессию и перенаправляет на него 0, 1 и 2. Вызывается в потомке после fork. Исходный дескриптор закрывается. Появилась в Python 3.11.",
+      "en": "It makes the given descriptor the current process's controlling terminal and standard streams: it creates a new session and redirects 0, 1 and 2 to it. It is called in a child after fork. The original descriptor is closed. Added in Python 3.11."
     },
     "syntax": "os.login_tty(...)",
     "status": "ready",
@@ -32377,8 +32377,8 @@
       "en": "Return the value of a file's extended attribute by name."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Имя атрибута должно содержать пространство имён: обычным пользователям доступно 'user.', например 'user.comment'; имя без префикса даёт OSError. Значение возвращается байтами. Не все файловые системы поддерживают атрибуты, а при копировании через cp или архивирование они могут потеряться.",
+      "en": "The attribute name must include a namespace: ordinary users have 'user.', e.g. 'user.comment'; a name without a prefix raises OSError. The value comes back as bytes. Not every filesystem supports attributes, and copying with cp or archiving may lose them."
     },
     "syntax": "os.getxattr(...)",
     "status": "ready",
@@ -32428,8 +32428,8 @@
       "en": "Set an extended attribute on a file."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Имя — с префиксом пространства имён ('user.tag'), значение — bytes. Флаги XATTR_CREATE и XATTR_REPLACE превращают запись в «только создать» или «только заменить». На файловой системе без поддержки атрибутов, например на части сетевых дисков и tmpfs старых ядер, поднимается OSError.",
+      "en": "The name carries a namespace prefix ('user.tag') and the value is bytes. The XATTR_CREATE and XATTR_REPLACE flags make the write \"create only\" or \"replace only\". On filesystems without attribute support, such as some network shares and tmpfs on older kernels, OSError is raised."
     },
     "syntax": "os.setxattr(...)",
     "status": "ready",
@@ -32479,8 +32479,8 @@
       "en": "Return the list of a file's extended attribute names."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает имена атрибутов со всеми префиксами, например ['user.comment', 'security.selinux']. Часть атрибутов создаёт сама система — SELinux, ACL, — поэтому список у «чистого» файла может быть непустым. Значения нужно читать отдельно через getxattr.",
+      "en": "It returns attribute names with their prefixes, e.g. ['user.comment', 'security.selinux']. Some attributes are created by the system itself — SELinux, ACLs — so even a \"clean\" file may have a non-empty list. Read values separately with getxattr."
     },
     "syntax": "os.listxattr(...)",
     "status": "ready",
@@ -32530,8 +32530,8 @@
       "en": "Remove an extended attribute from a file."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для отсутствующего атрибута поднимает OSError, а не молчит. Системные атрибуты из пространств security и trusted обычным пользователям удалять нельзя. Имя указывается полностью, с префиксом.",
+      "en": "For a missing attribute it raises OSError rather than staying silent. System attributes in the security and trusted namespaces cannot be removed by ordinary users. The name is given in full, with its prefix."
     },
     "syntax": "os.removexattr(...)",
     "status": "ready",
@@ -32581,8 +32581,8 @@
       "en": "Create an event-counter file descriptor for signalling (3.10+). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Создаёт счётчик в ядре: запись прибавляет к нему число, чтение возвращает накопленную сумму и обнуляет её. Дескриптор можно ждать через select и selectors — так удобно будить цикл событий из другого потока. С флагом EFD_SEMAPHORE каждое чтение уменьшает счётчик на единицу и возвращает 1.",
+      "en": "It creates an in-kernel counter: a write adds to it, a read returns the accumulated sum and resets it. The descriptor works with select and selectors — handy for waking an event loop from another thread. With EFD_SEMAPHORE each read decrements the counter by one and returns 1."
     },
     "syntax": "os.eventfd(...)",
     "status": "ready",
@@ -32630,8 +32630,8 @@
       "en": "Read (and reset) the counter value from an eventfd. Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Если счётчик равен нулю, блокирует до первой записи; с флагом EFD_NONBLOCK вместо ожидания поднимает BlockingIOError. Возвращает накопленную сумму: две записи 3 и 4 дадут при чтении 7. Обнуление и чтение происходят атомарно.",
+      "en": "If the counter is zero it blocks until the first write; with EFD_NONBLOCK it raises BlockingIOError instead. It returns the accumulated sum: writes of 3 and 4 read back as 7. Reading and resetting happen atomically."
     },
     "syntax": "os.eventfd_read(...)",
     "status": "ready",
@@ -32678,8 +32678,8 @@
       "en": "Add a value to an eventfd counter. Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Прибавляет число к счётчику и будит ждущих читателей. Значение должно быть положительным и меньше 2**64 - 1; при переполнении запись блокируется, а в неблокирующем режиме поднимает BlockingIOError.",
+      "en": "It adds a number to the counter and wakes waiting readers. The value must be positive and below 2**64 - 1; on overflow the write blocks, or raises BlockingIOError in non-blocking mode."
     },
     "syntax": "os.eventfd_write(...)",
     "status": "ready",
@@ -32726,8 +32726,8 @@
       "en": "Create a timer file descriptor whose expirations are readable as events (3.13+). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Таймер, срабатывания которого читаются как данные из дескриптора, — его можно ждать вместе с сокетами в одном select. Часы выбираются аргументом: time.CLOCK_MONOTONIC не прыгает при смене системного времени, в отличие от CLOCK_REALTIME. Таймер ещё нужно запустить через timerfd_settime.",
+      "en": "A timer whose expirations are read as data from a descriptor, so it can be waited on alongside sockets in one select. The clock is an argument: time.CLOCK_MONOTONIC does not jump when the system time changes, unlike CLOCK_REALTIME. The timer still has to be armed with timerfd_settime."
     },
     "syntax": "os.timerfd_create(...)",
     "status": "ready",
@@ -32776,8 +32776,8 @@
       "en": "Arm or disarm a timerfd (start and interval in seconds). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Параметр initial задаёт первое срабатывание, interval — период; interval=0 означает однократный таймер, а initial=0 останавливает таймер. Чтение из дескриптора возвращает 8 байт — число срабатываний с прошлого чтения, что позволяет заметить пропущенные тики. Возвращает прежние настройки.",
+      "en": "initial sets the first expiration and interval the period; interval=0 makes a one-shot timer, while initial=0 disarms it. Reading the descriptor returns 8 bytes — the number of expirations since the last read, which reveals missed ticks. It returns the previous settings."
     },
     "syntax": "os.timerfd_settime(...)",
     "status": "ready",
@@ -32826,8 +32826,8 @@
       "en": "Like timerfd_settime, but in nanoseconds (int). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Делает то же, что timerfd_settime, но принимает целые наносекунды. Это избавляет от погрешности float при точных периодах: 0.1 секунды в float не представимы точно, а 100_000_000 наносекунд — представимы.",
+      "en": "It does the same as timerfd_settime but takes integer nanoseconds. That avoids float error for precise periods: 0.1 seconds is not exactly representable as a float, while 100_000_000 nanoseconds is."
     },
     "syntax": "os.timerfd_settime_ns(...)",
     "status": "ready",
@@ -32876,8 +32876,8 @@
       "en": "Return a timerfd's remaining time and interval (in seconds). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Возвращает пару: сколько осталось до следующего срабатывания и период, в секундах. У остановленного таймера оба значения равны нулю. Сам таймер при этом не меняется и счётчик срабатываний не сбрасывается.",
+      "en": "It returns a pair: time left until the next expiration and the period, in seconds. For a disarmed timer both values are zero. The timer itself is not changed and the expiration count is not reset."
     },
     "syntax": "os.timerfd_gettime(...)",
     "status": "ready",
@@ -32926,8 +32926,8 @@
       "en": "Like timerfd_gettime, but in nanoseconds. Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Как timerfd_gettime, но в целых наносекундах — без погрешностей float. Удобна, если таймер настраивался через timerfd_settime_ns и значения нужно сравнивать точно.",
+      "en": "Like timerfd_gettime, but in integer nanoseconds — free of float error. It is handy when the timer was set with timerfd_settime_ns and values must compare exactly."
     },
     "syntax": "os.timerfd_gettime_ns(...)",
     "status": "ready",
@@ -32976,8 +32976,8 @@
       "en": "Create an anonymous in-memory file and return its descriptor (3.8+). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Создаёт файл, который живёт только в памяти и исчезает, когда закрыты все дескрипторы; на диске его нет. Имя служит лишь для отладки и не обязано быть уникальным. Дескриптор можно передать другому процессу или использовать с mmap — удобно для обмена данными без временных файлов.",
+      "en": "It creates a file that lives only in memory and disappears once every descriptor is closed; nothing hits the disk. The name is for debugging only and need not be unique. The descriptor can be handed to another process or used with mmap — handy for sharing data without temporary files."
     },
     "syntax": "os.memfd_create(...)",
     "status": "ready",
@@ -33024,8 +33024,8 @@
       "en": "Return a file descriptor referring to a process by PID (3.9+). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Дескриптор держит конкретный процесс, а не номер, поэтому сигнал через signal.pidfd_send_signal не попадёт в чужой процесс, получивший тот же PID после завершения исходного. Дескриптор можно ждать через select: он становится читаемым, когда процесс завершился.",
+      "en": "The descriptor refers to a specific process, not a number, so a signal sent via signal.pidfd_send_signal cannot hit another process that inherited the PID after the original exited. The descriptor works with select: it becomes readable when the process has exited."
     },
     "syntax": "os.pidfd_open(...)",
     "status": "ready",
@@ -33072,8 +33072,8 @@
       "en": "Like pipe, but atomically sets flags (e.g. O_NONBLOCK/O_CLOEXEC). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Задаёт флаги атомарно при создании, без отдельных вызовов для каждого конца: os.pipe2(os.O_NONBLOCK | os.O_CLOEXEC). Атомарность важна в многопоточной программе, где между созданием канала и установкой флагов другой поток мог бы успеть запустить дочерний процесс.",
+      "en": "It sets flags atomically at creation, without separate calls per end: os.pipe2(os.O_NONBLOCK | os.O_CLOEXEC). Atomicity matters in a multithreaded program, where another thread could launch a child between creating the pipe and setting its flags."
     },
     "syntax": "os.pipe2(...)",
     "status": "ready",
@@ -33120,8 +33120,8 @@
       "en": "Attach the process to a namespace by file descriptor (3.12+). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Присоединяет процесс к пространству имён другого процесса по дескриптору файла из /proc/PID/ns/ — так устроены инструменты вроде nsenter и docker exec. Требует прав CAP_SYS_ADMIN. Присоединение к некоторым пространствам, например PID, действует только на потомков.",
+      "en": "It joins another process's namespace via a file descriptor from /proc/PID/ns/ — how tools like nsenter and docker exec work. It requires CAP_SYS_ADMIN. Joining some namespaces, such as PID, takes effect only for children."
     },
     "syntax": "os.setns(...)",
     "status": "ready",
@@ -33172,8 +33172,8 @@
       "en": "Disassociate parts of the process's execution context into new namespaces (3.12+). Availability: Linux."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Отделяет процесс в новые пространства имён — монтирования, сети, пользователей — на этом построены контейнеры. Обычно требует прав CAP_SYS_ADMIN, кроме пользовательского пространства имён (CLONE_NEWUSER), если система его разрешает. Это низкоуровневый инструмент: в учебном коде он не нужен.",
+      "en": "It moves the process into new namespaces — mount, network, user — the foundation of containers. It usually needs CAP_SYS_ADMIN, except for a user namespace (CLONE_NEWUSER) where the system allows it. It is a low-level tool that teaching code does not need."
     },
     "syntax": "os.unshare(...)",
     "status": "ready",
@@ -33222,8 +33222,8 @@
       "en": "Advise the kernel about the expected file access pattern. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Только совет: ядро может его проигнорировать, и на правильность программы он не влияет. POSIX_FADV_SEQUENTIAL ускоряет чтение больших файлов подряд, а POSIX_FADV_DONTNEED позволяет не засорять кэш страниц файлом, который больше не понадобится. Длина 0 означает «до конца файла».",
+      "en": "It is only advice: the kernel may ignore it, and it never affects correctness. POSIX_FADV_SEQUENTIAL speeds up reading large files front to back, and POSIX_FADV_DONTNEED keeps a file you will not need again from crowding the page cache. A length of 0 means \"to the end of the file\"."
     },
     "syntax": "os.posix_fadvise(...)",
     "status": "ready",
@@ -33272,8 +33272,8 @@
       "en": "Pre-allocate disk space for a file of a given size. Availability: Unix."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "В отличие от truncate, действительно выделяет место на диске: нехватка места обнаружится сразу, а не посреди записи. Размер файла при необходимости увеличивается. На файловых системах без нужной поддержки библиотека может эмулировать выделение записью нулей, и это медленно.",
+      "en": "Unlike truncate, it actually allocates disk space: running out of space shows up immediately rather than mid-write. The file size grows if needed. On filesystems lacking support the library may emulate allocation by writing zeros, which is slow."
     },
     "syntax": "os.posix_fallocate(...)",
     "status": "ready",
@@ -33467,8 +33467,8 @@
       "en": "Extract the major device number from a raw device id."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Номер устройства из st_dev или st_rdev состоит из двух частей: старший номер указывает драйвер, младший — конкретное устройство этого драйвера. Например, на Linux major 8 — диски SCSI и SATA. Раскладка битов зависит от системы, поэтому разбирать номер вручную нельзя — только этой функцией.",
+      "en": "A device number from st_dev or st_rdev has two parts: the major number identifies the driver, the minor a specific device of that driver. On Linux, for instance, major 8 is SCSI and SATA disks. The bit layout is system-specific, so never decode the number by hand — only with this function."
     },
     "syntax": "os.major(...)",
     "status": "ready",
@@ -33516,8 +33516,8 @@
       "en": "Extract the minor device number from a raw device id."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Младший номер различает устройства одного драйвера: у дисков SCSI на Linux он кодирует диск и раздел. Используйте вместе с major, а собирать номер обратно — через makedev. Ручные битовые операции дадут неверный результат на другой системе.",
+      "en": "The minor number tells apart devices of one driver: for SCSI disks on Linux it encodes the disk and partition. Use it with major, and rebuild the number with makedev. Manual bit operations give wrong results on another system."
     },
     "syntax": "os.minor(...)",
     "status": "ready",
@@ -33565,8 +33565,8 @@
       "en": "Compose a raw device id from major and minor numbers."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Обратна major и minor: os.major(os.makedev(8, 1)) вернёт 8. Нужна, чтобы создать файл устройства через os.mknod. Раскладка итогового числа зависит от системы — передавайте его только функциям этой же системы.",
+      "en": "It is the inverse of major and minor: os.major(os.makedev(8, 1)) returns 8. It is needed to create a device file with os.mknod. The resulting number's layout is system-specific — pass it only to functions on the same system."
     },
     "syntax": "os.makedev(...)",
     "status": "ready",

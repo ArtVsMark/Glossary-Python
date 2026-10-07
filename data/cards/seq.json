@@ -2201,8 +2201,8 @@
       "en": "Return a copy with ASCII letters lower-cased."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Меняет только ASCII-буквы A–Z: байты кириллицы и других алфавитов в UTF-8 остаются как есть, поэтому 'É'.encode().lower() вернёт те же байты. Для текста на любом языке сначала декодируйте в str и вызывайте str.lower. Для сравнения без учёта регистра у str есть casefold.",
+      "en": "It changes only the ASCII letters A–Z: UTF-8 bytes of Cyrillic and other scripts stay as they are, so 'É'.encode().lower() returns the same bytes. For text in any language decode to str first and call str.lower. For case-insensitive comparison str offers casefold."
     },
     "syntax": "b.lower(...)",
     "status": "ready",

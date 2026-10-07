@@ -542,10 +542,14 @@ function availableIn(d, v){
   return !d.removed || verCmp(d.removed, v) > 0;
 }
 /* Ряд версий выводится из данных: появится карточка из 3.16 — появится и фишка.
-   Берётся только added: «удалено в 3.17» — обещание будущего, а не версия, в
-   которой учащийся пишет код. */
-const PY_VERSIONS = Array.from(new Set(DATA.map(d => d.added)
-  .filter(v => v && !v.startsWith("<") && verCmp(v, "3.9") >= 0))).sort(verCmp);
+   К версиям появления добавляется ровно одна следующая, если на ней что-то
+   удаляется: учащемуся на свежем Python важно, чего там уже нет. Удаления
+   дальше («до 3.17») — обещание будущего, а не версия, в которой пишут код. */
+const ADDED = DATA.map(d => d.added).filter(v => v && !v.startsWith("<"));
+const NEWEST = ADDED.slice().sort(verCmp).pop();
+const NEXT = NEWEST && `${verKey(NEWEST)[0]}.${verKey(NEWEST)[1] + 1}`;
+const PY_VERSIONS = Array.from(new Set([...ADDED, ...DATA.map(d => d.removed).filter(v => v === NEXT)]))
+  .filter(v => verCmp(v, "3.9") >= 0).sort(verCmp);
 
 function matches(d){
   if(state.py && !(state.pyNew ? d.added === state.py : availableIn(d, state.py))) return false;

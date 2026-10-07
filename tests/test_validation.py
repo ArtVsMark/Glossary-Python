@@ -25,6 +25,7 @@ from glossary.validation import (
     rule_language_script,
     rule_non_empty,
     rule_platforms,
+    rule_platforms_summary,
     rule_related_errors_resolve,
     rule_related_resolves,
     rule_required_fields,
@@ -211,6 +212,86 @@ def test_all_systems_must_be_written_as_all_os():
 def test_repeated_platform_is_an_error():
     glossary = make_glossary(make_entry(platforms=("Linux", "Linux")))
     assert "повторяется" in next(rule_platforms(glossary, CFG)).message
+
+
+def _claiming(ru: str, en: str, platforms: tuple[str, ...]) -> list[str]:
+    entry = make_entry(summary=Text(ru=ru, en=en), platforms=platforms)
+    return [i.message for i in rule_platforms_summary(make_glossary(entry), CFG)]
+
+
+def test_unix_claim_against_all_os_is_an_error():
+    """Текст и значок говорят разное — так разошлись 38 карточек (#110)."""
+    issues = _claiming(
+        "Посылает сигнал процессу по PID. Доступно на Unix.",
+        "Send a signal to a process by PID. Availability: Unix.",
+        ("AllOS",),
+    )
+    assert issues and "Unix" in issues[0] and "AllOS" in issues[0]
+
+
+def test_claim_is_reported_once_per_system():
+    """Обе половины назвали Unix — это одно расхождение, а не два."""
+    issues = _claiming(
+        "Посылает сигнал процессу по PID. Доступно на Unix.",
+        "Send a signal to a process by PID. Availability: Unix.",
+        ("AllOS",),
+    )
+    assert len(issues) == 1
+
+
+def test_unix_claim_admits_a_narrower_set():
+    """«Unix» — это Linux и macOS; одна из них — уточнение, а не спор."""
+    assert (
+        _claiming(
+            "Возвращает расширенный атрибут. Доступно на Unix.",
+            "Return an extended attribute. Availability: Unix.",
+            ("Linux",),
+        )
+        == []
+    )
+
+
+def test_linux_claim_rejects_macos():
+    issues = _claiming(
+        "Возвращает расширенный атрибут. Доступно на Linux.",
+        "Return an extended attribute. Availability: Linux.",
+        ("Linux", "macOS"),
+    )
+    assert issues and "Linux" in issues[0]
+
+
+def test_windows_claim_at_sentence_start():
+    issues = _claiming(
+        "Только Windows: возвращает список дисков системы.",
+        "Windows only: return the list of drives on the system.",
+        ("AllOS",),
+    )
+    assert issues and "Windows" in issues[0]
+
+
+def test_mid_sentence_mention_of_another_object_is_not_a_claim():
+    """«Функция os.uname — только на Unix» говорит о соседе: граница правила."""
+    assert (
+        _claiming(
+            "Тип результата os.uname(). Сам тип есть везде, "
+            "а функция os.uname — только на Unix.",
+            "The result type of os.uname(). The type exists everywhere; "
+            "os.uname is Unix-only.",
+            ("AllOS",),
+        )
+        == []
+    )
+
+
+def test_summary_without_claim_passes():
+    assert (
+        _claiming(
+            "Возвращает размер файла в байтах по пути к нему.",
+            "Return the size of a file in bytes given its path.",
+            ("Linux",),
+        )
+        == []
+    )
 
 
 # --------------------------------------------------------------------------- #
@@ -436,6 +517,7 @@ def test_all_rules_are_registered():
         rule_language_script,
         rule_non_empty,
         rule_platforms,
+        rule_platforms_summary,
         rule_related_errors_resolve,
         rule_related_resolves,
         rule_required_fields,
@@ -472,6 +554,7 @@ def test_rule_names_are_unique_and_stable():
         "kind",
         "label-translated",
         "platforms",
+        "platforms-summary",
         "related-errors-resolve",
         "related-resolves",
         "required-fields",

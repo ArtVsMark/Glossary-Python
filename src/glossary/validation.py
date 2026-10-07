@@ -416,6 +416,54 @@ def rule_platforms(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
             )
 
 
+_CLAIM_SYSTEMS: Final[dict[str, frozenset[str]]] = {
+    "Unix": frozenset({"Linux", "macOS"}),
+    "Linux": frozenset({"Linux"}),
+    "Windows": frozenset({"Windows"}),
+}
+_CLAIM_RU: Final = re.compile(
+    r"(?:^|[.!?]\s+)(?:Доступно на|Только(?: на)?) (Unix|Linux|Windows)\b"
+)
+_CLAIM_EN: Final = re.compile(
+    r"Availability: (Unix|Linux|Windows)\b"
+    r"|(?:^|[.!?]\s+)(?:Only on|Available on) (Unix|Linux|Windows)\b"
+    r"|(?:^|[.!?]\s+)(Unix|Linux|Windows)[- ]only\b"
+)
+
+
+def rule_platforms_summary(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Сводка, назвавшая доступность, не спорит с полем ``platforms``.
+
+    Сводка с «Доступно на Unix» при ``platforms = AllOS`` учит неправде дважды:
+    текстом и значком, говорящими разное. Так разошлись 38 карточек, пока
+    поле заполнялось по документации, а сводки оставались прежними (#110).
+
+    Утверждением считается формула о самом объекте: «Доступно на X», «Только
+    X» в начале предложения, «Availability: X». Фраза «функция os.uname —
+    только на Unix» в середине предложения говорит о соседнем объекте и не
+    проверяется — ГРАНИЦА НАЗВАНА, а не подразумевается.
+    """
+    for entry in g.entries:
+        claims = [
+            name
+            for half, pattern in (("ru", _CLAIM_RU), ("en", _CLAIM_EN))
+            for match in pattern.finditer(entry.summary.get(half))
+            for name in match.groups()
+            if name
+        ]
+        actual = set(entry.platforms)
+        for name in dict.fromkeys(claims):
+            allowed = _CLAIM_SYSTEMS[name]
+            if ALL_OS in actual or not actual <= allowed:
+                yield Issue(
+                    Severity.ERROR,
+                    "platforms-summary",
+                    f"сводка говорит «{name}», а platforms — "
+                    f"{', '.join(entry.platforms) or 'пусто'}",
+                    entry.id,
+                )
+
+
 def rule_version_format(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Маркер версии записан как ``N.N`` либо пуст."""
     for entry in g.entries:
@@ -600,6 +648,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_body_length,
     rule_version_format,
     rule_platforms,
+    rule_platforms_summary,
     rule_examples,
     rule_example_compiles,
     rule_related_resolves,

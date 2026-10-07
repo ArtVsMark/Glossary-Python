@@ -1506,8 +1506,8 @@
       "en": "A class method. Its first parameter is cls (a reference to the class). Used for alternative constructors."
     },
     "body": {
-      "ru": "cls — это тот класс, на котором метод фактически вызвали, поэтому в подклассе cls(...) построит объект подкласса, а не родителя; именно за это classmethod ценят в альтернативных конструкторах. Если фабрике сам класс не нужен, берите staticmethod или обычную функцию.",
-      "en": "cls is whichever class the method was actually called on, so in a subclass cls(...) builds an instance of the subclass, not the parent — exactly why alternative constructors rely on classmethod. If the factory doesn't need the class at all, reach for staticmethod or a plain function instead."
+      "ru": "cls — это тот класс, на котором метод фактически вызвали, поэтому в подклассе cls(...) построит объект подкласса, а не родителя; именно за это classmethod ценят в альтернативных конструкторах. Если фабрике сам класс не нужен, берите staticmethod или обычную функцию. Старые учебники показывают @classmethod поверх @property как «свойство класса»: это работало в 3.9–3.12, устарело в 3.11 и удалено в 3.13 — теперь A.name вернёт связанный метод, а не значение.",
+      "en": "cls is whichever class the method was actually called on, so in a subclass cls(...) builds an instance of the subclass, not the parent — exactly why alternative constructors rely on classmethod. If the factory doesn't need the class at all, reach for staticmethod or a plain function instead. Older tutorials stack @classmethod on top of @property to get a “class property”: that worked in 3.9–3.12, was deprecated in 3.11 and removed in 3.13 — now A.name returns a bound method, not the value."
     },
     "syntax": "@classmethod\ndef method(cls, ...): ...",
     "status": "ready",
@@ -1609,6 +1609,15 @@
         "    pass",
         "cat = Cat.make('Whiskers')",
         "print(type(cat).__name__, cat.name)  # → Cat Whiskers"
+      ],
+      [
+        "# Python 3.13+",
+        "class A:",
+        "    @classmethod",
+        "    @property",
+        "    def name(cls):",
+        "        return cls.__name__",
+        "print(type(A.name).__name__)  # → method — а не 'A': цепочка удалена в 3.13"
       ]
     ],
     "related": [

@@ -408,7 +408,7 @@ const STORE = { theme:"glossary-theme", lang:"glossary-lang" };
 
 const I18N = {
   ru:{
-    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", pyHint:"Что доступно в выбранной версии: появилось не позже неё и ещё не удалено", pyNew:"только новое", pyNewHint:"Только то, что появилось именно в выбранной версии", sinceAll:"все Python 3", sinceAllHint:"Есть во всех версиях Python 3 — появилось ещё в Python 2", sinceHint:"Появилось в этой версии Python и работает в более новых", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)", deprecated:"устарело в", deprecatedHint:"Объявлено устаревшим в этой версии Python и может быть удалено", removed:"до", removedHint:"Удалено или будет удалено в этой версии Python: работает в версиях раньше неё",
+    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", pyHint:"Что доступно в выбранной версии: появилось не позже неё и ещё не удалено", pyAdded:"появилось", pyAddedHint:"Только то, что появилось именно в выбранной версии; без версии — всё", pyDeprecated:"устарело", pyDeprecatedHint:"Что объявлено устаревшим в выбранной версии; без версии — всё устаревшее", pyRemoved:"удалено", pyRemovedHint:"Что удалено в выбранной версии, то есть работает только до неё; без версии — всё, что удалено или будет удалено", sinceAll:"все Python 3", sinceAllHint:"Есть во всех версиях Python 3 — появилось ещё в Python 2", sinceHint:"Появилось в этой версии Python и работает в более новых", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)", deprecated:"устарело в", deprecatedHint:"Объявлено устаревшим в этой версии Python и может быть удалено", removed:"до", removedHint:"Удалено или будет удалено в этой версии Python: работает в версиях раньше неё",
     download:"Скачать", downloaded:"Готово", theme:"Сменить тему",
     search:"Поиск по имени, синонимам, ключевым словам…",
     bySection:"По разделам", kind:"Вид", group:"Раздел", moduleWord:"модуль",
@@ -423,7 +423,7 @@ const I18N = {
     resetHint:"Удалить сохранённые тему и язык"
   },
   en:{
-    title:"Python Glossary", subtitle:"Standard library reference", pyHint:"What is available in the chosen version: added no later and not yet removed", pyNew:"new only", pyNewHint:"Only what was added in exactly the chosen version", sinceAll:"all Python 3", sinceAllHint:"Available in every Python 3 release — it dates back to Python 2", sinceHint:"Added in this Python version and available in later ones", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
+    title:"Python Glossary", subtitle:"Standard library reference", pyHint:"What is available in the chosen version: added no later and not yet removed", pyAdded:"added", pyAddedHint:"Only what was added in exactly the chosen version; with no version, everything", pyDeprecated:"deprecated", pyDeprecatedHint:"What was deprecated in the chosen version; with no version, everything deprecated", pyRemoved:"removed", pyRemovedHint:"What was removed in the chosen version, so it works only before it; with no version, everything removed or scheduled for removal", sinceAll:"all Python 3", sinceAllHint:"Available in every Python 3 release — it dates back to Python 2", sinceHint:"Added in this Python version and available in later ones", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
     download:"Download", downloaded:"Saved", theme:"Toggle theme",
     search:"Search by name, alias, keyword…",
     bySection:"By section", kind:"Kind", group:"Section", moduleWord:"module",
@@ -524,7 +524,7 @@ function haystack(d){
 }
 
 /* ---------- состояние ---------- */
-const state = { q:"", kind:"", fam:"", section:"", py:"", pyNew:false, sort:"az" };
+const state = { q:"", kind:"", fam:"", section:"", py:"", pyMode:"", sort:"az" };
 let visible = [];
 let drawn = 0;
 const CHUNK = 48;
@@ -544,15 +544,35 @@ function availableIn(d, v){
 /* Ряд версий выводится из данных: появится карточка из 3.16 — появится и фишка.
    К версиям появления добавляется ровно одна следующая, если на ней что-то
    удаляется: учащемуся на свежем Python важно, чего там уже нет. Удаления
-   дальше («до 3.17») — обещание будущего, а не версия, в которой пишут код. */
+   дальше («до 3.17») — обещание будущего, а не версия, в которой пишут код.
+   Старые версии в ряду намеренно: с «только новое» фишка 3.6 отвечает, что
+   принесла версия (f-строки), — история языка читается так же, как свежая. */
 const ADDED = DATA.map(d => d.added).filter(v => v && !v.startsWith("<"));
 const NEWEST = ADDED.slice().sort(verCmp).pop();
 const NEXT = NEWEST && `${verKey(NEWEST)[0]}.${verKey(NEWEST)[1] + 1}`;
 const PY_VERSIONS = Array.from(new Set([...ADDED, ...DATA.map(d => d.removed).filter(v => v === NEXT)]))
-  .filter(v => verCmp(v, "3.9") >= 0).sort(verCmp);
+  .sort(verCmp);
+/* Режим отвечает на вопрос о событии в жизни возможности: появилась, устарела,
+   удалена. Ряд версий у режима свой — те, где событие случилось: «удалено»
+   показывает и 3.17, потому что вопрос «до какой версии это работает» про
+   будущее законен, а «доступно в 3.17» — нет (Glossary-Python#154). */
+const PY_MODES = ["added", "deprecated", "removed"];
+const MODE_KEY = { added:"pyAdded", deprecated:"pyDeprecated", removed:"pyRemoved" };
+function versionsOf(field){
+  return Array.from(new Set(DATA.map(d => d[field]).filter(v => v && !v.startsWith("<"))))
+    .sort(verCmp);
+}
+const MODE_VERSIONS = {
+  "": PY_VERSIONS, added: versionsOf("added"),
+  deprecated: versionsOf("deprecated"), removed: versionsOf("removed"),
+};
+function inPython(d, v, mode){
+  if(!mode) return !v || availableIn(d, v);
+  return v ? d[mode] === v : Boolean(d[mode]);
+}
 
 function matches(d){
-  if(state.py && !(state.pyNew ? d.added === state.py : availableIn(d, state.py))) return false;
+  if((state.py || state.pyMode) && !inPython(d, state.py, state.pyMode)) return false;
   if(state.kind && d.kind !== state.kind) return false;
   if(state.fam && famOf(d) !== state.fam) return false;
   if(state.section && d.section !== state.section) return false;
@@ -707,16 +727,24 @@ function buildKindFilters(){
 
 function buildPyFilters(){
   const box = $("#pyFilters");
-  const count = v => DATA.filter(d => state.pyNew ? d.added === v : availableIn(d, v)).length;
+  const versions = MODE_VERSIONS[state.pyMode];
+  const count = v => DATA.filter(d => inPython(d, v, state.pyMode)).length;
   box.innerHTML = `<span class="fil-label" title="${esc(t("pyHint"))}">Python</span>` +
-    chip(t("all"), state.py === "", DATA.length) +
-    PY_VERSIONS.map(v => chip(v, state.py === v, count(v))).join("") +
-    `<button class="chip toggle${state.pyNew ? " active" : ""}" type="button" title="${esc(t("pyNewHint"))}">${esc(t("pyNew"))}</button>`;
-  const chips = box.querySelectorAll(".chip");
+    chip(t("all"), state.py === "", count("")) +
+    versions.map(v => chip(v, state.py === v, count(v))).join("") +
+    PY_MODES.map(m => `<button class="chip toggle${state.pyMode === m ? " active" : ""}" type="button" ` +
+      `title="${esc(t(MODE_KEY[m] + "Hint"))}">${esc(t(MODE_KEY[m]))}</button>`).join("");
+  const chips = [...box.querySelectorAll(".chip")];
   chips.forEach((b, i) => {
-    b.onclick = i === chips.length - 1
-      ? () => { state.pyNew = !state.pyNew; buildPyFilters(); render(); }
-      : () => { state.py = i === 0 ? "" : PY_VERSIONS[i-1]; buildPyFilters(); render(); };
+    const mode = PY_MODES[i - versions.length - 1];
+    b.onclick = mode
+      ? () => {
+          state.pyMode = state.pyMode === mode ? "" : mode;
+          // Версия, в которой у нового режима событий нет, дала бы пустой экран.
+          if(!MODE_VERSIONS[state.pyMode].includes(state.py)) state.py = "";
+          buildPyFilters(); render();
+        }
+      : () => { state.py = i === 0 ? "" : versions[i-1]; buildPyFilters(); render(); };
   });
 }
 
@@ -837,7 +865,7 @@ function revealHash(){
   if(!id || !BY_ID.has(id)) return;
   if(!visible.some(d => d.id === id)){
     state.q = ""; state.kind = ""; state.fam = ""; state.section = "";
-    state.py = ""; state.pyNew = false;
+    state.py = ""; state.pyMode = "";
     $("#search").value = "";
     buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); buildPyFilters(); render();
   }

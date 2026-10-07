@@ -48,6 +48,8 @@ __all__ = [
 ID_FORBIDDEN: Final = re.compile(r"""[\s#/?&=%"'<>]""")
 CYRILLIC: Final = re.compile(r"[А-Яа-яЁё]")
 LATIN: Final = re.compile(r"[A-Za-z]")
+WORD: Final = re.compile(r"[^\W\d_]+")
+"""Слово — сплошная серия букв: дефис, апостроф и цифра его разрывают."""
 VERSION_PATTERN: Final = re.compile(r"^\d+\.\d+$")
 ADDED_PATTERN: Final = re.compile(r"^<?\d+\.\d+$")
 # Сводка называет устаревшим сам предмет карточки: с начала фразы или через
@@ -338,6 +340,37 @@ def rule_language_script(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                     f"на {share:.0%} — похоже, её не перевели, а скопировали",
                     entry.id,
                 )
+
+
+def rule_mixed_script(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """В одном слове прозы не смешаны кириллица и латиница.
+
+    Опечатка с соседней раскладкой («típичный», «доpython») выглядит
+    в тексте почти верно и проходит любое чтение по диагонали, а поиск по
+    такому слову её уже не находит. Слово здесь — сплошная серия букв:
+    «Python-код», «exec'ом» и «3.12-й» распадаются на части и находкой не
+    становятся.
+
+    ПРЕДМЕТ — ПРОЗА, А НЕ ПРИМЕРЫ, И ЭТО ЗАМЕР. В строках примеров та же
+    проверка даёт находки на экранированном переводе строки перед русским
+    словом (обратная косая, буква n и сразу «строка») и на примерах
+    ``unicodedata``, которые смешивают письменности намеренно. В заголовках,
+    сводках и разборах на этом дереве ложных находок ноль: греческая ``π``
+    рядом с латинской ``i`` в формулах — не кириллица и правилом не судится.
+    """
+    for entry in g.entries:
+        for field_name in ("summary", "body", "title"):
+            text = getattr(entry, field_name)
+            for lang in ("ru", "en"):
+                for word in WORD.findall(text.get(lang)):
+                    if CYRILLIC.search(word) and LATIN.search(word):
+                        yield Issue(
+                            Severity.ERROR,
+                            "mixed-script",
+                            f"в поле {field_name!r} ({lang}) слово {word!r} смешивает "
+                            "кириллицу и латиницу — похоже на опечатку раскладки",
+                            entry.id,
+                        )
 
 
 def rule_docs_url(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
@@ -935,6 +968,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_translated,
     rule_label_translated,
     rule_language_script,
+    rule_mixed_script,
     rule_docs_url,
     rule_summary_length,
     rule_body_length,

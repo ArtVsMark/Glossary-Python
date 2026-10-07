@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness assemble assemble-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links examples facts facts-check changelog-check changelog-preview changelog-collect build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness assemble assemble-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links examples facts facts-check changelog-check changelog-preview changelog-collect changelog-rotate build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -70,6 +70,9 @@ changelog-preview: ## Показать, как соберётся журнал
 
 changelog-collect: ## Перенести фрагменты в [Unreleased]
 	$(BIN)/python scripts/changelog.py --collect
+
+changelog-rotate: ## Вынести выпуски за окном журнала в архив дословно
+	$(BIN)/python scripts/changelog.py --rotate
 
 outcomes: ## Проверить, что у каждой точки входа есть третий исход
 	$(BIN)/python scripts/check_third_outcome.py

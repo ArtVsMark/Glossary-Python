@@ -40,6 +40,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "from typing import Any",
         "def log(value: Any) -> None: print(value)",
         "log(42)  # → 42",
@@ -568,6 +569,7 @@
         "result: Optional[int] = None  # → допустимо"
       ],
       [
+        "# Python 3.10+",
         "def greet(name: str | None = None) -> str:",
         "    return f'Hi, {name or \"stranger\"}'",
         "print(greet())  # → Hi, stranger"
@@ -823,6 +825,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "from typing import TypeVar",
         "T = TypeVar('T')",
         "def first(lst: list[T]) -> T:",
@@ -895,6 +898,7 @@
         "print(double(1.5))  # → 3.0"
       ],
       [
+        "# Python 3.10+",
         "def parse(val: int | str) -> str:",
         "    return str(val)",
         "print(parse(42))  # → '42'",
@@ -951,6 +955,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "from typing import get_args, get_origin, Literal",
         "print(get_args(list[int]) == (int,))   # → True",
         "print([t.__name__ for t in get_args(dict[str, int])])   # → ['str', 'int']",
@@ -1009,6 +1014,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "from typing import get_origin, get_args, Union",
         "print(get_origin(list[int]) is list)   # → True",
         "print(get_origin(dict[str, int]) is dict)   # → True",
@@ -1379,6 +1385,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "from typing import cast",
         "print(cast(int, 42))   # → 42",
         "print(type(cast(str, 42)).__name__)   # → int",
@@ -2031,6 +2038,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "from typing import ForwardRef, Optional, get_type_hints",
         "print(ForwardRef('int').__forward_arg__)   # → int",
         "print(type(Optional['Node'].__args__[0]) is ForwardRef)   # → True",
@@ -2470,6 +2478,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "from typing import SupportsComplex",
         "print(isinstance(3j, SupportsComplex))   # → True",
         "print(isinstance(5, SupportsComplex))  # → False",
@@ -2767,10 +2776,12 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "from typing import overload, get_overloads",
         "print(callable(overload))   # → True"
       ],
       [
+        "# Python 3.11+",
         "from typing import overload, get_overloads",
         "@overload",
         "def double(x: int) -> int: ...",
@@ -2782,6 +2793,7 @@
         "print(len(get_overloads(double)))   # → 2"
       ],
       [
+        "# Python 3.11+",
         "from typing import overload, get_overloads",
         "@overload",
         "def solo(x: int) -> int: ...",

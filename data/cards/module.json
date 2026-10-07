@@ -213,10 +213,13 @@
     "examples": [
       [
         "from pathlib import Path",
-        "p = Path('/tmp')",
-        "list(p.glob('*.txt')) # → все .txt в /tmp",
-        "list(p.glob('*/*.py')) # → .py на уровень глубже",
-        "list(Path('.').glob('**/*.py')) # → все .py рекурсивно"
+        "root = Path('glob_demo')",
+        "(root / 'pkg').mkdir(parents=True, exist_ok=True)",
+        "for name in ('a.txt', 'b.txt', 'main.py', 'pkg/util.py'):",
+        "    (root / name).touch()",
+        "print(sorted(p.name for p in root.glob('*.txt')))  # → ['a.txt', 'b.txt']",
+        "print([p.name for p in root.glob('*/*.py')])  # → ['util.py'] — на уровень глубже",
+        "print(sorted(p.name for p in root.glob('**/*.py')))  # → ['main.py', 'util.py'] — рекурсивно"
       ]
     ],
     "related": [
@@ -1059,6 +1062,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "from pathlib import PurePosixPath as P",
         "p = P('/data/report.tar.gz')",
         "print(p.stem)  # → report.tar",
@@ -7688,6 +7692,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "import math",
         "print(math.gcd(12, 8))    # → 4",
         "print(math.gcd(100, 75))  # → 25",
@@ -18377,6 +18382,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import contextlib",
         "import asyncio",
         "print(hasattr(contextlib.aclosing, '__call__'))   # → True",
@@ -21530,6 +21536,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import random",
         "print(isinstance(random.normalvariate(0.0, 1.0), float))   # → True",
         "print(isinstance(random.normalvariate(), float))   # → True",
@@ -21817,6 +21824,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "import random",
         "random.seed(0)",
         "print(random.getrandbits(8))   # → 216",
@@ -22100,6 +22108,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import enum",
         "print(enum.EnumMeta is enum.EnumType)   # → True",
         "print(enum.EnumMeta.__name__)   # → EnumType"
@@ -25309,6 +25318,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "import operator",
         "print(operator.ior(5, 2))   # → 7",
         "read, write = 4, 2   # типовой сценарий: объединение битовых флагов",
@@ -26291,6 +26301,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "import os",
         "print(os.path.isabs(os.path.realpath('.')))   # → True",
         "lib = os.path.dirname(os.__file__)",
@@ -28627,6 +28638,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "import os",
         "print(os.system('echo привет'))   # → сначала оболочка печатает «привет», потом 0 — код успешного завершения",
         "code = os.system('exit 3')",
@@ -30043,6 +30055,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "import os",
         "status = os.system('exit 7')  # → ? только Unix: статус в формате wait(), здесь 1792 (7 << 8)",
         "print(os.WEXITSTATUS(status))  # → 7 — код выхода команды",
@@ -31817,6 +31830,7 @@
     ],
     "examples": [
       [
+        "# Python 3.9+",
         "import os",
         "pid = os.fork()   # → ? только Unix: 0 в дочернем процессе, PID потомка в родительском",
         "if pid == 0: os._exit(7)   # → ? потомок сразу завершается с кодом возврата 7",
@@ -40323,6 +40337,7 @@
     ],
     "examples": [
       [
+        "# Python 3.10+",
         "import operator",
         "print(operator.index(5))                   # → 5",
         "print(operator.index(True))                # → 1",
@@ -44152,6 +44167,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import unittest",
         "unittest.addModuleCleanup(print, 'first registered')",
         "unittest.addModuleCleanup(print, 'second registered')",
@@ -44209,6 +44225,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import unittest",
         "def broken():",
         "    raise ValueError('cleanup failed')",
@@ -44940,6 +44957,7 @@
         "print(parser.parse_args(['--verb']))  # → Namespace(n=1, verbose=True) — префикс опции"
       ],
       [
+        "# Python 3.9+",
         "import argparse",
         "parser = argparse.ArgumentParser(prog='app', exit_on_error=False)",
         "parser.add_argument('--n', type=int)",
@@ -51210,6 +51228,7 @@
     ],
     "examples": [
       [
+        "# Python 3.10+",
         "import threading",
         "errors = []",
         "def log_error(args):",
@@ -52426,6 +52445,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import sqlite3",
         "from decimal import Decimal",
         "conn = sqlite3.connect(':memory:')",
@@ -52929,6 +52949,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import sqlite3",
         "import sys",
         "conn = sqlite3.connect(':memory:')",
@@ -53073,6 +53094,7 @@
         "print(h.digest_size, len(h.hexdigest()))  # → 20 40"
       ],
       [
+        "# Python 3.9+",
         "import hashlib",
         "# не для защиты, а для совместимости — так и говорим",
         "h = hashlib.sha1(b'abc', usedforsecurity=False)",
@@ -53586,6 +53608,7 @@
         "print(h.hexdigest(16)[:16])  # → 5881092dd818bf5c — короткий выход — префикс"
       ],
       [
+        "# Python 3.9+",
         "import hashlib",
         "try:",
         "    hashlib.shake_128(b'abc').hexdigest()",
@@ -54680,12 +54703,13 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import sys",
         "try:",
         "    1 / 0",
         "except ZeroDivisionError:",
         "    t, v, tb = sys.exc_info()",
-        "    print(t.__name__, v, tb.tb_lineno)  # → ZeroDivisionError division by zero 3",
+        "    print(t.__name__, v, tb.tb_lineno)  # → ZeroDivisionError division by zero 4",
         "    print(v is sys.exception())  # → True",
         "print(sys.exc_info())  # → (None, None, None)"
       ]
@@ -57423,6 +57447,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "from decimal import Decimal, localcontext",
         "with localcontext(prec=5):",
         "    x = Decimal(1) / 3",
@@ -57623,6 +57648,7 @@
         "print(callable(Box()), isinstance(Box(), Callable))  # → True False — края расходятся"
       ],
       [
+        "# Python 3.9+",
         "from collections.abc import Callable",
         "def apply(f: Callable[[int], str], x: int) -> str:",
         "    return f(x)",
@@ -57765,6 +57791,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "from typing import final",
         "@final",
         "class Leaf:",

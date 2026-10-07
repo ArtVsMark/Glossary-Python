@@ -109,6 +109,17 @@ def cause(message: str) -> str:
     return LIKELY_CAUSE
 
 
+type Answer = dict[str, Any] | list[Any]
+"""Разобранный ответ площадки: объект у чтения одного, список у перечисления."""
+
+
+def _object(answer: Answer, url: str) -> dict[str, Any]:
+    """Ответ, который обязан быть объектом; иначе форма ответа изменилась."""
+    if not isinstance(answer, dict):
+        raise NotRunError(f"{url} ответил списком там, где ждали объект")
+    return answer
+
+
 class RefusedError(RuntimeError):
     """Площадка отказала: находка с названным предметом, а не поломка."""
 
@@ -136,22 +147,28 @@ def _token() -> str:
     )
 
 
-def _call(url: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
+def _call(
+    url: str, payload: dict[str, Any] | None = None, *, method: str | None = None
+) -> Answer:
     """Один запрос к площадке.
+
+    Транспорт один на дерево: им же ходит сигнал о предварительной версии
+    (``scripts/next_alarm.py``), и вторая реализация не заводится.
 
     Args:
         url: Полный адрес.
         payload: Тело; ``None`` — обычное чтение.
+        method: Метод HTTP; ``None`` — GET без тела и POST с телом.
 
     Returns:
-        Разобранный ответ.
+        Разобранный ответ: объект или список, как его отдала площадка.
 
     Raises:
         NotRunError: Обращение не состоялось.
     """
     request = urllib.request.Request(  # noqa: S310 — адрес собран из констант
         url,
-        method="GET" if payload is None else "POST",
+        method=method or ("GET" if payload is None else "POST"),
         data=None if payload is None else json.dumps(payload).encode("utf-8"),
         headers={
             "Accept": "application/vnd.github+json",
@@ -168,7 +185,7 @@ def _call(url: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
             if remaining is not None:
                 limit = response.headers.get("x-ratelimit-limit")
                 print(f"  квота: осталось {remaining} из {limit} ({url})")
-            answer: dict[str, Any] = json.loads(response.read().decode("utf-8"))
+            answer: Answer = json.loads(response.read().decode("utf-8"))
             return answer
     except urllib.error.HTTPError as error:
         raise NotRunError(
@@ -193,7 +210,8 @@ def node_id(number: int) -> str:
     Raises:
         NotRunError: Ответ не содержит идентификатора.
     """
-    answer = _call(f"{REST}/repos/{REPOSITORY}/pulls/{number}")
+    url = f"{REST}/repos/{REPOSITORY}/pulls/{number}"
+    answer = _object(_call(url), url)
     identifier = answer.get("node_id")
     if not identifier:
         raise NotRunError(f"у изменения #{number} нет node_id — форма ответа изменилась")
@@ -232,12 +250,15 @@ def arm(number: int) -> str:
         RefusedError: Площадка отказала — например, автомерж выключен в настройках.
         NotRunError: Обращение не состоялось.
     """
-    answer = _call(
+    answer = _object(
+        _call(
+            GRAPHQL,
+            {
+                "query": MUTATION,
+                "variables": {"pullRequestId": node_id(number), "method": MERGE_METHOD},
+            },
+        ),
         GRAPHQL,
-        {
-            "query": MUTATION,
-            "variables": {"pullRequestId": node_id(number), "method": MERGE_METHOD},
-        },
     )
     message = refusal(answer)
     if message is not None:

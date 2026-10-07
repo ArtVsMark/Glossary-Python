@@ -252,3 +252,73 @@ def test_workflow_skips_drafts_and_held_changes():
     condition = str(workflow()["jobs"]["arm"]["if"])
     assert "draft" in condition
     assert "hold" in condition
+
+
+# --------------------------------------------------------------------------- #
+# Список площадки читается до конца либо с названным пределом (правило 212)
+# --------------------------------------------------------------------------- #
+
+LIST_MARKERS = ("per_page", "?page=", "/issues?", "/pulls?")
+"""Признаки запроса списка: у ответа на него есть страницы."""
+
+LIMIT_WORD = "предел"
+LIMIT_REACH = 3
+"""Сколько строк над запросом считается «рядом»: предел называют у запроса."""
+
+
+def unnamed_limits(source: str) -> list[int]:
+    """Строки запросов к списку, у которых предел не назван рядом.
+
+    Запрос ищется в исполняемых литералах, а не в прозе (как ``code_strings``):
+    объяснение про ``per_page`` в докстринге запросом не является.
+    """
+    tree = ast.parse(source)
+    docstrings = {
+        id(node.body[0].value)
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Module | ast.ClassDef | ast.FunctionDef)
+        and node.body
+        and isinstance(node.body[0], ast.Expr)
+        and isinstance(node.body[0].value, ast.Constant)
+    }
+    lines = source.splitlines()
+    found: set[int] = set()
+    for node in ast.walk(tree):
+        if (
+            isinstance(node, ast.Constant)
+            and isinstance(node.value, str)
+            and id(node) not in docstrings
+            and any(marker in node.value for marker in LIST_MARKERS)
+        ):
+            window = lines[max(0, node.lineno - 1 - LIMIT_REACH) : node.lineno]
+            if not any(LIMIT_WORD in line.lower() for line in window):
+                found.add(node.lineno)
+    return sorted(found)
+
+
+def test_list_request_without_named_limit_is_found():
+    code = 'url = f"{REST}/issues?labels=x&per_page=1"\n'
+    assert unnamed_limits(code) == [1]
+
+
+def test_list_request_with_named_limit_passes():
+    code = '# Предел намеренный — одна запись.\nurl = f"{REST}/issues?per_page=1"\n'
+    assert unnamed_limits(code) == []
+
+
+def test_prose_about_paging_is_not_a_request():
+    code = '"""Здесь объясняется per_page."""\nurl = "/pulls/1"\n'
+    assert unnamed_limits(code) == []
+
+
+@pytest.mark.live_surface
+def test_every_list_request_in_the_tree_names_its_limit():
+    """Список, перешагнувший страницу, теряет хвост молча (правило 212)."""
+    offenders = {
+        str(path.relative_to(ROOT)): lines
+        for path in modules()
+        if (lines := unnamed_limits(path.read_text(encoding="utf-8")))
+    }
+    assert not offenders, (
+        f"запрос списка без обхода страниц и без названного рядом предела: {offenders}"
+    )

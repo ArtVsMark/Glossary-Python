@@ -11,7 +11,13 @@
 # «изменение сломано». Поэтому pull_request здесь нет вовсе.
 #
 # ПОЧЕМУ РАСПИСАНИЕ. Слияния делает автомерж токеном прогона, а его пуш новых
-# прогонов не будит: без расписания этот прогон не шёл бы никогда.
+# прогонов не будит: без расписания этот прогон не шёл бы никогда. Ежедневно, а
+# не еженедельно: недельный прогон сообщал о поломке с опозданием до семи дней.
+#
+# ПОЧЕМУ ТРЕВОГА ЗАДАЧЕЙ (#154). Красное здесь честное, но его никто не видел:
+# с 05.10 прогон красный, а значок не будит — его надо пойти и посмотреть.
+# Работа alarm держит одну задачу с меткой python-next открытой, пока прогон
+# красный, и закрывает её на зелёном (scripts/next_alarm.py).
 #
 # ЗАМЕР ЯЗЫКА 3.15 — не здесь: инвентарь снимается работой preview в
 # badges.yml, где он нужен разности версий.
@@ -21,8 +27,8 @@ on:
   push:
     branches: [main]
   schedule:
-    # Раз в неделю, в понедельник; минута не 0 — не в пик.
-    - cron: "41 5 * * 1"
+    # Ежедневно; минута не 0 — не в пик.
+    - cron: "41 5 * * *"
   workflow_dispatch:
 
 permissions:
@@ -37,6 +43,8 @@ jobs:
     name: Тесты (Python 3.15, предварительная)
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      version: ${{ steps.py.outputs.python-version }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -46,7 +54,8 @@ jobs:
       # Без allow-prereleases setup-python предрелиз не ставит. Пометка — о
       # чужом календаре (правило каталога 203): с выходом 3.15 её снимают, а
       # следующей предварительной становится 3.16.
-      - uses: actions/setup-python@v7
+      - id: py
+        uses: actions/setup-python@v7
         with:
           python-version: "3.15"
           allow-prereleases: true
@@ -62,3 +71,31 @@ jobs:
       - name: Примеры карточек на предварительной версии
         if: always()
         run: python scripts/check_examples.py
+
+  # Права на задачи — только здесь: тестам писать в репозиторий незачем.
+  alarm:
+    name: Тревога о красном на предварительной версии
+    needs: tests
+    # Только main: красное на ручном прогоне ветки — вопрос её автора.
+    if: always() && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Задача-тревога сведена с исходом прогона
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.tests.outputs.version || '3.15' }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python scripts/next_alarm.py \
+            --outcome "${{ needs.tests.result }}" \
+            --version "$VERSION" --run-url "$RUN_URL"

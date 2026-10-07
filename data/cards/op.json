@@ -9914,5 +9914,644 @@
       "TypeError",
       "OverflowError"
     ]
+  },
+  {
+    "id": "import-from-import",
+    "title": {
+      "ru": "import / from … import",
+      "en": "import / from … import"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Подключает модуль: import m даёт имя m, from m import x — имя x, as переименовывает. Точка в начале (from . import x) — импорт относительно своего пакета.",
+      "en": "Loads a module: import m binds the name m, from m import x binds x, and as renames. A leading dot (from . import x) imports relative to the current package."
+    },
+    "body": {
+      "ru": "Модуль выполняется один раз — при первом импорте — и кэшируется в sys.modules: повторный import его не перечитывает, поэтому правка файла в уже запущенной программе не видна. from m import x копирует ссылку в момент импорта: если потом присвоить m.x новое значение, ваш x останется старым. from m import * берёт имена из __all__, а без него — все имена без подчёркивания в начале. При циклическом импорте второй модуль получает первый недовыполненным, и from a import x падает с ImportError «partially initialized module». Относительный импорт работает только внутри пакета: в файле, запущенном напрямую (python file.py), он падает — запускайте python -m пакет.модуль.",
+      "en": "A module runs once, on the first import, and is cached in sys.modules: importing it again does not reread the file, so edits made while the program runs are not seen. from m import x copies the reference at import time: if m.x is later rebound, your x keeps the old value. from m import * takes the names listed in __all__, or, without it, every name not starting with an underscore. In a circular import the second module gets the first one half-executed, and from a import x fails with ImportError \"partially initialized module\". Relative imports work only inside a package: in a file run directly (python file.py) they fail — run it as python -m package.module instead."
+    },
+    "syntax": "import module [as name]\nfrom module import name [as alias], …\nfrom module import *\nfrom . import sibling\nfrom ..pkg import name",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-import-statement",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модули и импорт",
+    "subcat": {
+      "ru": "импорт",
+      "en": "import"
+    },
+    "aliases": [
+      "подключить модуль",
+      "импортировать функцию из другого файла",
+      "attempted relative import with no known parent package"
+    ],
+    "keywords": [
+      "import",
+      "from",
+      "as",
+      "__all__",
+      "sys.modules",
+      "from . import",
+      "partially initialized module"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "import math",
+        "from math import pi",
+        "math.pi = 3  # переприсвоили имя в модуле",
+        "print(math.pi)  # → 3",
+        "print(pi)  # → 3.141592653589793 — у нас осталась старая ссылка"
+      ],
+      [
+        "import sys",
+        "sys.path.insert(0, '.')  # искать модули и в текущем каталоге",
+        "with open('greet.py', 'w', encoding='utf-8') as f:",
+        "    f.write(\"print('модуль выполняется')\\n__all__ = ['hello']\\ndef hello(): return 'hi'\\ndef _hidden(): pass\\n\")",
+        "import greet  # → модуль выполняется",
+        "import greet  # повторно не выполняется: модуль уже в sys.modules",
+        "print('greet' in sys.modules)  # → True",
+        "from greet import *",
+        "print(hello())  # → hi",
+        "print('_hidden' in dir())  # → False"
+      ],
+      [
+        "# файл запущен напрямую, а не как часть пакета",
+        "from . import helper  # → ImportError: attempted relative import with no known parent package"
+      ]
+    ],
+    "related": [
+      "sys.modules",
+      "__all__",
+      "package-init",
+      "if-name-main"
+    ],
+    "related_errors": [
+      "importerror",
+      "modulenotfounderror"
+    ]
+  },
+  {
+    "id": "with-statement",
+    "title": {
+      "ru": "with",
+      "en": "with"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Оператор with выполняет блок под контекстным менеджером: __exit__ вызывается при любом выходе из блока — обычном, по return или по исключению.",
+      "en": "The with statement runs a block under a context manager: __exit__ is called on any exit from the block — normal, via return, or by an exception."
+    },
+    "body": {
+      "ru": "with гарантирует уборку (закрыть файл, отпустить блокировку), но не ловит ошибку: исключение летит дальше, если __exit__ не вернул True — так работает contextlib.suppress, и так же легко случайно проглотить все ошибки. Несколько менеджеров пишутся через запятую и закрываются в обратном порядке; с 3.10 их можно взять в скобки и разнести по строкам. Переменная после as не исчезает после блока: файл f остаётся доступен как объект, но уже закрыт, и f.read() даст ValueError. И as получает результат __enter__, а не сам менеджер — у open() это одно и то же, у других менеджеров нет.",
+      "en": "with guarantees cleanup (closing a file, releasing a lock) but does not catch the error: the exception propagates unless __exit__ returns True — that is how contextlib.suppress works, and how you can swallow every error by accident. Several managers are separated by commas and exit in reverse order; since 3.10 they can be wrapped in parentheses across lines. The name after as survives the block: the file f is still there as an object but already closed, so f.read() raises ValueError. And as receives what __enter__ returns, not the manager itself — the same thing for open(), but not for every manager."
+    },
+    "syntax": "with expr as name:\n    ...\nwith a as x, b as y:\n    ...\nwith (\n    open('a') as fa,\n    open('b') as fb,\n):\n    ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#the-with-statement",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "ООП",
+    "subcat": {
+      "ru": "контекст. менеджер",
+      "en": "context manager"
+    },
+    "aliases": [
+      "автоматически закрыть файл",
+      "контекстный менеджер with",
+      "with open as"
+    ],
+    "keywords": [
+      "with",
+      "as",
+      "__enter__",
+      "__exit__",
+      "contextlib"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "with open('a.txt', 'w', encoding='utf-8') as f:",
+        "    f.write('данные')",
+        "print(f.closed)  # → True — имя f живо, но файл закрыт"
+      ],
+      [
+        "class Tag:",
+        "    def __init__(self, name, swallow=False):",
+        "        self.name, self.swallow = name, swallow",
+        "    def __enter__(self):",
+        "        print('вход', self.name)",
+        "        return self.name.upper()",
+        "    def __exit__(self, exc_type, exc, tb):",
+        "        print('выход', self.name, exc_type.__name__ if exc_type else None)",
+        "        return self.swallow  # True — исключение подавлено",
+        "with (",
+        "    Tag('a', swallow=True) as x,",
+        "    Tag('b') as y,",
+        "):",
+        "    print(x, y)  # → A B",
+        "    1 / 0",
+        "print('дошли сюда')  # → дошли сюда"
+      ],
+      [
+        "from contextlib import suppress",
+        "with suppress(FileNotFoundError):",
+        "    open('нет-такого.txt')",
+        "print('ошибка подавлена')  # → ошибка подавлена"
+      ]
+    ],
+    "related": [
+      "__enter__-__exit__",
+      "async-for-async-with",
+      "contextlib.suppress",
+      "contextlib.contextmanager"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "pass",
+    "title": {
+      "ru": "pass",
+      "en": "pass"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Пустой оператор: ничего не делает. Нужен там, где синтаксис требует блок, а кода ещё нет — тело функции, класса, ветки if или except.",
+      "en": "The empty statement: it does nothing. It fills a place where the syntax demands a block but there is no code yet — a function, class, if or except body."
+    },
+    "body": {
+      "ru": "Частая ошибка — считать, что pass в цикле пропускает итерацию: он не делает ничего, и код после него в той же итерации выполняется. Пропускает остаток итерации continue. Вместо pass можно написать ... (Ellipsis) — это выражение-значение, которое тоже ничего не делает; по соглашению ... ставят в заглушках и протоколах, а pass — где пустота намеренная. Опасный случай — except: pass: ошибка исчезает без следа, и искать её потом приходится вслепую.",
+      "en": "A common mistake is to think pass inside a loop skips the iteration: it does nothing, and the code after it in the same iteration still runs. Skipping the rest of the iteration is what continue does. You can write ... (Ellipsis) instead of pass — an expression that also does nothing; by convention ... marks stubs and protocols, while pass marks an intentionally empty block. The risky case is except: pass — the error vanishes without a trace, and you end up hunting it blind."
+    },
+    "syntax": "def todo():\n    pass",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-pass-statement",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Циклы",
+    "subcat": {
+      "ru": "управление",
+      "en": "control"
+    },
+    "aliases": [
+      "пустой блок кода",
+      "заглушка функции",
+      "чем pass отличается от continue"
+    ],
+    "keywords": [
+      "pass",
+      "continue",
+      "Ellipsis",
+      "..."
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "out_pass, out_cont = [], []",
+        "for i in range(4):",
+        "    if i % 2:",
+        "        pass  # ничего не делает",
+        "    out_pass.append(i)",
+        "for i in range(4):",
+        "    if i % 2:",
+        "        continue  # переходит к следующей итерации",
+        "    out_cont.append(i)",
+        "print(out_pass)  # → [0, 1, 2, 3]",
+        "print(out_cont)  # → [0, 2]"
+      ],
+      [
+        "class Plugin:",
+        "    pass",
+        "def later():",
+        "    ...",
+        "print(later())  # → None",
+        "print(Plugin.__name__)  # → Plugin"
+      ]
+    ],
+    "related": [
+      "continue",
+      "ellipsis-...",
+      "def",
+      "class"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "del-statement",
+    "title": {
+      "ru": "del",
+      "en": "del"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Оператор del удаляет имя, элемент, срез или атрибут. Удаляется ссылка, а не объект: объект живёт, пока на него ссылается что-то ещё.",
+      "en": "The del statement removes a name, an item, a slice or an attribute. It removes a reference, not the object: the object lives while anything else still refers to it."
+    },
+    "body": {
+      "ru": "После del x обращение к x даёт NameError, а внутри функции — UnboundLocalError. Если на список ссылается ещё b, del a не трогает данные: список удаляет сборщик мусора, когда пропадёт последняя ссылка, и только тогда вызывается __del__ — так что del obj и obj.__del__() вовсе не одно и то же. Чтобы очистить список, который видят другие имена, нужен del a[:] или a.clear(), а не del a. del lst[i] сдвигает хвост, поэтому удалять по индексам в цикле вперёд нельзя — индексы уплывают.",
+      "en": "After del x, using x raises NameError, and inside a function UnboundLocalError. If b also refers to the list, del a leaves the data alone: the garbage collector frees the list once the last reference is gone, and only then is __del__ called — so del obj and obj.__del__() are not the same thing at all. To empty a list that other names see, use del a[:] or a.clear(), not del a. del lst[i] shifts the tail, so deleting by index while looping forward goes wrong — the indices drift."
+    },
+    "syntax": "del name\ndel seq[i]\ndel seq[start:stop:step]\ndel d[key]\ndel obj.attr",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-del-statement",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Арифметика и операторы",
+    "subcat": {
+      "ru": "присваивание",
+      "en": "assignment"
+    },
+    "aliases": [
+      "удалить переменную",
+      "удалить элемент по индексу",
+      "почему del не освобождает память"
+    ],
+    "keywords": [
+      "del",
+      "__del__",
+      "__delitem__",
+      "__delattr__",
+      "NameError"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "a = [1, 2, 3]",
+        "b = a",
+        "del a  # удалили имя, а не список",
+        "print(b)  # → [1, 2, 3]",
+        "print(a)  # → NameError: name 'a' is not defined"
+      ],
+      [
+        "nums = list(range(10))",
+        "del nums[::2]",
+        "print(nums)  # → [1, 3, 5, 7, 9]",
+        "d = {'x': 1, 'y': 2}",
+        "del d['x']",
+        "print(d)  # → {'y': 2}",
+        "class P:",
+        "    pass",
+        "p = P()",
+        "p.age = 30",
+        "del p.age",
+        "print(hasattr(p, 'age'))  # → False"
+      ],
+      [
+        "class Res:",
+        "    def __del__(self):",
+        "        print('объект удалён')",
+        "r = Res()",
+        "alias = r",
+        "del r",
+        "print('после del r')  # → после del r — объект ещё жив",
+        "del alias  # → объект удалён — ушла последняя ссылка (CPython)"
+      ]
+    ],
+    "related": [
+      "del-для-списка",
+      "del-для-словаря",
+      "delattr",
+      "operator.delitem"
+    ],
+    "related_errors": [
+      "nameerror",
+      "unboundlocalerror"
+    ]
+  },
+  {
+    "id": "underscore",
+    "title": {
+      "ru": "_",
+      "en": "_"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Подчёркивание _ — имя для ненужного значения по соглашению, шаблон «всё что угодно» в case _, последний результат в REPL и разделитель разрядов в 1_000_000.",
+      "en": "The underscore _ is the conventional name for an unwanted value, the catch-all pattern in case _, the last result in the REPL, and the digit separator in 1_000_000."
+    },
+    "body": {
+      "ru": "Как переменная _ — обычное имя: Python его не «выбрасывает», значение хранится до следующего присваивания. Это ломает код с gettext, где _ — функция перевода: for _ in range(3) затирает её, и _('текст') падает с TypeError. В match _ — мягкое ключевое слово: case _ совпадает всегда и ничего не связывает, поэтому прежнее значение переменной _ не меняется. В интерактивном интерпретаторе _ хранит результат последнего выражения — но только пока вы сами не присвоили _, после этого механизм молчит. В числах _ разделяет разряды и на значение не влияет.",
+      "en": "As a variable, _ is an ordinary name: Python does not throw anything away, the value is kept until the next assignment. That breaks code using gettext, where _ is the translation function: for _ in range(3) overwrites it, and _('text') fails with TypeError. In match, _ is a soft keyword: case _ always matches and binds nothing, so the old value of the variable _ stays. The interactive interpreter stores the last expression result in _ — but only until you assign _ yourself, then it stops updating. In numbers, _ separates digits and does not change the value."
+    },
+    "syntax": "for _ in range(n): ...\nfirst, _, last = triple\ncase _:\n1_000_000",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#soft-keywords",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Арифметика и операторы",
+    "subcat": {
+      "ru": "присваивание",
+      "en": "assignment"
+    },
+    "aliases": [
+      "что значит нижнее подчёркивание",
+      "for _ in range",
+      "case _ в match"
+    ],
+    "keywords": [
+      "_",
+      "case _",
+      "1_000_000",
+      "gettext",
+      "soft keyword"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "first, _, last = (1, 2, 3)",
+        "print(first, last)  # → 1 3",
+        "print(_)  # → 2 — значение не выброшено",
+        "print(1_000_000 + 1)  # → 1000001"
+      ],
+      [
+        "_ = 'старое'",
+        "match 42:",
+        "    case _:",
+        "        print('совпало')  # → совпало",
+        "print(_)  # → старое — case _ ничего не связывает"
+      ],
+      [
+        "import gettext",
+        "_ = gettext.gettext",
+        "for _ in range(2):",
+        "    pass",
+        "_('Привет')  # → TypeError: 'int' object is not callable"
+      ]
+    ],
+    "related": [
+      "match-case",
+      "распаковка-кортежа",
+      "числовые-литералы",
+      "for"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
+  },
+  {
+    "id": "if-name-main",
+    "title": {
+      "ru": "if __name__ == \"__main__\":",
+      "en": "if __name__ == \"__main__\":"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Защита кода, который должен работать только при запуске файла как программы (python file.py или python -m mod), но не при его импорте.",
+      "en": "Guards code that should run only when the file is executed as a program (python file.py or python -m mod), not when it is imported."
+    },
+    "body": {
+      "ru": "Python сам кладёт в __name__ имя модуля при импорте ('tool', 'pkg.tool') и строку '__main__' — у файла, запущенного напрямую или через python -m. Без защиты весь код верхнего уровня выполняется при любом import: тесты, импортирующие ваш скрипт, или соседний модуль, которому нужна одна функция, внезапно запускают всю программу — с input(), записью файлов и долгими расчётами. multiprocessing на Windows и macOS запускает дочерние процессы методом spawn: каждый ребёнок заново импортирует главный модуль, и без защиты процессы порождаются рекурсивно, а Python падает с RuntimeError. Под защиту обычно кладут один вызов main(), чтобы логику можно было импортировать и проверить по отдельности.",
+      "en": "Python sets __name__ to the module name on import ('tool', 'pkg.tool') and to the string '__main__' for a file run directly or via python -m. Without the guard, all top-level code runs on every import: tests that import your script, or a neighbour module that needs one function, suddenly run the whole program — with input(), file writes and long computations. multiprocessing on Windows and macOS starts children with the spawn method: every child re-imports the main module, so without the guard processes spawn recursively and Python fails with RuntimeError. Usually the guard holds a single call to main(), so the logic can be imported and tested on its own."
+    },
+    "syntax": "def main():\n    ...\n\nif __name__ == \"__main__\":\n    main()",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/__main__.html#name-main",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модули и импорт",
+    "subcat": {
+      "ru": "запуск",
+      "en": "running"
+    },
+    "aliases": [
+      "код выполняется при импорте",
+      "что значит if __name__ == '__main__'",
+      "точка входа программы"
+    ],
+    "keywords": [
+      "__name__",
+      "__main__",
+      "if __name__ == \"__main__\"",
+      "main()",
+      "python -m",
+      "spawn"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "sys.path.insert(0, '.')  # искать модули и в текущем каталоге",
+        "with open('tool.py', 'w', encoding='utf-8') as f:",
+        "    f.write(\"def main():\\n    print('программа запущена')\\n\"",
+        "            \"print('__name__ =', __name__)\\n\"",
+        "            \"if __name__ == '__main__':\\n    main()\\n\")",
+        "import tool  # → __name__ = tool — а main() под защитой не вызвана",
+        "print(__name__)  # → __main__ — этот файл запущен как программа",
+        "tool.main()  # → программа запущена — функцию можно вызвать явно"
+      ]
+    ],
+    "related": [
+      "sys.argv",
+      "sys.modules",
+      "import-from-import"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "package-init",
+    "title": {
+      "ru": "Пакет и __init__.py",
+      "en": "Package and __init__.py"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Пакет — каталог с модулями, импортируемый как pkg.mod. Файл __init__.py делает каталог обычным пакетом и выполняется при первом импорте пакета.",
+      "en": "A package is a directory of modules imported as pkg.mod. An __init__.py file makes the directory a regular package and runs on the package's first import."
+    },
+    "body": {
+      "ru": "__init__.py выполняется один раз — при первом import pkg или import pkg.mod — и всё, что в нём определено, становится атрибутами pkg; так из пакета «поднимают» удобные имена: from .prices import total. Подмодуль сам не становится атрибутом пакета: после import pkg обращение pkg.mod падает с AttributeError, пока pkg.mod не импортирован явно или из __init__.py. Каталог без __init__.py тоже импортируется — как пакет пространства имён (PEP 420, Python 3.3), у него __file__ равен None; это сделано для пакетов, разбросанных по нескольким каталогам, и легко скрывает опечатку в пути. Файл с именем модуля stdlib в каталоге скрипта (random.py, json.py) затеняет настоящий модуль: каталог скрипта стоит в sys.path первым.",
+      "en": "__init__.py runs once — on the first import pkg or import pkg.mod — and everything it defines becomes an attribute of pkg; this is how a package lifts handy names to the top: from .prices import total. A submodule does not become an attribute of the package by itself: after import pkg, pkg.mod raises AttributeError until pkg.mod is imported explicitly or from __init__.py. A directory without __init__.py imports too — as a namespace package (PEP 420, Python 3.3) whose __file__ is None; it exists for packages split across several directories and easily hides a typo in a path. A file named like a stdlib module in the script's directory (random.py, json.py) shadows the real module, because that directory comes first in sys.path."
+    },
+    "syntax": "pkg/\n    __init__.py\n    mod.py\n\nimport pkg.mod\nfrom pkg import mod\nfrom .mod import name  # внутри пакета",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/tutorial/modules.html#packages",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модули и импорт",
+    "subcat": {
+      "ru": "пакеты",
+      "en": "packages"
+    },
+    "aliases": [
+      "создать пакет python",
+      "зачем нужен __init__.py",
+      "мой random.py ломает import random"
+    ],
+    "keywords": [
+      "__init__.py",
+      "package",
+      "namespace package",
+      "__path__",
+      "__package__",
+      "from . import",
+      "PEP 420"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "import os, sys",
+        "sys.path.insert(0, '.')",
+        "os.makedirs('shop', exist_ok=True)",
+        "with open('shop/__init__.py', 'w', encoding='utf-8') as f:",
+        "    f.write(\"print('выполняется shop/__init__.py')\\nfrom .prices import total\\n\")",
+        "with open('shop/prices.py', 'w', encoding='utf-8') as f:",
+        "    f.write('def total(xs): return sum(xs)\\n')",
+        "import shop  # → выполняется shop/__init__.py",
+        "import shop.prices  # пакет уже загружен: __init__.py второй раз не выполняется",
+        "print(shop.total([1, 2, 3]))  # → 6"
+      ],
+      [
+        "import os, sys",
+        "sys.path.insert(0, '.')",
+        "os.makedirs('notes', exist_ok=True)  # каталог без __init__.py",
+        "import notes",
+        "print(notes.__file__)  # → None — пакет пространства имён"
+      ],
+      [
+        "import sys",
+        "sys.path.insert(0, '.')  # так стоит каталог запущенного скрипта",
+        "with open('random.py', 'w', encoding='utf-8') as f:",
+        "    f.write(\"print('это мой random.py')\\n\")",
+        "import random  # → это мой random.py",
+        "print(hasattr(random, 'randint'))  # → False — настоящий random затенён"
+      ]
+    ],
+    "related": [
+      "sys.path",
+      "sys.modules",
+      "import-from-import"
+    ],
+    "related_errors": [
+      "modulenotfounderror",
+      "importerror"
+    ]
+  },
+  {
+    "id": "__all__",
+    "title": {
+      "ru": "__all__",
+      "en": "__all__"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Список строк в модуле или пакете: какие имена забирает from m import * и что считается публичным API для документации и линтеров.",
+      "en": "A list of strings in a module or package: which names from m import * takes and what counts as the public API for docs and linters."
+    },
+    "body": {
+      "ru": "__all__ не делает имена приватными: import m; m._x и явный from m import helper работают, даже если helper в списке нет, — он влияет только на звёздочку, help() и инструменты. Без __all__ звёздочка берёт все имена без подчёркивания в начале, включая модули, импортированные внутри (os, sys), — так они «утекают» к вызывающему. Имя в __all__, которого нет в модуле, обнаружится только при from m import *: падает AttributeError. В __init__.py пакета __all__ перечисляет и подмодули — их звёздочка импортирует; без __all__ from pkg import * подмодули не загружает вовсе.",
+      "en": "__all__ does not make names private: import m; m._x and an explicit from m import helper work even when helper is not listed — it affects only the star, help() and tools. Without __all__ the star takes every name not starting with an underscore, including modules imported inside (os, sys), so they leak into the caller. A name in __all__ that the module lacks shows up only on from m import *: it raises AttributeError. In a package's __init__.py, __all__ also lists submodules, and the star imports them; without __all__, from pkg import * loads no submodules at all."
+    },
+    "syntax": "__all__ = ['public_func', 'PublicClass']",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/tutorial/modules.html#importing-from-a-package",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модули и импорт",
+    "subcat": {
+      "ru": "импорт",
+      "en": "import"
+    },
+    "aliases": [
+      "что импортирует звёздочка",
+      "публичные имена модуля",
+      "from module import * что берёт"
+    ],
+    "keywords": [
+      "__all__",
+      "from module import *",
+      "import *",
+      "public API"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "sys.path.insert(0, '.')",
+        "with open('mylib.py', 'w', encoding='utf-8') as f:",
+        "    f.write(\"__all__ = ['public']\\ndef public(): return 'pub'\\n\"",
+        "            \"def helper(): return 'help'\\ndef _secret(): return 'sec'\\n\")",
+        "from mylib import *",
+        "print([n for n in ('public', 'helper', '_secret') if n in globals()])  # → ['public']",
+        "from mylib import helper, _secret  # явный импорт __all__ не ограничивает",
+        "print(helper(), _secret())  # → help sec"
+      ],
+      [
+        "import os, sys",
+        "sys.path.insert(0, '.')",
+        "os.makedirs('kit', exist_ok=True)",
+        "with open('kit/__init__.py', 'w', encoding='utf-8') as f:",
+        "    f.write(\"__all__ = ['a']\\n\")",
+        "for name in ('a', 'b'):",
+        "    with open(f'kit/{name}.py', 'w', encoding='utf-8') as f:",
+        "        f.write('x = 1\\n')",
+        "from kit import *",
+        "print('a' in globals(), 'b' in globals())  # → True False"
+      ],
+      [
+        "import sys",
+        "sys.path.insert(0, '.')",
+        "with open('broken.py', 'w', encoding='utf-8') as f:",
+        "    f.write(\"__all__ = ['missing']\\n\")",
+        "import broken  # сам импорт проходит",
+        "from broken import *  # → AttributeError: module 'broken' has no attribute 'missing'"
+      ]
+    ],
+    "related": [
+      "dir",
+      "import-from-import",
+      "sys.modules",
+      "package-init"
+    ],
+    "related_errors": [
+      "importerror"
+    ]
   }
 ]

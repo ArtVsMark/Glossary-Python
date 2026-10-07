@@ -17,7 +17,7 @@
     "syntax": "del lst[i]  |  del lst[a:b]  |  del lst",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-del-statement",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -88,7 +88,7 @@
     "syntax": "enumerate(lst[, start=0])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#enumerate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -220,7 +220,7 @@
     "syntax": "len(t)  |  min(t)  |  max(t)  |  sum(t)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -283,7 +283,7 @@
     "syntax": "zip(t1, t2, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -345,7 +345,7 @@
     "syntax": "zip(lst1, lst2, ...)  |  zip(*matrix)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#zip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -415,7 +415,7 @@
     "syntax": "matrix[i][j]  |  [[val]*cols for _ in range(rows)]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/faq/programming.html#how-do-i-create-a-multidimensional-list",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -489,7 +489,7 @@
     "syntax": "[[выражение for j in inner] for i in outer]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -550,7 +550,7 @@
     "syntax": "t[i]  |  t[a:b:c]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -615,7 +615,7 @@
     "syntax": "lst[i]  |  lst[i] = val",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -682,7 +682,7 @@
     "syntax": "return a, b, c  # ≡ return (a, b, c)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-return-statement",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -756,7 +756,7 @@
     "syntax": "d[tuple_key] = val",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#mapping-types-dict",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -829,7 +829,7 @@
     "syntax": "from collections import namedtuple\nNT = namedtuple('NT', ['field1', 'field2'])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/collections.html#collections.namedtuple",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -900,7 +900,7 @@
     "syntax": "t[i] = val  # TypeError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#tuples",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -974,7 +974,7 @@
     "syntax": "lst1 + lst2  |  lst * n",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1038,7 +1038,7 @@
     "syntax": "a, b = t  |  a, *rest = t  |  a, _, b = t",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1117,7 +1117,7 @@
     "syntax": "a, b, *rest = lst  |  *head, last = lst  |  a, *_, b = lst",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1188,7 +1188,7 @@
     "syntax": "()  |  (x,)  |  (a, b)  |  tuple(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#tuple",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1253,7 +1253,7 @@
     "syntax": "[]  |  list()  |  list(iterable)  |  [expr for x in iter]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1319,7 +1319,7 @@
     "syntax": "sorted(lst, key=func)  |  lst.sort(key=lambda x: ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/sorting.html#key-functions",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1393,7 +1393,7 @@
     "syntax": "[expr for var in iterable [if cond]]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1470,7 +1470,7 @@
     "syntax": "lst[start:stop:step]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1529,7 +1529,7 @@
     "syntax": "lst[a:b]  |  lst[a:b:c]  |  lst[::-1]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1655,7 +1655,7 @@
     "syntax": "lst.append(item)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.append",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1709,7 +1709,7 @@
     "syntax": "lst.clear()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.clear",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1762,7 +1762,7 @@
     "syntax": "lst.count(value)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.count",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1816,7 +1816,7 @@
     "syntax": "lst.copy()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.copy",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1872,7 +1872,7 @@
     "syntax": "lst.extend(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.extend",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1928,7 +1928,7 @@
     "syntax": "lst.index(value, start=0, stop=len)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.index",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1984,7 +1984,7 @@
     "syntax": "lst.insert(index, item)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.insert",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2038,7 +2038,7 @@
     "syntax": "lst.pop(index=-1)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.pop",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2095,7 +2095,7 @@
     "syntax": "lst.remove(value)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.remove",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2153,7 +2153,7 @@
     "syntax": "lst.reverse()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.reverse",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2210,7 +2210,7 @@
     "syntax": "lst.sort(*, key=None, reverse=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.sort",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2270,7 +2270,7 @@
     "syntax": "t.count(value)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2322,7 +2322,7 @@
     "syntax": "t.index(value, start=0, stop=len)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2376,7 +2376,7 @@
     "syntax": "b.capitalize(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.capitalize",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2430,7 +2430,7 @@
     "syntax": "b.lower(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.lower",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2485,7 +2485,7 @@
     "syntax": "b.upper(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.upper",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2539,7 +2539,7 @@
     "syntax": "b.title(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.title",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2593,7 +2593,7 @@
     "syntax": "b.swapcase(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.swapcase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2647,7 +2647,7 @@
     "syntax": "b.center(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.center",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2702,7 +2702,7 @@
     "syntax": "b.ljust(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.ljust",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2758,7 +2758,7 @@
     "syntax": "b.rjust(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rjust",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2814,7 +2814,7 @@
     "syntax": "b.zfill(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.zfill",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2869,7 +2869,7 @@
     "syntax": "b.expandtabs(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.expandtabs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2924,7 +2924,7 @@
     "syntax": "b.count(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.count",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2981,7 +2981,7 @@
     "syntax": "b.find(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.find",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3039,7 +3039,7 @@
     "syntax": "b.rfind(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rfind",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3094,7 +3094,7 @@
     "syntax": "b.index(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.index",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3150,7 +3150,7 @@
     "syntax": "b.rindex(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rindex",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3207,7 +3207,7 @@
     "syntax": "b.startswith(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.startswith",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3265,7 +3265,7 @@
     "syntax": "b.endswith(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.endswith",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3323,7 +3323,7 @@
     "syntax": "b.join(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.join",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3380,7 +3380,7 @@
     "syntax": "b.split(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.split",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3439,7 +3439,7 @@
     "syntax": "b.rsplit(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rsplit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3494,7 +3494,7 @@
     "syntax": "b.partition(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.partition",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3548,7 +3548,7 @@
     "syntax": "b.rpartition(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rpartition",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3603,7 +3603,7 @@
     "syntax": "b.splitlines(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.splitlines",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3658,7 +3658,7 @@
     "syntax": "b.strip(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.strip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3715,7 +3715,7 @@
     "syntax": "b.lstrip(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.lstrip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3770,7 +3770,7 @@
     "syntax": "b.rstrip(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.rstrip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3827,7 +3827,7 @@
     "syntax": "b.removeprefix(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.removeprefix",
-    "added": "",
+    "added": "3.9",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3882,7 +3882,7 @@
     "syntax": "b.removesuffix(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.removesuffix",
-    "added": "",
+    "added": "3.9",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3938,7 +3938,7 @@
     "syntax": "b.replace(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.replace",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3993,7 +3993,7 @@
     "syntax": "b.translate(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.translate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4051,7 +4051,7 @@
     "syntax": "b.maketrans(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.maketrans",
-    "added": "",
+    "added": "3.1",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4107,7 +4107,7 @@
     "syntax": "b.decode(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.decode",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4221,7 +4221,7 @@
     "syntax": "b.fromhex(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.fromhex",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4277,7 +4277,7 @@
     "syntax": "b.isalnum(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isalnum",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4332,7 +4332,7 @@
     "syntax": "b.isalpha(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isalpha",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4388,7 +4388,7 @@
     "syntax": "b.isascii(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isascii",
-    "added": "",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4442,7 +4442,7 @@
     "syntax": "b.isdigit(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isdigit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4497,7 +4497,7 @@
     "syntax": "b.islower(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.islower",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4552,7 +4552,7 @@
     "syntax": "b.isspace(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isspace",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4607,7 +4607,7 @@
     "syntax": "b.istitle(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.istitle",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4662,7 +4662,7 @@
     "syntax": "b.isupper(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytes.isupper",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4717,7 +4717,7 @@
     "syntax": "ba.capitalize(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.capitalize",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4772,7 +4772,7 @@
     "syntax": "ba.lower(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.lower",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4827,7 +4827,7 @@
     "syntax": "ba.upper(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.upper",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4882,7 +4882,7 @@
     "syntax": "ba.title(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.title",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4937,7 +4937,7 @@
     "syntax": "ba.swapcase(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.swapcase",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4992,7 +4992,7 @@
     "syntax": "ba.center(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.center",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5047,7 +5047,7 @@
     "syntax": "ba.ljust(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.ljust",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5103,7 +5103,7 @@
     "syntax": "ba.rjust(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rjust",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5158,7 +5158,7 @@
     "syntax": "ba.zfill(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.zfill",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5212,7 +5212,7 @@
     "syntax": "ba.expandtabs(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.expandtabs",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5266,7 +5266,7 @@
     "syntax": "ba.count(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.count",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5320,7 +5320,7 @@
     "syntax": "ba.find(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.find",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5376,7 +5376,7 @@
     "syntax": "ba.rfind(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rfind",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5433,7 +5433,7 @@
     "syntax": "ba.index(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.index",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5490,7 +5490,7 @@
     "syntax": "ba.rindex(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rindex",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5547,7 +5547,7 @@
     "syntax": "ba.startswith(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.startswith",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5604,7 +5604,7 @@
     "syntax": "ba.endswith(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.endswith",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5660,7 +5660,7 @@
     "syntax": "ba.join(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.join",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5717,7 +5717,7 @@
     "syntax": "ba.split(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.split",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5773,7 +5773,7 @@
     "syntax": "ba.rsplit(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rsplit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5828,7 +5828,7 @@
     "syntax": "ba.partition(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.partition",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5886,7 +5886,7 @@
     "syntax": "ba.rpartition(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rpartition",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5942,7 +5942,7 @@
     "syntax": "ba.splitlines(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.splitlines",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5997,7 +5997,7 @@
     "syntax": "ba.strip(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.strip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6052,7 +6052,7 @@
     "syntax": "ba.lstrip(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.lstrip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6108,7 +6108,7 @@
     "syntax": "ba.rstrip(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.rstrip",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6275,7 +6275,7 @@
     "syntax": "ba.replace(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.replace",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6331,7 +6331,7 @@
     "syntax": "ba.translate(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.translate",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6446,7 +6446,7 @@
     "syntax": "ba.decode(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.decode",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6559,7 +6559,7 @@
     "syntax": "ba.fromhex(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.fromhex",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6615,7 +6615,7 @@
     "syntax": "ba.isalnum(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isalnum",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6669,7 +6669,7 @@
     "syntax": "ba.isalpha(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isalpha",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6777,7 +6777,7 @@
     "syntax": "ba.isdigit(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isdigit",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6832,7 +6832,7 @@
     "syntax": "ba.islower(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.islower",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6886,7 +6886,7 @@
     "syntax": "ba.isspace(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isspace",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6940,7 +6940,7 @@
     "syntax": "ba.istitle(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.istitle",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6995,7 +6995,7 @@
     "syntax": "ba.isupper(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.isupper",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7049,7 +7049,7 @@
     "syntax": "ba.append(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.append",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7104,7 +7104,7 @@
     "syntax": "ba.extend(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.extend",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7159,7 +7159,7 @@
     "syntax": "ba.insert(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.insert",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7214,7 +7214,7 @@
     "syntax": "ba.pop(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.pop",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7271,7 +7271,7 @@
     "syntax": "ba.remove(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.remove",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7326,7 +7326,7 @@
     "syntax": "ba.reverse(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.reverse",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7378,7 +7378,7 @@
     "syntax": "ba.clear(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.clear",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7430,7 +7430,7 @@
     "syntax": "ba.copy(...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.copy",
-    "added": "",
+    "added": "3.3",
     "deprecated": "",
     "removed": "",
     "platforms": [

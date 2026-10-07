@@ -17,7 +17,7 @@
     "syntax": "__import__(name, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#import__",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -74,7 +74,7 @@
     "syntax": "all(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#all",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -126,7 +126,7 @@
     "syntax": "any(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#any",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -180,7 +180,7 @@
     "syntax": "ascii(object)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#ascii",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -233,7 +233,7 @@
     "syntax": "bin(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#bin",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -398,7 +398,7 @@
     "syntax": "chr(i)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#chr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -452,7 +452,7 @@
     "syntax": "compile(source, filename, mode)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#compile",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -507,7 +507,7 @@
     "syntax": "delattr(object, name)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#delattr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -566,7 +566,7 @@
     "syntax": "dict(**kwargs)\ndict(mapping)\ndict(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-dict",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -622,7 +622,7 @@
     "syntax": "dir([object])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#dir",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -679,7 +679,7 @@
     "syntax": "print(*objects, end='строка')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -734,7 +734,7 @@
     "syntax": "eval(expression[, globals[, locals]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#eval",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -789,7 +789,7 @@
     "syntax": "exec(object[, globals[, locals]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#exec",
-    "added": "",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -849,7 +849,7 @@
     "syntax": "format(value, format_spec='')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#format",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -904,7 +904,7 @@
     "syntax": "frozenset(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-frozenset",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -960,7 +960,7 @@
     "syntax": "getattr(object, name[, default])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#getattr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1018,7 +1018,7 @@
     "syntax": "globals()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#globals",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1075,7 +1075,7 @@
     "syntax": "hasattr(object, name)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#hasattr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1132,7 +1132,7 @@
     "syntax": "hash(object)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#hash",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1189,7 +1189,7 @@
     "syntax": "help([object])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#help",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1242,7 +1242,7 @@
     "syntax": "hex(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#hex",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1296,7 +1296,7 @@
     "syntax": "id(object)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#id",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1357,7 +1357,7 @@
     "syntax": "input([prompt]) -> str",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#input",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1420,7 +1420,7 @@
     "syntax": "issubclass(class, classinfo)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#issubclass",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1477,7 +1477,7 @@
     "syntax": "iter(object)\niter(callable, sentinel)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#iter",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1537,7 +1537,7 @@
     "syntax": "list(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-list",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1592,7 +1592,7 @@
     "syntax": "locals()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#locals",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1652,7 +1652,7 @@
     "syntax": "max(iterable, *, key=None)\nmax(a, b, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#max",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1706,7 +1706,7 @@
     "syntax": "memoryview(object)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-memoryview",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1764,7 +1764,7 @@
     "syntax": "min(iterable, *, key=None)\nmin(a, b, ...)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#min",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1818,7 +1818,7 @@
     "syntax": "next(iterator[, default])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#next",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1874,7 +1874,7 @@
     "syntax": "object()",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#object",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1931,7 +1931,7 @@
     "syntax": "oct(x)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#oct",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1985,7 +1985,7 @@
     "syntax": "ord(c)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#ord",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2039,7 +2039,7 @@
     "syntax": "print(*objects, sep=' ', end='\\n', file=sys.stdout, flush=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2100,7 +2100,7 @@
     "syntax": "print(*objects, sep=\" \", end=\"\\n\", file=sys.stdout, flush=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2162,7 +2162,7 @@
     "syntax": "repr(object)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#repr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2217,7 +2217,7 @@
     "syntax": "str(object)  repr(object)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#repr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2277,7 +2277,7 @@
     "syntax": "reversed(sequence)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#reversed",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2331,7 +2331,7 @@
     "syntax": "print(*objects, sep='разделитель')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#print",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2386,7 +2386,7 @@
     "syntax": "set(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-set",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2442,7 +2442,7 @@
     "syntax": "setattr(object, name, value)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#setattr",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2501,7 +2501,7 @@
     "syntax": "sorted(iterable, key=None, reverse=False)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sorted",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2556,7 +2556,7 @@
     "syntax": "sum(iterable, start=0)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#sum",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2610,7 +2610,7 @@
     "syntax": "tuple(iterable)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#func-tuple",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2666,7 +2666,7 @@
     "syntax": "vars([object])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#vars",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2722,7 +2722,7 @@
     "syntax": "имя_переменной = значение",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2779,7 +2779,7 @@
     "syntax": "0b<биты>  0o<цифры>  0x<цифры>  <цифры>_<цифры>  <число>e<порядок>",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#",
-    "added": "",
+    "added": "3.6",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2840,7 +2840,7 @@
     "syntax": "len(obj)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#len",
-    "added": "",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [

@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 
+from glossary import validation
 from glossary.models import Glossary, Text
 from glossary.validation import (
     RULES,
@@ -35,7 +36,9 @@ from glossary.validation import (
     rule_required_fields,
     rule_section_size,
     rule_summary_length,
+    rule_title_resolves,
     rule_translated,
+    rule_translation_length,
     rule_unique_id,
     rule_version_format,
     validate,
@@ -501,6 +504,64 @@ def test_own_words_pass():
     assert list(rule_inherited_summary(make_glossary(entry), CFG)) == []
 
 
+def _titled(name: str, **overrides: object) -> Glossary:
+    return make_glossary(make_entry(title=Text(ru=name, en=name), **overrides))
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        "datetime.datetime.strftime()",
+        "str.split()",
+        "enum.Enum.name",
+        "collections.abc.Set",
+        "@functools.wraps",
+        "Variables",
+        "numpy.array",
+    ],
+)
+def test_resolvable_or_unqualified_title_passes(name: str):
+    assert list(rule_title_resolves(_titled(name), CFG)) == []
+
+
+@pytest.mark.parametrize("name", ["datetime.strftime", "os.no_such_thing()"])
+def test_unresolvable_qualified_title_is_an_error(name: str):
+    issues = list(rule_title_resolves(_titled(name), CFG))
+    assert [(i.rule, i.severity) for i in issues] == [("title-resolves", Severity.ERROR)]
+
+
+@pytest.mark.parametrize(
+    "overrides",
+    [{"removed": "3.12", "deprecated": "3.10"}, {"added": "3.99"}],
+)
+def test_removed_or_future_title_is_skipped(overrides: dict[str, str]):
+    assert list(rule_title_resolves(_titled("os.no_such_thing", **overrides), CFG)) == []
+
+
+def test_title_of_another_system_is_skipped():
+    other = next(s for s in ("Windows", "Linux") if s != validation.CURRENT_SYSTEM)
+    glossary = _titled("os.no_such_thing", platforms=(other,))
+    assert list(rule_title_resolves(glossary, CFG)) == []
+
+
+def test_unsafe_module_is_not_imported():
+    assert validation._resolves("antigravity.geohash") is None
+
+
+@pytest.mark.parametrize(("ru", "en"), [("а" * 100, "b" * 30), ("а" * 30, "b" * 100)])
+def test_translation_length_out_of_proportion_warns(ru: str, en: str):
+    entry = make_entry(summary=Text(ru=ru, en=en))
+    issues = list(rule_translation_length(make_glossary(entry), CFG))
+    assert [(i.rule, i.severity) for i in issues] == [
+        ("translation-length", Severity.WARNING)
+    ]
+
+
+def test_translation_length_in_proportion_passes():
+    entry = make_entry(summary=Text(ru="а" * 100, en="b" * 110))
+    assert list(rule_translation_length(make_glossary(entry), CFG)) == []
+
+
 def test_filled_added_passes():
     assert list(rule_added(make_glossary(make_entry(added="<3.0")), CFG)) == []
 
@@ -684,6 +745,8 @@ def test_all_rules_are_registered():
         rule_deprecated_text,
         rule_function_title,
         rule_inherited_summary,
+        rule_title_resolves,
+        rule_translation_length,
     }
     assert set(RULES) == expected
 
@@ -715,6 +778,8 @@ def test_rule_names_are_unique_and_stable():
         "deprecated-text",
         "function-title",
         "inherited-summary",
+        "title-resolves",
+        "translation-length",
         "platforms",
         "platforms-summary",
         "related-errors-resolve",

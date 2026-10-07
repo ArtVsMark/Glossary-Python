@@ -3,17 +3,17 @@
   "schema_of": "полнота глоссария относительно официального Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T13:56:17+00:00",
+  "generated_at": "2026-10-07T14:01:24+00:00",
   "python_version": "3.14",
   "snapshot": {
-    "cards": 1598,
-    "digest": "e0974e9f478f"
+    "cards": 1617,
+    "digest": "9496ce6db987"
   },
   "totals": {
     "known": 1297,
-    "covered": 1275,
-    "missing": 22,
-    "ratio": 0.983
+    "covered": 1296,
+    "missing": 1,
+    "ratio": 0.9992
   },
   "categories": [
     {
@@ -40,30 +40,9 @@
     {
       "name": "stdlib",
       "total": 914,
-      "covered": 892,
-      "ratio": 0.9759,
+      "covered": 913,
+      "ratio": 0.9989,
       "missing": [
-        "bisect.insort",
-        "collections.abc.Callable",
-        "collections.abc.Set",
-        "copy.replace",
-        "decimal.Context",
-        "decimal.DecimalTuple",
-        "decimal.IEEEContext",
-        "decimal.localcontext",
-        "enum.property",
-        "heapq.heapify_max",
-        "heapq.heappop_max",
-        "heapq.heappush_max",
-        "heapq.heappushpop_max",
-        "heapq.heapreplace_max",
-        "heapq.merge",
-        "io.open",
-        "operator.abs",
-        "operator.pow",
-        "os.open",
-        "os.replace",
-        "typing.final",
         "uuid.main"
       ]
     }

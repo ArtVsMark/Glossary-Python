@@ -3,19 +3,19 @@
   "schema_of": "факты о проекте-витрине глоссария по договору фактов витрины 1.3: по каждому показателю значение или причина в none",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T13:56:09+00:00",
+  "generated_at": "2026-10-07T14:01:18+00:00",
   "repo": "ArtVsMark/Glossary-Python",
-  "commit": "14d91516589675283d296efbd8a92c1d545329e8",
+  "commit": "f7c045c79fc9f3526f4a4bdfd0ee2cecb4177578",
   "ci": {
     "workflow": "ci.yml"
   },
   "glossary": {
-    "cards": 1598,
+    "cards": 1617,
     "groups": 60,
     "errors": 0,
     "warnings": 0,
-    "completeness_percent": 98.3,
-    "completeness_missing": 22,
+    "completeness_percent": 99.9,
+    "completeness_missing": 1,
     "completeness_python": "3.14"
   },
   "rules": {
@@ -59,5 +59,5 @@
   ],
   "coverage_percent": 97.6,
   "release": "1.1",
-  "version": "1.1.31"
+  "version": "1.1.32"
 }

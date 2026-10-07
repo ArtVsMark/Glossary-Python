@@ -3,7 +3,7 @@
   "schema_of": "что появилось и исчезло между версиями Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T13:56:18+00:00",
+  "generated_at": "2026-10-07T14:01:25+00:00",
   "versions": [
     "3.11",
     "3.12",
@@ -160,7 +160,7 @@
           "qualname": "copy.replace",
           "module": "copy",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "enum.EnumDict",
@@ -276,7 +276,7 @@
       "totals": {
         "added": 19,
         "removed": 6,
-        "undocumented": 1
+        "undocumented": 0
       }
     },
     {
@@ -305,7 +305,7 @@
           "qualname": "decimal.IEEEContext",
           "module": "decimal",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "float.from_number",
@@ -317,31 +317,31 @@
           "qualname": "heapq.heapify_max",
           "module": "heapq",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "heapq.heappop_max",
           "module": "heapq",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "heapq.heappush_max",
           "module": "heapq",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "heapq.heappushpop_max",
           "module": "heapq",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "heapq.heapreplace_max",
           "module": "heapq",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "io.Reader",
@@ -434,7 +434,7 @@
       "totals": {
         "added": 24,
         "removed": 1,
-        "undocumented": 6
+        "undocumented": 0
       }
     },
     {

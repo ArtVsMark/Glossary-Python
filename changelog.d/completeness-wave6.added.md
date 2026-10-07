@@ -1,0 +1,1 @@
+324 новых карточки третьей волны #147: тяжёлые модули описаны целиком — `ast` (149 узлов и функций), `inspect`, `socket`, `multiprocessing`, `http.client`, `xml.etree.ElementTree`; примеры исполнены на 3.11–3.15, процессы `multiprocessing` — в контексте `spawn` (#147)

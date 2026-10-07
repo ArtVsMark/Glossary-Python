@@ -7814,5 +7814,143 @@
       "copy.copy"
     ],
     "related_errors": []
+  },
+  {
+    "id": "bytearray.take_bytes",
+    "title": {
+      "ru": "bytearray.take_bytes()",
+      "en": "bytearray.take_bytes()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Забирает первые n байт из bytearray и возвращает их как bytes, удаляя из буфера. Без аргумента забирает всё и очищает буфер без копирования.",
+      "en": "Takes the first n bytes out of a bytearray and returns them as bytes, removing them from the buffer. With no argument it takes everything and clears the buffer without copying."
+    },
+    "body": {
+      "ru": "Типичный приём «накопить в bytearray, отдать bytes» раньше писали как data = bytes(buf); buf.clear() — это копия всего буфера. take_bytes() без аргумента отдаёт содержимое без копирования и оставляет буфер пустым. С n забирает начало, а остаток сдвигается — это уже копия хвоста, поэтому для разбора потока по кадрам выгоднее сначала обрезать лишнее. Отрицательное n считается с конца, как в срезах: take_bytes(-2) забирает всё, кроме двух последних байт. n за пределами длины — IndexError, а не молчаливое «сколько есть», как у среза.",
+      "en": "The common “accumulate in a bytearray, hand out bytes” pattern used to be data = bytes(buf); buf.clear(), which copies the whole buffer. take_bytes() with no argument hands the contents over without copying and leaves the buffer empty. With n it takes the beginning and the rest shifts down, which copies the tail, so for frame-by-frame parsing it pays to trim first. A negative n counts from the end, as in slices: take_bytes(-2) takes everything except the last two bytes. An n beyond the length raises IndexError rather than silently giving “whatever is there” as a slice would."
+    },
+    "syntax": "bytearray.take_bytes(n=None, /)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/stdtypes.html#bytearray.take_bytes",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Байтовые последовательности",
+    "subcat": {
+      "ru": "bytearray — мутирующие",
+      "en": "bytearray — mutating"
+    },
+    "aliases": [
+      "превратить bytearray в bytes без копии",
+      "забрать байты из буфера",
+      "очистить bytearray и получить bytes"
+    ],
+    "keywords": [
+      "take_bytes",
+      "bytearray",
+      "bytes",
+      "buffer",
+      "zero-copy",
+      "clear"
+    ],
+    "tags": [
+      "bytearray"
+    ],
+    "examples": [
+      [
+        "buf = bytearray(b'hello world')",
+        "head = buf.take_bytes(5)",
+        "print(head)  # → b'hello'",
+        "print(buf)  # → bytearray(b' world')",
+        "rest = buf.take_bytes()",
+        "print(rest, buf)  # → b' world' bytearray(b'')"
+      ],
+      [
+        "buf = bytearray(b'abc')",
+        "try:",
+        "    buf.take_bytes(10)",
+        "except IndexError as e:",
+        "    print(type(e).__name__)  # → IndexError"
+      ]
+    ],
+    "related": [
+      "bytearray",
+      "bytes",
+      "bytearray.clear",
+      "bytearray.resize"
+    ],
+    "related_errors": [
+      "indexerror"
+    ]
+  },
+  {
+    "id": "распаковка-в-comprehension",
+    "title": {
+      "ru": "Распаковка * и ** в comprehension",
+      "en": "Unpacking * and ** in comprehensions"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "[*xs for xs in lists] склеивает вложенные коллекции в одну, {**d for d in dicts} — сливает словари. Замена двойного цикла и itertools.chain.",
+      "en": "[*xs for xs in lists] flattens nested collections into one, and {**d for d in dicts} merges dictionaries. Replaces a double loop and itertools.chain."
+    },
+    "body": {
+      "ru": "Звёздочка в начале выражения comprehension означает «выложить все элементы», как в [*a, *b]: [*row for row in matrix] равно [x for row in matrix for x in row], но читается без второго for. Работает в списках, множествах, генераторных выражениях и с ** в словарях; при слиянии словарей одинаковые ключи перезаписываются последним значением, как в {**a, **b}. Распаковывается только один уровень: [*xs for xs in [[1, [2]]]] даёт [1, [2]]. До 3.15 такая запись — SyntaxError, поэтому в коде для старых версий оставляют двойной цикл или itertools.chain.from_iterable.",
+      "en": "A star at the start of a comprehension's expression means “spread out all the elements”, as in [*a, *b]: [*row for row in matrix] equals [x for row in matrix for x in row] but reads without the second for. It works for lists, sets, generator expressions, and with ** for dicts; when merging dicts, duplicate keys are overwritten by the last value, as in {**a, **b}. Only one level is unpacked: [*xs for xs in [[1, [2]]]] gives [1, [2]]. Before 3.15 this is a SyntaxError, so code for older versions keeps the double loop or itertools.chain.from_iterable."
+    },
+    "syntax": "[*it for it in iterables]\n{*s for s in sets}\n{**d for d in dicts}\n(*it for it in iterables)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/whatsnew/3.15.html#whatsnew315-unpacking-in-comprehensions",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Списки (list)",
+    "subcat": {
+      "ru": "comprehension",
+      "en": "comprehension"
+    },
+    "aliases": [
+      "сделать список плоским",
+      "склеить списки в один",
+      "слить список словарей",
+      "flatten list"
+    ],
+    "keywords": [
+      "*",
+      "**",
+      "comprehension",
+      "flatten",
+      "PEP 798",
+      "itertools.chain"
+    ],
+    "tags": [
+      "seq"
+    ],
+    "examples": [
+      [
+        "lists = [[1, 2], [3, 4], [5]]",
+        "print([*xs for xs in lists])  # → [1, 2, 3, 4, 5]",
+        "print({*s for s in [{1, 2}, {2, 3}]})  # → {1, 2, 3}"
+      ],
+      [
+        "dicts = [{'a': 1}, {'b': 2}, {'a': 3}]",
+        "print({**d for d in dicts})  # → {'a': 3, 'b': 2} — последний ключ побеждает"
+      ]
+    ],
+    "related": [
+      "списочные-выражения-list-comprehension",
+      "вложенный-list-comprehension",
+      "itertools.chain"
+    ],
+    "related_errors": [
+      "syntaxerror"
+    ]
   }
 ]

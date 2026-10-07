@@ -6801,5 +6801,63 @@
     "related_errors": [
       "sqlite3.ProgrammingError"
     ]
+  },
+  {
+    "id": "importcycleerror",
+    "title": {
+      "ru": "ImportCycleError",
+      "en": "ImportCycleError"
+    },
+    "kind": "exception",
+    "summary": {
+      "ru": "Подкласс ImportError: ленивый импорт (lazy import) при первом обращении обнаружил, что модуль прямо или через цепочку импортирует сам себя.",
+      "en": "A subclass of ImportError: a lazy import, on first use, found that the module imports itself directly or through a chain."
+    },
+    "body": {
+      "ru": "Обычный импорт с циклом часто «работает наполовину»: второй модуль получает недозагруженный первый и падает с AttributeError или ImportError «partially initialized module». Ленивый импорт откладывает загрузку до первого обращения к имени, поэтому цикл обнаруживается позже — в момент обращения, и тогда возникает ImportCycleError. Поскольку это подкласс ImportError, старый код с except ImportError его ловит. Лечится так же, как любой цикл импортов: вынести общее в третий модуль или импортировать внутри функции.",
+      "en": "A regular import with a cycle often “half works”: the second module receives a partially loaded first one and fails with AttributeError or an ImportError about a “partially initialized module”. A lazy import postpones loading until the name is first used, so the cycle shows up later — at the point of use, and that is when ImportCycleError is raised. Since it subclasses ImportError, existing code with except ImportError catches it. The cure is the same as for any import cycle: move the shared part into a third module or import inside a function."
+    },
+    "syntax": "class ImportCycleError(ImportError)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/exceptions.html#ImportCycleError",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Исключения",
+    "subcat": {
+      "ru": "встроенные исключения",
+      "en": "built-in exceptions"
+    },
+    "aliases": [
+      "циклический импорт",
+      "модуль импортирует сам себя",
+      "ошибка ленивого импорта"
+    ],
+    "keywords": [
+      "ImportCycleError",
+      "ImportError",
+      "lazy import",
+      "circular import",
+      "PEP 810"
+    ],
+    "tags": [
+      "exc"
+    ],
+    "examples": [
+      [
+        "print(issubclass(ImportCycleError, ImportError))  # → True",
+        "print(ImportCycleError.__mro__[1].__name__)  # → ImportError"
+      ]
+    ],
+    "related": [
+      "importerror",
+      "modulenotfounderror",
+      "lazy-import",
+      "import-from-import"
+    ],
+    "related_errors": []
   }
 ]

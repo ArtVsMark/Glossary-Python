@@ -45939,6 +45939,7 @@
         "print(repr(out.getvalue()))  # → 'a;\"b;c\"\\n'"
       ],
       [
+        "# Python 3.14+",
         "import csv",
         "import io",
         "class Bad(csv.Dialect):",
@@ -47219,7 +47220,7 @@
         "try:",
         "    struct.pack('<B', 300)",
         "except struct.error as e:",
-        "    print(e)  # → 'B' format requires 0 <= number <= 255"
+        "    print(e)  # → format requires 0 <= number <= 255"
       ]
     ],
     "related": [
@@ -56053,11 +56054,15 @@
         "print(len(s))  # → 5736"
       ],
       [
+        "# Python 3.14+",
         "import sys",
         "try:",
         "    sys.set_int_max_str_digits(100)",
         "except ValueError as e:",
-        "    print(e)  # → maxdigits must be >= 640 or 0 for unlimited",
+        "    print(e)  # → maxdigits must be >= 640 or 0 for unlimited"
+      ],
+      [
+        "import sys",
         "sys.set_int_max_str_digits(5000)",
         "print(len(str(10 ** 4999)))  # → 5000"
       ]
@@ -56670,6 +56675,7 @@
         "print(sys.getrefcount(a))  # → 2"
       ],
       [
+        "# Python 3.12+",
         "import sys",
         "print(sys.getrefcount(None) > 10 ** 9)  # → True — бессмертный объект"
       ]
@@ -57841,6 +57847,7 @@
         "print(Field.name, Field.name.name, Field.value.value)  # → Field.name name 2"
       ],
       [
+        "# Python 3.12+",
         "import enum",
         "class Planet(enum.Enum):",
         "    EARTH = (5.97e24, 6.37e6)",

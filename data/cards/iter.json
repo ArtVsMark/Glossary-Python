@@ -1410,7 +1410,7 @@
       "ru": "Без аргумента times поток бесконечен — не оборачивай его в list(), а комбинируй с zip()/map(), чтобы подать константу к каждому элементу (map(pow, base, repeat(2))). repeat отдаёт один и тот же объект, а не копии, поэтому для изменяемого значения все элементы окажутся ссылками на одну и ту же вещь.",
       "en": "With no times argument the stream is infinite — never wrap it in list(); pair it with zip()/map() to feed a constant alongside each element (map(pow, base, repeat(2))). repeat yields the same object every time, not copies, so with a mutable value every item is a reference to one shared thing."
     },
-    "syntax": "itertools.repeat(obj, times)",
+    "syntax": "itertools.repeat(object[, times])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.repeat",
     "added": "<3.0",
@@ -1528,7 +1528,7 @@
     "syntax": "itertools.combinations_with_replacement(iterable, r)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations_with_replacement",
-    "added": "3.1",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1701,7 +1701,7 @@
     "syntax": "itertools.compress(data, selectors)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.compress",
-    "added": "3.1",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [

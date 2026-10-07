@@ -25717,8 +25717,8 @@
       "examples": [
         [
           "import collections.abc as abc",
-          "# ByteString объявлен устаревшим в 3.12 и УДАЛЁН в 3.14: обращаться к нему нельзя.",
-          "print(hasattr(abc, 'ByteString'))   # → ? True до 3.14, False начиная с 3.14"
+          "# ByteString объявлен устаревшим в 3.12 и будет удалён в 3.17; в 3.14 он ещё есть.",
+          "print(hasattr(abc, 'ByteString'))   # → True"
         ],
         [
           "# Замена — проверка по конкретным типам:",
@@ -25996,8 +25996,8 @@
         "en": "The generator protocol: an iterator with send/throw/close."
       },
       "body": {
-        "ru": "Проверку проходит только настоящий генератор — функция с yield или генераторное выражение; ваш собственный класс с __iter__ и __next__ опознается как Iterator, но не как Generator, потому что здесь дополнительно требуются send, throw и close. Если вам нужно просто «это ленивый одноразовый перебор», спрашивайте Iterator. И не забывайте про главную ловушку самих генераторов: после одного полного прохода объект исчерпан, второй цикл по нему молча не выдаст ничего.",
-        "en": "Only a real generator passes — a function with yield or a generator expression; your own class with __iter__ and __next__ registers as an Iterator but not as a Generator, since send, throw and close are required too. When you only mean \"lazy one-shot iteration\", check Iterator instead. And remember the trap generators themselves carry: once fully consumed, the object is spent, and a second loop over it silently yields nothing."
+        "ru": "Проверку проходит настоящий генератор — функция с yield или генераторное выражение — и любой класс, где есть ещё send, throw и close; ваш собственный класс с одними __iter__ и __next__ опознается как Iterator, но не как Generator, потому что здесь дополнительно требуются send, throw и close. Если вам нужно просто «это ленивый одноразовый перебор», спрашивайте Iterator. И не забывайте про главную ловушку самих генераторов: после одного полного прохода объект исчерпан, второй цикл по нему молча не выдаст ничего.",
+        "en": "A real generator passes — a function with yield or a generator expression — and so does any class that also defines send, throw and close; your own class with just __iter__ and __next__ registers as an Iterator but not as a Generator, since send, throw and close are required too. When you only mean \"lazy one-shot iteration\", check Iterator instead. And remember the trap generators themselves carry: once fully consumed, the object is spent, and a second loop over it silently yields nothing."
       },
       "syntax": "isinstance(obj, collections.abc.Generator)",
       "status": "ready",
@@ -27011,13 +27011,13 @@
         "en": "A dictionary for counting items. Methods: most_common(n), elements(); it also supports +, -, & and |."
       },
       "body": {
-        "ru": "Обращение к отсутствующему ключу возвращает 0 и, в отличие от defaultdict, не создаёт запись — удобно, но опечатка в ключе так и останется незамеченной вместо KeyError. Ещё одна тонкость: оператор вычитания c1 - c2 выбрасывает нулевые и отрицательные счётчики, а метод subtract() их сохраняет, так что отрицательные значения возможны только через второй вариант. most_common() сортирует по убыванию, а элементы с одинаковым счётчиком идут в порядке первого появления.",
-        "en": "Looking up a missing key returns 0 and, unlike defaultdict, does not insert anything — convenient, but a typo in a key silently yields 0 instead of a KeyError. Note also that the subtraction operator c1 - c2 drops zero and negative counts, while the subtract() method keeps them, so negative counts can only appear via the latter. most_common() sorts by descending count and breaks ties by first-encountered order."
+        "ru": "Обращение к отсутствующему ключу возвращает 0 и, в отличие от defaultdict, не создаёт запись — удобно, но опечатка в ключе так и останется незамеченной вместо KeyError. Ещё одна тонкость: оператор вычитания c1 - c2 выбрасывает нулевые и отрицательные счётчики, а метод subtract() их сохраняет, так что из двух способов вычитания отрицательные значения даёт только второй (напрямую их можно и присвоить: c[x] = -1). most_common() сортирует по убыванию, а элементы с одинаковым счётчиком идут в порядке первого появления.",
+        "en": "Looking up a missing key returns 0 and, unlike defaultdict, does not insert anything — convenient, but a typo in a key silently yields 0 instead of a KeyError. Note also that the subtraction operator c1 - c2 drops zero and negative counts, while the subtract() method keeps them, so of the two only subtract() can yield negative counts (one can also be assigned directly: c[x] = -1). most_common() sorts by descending count and breaks ties by first-encountered order."
       },
-      "syntax": "collections.Counter(iterable_or_mapping=None)",
+      "syntax": "collections.Counter([iterable-or-mapping])",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/collections.html#collections.Counter",
-      "added": "3.1",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -27341,10 +27341,10 @@
         "ru": "С Python 3.7 обычный dict и так гарантирует порядок вставки, поэтому OrderedDict нужен уже не ради порядка, а ради трёх вещей: move_to_end(), popitem(last=False) для снятия элемента с начала и равенства, которое учитывает порядок — два OrderedDict с одинаковыми парами, но в разной последовательности, не равны, тогда как обычные dict равны. Типичный сценарий сегодня — LRU-кеш: обращение к ключу двигаем в конец, вытесняем с начала.",
         "en": "Since Python 3.7 an ordinary dict already preserves insertion order, so OrderedDict is no longer about ordering as such but about three things: move_to_end(), popitem(last=False) to pop from the front, and order-sensitive equality — two OrderedDicts with the same pairs in a different sequence are unequal, while plain dicts would compare equal. The typical use today is an LRU cache: move a key to the end on access, evict from the front."
       },
-      "syntax": "collections.OrderedDict(items=...)\nodict.move_to_end(key, last=True)",
+      "syntax": "collections.OrderedDict([items])\nodict.move_to_end(key, last=True)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/collections.html#collections.OrderedDict",
-      "added": "3.1",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -27463,8 +27463,8 @@
         "en": "A pool of processes from concurrent.futures. It gets around the GIL — every process has its own interpreter. Use it for CPU-intensive work."
       },
       "body": {
-        "ru": "Аргументы и возвращаемые значения ездят между процессами через pickle, поэтому лямбды, вложенные функции и незапикливаемые объекты сюда не передать — функция должна быть определена на верхнем уровне модуля. На Windows и macOS процессы стартуют через spawn, то есть дочерний процесс заново импортирует ваш модуль: без охраны if __name__ == '__main__' программа начнёт бесконечно плодить процессы. И запуск процесса плюс сериализация данных стоят дорого, так что на мелких или I/O-задачах ThreadPoolExecutor окажется быстрее.",
-        "en": "Arguments and return values travel between processes through pickle, so lambdas, nested functions and unpicklable objects cannot be passed — the target function must live at module top level. On Windows and macOS processes start via spawn, meaning the child re-imports your module: without an if __name__ == '__main__' guard the program spawns processes forever. Process startup plus serialization is expensive too, so for small or I/O-bound work ThreadPoolExecutor will come out ahead."
+        "ru": "Аргументы и возвращаемые значения ездят между процессами через pickle, поэтому лямбды, вложенные функции и незапикливаемые объекты сюда не передать — функция должна быть определена на верхнем уровне модуля. На Windows и macOS процессы стартуют через spawn, а на Linux с 3.14 по умолчанию через forkserver, то есть дочерний процесс заново импортирует ваш модуль: без охраны if __name__ == '__main__' пул ломается — дочерние процессы падают с RuntimeError, а родитель получает BrokenProcessPool. И запуск процесса плюс сериализация данных стоят дорого, так что на мелких или I/O-задачах ThreadPoolExecutor окажется быстрее.",
+        "en": "Arguments and return values travel between processes through pickle, so lambdas, nested functions and unpicklable objects cannot be passed — the target function must live at module top level. On Windows and macOS processes start via spawn, and on Linux since 3.14 via forkserver by default, meaning the child re-imports your module: without an if __name__ == '__main__' guard the pool breaks — the children fail with RuntimeError and the parent gets BrokenProcessPool. Process startup plus serialization is expensive too, so for small or I/O-bound work ThreadPoolExecutor will come out ahead."
       },
       "syntax": "with ProcessPoolExecutor(max_workers=N) as ex:\n    future = ex.submit(fn, *args)\n    results = ex.map(fn, iterable)",
       "status": "ready",
@@ -27714,8 +27714,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Пул, где каждая задача выполняется в своём изолированном подынтерпретаторе со своим GIL: настоящий параллелизм на ядрах без запуска процессов.",
-        "en": "A pool where each task runs in its own isolated subinterpreter with its own GIL: real multi-core parallelism without spawning processes."
+        "ru": "Пул потоков, где каждый рабочий поток исполняет задачи в своём изолированном подынтерпретаторе со своим GIL: настоящий параллелизм на ядрах без запуска процессов.",
+        "en": "A thread pool where each worker runs its tasks in its own isolated subinterpreter with its own GIL: real multi-core parallelism without spawning processes."
       },
       "body": {
         "ru": "Появился в 3.14. Функция и аргументы передаются в рабочий интерпретатор через pickle, и у него свои модули и свой __main__: изменения глобальных переменных скрипта там не видны, а функция, опирающаяся на глобальные имена скрипта, может не передаться вовсе (NotShareableError). Надёжнее всего самодостаточная функция с импортами внутри. Сторонние C-расширения без поддержки подынтерпретаторов в нём не импортируются.",
@@ -29241,8 +29241,8 @@
         "en": "Creates a fully independent deep copy of an object: every nested object is copied too. Unlike list.copy() (a shallow copy), changing a nested item does not affect the original."
       },
       "body": {
-        "ru": "Внутри ведётся словарь memo, поэтому циклические ссылки не зацикливаются, а объект, на который в структуре два разных пути, останется одним общим объектом и в копии. Копируется не всё: модули, функции, классы, файлы, сокеты и потоки возвращаются как есть — глубокая копия объекта с открытым соединением даст копию, смотрящую в то же соединение. Рекурсивный обход дорог, и если структура состоит из простых данных, собрать её заново (или прогнать через json) часто быстрее.",
-        "en": "A memo dictionary is kept internally, so cycles do not loop forever and an object reachable by two paths stays a single shared object in the copy as well. Not everything is duplicated: modules, functions, classes, files, sockets and threads come back unchanged — deep-copying an object that holds an open connection gives you a copy pointing at the same connection. The recursive walk is expensive, so for plain data structures rebuilding them (or a json round-trip) is often faster."
+        "ru": "Внутри ведётся словарь memo, поэтому циклические ссылки не зацикливаются, а объект, на который в структуре два разных пути, останется одним общим объектом и в копии. Копируется не всё: функции и классы возвращаются как есть, а модули, файлы, сокеты и потоки скопировать нельзя вовсе — deepcopy поднимает TypeError, так что объект с открытым соединением без своего __deepcopy__ глубоко не скопировать. Рекурсивный обход дорог, и если структура состоит из простых данных, собрать её заново (или прогнать через json) часто быстрее.",
+        "en": "A memo dictionary is kept internally, so cycles do not loop forever and an object reachable by two paths stays a single shared object in the copy as well. Not everything is duplicated: functions and classes come back unchanged, while modules, files, sockets and threads cannot be copied at all — deepcopy raises TypeError, so an object holding an open connection cannot be deep-copied without its own __deepcopy__. The recursive walk is expensive, so for plain data structures rebuilding them (or a json round-trip) is often faster."
       },
       "syntax": "import copy\ncopy.deepcopy(obj, memo=None)",
       "status": "ready",
@@ -30852,8 +30852,8 @@
         "en": "A moment in time: date plus time; supports arithmetic with timedelta and strftime()."
       },
       "body": {
-        "ru": "datetime.now() возвращает naive-объект без часового пояса, а вычитать или сравнивать naive и aware Python отказывается — отсюда неожиданный TypeError. Для UTC пишут datetime.now(timezone.utc): парный utcnow() с версии 3.12 объявлен устаревшим. Объект неизменяемый, поэтому поправить одно поле можно только через replace(), который отдаёт новую копию.",
-        "en": "datetime.now() hands back a naive object with no tzinfo, and Python refuses to subtract or compare naive and aware values — that is the surprise TypeError. For UTC use datetime.now(timezone.utc); the old utcnow() has been deprecated since Python 3.12. Instances are immutable, so changing one field means building a copy with replace()."
+        "ru": "datetime.now() возвращает naive-объект без часового пояса, а вычитать naive и aware или сравнивать их на больше/меньше Python отказывается — отсюда неожиданный TypeError, а == между ними молча даёт False. Для UTC пишут datetime.now(timezone.utc): парный utcnow() с версии 3.12 объявлен устаревшим. Объект неизменяемый, поэтому поправить одно поле можно только через replace(), который отдаёт новую копию.",
+        "en": "datetime.now() hands back a naive object with no tzinfo, and Python refuses to subtract naive and aware values or order them with < and > — that is the surprise TypeError, while == between them silently gives False. For UTC use datetime.now(timezone.utc); the old utcnow() has been deprecated since Python 3.12. Instances are immutable, so changing one field means building a copy with replace()."
       },
       "syntax": "datetime.datetime(year, month, day, hour=0, minute=0, second=0)",
       "status": "ready",
@@ -30909,8 +30909,8 @@
         "en": "Return the current date and time: naive local time by default, or an aware UTC object when called as datetime.now(timezone.utc)."
       },
       "body": {
-        "ru": "Naive-объект (без пояса) нельзя вычесть из aware или сравнить с ним — Python бросит TypeError: can't subtract offset-naive and offset-aware datetimes, поэтому в пределах программы держитесь чего-то одного. И для измерения длительности now() не годится: системные часы подкручивает NTP и переводы времени, интервал считайте по time.perf_counter().",
-        "en": "A naive result cannot be subtracted from or compared with an aware one — Python raises TypeError: can't subtract offset-naive and offset-aware datetimes — so pick one style and stick to it across the program. Also do not use now() to measure elapsed time: the system clock is adjusted by NTP and DST shifts, so use time.perf_counter() for durations."
+        "ru": "Naive-объект (без пояса) нельзя вычесть из aware или сравнить с ним на больше/меньше — Python бросит TypeError: can't subtract offset-naive and offset-aware datetimes, а == молча вернёт False, поэтому в пределах программы держитесь чего-то одного. И для измерения длительности now() не годится: системные часы подкручивает NTP и переводы времени, интервал считайте по time.perf_counter().",
+        "en": "A naive result cannot be subtracted from or ordered against an aware one — Python raises TypeError: can't subtract offset-naive and offset-aware datetimes, while == silently returns False — so pick one style and stick to it across the program. Also do not use now() to measure elapsed time: the system clock is adjusted by NTP and DST shifts, so use time.perf_counter() for durations."
       },
       "syntax": "from datetime import datetime\ndatetime.now(tz=None)",
       "status": "ready",
@@ -31028,8 +31028,8 @@
         "en": "Parses a string into a datetime object following a format template (the codes %Y, %m, %d and so on). The inverse of strftime()."
       },
       "body": {
-        "ru": "Шаблон должен покрыть строку целиком: лишний хвост или разделитель, не совпавший с шаблоном, дают ValueError, поэтому разбор пользовательского ввода всегда оборачивают в try. Результат получается naive, пока в шаблоне нет %z, а сравнивать naive-дату с aware Python откажется — это TypeError. Для ISO-строк шаблон вообще не нужен: fromisoformat() и проще, и заметно быстрее.",
-        "en": "The template must consume the whole string: trailing text or a separator that does not match raises ValueError, so parsing user input belongs inside a try block. Without %z in the template the result is naive, and comparing a naive datetime with an aware one is a TypeError, not a silent surprise. For ISO-formatted strings skip the template entirely — fromisoformat() is simpler and noticeably faster."
+        "ru": "Шаблон должен покрыть строку целиком: лишний хвост или разделитель, не совпавший с шаблоном, дают ValueError, поэтому разбор пользовательского ввода всегда оборачивают в try. Результат получается naive, пока в шаблоне нет %z, а сравнивать naive-дату с aware на больше/меньше Python откажется — это TypeError (== же молча даст False). Для ISO-строк шаблон вообще не нужен: fromisoformat() и проще, и заметно быстрее.",
+        "en": "The template must consume the whole string: trailing text or a separator that does not match raises ValueError, so parsing user input belongs inside a try block. Without %z in the template the result is naive, and ordering a naive datetime against an aware one is a TypeError, while == silently gives False. For ISO-formatted strings skip the template entirely — fromisoformat() is simpler and noticeably faster."
       },
       "syntax": "datetime.strptime(date_string, format)",
       "status": "ready",
@@ -31090,8 +31090,8 @@
         "en": "A time of day (hour, minute, second, microsecond) without a date."
       },
       "body": {
-        "ru": "Арифметики у time нет: вычесть одно время из другого или прибавить timedelta нельзя — сначала соедините время с датой (datetime.combine), а считайте уже на datetime. Сравнение работает, но на интервалах через полночь подводит: 23:30 «меньше» 00:10, хотя идёт раньше в тех же сутках. Объект неизменяем, новое значение получают через replace().",
-        "en": "time has no arithmetic: you cannot subtract two times or add a timedelta to one — combine it with a date first (datetime.combine) and do the maths on the datetime. Comparison works but misleads across midnight: 23:30 sorts below 00:10 even though it comes earlier in the same day. The object is immutable, so build a changed copy with replace()."
+        "ru": "Арифметики у time нет: вычесть одно время из другого или прибавить timedelta нельзя — сначала соедините время с датой (datetime.combine), а считайте уже на datetime. Сравнение работает, но на интервалах через полночь подводит: 23:30 «больше» 00:10, хотя в ночном интервале 23:30–00:10 идёт раньше. Объект неизменяем, новое значение получают через replace().",
+        "en": "time has no arithmetic: you cannot subtract two times or add a timedelta to one — combine it with a date first (datetime.combine) and do the maths on the datetime. Comparison works but misleads across midnight: 23:30 sorts above 00:10 even though it comes first in an overnight span like 23:30-00:10. The object is immutable, so build a changed copy with replace()."
       },
       "syntax": "datetime.time(hour=0, minute=0, second=0)",
       "status": "ready",
@@ -31379,7 +31379,7 @@
         "ru": "tzinfo результата берётся у аргумента time (или у явно переданного параметра tzinfo) — у date его нет вовсе, так что aware-время делает aware и весь результат. Если первым аргументом передать datetime, его собственные часы и пояс молча отбрасываются, берётся только календарная дата. Частый приём — границы суток: дата вместе с time.min или time.max даёт начало и конец дня.",
         "en": "The result's tzinfo comes from the time argument, or from the explicit tzinfo parameter — date carries none — so an aware time yields an aware datetime. Pass a datetime as the first argument and its own clock and zone are silently dropped; only the calendar date survives. A common use is day boundaries: a date paired with time.min or time.max gives the start and the end of that day."
       },
-      "syntax": "datetime.combine(date, time, tzinfo=self.tzinfo)",
+      "syntax": "datetime.combine(date, time, tzinfo=time.tzinfo)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/datetime.html#datetime.datetime.combine",
       "added": "<3.0",
@@ -31967,12 +31967,12 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Datetime с учётом часового пояса. Используй timezone из datetime или pytz.",
-        "en": "A datetime that carries a time zone. Use timezone from datetime, or pytz."
+        "ru": "Datetime с учётом часового пояса. Используй timezone из datetime или ZoneInfo из zoneinfo.",
+        "en": "A datetime that carries a time zone. Use timezone from datetime, or ZoneInfo from zoneinfo."
       },
       "body": {
-        "ru": "Naive и aware смешивать нельзя: сравнение или вычитание datetime.now() и datetime.now(timezone.utc) даёт TypeError, поэтому выбирайте что-то одно на весь проект — обычно UTC. timezone(timedelta(hours=3)) — фиксированный сдвиг, он ничего не знает о переходах на летнее время; для настоящих зон берите zoneinfo.ZoneInfo(\"Europe/Berlin\") из стандартной библиотеки (Python 3.9+), pytz давно не нужен.",
-        "en": "Naive and aware objects do not mix: comparing or subtracting datetime.now() and datetime.now(timezone.utc) raises TypeError, so pick one convention for the whole program — usually UTC. A timezone(timedelta(hours=3)) is a fixed offset that knows nothing about daylight saving; for real regions use zoneinfo.ZoneInfo(\"Europe/Berlin\") from the standard library (Python 3.9+) instead of pytz."
+        "ru": "Naive и aware смешивать нельзя: вычитание или сравнение на больше/меньше datetime.now() и datetime.now(timezone.utc) даёт TypeError, а == молча даёт False, поэтому выбирайте что-то одно на весь проект — обычно UTC. timezone(timedelta(hours=3)) — фиксированный сдвиг, он ничего не знает о переходах на летнее время; для настоящих зон берите zoneinfo.ZoneInfo(\"Europe/Berlin\") из стандартной библиотеки (Python 3.9+), pytz давно не нужен.",
+        "en": "Naive and aware objects do not mix: subtracting or ordering datetime.now() and datetime.now(timezone.utc) raises TypeError, while == silently gives False, so pick one convention for the whole program — usually UTC. A timezone(timedelta(hours=3)) is a fixed offset that knows nothing about daylight saving; for real regions use zoneinfo.ZoneInfo(\"Europe/Berlin\") from the standard library (Python 3.9+) instead of pytz."
       },
       "syntax": "from datetime import timezone\ndatetime.now(timezone.utc)",
       "status": "ready",
@@ -32592,7 +32592,7 @@
       "syntax": "enum.EnumMeta is enum.EnumType",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/enum.html#enum.EnumType",
-      "added": "3.11",
+      "added": "3.4",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -33377,8 +33377,8 @@
         "en": "A wrapper preventing a value from becoming an enum member (3.11+)."
       },
       "body": {
-        "ru": "Обратная задача: любое обычное значение в теле Enum молча становится членом, попадает в len(), в итерацию и в поиск по значению — nonmember оставляет его простым атрибутом класса. Обратите внимание, что C.HELPER после этого возвращает голое значение: у него нет .name и .value, и C(99) поднимет ValueError. Тот же эффект даёт имя с ведущим подчёркиванием, но nonmember нужен, когда константа должна остаться публичной.",
-        "en": "This is the mirror problem: any ordinary value in an Enum body silently becomes a member, counted by len(), yielded by iteration and reachable by value lookup, while nonmember keeps it an ordinary class attribute. Note that C.HELPER then gives you the raw value, with no .name or .value, and C(99) raises ValueError. A leading underscore in the name achieves the same exclusion, so reach for nonmember when the constant must stay public."
+        "ru": "Обратная задача: любое обычное значение в теле Enum молча становится членом, попадает в len(), в итерацию и в поиск по значению — nonmember оставляет его простым атрибутом класса. Обратите внимание, что C.HELPER после этого возвращает голое значение: у него нет .name и .value, и C(99) поднимет ValueError. Одно подчёркивание в начале имени не помогает — _X = 99 всё равно станет членом; исключает только приватное имя __X, поэтому для публичной константы нужен nonmember.",
+        "en": "This is the mirror problem: any ordinary value in an Enum body silently becomes a member, counted by len(), yielded by iteration and reachable by value lookup, while nonmember keeps it an ordinary class attribute. Note that C.HELPER then gives you the raw value, with no .name or .value, and C(99) raises ValueError. A single leading underscore does not help — _X = 99 still becomes a member; only a private __X name is excluded, so a public constant needs nonmember."
       },
       "syntax": "H = enum.nonmember(value)",
       "status": "ready",
@@ -33947,7 +33947,7 @@
       "syntax": "functools.cmp_to_key(cmp_func)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functools.html#functools.cmp_to_key",
-      "added": "3.2",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -34058,8 +34058,8 @@
         "en": "Creates a new function with some of the arguments already filled in (partial application)."
       },
       "body": {
-        "ru": "Аргументы фиксируются в момент создания partial, а не в момент вызова — этим он и отличается от lambda с поздним связыванием, из-за которого в цикле все замыкания видят последнее значение переменной. Позиционные аргументы приклеиваются слева, поэтому «пропустить» первый параметр и заполнить только второй можно лишь по имени. В отличие от лямбды, объект partial хранит func, args и keywords, читаемо печатается при отладке и сериализуется через pickle.",
-        "en": "Arguments are frozen when the partial is created, not when it is called — that is the difference from a lambda, whose late binding makes every closure in a loop see the variable's final value. Positional arguments are glued on from the left, so you cannot skip the first parameter and pre-fill only the second except by keyword. Unlike a lambda, a partial object exposes func, args and keywords, prints readably while debugging, and can be pickled."
+        "ru": "Аргументы фиксируются в момент создания partial, а не в момент вызова — этим он и отличается от lambda с поздним связыванием, из-за которого в цикле все замыкания видят последнее значение переменной. Позиционные аргументы приклеиваются слева, поэтому «пропустить» первый параметр и заполнить только второй можно по имени или, с 3.14, позиционно через заполнитель functools.Placeholder. В отличие от лямбды, объект partial хранит func, args и keywords, читаемо печатается при отладке и сериализуется через pickle.",
+        "en": "Arguments are frozen when the partial is created, not when it is called — that is the difference from a lambda, whose late binding makes every closure in a loop see the variable's final value. Positional arguments are glued on from the left, so to skip the first parameter and pre-fill only the second you use a keyword or, since 3.14, the functools.Placeholder sentinel. Unlike a lambda, a partial object exposes func, args and keywords, prints readably while debugging, and can be pickled."
       },
       "syntax": "from functools import partial\nfunctools.partial(func, /, *args, **kwargs) -> partial",
       "status": "ready",
@@ -34129,8 +34129,8 @@
         "en": "A descriptor for partial application of a method (like partial, but for methods)."
       },
       "body": {
-        "ru": "Обычный partial в теле класса не сработает: у объекта partial нет __get__, поэтому self не подставится и вызов через экземпляр уйдёт без первого аргумента — ровно ради этого случая и существует partialmethod. Зафиксированные позиционные аргументы встают сразу после self, так что «замораживать» ими удобно только первые параметры; всё остальное передавайте по имени.",
-        "en": "A plain partial does not work inside a class body: partial objects are not descriptors, so self never gets bound and calling through an instance drops the first argument — partialmethod exists precisely to cover that case. The frozen positional arguments land right after self, so they only pin the leading parameters; anything further along has to be fixed by keyword."
+        "ru": "До 3.14 обычный partial в теле класса не срабатывал: у объекта partial не было __get__, поэтому self не подставлялся и вызов через экземпляр уходил без первого аргумента — ради этого случая и появился partialmethod. С 3.14 partial стал дескриптором, но экземпляр он ставит после зафиксированных позиционных аргументов, а не на место self, так что для методов по-прежнему нужен partialmethod. Зафиксированные позиционные аргументы встают сразу после self, так что «замораживать» ими удобно только первые параметры; всё остальное передавайте по имени.",
+        "en": "Before 3.14 a plain partial did not work inside a class body: partial objects were not descriptors, so self never got bound and calling through an instance dropped the first argument — partialmethod was created for exactly that case. Since 3.14 partial is a descriptor, but it passes the instance after the frozen positional arguments rather than in the self slot, so methods still need partialmethod. The frozen positional arguments land right after self, so they only pin the leading parameters; anything further along has to be fixed by keyword."
       },
       "syntax": "attr = functools.partialmethod(method, *args)",
       "status": "ready",
@@ -34184,14 +34184,14 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Сворачивает итерируемое применяя функцию накопительно слева направо. Необязательный initializer — начальное значение.",
-        "en": "Folds an iterable by applying a function cumulatively from left to right. The optional initializer is the starting value."
+        "ru": "Сворачивает итерируемое применяя функцию накопительно слева направо. Необязательный initial — начальное значение.",
+        "en": "Folds an iterable by applying a function cumulatively from left to right. The optional initial is the starting value."
       },
       "body": {
-        "ru": "Без initializer reduce на пустом итерируемом падает с TypeError, а на одноэлементном возвращает этот элемент, ни разу не вызвав функцию — почти всегда стоит передавать начальное значение явно. В Python 3 reduce намеренно убрали из встроенных: обычный цикл или готовые sum(), math.prod(), str.join() читаются лучше, а накопление списков или строк через reduce ещё и квадратично по времени.",
-        "en": "With no initializer, reduce raises TypeError on an empty iterable and, on a one-element one, returns that element without ever calling the function — pass a starting value explicitly unless you really want that behaviour. Python 3 moved reduce out of the builtins on purpose: a plain loop or sum(), math.prod(), str.join() usually reads better, and folding lists or strings this way is quadratic."
+        "ru": "Без initial reduce на пустом итерируемом падает с TypeError, а на одноэлементном возвращает этот элемент, ни разу не вызвав функцию — почти всегда стоит передавать начальное значение явно. В Python 3 reduce намеренно убрали из встроенных: обычный цикл или готовые sum(), math.prod(), str.join() читаются лучше, а накопление списков или строк через reduce ещё и квадратично по времени.",
+        "en": "With no initial, reduce raises TypeError on an empty iterable and, on a one-element one, returns that element without ever calling the function — pass a starting value explicitly unless you really want that behaviour. Python 3 moved reduce out of the builtins on purpose: a plain loop or sum(), math.prod(), str.join() usually reads better, and folding lists or strings this way is quadratic."
       },
-      "syntax": "functools.reduce(function, iterable[, initializer])",
+      "syntax": "functools.reduce(function, iterable, /[, initial])",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functools.html#functools.reduce",
       "added": "<3.0",
@@ -34231,7 +34231,7 @@
           "print(maximum)  # → 9",
           "words = ['Hello', ' ', 'World']",
           "sentence = reduce(lambda a, b: a + b, words)",
-          "print(sentence)  # → Hello  World"
+          "print(sentence)  # → Hello World"
         ],
         [
           "from functools import reduce",
@@ -34401,7 +34401,7 @@
       "syntax": "@functools.total_ordering",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functools.html#functools.total_ordering",
-      "added": "3.2",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -34588,7 +34588,7 @@
         "ru": "Хеш-объект принимает только bytes: hashlib.md5('текст') сразу падает с TypeError, строку нужно сначала закодировать через .encode(). Данные накапливаются — update() можно звать сколько угодно раз подряд, результат тот же, что от одного вызова со склеенной строкой, а hexdigest() состояние не сбрасывает и читается повторно. Поэтому большой файл хешируют не целиком в память, а кусками в цикле.",
         "en": "The hash object takes bytes only: hashlib.md5('text') raises TypeError right away — encode the string first. Data accumulates, so calling update() several times gives the same result as one call on the concatenated input, and hexdigest() can be read repeatedly without resetting anything. That is why a large file is hashed chunk by chunk instead of being loaded whole."
       },
-      "syntax": "hashlib.md5(data=b'', usedforsecurity=True)",
+      "syntax": "hashlib.md5(data=b'', *, usedforsecurity=True)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/hashlib.html#hashlib.md5",
       "added": "<3.0",
@@ -35001,7 +35001,7 @@
       "syntax": "hashlib.pbkdf2_hmac(hash_name, password, salt, iterations, dklen=None)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/hashlib.html#hashlib.pbkdf2_hmac",
-      "added": "3.4",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -36554,9 +36554,9 @@
           "heapq.heappush(pq, (1, 'urgent call'))",
           "heapq.heappush(pq, (3, 'read book'))",
           "prio, task = heapq.heappop(pq)",
-          "print(task) # → 'urgent call'",
+          "print(task) # → urgent call",
           "prio, task = heapq.heappop(pq)",
-          "print(task) # → 'wash dishes'"
+          "print(task) # → wash dishes"
         ]
       ],
       "related": [
@@ -37811,7 +37811,7 @@
       "syntax": "itertools.combinations_with_replacement(iterable, r)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.combinations_with_replacement",
-      "added": "3.1",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -37869,7 +37869,7 @@
       "syntax": "itertools.compress(data, selectors)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.compress",
-      "added": "3.1",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -38335,7 +38335,7 @@
         "ru": "Без аргумента times поток бесконечен — не оборачивай его в list(), а комбинируй с zip()/map(), чтобы подать константу к каждому элементу (map(pow, base, repeat(2))). repeat отдаёт один и тот же объект, а не копии, поэтому для изменяемого значения все элементы окажутся ссылками на одну и ту же вещь.",
         "en": "With no times argument the stream is infinite — never wrap it in list(); pair it with zip()/map() to feed a constant alongside each element (map(pow, base, repeat(2))). repeat yields the same object every time, not copies, so with a mutable value every item is a reference to one shared thing."
       },
-      "syntax": "itertools.repeat(obj, times)",
+      "syntax": "itertools.repeat(object[, times])",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.repeat",
       "added": "<3.0",
@@ -39256,8 +39256,8 @@
           "level=logging.DEBUG,",
           "format='%(asctime)s %(levelname)s %(message)s'",
           ")",
-          "logging.debug('старт')    # DEBUG:root:старт",
-          "logging.info('готово')    # INFO:root:готово"
+          "logging.debug('старт')    # → в stderr: <дата время> DEBUG старт",
+          "logging.info('готово')    # → в stderr: <дата время> INFO готово"
         ]
       ],
       "related": [
@@ -39768,8 +39768,8 @@
         "en": "The logger class: a program writes its log through its debug(), info() and warning() methods. Instances come from getLogger(), not the constructor."
       },
       "body": {
-        "ru": "Logger('x') создаёт сироту вне иерархии: у него нет родителя, он не видит обработчиков корневого логгера и не совпадает с getLogger('x'). Уровень логгера и уровень обработчика — два разных сита: запись должна пройти оба, поэтому setLevel(DEBUG) у логгера без такой же настройки обработчика ничего не покажет. propagate=False обрывает всплытие к предкам — так лечат задвоение строк.",
-        "en": "Logger('x') makes an orphan outside the hierarchy: it has no parent, never reaches the root's handlers and is not the object getLogger('x') returns. The logger level and the handler level are two separate sieves a record must pass, so setLevel(DEBUG) on a logger shows nothing until the handler allows it too. propagate=False stops records from bubbling up to ancestors — the usual cure for duplicated lines."
+        "ru": "Logger('x') создаёт сироту вне иерархии: у него нет родителя, он не видит обработчиков корневого логгера и не совпадает с getLogger('x'). Уровень логгера и уровень обработчика — два разных сита: запись должна пройти оба, поэтому setLevel(DEBUG) у логгера ничего не покажет, если у обработчика выставлен уровень выше (новый обработчик имеет уровень NOTSET и пропускает всё). propagate=False обрывает всплытие к предкам — так лечат задвоение строк.",
+        "en": "Logger('x') makes an orphan outside the hierarchy: it has no parent, never reaches the root's handlers and is not the object getLogger('x') returns. The logger level and the handler level are two separate sieves a record must pass, so setLevel(DEBUG) on a logger shows nothing if the handler has a higher level set (a fresh handler is NOTSET and lets everything through). propagate=False stops records from bubbling up to ancestors — the usual cure for duplicated lines."
       },
       "syntax": "logger = logging.getLogger(name); logger.setLevel(level); logger.info(msg, *args)",
       "status": "ready",
@@ -41722,8 +41722,8 @@
         "en": "Returns the factorial of a non-negative integer. factorial(5) → 120. A negative number raises ValueError."
       },
       "body": {
-        "ru": "Float с целым значением раньше принимался, но в Python 3.12 эту поблажку убрали — теперь дробный тип даёт TypeError, поэтому результат деления приводите к int явно. Значение растёт быстрее любой экспоненты, и считать через факториал сочетания или размещения не стоит: math.comb и math.perm дают тот же ответ на порядки быстрее и без чисел в тысячи цифр.",
-        "en": "Floats with integral values used to be accepted, but that was removed in Python 3.12, so a float argument now raises TypeError and you must convert division results with int() yourself. The value grows faster than any exponential, so never build combinations or permutations out of factorials by hand: math.comb and math.perm give the same answer orders of magnitude faster and without thousand-digit intermediates."
+        "ru": "Float с целым значением раньше принимался, но в Python 3.10 эту поблажку убрали — теперь дробный тип даёт TypeError, поэтому результат деления приводите к int явно. Значение растёт быстрее любой экспоненты, и считать через факториал сочетания или размещения не стоит: math.comb и math.perm дают тот же ответ на порядки быстрее и без чисел в тысячи цифр.",
+        "en": "Floats with integral values used to be accepted, but that was removed in Python 3.10, so a float argument now raises TypeError and you must convert division results with int() yourself. The value grows faster than any exponential, so never build combinations or permutations out of factorials by hand: math.comb and math.perm give the same answer orders of magnitude faster and without thousand-digit intermediates."
       },
       "syntax": "math.factorial(n)",
       "status": "ready",
@@ -41841,8 +41841,8 @@
         "en": "An accurate sum of floating-point numbers (free of rounding error)."
       },
       "body": {
-        "ru": "Обычный sum() накапливает ошибку округления на каждом шаге, а fsum() держит набор частичных сумм и округляет один раз в самом конце — разница вылезает на длинных последовательностях и на слагаемых очень разного порядка. Платить приходится скоростью: fsum() заметно медленнее и всегда возвращает float, даже если на входе целые. Для денег это не лекарство — там нужен decimal.Decimal, а не fsum().",
-        "en": "Plain sum() lets rounding error pile up at every step, while fsum() keeps a set of partial sums and rounds only once at the very end — the gap shows up on long sequences and on terms of wildly different magnitude. The price is speed: fsum() is noticeably slower and always hands back a float, even for integer input. It is not the cure for money calculations either — use decimal.Decimal for those."
+        "ru": "Встроенный sum() с Python 3.12 складывает float с компенсацией ошибки и точнее наивного сложения, но точным не является, а fsum() держит набор частичных сумм и округляет один раз в самом конце — разница вылезает на слагаемых очень разного порядка. Платить приходится скоростью: fsum() заметно медленнее и всегда возвращает float, даже если на входе целые. Для денег это не лекарство — там нужен decimal.Decimal, а не fsum().",
+        "en": "Since Python 3.12 the built-in sum() adds floats with error compensation and beats naive addition, but it is still not exact, while fsum() keeps a set of partial sums and rounds only once at the very end — the gap shows up on terms of wildly different magnitude. The price is speed: fsum() is noticeably slower and always hands back a float, even for integer input. It is not the cure for money calculations either — use decimal.Decimal for those."
       },
       "syntax": "math.fsum(iterable)",
       "status": "ready",
@@ -62213,14 +62213,13 @@
       ],
       "examples": [
         [
-          "import tempfile",
           "from pathlib import Path",
-          "# Временная папка вместо '/tmp': её нет на Windows, и содержимое системной",
-          "# временной папки в любом случае не воспроизводимо от запуска к запуску.",
-          "base = Path(tempfile.mkdtemp())",
+          "# Свой каталог в текущем, а не системная временная папка: пример ничего не пишет снаружи.",
+          "base = Path('iterdir_demo')",
+          "base.mkdir(exist_ok=True)",
           "(base / 'a.txt').write_text('a', encoding='utf-8')",
           "(base / 'b.log').write_text('b', encoding='utf-8')",
-          "(base / 'sub').mkdir()",
+          "(base / 'sub').mkdir(exist_ok=True)",
           "# Обход содержимого — не рекурсивный: только прямые дети",
           "print(sorted((p.name, p.is_dir()) for p in base.iterdir()))",
           "# → [('a.txt', False), ('b.log', False), ('sub', True)]",
@@ -62365,12 +62364,12 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Ищет файлы по шаблону внутри каталога и возвращает ленивый генератор путей. Шаблон `**/` включает рекурсивный обход.",
+        "ru": "Ищет файлы по шаблону внутри каталога и возвращает ленивый итератор путей. Шаблон `**/` включает рекурсивный обход.",
         "en": "Match files against a pattern inside the directory, yielding paths lazily; the `**/` pattern walks recursively."
       },
       "body": {
-        "ru": "Возвращает генератор, а не список: len() к нему не применить и второй раз проитерировать не выйдет — если результат нужен дважды, оборачивайте в list(). Порядок выдачи задаёт файловая система, он не отсортирован, так что для стабильного вывода берите sorted(). Шаблон сопоставляется с именем на каждом уровне отдельно, а '**' по большому дереву может обходиться очень дорого по времени.",
-        "en": "You get a generator, not a list: len() does not work on it and you cannot iterate it twice — wrap it in list() if you need the results more than once. The order comes from the filesystem and is not sorted, so use sorted() when output must be reproducible. Each pattern component is matched against one path segment, and a '**' pattern over a large tree can take a very long time."
+        "ru": "Возвращает ленивый итератор (в 3.14 — объект map), а не список: len() к нему не применить и второй раз проитерировать не выйдет — если результат нужен дважды, оборачивайте в list(). Порядок выдачи задаёт файловая система, он не отсортирован, так что для стабильного вывода берите sorted(). Шаблон сопоставляется с именем на каждом уровне отдельно, а '**' по большому дереву может обходиться очень дорого по времени.",
+        "en": "You get a lazy iterator (a map object in 3.14), not a list: len() does not work on it and you cannot iterate it twice — wrap it in list() if you need the results more than once. The order comes from the filesystem and is not sorted, so use sorted() when output must be reproducible. Each pattern component is matched against one path segment, and a '**' pattern over a large tree can take a very long time."
       },
       "syntax": "p.glob('*.py')",
       "status": "ready",
@@ -62698,7 +62697,7 @@
       "examples": [
         [
           "from pathlib import Path",
-          "p = Path('/tmp/test_pathlib.bin')",
+          "p = Path('test_pathlib.bin')",
           "p.write_bytes(b'\\x00\\x01')",
           "p.read_bytes() # → b'\\x00\\x01'"
         ]
@@ -62759,7 +62758,7 @@
       "examples": [
         [
           "from pathlib import Path",
-          "p = Path('/tmp/test_pathlib.txt')",
+          "p = Path('test_pathlib.txt')",
           "p.write_text('hello world', encoding='utf-8')",
           "p.read_text() # → 'hello world'",
           "len(p.read_text().splitlines()) # → 1"
@@ -62944,9 +62943,9 @@
       "examples": [
         [
           "from pathlib import Path",
-          "import tempfile",
-          "p = Path(tempfile.mkdtemp())  # свой каталог, а не /tmp целиком: rglob обойдёт ВСЁ дерево",
-          "(p / 'conf').mkdir(); (p / 'conf' / 'app.cfg').touch()",
+          "p = Path('rglob_demo')  # свой каталог, а не /tmp целиком: rglob обойдёт ВСЁ дерево",
+          "p.mkdir(exist_ok=True)",
+          "(p / 'conf').mkdir(exist_ok=True); (p / 'conf' / 'app.cfg').touch()",
           "[x.name for x in p.rglob('*.cfg')] # → ['app.cfg'] — все .cfg рекурсивно",
           "sorted(x.name for x in p.rglob('*')) # → ['app.cfg', 'conf'] — всё содержимое дерева"
         ]
@@ -63001,7 +63000,7 @@
       "examples": [
         [
           "from pathlib import Path",
-          "f = Path('/tmp/stat_test.txt')",
+          "f = Path('stat_test.txt')",
           "f.write_text('hello')",
           "st = f.stat()",
           "st.st_size # → 5",
@@ -63067,7 +63066,7 @@
       "examples": [
         [
           "from pathlib import Path",
-          "f = Path('/tmp/hello_path.txt')",
+          "f = Path('hello_path.txt')",
           "f.write_text('hi')",
           "f.unlink() # → файл удалён",
           "f.unlink(missing_ok=True) # → повторный вызов не падает"
@@ -63128,7 +63127,7 @@
       "examples": [
         [
           "from pathlib import Path",
-          "p = Path('/tmp/test_pathlib.bin')",
+          "p = Path('test_pathlib.bin')",
           "p.write_bytes(b'\\xff\\xfe') # → 2",
           "p.read_bytes() # → b'\\xff\\xfe'"
         ]
@@ -63189,7 +63188,7 @@
       "examples": [
         [
           "from pathlib import Path",
-          "p = Path('/tmp/test_pathlib.txt')",
+          "p = Path('test_pathlib.txt')",
           "p.write_text('hello world', encoding='utf-8') # → 11",
           "p.write_text('line1\\nline2')",
           "p.read_text().splitlines() # → ['line1', 'line2']"
@@ -64100,8 +64099,8 @@
         "en": "Returns a random item of a non-empty sequence (list, tuple, str). An empty one raises IndexError."
       },
       "body": {
-        "ru": "choice умеет работать только с тем, что поддерживает индексацию и len: множество, словарь или генератор дадут TypeError, их надо сначала обернуть в list (list(d) вернёт случайный ключ). Вызовы независимы, поэтому подряд легко получить один и тот же элемент — если нужны разные, берите sample, а не choice в цикле.",
-        "en": "choice only handles objects that support indexing and len: a set, a dict or a generator raises TypeError, so wrap them in list first (list(d) gives you a random key). Calls are independent, so the same item can come up twice in a row — when you need distinct items, use sample instead of choice in a loop."
+        "ru": "choice умеет работать только с тем, что поддерживает индексацию и len: множество или генератор дадут TypeError, а словарь — KeyError (или, если ключи — числа 0..n-1, молча вернёт значение, а не ключ), поэтому их сначала оборачивают в list (list(d) даст случайный ключ). Вызовы независимы, поэтому подряд легко получить один и тот же элемент — если нужны разные, берите sample, а не choice в цикле.",
+        "en": "choice only handles objects that support indexing and len: a set or a generator raises TypeError, and a dict raises KeyError (or, with keys 0..n-1, silently returns a value instead of a key), so wrap them in list first (list(d) gives you a random key). Calls are independent, so the same item can come up twice in a row — when you need distinct items, use sample instead of choice in a loop."
       },
       "syntax": "random.choice(seq)",
       "status": "ready",
@@ -64694,8 +64693,8 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Возвращает bytes из n случайных байтов (Python 3.9+); удобно для генерации токенов/солей в некриптографических задачах.",
-        "en": "Returns n random bytes (Python 3.9+); handy for tokens or salts in non-cryptographic tasks."
+        "ru": "Возвращает bytes из n случайных байтов (Python 3.9+); воспроизводимо под seed — годится для тестов, но не для токенов и солей.",
+        "en": "Returns n random bytes (Python 3.9+); reproducible under a seed — fine for tests, but not for tokens or salts."
       },
       "body": {
         "ru": "Настоящее преимущество перед os.urandom — воспроизводимость: под фиксированным seed вернётся та же цепочка байт, и бинарные фикстуры в тестах становятся детерминированными. Для солей, сессионных токенов и вообще всего, что охраняет доступ, берут secrets.token_bytes() — этот генератор предсказуем, если понаблюдать за его выдачей.",
@@ -65226,12 +65225,13 @@
           "print(srng.random())  # → криптобезопасное [0,1)",
           "print(srng.randint(1, 100))  # → безопасное целое",
           "print(srng.choice(['a','b','c']))  # → безопасный выбор",
-          "# Нельзя установить seed для SystemRandom",
+          "srng.seed(42)  # seed у SystemRandom молча игнорируется: воспроизводимости нет",
           "try:",
-          "    srng.seed(42)  # → NotImplementedError или ничего",
+          "    srng.getstate()",
           "except NotImplementedError:",
-          "    print('seed not supported')",
-          "    import os; print(len(os.urandom(16)))  # → 16 байт"
+          "    print('getstate not supported')  # → getstate not supported",
+          "import os",
+          "print(len(os.urandom(16)))  # → 16"
         ]
       ],
       "related": [
@@ -65611,13 +65611,13 @@
         "en": "An enumeration of regex flags (IGNORECASE, MULTILINE, DOTALL, …)."
       },
       "body": {
-        "ru": "Это enum.IntFlag, то есть флаги — обычные битовые маски: re.I | re.M даёт новый RegexFlag со значением 10, и такое объединение через | — единственный способ включить несколько флагов сразу. Само имя re.RegexFlag в коде почти не пишут: оно всплывает в аннотациях типов и в repr, а в вызовах используют короткие re.I, re.M, re.S.",
-        "en": "RegexFlag is an enum.IntFlag, so the flags are plain bit masks: re.I | re.M produces another RegexFlag whose value is 10, and combining with | is the only way to turn on several flags at once. You rarely spell out re.RegexFlag yourself — it shows up in type hints and reprs, while calls use the short re.I, re.M, re.S."
+        "ru": "Это enum.IntFlag, то есть флаги — обычные битовые маски: re.I | re.M даёт новый RegexFlag со значением 10, и объединение через | — обычный способ передать несколько флагов в аргументе flags; другой путь — встроенные флаги в самом шаблоне, например (?im). Само имя re.RegexFlag в коде почти не пишут: оно всплывает в аннотациях типов и в repr, а в вызовах используют короткие re.I, re.M, re.S.",
+        "en": "RegexFlag is an enum.IntFlag, so the flags are plain bit masks: re.I | re.M produces another RegexFlag whose value is 10, and combining with | is the usual way to pass several flags in the flags argument; the other route is inline flags inside the pattern itself, such as (?im). You rarely spell out re.RegexFlag yourself — it shows up in type hints and reprs, while calls use the short re.I, re.M, re.S."
       },
       "syntax": "re.RegexFlag",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/re.html#re.RegexFlag",
-      "added": "3.11",
+      "added": "3.6",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -65665,8 +65665,8 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Компилирует паттерн в объект RegexObject для повторного использования. Ускоряет многократные операции.",
-        "en": "Compiles a pattern into a RegexObject that can be reused. It speeds up repeated operations."
+        "ru": "Компилирует паттерн в объект re.Pattern для повторного использования. Ускоряет многократные операции.",
+        "en": "Compiles a pattern into an re.Pattern object that can be reused. It speeds up repeated operations."
       },
       "body": {
         "ru": "Ускорение обычно меньше ожидаемого: модульные re.findall/re.search сами кешируют скомпилированные паттерны, так что compile выигрывает прежде всего в читаемости — паттерн собран один раз и в одном месте. Настоящее преимущество объекта в другом: его методы принимают pos и endpos, ограничивая поиск куском строки без срезов, а флаги задаются один раз при компиляции.",
@@ -65787,8 +65787,8 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Возвращает список всех совпадений паттерна в строке. Если есть группы — список кортежей.",
-        "en": "Returns the list of every match of the pattern in the string. If the pattern has groups, it is a list of tuples."
+        "ru": "Возвращает список всех совпадений паттерна в строке. С одной группой — список её значений, с несколькими — список кортежей.",
+        "en": "Returns the list of every match of the pattern in the string. With one group it lists that group's values, with several — tuples."
       },
       "body": {
         "ru": "Главная ловушка — группы: если в паттерне ровно одна группа, вернутся не целые совпадения, а только её содержимое; когда скобки нужны лишь для группировки, бери незахватывающие (?:...). Совпадения ищутся непересекающиеся, слева направо, и весь список строится сразу — на большом тексте лучше re.finditer: он отдаёт Match-объекты лениво и знает позиции найденного.",
@@ -66619,8 +66619,8 @@
         "en": "The flags change how a pattern behaves: case sensitivity, multi-line mode, whether the dot matches \\n, and verbose syntax."
       },
       "body": {
-        "ru": "Флаги не перекрывают друг друга: re.M меняет смысл только ^ и $, а чтобы точка начала ловить перевод строки, нужен именно re.S. Вторая ловушка — позиция аргумента: у re.sub() и re.split() перед flags идёт count, так что флаг, переданный без имени параметра, уйдёт в счётчик; а у скомпилированного паттерна флаги уже зашиты, и p.match(s, re.I) поймёт re.I как начальную позицию поиска.",
-        "en": "The flags do not overlap: re.M only changes what ^ and $ mean, and it takes re.S to make the dot match a newline. The other trap is argument position — re.sub() and re.split() take count before flags, so a flag passed without its keyword lands in the counter, and on a compiled pattern the flags are already baked in, so p.match(s, re.I) reads re.I as a starting offset."
+        "ru": "Флаги не перекрывают друг друга: re.M меняет смысл только ^ и $, а чтобы точка начала ловить перевод строки, нужен именно re.S. Вторая ловушка — позиция аргумента: у re.sub() перед flags идёт count, а у re.split() — maxsplit, так что флаг, переданный без имени параметра, уйдёт в счётчик (с 3.13 такой позиционный вызов ещё и даёт DeprecationWarning); а у скомпилированного паттерна флаги уже зашиты, и p.match(s, re.I) поймёт re.I как начальную позицию поиска.",
+        "en": "The flags do not overlap: re.M only changes what ^ and $ mean, and it takes re.S to make the dot match a newline. The other trap is argument position — re.sub() takes count and re.split() takes maxsplit before flags, so a flag passed without its keyword lands in the counter (since 3.13 such a positional call also emits DeprecationWarning), and on a compiled pattern the flags are already baked in, so p.match(s, re.I) reads re.I as a starting offset."
       },
       "syntax": "re.IGNORECASE (re.I), re.MULTILINE (re.M), re.DOTALL (re.S), re.VERBOSE (re.X)",
       "status": "ready",
@@ -67033,8 +67033,8 @@
         "en": "Copies the permission bits (chmod) from src onto an existing dst; contents, owner and times are left alone."
       },
       "body": {
-        "ru": "Файл dst должен уже существовать: copymode ничего не создаёт и не копирует данные — это просто chmod по образцу. Копируются только биты rwx и setuid, владелец не меняется (для этого chown). На Windows из прав есть лишь флаг «только чтение», поэтому эффект там почти незаметен. Время изменения copymode не переносит — это делает copystat.",
-        "en": "dst must already exist: copymode creates nothing and copies no data — it is simply chmod by example. Only the rwx and setuid bits are copied, the owner stays the same (that is chown's job). Windows only has a read-only flag, so the effect there is barely visible. copymode does not transfer the modification time — copystat does."
+        "ru": "Файл dst должен уже существовать: copymode ничего не создаёт и не копирует данные — это просто chmod по образцу. Копируются только биты прав (rwx, а также setuid, setgid и sticky), владелец не меняется (для этого chown). На Windows из прав есть лишь флаг «только чтение», поэтому эффект там почти незаметен. Время изменения copymode не переносит — это делает copystat.",
+        "en": "dst must already exist: copymode creates nothing and copies no data — it is simply chmod by example. Only the permission bits are copied (rwx plus setuid, setgid and sticky), the owner stays the same (that is chown's job). Windows only has a read-only flag, so the effect there is barely visible. copymode does not transfer the modification time — copystat does."
       },
       "syntax": "shutil.copymode(src, dst, *, follow_symlinks=True)",
       "status": "ready",
@@ -67547,8 +67547,8 @@
         "en": "Packs a directory into a zip or tar archive (gz, bz2, xz, zst) in one line and returns the name of the created file."
       },
       "body": {
-        "ru": "base_name пишется без расширения — его добавит сама функция: make_archive('backup.zip', 'zip', ...) создаст backup.zip.zip. root_dir — каталог, относительно которого строятся пути внутри архива; без него архивируется текущий каталог, и архив может попасть сам в себя. Возвращаемый путь — абсолютный. До 3.10.6 функция меняла текущий каталог процесса и была опасна в потоках.",
-        "en": "base_name is given without an extension — the function adds it: make_archive('backup.zip', 'zip', ...) creates backup.zip.zip. root_dir is the directory that paths inside the archive are relative to; without it the current directory is archived, and the archive may end up containing itself. The returned path is absolute. Before 3.10.6 the function changed the process's working directory and was unsafe with threads."
+        "ru": "base_name пишется без расширения — его добавит сама функция: make_archive('backup.zip', 'zip', ...) создаст backup.zip.zip. root_dir — каталог, относительно которого строятся пути внутри архива; без него архивируется текущий каталог, и архив может попасть сам в себя. Возвращаемый путь абсолютный, только если задан root_dir; без него он такой, как передан base_name, то есть обычно относительный. До 3.10.6 функция меняла текущий каталог процесса и была опасна в потоках.",
+        "en": "base_name is given without an extension — the function adds it: make_archive('backup.zip', 'zip', ...) creates backup.zip.zip. root_dir is the directory that paths inside the archive are relative to; without it the current directory is archived, and the archive may end up containing itself. The returned path is absolute only when root_dir is given; without it, it follows base_name as passed, usually relative. Before 3.10.6 the function changed the process's working directory and was unsafe with threads."
       },
       "syntax": "shutil.make_archive(base_name, format, root_dir=None, base_dir=None, verbose=0, dry_run=0, owner=None, group=None, logger=None) -> str",
       "status": "ready",
@@ -68423,8 +68423,8 @@
         "en": "A subclass of sqlite3.DatabaseError raised for errors caused by the processed data itself — numeric values out of range, strings that are too long."
       },
       "body": {
-        "ru": "Сам модуль sqlite3 это исключение не возбуждает — класс существует ради совместимости с DB-API 2.0, и поднять его может разве что код поверх sqlite3, например пользовательская функция, заметившая обрезание данных. Слишком большое целое даёт OverflowError, а не DataError, так что в except стоит перечислять sqlite3.Error или DatabaseError, а не этот класс.",
-        "en": "The sqlite3 module itself never raises this one — the class exists for DB-API 2.0 compliance, and only code built on top of sqlite3 (say, a user-defined function that notices truncated data) would raise it. An integer too large for SQLite gives OverflowError, not DataError, so catch sqlite3.Error or DatabaseError rather than this class."
+        "ru": "Модуль поднимает его, когда SQLite отвергает сами данные: строка или BLOB длиннее лимита (SQLITE_TOOBIG, «string or blob too big»). Слишком большое целое даёт OverflowError, а не DataError, так что в except стоит перечислять sqlite3.Error или DatabaseError, а не только этот класс.",
+        "en": "The module raises it when SQLite rejects the data itself: a string or BLOB longer than the limit (SQLITE_TOOBIG, \"string or blob too big\"). An integer too large for SQLite gives OverflowError, not DataError, so catch sqlite3.Error or DatabaseError rather than this class alone."
       },
       "syntax": "sqlite3.DataError",
       "status": "ready",
@@ -68483,8 +68483,8 @@
         "en": "Raised for errors related to the database; base class for the specialised sqlite3 errors (OperationalError, IntegrityError, ...), subclass of sqlite3.Error."
       },
       "body": {
-        "ru": "Ловить обычно стоит либо sqlite3.Error — он покрывает всё, включая InterfaceError, то есть ошибки использования самого модуля, а не базы, — либо DatabaseError, когда важны именно проблемы на стороне БД. Разбирать конкретную причину удобнее не по классу исключения, а по атрибутам sqlite_errorcode и sqlite_errorname: они есть у всех исключений sqlite3 начиная с Python 3.11.",
-        "en": "In practice you catch either sqlite3.Error, which also covers InterfaceError (misuse of the module rather than a database problem), or DatabaseError when only database-side failures matter. To tell the exact cause apart, lean on the sqlite_errorcode and sqlite_errorname attributes instead of the class hierarchy — every sqlite3 exception carries them since Python 3.11."
+        "ru": "Ловить обычно стоит либо sqlite3.Error — он покрывает всё, включая InterfaceError, то есть ошибки использования самого модуля, а не базы, — либо DatabaseError, когда важны именно проблемы на стороне БД. Разбирать конкретную причину удобнее не по классу исключения, а по атрибутам sqlite_errorcode и sqlite_errorname: начиная с Python 3.11 они есть у исключений, пришедших из самой библиотеки SQLite (у ошибок модуля вроде ProgrammingError их нет).",
+        "en": "In practice you catch either sqlite3.Error, which also covers InterfaceError (misuse of the module rather than a database problem), or DatabaseError when only database-side failures matter. To tell the exact cause apart, lean on the sqlite_errorcode and sqlite_errorname attributes instead of the class hierarchy — since Python 3.11 exceptions that come from the SQLite library itself carry them (module-level errors such as ProgrammingError do not)."
       },
       "syntax": "raise sqlite3.DatabaseError",
       "status": "ready",
@@ -68598,8 +68598,8 @@
         "en": "Base class of the other exceptions in the sqlite3 module (subclass of Exception); catch all database errors with a single except."
       },
       "body": {
-        "ru": "Ловить sqlite3.Error разумно на границе программы — там, где вы решаете, что показать пользователю; внутри логики лучше конкретика, иначе опечатка в SQL (OperationalError) и нарушение UNIQUE (IntegrityError) обработаются одинаково. Начиная с Python 3.11 у пойманного объекта есть sqlite_errorcode и sqlite_errorname — код и имя ошибки прямо от движка, разбирать текст сообщения не нужно. И помните: перехват исключения сам по себе не откатывает транзакцию, нужен con.rollback() или блок with con (он коммитит или откатывает, но соединение не закрывает).",
-        "en": "Catch sqlite3.Error at the edge of your program, where you decide what to tell the user; deeper down prefer the specific class, otherwise a typo in SQL (OperationalError) and a UNIQUE violation (IntegrityError) end up in the same handler. Since Python 3.11 the caught object carries sqlite_errorcode and sqlite_errorname, so you can branch on the engine's own error code instead of parsing the message text. Catching the exception does not undo anything by itself: call con.rollback(), or use with con, which commits or rolls back the transaction but does not close the connection."
+        "ru": "Ловить sqlite3.Error разумно на границе программы — там, где вы решаете, что показать пользователю; внутри логики лучше конкретика, иначе опечатка в SQL (OperationalError) и нарушение UNIQUE (IntegrityError) обработаются одинаково. Начиная с Python 3.11 у исключения, пришедшего из самой SQLite, есть sqlite_errorcode и sqlite_errorname — код и имя ошибки прямо от движка, разбирать текст сообщения не нужно. И помните: перехват исключения сам по себе не откатывает транзакцию, нужен con.rollback() или блок with con (он коммитит или откатывает, но соединение не закрывает).",
+        "en": "Catch sqlite3.Error at the edge of your program, where you decide what to tell the user; deeper down prefer the specific class, otherwise a typo in SQL (OperationalError) and a UNIQUE violation (IntegrityError) end up in the same handler. Since Python 3.11 an exception that comes from SQLite itself carries sqlite_errorcode and sqlite_errorname, so you can branch on the engine's own error code instead of parsing the message text. Catching the exception does not undo anything by itself: call con.rollback(), or use with con, which commits or rolls back the transaction but does not close the connection."
       },
       "syntax": "raise sqlite3.Error",
       "status": "ready",
@@ -69989,8 +69989,8 @@
         "en": "Geometric mean (the n-th root of the product)."
       },
       "body": {
-        "ru": "Берут его там, где величины перемножаются, а не складываются: средний коэффициент роста за несколько периодов — это геометрическое среднее, арифметическое его завышает. Ноль или отрицательное значение в данных дают не ноль в ответе, а StatisticsError. Результат — float, посчитанный без гарантий точности до последнего разряда, так что сравнивать его через == не стоит.",
-        "en": "Reach for it when values multiply rather than add: an average growth factor over several periods is a geometric mean, and the arithmetic mean overstates it. A zero or a negative value raises StatisticsError instead of returning zero. The result is a float computed with no exactness guarantees, so don't compare it with ==."
+        "ru": "Берут его там, где величины перемножаются, а не складываются: средний коэффициент роста за несколько периодов — это геометрическое среднее, арифметическое его завышает. Отрицательное значение в данных даёт StatisticsError, а ноль с Python 3.13 молча даёт ответ 0.0 (до 3.13 — тоже StatisticsError). Результат — float, посчитанный без гарантий точности до последнего разряда, так что сравнивать его через == не стоит.",
+        "en": "Reach for it when values multiply rather than add: an average growth factor over several periods is a geometric mean, and the arithmetic mean overstates it. A negative value raises StatisticsError, while a zero has quietly returned 0.0 since Python 3.13 (earlier versions raise StatisticsError for it too). The result is a float computed with no exactness guarantees, so don't compare it with ==."
       },
       "syntax": "statistics.geometric_mean(data)",
       "status": "ready",
@@ -71293,7 +71293,7 @@
         "ru": "«Безопаснее» здесь буквально про это: в шаблоне нет ни обращения к атрибутам, ни индексации, поэтому чужой шаблон не доберётся до внутренностей объекта так, как это позволяет {0.__class__.__mro__} в str.format(). С долларом аккуратнее: литеральный $ нужно удваивать ($$), иначе substitute() упадёт с ValueError на чём-нибудь вроде '$5'. А safe_substitute() не проверяет ничего: опечатку $nmae он молча оставит в тексте вместо KeyError — удобно для черновиков, опасно, когда важно заметить ошибку.",
         "en": "The \"safer\" part is literal: a Template supports neither attribute access nor indexing, so a user-supplied template cannot reach into an object's internals the way {0.__class__.__mro__} can with str.format(). Mind the dollar sign — a literal $ must be doubled as $$, otherwise substitute() raises ValueError on something like '$5'. And safe_substitute() validates nothing at all: a typo such as $nmae is left in the output as plain text instead of raising KeyError, which is convenient for drafts but hides real mistakes."
       },
-      "syntax": "string.Template(template_string)\nt.substitute(mapping, **kwargs)\nt.safe_substitute(mapping, **kwargs)",
+      "syntax": "string.Template(template)\nt.substitute(mapping={}, /, **kwds)\nt.safe_substitute(mapping={}, /, **kwds)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/string.html#string.Template",
       "added": "<3.0",
@@ -71947,7 +71947,7 @@
       "syntax": "proc = subprocess.Popen(args, stdin=, stdout=, stderr=, text=False, ...)\nproc.communicate(input=None)\nproc.wait()",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.Popen",
-      "added": "3.9",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -72010,7 +72010,7 @@
       "syntax": "subprocess.check_output(args, *, text=False, stderr=None, timeout=None, ...)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/subprocess.html#subprocess.check_output",
-      "added": "3.1",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -75809,7 +75809,7 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Обрезает текст до width символов, заменяя хвост на placeholder (по умолчанию ' […]' → '...').",
+        "ru": "Обрезает текст до width символов, заменяя хвост на placeholder (по умолчанию ' [...]').",
         "en": "Collapse and truncate text to fit `width`, replacing the tail with a placeholder."
       },
       "body": {
@@ -75930,8 +75930,8 @@
         "en": "The Global Interpreter Lock — the CPython mutex that allows only one thread to execute bytecode at a time. It blocks parallelism for CPU-bound work, but does not get in the way of I/O."
       },
       "body": {
-        "ru": "GIL не делает твой код потокобезопасным: составные операции (проверил-потом-изменил, counter += 1) всё равно гонятся между потоками, так что Lock по-прежнему обязателен. Начиная с Python 3.13 есть экспериментальная free-threaded сборка (PEP 703), где GIL можно отключить, но в обычной сборке он на месте.",
-        "en": "The GIL does not make your code thread-safe: compound operations (check-then-act, counter += 1) still race between threads, so you still need a Lock. Since Python 3.13 there is an experimental free-threaded build (PEP 703) where the GIL can be turned off, but in the regular build it is still there."
+        "ru": "GIL не делает твой код потокобезопасным: составные операции (проверил-потом-изменил, counter += 1) всё равно гонятся между потоками, так что Lock по-прежнему обязателен. С Python 3.13 есть free-threaded сборка (PEP 703), где GIL можно отключить: в 3.13 экспериментальная, с 3.14 официально поддерживаемая (PEP 779), но необязательная, но в обычной сборке он на месте.",
+        "en": "The GIL does not make your code thread-safe: compound operations (check-then-act, counter += 1) still race between threads, so you still need a Lock. Since Python 3.13 there is a free-threaded build (PEP 703) where the GIL can be turned off — experimental in 3.13, officially supported but optional since 3.14 (PEP 779) — but in the regular build it is still there."
       },
       "syntax": "# GIL — концепция, не синтаксис",
       "status": "ready",
@@ -76028,16 +76028,17 @@
         ],
         [
           "import threading",
+          "ready = threading.Event()",
           "def producer():",
           "    print('данные готовы')",
           "    ready.set()",
           "def consumer():",
           "    ready.wait()        # блокируется до set()",
           "    print('получил данные')",
-          "    t1 = threading.Thread(target=producer)",
-          "    t2 = threading.Thread(target=consumer)",
-          "    t2.start(); t1.start()",
-          "    t1.join(); t2.join()"
+          "t1 = threading.Thread(target=producer)",
+          "t2 = threading.Thread(target=consumer)",
+          "t2.start(); t1.start()",
+          "t1.join(); t2.join()"
         ]
       ],
       "related": [
@@ -76220,13 +76221,15 @@
         ],
         [
           "import threading",
+          "import time",
+          "sem = threading.Semaphore(3)",
           "def task(i):",
           "    with sem:",
           "        print(f'выполняю {i}')",
-          "        import time; time.sleep(1)",
-          "        threads = [threading.Thread(target=task, args=(i,)) for i in range(10)]",
-          "        for t in threads: t.start()",
-          "        for t in threads: t.join()"
+          "        time.sleep(0.1)",
+          "threads = [threading.Thread(target=task, args=(i,)) for i in range(10)]",
+          "for t in threads: t.start()",
+          "for t in threads: t.join()"
         ]
       ],
       "related": [
@@ -76283,11 +76286,11 @@
           "import threading",
           "def worker(n):",
           "    print(f'поток {n}')",
-          "    threads = [threading.Thread(target=worker, args=(i,)) for i in range(3)]",
-          "    for t in threads:",
-          "        t.start()",
-          "    for t in threads:",
-          "        t.join()  # ждать завершения"
+          "threads = [threading.Thread(target=worker, args=(i,)) for i in range(3)]",
+          "for t in threads:",
+          "    t.start()",
+          "for t in threads:",
+          "    t.join()  # ждать завершения"
         ]
       ],
       "related": [
@@ -78620,7 +78623,7 @@
         "en": "The perf_counter() counter as an integer number of nanoseconds — for measurements where every nanosecond counts and float rounding is unwanted."
       },
       "body": {
-        "ru": "Перевод в миллисекунды — деление на 1_000_000, а не на 1000: частая ошибка занижает результат в тысячу раз. Целые разности удобно накапливать по многим прогонам: сумма float теряла бы младшие разряды. Смешивать с perf_counter() в одной разности нельзя — единицы разные.",
+        "ru": "Перевод в миллисекунды — деление на 1_000_000, а не на 1000: частая ошибка завышает результат в тысячу раз. Целые разности удобно накапливать по многим прогонам: сумма float теряла бы младшие разряды. Смешивать с perf_counter() в одной разности нельзя — единицы разные.",
         "en": "To get milliseconds divide by 1_000_000, not by 1000: that common slip makes the result a thousand times too large. Integer differences accumulate cleanly over many runs, while a float sum would lose low digits. Never mix it with perf_counter() in one difference — the units differ."
       },
       "syntax": "time.perf_counter_ns() -> int",
@@ -81851,8 +81854,8 @@
         "en": "A general-purpose mock object that supports the magic methods (__len__, __iter__ and so on). It can stand in for any object, so a real dependency is not needed."
       },
       "body": {
-        "ru": "Любой атрибут MagicMock рождается на лету, поэтому опечатка в имени метода тест не уронит — вернётся очередной мок, и проверка молча пройдёт; чтобы такое ловить, задавайте spec= или стройте мок через create_autospec() по реальному объекту. Отличие от обычного Mock — заранее настроенные магические методы: длина равна 0, итерация пуста, объект истинный, тогда как Mock на всё это ответил бы TypeError.",
-        "en": "Every attribute of a MagicMock is created on first access, so a misspelled method name does not fail the test — it just yields another mock and the check quietly passes; pass spec= or build the mock with create_autospec() from the real object to catch that. The difference from a plain Mock is the preconfigured magic methods: length is 0, iteration is empty, truthiness is True, whereas Mock would raise TypeError on all of it."
+        "ru": "Любой атрибут MagicMock рождается на лету, поэтому опечатка в имени метода тест не уронит — вернётся очередной мок, и проверка молча пройдёт; чтобы такое ловить, задавайте spec= или стройте мок через create_autospec() по реальному объекту. Отличие от обычного Mock — заранее настроенные магические методы: длина равна 0, итерация пуста, объект истинный, тогда как Mock на len() и итерацию ответил бы TypeError.",
+        "en": "Every attribute of a MagicMock is created on first access, so a misspelled method name does not fail the test — it just yields another mock and the check quietly passes; pass spec= or build the mock with create_autospec() from the real object to catch that. The difference from a plain Mock is the preconfigured magic methods: length is 0, iteration is empty, truthiness is True, whereas Mock would raise TypeError on len() and iteration."
       },
       "syntax": "from unittest.mock import MagicMock\nm = MagicMock()\nm.method.return_value = 42",
       "status": "ready",
@@ -82406,8 +82409,8 @@
         "en": "A TestResult subclass that prints dots, the letters F/E/s or '... ok' lines to a stream as the run goes; TextTestRunner uses it."
       },
       "body": {
-        "ru": "Сам его почти не создают: подкласс передают раннеру через resultclass, чтобы поменять вывод или собрать свою статистику, переопределив addSuccess, addFailure и прочие, — не забывая вызвать super(), иначе тест пропадёт из итогов. Объём печати задаёт verbosity: 0 — молча, 1 — точки, 2 — строка на тест. В Python 2.7 и 3.0–3.1 класс назывался _TextTestResult.",
-        "en": "You rarely create it directly: a subclass is handed to the runner through resultclass to change the output or gather your own statistics by overriding addSuccess, addFailure and friends; remember to call super(), or the test vanishes from the totals. verbosity controls how much is printed: 0 is silent, 1 prints dots, 2 prints a line per test. In Python 2.7 and 3.0-3.1 the class was named _TextTestResult."
+        "ru": "Сам его почти не создают: подкласс передают раннеру через resultclass, чтобы поменять вывод или собрать свою статистику, переопределив addSuccess, addFailure и прочие, — не забывая вызвать super(), иначе тест пропадёт из итогов. Объём печати задаёт verbosity: 0 — молча, 1 — точки, 2 — строка на тест. До Python 2.7 и в 3.0–3.1 класс назывался _TextTestResult.",
+        "en": "You rarely create it directly: a subclass is handed to the runner through resultclass to change the output or gather your own statistics by overriding addSuccess, addFailure and friends; remember to call super(), or the test vanishes from the totals. verbosity controls how much is printed: 0 is silent, 1 prints dots, 2 prints a line per test. Before Python 2.7 and in 3.0-3.1 the class was named _TextTestResult."
       },
       "syntax": "class MyResult(unittest.TextTestResult): ...\nunittest.TextTestRunner(resultclass=MyResult)",
       "status": "ready",
@@ -83242,8 +83245,8 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Запускается перед КАЖДЫМ тестом метода класса — готовит состояние (файлы, БД, моки). Падение в setUp помечает тест как error, а не fail.",
-        "en": "Run before EVERY test method of the class to prepare state (files, DB, mocks); a failure inside setUp marks the test as an error, not a failure."
+        "ru": "Запускается перед КАЖДЫМ тестом класса — готовит состояние (файлы, БД, моки). Исключение в setUp — error, проваленный assert* — failure; тест не идёт.",
+        "en": "Run before EVERY test method of the class to prepare state (files, DB, mocks); an exception in setUp is an error, a failed assert* a failure; the test is skipped."
       },
       "body": {
         "ru": "setUp выполняется заново перед каждым тестом намеренно — так тесты остаются изолированными; если подготовка дорогая (поднять сервер, открыть соединение с БД), выносите её в setUpClass, который отработает один раз на весь класс. Освобождать ресурсы надёжнее через self.addCleanup(...) сразу после захвата: такие функции вызовутся, даже если setUp упадёт посреди подготовки, а вот tearDown в этом случае пропустят.",

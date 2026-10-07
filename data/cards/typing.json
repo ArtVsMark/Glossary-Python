@@ -330,7 +330,7 @@
       "ru": "int / str / list / dict (аннотации)",
       "en": "int / str / list / dict (annotations)"
     },
-    "kind": "function",
+    "kind": "term",
     "summary": {
       "ru": "С Python 3.9+ встроенные типы используются как обобщения напрямую: list[int], dict[str, int]. Ранее нужен был typing.List, typing.Dict.",
       "en": "Since Python 3.9 the built-in types are used as generics directly: list[int], dict[str, int]. Earlier this required typing.List and typing.Dict."

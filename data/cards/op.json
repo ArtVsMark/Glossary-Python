@@ -2851,7 +2851,7 @@
     "related": [
       "os",
       "path.exists",
-      ".stem-.suffix-.suffixes-.name-.parent-.p",
+      "pathlib.PurePath.stem",
       "оператор",
       "pathlib.PurePath",
       "path.cwd"
@@ -3529,93 +3529,6 @@
       "statistics.median",
       "statistics.stdev",
       "statistics.NormalDist"
-    ],
-    "related_errors": []
-  },
-  {
-    "id": "stdin-stdout",
-    "title": {
-      "ru": "stdin / stdout",
-      "en": "stdin / stdout"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "sys.stdin — стандартный ввод. sys.stdout — стандартный вывод. Используются для потокового ввода/вывода.",
-      "en": "sys.stdin is the standard input, sys.stdout the standard output. They are used for streaming input and output."
-    },
-    "body": {
-      "ru": "Строки из sys.stdin приходят вместе с '\\n' на конце — почти всегда нужен .strip(), иначе сравнение с ожидаемым ответом развалится на невидимом символе. Цикл for line in sys.stdin завершается только на конце ввода (в терминале это Ctrl+D, на Windows Ctrl+Z и Enter), поэтому задачи с неизвестным числом строк читают именно так, а не через фиксированный range. Когда вывод уходит в файл или в конвейер, sys.stdout буферизуется и строки могут появиться позже, чем ожидаешь, — помогает print(..., flush=True).",
-      "en": "Lines read from sys.stdin still carry their trailing '\\n', so a .strip() is almost always needed — otherwise a comparison with the expected answer fails on an invisible character. Iterating with for line in sys.stdin stops only at end of input (Ctrl+D in a terminal, Ctrl+Z then Enter on Windows), which is why problems with an unknown number of lines are read this way rather than with a fixed range. When output is redirected to a file or a pipe, sys.stdout becomes block-buffered and lines may surface later than expected; print(..., flush=True) fixes that."
-    },
-    "syntax": "import sys\nfor line in sys.stdin: ...\nprint(..., file=sys.stdout)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/functions.html#open",
-    "added": "<3.0",
-    "deprecated": "",
-    "removed": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Файлы и I/O",
-    "subcat": {
-      "ru": "потоки",
-      "en": "streams"
-    },
-    "aliases": [
-      "стандартный ввод",
-      "стандартный вывод",
-      "чтение всех строк ввода"
-    ],
-    "keywords": [
-      "stdin",
-      "stdout"
-    ],
-    "tags": [
-      "op"
-    ],
-    "examples": [
-      [
-        "import sys",
-        "# Чтение из stdin построчно",
-        "# echo 'hello' | python script.py",
-        "# for line in sys.stdin:",
-        "#     print(line.strip())",
-        "print('stdin demo skipped')  # → не интерактивный режим"
-      ],
-      [
-        "import sys",
-        "# print в stderr",
-        "print('Error message', file=sys.stderr)"
-      ],
-      [
-        "# Перенаправление stdout в буфер",
-        "import io, sys",
-        "buffer = io.StringIO()",
-        "sys.stdout = buffer",
-        "print('captured')",
-        "sys.stdout = sys.__stdout__",
-        "print('got:', repr(buffer.getvalue()))  # → got: 'captured\\n'"
-      ],
-      [
-        "# input() — высокоуровневый stdin",
-        "name = input('Name: ') if False else 'Alice'  # skip interactive",
-        "print(f'Hello, {name}')  # → Hello, Alice"
-      ],
-      [
-        "import sys",
-        "# Чтение всего stdin",
-        "# data = sys.stdin.read()  # в неинтерактивном режиме",
-        "# Строки из stdin",
-        "import io",
-        "fake_stdin = io.StringIO('line1\\nline2\\nline3')",
-        "for line in fake_stdin:",
-        "    print(line.strip())"
-      ]
-    ],
-    "related": [
-      "sys.stdin-sys.stdout-sys.stderr",
-      "input",
-      "print"
     ],
     "related_errors": []
   },

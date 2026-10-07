@@ -2061,7 +2061,7 @@
     ],
     "related": [
       "input",
-      "stdin-stdout",
+      "sys.stdin",
       "keyboardinterrupt"
     ],
     "related_errors": []

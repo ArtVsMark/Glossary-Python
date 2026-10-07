@@ -1,68 +1,5 @@
 [
   {
-    "id": "copy-deepcopy-словаря",
-    "title": {
-      "ru": "copy() / deepcopy() словаря",
-      "en": "copy() / deepcopy() of a dict"
-    },
-    "kind": "term",
-    "summary": {
-      "ru": "dict.copy() делает поверхностную копию: вложенные объекты не копируются, а разделяются между оригиналом и копией. copy.deepcopy() копирует полностью рекурсивно.",
-      "en": "dict.copy() makes a shallow copy: nested objects are not copied but shared between the original and the copy. copy.deepcopy() copies everything recursively."
-    },
-    "body": {
-      "ru": "Чаще всего проблема не в выборе copy против deepcopy, а в том, что копии нет вовсе: b = a — это просто второе имя того же словаря, и правка через любое из имён видна обоим. copy() лечит именно это, но вложенные списки и словари остаются общими, поэтому мутация внутри копии по-прежнему меняет оригинал. deepcopy() обходит структуру рекурсивно и корректно справляется с циклическими ссылками, но платить приходится временем и памятью, а файлы, сокеты и подобные объекты он не копирует, а возвращает как есть.",
-      "en": "The usual bug is not choosing copy over deepcopy but making no copy at all: b = a is just a second name for the same dict, and a change through either name shows up in both. copy() fixes exactly that, yet nested lists and dicts stay shared, so mutating them through the copy still alters the original. deepcopy() walks the structure recursively and handles cyclic references correctly, but it costs time and memory, and objects like files and sockets are not copied at all — they come back unchanged."
-    },
-    "syntax": "d.copy()  import copy; copy.deepcopy(d)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.copy",
-    "added": "<3.0",
-    "deprecated": "",
-    "removed": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Словари (dict)",
-    "subcat": {
-      "ru": "копирование",
-      "en": "copying"
-    },
-    "aliases": [
-      "глубокая копия",
-      "рекурсивное копирование",
-      "копия со вложенными объектами"
-    ],
-    "keywords": [
-      "copy",
-      "deepcopy"
-    ],
-    "tags": [
-      "mapset"
-    ],
-    "examples": [
-      [
-        "import copy",
-        "orig = {\"a\": [1,2], \"b\": 3}",
-        "shallow = orig.copy(); shallow[\"a\"].append(99)",
-        "print(orig)     # → {'a': [1, 2, 99], 'b': 3}  (список общий)",
-        "orig2 = {\"a\": [1,2], \"b\": 3}",
-        "deep = copy.deepcopy(orig2); deep[\"a\"].append(99)",
-        "print(orig2)    # → {'a': [1, 2], 'b': 3}        (оригинал цел)",
-        "d = {\"x\": 1}; d2 = d.copy()",
-        "print(d is d2)  # → False",
-        "d2[\"y\"] = 2; print(d)  # → {'x': 1}  (d не изменился)"
-      ]
-    ],
-    "related": [
-      "dict.copy",
-      "copy.deepcopy",
-      "copy.copy",
-      "вложенные-словари"
-    ],
-    "related_errors": []
-  },
-  {
     "id": "dict-merge",
     "title": {
       "ru": "d1 | d2",
@@ -314,7 +251,7 @@
       "ru": "in / not in для множеств — O(1)",
       "en": "in / not in for sets — O(1)"
     },
-    "kind": "function",
+    "kind": "term",
     "summary": {
       "ru": "Проверка принадлежности в множестве работает за O(1) (хэш-таблица), в отличие от O(n) для списков.",
       "en": "A membership test on a set takes O(1) (a hash table), unlike O(n) for lists."
@@ -524,7 +461,7 @@
     "related": [
       "dict.get",
       "dict.setdefault",
-      "copy-deepcopy-словаря",
+      "dict.copy",
       "json"
     ],
     "related_errors": []
@@ -1421,11 +1358,15 @@
     },
     "aliases": [
       "скопировать словарь",
-      "поверхностная копия"
+      "поверхностная копия",
+      "глубокая копия",
+      "рекурсивное копирование",
+      "копия со вложенными объектами"
     ],
     "keywords": [
       "dict.copy",
-      "copy"
+      "copy",
+      "deepcopy"
     ],
     "tags": [
       "dict"
@@ -1437,12 +1378,25 @@
         "b['y'] = 2",
         "print(a)   # → {'x': 1}",
         "print(b)   # → {'x': 1, 'y': 2}"
+      ],
+      [
+        "import copy",
+        "orig = {\"a\": [1,2], \"b\": 3}",
+        "shallow = orig.copy(); shallow[\"a\"].append(99)",
+        "print(orig)     # → {'a': [1, 2, 99], 'b': 3}  (список общий)",
+        "orig2 = {\"a\": [1,2], \"b\": 3}",
+        "deep = copy.deepcopy(orig2); deep[\"a\"].append(99)",
+        "print(orig2)    # → {'a': [1, 2], 'b': 3}        (оригинал цел)",
+        "d = {\"x\": 1}; d2 = d.copy()",
+        "print(d is d2)  # → False",
+        "d2[\"y\"] = 2; print(d)  # → {'x': 1}  (d не изменился)"
       ]
     ],
     "related": [
-      "copy-deepcopy-словаря",
       "copy.deepcopy",
-      "list.copy"
+      "list.copy",
+      "copy.copy",
+      "вложенные-словари"
     ],
     "related_errors": []
   },

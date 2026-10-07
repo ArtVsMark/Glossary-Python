@@ -546,87 +546,10 @@
     "related": [
       "yield-from",
       "генераторное-выражение",
-      "iter-next",
+      "iter",
       "stopiteration"
     ],
     "related_errors": []
-  },
-  {
-    "id": "iter-next",
-    "title": {
-      "ru": "iter() / next()",
-      "en": "iter() / next()"
-    },
-    "kind": "function",
-    "summary": {
-      "ru": "iter() создаёт итератор из итерируемого. next() возвращает следующий элемент. Default-значение — вместо StopIteration.",
-      "en": "iter() builds an iterator out of an iterable. next() returns the following item. The default value is returned instead of raising StopIteration."
-    },
-    "body": {
-      "ru": "Цикл for делает ровно это под капотом: берёт iter() у объекта и дёргает next(), пока не поймает StopIteration. Отсюда неочевидное следствие — итератор помнит позицию, поэтому после частичного обхода следующий цикл продолжит с того места, где вы остановились, а не с начала. Голый next() без второго аргумента бросает StopIteration, и если это происходит внутри генератора, интерпретатор превращает исключение в RuntimeError (PEP 479) — надёжнее передавать значение по умолчанию.",
-      "en": "A for loop is exactly this under the hood: it calls iter() on the object and keeps calling next() until StopIteration shows up. The non-obvious consequence is that an iterator remembers its position, so after a partial walk the next loop resumes where you stopped rather than from the beginning. A bare next() without a default raises StopIteration, and when that happens inside a generator the interpreter converts it into RuntimeError (PEP 479), so passing a default is the safer habit."
-    },
-    "syntax": "it = iter(obj)\nnext(it, default)",
-    "status": "ready",
-    "docs_url": "https://docs.python.org/3/library/functions.html#iter",
-    "added": "<3.0",
-    "deprecated": "",
-    "removed": "",
-    "platforms": [
-      "AllOS"
-    ],
-    "section": "Итераторы и генераторы",
-    "subcat": {
-      "ru": "протокол итератора",
-      "en": "iterator protocol"
-    },
-    "aliases": [
-      "создать итератор из коллекции",
-      "получить следующий элемент",
-      "ручной перебор без цикла"
-    ],
-    "keywords": [
-      "iter",
-      "next"
-    ],
-    "tags": [
-      "iter"
-    ],
-    "examples": [
-      [
-        "it = iter([1,2,3])",
-        "print(next(it))  # → 1",
-        "print(next(it))  # → 2",
-        "print(next(it))  # → 3",
-        "print(next(it, 'end'))  # → end"
-      ],
-      [
-        "# iter со sentinel: вызывать, пока не вернёт ''",
-        "import io",
-        "f = io.StringIO('line1\\nline2\\n')",
-        "for line in iter(f.readline, ''):",
-        "    print(line.strip())  # → line1 / line2",
-        "for ch in iter('hello'):",
-        "    print(ch, end='')  # → hello",
-        "print()",
-        "print(next(iter([]), None))  # → None — default вместо StopIteration"
-      ],
-      [
-        "# Бесконечный итератор + islice",
-        "from itertools import islice, count",
-        "it4 = count(1)",
-        "print(list(islice(it4, 5)))  # → [1,2,3,4,5]"
-      ]
-    ],
-    "related": [
-      "итератор-__iter__-__next__",
-      "stopiteration",
-      "generator-function-yield"
-    ],
-    "related_errors": [
-      "StopIteration",
-      "TypeError"
-    ]
   },
   {
     "id": "itertools.accumulate",
@@ -1105,8 +1028,8 @@
   {
     "id": "итератор-__iter__-__next__",
     "title": {
-      "ru": "Итератор __iter__ / __next__",
-      "en": "Iterator __iter__ / __next__"
+      "ru": "Протокол итератора",
+      "en": "Iterator protocol"
     },
     "kind": "term",
     "summary": {
@@ -1216,12 +1139,145 @@
       ]
     ],
     "related": [
-      "iter-next",
+      "__iter__",
+      "__next__",
+      "iter",
       "stopiteration",
       "generator-function-yield",
       "collections.abc.Iterator"
     ],
     "related_errors": []
+  },
+  {
+    "id": "__iter__",
+    "title": {
+      "ru": "__iter__",
+      "en": "__iter__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод, который вызывает iter(obj) и цикл for: возвращает итератор по объекту.",
+      "en": "The method iter(obj) and the for loop call: it returns an iterator over the object."
+    },
+    "body": {
+      "ru": "У итерируемого объекта __iter__ каждый раз возвращает новый итератор, поэтому список можно обходить много раз. У самого итератора __iter__ возвращает self — так итератор тоже годится для for, но проходится один раз. Удобный способ написать __iter__ — сделать его генератором через yield.",
+      "en": "On an iterable, __iter__ returns a fresh iterator each time, which is why a list can be looped over many times. On an iterator itself, __iter__ returns self — so an iterator also works in for, but only once. A convenient way to write __iter__ is as a generator with yield."
+    },
+    "syntax": "def __iter__(self): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/datamodel.html#object.__iter__",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Итераторы и генераторы",
+    "subcat": {
+      "ru": "протокол итератора",
+      "en": "iterator protocol"
+    },
+    "aliases": [
+      "сделать класс итерируемым",
+      "свой объект в цикле for"
+    ],
+    "keywords": [
+      "__iter__",
+      "iter",
+      "for",
+      "yield"
+    ],
+    "tags": [
+      "iter"
+    ],
+    "examples": [
+      [
+        "class Countdown:",
+        "    def __init__(self, n):",
+        "        self.n = n",
+        "    def __iter__(self):",
+        "        for i in range(self.n, 0, -1):",
+        "            yield i",
+        "c = Countdown(3)",
+        "print(list(c))  # → [3, 2, 1]",
+        "print(list(c))  # → [3, 2, 1] — новый итератор при каждом обходе"
+      ]
+    ],
+    "related": [
+      "итератор-__iter__-__next__",
+      "__next__",
+      "iter",
+      "generator-function-yield"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "__next__",
+    "title": {
+      "ru": "__next__",
+      "en": "__next__"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Метод итератора, который вызывает next(): возвращает следующий элемент или бросает StopIteration.",
+      "en": "The iterator method next() calls: it returns the next item or raises StopIteration."
+    },
+    "body": {
+      "ru": "StopIteration — сигнал конца, а не ошибка: цикл for перехватывает его сам. Однажды бросив StopIteration, итератор должен бросать его и дальше. В Python 2 метод назывался next; в Python 3 — __next__, а next(it) стал встроенной функцией с необязательным значением по умолчанию.",
+      "en": "StopIteration signals the end rather than an error: the for loop catches it itself. Once an iterator has raised StopIteration it must keep raising it. Python 2 called the method next; in Python 3 it is __next__, and next(it) became a built-in with an optional default."
+    },
+    "syntax": "def __next__(self): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/stdtypes.html#iterator.__next__",
+    "added": "3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Итераторы и генераторы",
+    "subcat": {
+      "ru": "протокол итератора",
+      "en": "iterator protocol"
+    },
+    "aliases": [
+      "следующий элемент итератора",
+      "свой итератор"
+    ],
+    "keywords": [
+      "__next__",
+      "next",
+      "StopIteration"
+    ],
+    "tags": [
+      "iter"
+    ],
+    "examples": [
+      [
+        "class Counter:",
+        "    def __init__(self, limit):",
+        "        self.i, self.limit = 0, limit",
+        "    def __iter__(self):",
+        "        return self",
+        "    def __next__(self):",
+        "        if self.i >= self.limit:",
+        "            raise StopIteration",
+        "        self.i += 1",
+        "        return self.i",
+        "it = Counter(2)",
+        "print(next(it), next(it))  # → 1 2",
+        "print(next(it, 'конец'))  # → конец — default вместо StopIteration"
+      ]
+    ],
+    "related": [
+      "итератор-__iter__-__next__",
+      "__iter__",
+      "next",
+      "stopiteration"
+    ],
+    "related_errors": [
+      "stopiteration"
+    ]
   },
   {
     "id": "itertools.count",
@@ -2140,7 +2196,7 @@
       ]
     ],
     "related": [
-      "iter-next",
+      "iter",
       "itertools.pairwise",
       "itertools.islice"
     ],

@@ -28,6 +28,7 @@ from glossary.validation import (
     rule_kind,
     rule_label_translated,
     rule_language_script,
+    rule_mixed_script,
     rule_non_empty,
     rule_platforms,
     rule_platforms_summary,
@@ -740,6 +741,7 @@ def test_all_rules_are_registered():
         rule_kind,
         rule_label_translated,
         rule_language_script,
+        rule_mixed_script,
         rule_non_empty,
         rule_platforms,
         rule_platforms_summary,
@@ -868,3 +870,39 @@ def test_function_title_lists_one_name():
 def test_one_function_or_a_construct_passes(kind: str, title: str):
     entry = make_entry(kind=kind, title=title)
     assert list(rule_function_title(make_glossary(entry), CFG)) == []
+
+
+# --------------------------------------------------------------------------- #
+# Смешение письменностей в одном слове — опечатка раскладки
+# --------------------------------------------------------------------------- #
+
+
+@pytest.mark.parametrize("word", ["típичный", "доpython", "заawait"])
+def test_word_mixing_cyrillic_and_latin_is_an_error(word: str):
+    glossary = make_glossary(make_entry(body=Text(ru=f"Это {word} случай.", en="Text.")))
+    issues = list(rule_mixed_script(glossary, CFG))
+    assert [i.severity for i in issues] == [Severity.ERROR]
+    assert word in issues[0].message and "body" in issues[0].message
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Python-код и exec'ом, 3.12-й выпуск",
+        "e^(iπ) = -1 — формула Эйлера",
+        "Кириллица «я» рядом с ASCII в одной фразе",
+    ],
+)
+def test_separate_words_of_different_scripts_are_not_a_finding(text: str):
+    glossary = make_glossary(make_entry(summary=Text(ru=text, en="Text.")))
+    assert list(rule_mixed_script(glossary, CFG)) == []
+
+
+def test_mixed_script_reads_the_english_half_and_the_title_too():
+    glossary = make_glossary(
+        make_entry(
+            title=Text(ru="заголовок", en="titlе"), summary=Text(ru="Да.", en="Yes.")
+        )
+    )
+    issues = list(rule_mixed_script(glossary, CFG))
+    assert [i.message.split("'")[1] for i in issues] == ["title"]

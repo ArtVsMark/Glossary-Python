@@ -10555,5 +10555,79 @@
     "related_errors": [
       "importerror"
     ]
+  },
+  {
+    "id": "lazy-import",
+    "title": {
+      "ru": "lazy import",
+      "en": "lazy import"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Ленивый импорт: lazy import x и lazy from m import y откладывают загрузку модуля до первого обращения к имени. Ускоряет запуск программы.",
+      "en": "Lazy import: lazy import x and lazy from m import y postpone loading a module until the name is first used. Speeds up program start."
+    },
+    "body": {
+      "ru": "lazy — мягкое ключевое слово: вне строки импорта это обычное имя. Вместо модуля имя сразу получает лёгкий заместитель, а настоящая загрузка происходит при первом обращении — поэтому импорты можно держать вверху файла и не платить за неиспользованные. Цена — ошибки переезжают: опечатка в имени модуля даёт ModuleNotFoundError не на строке импорта, а там, где имя впервые использовано (трассировка показывает обе строки), а цикл импортов — ImportCycleError. lazy разрешён только на уровне модуля: внутри функции, класса или try/except это SyntaxError; lazy from m import * и lazy from __future__ тоже запрещены. Для кода, который должен работать и на старых версиях, есть __lazy_modules__ = ['json'] — тогда обычный import json становится ленивым.",
+      "en": "lazy is a soft keyword: outside an import line it is an ordinary name. Instead of the module, the name immediately gets a lightweight proxy, and the real load happens on first use, so imports can stay at the top of the file without paying for unused ones. The price is that errors move: a typo in the module name raises ModuleNotFoundError not on the import line but where the name is first used (the traceback shows both lines), and an import cycle raises ImportCycleError. lazy is allowed only at module level: inside a function, class or try/except it is a SyntaxError; lazy from m import * and lazy from __future__ are forbidden too. For code that must also run on older versions there is __lazy_modules__ = ['json'], which makes a plain import json lazy."
+    },
+    "syntax": "lazy import module\nlazy from module import name",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#lazy-imports",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модули и импорт",
+    "subcat": {
+      "ru": "импорт",
+      "en": "import"
+    },
+    "aliases": [
+      "отложенный импорт",
+      "ускорить запуск программы",
+      "импорт при первом использовании",
+      "lazy keyword"
+    ],
+    "keywords": [
+      "lazy",
+      "lazy import",
+      "PEP 810",
+      "__lazy_modules__",
+      "-X lazy_imports",
+      "startup"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "lazy import json",
+        "print('json' in sys.modules)  # → False — модуль ещё не загружен",
+        "print(json.dumps([1, 2]))  # → [1, 2]",
+        "print('json' in sys.modules)  # → True — загрузка случилась при обращении"
+      ],
+      [
+        "lazy import no_such_module_here  # ошибки нет: модуль ещё не ищется",
+        "print('импорт объявлен')  # → импорт объявлен",
+        "try:",
+        "    no_such_module_here.x",
+        "except ModuleNotFoundError as e:",
+        "    print(type(e).__name__)  # → ModuleNotFoundError"
+      ]
+    ],
+    "related": [
+      "import-from-import",
+      "importcycleerror",
+      "sys.set_lazy_imports",
+      "sys.modules"
+    ],
+    "related_errors": [
+      "modulenotfounderror",
+      "syntaxerror"
+    ]
   }
 ]

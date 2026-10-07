@@ -1,0 +1,1 @@
+Имена параметров в синтаксисе 15 карточек сверены с документацией CPython: `asyncio.sleep(delay, result=None)` вместо `seconds`, `sys.exit([arg])` вместо `status=0`, `time.gmtime/localtime/ctime([secs])` без несуществующей ключевой формы, `dataclasses.asdict(obj)`, `calendar.weekheader(width)` и другие — прежние имена давали TypeError при вызове ключевым словом

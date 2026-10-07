@@ -566,9 +566,13 @@ const MODE_VERSIONS = {
   "": PY_VERSIONS, added: versionsOf("added"),
   deprecated: versionsOf("deprecated"), removed: versionsOf("removed"),
 };
+/* Режим без версии — «событие было в Python 3»: тот же круг, что ряд версий
+   режима. «<3.0» событием не считается — иначе «появилось» пропускало бы
+   любую карточку (added есть у всех), и ни один ряд не пересчитывался. */
 function inPython(d, v, mode){
   if(!mode) return !v || availableIn(d, v);
-  return v ? d[mode] === v : Boolean(d[mode]);
+  const when = d[mode];
+  return v ? when === v : Boolean(when) && !when.startsWith("<");
 }
 
 /* Счётчик на кнопке отвечает «сколько останется, если нажать»: он считается

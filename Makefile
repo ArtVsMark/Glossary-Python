@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness assemble assemble-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links examples facts facts-check changelog-check changelog-preview changelog-collect changelog-rotate build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness assemble assemble-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links examples showcase facts facts-check changelog-check changelog-preview changelog-collect changelog-rotate build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -100,6 +100,9 @@ links: ## Проверить, что ссылки документации ра�
 
 examples: ## Исполнить примеры карточек: падение обязано быть названо в примере
 	$(BIN)/python scripts/check_examples.py
+
+showcase: ## Открыть витрину в безголовом браузере: счётчик и переход по якорю
+	$(BIN)/python scripts/check_showcase_runs.py
 
 facts: ## Переписать числа в README из источников
 	$(BIN)/python scripts/facts.py --render --check

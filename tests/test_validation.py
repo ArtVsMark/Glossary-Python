@@ -132,11 +132,12 @@ def test_translated_errors_on_missing_summary_language():
     assert "'en'" in issues[0].message
 
 
-def test_translated_only_warns_on_missing_body():
-    """Тело — не сводка: его отсутствие не делает карточку сломанной."""
+def test_translated_errors_on_missing_body():
+    """Тела заполнены у всех карточек (#114) — новая карточка без тела красная."""
     glossary = make_glossary(make_entry(body=Text(ru="Есть.", en="")))
     issues = list(rule_translated(glossary, CFG))
-    assert [i.severity for i in issues] == [Severity.WARNING]
+    assert [i.severity for i in issues] == [Severity.ERROR]
+    assert "тело" in issues[0].message and "'en'" in issues[0].message
 
 
 def test_untranslated_label_is_an_error():

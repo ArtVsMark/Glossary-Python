@@ -105,8 +105,8 @@ def test_validate_fails_on_broken_data(tmp_path: Path):
 def test_validate_strict_turns_warnings_into_failure(tmp_path: Path):
     warned = dump_glossary(
         make_glossary(
-            make_entry(id="a", summary=Text(ru="Коротко", en="Short")),
-            make_entry(id="b", summary=Text(ru="Коротко", en="Short")),
+            make_entry(id="a", title=Text("a()", "a()"), summary=Text("Мало", "Short")),
+            make_entry(id="b", title=Text("b()", "b()"), summary=Text("Мало", "Short")),
         ),
         tmp_path / "glossary.json",
     )

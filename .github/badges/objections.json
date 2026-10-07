@@ -3,67 +3,16 @@
   "schema_of": "замечания витрины к содержанию глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T10:24:15+00:00",
+  "generated_at": "2026-10-07T11:38:25+00:00",
   "snapshot": {
-    "cards": 1349,
+    "cards": 1356,
     "schema_version": 4,
-    "digest": "a60a2b97e3fe"
+    "digest": "fe1168826614"
   },
   "totals": {
     "errors": 0,
-    "warnings": 31,
-    "cards_affected": 29
+    "warnings": 0,
+    "cards_affected": 0
   },
-  "findings": [
-    {
-      "rule": "summary-length",
-      "severity": "warning",
-      "scope": "card",
-      "message": "сводка короче 30 символов (27)",
-      "count": 29,
-      "cards": [
-        "bytearray.endswith",
-        "bytearray.isascii",
-        "bytearray.lstrip",
-        "bytearray.reverse",
-        "bytearray.rstrip",
-        "bytearray.splitlines",
-        "bytearray.startswith",
-        "bytes.lstrip",
-        "repr-vs-str",
-        "memoryerror",
-        "grade-buckets-range-lookups",
-        "operator.ge",
-        "operator.gt",
-        "operator.iand",
-        "operator.imod",
-        "operator.imul",
-        "operator.isub",
-        "operator.le",
-        "operator.lt",
-        "operator.ne",
-        "os.rmdir",
-        "os.startfile",
-        "re.escape",
-        "match-case",
-        "math.copysign",
-        "math.cosh",
-        "math.exp2",
-        "math.sinh",
-        "math.tanh"
-      ]
-    },
-    {
-      "rule": "section-size",
-      "severity": "warning",
-      "scope": "glossary",
-      "message": "раздел 'Встроенные типы' содержит 1 карточк(и) — тема покрыта не полностью",
-      "count": 2,
-      "cards": [],
-      "details": [
-        "раздел 'Встроенные типы' содержит 1 карточк(и) — тема покрыта не полностью",
-        "раздел 'Модуль ctypes' содержит 1 карточк(и) — тема покрыта не полностью"
-      ]
-    }
-  ]
+  "findings": []
 }

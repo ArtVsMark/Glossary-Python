@@ -70,6 +70,12 @@ def test_name_seen_later_than_it_appeared_is_excused():
     assert check_added.findings([card(late, "3.12")], snapshots) == []
 
 
+def test_backported_name_seen_earlier_is_excused():
+    early = next(iter(check_added.BACKPORTED))
+    snapshots = [dump("3.11", early), dump("3.13", early)]
+    assert check_added.findings([card(early, "3.12")], snapshots) == []
+
+
 def test_one_snapshot_is_not_a_verdict(tmp_path: Path):
     path = tmp_path / "inventory-3.14.json"
     path.write_text(json.dumps(dump("3.14", "old.f")), encoding="utf-8")
@@ -111,3 +117,4 @@ def test_excused_names_exist_in_the_cards():
     entries = raw["entries"] if isinstance(raw, dict) else raw
     known = {name for entry in entries for name in check_added.names(entry)}
     assert set(check_added.SEEN_LATER) <= known
+    assert set(check_added.BACKPORTED) <= known

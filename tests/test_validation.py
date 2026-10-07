@@ -21,6 +21,7 @@ from glossary.validation import (
     rule_duplicate_title,
     rule_example_compiles,
     rule_examples,
+    rule_function_title,
     rule_id_format,
     rule_kind,
     rule_label_translated,
@@ -654,6 +655,7 @@ def test_all_rules_are_registered():
         rule_version_format,
         rule_added,
         rule_deprecated_text,
+        rule_function_title,
     }
     assert set(RULES) == expected
 
@@ -683,6 +685,7 @@ def test_rule_names_are_unique_and_stable():
         "label-translated",
         "added",
         "deprecated-text",
+        "function-title",
         "platforms",
         "platforms-summary",
         "related-errors-resolve",
@@ -746,3 +749,18 @@ def test_example_compiles_checks_each_block_on_its_own():
     entry = make_entry(examples=(("x = 1",), ("for x in range(3):",)))
     issues = list(rule_example_compiles(make_glossary(entry), CFG))
     assert [i.message.split(":")[0] for i in issues] == ["пример 2 не компилируется"]
+
+
+def test_function_title_lists_one_name():
+    entry = make_entry(kind="function", title="iter() / next()")
+    issues = list(rule_function_title(make_glossary(entry), CFG))
+    assert [(i.rule, i.severity) for i in issues] == [("function-title", Severity.ERROR)]
+
+
+@pytest.mark.parametrize(
+    ("kind", "title"),
+    [("function", "iter()"), ("construct", "try / except"), ("term", "Operator methods")],
+)
+def test_one_function_or_a_construct_passes(kind: str, title: str):
+    entry = make_entry(kind=kind, title=title)
+    assert list(rule_function_title(make_glossary(entry), CFG)) == []

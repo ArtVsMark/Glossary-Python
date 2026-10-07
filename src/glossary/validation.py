@@ -547,6 +547,30 @@ def rule_deprecated_text(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
             )
 
 
+LISTED_NAMES: Final = re.compile(r"\S\s*/\s*\S")
+"""Заголовок перечисляет имена через косую черту: «iter() / next()»."""
+
+
+def rule_function_title(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Карточка функции описывает одну функцию (#123).
+
+    Версия и платформы честны, только когда карточка об одном объекте:
+    «IntEnum / StrEnum» не может нести одну версию — 3.4 и 3.11. Набор API
+    разбивается на карточки, протокол держит карточку-понятие вида ``term``,
+    а конструкции языка («try / except») — вид ``construct`` или ``term``,
+    и правило их не касается.
+    """
+    for entry in g.entries:
+        if entry.kind == "function" and LISTED_NAMES.search(entry.title.en):
+            yield Issue(
+                Severity.ERROR,
+                "function-title",
+                f"заголовок {entry.title.en!r} перечисляет несколько имён — "
+                "одна функция, одна карточка",
+                entry.id,
+            )
+
+
 def rule_added(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """У карточки названа версия, с которой возможность есть (#122).
 
@@ -780,6 +804,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_related_resolves,
     rule_related_errors_resolve,
     rule_duplicate_title,
+    rule_function_title,
     rule_section_size,
 )
 """Реестр активных правил. Порядок определяет порядок вывода в отчёте."""

@@ -2178,8 +2178,8 @@
     },
     "kind": "construct",
     "summary": {
-      "ru": "Structural Pattern Matching (Python 3.10+). Позволяет сопоставлять значение с образцами: литералами, типами, структурами. case _ — универсальный паттерн (аналог else). Guard (if) добавляет дополнительное условие в ветку case.",
-      "en": "Structural pattern matching (Python 3.10+). It matches a value against patterns: literals, types, structures. case _ is the catch-all pattern (the counterpart of else). A guard (if) adds an extra condition to a case branch."
+      "ru": "Сопоставление с образцом (Python 3.10+): значение сравнивается с литералами, типами и структурами; case _ ловит всё остальное.",
+      "en": "Structural pattern matching (Python 3.10+): a value is matched against literals, types and structures; case _ catches everything else."
     },
     "body": {
       "ru": "Главная ловушка: одиночное имя в case — это не сравнение с переменной, а захват: оно всегда совпадает и связывает значение с этим именем. Чтобы сверять с константой, нужен литерал или имя через точку (например, Status.OK), иначе такой case перехватит вообще всё. Работает только с Python 3.10 и новее.",

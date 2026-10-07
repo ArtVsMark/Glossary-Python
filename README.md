@@ -9,7 +9,7 @@
 | :---: | :---: |
 | [![Карточек](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json) | [![Замечаний](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](#качество-данных) |
 
-Двуязычный справочник стандартной библиотеки Python: **<!--m:cards-->1349<!--/m:cards--> карточка**
+Двуязычный справочник стандартной библиотеки Python: **<!--m:cards-->1356<!--/m:cards--> карточка**
 в **<!--m:groups-->55<!--/m:groups--> разделах**. Каждая карточка — краткая сводка и развёрнутый разбор
 на русском и английском, синтаксис, исполняемые примеры, синонимы для поиска,
 связи с соседними темами, версия Python и ссылка на официальную документацию.
@@ -196,7 +196,7 @@ Python 3.15 снимается отдельным прогоном с право
 свой. Планку держит `tests/completeness_floor.json`: неописанного не становится
 больше, и число может вырасти без единой правки карточек — язык прирастает сам.
 
-Текущее состояние: **<!--m:errors-->0<!--/m:errors--> ошибок, <!--m:warnings-->31<!--/m:warnings--> предупреждения**. Число предупреждений
+Текущее состояние: **<!--m:errors-->0<!--/m:errors--> ошибок, <!--m:warnings-->0<!--/m:warnings--> предупреждения**. Число предупреждений
 зафиксировано в `tests/quality_baseline.json` — храповик не даёт замечаниям
 расти и напоминает опустить планку, когда данные становятся чище.
 

@@ -49,6 +49,8 @@ SEEN_LATER: Final[dict[str, str]] = {
     "а у модуля с __all__ инвентарь видит только его",
     "enum.show_flag_values": "есть с 3.11, но в enum.__all__ вошло в 3.15",
     "hashlib.scrypt": "есть с 3.6, но в hashlib.__all__ вошло в 3.15",
+    "asyncio.TaskGroup": "есть с 3.11, но в asyncio.__all__ вошло в 3.12",
+    "traceback.print_list": "есть с Python 2, но в traceback.__all__ вошло в 3.14",
 }
 """Имена, которые инвентарь видит позже, чем они появились в языке.
 

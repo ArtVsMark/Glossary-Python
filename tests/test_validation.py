@@ -23,6 +23,7 @@ from glossary.validation import (
     rule_examples,
     rule_function_title,
     rule_id_format,
+    rule_inherited_summary,
     rule_kind,
     rule_label_translated,
     rule_language_script,
@@ -474,6 +475,32 @@ def test_filled_lifecycle_passes():
     assert list(rule_deprecated_text(make_glossary(entry), CFG)) == []
 
 
+@pytest.mark.parametrize(
+    "en", ["Base class for arithmetic errors", "Attribute not found."]
+)
+def test_base_class_docstring_in_summary_is_an_error(en: str):
+    entry = make_entry(
+        title=Text(ru="decimal.Clamped", en="decimal.Clamped"), summary=_summary(en)
+    )
+    issues = list(rule_inherited_summary(make_glossary(entry), CFG))
+    assert [(i.rule, i.severity) for i in issues] == [
+        ("inherited-summary", Severity.ERROR)
+    ]
+
+
+def test_own_docstring_in_summary_passes():
+    title = Text(ru="ZeroDivisionError", en="ZeroDivisionError")
+    doc = "Second argument to a division or modulo operation was zero."
+    entry = make_entry(title=title, summary=_summary(doc))
+    assert list(rule_inherited_summary(make_glossary(entry), CFG)) == []
+
+
+def test_own_words_pass():
+    summary = _summary("The exponent of a decimal result was changed to fit the range.")
+    entry = make_entry(summary=summary)
+    assert list(rule_inherited_summary(make_glossary(entry), CFG)) == []
+
+
 def test_filled_added_passes():
     assert list(rule_added(make_glossary(make_entry(added="<3.0")), CFG)) == []
 
@@ -656,6 +683,7 @@ def test_all_rules_are_registered():
         rule_added,
         rule_deprecated_text,
         rule_function_title,
+        rule_inherited_summary,
     }
     assert set(RULES) == expected
 
@@ -686,6 +714,7 @@ def test_rule_names_are_unique_and_stable():
         "added",
         "deprecated-text",
         "function-title",
+        "inherited-summary",
         "platforms",
         "platforms-summary",
         "related-errors-resolve",

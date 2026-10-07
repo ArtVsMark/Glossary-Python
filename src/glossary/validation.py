@@ -8,6 +8,7 @@
 предупреждения формируют бэклог по качеству данных и не блокируют работу.
 """
 
+import builtins
 import itertools
 import re
 import sys
@@ -547,6 +548,44 @@ def rule_deprecated_text(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
             )
 
 
+def _first_line(doc: str) -> str:
+    """Первая строка docstring без завершающей точки — так её пишут в сводку."""
+    return doc.strip().splitlines()[0].rstrip(".")
+
+
+EXCEPTION_DOCSTRINGS: Final[dict[str, str]] = {
+    _first_line(obj.__doc__): name
+    for name, obj in sorted(vars(builtins).items())
+    if isinstance(obj, type) and issubclass(obj, BaseException) and obj.__doc__
+}
+"""Первая строка ``__doc__`` встроенного исключения → имя класса (#85).
+
+Снимается с работающего интерпретатора: текст docstring между версиями
+меняется, и сверять сводку стоит с тем, что видит сам автор карточки.
+"""
+
+
+def rule_inherited_summary(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Английская сводка — не docstring чужого исключения (#85).
+
+    Так сводка попадала в карточку, когда её брали из ``__doc__`` класса, а
+    класс своего docstring не имел и наследовал его от базового: двенадцать
+    сигналов decimal описывались строкой «Base class for arithmetic errors».
+    Русская половина при этом была верной, и расхождение не видел никто.
+    """
+    for entry in g.entries:
+        owner = EXCEPTION_DOCSTRINGS.get(entry.summary.en.strip().rstrip("."))
+        if owner is None or entry.title.en.rpartition(".")[2] == owner:
+            continue
+        yield Issue(
+            Severity.ERROR,
+            "inherited-summary",
+            f"английская сводка — docstring встроенного {owner}, "
+            "а не описание этой карточки",
+            entry.id,
+        )
+
+
 LISTED_NAMES: Final = re.compile(r"\S\s*/\s*\S")
 """Заголовок перечисляет имена через косую черту: «iter() / next()»."""
 
@@ -797,6 +836,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_version_format,
     rule_added,
     rule_deprecated_text,
+    rule_inherited_summary,
     rule_platforms,
     rule_platforms_summary,
     rule_examples,

@@ -420,10 +420,10 @@ def test_before_marker_precedes_the_same_version():
     assert list(rule_version_format(glossary, CFG)) == []
 
 
-def test_missing_added_is_a_warning_for_now():
+def test_missing_added_is_an_error():
     """Пустое added не отличает «есть с Python 2» от «не проверяли» (#122)."""
     issues = list(rule_added(make_glossary(make_entry(added="")), CFG))
-    assert [i.severity for i in issues] == [Severity.WARNING]
+    assert [i.severity for i in issues] == [Severity.ERROR]
 
 
 def test_filled_added_passes():

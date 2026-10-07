@@ -688,6 +688,16 @@ def test_bare_and_qualified_name_with_one_docs_link_are_a_duplicate():
     assert len(issues) == 1 and "a и b" in issues[0].message
 
 
+def test_names_differing_in_case_are_not_a_duplicate():
+    """``calendar.Calendar`` — класс, ``calendar.calendar()`` — функция: имена
+    Python различают регистр, и это два объекта, а не одна карточка дважды."""
+    glossary = make_glossary(
+        make_entry(id="a", title=Text("calendar.Calendar", "calendar.Calendar")),
+        make_entry(id="b", title=Text("calendar.calendar()", "calendar.calendar()")),
+    )
+    assert list(rule_duplicate_title(glossary, CFG)) == []
+
+
 def test_same_method_name_on_different_types_is_not_a_duplicate():
     """``str.count`` и ``list.count`` — разные методы с разными ссылками."""
     glossary = make_glossary(

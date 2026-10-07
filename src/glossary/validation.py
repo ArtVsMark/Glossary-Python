@@ -858,8 +858,12 @@ def rule_related_errors_resolve(g: Glossary, cfg: ValidationConfig) -> Iterator[
 
 
 def _title_key(title: str) -> str:
-    """Заголовок для сравнения: без регистра и без ``()`` вызова на конце."""
-    return title.strip().removesuffix("()").lower()
+    """Заголовок для сравнения: без ``()`` вызова на конце.
+
+    Регистр сохраняется: имена Python его различают, и ``calendar.Calendar``
+    (класс) с ``calendar.calendar()`` (функцией) — два объекта, а не дубль.
+    """
+    return title.strip().removesuffix("()")
 
 
 def rule_duplicate_title(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:

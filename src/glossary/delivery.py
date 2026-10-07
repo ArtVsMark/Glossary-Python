@@ -31,6 +31,13 @@
 потребителя на него остались ссылки. Без списка такая ссылка молча ведёт в
 пустоту; со списком потребитель перенаправляет её сам. Источник — файл
 ``data/moved.json`` рядом с каталогом карточек.
+
+``navigation`` — как разложить карточки по разделам и семействам и как их
+подписать (форма 6.1): порядок семейств, их подписи ``{ru, en}`` и раздел →
+``{group, ru, en}``. Это та же таблица, что получает витрина
+(:func:`glossary.taxonomy.table`): классификация живёт в одном месте, и
+потребителю не нужно держать свою копию, которая разойдётся с нашей на первом
+новом разделе (правило 214; так она и появилась у грейдера — #1573).
 """
 
 import copy
@@ -42,6 +49,7 @@ from glossary.contracts import envelope
 from glossary.errors import DataFormatError
 from glossary.loader import digest, project_root
 from glossary.models import COLOR_GROUPS, SCHEMA_VERSION
+from glossary.taxonomy import table
 
 if TYPE_CHECKING:
     from pathlib import Path
@@ -62,7 +70,7 @@ __all__ = [
 SCHEMA_OF: Final = "карточки глоссария по группам, в форме data/cards/"
 """Чего именно эта версия (правило каталога 164)."""
 
-FORM_MINOR: Final = 0
+FORM_MINOR: Final = 1
 """Минор формы: растёт на новом необязательном поле, сбрасывается с мажором."""
 
 FORM: Final = f"{SCHEMA_VERSION}.{FORM_MINOR}"
@@ -142,6 +150,9 @@ def collect(directory: Path | None = None) -> dict[str, Any]:
         },
         "groups": groups,
         "moved": moved(directory, published),
+        "navigation": table(
+            sorted({card["section"] for cards in groups.values() for card in cards})
+        ),
     }
 
 
@@ -163,6 +174,11 @@ def schema() -> dict[str, Any]:
     entry["required"] = [name for name in entry["required"] if name != "color_group"]
     entry["properties"].pop("color_group", None)
     text = {"type": "string", "minLength": 1}
+    defs["label"] = {
+        "type": "object",
+        "required": ["ru", "en"],
+        "properties": {"ru": text, "en": text},
+    }
     return {
         "$schema": cards["$schema"],
         "title": "Glossary-Python delivery",
@@ -201,6 +217,29 @@ def schema() -> dict[str, Any]:
                 "type": "object",
                 "description": "Куда переехали слитые карточки: старый id → новый.",
                 "additionalProperties": {"type": "string", "minLength": 1},
+            },
+            "navigation": {
+                "type": "object",
+                "description": (
+                    "Разделы и семейства: порядок семейств, их подписи и "
+                    "раздел → {group, ru, en}. Та же таблица, что у витрины."
+                ),
+                "required": ["groups", "labels", "sections"],
+                "properties": {
+                    "groups": {"type": "array", "items": text},
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {"$ref": "#/$defs/label"},
+                    },
+                    "sections": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "allOf": [{"$ref": "#/$defs/label"}],
+                            "required": ["group"],
+                            "properties": {"group": text},
+                        },
+                    },
+                },
             },
             "groups": {
                 "type": "object",

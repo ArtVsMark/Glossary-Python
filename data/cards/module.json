@@ -17670,9 +17670,13 @@
         "import math",
         "print(math.nextafter(1.0, 2.0))   # → 1.0000000000000002",
         "print(math.nextafter(1.0, 0.0))   # → 0.9999999999999999",
-        "print(math.nextafter(1.0, 2.0, steps=2))   # → 1.0000000000000004",
         "print(math.nextafter(0.0, 1.0))   # → 5e-324",
         "print(math.nextafter(2.0, 2.0))   # → 2.0"
+      ],
+      [
+        "# Python 3.12+",
+        "import math",
+        "print(math.nextafter(1.0, 2.0, steps=2))   # → 1.0000000000000004"
       ]
     ],
     "related": [
@@ -20014,6 +20018,7 @@
         "print(isinstance('x', (bytes, bytearray, memoryview)))   # → False"
       ],
       [
+        "# Python 3.12+",
         "import collections.abc as abc",
         "# Либо abc.Buffer (появился в 3.12) — он про поддержку буферного протокола:",
         "print(isinstance(b'x', abc.Buffer))   # → True",
@@ -21348,10 +21353,14 @@
       [
         "import random",
         "print(random.expovariate(1.0) >= 0.0)   # → True",
-        "print(type(random.expovariate()).__name__)   # → float",
         "print(round(sum(random.expovariate(2.0) for _ in range(10000)) / 10000, 1))   # → 0.5",
         "print(random.expovariate(1000.0) < 1.0)   # → True",
         "print(random.expovariate(0.0))   # → ZeroDivisionError"
+      ],
+      [
+        "# Python 3.12+",
+        "import random",
+        "print(type(random.expovariate()).__name__)   # → float"
       ]
     ],
     "related": [
@@ -25819,7 +25828,11 @@
         "print(os.path.splitdrive('C:\\\\Users\\\\ivan'))   # → только Windows: ('C:', '\\\\Users\\\\ivan'); на Unix диск не выделяется — ('', 'C:\\\\Users\\\\ivan')",
         "drive, rest = os.path.splitdrive('/tmp/data.csv')",
         "print(drive + rest)   # → /tmp/data.csv — склейка частей всегда восстанавливает исходный путь",
-        "print(os.path.splitdrive(''))   # → ('', '')",
+        "print(os.path.splitdrive(''))   # → ('', '')"
+      ],
+      [
+        "# Python 3.12+",
+        "import os",
         "print(os.path.splitroot('/a/b'))   # → ('', '/', 'a/b') — splitroot дополнительно отделяет корень, splitdrive оставляет его в остатке"
       ]
     ],
@@ -26912,6 +26925,7 @@
     ],
     "examples": [
       [
+        "# Python 3.13+ (на Windows — 3.12+)",
         "import os",
         "print(os.path.isdevdrive('.'))   # → False",
         "print(os.path.isdevdrive('нет-такого-пути'))   # → False (существование пути не проверяется, исключения нет)",
@@ -41712,7 +41726,10 @@
         "        return self.amount == other.amount",
         "print(Money(5) == Money(5))   # → True",
         "print(Money(5) == 5)   # → False: Python попробовал int.__eq__ и сравнил по тождеству",
-        "print(type(NotImplemented).__name__)   # → NotImplementedType",
+        "print(type(NotImplemented).__name__)   # → NotImplementedType"
+      ],
+      [
+        "# Python 3.14+",
         "bool(NotImplemented)   # → TypeError: с Python 3.14 в логическом контексте нельзя"
       ]
     ],
@@ -42442,6 +42459,7 @@
         "log.warning('чужой', extra={'user': 'bob'})  # → [anna] чужой"
       ],
       [
+        "# Python 3.13+",
         "import logging, sys",
         "h = logging.StreamHandler(sys.stdout)",
         "h.setFormatter(logging.Formatter('%(user)s/%(req)s %(message)s'))",
@@ -52346,6 +52364,7 @@
         "b.close()"
       ],
       [
+        "# Python 3.13+",
         "import sqlite3",
         "import warnings",
         "with warnings.catch_warnings(record=True) as caught:",
@@ -54344,7 +54363,12 @@
       [
         "import uuid",
         "u = uuid.uuid5(uuid.NAMESPACE_DNS, 'python.org')",
-        "print(u)  # → 886313e1-3b8a-5372-9b90-0c9aee199e5d",
+        "print(u)  # → 886313e1-3b8a-5372-9b90-0c9aee199e5d"
+      ],
+      [
+        "# Python 3.12+",
+        "import uuid",
+        "u = uuid.uuid5(uuid.NAMESPACE_DNS, 'python.org')",
         "print(u == uuid.uuid5(uuid.NAMESPACE_DNS, b'python.org'))  # → True"
       ]
     ],

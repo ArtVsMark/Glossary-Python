@@ -120,6 +120,22 @@ STDLIB_MODULES: Final[frozenset[str]] = frozenset(
         "struct",
         "time",
         "uuid",
+        # Первая волна #147 — учебный пласт: с этим учащийся сталкивается в
+        # задачах и тестах. Добавлен после карточек, поэтому полнота не упала.
+        "asyncio",
+        "glob",
+        "pickle",
+        "pprint",
+        "queue",
+        "secrets",
+        "tempfile",
+        "timeit",
+        "tomllib",
+        "traceback",
+        "types",
+        "warnings",
+        "weakref",
+        "zoneinfo",
     }
 )
 """Курируемый набор модулей.

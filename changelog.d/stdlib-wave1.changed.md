@@ -1,0 +1,1 @@
+измерение полноты видит 14 модулей учебного пласта — `asyncio`, `types`, `weakref`, `traceback`, `warnings`, `pickle`, `pprint`, `tempfile`, `secrets`, `queue`, `glob`, `timeit`, `zoneinfo`, `tomllib`; карточки к ним приехали раньше, поэтому описано 1499 из 1500 и планка не поднялась (#147)

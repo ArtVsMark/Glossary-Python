@@ -1,0 +1,70 @@
+# Красный прогон по расписанию доходит до человека задачей (правило каталога 142).
+#
+# ПОЧЕМУ ОТДЕЛЬНЫЙ ПРОГОН, А НЕ ШАГ В КАЖДОМ. Шагу `if: failure()` внутри
+# сторожимого прогона понадобилось бы право писать задачи, и досталось бы оно
+# всему остальному в том прогоне. Здесь право одно и только у сторожа.
+#
+# ЧТО СТОРОЖИТСЯ. Прогоны с расписанием, кроме python-next: у того своя
+# тревога (работа alarm в python-next.yml). Что ни один прогон с расписанием
+# не остался без сторожа, держит tests/test_schedule_alarm.py — переименование
+# прогона иначе отключило бы событие молча.
+#
+# ГРАНИЦА. Прогон, умерший так, что события о завершении не пришло вовсе,
+# сторож не ловит: отличить это от «не запускалось» можно только опросом по
+# времени, то есть ещё одним прогоном по расписанию с той же бедой.
+name: schedule-alarm
+
+on:
+  workflow_run:
+    workflows: [CI, "Значки, факты, замечания и полнота", rules-inbox]
+    types: [completed]
+    branches: [main]
+  # Ручная кнопка — свести тревогу руками: например, закрыть её, когда прогон
+  # починен вне расписания и ждать следующего запуска не хочется.
+  workflow_dispatch:
+    inputs:
+      name:
+        description: Имя прогона, как в его поле name
+        required: true
+      path:
+        description: Файл прогона, например .github/workflows/ci.yml
+        required: true
+      conclusion:
+        description: Исход — success или failure
+        required: true
+      run_url:
+        description: Адрес прогона
+        required: true
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: schedule-alarm-${{ github.event.workflow_run.path || inputs.path }}
+  cancel-in-progress: false
+
+jobs:
+  alarm:
+    name: Тревога о красном по расписанию
+    # Только расписание: у толчка и изменения адресат уже есть — их автор.
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.event == 'schedule'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Задача-тревога сведена с исходом прогона
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NAME: ${{ github.event.workflow_run.name || inputs.name }}
+          WORKFLOW_PATH: ${{ github.event.workflow_run.path || inputs.path }}
+          CONCLUSION: ${{ github.event.workflow_run.conclusion || inputs.conclusion }}
+          RUN_URL: ${{ github.event.workflow_run.html_url || inputs.run_url }}
+        run: |
+          python scripts/schedule_alarm.py --name "$NAME" --path "$WORKFLOW_PATH" \
+            --conclusion "$CONCLUSION" --run-url "$RUN_URL"

@@ -18,6 +18,7 @@ from glossary import delivery
 from glossary.cards import assemble, default_cards_dir, read_cards
 from glossary.cli import EXIT_OK, EXIT_USAGE, main
 from glossary.contracts import PRODUCER
+from glossary.errors import DataFormatError
 from glossary.loader import digest, load_glossary, project_root
 from glossary.models import SCHEMA_VERSION
 
@@ -202,3 +203,61 @@ def test_form_journal_names_the_current_form():
 def test_repository_delivery_matches_its_schema():
     jsonschema = pytest.importorskip("jsonschema", reason="extra 'schema' не установлен")
     jsonschema.validate(delivery.collect(), delivery.schema())
+
+
+# --------------------------- переезды ---------------------------
+
+
+def write_moved(cards_dir: Path, mapping: dict[str, str]) -> None:
+    """Положить ``moved.json`` рядом с каталогом карточек, как ``data/moved.json``."""
+    (cards_dir.parent / delivery.MOVED_FILE).write_text(
+        json.dumps(mapping, ensure_ascii=False), "utf-8"
+    )
+
+
+def test_no_moved_file_means_no_moves(tmp_path: Path):
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="a")]})
+    assert delivery.collect(source)["moved"] == {}
+
+
+def test_moved_reaches_the_delivery(tmp_path: Path):
+    """Слитая карточка исчезла — потребитель узнаёт, куда вести её ссылки."""
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="new")]})
+    write_moved(source, {"old": "new", "_описание": "пояснение"})
+    assert delivery.collect(source)["moved"] == {"old": "new"}
+
+
+def test_move_into_nowhere_is_refused(tmp_path: Path):
+    """Перенаправить ссылку в пустоту хуже, чем не перенаправлять вовсе."""
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="a")]})
+    write_moved(source, {"old": "нет-такой"})
+    with pytest.raises(DataFormatError, match="несуществующую"):
+        delivery.collect(source)
+
+
+def test_moved_card_must_be_gone(tmp_path: Path):
+    """Переехавшая карточка, оставшаяся на месте, — две живые копии."""
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="a"), card(id="b")]})
+    write_moved(source, {"a": "b"})
+    with pytest.raises(DataFormatError, match="ещё существуют"):
+        delivery.collect(source)
+
+
+def test_broken_moved_file_is_a_data_error(tmp_path: Path):
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="a")]})
+    (source.parent / delivery.MOVED_FILE).write_text("{", "utf-8")
+    with pytest.raises(DataFormatError, match="не JSON"):
+        delivery.collect(source)
+
+
+def test_moved_target_must_be_a_string(tmp_path: Path):
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="a")]})
+    write_moved(source, {"old": 1})  # type: ignore[dict-item]
+    with pytest.raises(DataFormatError, match="строкой"):
+        delivery.collect(source)
+
+
+@pytest.mark.live_surface
+def test_repository_moves_point_at_live_cards():
+    """Переезды дерева сверены с карточками: сборка выгрузки не падает."""
+    delivery.collect()

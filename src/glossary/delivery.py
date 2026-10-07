@@ -25,14 +25,21 @@
 журналу узнаёт, что изменилось, когда закрепление отстало. Форму выгрузки
 описывает ``delivery.schema.json`` — она собирается из
 ``data/glossary.schema.json``, а не пишется второй раз руками.
+
+``moved`` — куда переехали карточки, которых больше нет: «старый id → новый»
+(форма 4.1, #79). Карточку сливают с дублем, и её ``id`` исчезает, а у
+потребителя на него остались ссылки. Без списка такая ссылка молча ведёт в
+пустоту; со списком потребитель перенаправляет её сам. Источник — файл
+``data/moved.json`` рядом с каталогом карточек.
 """
 
 import copy
 import json
 from typing import TYPE_CHECKING, Any, Final
 
-from glossary.cards import PUBLISHED, assemble, read_cards
+from glossary.cards import PUBLISHED, assemble, default_cards_dir, read_cards
 from glossary.contracts import envelope
+from glossary.errors import DataFormatError
 from glossary.loader import digest, project_root
 from glossary.models import COLOR_GROUPS, SCHEMA_VERSION
 
@@ -48,19 +55,23 @@ __all__ = [
     "as_schema_json",
     "collect",
     "groups_of",
+    "moved",
     "schema",
 ]
 
 SCHEMA_OF: Final = "карточки глоссария по группам, в форме data/cards/"
 """Чего именно эта версия (правило каталога 164)."""
 
-FORM_MINOR: Final = 0
+FORM_MINOR: Final = 1
 """Минор формы: растёт на новом необязательном поле, сбрасывается с мажором."""
 
 FORM: Final = f"{SCHEMA_VERSION}.{FORM_MINOR}"
 """Версия формы карточки в выгрузке; мажор — ``schema_version``."""
 
 CARD_SCHEMA: Final = "data/glossary.schema.json"
+
+MOVED_FILE: Final = "moved.json"
+"""Файл переездов — рядом с каталогом карточек: ``data/moved.json``."""
 
 
 def groups_of(entries: list[Entry]) -> dict[str, list[dict[str, Any]]]:
@@ -79,6 +90,38 @@ def groups_of(entries: list[Entry]) -> dict[str, list[dict[str, Any]]]:
     return dict(sorted(grouped.items()))
 
 
+def moved(
+    directory: Path | None = None, ids: frozenset[str] = frozenset()
+) -> dict[str, str]:
+    """Прочитать переезды «старый id → новый» и сверить их с карточками.
+
+    Файла нет — переездов нет. Если переданы ``ids`` опубликованных карточек,
+    каждый новый ``id`` обязан среди них быть, а старый — нет: ссылка, которую
+    перенаправили в пустоту, хуже ссылки, которую не перенаправили вовсе.
+
+    Raises:
+        DataFormatError: файл повреждён или переезд ведёт не туда.
+    """
+    path = (directory or default_cards_dir()).parent / MOVED_FILE
+    if not path.exists():
+        return {}
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise DataFormatError(f"{path}: не JSON — {exc}") from exc
+    mapping = {k: v for k, v in raw.items() if not k.startswith("_")}
+    if not all(isinstance(v, str) for v in mapping.values()):
+        raise DataFormatError(f"{path}: новый id должен быть строкой")
+    if ids:
+        alive = sorted(old for old in mapping if old in ids)
+        if alive:
+            raise DataFormatError(f"{path}: карточки ещё существуют: {alive}")
+        lost = sorted(f"{old} → {new}" for old, new in mapping.items() if new not in ids)
+        if lost:
+            raise DataFormatError(f"{path}: переезд в несуществующую карточку: {lost}")
+    return dict(sorted(mapping.items()))
+
+
 def collect(directory: Path | None = None) -> dict[str, Any]:
     """Собрать выгрузку из карточек ``data/cards/``.
 
@@ -88,6 +131,7 @@ def collect(directory: Path | None = None) -> dict[str, Any]:
     entries = read_cards(directory)
     glossary = assemble(entries)
     groups = groups_of(entries)
+    published = frozenset(card["id"] for cards in groups.values() for card in cards)
     return {
         **envelope(SCHEMA_OF),
         "form": FORM,
@@ -97,6 +141,7 @@ def collect(directory: Path | None = None) -> dict[str, Any]:
             "digest": digest(glossary),
         },
         "groups": groups,
+        "moved": moved(directory, published),
     }
 
 
@@ -151,6 +196,11 @@ def schema() -> dict[str, Any]:
                     "schema_version": {"const": SCHEMA_VERSION},
                     "digest": text,
                 },
+            },
+            "moved": {
+                "type": "object",
+                "description": "Куда переехали слитые карточки: старый id → новый.",
+                "additionalProperties": {"type": "string", "minLength": 1},
             },
             "groups": {
                 "type": "object",

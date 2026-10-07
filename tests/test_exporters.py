@@ -3,6 +3,7 @@
 import csv
 import io
 import json
+import re
 
 import pytest
 
@@ -162,3 +163,18 @@ def test_markdown_fences_each_example_block():
     rendered = get_exporter("markdown").render(glossary)
     assert "```python\na = 1\n```" in rendered
     assert "```python\nb = 2\n```" in rendered
+
+
+def _labels(template: str, lang: str) -> set[str]:
+    """Ключи подписей одного языка из таблицы I18N шаблона."""
+    body = template.split(f"  {lang}:{{", 1)[1].split("\n  }", 1)[0]
+    return set(re.findall(r"(\w+):\"", body))
+
+
+@pytest.mark.live_surface
+def test_every_label_the_page_uses_exists_in_both_languages():
+    """Подпись, забытая в одной таблице, показала бы на витрине ``undefined``."""
+    template = load_template()
+    used = set(re.findall(r"\bt\(\"(\w+)\"\)", template))
+    assert used <= _labels(template, "ru")
+    assert used <= _labels(template, "en")

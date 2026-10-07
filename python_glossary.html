@@ -407,7 +407,7 @@ const STORE = { theme:"glossary-theme", lang:"glossary-lang" };
 
 const I18N = {
   ru:{
-    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)", deprecated:"устарело в", deprecatedHint:"Объявлено устаревшим в этой версии Python и может быть удалено", removed:"до", removedHint:"Удалено или будет удалено в этой версии Python: работает в версиях раньше неё",
+    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", sinceAll:"все Python 3", sinceAllHint:"Есть во всех версиях Python 3 — появилось ещё в Python 2", sinceHint:"Появилось в этой версии Python и работает в более новых", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)", deprecated:"устарело в", deprecatedHint:"Объявлено устаревшим в этой версии Python и может быть удалено", removed:"до", removedHint:"Удалено или будет удалено в этой версии Python: работает в версиях раньше неё",
     download:"Скачать", downloaded:"Готово", theme:"Сменить тему",
     search:"Поиск по имени, синонимам, ключевым словам…",
     bySection:"По разделам", kind:"Вид", group:"Раздел", moduleWord:"модуль",
@@ -422,7 +422,7 @@ const I18N = {
     resetHint:"Удалить сохранённые тему и язык"
   },
   en:{
-    title:"Python Glossary", subtitle:"Standard library reference", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
+    title:"Python Glossary", subtitle:"Standard library reference", sinceAll:"all Python 3", sinceAllHint:"Available in every Python 3 release — it dates back to Python 2", sinceHint:"Added in this Python version and available in later ones", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
     download:"Download", downloaded:"Saved", theme:"Toggle theme",
     search:"Search by name, alias, keyword…",
     bySection:"By section", kind:"Kind", group:"Section", moduleWord:"module",
@@ -561,9 +561,12 @@ const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 
 function cardHtml(d){
   const cgv = CG_VAR[d.color_group] || "var(--c-op)";
-  /* Жизненный цикл (#122): «<3.0» — есть с давних времён, значок не нужен. */
-  const since = d.added && !d.added.startsWith("<")
-    ? `<span class="badge ver">Python ${esc(d.added)}+</span>` : "";
+  /* Жизненный цикл (#122): значок у каждой карточки. Без него «<3.0» читался как
+     «версия не указана» — учащийся не отличал «было всегда» от «не знаем». */
+  const since = !d.added ? ""
+    : d.added.startsWith("<")
+      ? `<span class="badge ver" title="${esc(t("sinceAllHint"))}">${esc(t("sinceAll"))}</span>`
+      : `<span class="badge ver" title="${esc(t("sinceHint"))}">Python ${esc(d.added)}+</span>`;
   const gone = d.removed
     ? `<span class="badge ver old" title="${esc(t("removedHint"))}">${esc(t("removed"))} ${esc(d.removed)}</span>`
     : d.deprecated

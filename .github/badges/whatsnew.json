@@ -3,7 +3,7 @@
   "schema_of": "что появилось и исчезло между версиями Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T19:39:57+00:00",
+  "generated_at": "2026-10-07T21:26:29+00:00",
   "versions": [
     "3.11",
     "3.12",
@@ -17,9 +17,93 @@
       "since": "3.11",
       "added": [
         {
+          "qualname": "ast.ParamSpec",
+          "module": "ast",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "ast.TypeAlias",
+          "module": "ast",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "ast.TypeVar",
+          "module": "ast",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "ast.TypeVarTuple",
+          "module": "ast",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "ast.type_param",
+          "module": "ast",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.TaskGroup",
+          "module": "asyncio",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.create_eager_task_factory",
+          "module": "asyncio",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.eager_task_factory",
+          "module": "asyncio",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "calendar.Day",
+          "module": "calendar",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "calendar.Month",
+          "module": "calendar",
+          "kind": "class",
+          "documented": true
+        },
+        {
           "qualname": "collections.abc.Buffer",
           "module": "collections.abc",
           "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "inspect.BufferFlags",
+          "module": "inspect",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "inspect.getasyncgenlocals",
+          "module": "inspect",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "inspect.getasyncgenstate",
+          "module": "inspect",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "inspect.markcoroutinefunction",
+          "module": "inspect",
+          "kind": "function",
           "documented": true
         },
         {
@@ -107,6 +191,24 @@
           "documented": true
         },
         {
+          "qualname": "tarfile.data_filter",
+          "module": "tarfile",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "tarfile.fully_trusted_filter",
+          "module": "tarfile",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "tarfile.tar_filter",
+          "module": "tarfile",
+          "kind": "function",
+          "documented": true
+        },
+        {
           "qualname": "threading.setprofile_all_threads",
           "module": "threading",
           "kind": "function",
@@ -115,6 +217,12 @@
         {
           "qualname": "threading.settrace_all_threads",
           "module": "threading",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "types.get_original_bases",
+          "module": "types",
           "kind": "function",
           "documented": true
         },
@@ -138,11 +246,18 @@
         }
       ],
       "removed": [
+        "ast.Bytes",
+        "ast.Ellipsis",
+        "ast.NameConstant",
+        "ast.Num",
+        "ast.Str",
+        "configparser.SafeConfigParser",
+        "locale.format",
         "sqlite3.enable_shared_cache"
       ],
       "totals": {
-        "added": 20,
-        "removed": 1,
+        "added": 38,
+        "removed": 8,
         "undocumented": 1
       }
     },
@@ -157,6 +272,30 @@
           "documented": true
         },
         {
+          "qualname": "asyncio.EventLoop",
+          "module": "asyncio",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "base64.z85decode",
+          "module": "base64",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "base64.z85encode",
+          "module": "base64",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "configparser.MultilineContinuationError",
+          "module": "configparser",
+          "kind": "exception",
+          "documented": true
+        },
+        {
           "qualname": "copy.replace",
           "module": "copy",
           "kind": "function",
@@ -166,6 +305,12 @@
           "qualname": "enum.EnumDict",
           "module": "enum",
           "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "glob.translate",
+          "module": "glob",
+          "kind": "function",
           "documented": true
         },
         {
@@ -235,8 +380,44 @@
           "documented": true
         },
         {
+          "qualname": "platform.AndroidVer",
+          "module": "platform",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "platform.IOSVersionInfo",
+          "module": "platform",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "platform.android_ver",
+          "module": "platform",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "platform.ios_ver",
+          "module": "platform",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "queue.ShutDown",
+          "module": "queue",
+          "kind": "exception",
+          "documented": true
+        },
+        {
           "qualname": "re.PatternError",
           "module": "re",
+          "kind": "exception",
+          "documented": true
+        },
+        {
+          "qualname": "signal.ItimerError",
+          "module": "signal",
           "kind": "exception",
           "documented": true
         },
@@ -253,6 +434,12 @@
           "documented": true
         },
         {
+          "qualname": "types.CapsuleType",
+          "module": "types",
+          "kind": "class",
+          "documented": true
+        },
+        {
           "qualname": "typing.get_protocol_members",
           "module": "typing",
           "kind": "function",
@@ -263,9 +450,17 @@
           "module": "typing",
           "kind": "function",
           "documented": true
+        },
+        {
+          "qualname": "warnings.deprecated",
+          "module": "warnings",
+          "kind": "class",
+          "documented": true
         }
       ],
       "removed": [
+        "configparser.LegacyInterpolation",
+        "locale.resetlocale",
         "re.error",
         "re.template",
         "typing.Annotated",
@@ -274,8 +469,8 @@
         "unittest.makeSuite"
       ],
       "totals": {
-        "added": 19,
-        "removed": 6,
+        "added": 32,
+        "removed": 8,
         "undocumented": 0
       }
     },
@@ -283,6 +478,66 @@
       "version": "3.14",
       "since": "3.13",
       "added": [
+        {
+          "qualname": "ast.Interpolation",
+          "module": "ast",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "ast.TemplateStr",
+          "module": "ast",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "ast.compare",
+          "module": "ast",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.FrameCallGraphEntry",
+          "module": "asyncio",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.FutureCallGraph",
+          "module": "asyncio",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.capture_call_graph",
+          "module": "asyncio",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.format_call_graph",
+          "module": "asyncio",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.future_add_to_awaited_by",
+          "module": "asyncio",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.future_discard_from_awaited_by",
+          "module": "asyncio",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "asyncio.print_call_graph",
+          "module": "asyncio",
+          "kind": "function",
+          "documented": true
+        },
         {
           "qualname": "bytearray.resize",
           "module": "builtins",
@@ -302,6 +557,18 @@
           "documented": true
         },
         {
+          "qualname": "configparser.InvalidWriteError",
+          "module": "configparser",
+          "kind": "exception",
+          "documented": true
+        },
+        {
+          "qualname": "configparser.UnnamedSectionDisabledError",
+          "module": "configparser",
+          "kind": "exception",
+          "documented": true
+        },
+        {
           "qualname": "decimal.IEEEContext",
           "module": "decimal",
           "kind": "function",
@@ -311,6 +578,12 @@
           "qualname": "float.from_number",
           "module": "builtins",
           "kind": "method",
+          "documented": true
+        },
+        {
+          "qualname": "fnmatch.filterfalse",
+          "module": "fnmatch",
+          "kind": "function",
           "documented": true
         },
         {
@@ -340,6 +613,12 @@
         {
           "qualname": "heapq.heapreplace_max",
           "module": "heapq",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "inspect.ispackage",
+          "module": "inspect",
           "kind": "function",
           "documented": true
         },
@@ -386,6 +665,24 @@
           "documented": true
         },
         {
+          "qualname": "pdb.get_default_backend",
+          "module": "pdb",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "pdb.set_default_backend",
+          "module": "pdb",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "platform.invalidate_caches",
+          "module": "platform",
+          "kind": "function",
+          "documented": true
+        },
+        {
           "qualname": "sys.is_remote_debug_enabled",
           "module": "sys",
           "kind": "function",
@@ -394,6 +691,12 @@
         {
           "qualname": "sys.remote_exec",
           "module": "sys",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "traceback.print_list",
+          "module": "traceback",
           "kind": "function",
           "documented": true
         },
@@ -429,11 +732,23 @@
         }
       ],
       "removed": [
-        "shutil.ExecError"
+        "asyncio.AbstractChildWatcher",
+        "asyncio.AbstractEventLoopPolicy",
+        "asyncio.DefaultEventLoopPolicy",
+        "asyncio.FastChildWatcher",
+        "asyncio.MultiLoopChildWatcher",
+        "asyncio.PidfdChildWatcher",
+        "asyncio.SafeChildWatcher",
+        "asyncio.ThreadedChildWatcher",
+        "asyncio.get_child_watcher",
+        "asyncio.set_child_watcher",
+        "shutil.ExecError",
+        "urllib.request.FancyURLopener",
+        "urllib.request.URLopener"
       ],
       "totals": {
-        "added": 24,
-        "removed": 1,
+        "added": 42,
+        "removed": 13,
         "undocumented": 0
       }
     },
@@ -446,6 +761,42 @@
           "module": "builtins",
           "kind": "exception",
           "documented": true
+        },
+        {
+          "qualname": "binascii.a2b_ascii85",
+          "module": "binascii",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "binascii.a2b_base32",
+          "module": "binascii",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "binascii.a2b_base85",
+          "module": "binascii",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "binascii.b2a_ascii85",
+          "module": "binascii",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "binascii.b2a_base32",
+          "module": "binascii",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "binascii.b2a_base85",
+          "module": "binascii",
+          "kind": "function",
+          "documented": false
         },
         {
           "qualname": "bytearray.take_bytes",
@@ -574,20 +925,87 @@
           "documented": true
         },
         {
+          "qualname": "types.FrameLocalsProxyType",
+          "module": "types",
+          "kind": "class",
+          "documented": false
+        },
+        {
+          "qualname": "types.LazyImportType",
+          "module": "types",
+          "kind": "class",
+          "documented": false
+        },
+        {
           "qualname": "typing.disjoint_base",
           "module": "typing",
           "kind": "function",
           "documented": true
+        },
+        {
+          "qualname": "unicodedata.block",
+          "module": "unicodedata",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "unicodedata.extended_pictographic",
+          "module": "unicodedata",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "unicodedata.grapheme_cluster_break",
+          "module": "unicodedata",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "unicodedata.indic_conjunct_break",
+          "module": "unicodedata",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "unicodedata.isxidcontinue",
+          "module": "unicodedata",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "unicodedata.isxidstart",
+          "module": "unicodedata",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "unicodedata.iter_graphemes",
+          "module": "unicodedata",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "zlib.adler32_combine",
+          "module": "zlib",
+          "kind": "function",
+          "documented": false
+        },
+        {
+          "qualname": "zlib.crc32_combine",
+          "module": "zlib",
+          "kind": "function",
+          "documented": false
         }
       ],
       "removed": [
         "collections.abc.ByteString",
+        "platform.java_ver",
         "typing.no_type_check_decorator"
       ],
       "totals": {
-        "added": 23,
-        "removed": 2,
-        "undocumented": 0
+        "added": 40,
+        "removed": 3,
+        "undocumented": 17
       }
     }
   ]

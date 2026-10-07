@@ -178,3 +178,15 @@ def test_every_label_the_page_uses_exists_in_both_languages():
     used = set(re.findall(r"\bt\(\"(\w+)\"\)", template))
     assert used <= _labels(template, "ru")
     assert used <= _labels(template, "en")
+
+
+@pytest.mark.live_surface
+def test_every_lifecycle_mode_has_a_label_and_a_hint():
+    """Подпись режима берётся по ключу из MODE_KEY — поиск по t("…") её не видит."""
+    template = load_template()
+    table = template.split("const MODE_KEY = {", 1)[1].split("}", 1)[0]
+    keys = set(re.findall(r':"(\w+)"', table))
+    assert keys == {"pyAdded", "pyDeprecated", "pyRemoved"}
+    needed = keys | {f"{key}Hint" for key in keys}
+    assert needed <= _labels(template, "ru")
+    assert needed <= _labels(template, "en")

@@ -536,7 +536,7 @@
     "syntax": "from typing import Optional\nOptional[X]  # эквивалентно X | None\n# Python 3.10+: X | None",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Optional",
-    "added": "3.10",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -668,8 +668,8 @@
       "en": "A boolean constant that is True only during static analysis (mypy, pyright). Lets you import types for annotations alone, avoiding circular imports at runtime."
     },
     "body": {
-      "ru": "Раз импорт под if TYPE_CHECKING в рантайме не выполняется, имя из него не должно попадать в вычисляемое выражение: аннотацию берут в кавычки либо ставят from __future__ import annotations в начале файла, иначе будет NameError при загрузке модуля. Побочный эффект — такие аннотации остаются строками, и всё, что читает типы во время работы программы (typing.get_type_hints, dataclasses, валидаторы), может не суметь их разрешить.",
-      "en": "Because the import under if TYPE_CHECKING never runs, the name must not end up in an expression that is actually evaluated: quote the annotation or put from __future__ import annotations at the top of the file, otherwise the module raises NameError on import. The side effect is that such annotations stay strings, so anything that inspects types at runtime — typing.get_type_hints, dataclasses, validation libraries — may fail to resolve them."
+      "ru": "Раз импорт под if TYPE_CHECKING в рантайме не выполняется, имя из него не должно попадать в вычисляемый код — в значения по умолчанию, cast(), isinstance. В аннотациях с Python 3.14 его можно писать без кавычек: аннотации вычисляются лениво, и модуль загрузится без ошибки (до 3.14 нужны были кавычки или from __future__ import annotations, иначе NameError при загрузке). Побочный эффект остаётся: всё, что читает типы во время работы программы (typing.get_type_hints, __annotations__, dataclasses, валидаторы), не сможет разрешить такое имя и получит NameError.",
+      "en": "Because the import under if TYPE_CHECKING never runs, the name must not end up in code that is actually evaluated — default values, cast(), isinstance. In annotations, since Python 3.14, you may write it unquoted: annotations are evaluated lazily and the module loads fine (before 3.14 you needed quotes or from __future__ import annotations, otherwise NameError on import). The side effect remains: anything that reads types at runtime (typing.get_type_hints, __annotations__, dataclasses, validation libraries) cannot resolve such a name and gets NameError."
     },
     "syntax": "from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from module import SomeType",
     "status": "ready",
@@ -868,7 +868,7 @@
     "syntax": "from typing import Union\nUnion[int, str]   # int или str\n# Python 3.10+: int | str",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/typing.html#typing.Union",
-    "added": "3.10",
+    "added": "3.5",
     "deprecated": "",
     "removed": "",
     "platforms": [

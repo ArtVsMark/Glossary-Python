@@ -411,12 +411,12 @@
     },
     "kind": "exception",
     "summary": {
-      "ru": "Вызывается, если импорт модуля не удался — модуль найден, но при загрузке произошла ошибка.",
-      "en": "Raised when a module import fails — the module was found, but something went wrong while loading it."
+      "ru": "Вызывается, если импорт не удался: модуль не найден (ModuleNotFoundError) или в from … import нет запрошенного имени.",
+      "en": "Raised when an import fails: the module cannot be found (ModuleNotFoundError) or a from … import names something the module lacks."
     },
     "body": {
-      "ru": "Главная путаница — с ModuleNotFoundError: он подкласс ImportError, поэтому except ImportError ловит сразу и «модуля вообще нет», и «модуль нашёлся, но при загрузке что-то упало». Отсюда грабли: try/except ImportError вокруг импорта необязательной зависимости молча проглотит настоящую поломку внутри самого модуля — его собственный битый импорт или опечатку в коде. У пойманного объекта есть атрибуты name и path, по ним видно, о каком именно модуле и файле речь.",
-      "en": "The usual confusion is with ModuleNotFoundError: it is a subclass of ImportError, so except ImportError catches both \"no such module\" and \"module found, but it blew up while loading\". That is the trap — wrapping an optional dependency in try/except ImportError silently swallows a real failure inside that module, such as its own broken import or a typo in its code. The caught object carries name and path attributes telling you which module and file actually failed."
+      "ru": "Главная путаница — с ModuleNotFoundError: он подкласс ImportError, поэтому except ImportError ловит сразу и «модуля вообще нет», и «модуль есть, но нужного имени в нём нет». Отсюда грабли: try/except ImportError вокруг импорта необязательной зависимости молча проглотит и настоящую поломку внутри самого модуля — его собственный битый импорт. А вот ошибка в теле модуля (опечатка даёт NameError) летит как есть, и except ImportError её не ловит. У пойманного объекта есть атрибуты name и path, по ним видно, о каком именно модуле и файле речь.",
+      "en": "The usual confusion is with ModuleNotFoundError: it is a subclass of ImportError, so except ImportError catches both \"no such module\" and \"module exists, but the requested name is not in it\". That is the trap — wrapping an optional dependency in try/except ImportError also silently swallows a real failure inside that module, namely its own broken import. An error in the module body itself (a typo gives NameError) propagates unchanged, and except ImportError does not catch it. The caught object carries name and path attributes telling you which module and file actually failed."
     },
     "syntax": "raise ImportError('сообщение')",
     "status": "ready",
@@ -1089,7 +1089,7 @@
         "next(it)  # StopIteration"
       ],
       [
-        "# В генераторе raise StopIteration = return",
+        "# В генераторе завершайте через return: raise StopIteration здесь даёт RuntimeError (PEP 479)",
         "def gen():",
         "    yield 1",
         "    return  # автоматически поднимает StopIteration"
@@ -1312,7 +1312,7 @@
       [
         "int('abc')           # ValueError",
         "float('inf')         # ok — inf допустим",
-        "list.index(99)       # ValueError если 99 нет",
+        "[1, 2, 3].index(99)  # ValueError: 99 нет в списке",
         "try:",
         "    x = int('нет')",
         "except ValueError as e:",
@@ -2078,7 +2078,7 @@
       "en": "The user interrupted execution (Ctrl+C). Inherits BaseException, so `except Exception` won't catch it."
     },
     "body": {
-      "ru": "Главная ловушка — голый except: или except BaseException внутри цикла: он проглатывает Ctrl+C, и программа перестаёт останавливаться. Если перехват всё-таки нужен (закрыть файл, сохранить прогресс), сделай очистку и пробрось исключение дальше через raise. Прерывание приходит в главный поток и может возникнуть между любыми двумя инструкциями, так что состояние на момент перехвата бывает半 недоделанным.",
+      "ru": "Главная ловушка — голый except: или except BaseException внутри цикла: он проглатывает Ctrl+C, и программа перестаёт останавливаться. Если перехват всё-таки нужен (закрыть файл, сохранить прогресс), сделай очистку и пробрось исключение дальше через raise. Прерывание приходит в главный поток и может возникнуть между любыми двумя инструкциями, так что состояние на момент перехвата бывает недоделанным наполовину.",
       "en": "The classic trap is a bare except: or except BaseException inside a loop — it swallows Ctrl+C and the program stops being interruptible. If you do need to catch it (close a file, save progress), clean up and re-raise. The interrupt lands in the main thread and can arrive between any two instructions, so whatever you were doing may be half-finished."
     },
     "syntax": "raise KeyboardInterrupt",
@@ -2721,8 +2721,8 @@
       "en": "Base class for Unicode encoding/decoding errors (a subclass of ValueError)."
     },
     "body": {
-      "ru": "Общий предок UnicodeDecodeError и UnicodeEncodeError, поэтому один except UnicodeError ловит обе стороны сразу — но не говорит, где именно сломалось; если реакция должна отличаться, ловите конкретный класс. Он же наследник ValueError, так что стоящий выше except ValueError перехватит его первым, и это легко проглядеть. Изредка UnicodeError возбуждается и сам по себе — например, кодек idna так жалуется на пустую или слишком длинную метку домена.",
-      "en": "It is the common ancestor of UnicodeDecodeError and UnicodeEncodeError, so a single except UnicodeError covers both directions — at the cost of not telling you which one failed; catch the specific class when the handling differs. It also inherits from ValueError, so an earlier except ValueError will swallow it, which is easy to miss when reading a chain of handlers. Occasionally UnicodeError is raised on its own — the idna codec, for instance, uses it to complain about an empty or over-long domain label."
+      "ru": "Общий предок UnicodeDecodeError и UnicodeEncodeError, поэтому один except UnicodeError ловит обе стороны сразу — но не говорит, где именно сломалось; если реакция должна отличаться, ловите конкретный класс. Он же наследник ValueError, так что стоящий выше except ValueError перехватит его первым, и это легко проглядеть. Изредка UnicodeError возбуждается и сам по себе — например, кодек undefined на любую строку или idna на неподдерживаемый режим errors; а вот пустая или слишком длинная метка домена в idna даёт уже подкласс UnicodeEncodeError.",
+      "en": "It is the common ancestor of UnicodeDecodeError and UnicodeEncodeError, so a single except UnicodeError covers both directions — at the cost of not telling you which one failed; catch the specific class when the handling differs. It also inherits from ValueError, so an earlier except ValueError will swallow it, which is easy to miss when reading a chain of handlers. Occasionally UnicodeError is raised on its own — the undefined codec does so for any string, and idna for an unsupported errors mode; an empty or over-long domain label in idna, however, raises the UnicodeEncodeError subclass."
     },
     "syntax": "raise UnicodeError",
     "status": "ready",
@@ -3211,8 +3211,8 @@
       "en": "The given process does not exist (a subclass of OSError)."
     },
     "body": {
-      "ru": "Соответствует POSIX-ошибке ESRCH и прилетает из os.kill или os.waitpid, когда процесса с таким pid уже нет — как правило, он успел завершиться между вашей проверкой и сигналом. Именно из-за этой гонки правильный приём — послать сигнал и спокойно поймать ProcessLookupError, а не «сначала убедиться, что процесс жив». И помните про переиспользование pid: отсутствие ошибки не доказывает, что вы попали именно в нужный процесс.",
-      "en": "Maps to the POSIX ESRCH error and comes out of os.kill or os.waitpid when no process with that pid exists any more — usually because it exited between your check and your signal. Because of that race, the right pattern is to send the signal and catch ProcessLookupError rather than to test \"is it alive?\" first. Keep pid reuse in mind too: no error does not prove you hit the process you meant."
+      "ru": "Соответствует POSIX-ошибке ESRCH и прилетает из os.kill или os.killpg, когда процесса с таким pid уже нет — как правило, он успел завершиться между вашей проверкой и сигналом. Именно из-за этой гонки правильный приём — послать сигнал и спокойно поймать ProcessLookupError, а не «сначала убедиться, что процесс жив». И помните про переиспользование pid: отсутствие ошибки не доказывает, что вы попали именно в нужный процесс. (os.waitpid по чужому или уже собранному pid даёт другое исключение — ChildProcessError.)",
+      "en": "Maps to the POSIX ESRCH error and comes out of os.kill or os.killpg when no process with that pid exists any more — usually because it exited between your check and your signal. Because of that race, the right pattern is to send the signal and catch ProcessLookupError rather than to test \"is it alive?\" first. Keep pid reuse in mind too: no error does not prove you hit the process you meant. (os.waitpid on a foreign or already reaped pid raises something else — ChildProcessError.)"
     },
     "syntax": "raise ProcessLookupError",
     "status": "ready",
@@ -4508,7 +4508,7 @@
     "kind": "exception",
     "summary": {
       "ru": "Некорректный JSON при разборе: json.loads('{bad'). Несёт позицию ошибки (pos/lineno/colno).",
-      "en": "Subclass of ValueError with the following additional properties:"
+      "en": "Malformed JSON while parsing: json.loads('{bad'). Carries the error position (pos/lineno/colno)."
     },
     "body": {
       "ru": "Чаще всего разбираемая строка вообще не JSON: пустой ответ сервера, HTML-страница ошибки или питоновский repr словаря с одинарными кавычками — JSON требует двойные и запрещает висячую запятую. В обработчике полезны атрибуты pos, lineno, colno и doc: они показывают точное место обрыва, а не просто факт неудачи. Это подкласс ValueError, так что except ValueError ловит его заодно; ловить нужно только этот класс, если хотите отличить битый JSON от прочих ошибок.",
@@ -5639,7 +5639,7 @@
     "syntax": "raise signal.ItimerError",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/signal.html#signal.ItimerError",
-    "added": "3.3",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5673,8 +5673,6 @@
         "    try:",
         "        raise ItimerError",
         "    except ItimerError as e:",
-        "        # Имя класса — itimer_error, а не ItimerError: в signal он объявлен",
-        "        # под C-именем, и `signal.ItimerError` лишь ссылка на него.",
         "        print(type(e).__name__)  # → ?"
       ]
     ],
@@ -5750,7 +5748,7 @@
     },
     "kind": "exception",
     "summary": {
-      "ru": "Недопустимая операция decimal (напр. Decimal('nan') в сравнении, деление 0/0).",
+      "ru": "Недопустимая операция decimal (напр. Decimal('nan') в сравнении на больше/меньше, деление 0/0).",
       "en": "An invalid decimal operation (e.g. an ordering comparison with Decimal('nan'), or 0/0)."
     },
     "body": {
@@ -5866,8 +5864,8 @@
       "en": "Decimal integer division cannot produce a correct result."
     },
     "body": {
-      "ru": "Речь не про обычное деление, а про целочисленное: сигнал возникает, когда целая часть результата // или divmod требует больше цифр, чем precision текущего контекста. Это подкласс InvalidOperation, а его ловушка в контексте по умолчанию включена, поэтому исключение действительно вылетает; со снятой ловушкой вместо него вернётся NaN. Чинится увеличением precision, а не перехватом.",
-      "en": "This is about integer division rather than the plain / operator: it fires when the integer part produced by // or divmod would need more digits than the context precision allows. It subclasses InvalidOperation, whose trap is enabled in the default context, so you genuinely get an exception; untrap it and the operation returns NaN instead. The cure is a larger precision, not a try/except."
+      "ru": "Речь не про обычное деление, а про целочисленное: сигнал возникает, когда целая часть результата // или divmod требует больше цифр, чем precision текущего контекста. Это подкласс InvalidOperation, ловушка которого в контексте по умолчанию включена, поэтому исключение действительно вылетает — но это InvalidOperation, а не DivisionImpossible, и except decimal.DivisionImpossible его не поймает; ловите decimal.InvalidOperation. Со снятой ловушкой вместо исключения вернётся NaN. Чинится увеличением precision, а не перехватом.",
+      "en": "This is about integer division rather than the plain / operator: it fires when the integer part produced by // or divmod would need more digits than the context precision allows. It subclasses InvalidOperation, whose trap is enabled in the default context, so you genuinely get an exception — but it is InvalidOperation, not DivisionImpossible, and except decimal.DivisionImpossible will not catch it; catch decimal.InvalidOperation. Untrap it and the operation returns NaN instead. The cure is a larger precision, not a try/except."
     },
     "syntax": "raise decimal.DivisionImpossible",
     "status": "ready",
@@ -5922,8 +5920,8 @@
       "en": "Decimal division 0/0 was attempted (the result is undefined)."
     },
     "body": {
-      "ru": "Срабатывает именно на 0/0 — деление ненулевого числа на ноль даёт другой сигнал, DivisionByZero. Класс наследует сразу и InvalidOperation, и ZeroDivisionError, так что обычный except ZeroDivisionError его тоже поймает. Ловушка InvalidOperation включена по умолчанию; если её снять, операция молча вернёт NaN.",
-      "en": "It is specifically the 0/0 case: dividing a non-zero value by zero raises DivisionByZero instead. The class inherits from both InvalidOperation and ZeroDivisionError, so an ordinary except ZeroDivisionError catches it as well. The InvalidOperation trap is on by default; remove it and the operation quietly yields NaN."
+      "ru": "Срабатывает именно на 0/0 — деление ненулевого числа на ноль даёт другой сигнал, DivisionByZero. Хотя класс наследует и InvalidOperation, и ZeroDivisionError, в except прилетает не он, а InvalidOperation: DivisionUndefined — лишь имя условия. Поэтому ни except ZeroDivisionError, ни except decimal.DivisionUndefined деление 0/0 не поймают — пишите except decimal.InvalidOperation. Ловушка InvalidOperation включена по умолчанию; если её снять, операция молча вернёт NaN.",
+      "en": "It is specifically the 0/0 case: dividing a non-zero value by zero raises DivisionByZero instead. Although the class inherits from both InvalidOperation and ZeroDivisionError, what reaches your except is InvalidOperation, not this class — DivisionUndefined is only the name of the condition. So neither except ZeroDivisionError nor except decimal.DivisionUndefined catches 0/0; write except decimal.InvalidOperation. The InvalidOperation trap is on by default; remove it and the operation quietly yields NaN."
     },
     "syntax": "raise decimal.DivisionUndefined",
     "status": "ready",
@@ -6428,8 +6426,8 @@
       "en": "A decimal context was configured with an invalid setting."
     },
     "body": {
-      "ru": "Говорит не о плохих данных, а об испорченном контексте: неизвестный или неподдерживаемый режим округления либо precision за пределами возможностей реализации. Подкласс InvalidOperation, ловушка которого включена по умолчанию; без ловушки операция вернёт NaN. Причину искать там, где Context собирали руками, а не в самой арифметике.",
-      "en": "It points at a malformed context rather than bad data: an unknown or unsupported rounding mode, or a precision beyond what the implementation can handle. It subclasses InvalidOperation, whose trap is on by default; untrapped, the operation returns NaN. Look for the bug where the Context was built by hand, not in the arithmetic itself."
+      "ru": "Условие из стандарта decimal для испорченного контекста — неизвестного режима округления или precision за пределами возможностей реализации. В CPython вы его практически не встретите: контекст проверяется уже при создании и присваивании, и неверное округление сразу даёт TypeError, а недопустимая prec или Emax — ValueError, независимо от ловушек. Если условие всё же возникнет, наружу оно придёт как InvalidOperation (ловушка включена по умолчанию; без неё — NaN), так что отдельный except InvalidContext не нужен.",
+      "en": "The decimal standard's condition for a broken context — an unknown rounding mode or a precision beyond what the implementation can handle. In CPython you will practically never see it: a context is validated on creation and assignment, so a bad rounding mode raises TypeError right away and an invalid prec or Emax raises ValueError, regardless of traps. If the condition ever does occur, it surfaces as InvalidOperation (trapped by default; untrapped, NaN), so a dedicated except InvalidContext is pointless."
     },
     "syntax": "raise decimal.InvalidContext",
     "status": "ready",

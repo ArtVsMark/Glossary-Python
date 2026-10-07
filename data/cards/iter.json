@@ -140,8 +140,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Оборачивает корутину в Task, запуская её в фоне event loop. Задача стартует немедленно, не дожидаясь await.",
-      "en": "Wraps a coroutine in a Task, running it in the background of the event loop. The task starts immediately, without waiting for an await."
+      "ru": "Оборачивает корутину в Task и планирует её в event loop: задача начнёт работу при ближайшем await текущей корутины, ждать её результата сразу не нужно.",
+      "en": "Wraps a coroutine in a Task and schedules it on the event loop: it starts at the current coroutine's next await, and you need not await its result right away."
     },
     "body": {
       "ru": "Корутина не стартует прямо в точке вызова: задача лишь ставится в очередь event loop и начинает выполняться, когда текущая корутина сама дойдёт до ближайшего await. Вторая ловушка — ссылка: loop держит на задачу только слабую ссылку, поэтому task, никуда не сохранённый, может быть собран сборщиком мусора посреди работы; храните его в переменной или во множестве до завершения. И исключение внутри задачи молчит, пока её не заawait'или — потерянные задачи легко прячут ошибки.",
@@ -180,7 +180,7 @@
         "    return 'done'",
         "async def main():",
         "    t = asyncio.create_task(bg())",
-        "    print('working...')  # → working... — задача уже запущена, но ещё не готова",
+        "    print('working...')  # → working... — задача запланирована, но ещё не начала выполняться",
         "    result = await t",
         "    print(result)  # → done",
         "asyncio.run(main())"
@@ -372,7 +372,7 @@
         "    print('start')",
         "    await asyncio.sleep(0)",
         "    print('end')",
-        "    asyncio.run(hello()) # → start\\nend"
+        "asyncio.run(hello())  # → start / end"
       ]
     ],
     "related": [

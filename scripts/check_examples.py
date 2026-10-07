@@ -54,6 +54,12 @@
 ``# Python 3.N+``, где 3.N новее V, — пример показывает поведение новее самой
 возможности. Всё остальное обязано вести себя так, как обещано.
 
+У карточки удалённого (#164) есть и жизнь после удаления: замена и ошибка
+импорта на новой версии. Блок с пометкой ``# Python 3.N+``, где 3.N не раньше
+``removed``, описывает именно её — сама возможность к этой версии уже исчезла,
+— поэтому граница ``removed`` его не отсекает. Пометка раньше ``removed``
+по-прежнему живёт внутри окна карточки.
+
 Запуск::
 
     python scripts/check_examples.py              # гейт по data/glossary.json
@@ -422,14 +428,20 @@ def _version(text: str) -> tuple[int, int]:
 def applicable(
     entry: dict[str, object], block: list[str], version: tuple[int, int]
 ) -> bool:
-    """Обещает ли карточка, что этот блок работает на версии ``version``."""
+    """Обещает ли карточка, что этот блок работает на версии ``version``.
+
+    Блок с пометкой не раньше ``removed`` — жизнь после удаления, и граница
+    ``removed`` к нему не применяется.
+    """
     added, removed = str(entry.get("added") or ""), str(entry.get("removed") or "")
     if added and _version(added) > version:
         return False
-    if removed and _version(removed) <= version:
-        return False
     marked = REQUIRES.match(block[0]) if block else None
-    return not marked or (int(marked[1]), int(marked[2])) <= version
+    since = (int(marked[1]), int(marked[2])) if marked else None
+    if since and since > version:
+        return False
+    after_removal = bool(removed) and since is not None and since >= _version(removed)
+    return not removed or after_removal or _version(removed) > version
 
 
 def examples(data: Path, version: tuple[int, int] | None = None) -> dict[str, str]:

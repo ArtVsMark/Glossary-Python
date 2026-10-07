@@ -30,10 +30,19 @@
 * **верность отнесения.** Что запись описывает поворот, а не ход работ,
   решает автор.
 
+РЕШЕНИЕ НЕ ПРАВИТСЯ ЗАДНИМ ЧИСЛОМ (правило 043). С ``--base REF`` гейт
+сверяет документ с основой изменения: запись, бывшая там и исчезнувшая здесь,
+— находка. Повернули решение — пишут новую запись, а прежнюю оставляют, пометив
+«Заменено»: стёртая запись уносит и то, почему её когда-то приняли. Отличить
+поворот от хода работ машина не может, а исчезновение заголовка видит — это
+машинная половина. Переименование читается как исчезновение: заголовок записи
+— её имя, на него ссылаются.
+
 Запуск::
 
     python scripts/check_decisions.py             # дерево проекта
     python scripts/check_decisions.py --root DIR  # другое дерево
+    python scripts/check_decisions.py --base origin/main  # и сверка с основой
 
 Исходы: 0 — чисто; 1 — есть находки; 2 — проверка не отработала.
 """
@@ -41,6 +50,7 @@
 import argparse
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Final
@@ -58,6 +68,12 @@ BASELINE: Final = "tests/decisions_baseline.json"
 
 NOT_RUN: Final = 2
 """Проверка не отработала. Не означает «части на месте» — их не искали."""
+
+SUPERSEDED: Final = "Заменено"
+"""Пометка отменённого решения: запись остаётся, поворот пишется новой."""
+
+GIT_TIMEOUT: Final = 30
+"""Секунд на чтение основы: локальный git, сеть не нужна."""
 
 
 def decisions(text: str) -> dict[str, str]:
@@ -142,6 +158,50 @@ def stale_exemptions(text: str, exempt: set[str]) -> list[str]:
     ]
 
 
+def erased(base_text: str, text: str) -> list[str]:
+    """Записи основы, которых в документе больше нет (правило 043).
+
+    Args:
+        base_text: Документ на основе изменения.
+        text: Документ сейчас.
+
+    Returns:
+        Готовые к печати находки.
+    """
+    written = decisions(text)
+    return [
+        f"{DOCUMENT} § «{title}»: запись была на основе и исчезла. Решение не "
+        "правят задним числом — его отменяет новая запись, а прежняя остаётся с "
+        f"пометкой «{SUPERSEDED}» (правило 043)"
+        for title in decisions(base_text)
+        if title not in written
+    ]
+
+
+def base_document(base: str, root: Path) -> str | None:
+    """Документ решений на основе изменения; ``None`` — прочитать нечем.
+
+    Args:
+        base: Ссылка git на основу.
+        root: Корень дерева.
+
+    Returns:
+        Текст документа или ``None``, если git не ответил.
+    """
+    try:
+        done = subprocess.run(  # noqa: S603 — аргументы наши, не чужой ввод
+            ["git", "-C", str(root), "show", f"{base}:{DOCUMENT}"],  # noqa: S607
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            check=False,
+            timeout=GIT_TIMEOUT,
+        )
+    except OSError, subprocess.TimeoutExpired:
+        return None
+    return done.stdout if done.returncode == 0 else None
+
+
 def main(argv: list[str] | None = None) -> int:
     """Точка входа.
 
@@ -153,6 +213,7 @@ def main(argv: list[str] | None = None) -> int:
     """
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--base", default=None, help="основа изменения для сверки")
     args = parser.parse_args(argv)
 
     path = args.root / DOCUMENT
@@ -175,8 +236,18 @@ def main(argv: list[str] | None = None) -> int:
 
     exempt = load_baseline(args.root)
     problems = findings(text, exempt) + stale_exemptions(text, exempt)
+    if args.base is not None:
+        base_text = base_document(args.base, args.root)
+        if base_text is None:
+            print(
+                f"проверка не отработала: {DOCUMENT} на основе {args.base} не "
+                "прочитан — сверять стёртое не с чем",
+                file=sys.stderr,
+            )
+            return NOT_RUN
+        problems += erased(base_text, text)
     if problems:
-        print("запись решения молчит об отвергнутом:", file=sys.stderr)
+        print("запись решения неполна или стёрта:", file=sys.stderr)
         for problem in problems:
             print(f"  • {problem}", file=sys.stderr)
         return 1

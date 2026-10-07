@@ -11,6 +11,7 @@
 """
 
 import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -143,7 +144,7 @@ def test_findings_return_one(tmp_path: Path, capsys):
     (tmp_path / "docs").mkdir()
     (tmp_path / decisions.DOCUMENT).write_text(WITHOUT, encoding="utf-8")
     assert decisions.main(["--root", str(tmp_path)]) == 1
-    assert "молчит об отвергнутом" in capsys.readouterr().err
+    assert "неполна или стёрта" in capsys.readouterr().err
 
 
 def test_clean_tree_returns_zero(tmp_path: Path, capsys):
@@ -190,3 +191,70 @@ def test_baseline_moves_only_down():
     assert len(grandfathered) == ceiling, (
         f"освобождений стало меньше — опустите потолок здесь до {len(grandfathered)}"
     )
+
+
+# --------------------------------------------------------------------------- #
+# Решение не правится задним числом (правило 043)
+# --------------------------------------------------------------------------- #
+
+
+def test_erased_entry_is_a_finding():
+    found = decisions.erased(TWO, WHOLE)
+    assert len(found) == 2
+    assert all("Заменено" in item for item in found)
+
+
+def test_kept_entry_is_silent():
+    assert decisions.erased(WHOLE, WHOLE) == []
+
+
+def test_new_entry_is_not_an_erasure():
+    assert (
+        decisions.erased(WHOLE, WHOLE.replace("## Другой", "### Новое\n\n## Другой"))
+        == []
+    )
+
+
+def _repository(tmp_path: Path, text: str) -> Path:
+    """Дерево с git и документом решений, закоммиченным как основа."""
+    (tmp_path / "docs").mkdir()
+    (tmp_path / decisions.DOCUMENT).write_text(text, encoding="utf-8")
+    for command in (
+        ["init", "-q"],
+        ["add", "."],
+        ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "основа"],
+    ):
+        subprocess.run(  # noqa: S603 — аргументы наши
+            ["git", "-C", str(tmp_path), *command],  # noqa: S607 — git ищется в PATH
+            check=True,
+            timeout=30,
+        )
+    return tmp_path
+
+
+def test_erasure_against_the_base_returns_one(tmp_path: Path, capsys):
+    root = _repository(tmp_path, TWO)
+    (root / decisions.DOCUMENT).write_text(
+        TWO.split("### Второе", 1)[0], encoding="utf-8"
+    )
+    assert decisions.main(["--root", str(root), "--base", "HEAD"]) == 1
+    assert "«Второе»" in capsys.readouterr().err
+
+
+def test_unreadable_base_is_the_third_outcome(tmp_path: Path, capsys):
+    root = _repository(tmp_path, WHOLE)
+    assert (
+        decisions.main(["--root", str(root), "--base", "нет-такой"]) == decisions.NOT_RUN
+    )
+    assert "не отработала" in capsys.readouterr().err
+
+
+@pytest.mark.live_surface
+def test_repository_erases_no_decision_of_its_base():
+    """Живая половина: на основе origin/main ни одна запись не стёрта."""
+    root = project_root()
+    base = decisions.base_document("origin/main", root)
+    if base is None:
+        pytest.skip("основы origin/main в клоне не видно")
+    text = (root / decisions.DOCUMENT).read_text(encoding="utf-8")
+    assert decisions.erased(base, text) == []

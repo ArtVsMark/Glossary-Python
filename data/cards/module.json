@@ -11750,7 +11750,7 @@
       "en": "Runs a command and returns its stdout as bytes (or as a str with text=True). A non-zero exit code raises CalledProcessError."
     },
     "body": {
-      "ru": "Захватывается только stdout — stderr по умолчанию уходит прямо в консоль родителя, поэтому текст ошибки легко потерять; ловите CalledProcessError и смотрите e.returncode и e.output либо передавайте stderr=subprocess.STDOUT. По сути это тонкая обёртка над subprocess.run(..., check=True, stdout=PIPE), оставшаяся с доpython-3.5 времён: в новом коде документация советует run(). Без text=True вернутся bytes, и сравнение результата с обычной строкой молча даст False.",
+      "ru": "Захватывается только stdout — stderr по умолчанию уходит прямо в консоль родителя, поэтому текст ошибки легко потерять; ловите CalledProcessError и смотрите e.returncode и e.output либо передавайте stderr=subprocess.STDOUT. По сути это тонкая обёртка над subprocess.run(..., check=True, stdout=PIPE), оставшаяся со времён до Python 3.5: в новом коде документация советует run(). Без text=True вернутся bytes, и сравнение результата с обычной строкой молча даст False.",
       "en": "Only stdout is captured — stderr goes straight to the parent's console by default, so the actual error message is easy to lose; catch CalledProcessError and inspect e.returncode and e.output, or pass stderr=subprocess.STDOUT. It is a thin wrapper over subprocess.run(..., check=True, stdout=PIPE) left over from pre-3.5 days, and the docs point new code at run(). Without text=True you get bytes back, and comparing that to a normal string silently yields False."
     },
     "syntax": "subprocess.check_output(args, *, text=False, stderr=None, timeout=None, ...)",

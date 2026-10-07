@@ -6563,7 +6563,7 @@
         "en": "Wraps a coroutine in a Task and schedules it on the event loop: it starts at the current coroutine's next await, and you need not await its result right away."
       },
       "body": {
-        "ru": "Корутина не стартует прямо в точке вызова: задача лишь ставится в очередь event loop и начинает выполняться, когда текущая корутина сама дойдёт до ближайшего await. Вторая ловушка — ссылка: loop держит на задачу только слабую ссылку, поэтому task, никуда не сохранённый, может быть собран сборщиком мусора посреди работы; храните его в переменной или во множестве до завершения. И исключение внутри задачи молчит, пока её не заawait'или — потерянные задачи легко прячут ошибки.",
+        "ru": "Корутина не стартует прямо в точке вызова: задача лишь ставится в очередь event loop и начинает выполняться, когда текущая корутина сама дойдёт до ближайшего await. Вторая ловушка — ссылка: loop держит на задачу только слабую ссылку, поэтому task, никуда не сохранённый, может быть собран сборщиком мусора посреди работы; храните его в переменной или во множестве до завершения. И исключение внутри задачи молчит, пока её не дождались через await — потерянные задачи легко прячут ошибки.",
         "en": "Nothing runs at the call site itself: the task is queued on the event loop and only starts once the current coroutine reaches its next await. Also keep a reference — the loop holds only a weak one, so a task assigned nowhere can be garbage-collected mid-flight; park it in a variable or a set until it finishes. An exception raised inside a task stays silent until someone awaits it, which is how fire-and-forget tasks swallow bugs."
       },
       "syntax": "task = asyncio.create_task(coro())",
@@ -16442,8 +16442,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Возвращает целочисленный хеш объекта. Объект должен быть хешируемым (неизменяемым). Используется словарями и множествами.",
-        "en": "Returns the integer hash of an object. The object must be hashable (immutable). Used by dictionaries and sets."
+        "ru": "Возвращает целочисленный хеш объекта. Объект должен быть хешируемым: хеш не меняется за время жизни, а равные объекты дают равные хеши. Используется словарями и множествами.",
+        "en": "Returns the integer hash of an object. The object must be hashable: its hash never changes during its lifetime, and equal objects have equal hashes. Used by dictionaries and sets."
       },
       "body": {
         "ru": "У str и bytes хеш заново рандомизируется при каждом запуске интерпретатора (PYTHONHASHSEED) — это защита от атак на коллизии, а не контрольная сумма, поэтому сохранять его в файл или сравнивать между процессами нельзя; для стабильного отпечатка берите hashlib. И действует правило «равные объекты — равные хеши»: hash(1) == hash(1.0) == hash(True), а свой класс становится нехешируемым, как только вы определили __eq__ и не определили __hash__.",
@@ -16617,8 +16617,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Возвращает уникальный идентификатор объекта (адрес в памяти).",
-        "en": "Returns the unique identifier of an object (its address in memory)."
+        "ru": "Возвращает уникальный идентификатор объекта на время его жизни; в CPython это адрес в памяти.",
+        "en": "Returns the unique identifier of an object for its lifetime; in CPython this is its memory address."
       },
       "body": {
         "ru": "Идентификатор уникален только пока объект жив: после сборки мусора то же число может достаться новому объекту, так что запомнить id и сравнить его позже — ненадёжно. Практический смысл один — понять, один это объект или два, и для этого читабельнее a is b, тогда как равенство значений проверяют через ==. Осторожно с интернированием: CPython кеширует маленькие целые (от -5 до 256) и короткие строки, поэтому у одинаковых литералов id часто совпадает — строить на этом логику нельзя.",
@@ -120764,7 +120764,7 @@
         "en": "Runs a command and returns its stdout as bytes (or as a str with text=True). A non-zero exit code raises CalledProcessError."
       },
       "body": {
-        "ru": "Захватывается только stdout — stderr по умолчанию уходит прямо в консоль родителя, поэтому текст ошибки легко потерять; ловите CalledProcessError и смотрите e.returncode и e.output либо передавайте stderr=subprocess.STDOUT. По сути это тонкая обёртка над subprocess.run(..., check=True, stdout=PIPE), оставшаяся с доpython-3.5 времён: в новом коде документация советует run(). Без text=True вернутся bytes, и сравнение результата с обычной строкой молча даст False.",
+        "ru": "Захватывается только stdout — stderr по умолчанию уходит прямо в консоль родителя, поэтому текст ошибки легко потерять; ловите CalledProcessError и смотрите e.returncode и e.output либо передавайте stderr=subprocess.STDOUT. По сути это тонкая обёртка над subprocess.run(..., check=True, stdout=PIPE), оставшаяся со времён до Python 3.5: в новом коде документация советует run(). Без text=True вернутся bytes, и сравнение результата с обычной строкой молча даст False.",
         "en": "Only stdout is captured — stderr goes straight to the parent's console by default, so the actual error message is easy to lose; catch CalledProcessError and inspect e.returncode and e.output, or pass stderr=subprocess.STDOUT. It is a thin wrapper over subprocess.run(..., check=True, stdout=PIPE) left over from pre-3.5 days, and the docs point new code at run(). Without text=True you get bytes back, and comparing that to a normal string silently yields False."
       },
       "syntax": "subprocess.check_output(args, *, text=False, stderr=None, timeout=None, ...)",
@@ -157253,7 +157253,7 @@
         "en": "Strings are compared lexicographically by the Unicode code points of their characters."
       },
       "body": {
-        "ru": "Порядок по code point — не алфавитный: все заглавные латинские буквы идут раньше строчных, поэтому 'Zoo' < 'apple' даёт True, а кириллица и символы с диакритикой стоят вообще отдельным блоком. Для человеческой сортировки задавайте ключ, например key=str.lower или key=str.casefold. Второй típичный промах — сравнивать числа как строки: '10' < '9' истинно, потому что сопоставляется первый символ.",
+        "ru": "Порядок по code point — не алфавитный: все заглавные латинские буквы идут раньше строчных, поэтому 'Zoo' < 'apple' даёт True, а кириллица и символы с диакритикой стоят вообще отдельным блоком. Для человеческой сортировки задавайте ключ, например key=str.lower или key=str.casefold. Второй типичный промах — сравнивать числа как строки: '10' < '9' истинно, потому что сопоставляется первый символ.",
         "en": "Code point order is not alphabetical order: every uppercase ASCII letter sorts before every lowercase one, so 'Zoo' < 'apple' is True, and Cyrillic or accented letters form their own separate block. For human-friendly sorting pass a key such as key=str.lower or key=str.casefold. The other common slip is comparing numbers as text: '10' < '9' is True because only the first characters decide."
       },
       "syntax": "s1 == s2  |  s1 < s2  |  s1 > s2",

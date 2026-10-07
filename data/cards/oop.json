@@ -1220,7 +1220,7 @@
         "try:",
         "    p.z = 3",
         "except AttributeError as e:",
-        "    print(e)  # → 'Point' object has no attribute 'z' and no __dict__ for setting new attributes",
+        "        print(e)  # → 'Point' object has no attribute 'z'",
         "print(hasattr(p, '__dict__'))  # → False — словаря атрибутов нет"
       ],
       [

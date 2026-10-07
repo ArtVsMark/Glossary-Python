@@ -1905,7 +1905,12 @@
       [
         "from typing import TypeVarTuple, Unpack",
         "Ts = TypeVarTuple('Ts')",
-        "print(Ts.__name__)   # → Ts",
+        "print(Ts.__name__)   # → Ts"
+      ],
+      [
+        "# Python 3.12+",
+        "from typing import TypeVarTuple, Unpack",
+        "Ts = TypeVarTuple('Ts')",
         "print(Unpack[Ts])   # → typing.Unpack[Ts]"
       ],
       [

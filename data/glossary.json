@@ -12771,8 +12771,11 @@
           "print(sum([1,2,3,4,5]))  # → 15",
           "print(sum(range(101)))  # → 5050",
           "print(sum([[1,2],[3,4]], []))  # → [1,2,3,4]",
-          "print(sum([0.1]*10))  # → 1.0 (примерно)",
           "print(sum({'a':1,'b':2}.values()))  # → 3"
+        ],
+        [
+          "# Python 3.12+",
+          "print(sum([0.1]*10))  # → 1.0 — до 3.12 было 0.9999999999999999"
         ]
       ],
       "related": [
@@ -18250,7 +18253,7 @@
           "try:",
           "    subprocess.run(cmd, timeout=0.5)",
           "except subprocess.TimeoutExpired as e:",
-          "    print(e.timeout)  # → 0.5",
+          "    print(round(e.timeout, 1))  # → 0.5 — до 3.13 здесь лежало прошедшее время",
           "print(issubclass(subprocess.TimeoutExpired, TimeoutError))  # → False"
         ],
         [
@@ -33598,6 +33601,7 @@
           "print(Field.name, Field.name.name, Field.value.value)  # → Field.name name 2"
         ],
         [
+          "# Python 3.12+",
           "import enum",
           "class Planet(enum.Enum):",
           "    EARTH = (5.97e24, 6.37e6)",
@@ -71665,7 +71669,7 @@
           "try:",
           "    struct.pack('<B', 300)",
           "except struct.error as e:",
-          "    print(e)  # → 'B' format requires 0 <= number <= 255"
+          "    print(e)  # → format requires 0 <= number <= 255"
         ]
       ],
       "related": [
@@ -73919,6 +73923,7 @@
           "print(sys.getrefcount(a))  # → 2"
         ],
         [
+          "# Python 3.12+",
           "import sys",
           "print(sys.getrefcount(None) > 10 ** 9)  # → True — бессмертный объект"
         ]
@@ -74906,11 +74911,15 @@
           "print(len(s))  # → 5736"
         ],
         [
+          "# Python 3.14+",
           "import sys",
           "try:",
           "    sys.set_int_max_str_digits(100)",
           "except ValueError as e:",
-          "    print(e)  # → maxdigits must be >= 640 or 0 for unlimited",
+          "    print(e)  # → maxdigits must be >= 640 or 0 for unlimited"
+        ],
+        [
+          "import sys",
           "sys.set_int_max_str_digits(5000)",
           "print(len(str(10 ** 4999)))  # → 5000"
         ]
@@ -80597,7 +80606,12 @@
         [
           "from typing import TypeVarTuple, Unpack",
           "Ts = TypeVarTuple('Ts')",
-          "print(Ts.__name__)   # → Ts",
+          "print(Ts.__name__)   # → Ts"
+        ],
+        [
+          "# Python 3.12+",
+          "from typing import TypeVarTuple, Unpack",
+          "Ts = TypeVarTuple('Ts')",
           "print(Unpack[Ts])   # → typing.Unpack[Ts]"
         ],
         [
@@ -85504,7 +85518,7 @@
           "try:",
           "    p.z = 3",
           "except AttributeError as e:",
-          "    print(e)  # → 'Point' object has no attribute 'z' and no __dict__ for setting new attributes",
+          "        print(e)  # → 'Point' object has no attribute 'z'",
           "print(hasattr(p, '__dict__'))  # → False — словаря атрибутов нет"
         ],
         [
@@ -95771,6 +95785,7 @@
           "print(repr(out.getvalue()))  # → 'a;\"b;c\"\\n'"
         ],
         [
+          "# Python 3.14+",
           "import csv",
           "import io",
           "class Bad(csv.Dialect):",

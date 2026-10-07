@@ -190,3 +190,29 @@ def test_every_lifecycle_mode_has_a_label_and_a_hint():
     needed = keys | {f"{key}Hint" for key in keys}
     assert needed <= _labels(template, "ru")
     assert needed <= _labels(template, "en")
+
+
+@pytest.mark.live_surface
+def test_filter_counts_follow_the_other_filters():
+    """Число на кнопке — «сколько останется», а не размер всего глоссария.
+
+    Каждый ряд считает по остальным фильтрам и поиску без своего, а render()
+    пересобирает ряды после каждого выбора: иначе числа в рядах расходятся с
+    «Показано».
+    """
+    template = load_template()
+    for row in (
+        'pool("kind")',
+        'pool("py")',
+        'pool("fam", "section")',
+        'pool("section")',
+    ):
+        assert row in template, f"ряд считает не по остальным фильтрам: нет {row}"
+    body = template.split("function render(){", 1)[1].split("\n}", 1)[0]
+    for builder in (
+        "buildKindFilters",
+        "buildFamilyFilters",
+        "buildSectionFilters",
+        "buildPyFilters",
+    ):
+        assert builder + "()" in body, f"render() не пересчитывает {builder}"

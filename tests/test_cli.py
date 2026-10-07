@@ -247,7 +247,7 @@ def test_objections_counts_cards_not_findings(tmp_path: Path):
         tmp_path / "glossary.json",
     )
     result = run("--data", str(data), "objections")
-    assert "`translated` — 2 (предупреждение), карточек: 1" in result.out
+    assert "`translated` — 2 (ошибка), карточек: 1" in result.out
     assert result.out.count("- `a`") == 1
 
 

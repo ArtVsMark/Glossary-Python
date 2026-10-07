@@ -240,10 +240,14 @@ def rule_color_group(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
 
 
 def rule_translated(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Обе языковые версии заполнены.
+    """Обе языковые версии заполнены — и сводка, и тело.
 
     Совпадение ключей — ещё не перевод: пустая половина даёт карточку, которая
     на одном из языков выглядит сломанной, а не отсутствующей.
+
+    Пустое тело было предупреждением, пока 309 карточек ждали текста (#84), и
+    стало ошибкой, когда тела заполнены у всех (#114): иначе ``main``
+    покраснела бы на незаполненных данных.
     """
     for entry in g.entries:
         for language in LANGUAGES:
@@ -256,7 +260,7 @@ def rule_translated(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                 )
             if not entry.body.get(language).strip():
                 yield Issue(
-                    Severity.WARNING,
+                    Severity.ERROR,
                     "translated",
                     f"тело карточки не заполнено на языке {language!r}",
                     entry.id,

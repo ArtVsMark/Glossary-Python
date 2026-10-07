@@ -44177,8 +44177,8 @@
       "en": "Runs every cleanup registered with addModuleCleanup() in reverse order; normally the test suite calls it for you."
     },
     "body": {
-      "ru": "Звать её вручную нужно только тому, кто пишет свой раннер или запускает тесты в обход TestSuite: штатный набор делает это сам после tearDownModule. Исключение в одной очистке не останавливает остальные: все функции отработают, а первое исключение будет поднято в конце. Повторный вызов ничего не делает — список опустошается.",
-      "en": "You only call it by hand when writing your own runner or running tests without a TestSuite: the standard suite does it itself after tearDownModule. An exception in one cleanup does not stop the rest: every function runs, and the first exception is raised at the end. A second call does nothing, because the list is emptied."
+      "ru": "Звать её вручную нужно только тому, кто пишет свой раннер или запускает тесты в обход TestSuite: штатный набор делает это сам после tearDownModule. Исключение в одной очистке не останавливает остальные: все функции отработают, а в конце поднимается исключение: до 3.15 — первое из них, с 3.15 — ExceptionGroup со всеми сразу. Повторный вызов ничего не делает — список опустошается.",
+      "en": "You only call it by hand when writing your own runner or running tests without a TestSuite: the standard suite does it itself after tearDownModule. An exception in one cleanup does not stop the rest: every function runs, and an exception is raised at the end: the first one before 3.15, an ExceptionGroup with all of them from 3.15. A second call does nothing, because the list is emptied."
     },
     "syntax": "unittest.doModuleCleanups()",
     "status": "ready",
@@ -44216,8 +44216,8 @@
         "unittest.addModuleCleanup(broken)",
         "try:",
         "    unittest.doModuleCleanups()",
-        "except ValueError as e:",
-        "    print('raised:', e)  # → still runs / raised: cleanup failed",
+        "except Exception as e:",
+        "    print('raised:', type(e).__name__)  # → still runs / raised: — ValueError до 3.15, ExceptionGroup с 3.15",
         "unittest.doModuleCleanups()  # второй вызов — список уже пуст"
       ]
     ],
@@ -47287,7 +47287,7 @@
         "try:",
         "    struct.pack_into('<I', b'1234', 0, 1)",
         "except TypeError as e:",
-        "    print(e)  # → argument must be read-write bytes-like object, not bytes"
+        "    print(e)  # → must be read-write bytes-like object, not bytes"
       ]
     ],
     "related": [
@@ -52317,8 +52317,8 @@
       "en": "Opens an SQLite database and returns a Connection. The string ':memory:' creates a temporary in-memory database that vanishes when closed."
     },
     "body": {
-      "ru": "Каждый connect(':memory:') — отдельная пустая база: таблица, созданная через одно соединение, через другое не видна. Несуществующий файл connect молча создаёт, поэтому опечатка в пути даёт пустую базу и затем no such table. Все параметры, кроме database, передавайте по имени: позиционный timeout с 3.13 даёт DeprecationWarning, а в 3.15 станет ошибкой. Соединение закрывают close(), а не with.",
-      "en": "Every connect(':memory:') is a separate empty database: a table created through one connection is invisible to another. connect silently creates a missing file, so a typo in the path gives an empty database and then no such table. Pass every parameter except database by keyword: a positional timeout warns with DeprecationWarning since 3.13 and becomes an error in 3.15. Close the connection with close(), not with."
+      "ru": "Каждый connect(':memory:') — отдельная пустая база: таблица, созданная через одно соединение, через другое не видна. Несуществующий файл connect молча создаёт, поэтому опечатка в пути даёт пустую базу и затем no such table. Все параметры, кроме database, передавайте по имени: позиционный timeout с 3.13 даёт DeprecationWarning, а с 3.15 это TypeError. Соединение закрывают close(), а не with.",
+      "en": "Every connect(':memory:') is a separate empty database: a table created through one connection is invisible to another. connect silently creates a missing file, so a typo in the path gives an empty database and then no such table. Pass every parameter except database by keyword: a positional timeout warns with DeprecationWarning since 3.13 and is a TypeError from 3.15. Close the connection with close(), not with."
     },
     "syntax": "sqlite3.connect(database, *, timeout=5.0, detect_types=0, autocommit=...)",
     "status": "ready",
@@ -52365,13 +52365,12 @@
         "b.close()"
       ],
       [
-        "# Python 3.13+",
+        "# Python 3.15+",
         "import sqlite3",
-        "import warnings",
-        "with warnings.catch_warnings(record=True) as caught:",
-        "    warnings.simplefilter('always')",
-        "    sqlite3.connect(':memory:', 5.0).close()  # timeout позиционно",
-        "print(caught[0].category.__name__)  # → DeprecationWarning",
+        "try:",
+        "    sqlite3.connect(':memory:', 5.0)  # timeout позиционно",
+        "except TypeError as e:",
+        "    print(type(e).__name__)  # → TypeError",
         "sqlite3.connect(':memory:', timeout=5.0).close()  # так правильно"
       ]
     ],
@@ -52433,7 +52432,7 @@
         "try:",
         "    conn.execute('SELECT ?', (Decimal('1.10'),))",
         "except sqlite3.ProgrammingError as e:",
-        "    print(e)  # → Error binding parameter 1: type 'decimal.Decimal' is not supported",
+        "    print(e)  # → is not supported — имя типа в тексте: 'decimal.Decimal', с 3.15 'Decimal'",
         "sqlite3.register_adapter(Decimal, str)",
         "print(conn.execute('SELECT ?, typeof(?)', (Decimal('1.10'),) * 2).fetchone())  # → ('1.10', 'text')",
         "conn.close()"
@@ -53011,7 +53010,7 @@
         "try:",
         "    hashlib.new('sha257')",
         "except ValueError as e:",
-        "    print(e)  # → unsupported hash type sha257"
+        "    print(e)  # → sha257 — «unsupported hash type», с 3.15 «unsupported hash algorithm»"
       ]
     ],
     "related": [
@@ -57360,7 +57359,7 @@
       [
         "import decimal",
         "ctx = decimal.IEEEContext(64)",
-        "print(ctx.divide(1, 0), ctx.flags[decimal.DivisionByZero])  # → Infinity True"
+        "print(ctx.divide(1, 0), bool(ctx.flags[decimal.DivisionByZero]))  # → Infinity True"
       ],
       [
         "import decimal",
@@ -58091,6 +58090,1092 @@
       "os.rename",
       "os.renames",
       "os.remove"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.set_lazy_imports",
+    "title": {
+      "ru": "sys.set_lazy_imports()",
+      "en": "sys.set_lazy_imports()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Переключает режим ленивых импортов всего приложения: 'normal' — ленивы только помеченные lazy, 'all' — все импорты верхнего уровня.",
+      "en": "Switches the lazy-import mode of the whole application: 'normal' makes only imports marked lazy lazy, 'all' makes every top-level import lazy."
+    },
+    "body": {
+      "ru": "Это рычаг для владельца приложения, а не для библиотеки: режим глобальный и меняет поведение чужого кода, поэтому вызывать его из пакета, который импортируют другие, не принято. 'all' делает потенциально ленивыми все импорты на уровне модулей, загруженных после вызова, — уже загруженные не меняются. Тот же режим задаётся без правки кода: python -X lazy_imports=all или переменная PYTHON_LAZY_IMPORTS. Тонкую настройку «что именно ленивое» даёт фильтр sys.set_lazy_imports_filter.",
+      "en": "This is a lever for the application owner, not for a library: the mode is global and changes the behaviour of other people's code, so a package others import should not call it. 'all' makes every module-level import in modules loaded after the call potentially lazy; modules already loaded do not change. The same mode can be set without touching code: python -X lazy_imports=all or the PYTHON_LAZY_IMPORTS environment variable. Fine-grained control over what exactly is lazy comes from the filter, sys.set_lazy_imports_filter."
+    },
+    "syntax": "sys.set_lazy_imports(mode)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.set_lazy_imports",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "модули",
+      "en": "modules"
+    },
+    "aliases": [
+      "включить ленивые импорты везде",
+      "все импорты ленивые"
+    ],
+    "keywords": [
+      "set_lazy_imports",
+      "lazy",
+      "'all'",
+      "'normal'",
+      "PEP 810",
+      "PYTHON_LAZY_IMPORTS"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "print(sys.get_lazy_imports())  # → normal",
+        "sys.set_lazy_imports('all')",
+        "print(sys.get_lazy_imports())  # → all",
+        "sys.set_lazy_imports('normal')"
+      ]
+    ],
+    "related": [
+      "sys.get_lazy_imports",
+      "sys.set_lazy_imports_filter",
+      "lazy-import"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.get_lazy_imports",
+    "title": {
+      "ru": "sys.get_lazy_imports()",
+      "en": "sys.get_lazy_imports()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Возвращает текущий режим ленивых импортов строкой: 'normal' или 'all'.",
+      "en": "Returns the current lazy-import mode as a string: 'normal' or 'all'."
+    },
+    "body": {
+      "ru": "По умолчанию режим 'normal': ленивы только импорты, явно помеченные ключевым словом lazy. Режим меняют sys.set_lazy_imports, флаг -X lazy_imports и переменная PYTHON_LAZY_IMPORTS, поэтому проверка режима в коде полезна, когда поведение программы зависит от того, как её запустили.",
+      "en": "The default mode is 'normal': only imports explicitly marked with the lazy keyword are lazy. The mode is changed by sys.set_lazy_imports, the -X lazy_imports flag and the PYTHON_LAZY_IMPORTS variable, so checking it in code is useful when the program's behaviour depends on how it was launched."
+    },
+    "syntax": "sys.get_lazy_imports()",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.get_lazy_imports",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "модули",
+      "en": "modules"
+    },
+    "aliases": [
+      "какой режим ленивых импортов"
+    ],
+    "keywords": [
+      "get_lazy_imports",
+      "lazy",
+      "'normal'",
+      "PEP 810"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "print(sys.get_lazy_imports())  # → normal"
+      ]
+    ],
+    "related": [
+      "sys.set_lazy_imports",
+      "lazy-import"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.set_lazy_imports_filter",
+    "title": {
+      "ru": "sys.set_lazy_imports_filter()",
+      "en": "sys.set_lazy_imports_filter()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Ставит фильтр, решающий для каждого импорта, быть ли ему ленивым. Фильтр получает имена модулей и возвращает True или False; None снимает фильтр.",
+      "en": "Installs a filter that decides, for each import, whether it may be lazy. The filter receives module names and returns True or False; None removes it."
+    },
+    "body": {
+      "ru": "Фильтр вызывается с тремя позиционными аргументами: имя импортирующего модуля, полное имя импортируемого (для lazy from .spam import eggs — package.spam) и fromlist — кортеж имён для from-импорта или None. True разрешает ленивость, False заставляет загрузить сразу. Типичное применение — режим 'all' только для своих модулей: фильтр пропускает имена, начинающиеся с 'myapp.', а сторонние зависимости грузятся как обычно. Это инструмент для узких случаев; обычной программе хватает ключевого слова lazy.",
+      "en": "The filter is called with three positional arguments: the name of the importing module, the full name of the imported one (for lazy from .spam import eggs, package.spam) and fromlist, a tuple of names for a from-import or None. True allows laziness, False forces an immediate load. A typical use is the 'all' mode for your own modules only: the filter passes names starting with 'myapp.' while third-party dependencies load as usual. It is a tool for narrow cases; an ordinary program is fine with the lazy keyword."
+    },
+    "syntax": "sys.set_lazy_imports_filter(filter)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.set_lazy_imports_filter",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "модули",
+      "en": "modules"
+    },
+    "aliases": [
+      "ленивые импорты только для своих модулей",
+      "фильтр ленивых импортов"
+    ],
+    "keywords": [
+      "set_lazy_imports_filter",
+      "filter",
+      "fromlist",
+      "PEP 810"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "",
+        "def only_mine(importing, imported, fromlist):",
+        "    return imported.startswith('myapp.')",
+        "",
+        "sys.set_lazy_imports_filter(only_mine)",
+        "print(sys.get_lazy_imports_filter() is only_mine)  # → True",
+        "sys.set_lazy_imports_filter(None)",
+        "print(sys.get_lazy_imports_filter())  # → None"
+      ]
+    ],
+    "related": [
+      "sys.get_lazy_imports_filter",
+      "sys.set_lazy_imports",
+      "lazy-import"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "sys.get_lazy_imports_filter",
+    "title": {
+      "ru": "sys.get_lazy_imports_filter()",
+      "en": "sys.get_lazy_imports_filter()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Возвращает установленный фильтр ленивых импортов или None, если фильтра нет.",
+      "en": "Returns the installed lazy-import filter, or None if there is none."
+    },
+    "body": {
+      "ru": "Фильтр ставится sys.set_lazy_imports_filter и решает для каждого потенциально ленивого импорта, загружать ли модуль сразу. Читать его полезно, чтобы временно подменить фильтр и затем вернуть прежний, а не сбросить чужую настройку в None.",
+      "en": "The filter is installed with sys.set_lazy_imports_filter and decides, for each potentially lazy import, whether to load the module immediately. Reading it is useful to swap the filter temporarily and then restore the previous one, instead of resetting someone else's setting to None."
+    },
+    "syntax": "sys.get_lazy_imports_filter()",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/sys.html#sys.get_lazy_imports_filter",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль sys",
+    "subcat": {
+      "ru": "модули",
+      "en": "modules"
+    },
+    "aliases": [
+      "текущий фильтр ленивых импортов"
+    ],
+    "keywords": [
+      "get_lazy_imports_filter",
+      "filter",
+      "PEP 810"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys",
+        "print(sys.get_lazy_imports_filter())  # → None"
+      ]
+    ],
+    "related": [
+      "sys.set_lazy_imports_filter",
+      "lazy-import"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "math.fmax",
+    "title": {
+      "ru": "math.fmax()",
+      "en": "math.fmax()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Большее из двух float, где NaN считается пропуском: fmax(nan, 1.0) даёт 1.0, тогда как max() с NaN ведёт себя непредсказуемо.",
+      "en": "The larger of two floats, with NaN treated as missing: fmax(nan, 1.0) gives 1.0, whereas max() with NaN behaves unpredictably."
+    },
+    "body": {
+      "ru": "Встроенный max() сравнивает через <, а любое сравнение с NaN ложно, поэтому результат зависит от порядка: max(nan, 1.0) — nan, а max(1.0, nan) — 1.0. fmax по стандарту C игнорирует NaN, если второе значение число, и возвращает NaN, только если оба NaN. Для нулей знак результата не гарантирован: fmax(0.0, -0.0) может вернуть любой из них. Работает только с двумя аргументами и всегда возвращает float.",
+      "en": "The built-in max() compares with <, and any comparison with NaN is false, so the result depends on order: max(nan, 1.0) is nan while max(1.0, nan) is 1.0. fmax, following the C standard, ignores NaN when the other value is a number and returns NaN only when both are NaN. For zeros the sign of the result is not guaranteed: fmax(0.0, -0.0) may return either. It takes exactly two arguments and always returns a float."
+    },
+    "syntax": "math.fmax(x, y)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/math.html#math.fmax",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль math",
+    "subcat": {
+      "ru": "сравнение",
+      "en": "comparison"
+    },
+    "aliases": [
+      "максимум без nan",
+      "max игнорируя nan"
+    ],
+    "keywords": [
+      "fmax",
+      "NaN",
+      "max",
+      "float",
+      "C11"
+    ],
+    "tags": [
+      "math"
+    ],
+    "examples": [
+      [
+        "import math",
+        "nan = float('nan')",
+        "print(math.fmax(nan, 1.0), math.fmax(1.0, nan))  # → 1.0 1.0",
+        "print(max(nan, 1.0), max(1.0, nan))  # → nan 1.0 — max зависит от порядка"
+      ]
+    ],
+    "related": [
+      "math.fmin",
+      "max",
+      "math.isnan"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "math.fmin",
+    "title": {
+      "ru": "math.fmin()",
+      "en": "math.fmin()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Меньшее из двух float, где NaN считается пропуском: fmin(nan, 1.0) даёт 1.0. Пара к math.fmax.",
+      "en": "The smaller of two floats, with NaN treated as missing: fmin(nan, 1.0) gives 1.0. The counterpart of math.fmax."
+    },
+    "body": {
+      "ru": "min() с NaN зависит от порядка аргументов, потому что сравнения с NaN всегда ложны; fmin возвращает число, если хотя бы один аргумент — число, и NaN, только если оба NaN. Удобно при агрегации измерений с пропусками: functools.reduce(math.fmin, values) не «заражается» одним NaN. Знак нуля в результате fmin(0.0, -0.0) не гарантирован.",
+      "en": "min() with NaN depends on argument order because comparisons with NaN are always false; fmin returns a number if at least one argument is a number, and NaN only when both are NaN. Handy when aggregating measurements with gaps: functools.reduce(math.fmin, values) is not “infected” by a single NaN. The sign of zero in fmin(0.0, -0.0) is not guaranteed."
+    },
+    "syntax": "math.fmin(x, y)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/math.html#math.fmin",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль math",
+    "subcat": {
+      "ru": "сравнение",
+      "en": "comparison"
+    },
+    "aliases": [
+      "минимум без nan",
+      "min игнорируя nan"
+    ],
+    "keywords": [
+      "fmin",
+      "NaN",
+      "min",
+      "float",
+      "C11"
+    ],
+    "tags": [
+      "math"
+    ],
+    "examples": [
+      [
+        "import math, functools",
+        "values = [float('nan'), 3.5, 1.25, 2.0]",
+        "print(functools.reduce(math.fmin, values))  # → 1.25",
+        "print(min(values))  # → nan — NaN первым, и все сравнения с ним ложны"
+      ]
+    ],
+    "related": [
+      "math.fmax",
+      "min",
+      "math.isnan"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "math.isnormal",
+    "title": {
+      "ru": "math.isnormal()",
+      "en": "math.isnormal()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "True, если x — нормальное число с плавающей точкой: конечное, ненулевое и не субнормальное. Ноль, бесконечность и NaN дают False.",
+      "en": "True if x is a normal floating-point number: finite, nonzero and not subnormal. Zero, infinity and NaN give False."
+    },
+    "body": {
+      "ru": "Нормальные числа хранятся с полной точностью мантиссы; ниже sys.float_info.min (около 2.2e-308) идут субнормальные, у которых точность падает, а арифметика на некоторых процессорах заметно медленнее. isnormal отвечает на вопрос «это обычное число в полной точности?» одной проверкой вместо цепочки isfinite, != 0 и сравнения с float_info.min.",
+      "en": "Normal numbers keep the full precision of the mantissa; below sys.float_info.min (about 2.2e-308) come subnormal numbers, whose precision drops and whose arithmetic is noticeably slower on some CPUs. isnormal answers “is this an ordinary full-precision number?” with one check instead of a chain of isfinite, != 0 and a comparison with float_info.min."
+    },
+    "syntax": "math.isnormal(x)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/math.html#math.isnormal",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль math",
+    "subcat": {
+      "ru": "проверка",
+      "en": "checks"
+    },
+    "aliases": [
+      "нормальное число float",
+      "проверить полную точность float"
+    ],
+    "keywords": [
+      "isnormal",
+      "subnormal",
+      "float_info.min",
+      "IEEE 754"
+    ],
+    "tags": [
+      "math"
+    ],
+    "examples": [
+      [
+        "import math, sys",
+        "print(math.isnormal(1.0), math.isnormal(0.0))  # → True False",
+        "print(math.isnormal(sys.float_info.min / 2))  # → False — субнормальное",
+        "print(math.isnormal(float('inf')))  # → False"
+      ]
+    ],
+    "related": [
+      "math.issubnormal",
+      "math.isfinite"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "math.issubnormal",
+    "title": {
+      "ru": "math.issubnormal()",
+      "en": "math.issubnormal()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "True, если x — субнормальное число: конечное, ненулевое и по модулю меньше sys.float_info.min. Такие числа теряют точность.",
+      "en": "True if x is a subnormal number: finite, nonzero and smaller in magnitude than sys.float_info.min. Such numbers lose precision."
+    },
+    "body": {
+      "ru": "Субнормальные числа заполняют промежуток между нулём и наименьшим нормальным float, жертвуя битами мантиссы: чем ближе к нулю, тем меньше значащих цифр. Они появляются в вычислениях, где значения затухают (физические симуляции, вероятности), и служат сигналом, что пора перейти к логарифмам или масштабированию. Ноль субнормальным не считается.",
+      "en": "Subnormal numbers fill the gap between zero and the smallest normal float by giving up mantissa bits: the closer to zero, the fewer significant digits remain. They show up in computations where values decay (physical simulations, probabilities) and signal that it is time to switch to logarithms or rescaling. Zero is not considered subnormal."
+    },
+    "syntax": "math.issubnormal(x)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/math.html#math.issubnormal",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль math",
+    "subcat": {
+      "ru": "проверка",
+      "en": "checks"
+    },
+    "aliases": [
+      "денормализованное число",
+      "denormal float"
+    ],
+    "keywords": [
+      "issubnormal",
+      "subnormal",
+      "denormal",
+      "float_info.min",
+      "IEEE 754"
+    ],
+    "tags": [
+      "math"
+    ],
+    "examples": [
+      [
+        "import math, sys",
+        "tiny = sys.float_info.min / 1024",
+        "print(math.issubnormal(tiny))  # → True",
+        "print(math.issubnormal(0.0), math.issubnormal(1e-300))  # → False False"
+      ]
+    ],
+    "related": [
+      "math.isnormal",
+      "math.ulp"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "math.signbit",
+    "title": {
+      "ru": "math.signbit()",
+      "en": "math.signbit()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "True, если у float установлен бит знака. Отличает -0.0 от 0.0 и определяет знак у бесконечностей и NaN, где x < 0 не помогает.",
+      "en": "True if the float's sign bit is set. Tells -0.0 from 0.0 and finds the sign of infinities and NaNs, where x < 0 does not help."
+    },
+    "body": {
+      "ru": "-0.0 == 0.0 истинно, и -0.0 < 0 ложно, хотя знак у нуля есть и влияет на результат: 1 / -0.0 в numpy даёт -inf, atan2(0.0, -0.0) равно pi. Раньше знак проверяли через math.copysign(1, x) < 0; signbit делает это прямо. Работает и для NaN: знак у NaN бывает, но сравнения с ним всегда ложны.",
+      "en": "-0.0 == 0.0 is true and -0.0 < 0 is false, even though zero has a sign that affects results: 1 / -0.0 in numpy gives -inf, and atan2(0.0, -0.0) equals pi. The sign used to be checked with math.copysign(1, x) < 0; signbit does it directly. It works for NaN too: NaNs can carry a sign, but comparisons with them are always false."
+    },
+    "syntax": "math.signbit(x)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/math.html#math.signbit",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Числа и математика",
+    "subcat": {
+      "ru": "представление",
+      "en": "representation"
+    },
+    "aliases": [
+      "отрицательный ноль",
+      "знак -0.0",
+      "проверить знак float"
+    ],
+    "keywords": [
+      "signbit",
+      "-0.0",
+      "sign",
+      "copysign",
+      "NaN"
+    ],
+    "tags": [
+      "math"
+    ],
+    "examples": [
+      [
+        "import math",
+        "print(-0.0 < 0, math.signbit(-0.0))  # → False True",
+        "print(math.signbit(0.0), math.signbit(float('-inf')))  # → False True"
+      ]
+    ],
+    "related": [
+      "math.copysign",
+      "math.atan2",
+      "math.isnan"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "threading.serialize_iterator",
+    "title": {
+      "ru": "threading.serialize_iterator()",
+      "en": "threading.serialize_iterator()"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Обёртка, позволяющая нескольким потокам безопасно брать элементы из одного итератора или генератора: каждый элемент достаётся ровно одному потоку.",
+      "en": "A wrapper that lets several threads safely take items from one iterator or generator: each item goes to exactly one thread."
+    },
+    "body": {
+      "ru": "Генератор нельзя продвигать из двух потоков одновременно: второй вызов next() во время работы первого даёт ValueError: generator already executing, а итераторы на чистом Python могут повредить своё состояние. serialize_iterator ставит вокруг next() (а также send, throw и close, если они есть) блокировку: потоки получают элементы по очереди, без повторов и пропусков. Значения не буферизуются — поток, пришедший во время чужого next(), ждёт. Это раздача работы, а не копирование: если каждому потоку нужна вся последовательность, нужен threading.concurrent_tee.",
+      "en": "A generator cannot be advanced from two threads at once: a second next() while the first is running raises ValueError: generator already executing, and pure-Python iterators may corrupt their state. serialize_iterator puts a lock around next() (and around send, throw and close if they exist): threads receive items one at a time, with no duplicates or gaps. Values are not buffered, so a thread arriving during someone else's next() waits. This distributes work rather than copying it: if every thread needs the whole sequence, use threading.concurrent_tee."
+    },
+    "syntax": "threading.serialize_iterator(iterable)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/threading.html#threading.serialize_iterator",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль threading",
+    "subcat": {
+      "ru": "итераторы в потоках",
+      "en": "iterators across threads"
+    },
+    "aliases": [
+      "генератор из нескольких потоков",
+      "generator already executing",
+      "общий итератор для потоков"
+    ],
+    "keywords": [
+      "serialize_iterator",
+      "generator",
+      "thread-safe",
+      "Lock",
+      "next"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import threading",
+        "",
+        "def numbers():",
+        "    yield from range(100)",
+        "",
+        "source = threading.serialize_iterator(numbers())",
+        "taken = []",
+        "",
+        "def worker():",
+        "    for n in source:",
+        "        taken.append(n)",
+        "",
+        "threads = [threading.Thread(target=worker) for _ in range(4)]",
+        "for t in threads: t.start()",
+        "for t in threads: t.join()",
+        "print(len(taken), sorted(taken) == list(range(100)))  # → 100 True"
+      ]
+    ],
+    "related": [
+      "threading.synchronized_iterator",
+      "threading.concurrent_tee",
+      "threading-lock",
+      "генераторное-выражение"
+    ],
+    "related_errors": [
+      "valueerror"
+    ]
+  },
+  {
+    "id": "threading.synchronized_iterator",
+    "title": {
+      "ru": "threading.synchronized_iterator()",
+      "en": "threading.synchronized_iterator()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Декоратор для генераторной функции: каждый возвращаемый ею итератор сразу обёрнут в serialize_iterator и безопасен для нескольких потоков.",
+      "en": "A decorator for a generator function: every iterator it returns is already wrapped in serialize_iterator and safe for several threads."
+    },
+    "body": {
+      "ru": "Удобнее, чем оборачивать каждый вызов вручную: @threading.synchronized_iterator над def squares(n) — и любой squares(10) можно раздавать потокам. Имя, документация и __wrapped__ исходной функции сохраняются. Блокировка своя у каждого итератора, а не общая на функцию: два вызова генератора не мешают друг другу. Каждый элемент получает ровно один поток — это очередь работы, а не рассылка.",
+      "en": "More convenient than wrapping every call by hand: put @threading.synchronized_iterator above def squares(n) and any squares(10) can be shared between threads. The original function's name, docstring and __wrapped__ are preserved. Each iterator gets its own lock rather than one per function, so two calls of the generator do not block each other. Each item goes to exactly one thread: this is a work queue, not a broadcast."
+    },
+    "syntax": "@threading.synchronized_iterator\ndef gen(...):\n    yield ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/threading.html#threading.synchronized_iterator",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль threading",
+    "subcat": {
+      "ru": "итераторы в потоках",
+      "en": "iterators across threads"
+    },
+    "aliases": [
+      "потокобезопасный генератор",
+      "декоратор для генератора в потоках"
+    ],
+    "keywords": [
+      "synchronized_iterator",
+      "decorator",
+      "generator",
+      "thread-safe"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import threading",
+        "",
+        "@threading.synchronized_iterator",
+        "def squares(n):",
+        "    for x in range(n):",
+        "        yield x * x",
+        "",
+        "print(squares.__name__)  # → squares",
+        "got = []",
+        "it = squares(50)",
+        "threads = [threading.Thread(target=lambda: got.extend(it)) for _ in range(3)]",
+        "for t in threads: t.start()",
+        "for t in threads: t.join()",
+        "print(sorted(got) == [x * x for x in range(50)])  # → True"
+      ]
+    ],
+    "related": [
+      "threading.serialize_iterator",
+      "threading.concurrent_tee",
+      "генераторное-выражение"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "threading.concurrent_tee",
+    "title": {
+      "ru": "threading.concurrent_tee()",
+      "en": "threading.concurrent_tee()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Делает из одного итератора n независимых копий, которые можно читать из разных потоков: каждая копия видит всю последовательность.",
+      "en": "Turns one iterator into n independent copies that can be read from different threads: each copy sees the whole sequence."
+    },
+    "body": {
+      "ru": "Это потокобезопасный itertools.tee: обычный tee не рассчитан на одновременное чтение копий из разных потоков. Значения буферизуются, пока их не прочитают все копии, поэтому если одна копия сильно отстаёт, буфер растёт — память расходуется на разрыв между самым быстрым и самым медленным читателем. Каждую копию должен читать один поток; если одну копию делят несколько потоков, её дополнительно оборачивают в serialize_iterator. n=0 даёт пустой кортеж, отрицательное n — ValueError.",
+      "en": "This is a thread-safe itertools.tee: the ordinary tee is not designed for its copies to be read from different threads at once. Values are buffered until every copy has read them, so if one copy lags far behind the buffer grows: memory is spent on the gap between the fastest and the slowest reader. Each copy should be read by one thread; if several threads share a copy, wrap it in serialize_iterator as well. n=0 gives an empty tuple, a negative n raises ValueError."
+    },
+    "syntax": "threading.concurrent_tee(iterable, n=2)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/threading.html#threading.concurrent_tee",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль threading",
+    "subcat": {
+      "ru": "итераторы в потоках",
+      "en": "iterators across threads"
+    },
+    "aliases": [
+      "tee для потоков",
+      "раздать одну последовательность нескольким потокам"
+    ],
+    "keywords": [
+      "concurrent_tee",
+      "tee",
+      "itertools.tee",
+      "thread-safe",
+      "buffer"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import threading",
+        "left, right = threading.concurrent_tee(iter(range(5)))",
+        "results = {}",
+        "",
+        "def read(name, it):",
+        "    results[name] = list(it)",
+        "",
+        "threads = [threading.Thread(target=read, args=(n, it)) for n, it in [('L', left), ('R', right)]]",
+        "for t in threads: t.start()",
+        "for t in threads: t.join()",
+        "print(results['L'], results['R'])  # → [0, 1, 2, 3, 4] [0, 1, 2, 3, 4]"
+      ]
+    ],
+    "related": [
+      "itertools.tee",
+      "threading.serialize_iterator",
+      "threading.synchronized_iterator"
+    ],
+    "related_errors": [
+      "valueerror"
+    ]
+  },
+  {
+    "id": "os.statx",
+    "title": {
+      "ru": "os.statx()",
+      "en": "os.statx()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Сведения о файле через системный вызов Linux statx: можно запросить только нужные поля маской и получить время создания файла.",
+      "en": "File information via the Linux statx system call: request only the fields you need with a mask, and get the file's creation time."
+    },
+    "body": {
+      "ru": "os.stat возвращает фиксированный набор полей и не знает времени создания файла на Linux. statx принимает маску из констант os.STATX_* — например, os.STATX_BTIME для времени создания или os.STATX_SIZE для размера — и возвращает os.statx_result. Ядро может вернуть меньше запрошенного или больше: что получено на самом деле, показывает поле stx_mask, а отсутствующие поля равны None. Работает только на Linux 4.11+ с glibc 2.28+; переносимый код остаётся на os.stat.",
+      "en": "os.stat returns a fixed set of fields and does not know a file's creation time on Linux. statx takes a mask built from os.STATX_* constants, for example os.STATX_BTIME for creation time or os.STATX_SIZE for size, and returns an os.statx_result. The kernel may return less than asked for, or more: the stx_mask field shows what was actually retrieved, and missing fields are None. It works only on Linux 4.11+ with glibc 2.28+; portable code stays with os.stat."
+    },
+    "syntax": "os.statx(path, mask, *, flags=0, dir_fd=None, follow_symlinks=True)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/os.html#os.statx",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "Linux"
+    ],
+    "section": "Модуль os",
+    "subcat": {
+      "ru": "os — файловая система",
+      "en": "os — filesystem"
+    },
+    "aliases": [
+      "время создания файла linux",
+      "birth time файла",
+      "stat только нужные поля"
+    ],
+    "keywords": [
+      "statx",
+      "STATX_BTIME",
+      "STATX_SIZE",
+      "stx_mask",
+      "birth time",
+      "Linux"
+    ],
+    "tags": [
+      "os"
+    ],
+    "examples": [
+      [
+        "import os",
+        "with open('demo.txt', 'w') as f:",
+        "    f.write('abc')",
+        "st = os.statx('demo.txt', os.STATX_SIZE)",
+        "print(st.stx_size)  # → 3",
+        "print(bool(st.stx_mask & os.STATX_SIZE))  # → True"
+      ]
+    ],
+    "related": [
+      "os.statx_result",
+      "os.stat",
+      "os.lstat"
+    ],
+    "related_errors": [
+      "filenotfounderror"
+    ]
+  },
+  {
+    "id": "os.statx_result",
+    "title": {
+      "ru": "os.statx_result",
+      "en": "os.statx_result"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Результат os.statx: поля stx_size, stx_mtime, stx_btime и другие. Поле, которого нет в stx_mask, равно None, а не нулю.",
+      "en": "The result of os.statx: fields such as stx_size, stx_mtime and stx_btime. A field missing from stx_mask is None, not zero."
+    },
+    "body": {
+      "ru": "Имена полей начинаются с stx_, как в системном вызове: stx_size — размер, stx_mtime и stx_mtime_ns — время изменения, stx_btime — время создания (birth time). Главное отличие от os.stat_result — честное «нет данных»: если ядро или файловая система не вернули поле, вместо правдоподобного нуля стоит None — а вернуть его могут и без запроса в маске. Перед использованием поле проверяют на None или сверяют stx_mask с нужной константой STATX_*.",
+      "en": "Field names start with stx_, as in the system call: stx_size is the size, stx_mtime and stx_mtime_ns the modification time, stx_btime the creation (birth) time. The main difference from os.stat_result is an honest “no data”: if the kernel or filesystem did not return a field, there is None instead of a plausible zero, and a field may come back even when the mask did not ask for it. Check the field for None before use, or test stx_mask against the relevant STATX_* constant."
+    },
+    "syntax": "st = os.statx(path, mask)\nst.stx_size, st.stx_btime, st.stx_mask",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/os.html#os.statx_result",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "Linux"
+    ],
+    "section": "Модуль os",
+    "subcat": {
+      "ru": "os — файловая система",
+      "en": "os — filesystem"
+    },
+    "aliases": [
+      "поля statx",
+      "stx_btime"
+    ],
+    "keywords": [
+      "statx_result",
+      "stx_size",
+      "stx_btime",
+      "stx_mask",
+      "None"
+    ],
+    "tags": [
+      "os"
+    ],
+    "examples": [
+      [
+        "import os",
+        "with open('demo.txt', 'w') as f:",
+        "    f.write('hello')",
+        "st = os.statx('demo.txt', os.STATX_SIZE)",
+        "print(type(st).__name__, st.stx_size)  # → statx_result 5",
+        "has_btime = bool(st.stx_mask & os.STATX_BTIME)",
+        "print(has_btime == (st.stx_btime is not None))  # → True — поле есть, только если бит в stx_mask"
+      ]
+    ],
+    "related": [
+      "os.statx",
+      "os.stat"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "re.prefixmatch",
+    "title": {
+      "ru": "re.prefixmatch()",
+      "en": "re.prefixmatch()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Новое имя для re.match: ищет совпадение только в начале строки. Имя говорит, что делает функция, и не путается с search и fullmatch.",
+      "en": "A new name for re.match: looks for a match only at the start of the string. The name says what the function does and is not confused with search or fullmatch."
+    },
+    "body": {
+      "ru": "re.match давно сбивает с толку: по названию кажется, что он ищет совпадение где угодно или проверяет строку целиком, а он проверяет только начало. prefixmatch — та же функция под честным именем, у объекта шаблона есть такой же метод Pattern.prefixmatch. Даже с re.MULTILINE совпадение ищется лишь в начале строки, а не каждой линии. Для поиска по всей строке нужен re.search, для проверки строки целиком — re.fullmatch. Код, который должен работать на версиях до 3.15, продолжает использовать re.match: старое имя не устарело.",
+      "en": "re.match has long been confusing: its name suggests it finds a match anywhere or checks the whole string, while it only checks the beginning. prefixmatch is the same function under an honest name, and pattern objects have the same Pattern.prefixmatch method. Even with re.MULTILINE the match is tried only at the start of the string, not of every line. To search the whole string use re.search, to check the entire string use re.fullmatch. Code that must run on versions before 3.15 keeps using re.match: the old name is not deprecated."
+    },
+    "syntax": "re.prefixmatch(pattern, string, flags=0)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/re.html#re.prefixmatch",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль re",
+    "subcat": {
+      "ru": "поиск",
+      "en": "search"
+    },
+    "aliases": [
+      "re.match под новым именем",
+      "совпадение в начале строки"
+    ],
+    "keywords": [
+      "prefixmatch",
+      "re.match",
+      "search",
+      "fullmatch",
+      "MULTILINE"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import re",
+        "print(re.prefixmatch(r'\\d+', '42 apples').group())  # → 42",
+        "print(re.prefixmatch(r'\\d+', 'apples 42'))  # → None",
+        "print(re.search(r'\\d+', 'apples 42').group())  # → 42"
+      ]
+    ],
+    "related": [
+      "re.match",
+      "re.search",
+      "re.fullmatch"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "enum.bin",
+    "title": {
+      "ru": "enum.bin()",
+      "en": "enum.bin()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Двоичная запись числа, где отрицательные показаны в дополнительном коде, а первый бит — знак: enum.bin(~10) даёт '0b1 0101'.",
+      "en": "The binary form of a number where negatives are shown in two's complement and the first bit is the sign: enum.bin(~10) gives '0b1 0101'."
+    },
+    "body": {
+      "ru": "Встроенный bin(-5) печатает '-0b101' — знак минус и модуль, а не те биты, с которыми работают & | ^ ~. enum.bin показывает биты так, как их видят побитовые операторы: знаковый бит отделён пробелом, а max_bits задаёт ширину. Функция живёт в enum, потому что нужна для отладки флагов IntFlag, но годится для любого int.",
+      "en": "The built-in bin(-5) prints '-0b101', a minus sign and the magnitude, not the bits that & | ^ ~ operate on. enum.bin shows the bits as bitwise operators see them: the sign bit is separated by a space, and max_bits sets the width. The function lives in enum because it helps debug IntFlag flags, but it works for any int."
+    },
+    "syntax": "enum.bin(num, max_bits=None)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/enum.html#enum.bin",
+    "added": "3.11",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль enum",
+    "subcat": {
+      "ru": "флаги",
+      "en": "flags"
+    },
+    "aliases": [
+      "двоичная запись отрицательного числа",
+      "дополнительный код python"
+    ],
+    "keywords": [
+      "enum.bin",
+      "bin",
+      "two's complement",
+      "IntFlag",
+      "~"
+    ],
+    "tags": [
+      "enum"
+    ],
+    "examples": [
+      [
+        "import enum",
+        "print(bin(-11))  # → -0b1011",
+        "print(enum.bin(10), '|', enum.bin(~10))  # → 0b0 1010 | 0b1 0101",
+        "print(enum.bin(5, 8))  # → 0b0 00000101"
+      ]
+    ],
+    "related": [
+      "bin",
+      "enum.IntFlag",
+      "побитовые-операторы"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "enum.show_flag_values",
+    "title": {
+      "ru": "enum.show_flag_values()",
+      "en": "enum.show_flag_values()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Раскладывает целое значение флага на степени двойки: show_flag_values(13) даёт [1, 4, 8]. Помогает понять, из каких битов состоит флаг.",
+      "en": "Breaks an integer flag value into powers of two: show_flag_values(13) gives [1, 4, 8]. Helps see which bits make up a flag."
+    },
+    "body": {
+      "ru": "Сообщения об ошибках enum сами отсылают к этой функции: при проверке @verify(NAMED_FLAGS) ошибка говорит «use enum.show_flag_values(value) for details». Она принимает int (или значение флага) и возвращает список отдельных битов по возрастанию — по нему видно, какой бит не назван членом Flag. Для отрицательных чисел список пуст.",
+      "en": "enum's own error messages point to this function: with @verify(NAMED_FLAGS) the error says “use enum.show_flag_values(value) for details”. It takes an int (or a flag value) and returns the list of individual bits in ascending order, which shows which bit has no named Flag member. For negative numbers the list is empty."
+    },
+    "syntax": "enum.show_flag_values(value)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/enum.html#enum.show_flag_values",
+    "added": "3.11",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль enum",
+    "subcat": {
+      "ru": "флаги",
+      "en": "flags"
+    },
+    "aliases": [
+      "разложить флаг на биты",
+      "какие биты в числе"
+    ],
+    "keywords": [
+      "show_flag_values",
+      "Flag",
+      "IntFlag",
+      "verify",
+      "NAMED_FLAGS"
+    ],
+    "tags": [
+      "enum"
+    ],
+    "examples": [
+      [
+        "import enum",
+        "print(enum.show_flag_values(13))  # → [1, 4, 8]",
+        "",
+        "class Perm(enum.IntFlag):",
+        "    R = 4",
+        "    W = 2",
+        "    X = 1",
+        "",
+        "print(enum.show_flag_values(Perm.R | Perm.X))  # → [1, 4]"
+      ]
+    ],
+    "related": [
+      "enum.Flag",
+      "enum.verify",
+      "enum.bin"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "hashlib.scrypt",
+    "title": {
+      "ru": "hashlib.scrypt()",
+      "en": "hashlib.scrypt()"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Выводит ключ из пароля алгоритмом scrypt (RFC 7914): медленно и с большим расходом памяти, что затрудняет перебор паролей на видеокартах.",
+      "en": "Derives a key from a password with the scrypt algorithm (RFC 7914): slowly and with heavy memory use, which makes password cracking on GPUs harder."
+    },
+    "body": {
+      "ru": "Пароли не хранят ни открыто, ни как sha256(password): быстрый хеш перебирается миллиардами вариантов в секунду. scrypt специально дорогой: n — множитель стоимости (степень двойки, например 2**14), r — размер блока, p — параллельность; память растёт как 128 * r * n байт. Соль (salt) — случайные 16+ байт из os.urandom, своя для каждого пароля, и хранится рядом с результатом. Аргументы, кроме пароля, только именованные. Проверка пароля — повторный вызов с той же солью и сравнение через hmac.compare_digest. Функция есть, если Python собран с OpenSSL 1.1+.",
+      "en": "Passwords are stored neither in plain text nor as sha256(password): a fast hash can be brute-forced at billions of guesses per second. scrypt is deliberately expensive: n is the cost factor (a power of two such as 2**14), r the block size, p the parallelism; memory grows as 128 * r * n bytes. The salt is 16+ random bytes from os.urandom, unique per password, stored next to the result. All arguments except the password are keyword-only. To verify a password, call it again with the same salt and compare with hmac.compare_digest. The function exists when Python is built with OpenSSL 1.1+."
+    },
+    "syntax": "hashlib.scrypt(password, *, salt, n, r, p, maxmem=0, dklen=64)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/hashlib.html#hashlib.scrypt",
+    "added": "3.6",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль hashlib",
+    "subcat": {
+      "ru": "хеширование паролей",
+      "en": "password hashing"
+    },
+    "aliases": [
+      "хеширование паролей",
+      "как хранить пароль",
+      "key derivation function"
+    ],
+    "keywords": [
+      "scrypt",
+      "KDF",
+      "salt",
+      "password",
+      "RFC 7914",
+      "pbkdf2_hmac"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import hashlib, hmac, os",
+        "salt = os.urandom(16)",
+        "key = hashlib.scrypt(b'secret', salt=salt, n=2**14, r=8, p=1)",
+        "print(len(key))  # → 64",
+        "again = hashlib.scrypt(b'secret', salt=salt, n=2**14, r=8, p=1)",
+        "print(hmac.compare_digest(key, again))  # → True"
+      ]
+    ],
+    "related": [
+      "hashlib.pbkdf2_hmac",
+      "os.urandom"
     ],
     "related_errors": []
   }

@@ -1909,9 +1909,9 @@
       ],
       [
         "# Python 3.12+",
-        "from typing import TypeVarTuple, Unpack",
+        "from typing import TypeVarTuple, Unpack, get_args",
         "Ts = TypeVarTuple('Ts')",
-        "print(Unpack[Ts])   # → typing.Unpack[Ts]"
+        "print(get_args(Unpack[Ts])[0] is Ts)  # → True"
       ],
       [
         "# Python 3.12+",
@@ -3211,6 +3211,75 @@
     ],
     "related_errors": [
       "NameError"
+    ]
+  },
+  {
+    "id": "typing.disjoint_base",
+    "title": {
+      "ru": "@typing.disjoint_base",
+      "en": "@typing.disjoint_base"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Декоратор для анализаторов типов: класс — непересекающаяся база, и наследоваться сразу от него и от другой такой базы нельзя.",
+      "en": "A decorator for type checkers: the class is a disjoint base, and inheriting from it together with another such base is not allowed."
+    },
+    "body": {
+      "ru": "Во время выполнения декоратор ничего не запрещает — он только помечает класс. Смысл в статической проверке: если int и str — непересекающиеся базы, анализатор знает, что значение не может быть одновременно экземпляром обоих, и может найти недостижимую ветку вроде isinstance(x, int) and isinstance(x, str). В CPython таким свойством обладают встроенные классы с собственной раскладкой памяти: class C(int, str) падает с TypeError: multiple bases have instance lay-out conflict; в заглушках (.pyi) их и помечают этим декоратором.",
+      "en": "At runtime the decorator forbids nothing; it only marks the class. The point is static checking: if int and str are disjoint bases, the checker knows a value cannot be an instance of both and can flag an unreachable branch such as isinstance(x, int) and isinstance(x, str). In CPython, built-in classes with their own memory layout have this property: class C(int, str) fails with TypeError: multiple bases have instance lay-out conflict, and stub files (.pyi) mark such classes with this decorator."
+    },
+    "syntax": "@typing.disjoint_base\nclass C: ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/typing.html#typing.disjoint_base",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль typing",
+    "subcat": {
+      "ru": "декораторы и маркеры",
+      "en": "decorators and markers"
+    },
+    "aliases": [
+      "instance lay-out conflict",
+      "запрет множественного наследования для анализатора"
+    ],
+    "keywords": [
+      "disjoint_base",
+      "solid base",
+      "PEP 800",
+      "multiple inheritance",
+      "type checker"
+    ],
+    "tags": [
+      "typing"
+    ],
+    "examples": [
+      [
+        "from typing import disjoint_base",
+        "",
+        "@disjoint_base",
+        "class Shape:",
+        "    pass",
+        "",
+        "print(Shape.__name__)  # → Shape — во время выполнения класс обычный"
+      ],
+      [
+        "try:",
+        "    class Both(int, str):",
+        "        pass",
+        "except TypeError as e:",
+        "    print(e)  # → multiple bases have instance lay-out conflict"
+      ]
+    ],
+    "related": [
+      "typing.final",
+      "наследование"
+    ],
+    "related_errors": [
+      "typeerror"
     ]
   }
 ]

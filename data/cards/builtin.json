@@ -3171,5 +3171,159 @@
       "StopAsyncIteration",
       "TypeError"
     ]
+  },
+  {
+    "id": "frozendict",
+    "title": {
+      "ru": "frozendict()",
+      "en": "frozendict()"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Неизменяемый словарь: те же ключи и чтение, что у dict, но без изменения на месте. Хешируется, если хешируются ключи и значения.",
+      "en": "An immutable dictionary: the same keys and lookups as dict, but no in-place changes. Hashable when its keys and values are hashable."
+    },
+    "body": {
+      "ru": "Главная польза — хешируемость: frozendict можно положить в set, сделать ключом другого словаря или аргументом функции под functools.cache, чего dict не позволяет. Методы изменения (d[k] = v, del, pop, update, setdefault, clear) отсутствуют — попытка записи даёт TypeError. Оператор | возвращает новый frozendict, а |= не меняет объект, а переназначает имя на новый. Это не подкласс dict: isinstance(fd, dict) ложно, зато frozendict — Mapping. Хешируемость неглубокая: frozendict со списком внутри создать можно, но hash() на нём падает с TypeError. До 3.15 похожую роль играл types.MappingProxyType — но это лишь вид на чужой dict, который меняется вместе с ним.",
+      "en": "The main benefit is hashability: a frozendict can go into a set, serve as a key of another dict or as an argument to a functools.cache function, which a dict cannot. Mutating methods (d[k] = v, del, pop, update, setdefault, clear) are absent, and an attempt to write raises TypeError. The | operator returns a new frozendict, and |= rebinds the name to a new object instead of changing it. It is not a dict subclass: isinstance(fd, dict) is false, but frozendict is a Mapping. Hashability is shallow: a frozendict holding a list can be created, but hash() on it fails with TypeError. Before 3.15 a similar role was played by types.MappingProxyType, but that is only a view of another dict and changes along with it."
+    },
+    "syntax": "frozendict(**kwargs)\nfrozendict(mapping, /, **kwargs)\nfrozendict(iterable, /, **kwargs)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/stdtypes.html#frozendict",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Встроенные функции",
+    "subcat": {
+      "ru": "типы",
+      "en": "types"
+    },
+    "aliases": [
+      "неизменяемый словарь",
+      "замороженный словарь",
+      "словарь как ключ словаря",
+      "hashable dict"
+    ],
+    "keywords": [
+      "frozendict",
+      "immutable",
+      "hash",
+      "Mapping",
+      "PEP 814",
+      "MappingProxyType"
+    ],
+    "tags": [
+      "builtin"
+    ],
+    "examples": [
+      [
+        "fd = frozendict(host='localhost', port=8080)",
+        "print(fd['port'])  # → 8080",
+        "print(fd)  # → frozendict({'host': 'localhost', 'port': 8080})",
+        "try:",
+        "    fd['port'] = 9090",
+        "except TypeError as e:",
+        "    print(type(e).__name__)  # → TypeError"
+      ],
+      [
+        "configs = {frozendict(env='prod'): 'боевой', frozendict(env='dev'): 'отладка'}",
+        "print(configs[frozendict(env='dev')])  # → отладка",
+        "print(isinstance(frozendict(), dict))  # → False"
+      ],
+      [
+        "base = frozendict(a=1)",
+        "more = base | {'b': 2}",
+        "print(more)  # → frozendict({'a': 1, 'b': 2})",
+        "print(base)  # → frozendict({'a': 1}) — исходный не изменился"
+      ]
+    ],
+    "related": [
+      "dict",
+      "frozenset",
+      "hash",
+      "functools.cache"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
+  },
+  {
+    "id": "sentinel",
+    "title": {
+      "ru": "sentinel()",
+      "en": "sentinel()"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Создаёт уникальный объект-маркер с понятным repr — например, «значение не передано», когда None само является допустимым значением.",
+      "en": "Creates a unique marker object with a readable repr, e.g. “no value given” when None itself is a valid value."
+    },
+    "body": {
+      "ru": "Классическая замена — MISSING = object(): уникально, но в отладке печатается как <object object at 0x7f...>, не копируется по смыслу и не годится в аннотацию. sentinel('MISSING') печатается как MISSING, переживает copy и deepcopy (возвращается тот же объект), сериализуется pickle, если лежит в модуле под тем же именем, и может стоять в аннотации: int | MISSING. Сравнивают его через is, а не ==; он всегда истинен, поэтому проверка if value: его не отличит — нужно if value is MISSING. Наследоваться от sentinel нельзя. Имя переменной принято совпадать с именем маркера.",
+      "en": "The classic substitute is MISSING = object(): unique, but in debugging it prints as <object object at 0x7f...>, does not copy meaningfully and cannot be used in an annotation. sentinel('MISSING') prints as MISSING, survives copy and deepcopy (the same object comes back), pickles when it lives in a module under the same name, and can appear in an annotation: int | MISSING. Compare it with is, not ==; it is always truthy, so a check like if value: will not tell it apart — write if value is MISSING. Subclassing sentinel is not allowed. By convention the variable name matches the marker's name."
+    },
+    "syntax": "sentinel(name, /, *, repr=None)",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/functions.html#sentinel",
+    "added": "3.15",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Встроенные функции",
+    "subcat": {
+      "ru": "объекты",
+      "en": "objects"
+    },
+    "aliases": [
+      "маркер отсутствия значения",
+      "значение по умолчанию кроме None",
+      "MISSING = object()",
+      "уникальный объект-заглушка"
+    ],
+    "keywords": [
+      "sentinel",
+      "MISSING",
+      "object()",
+      "is",
+      "PEP 661",
+      "default"
+    ],
+    "tags": [
+      "builtin"
+    ],
+    "examples": [
+      [
+        "MISSING = sentinel('MISSING')",
+        "",
+        "def get(d, key, default=MISSING):",
+        "    if key in d:",
+        "        return d[key]",
+        "    if default is MISSING:",
+        "        raise KeyError(key)",
+        "    return default",
+        "",
+        "print(get({'a': None}, 'a'))  # → None — None здесь законное значение",
+        "print(get({}, 'b', 0))  # → 0",
+        "print(MISSING)  # → MISSING"
+      ],
+      [
+        "import copy",
+        "MISSING = sentinel('MISSING')",
+        "print(copy.deepcopy(MISSING) is MISSING)  # → True",
+        "print(bool(MISSING))  # → True — проверяйте через is, а не через if"
+      ]
+    ],
+    "related": [
+      "nonetype",
+      "object",
+      "is-is-not",
+      "copy.deepcopy"
+    ],
+    "related_errors": []
   }
 ]

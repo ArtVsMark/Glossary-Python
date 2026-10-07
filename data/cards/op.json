@@ -183,7 +183,9 @@
         "    return sep.join(str(a) for a in args)",
         "print(concat('x','y','z'))  # → x y z",
         "nums = [4, 5, 6]",
-        "print(my_sum(*nums))  # → 15 (распаковка)",
+        "print(my_sum(*nums))  # → 15 (распаковка)"
+      ],
+      [
         "def mixed(a, b, *args):",
         "    return a, b, args",
         "print(mixed(1,2,3,4))  # → (1, 2, (3, 4))"
@@ -694,7 +696,10 @@
         "    # DictReader",
         "    output2.seek(0)",
         "    for row in csv.DictReader(output2):",
-        "        print(row)  # → OrderedDict/dict",
+        "        print(row)  # → OrderedDict/dict"
+      ],
+      [
+        "import csv, io",
         "# Запись в файл",
         "with open('data.csv','w',newline='',encoding='utf-8') as f:",
         "    w = csv.writer(f)",
@@ -1062,7 +1067,9 @@
     "examples": [
       [
         "print(...)                # → Ellipsis",
-        "print(... is Ellipsis)    # → True",
+        "print(... is Ellipsis)    # → True"
+      ],
+      [
         "def stub(): ...           # заглушка тела вместо pass",
         "print(type(...))          # → <class 'ellipsis'>",
         "x = ...; print(x == Ellipsis)  # → True",
@@ -1192,17 +1199,21 @@
       [
         "fruits = [\"яблоко\", \"банан\", \"вишня\"]",
         "for i, fruit in enumerate(fruits):",
-        "    print(i, fruit)  # 0 яблоко / 1 банан / 2 вишня",
-        "    for i, fruit in enumerate(fruits, start=1):",
-        "        print(f\"{i}. {fruit}\")  # 1. яблоко / 2. банан / 3. вишня",
-        "        lst = [10, 20, 30, 40]",
+        "    print(i, fruit)  # → 0 яблоко / 1 банан / 2 вишня",
+        "for i, fruit in enumerate(fruits, start=1):",
+        "    print(f\"{i}. {fruit}\")  # → 1. яблоко / 2. банан / 3. вишня"
+      ],
+      [
+        "lst = [10, 20, 30, 40]",
         "for i, v in enumerate(lst):",
         "    if v == 20:",
-        "        print(\"индекс 20:\", i)  # → индекс 20: 1",
-        "        nums = [5, 3, 8, 1]",
-        "        max_i, max_v = max(enumerate(nums), key=lambda x: x[1])",
-        "        print(max_i, max_v)  # → 2 8",
-        "        print(dict(enumerate(\"abc\")))  # → {0: 'a', 1: 'b', 2: 'c'}"
+        "        print(\"индекс 20:\", i)  # → индекс 20: 1"
+      ],
+      [
+        "nums = [5, 3, 8, 1]",
+        "max_i, max_v = max(enumerate(nums), key=lambda x: x[1])",
+        "print(max_i, max_v)  # → 2 8",
+        "print(dict(enumerate(\"abc\")))  # → {0: 'a', 1: 'b', 2: 'c'}"
       ]
     ],
     "related": [
@@ -1263,18 +1274,26 @@
         "print(evens)  # → [0, 2, 4, 6, 8]",
         "words = ['', 'hello', '', 'world']",
         "non_empty = list(filter(None, words))",
-        "print(non_empty)  # → ['hello', 'world']",
+        "print(non_empty)  # → ['hello', 'world']"
+      ],
+      [
         "# filter с функцией",
         "def is_odd(n): return n % 2 != 0",
         "odds = list(filter(is_odd, range(10)))",
-        "print(odds)  # → [1, 3, 5, 7, 9]",
+        "print(odds)  # → [1, 3, 5, 7, 9]"
+      ],
+      [
         "# filter ленивый",
         "f = filter(lambda x: x > 2, [1,2,3,4])",
-        "print(next(f))  # → 3",
+        "print(next(f))  # → 3"
+      ],
+      [
         "# Отбор непустых словарей",
         "data = [{'a':1}, {}, {'b':2}]",
         "non_empty_d = list(filter(None, data))",
-        "print(non_empty_d)  # → [{'a':1},{'b':2}]",
+        "print(non_empty_d)  # → [{'a':1},{'b':2}]"
+      ],
+      [
         "# filter + map",
         "result = list(map(lambda x: x**2, filter(lambda x: x%2==0, range(6))))",
         "print(result)  # → [0, 4, 16]",
@@ -1334,7 +1353,9 @@
         "x = 3.14  # литерал float",
         "y = 1e6  # 1000000.0 (экспоненциальная запись)",
         "z = float(\"2.71\")  # из строки → 2.71",
-        "print(round(0.1 + 0.2, 10))  # → 0.3 (ошибка точности IEEE 754)",
+        "print(round(0.1 + 0.2, 10))  # → 0.3 (ошибка точности IEEE 754)"
+      ],
+      [
         "import math; print(math.inf)  # → inf",
         "print(float(\"nan\"))  # → nan",
         "print(0.1 + 0.2 == 0.3)  # → False (проблема точности float)",
@@ -1392,18 +1413,28 @@
     "examples": [
       [
         "for x in [1, 2, 3]:",
-        "    print(x, end=\" \")  # → 1 2 3",
-        "    for ch in \"abc\":",
-        "        print(ch, end=\"\")  # → abc",
-        "    for i in range(5):",
-        "        print(i, end=\" \")  # → 0 1 2 3 4",
-        "        d = {\"a\": 1, \"b\": 2}",
-        "    for k, v in d.items():",
-        "        print(f\"{k}:{v}\", end=\" \")  # → a:1 b:2",
-        "    for i, val in enumerate([\"x\", \"y\", \"z\"], start=1):",
-        "        print(f\"{i}.{val}\", end=\" \")  # → 1.x 2.y 3.z",
-        "    for a, b in zip([1, 2], [10, 20]):",
-        "        print(a + b, end=\" \")  # → 11 22"
+        "    print(x, end=\" \")  # → 1 2 3"
+      ],
+      [
+        "for ch in \"abc\":",
+        "    print(ch, end=\"\")  # → abc"
+      ],
+      [
+        "for i in range(5):",
+        "    print(i, end=\" \")  # → 0 1 2 3 4"
+      ],
+      [
+        "d = {\"a\": 1, \"b\": 2}",
+        "for k, v in d.items():",
+        "    print(f\"{k}:{v}\", end=\" \")  # → a:1 b:2"
+      ],
+      [
+        "for i, val in enumerate([\"x\", \"y\", \"z\"], start=1):",
+        "    print(f\"{i}.{val}\", end=\" \")  # → 1.x 2.y 3.z"
+      ],
+      [
+        "for a, b in zip([1, 2], [10, 20]):",
+        "    print(a + b, end=\" \")  # → 11 22"
       ]
     ],
     "related": [
@@ -1585,7 +1616,9 @@
         "    global counter",
         "    counter += 1",
         "increment()",
-        "print(counter)  # → 1",
+        "print(counter)  # → 1"
+      ],
+      [
         "def make_counter():",
         "    count = 0",
         "    def inc():",
@@ -1600,7 +1633,9 @@
         "    global total",
         "    total += x",
         "add(5); add(3)",
-        "print(total)  # → 8",
+        "print(total)  # → 8"
+      ],
+      [
         "def outer():",
         "    x = 0",
         "    def middle():",
@@ -1612,14 +1647,20 @@
         "        inner()",
         "    middle()",
         "    return x",
-        "print(outer())  # → 11",
+        "print(outer())  # → 11"
+      ],
+      [
         "# global можно объявить несколько переменных",
-        "a = b = 0",
+        "a = b = 0"
+      ],
+      [
         "def reset():",
         "    global a, b",
         "    a = b = 1",
         "reset()",
-        "print(a, b)  # → 1 1",
+        "print(a, b)  # → 1 1"
+      ],
+      [
         "def acc():",
         "    s = 0",
         "    def add(n):",
@@ -1683,18 +1724,25 @@
       [
         "x = 5",
         "if x > 0:",
-        "    print(\"положительное\")  # → положительное",
-        "    if \"Python\" in \"Я учу Python\":",
-        "        print(\"нашли\")  # → нашли",
-        "        lst = [1, 2, 3]",
-        "    if lst:",
-        "        print(\"список не пуст\")  # → список не пуст",
-        "        name = None",
-        "    if name is None:",
-        "        name = \"Гость\"  # name → \"Гость\"",
-        "        flag = True",
-        "    if flag:",
-        "        print(\"флаг установлен\")  # → флаг установлен",
+        "    print(\"положительное\")  # → положительное"
+      ],
+      [
+        "if \"Python\" in \"Я учу Python\":",
+        "    print(\"нашли\")  # → нашли"
+      ],
+      [
+        "# Пустая коллекция и None — ложь",
+        "lst = [1, 2, 3]",
+        "if lst:",
+        "    print(\"список не пуст\")  # → список не пуст",
+        "name = None",
+        "if name is None:",
+        "    name = \"Гость\"",
+        "print(name)  # → Гость"
+      ],
+      [
+        "# Вложенный if",
+        "x = 5",
         "if x > 0:",
         "    if x < 10:",
         "        print(\"однозначное\")  # → однозначное"
@@ -1761,14 +1809,16 @@
         "    grade = \"C\"",
         "else:",
         "    grade = \"F\"",
-        "    print(grade)  # → B",
-        "    hour = 14",
-        "    if hour < 12:",
-        "        print(\"утро\")",
-        "    elif hour < 18:",
-        "        print(\"день\")  # → день",
-        "    else:",
-        "        print(\"вечер\")"
+        "print(grade)  # → B — сработала первая истинная ветка"
+      ],
+      [
+        "hour = 14",
+        "if hour < 12:",
+        "    print(\"утро\")",
+        "elif hour < 18:",
+        "    print(\"день\")  # → день",
+        "else:",
+        "    print(\"вечер\")"
       ]
     ],
     "related": [
@@ -1825,20 +1875,27 @@
         "if x >= 0:",
         "    print(\"неотрицательное\")",
         "else:",
-        "    print(\"отрицательное\")  # → отрицательное",
-        "    n = 7",
-        "    if n % 2 == 0:",
-        "        print(\"чётное\")",
-        "    else:",
-        "        print(\"нечётное\")  # → нечётное",
-        "        s = \"\"",
-        "    if s:",
-        "        print(\"не пусто\")",
-        "    else:",
-        "        print(\"пусто\")  # → пусто",
-        "        val = None",
-        "        result = val if val is not None else 0",
-        "        print(result)  # → 0"
+        "    print(\"отрицательное\")  # → отрицательное"
+      ],
+      [
+        "n = 7",
+        "if n % 2 == 0:",
+        "    print(\"чётное\")",
+        "else:",
+        "    print(\"нечётное\")  # → нечётное"
+      ],
+      [
+        "s = \"\"",
+        "if s:",
+        "    print(\"не пусто\")",
+        "else:",
+        "    print(\"пусто\")  # → пусто — пустая строка ложна"
+      ],
+      [
+        "# Однострочная форма — условное выражение",
+        "val = None",
+        "result = val if val is not None else 0",
+        "print(result)  # → 0"
       ]
     ],
     "related": [
@@ -2080,7 +2137,9 @@
         "print(isinstance(3.14, float))  # → True",
         "print(isinstance(True, int))  # → True (bool — подкласс int)",
         "print(isinstance(\"hi\", (int, str)))  # → True (кортеж типов)",
-        "print(isinstance([], list))  # → True",
+        "print(isinstance([], list))  # → True"
+      ],
+      [
         "def add(a, b):",
         "    if not isinstance(a, (int, float)):",
         "        raise TypeError(\"Нужно число\")",
@@ -2153,22 +2212,34 @@
         "    json.dump(data, f, indent=2)",
         "with open(path) as f:",
         "    loaded = json.load(f)",
-        "print(loaded['name'])  # → Alice",
+        "print(loaded['name'])  # → Alice"
+      ],
+      [
+        "import json, os, tempfile",
         "# ensure_ascii=False — для кириллицы",
         "d2 = {'имя':'Алиса'}",
-        "print(json.dumps(d2, ensure_ascii=False))  # → {\"имя\": \"Алиса\"}",
+        "print(json.dumps(d2, ensure_ascii=False))  # → {\"имя\": \"Алиса\"}"
+      ],
+      [
+        "import json, os, tempfile",
         "# JSONDecodeError",
         "try:",
         "    json.loads('invalid')",
         "except json.JSONDecodeError as e:",
-        "    print(e)  # → Expecting value...",
+        "    print(e)  # → Expecting value..."
+      ],
+      [
+        "import json, os, tempfile",
         "# Кастомный default для нестандартных типов",
         "from datetime import date",
         "def default(obj):",
         "    if isinstance(obj, date):",
         "        return obj.isoformat()",
         "    raise TypeError",
-        "print(json.dumps({'date': date(2024,1,1)}, default=default))  # → {\"date\":\"2024-01-01\"}",
+        "print(json.dumps({'date': date(2024,1,1)}, default=default))  # → {\"date\":\"2024-01-01\"}"
+      ],
+      [
+        "import json, os, tempfile",
         "# sort_keys",
         "print(json.dumps({'b':2,'a':1}, sort_keys=True))  # → {\"a\": 1, \"b\": 2}"
       ]
@@ -2229,22 +2300,32 @@
         "    for k, v in kwargs.items():",
         "        print(k, v)",
         "show(a=1, b=2)  # → a 1 / b 2",
+        "opts = {'timeout': 30, 'retry': 3}",
+        "show(**opts)  # → timeout 30 / retry 3 — ** раскладывает словарь обратно"
+      ],
+      [
         "def config(**kwargs):",
         "    return kwargs",
-        "print(config(host='localhost', port=80))  # → {'host': 'localhost', 'port': 80}",
+        "print(config(host='localhost', port=80))  # → {'host': 'localhost', 'port': 80}"
+      ],
+      [
         "def connect(host, port, **kwargs):",
         "    print(host, port, kwargs)",
-        "connect('srv', 443, ssl=True)  # → srv 443 {'ssl': True}",
+        "connect('srv', 443, ssl=True)  # → srv 443 {'ssl': True}"
+      ],
+      [
         "def merge(base, **overrides):",
         "    d = base.copy()",
         "    d.update(overrides)",
         "    return d",
-        "print(merge({'a': 1}, b=2))  # → {'a': 1, 'b': 2}",
+        "print(merge({'a': 1}, b=2))  # → {'a': 1, 'b': 2}"
+      ],
+      [
         "def forward(*args, **kwargs):",
         "    print(args, kwargs)",
-        "forward(1, 2, x=3)  # → (1, 2) {'x': 3}",
-        "opts = {'timeout': 30, 'retry': 3}",
-        "show(**opts)  # → timeout 30 / retry 3",
+        "forward(1, 2, x=3)  # → (1, 2) {'x': 3}"
+      ],
+      [
         "def all_args(a, *args, **kwargs):",
         "    return a, args, kwargs",
         "print(all_args(1, 2, 3, x=4))  # → (1, (2, 3), {'x': 4})"
@@ -2313,7 +2394,9 @@
         "print(doubled)  # → [2, 4, 6]",
         "pairs = [(1,'b'),(2,'a'),(3,'c')]",
         "pairs.sort(key=lambda p: p[1])",
-        "print(pairs)  # → [(2,'a'),(1,'b'),(3,'c')]",
+        "print(pairs)  # → [(2,'a'),(1,'b'),(3,'c')]"
+      ],
+      [
         "# Вложенная lambda (каррирование)",
         "mul = lambda x: lambda y: x * y",
         "double = mul(2)",
@@ -2381,19 +2464,25 @@
         "print(floats)  # → [1.1, 2.2]",
         "words = ['hello', 'world']",
         "uppered = list(map(str.upper, words))",
-        "print(uppered)  # → ['HELLO', 'WORLD']",
+        "print(uppered)  # → ['HELLO', 'WORLD']"
+      ],
+      [
         "# map с несколькими итерируемыми",
         "a = [1, 2, 3]",
         "b = [10, 20, 30]",
         "result2 = list(map(lambda x,y: x+y, a, b))",
-        "print(result2)  # → [11, 22, 33]",
+        "print(result2)  # → [11, 22, 33]"
+      ],
+      [
         "# map ленивый",
         "m = map(str, range(5))",
         "print(next(m))  # → '0'",
         "print(next(m))  # → '1'",
         "names = ['alice', 'bob']",
         "result3 = list(map(str.capitalize, names))",
-        "print(result3)  # → ['Alice', 'Bob']",
+        "print(result3)  # → ['Alice', 'Bob']"
+      ],
+      [
         "# map по двум последовательностям сразу",
         "print(list(map(lambda x, y: x + y, [1,2,3], [10,20,30])))  # → [11,22,33]"
       ]
@@ -2516,9 +2605,13 @@
     "examples": [
       [
         "x = None  # явное присваивание",
-        "print(x is None)  # → True (правильная проверка на None)",
+        "print(x is None)  # → True (правильная проверка на None)"
+      ],
+      [
         "def f(): pass",
-        "print(f())  # → None (функция без return возвращает None)",
+        "print(f())  # → None (функция без return возвращает None)"
+      ],
+      [
         "def greet(name=None):",
         "    name = name or \"Гость\"",
         "    return f\"Привет, {name}\"",
@@ -2579,22 +2672,30 @@
         "# Примеры пишут файлы, поэтому уводим их во временную папку —",
         "# иначе пример мусорит там, откуда его запустили.",
         "import os, tempfile",
-        "os.chdir(tempfile.mkdtemp())",
+        "os.chdir(tempfile.mkdtemp())"
+      ],
+      [
         "# Запись файла",
         "with open('demo.txt', 'w', encoding='utf-8') as f:",
         "    f.write('Hello, World!')",
         "# Чтение текстового файла",
         "with open('demo.txt', 'r', encoding='utf-8') as f:",
         "    content = f.read()",
-        "print(content.strip())  # → Hello, World!",
+        "print(content.strip())  # → Hello, World!"
+      ],
+      [
         "# Добавление к файлу",
         "with open('demo.txt', 'a', encoding='utf-8') as f:",
-        "    f.write('\\nSecond line')",
+        "    f.write('\\nSecond line')"
+      ],
+      [
         "# Бинарный режим",
         "with open('demo.bin', 'wb') as f:",
         "    f.write(bytes([0, 1, 2, 3]))",
         "with open('demo.bin', 'rb') as f:",
-        "    print(f.read())  # → b'\\x00\\x01\\x02\\x03'",
+        "    print(f.read())  # → b'\\x00\\x01\\x02\\x03'"
+      ],
+      [
         "# Создание нового файла (x — ошибка, если существует)",
         "try:",
         "    with open('demo.txt', 'x') as f:",
@@ -2828,22 +2929,34 @@
         "    pickle.dump(data, f)",
         "with open(path,'rb') as f:",
         "    loaded = pickle.load(f)",
-        "print(loaded)  # → {'key':[1,2,3],'val':(4,5)}",
+        "print(loaded)  # → {'key':[1,2,3],'val':(4,5)}"
+      ],
+      [
+        "import pickle, os, tempfile",
         "# dumps/loads — в bytes",
         "bytes_data = pickle.dumps([1,'hello',3.14])",
         "print(bytes_data[:10])  # → ? первые байты пикла, зависят от протокола",
-        "print(pickle.loads(bytes_data))  # → [1,'hello',3.14]",
+        "print(pickle.loads(bytes_data))  # → [1,'hello',3.14]"
+      ],
+      [
+        "import pickle, os, tempfile",
         "# Сериализация объекта класса",
         "class Point:",
         "    def __init__(self,x,y): self.x=x;self.y=y",
         "    def __repr__(self): return f'Point({self.x},{self.y})'",
         "p = Point(1,2)",
         "bytes_p = pickle.dumps(p)",
-        "print(pickle.loads(bytes_p))  # → Point(1,2)",
+        "print(pickle.loads(bytes_p))  # → Point(1,2)"
+      ],
+      [
+        "import pickle, os, tempfile",
         "# Протоколы",
         "print(pickle.HIGHEST_PROTOCOL)  # → 5",
         "bytes2 = pickle.dumps([1,2,3], protocol=2)",
-        "print(pickle.loads(bytes2))  # → [1,2,3]",
+        "print(pickle.loads(bytes2))  # → [1,2,3]"
+      ],
+      [
+        "import pickle, os, tempfile",
         "# ВНИМАНИЕ: pickle небезопасен для чужих данных!",
         "# Никогда не делай pickle.load() из ненадёжного источника!"
       ]
@@ -3189,29 +3302,41 @@
       [
         "def double(x):",
         "    return x * 2",
-        "print(double(5))  # → 10",
+        "print(double(5))  # → 10"
+      ],
+      [
         "def swap(a, b):",
         "    return b, a  # кортеж",
         "a, b = swap(1, 2)",
-        "print(a, b)  # → 2 1",
+        "print(a, b)  # → 2 1"
+      ],
+      [
         "def nothing():",
         "    return  # → None",
-        "print(nothing())  # → None",
+        "print(nothing())  # → None"
+      ],
+      [
         "def safe_div(a, b):",
         "    if b == 0:",
         "        return None  # ранний return",
         "    return a / b",
-        "print(safe_div(10, 0))  # → None",
+        "print(safe_div(10, 0))  # → None"
+      ],
+      [
         "def classify(n):",
         "    if n < 0:",
         "        return 'neg'",
         "    if n == 0:",
         "        return 'zero'",
         "    return 'pos'",
-        "print(classify(-1))  # → neg",
+        "print(classify(-1))  # → neg"
+      ],
+      [
         "def stats(lst):",
         "    return min(lst), max(lst), sum(lst)/len(lst)",
-        "print(stats([1,2,3,4]))  # → (1, 4, 2.5)",
+        "print(stats([1,2,3,4]))  # → (1, 4, 2.5)"
+      ],
+      [
         "def first_even(lst):",
         "    for x in lst:",
         "        if x % 2 == 0:",
@@ -3335,17 +3460,25 @@
         "words = ['banana', 'apple', 'cherry', 'kiwi']",
         "print(sorted(words))  # → алфавит",
         "print(sorted(words, key=len))  # → по длине",
-        "print(sorted(words, key=len, reverse=True))  # → ['banana', 'cherry', 'apple', 'kiwi']",
+        "print(sorted(words, key=len, reverse=True))  # → ['banana', 'cherry', 'apple', 'kiwi']"
+      ],
+      [
         "# key=str.lower — регистронезависимо",
         "mixed = ['Banana', 'apple', 'Cherry']",
-        "print(sorted(mixed, key=str.lower))  # → ['apple', 'Banana', 'Cherry']",
+        "print(sorted(mixed, key=str.lower))  # → ['apple', 'Banana', 'Cherry']"
+      ],
+      [
         "# Сортировка кортежей",
         "pairs = [(2,'b'),(1,'a'),(3,'c')]",
         "print(sorted(pairs))  # → [(1,'a'),(2,'b'),(3,'c')]",
-        "print(sorted(pairs, key=lambda p: p[1]))  # → по буквам",
+        "print(sorted(pairs, key=lambda p: p[1]))  # → по буквам"
+      ],
+      [
         "# Словари по значению",
         "d = {'a':3,'b':1,'c':2}",
-        "print(sorted(d, key=d.get))  # → ['b','c','a']",
+        "print(sorted(d, key=d.get))  # → ['b','c','a']"
+      ],
+      [
         "# Вторичный ключ",
         "students = [('Alice',85),('Bob',90),('Carol',85)]",
         "print(sorted(students, key=lambda s: (-s[1], s[0])))  # → Bob, Alice, Carol",
@@ -3408,7 +3541,9 @@
         "data = list(range(1, 11))",
         "statistics.quantiles(data, n=4) # → [3.25, 5.5, 7.75]",
         "statistics.quantiles(data, n=2) # → [5.5]  медиана",
-        "statistics.quantiles([1,2,3,4,5,6,7,8,9,10], n=10)",
+        "statistics.quantiles([1,2,3,4,5,6,7,8,9,10], n=10)"
+      ],
+      [
         "# → [1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1]"
       ]
     ],
@@ -3467,19 +3602,30 @@
         "# echo 'hello' | python script.py",
         "# for line in sys.stdin:",
         "#     print(line.strip())",
-        "print('stdin demo skipped')  # → не интерактивный режим",
+        "print('stdin demo skipped')  # → не интерактивный режим"
+      ],
+      [
+        "import sys",
         "# print в stderr",
-        "print('Error message', file=sys.stderr)",
+        "print('Error message', file=sys.stderr)"
+      ],
+      [
+        "import sys",
         "# Перенаправление stdout",
         "import io",
         "buffer = io.StringIO()",
         "sys.stdout = buffer",
         "print('captured')",
         "sys.stdout = sys.__stdout__",
-        "print('got:', buffer.getvalue())  # → got: captured\\n",
+        "print('got:', buffer.getvalue())  # → got: captured\\n"
+      ],
+      [
         "# input() — высокоуровневый stdin",
         "name = input('Name: ') if False else 'Alice'  # skip interactive",
-        "print(f'Hello, {name}')  # → Hello, Alice",
+        "print(f'Hello, {name}')  # → Hello, Alice"
+      ],
+      [
+        "import sys",
         "# Чтение всего stdin",
         "# data = sys.stdin.read()  # в неинтерактивном режиме",
         "# Строки из stdin",
@@ -3666,13 +3812,20 @@
       [
         "data = [1, 2, 3, 4]",
         "while chunk := data[:2]:",
-        "    data = data[2:]; print(chunk)  # → [1, 2]  затем [3, 4]",
-        "    nums = [1, -2, 3, -4]",
-        "    pos = [y for x in nums if (y := x * 2) > 0]",
-        "    print(pos)  # → [2, 6]",
-        "    if n := len(\"hello\"): print(n)  # → 5",
-        "    s = \"abcdef\"",
-        "    if m := len(s) > 3: print(\"длинная\")  # → длинная"
+        "    data = data[2:]",
+        "    print(chunk)  # → [1, 2], затем [3, 4]"
+      ],
+      [
+        "nums = [1, -2, 3, -4]",
+        "pos = [y for x in nums if (y := x * 2) > 0]",
+        "print(pos)  # → [2, 6]"
+      ],
+      [
+        "s = \"abcdef\"",
+        "if (n := len(s)) > 3:",
+        "    print(n)  # → 6",
+        "if m := len(s) > 3:",
+        "    print(m)  # → True — без скобок в m попал результат сравнения"
       ]
     ],
     "related": [
@@ -3907,18 +4060,20 @@
         "names = [\"Анна\", \"Борис\", \"Вера\"]",
         "scores = [95, 78, 88]",
         "for name, score in zip(names, scores):",
-        "    print(f\"{name}: {score}\")  # Анна: 95 / Борис: 78 / Вера: 88",
-        "    a, b, c = [1, 2], [3, 4], [5, 6]",
-        "    for x, y, z in zip(a, b, c):",
-        "        print(x + y + z, end=\" \")  # → 9 12",
-        "        d = dict(zip([\"a\", \"b\", \"c\"], [1, 2, 3]))",
-        "        print(d)  # → {\"a\": 1, \"b\": 2, \"c\": 3}",
-        "        from itertools import zip_longest",
-        "        result = list(zip_longest([1, 2, 3], [10, 20], fillvalue=0))",
-        "        print(result)  # → [(1, 10), (2, 20), (3, 0)]",
-        "        # словарь из двух списков",
-        "        print(dict(zip(['a','b','c'], [1,2,3])))  # → {'a':1,'b':2,'c':3}",
-        "        print(list(zip([1, 2, 3], [4, 5])))  # → [(1, 4), (2, 5)] (по короткому)"
+        "    print(f\"{name}: {score}\")  # → Анна: 95 / Борис: 78 / Вера: 88"
+      ],
+      [
+        "a, b, c = [1, 2], [3, 4], [5, 6]",
+        "for x, y, z in zip(a, b, c):",
+        "    print(x + y + z, end=\" \")  # → 9 12"
+      ],
+      [
+        "print(dict(zip(['a', 'b', 'c'], [1, 2, 3])))  # → {'a': 1, 'b': 2, 'c': 3}",
+        "print(list(zip([1, 2, 3], [4, 5])))  # → [(1, 4), (2, 5)] — по короткому"
+      ],
+      [
+        "from itertools import zip_longest",
+        "print(list(zip_longest([1, 2, 3], [10, 20], fillvalue=0)))  # → [(1, 10), (2, 20), (3, 0)]"
       ]
     ],
     "related": [
@@ -4037,32 +4192,46 @@
       [
         "def greet(name: str) -> str:",
         "    return f'Hello, {name}'",
-        "print(greet('Alice'))  # → Hello, Alice",
+        "print(greet('Alice'))  # → Hello, Alice"
+      ],
+      [
         "def add(a: int, b: int) -> int:",
         "    return a + b",
-        "print(add(2, 3))  # → 5",
+        "print(add(2, 3))  # → 5"
+      ],
+      [
         "from typing import Optional",
         "def find(lst: list, val: int) -> Optional[int]:",
         "    try:",
         "        return lst.index(val)",
         "    except ValueError:",
         "        return None",
-        "print(find([1,2,3], 2))  # → 1",
+        "print(find([1,2,3], 2))  # → 1"
+      ],
+      [
         "from typing import Union",
         "def double(x: Union[int, float]) -> Union[int, float]:",
         "    return x * 2",
-        "print(double(3.5))  # → 7.0",
+        "print(double(3.5))  # → 7.0"
+      ],
+      [
         "from typing import List, Dict",
         "def total(prices: List[float]) -> float:",
         "    return sum(prices)",
-        "print(total([1.5, 2.5, 3.0]))  # → 7.0",
+        "print(total([1.5, 2.5, 3.0]))  # → 7.0"
+      ],
+      [
         "# Python 3.10+ синтаксис",
         "def clamp(x: int | float, lo: int | float, hi: int | float) -> int | float:",
         "    return max(lo, min(x, hi))",
-        "print(clamp(5, 0, 3))  # → 3",
+        "print(clamp(5, 0, 3))  # → 3"
+      ],
+      [
         "# Variable annotations",
         "count: int = 0",
-        "name: str",
+        "name: str"
+      ],
+      [
         "def get_items() -> list[int]:",
         "    return [1, 2, 3]"
       ]
@@ -4134,12 +4303,16 @@
         "            hi = mid - 1",
         "    return -1",
         "print(binary_search([1,3,5,7,9,11], 7))  # → 3",
-        "print(binary_search([1,3,5,7,9,11], 6))  # → -1",
+        "print(binary_search([1,3,5,7,9,11], 6))  # → -1"
+      ],
+      [
         "# bisect — стандартная библиотека",
         "import bisect",
         "arr = [1,3,5,7,9]",
         "print(bisect.bisect_left(arr, 5))  # → 2 (позиция для вставки)",
-        "print(bisect.bisect_right(arr, 5))  # → 3",
+        "print(bisect.bisect_right(arr, 5))  # → 3"
+      ],
+      [
         "# Рекурсивный вариант",
         "def bs_rec(arr, target, lo=0, hi=None):",
         "    if hi is None: hi = len(arr)-1",
@@ -4148,7 +4321,9 @@
         "    if arr[mid] == target: return mid",
         "    elif arr[mid] < target: return bs_rec(arr, target, mid+1, hi)",
         "    else: return bs_rec(arr, target, lo, mid-1)",
-        "print(bs_rec([2,4,6,8,10], 6))  # → 2",
+        "print(bs_rec([2,4,6,8,10], 6))  # → 2"
+      ],
+      [
         "# Поиск первого вхождения дубликата",
         "def first_occurrence(arr, target):",
         "    lo, hi, result = 0, len(arr)-1, -1",
@@ -4159,7 +4334,9 @@
         "        elif arr[mid] < target: lo = mid+1",
         "        else: hi = mid-1",
         "    return result",
-        "print(first_occurrence([1,2,2,2,3], 2))  # → 1",
+        "print(first_occurrence([1,2,2,2,3], 2))  # → 1"
+      ],
+      [
         "# Бинарный поиск ответа",
         "def min_pages(pages, students):",
         "    lo, hi = max(pages), sum(pages)",
@@ -4174,7 +4351,9 @@
         "        if can_split(mid): hi=mid",
         "        else: lo=mid+1",
         "    return lo",
-        "print(min_pages([10,20,30,40], 2))  # → 60",
+        "print(min_pages([10,20,30,40], 2))  # → 60"
+      ],
+      [
         "# bisect.insort — вставка в отсортированный список",
         "import bisect",
         "arr2 = [1,3,5,9]",
@@ -4244,18 +4423,26 @@
         "print(0b1010 ^ 0b1100)  # → 6 (XOR, это 0b0110)",
         "print(~0b1010)          # → -11 (NOT)",
         "print(1 << 3)           # → 8 (2^3)",
-        "print(16 >> 2)          # → 4 (16/4)",
+        "print(16 >> 2)          # → 4 (16/4)"
+      ],
+      [
         "# Проверка чётности",
         "def is_even(n): return (n & 1) == 0",
         "print(is_even(4))  # → True",
-        "print(is_even(7))  # → False",
+        "print(is_even(7))  # → False"
+      ],
+      [
         "# Умножение/деление на степень двойки",
         "print(5 << 2)   # → 20 (5*4)",
-        "print(20 >> 2)  # → 5  (20/4)",
+        "print(20 >> 2)  # → 5  (20/4)"
+      ],
+      [
         "# XOR: swap без третьей переменной",
         "a, b = 5, 3",
         "a ^= b; b ^= a; a ^= b",
-        "print(a, b)  # → 3 5",
+        "print(a, b)  # → 3 5"
+      ],
+      [
         "# Маска битов",
         "def get_bit(n, i): return (n >> i) & 1",
         "def set_bit(n, i): return n | (1 << i)",
@@ -4263,11 +4450,15 @@
         "n = 0b1010",
         "print(get_bit(n, 1))    # → 1",
         "print(bin(set_bit(n, 2)))   # → 0b1110",
-        "print(bin(clear_bit(n, 3))) # → 0b0010",
+        "print(bin(clear_bit(n, 3))) # → 0b0010"
+      ],
+      [
         "# Подсчёт единичных бит (popcount)",
         "def popcount(n): return bin(n).count('1')",
         "print(popcount(255))  # → 8",
-        "print(popcount(0))    # → 0",
+        "print(popcount(0))    # → 0"
+      ],
+      [
         "# XOR: найти уникальный элемент",
         "def find_unique(arr):",
         "    result = 0",
@@ -4480,7 +4671,9 @@
         "    def __call__(self, x):",
         "        return x + self.n",
         "add5 = Adder(5)",
-        "print(add5(3))  # → 8",
+        "print(add5(3))  # → 8"
+      ],
+      [
         "class Counter:",
         "    def __init__(self):",
         "        self.count = 0",
@@ -4488,7 +4681,9 @@
         "        self.count += 1",
         "        return self.count",
         "c = Counter()",
-        "print(c(), c(), c())  # → 1 2 3",
+        "print(c(), c(), c())  # → 1 2 3"
+      ],
+      [
         "class Multiplier:",
         "    def __init__(self, factor):",
         "        self.factor = factor",
@@ -4497,7 +4692,9 @@
         "double = Multiplier(2)",
         "print(list(map(double, [1,2,3,4])))  # → [2,4,6,8]",
         "print(callable(double))  # → True",
-        "print(callable(42))     # → False",
+        "print(callable(42))     # → False"
+      ],
+      [
         "class Logger:",
         "    def __init__(self, func):",
         "        self.func = func",
@@ -4565,7 +4762,9 @@
         "print(10 - 3)  # → 7",
         "print(3.5 - 1.1)  # → 2.4 (float)",
         "x = 5; print(-x)  # → -5 (унарный минус)",
-        "print(0 - 100)  # → -100",
+        "print(0 - 100)  # → -100"
+      ],
+      [
         "from datetime import date",
         "delta = date(2025, 12, 31) - date(2025, 1, 1)",
         "print(delta.days)  # → 364 (разница дат)"
@@ -4633,7 +4832,9 @@
         "        elif s < target: lo += 1",
         "        else: hi -= 1",
         "    return None",
-        "print(two_sum_sorted([1,2,3,4,6], 6))  # → (1, 3) (это 2+4)",
+        "print(two_sum_sorted([1,2,3,4,6], 6))  # → (1, 3) (это 2+4)"
+      ],
+      [
         "# Проверка палиндрома",
         "def is_palindrome(s):",
         "    lo, hi = 0, len(s)-1",
@@ -4642,7 +4843,9 @@
         "        lo += 1; hi -= 1",
         "    return True",
         "print(is_palindrome('racecar'))  # → True",
-        "print(is_palindrome('hello'))    # → False",
+        "print(is_palindrome('hello'))    # → False"
+      ],
+      [
         "# Удаление дубликатов in-place",
         "def remove_dups(arr):",
         "    if not arr: return 0",
@@ -4654,7 +4857,9 @@
         "    return slow + 1",
         "arr = [1,1,2,3,3,4]",
         "k = remove_dups(arr)",
-        "print(arr[:k])  # → [1,2,3,4]",
+        "print(arr[:k])  # → [1,2,3,4]"
+      ],
+      [
         "# Слияние двух отсортированных массивов",
         "def merge_sorted(a, b):",
         "    i = j = 0; result = []",
@@ -4663,7 +4868,9 @@
         "        else: result.append(b[j]); j+=1",
         "    result.extend(a[i:]); result.extend(b[j:])",
         "    return result",
-        "print(merge_sorted([1,3,5],[2,4,6]))  # → [1,2,3,4,5,6]",
+        "print(merge_sorted([1,3,5],[2,4,6]))  # → [1,2,3,4,5,6]"
+      ],
+      [
         "# Контейнер с наибольшим объёмом",
         "def max_area(heights):",
         "    lo, hi = 0, len(heights)-1",
@@ -4774,7 +4981,9 @@
         "@my_dec",
         "@logged",
         "def greet(name): return f'Hi {name}'",
-        "greet('Alice')  # оба декоратора применяются",
+        "greet('Alice')  # оба декоратора применяются"
+      ],
+      [
         "# Декоратор для проверки типа",
         "def check_int(func):",
         "    def wrapper(n):",
@@ -4784,7 +4993,9 @@
         "    return wrapper",
         "@check_int",
         "def triple(n): return n * 3",
-        "print(triple(4))  # → 12",
+        "print(triple(4))  # → 12"
+      ],
+      [
         "# Сохранение имени функции (@wraps)",
         "from functools import wraps",
         "def noop(f):",
@@ -4849,14 +5060,16 @@
     "examples": [
       [
         "print(10 / 2)  # → 5.0 (всегда float)",
+        "print(9 / 3)  # → 3.0",
         "print(7 / 2)  # → 3.5",
         "print(1 / 3)  # → 0.3333333333333333",
-        "print(type(6 / 2))  # → <class 'float'>",
+        "print(type(6 / 2))  # → <class 'float'>"
+      ],
+      [
         "try:",
         "    print(1 / 0)",
         "except ZeroDivisionError:",
-        "    print(\"Деление на ноль!\")  # → Деление на ноль!",
-        "    print(9 / 3)  # → 3.0"
+        "    print(\"Деление на ноль!\")  # → Деление на ноль!"
       ]
     ],
     "related": [
@@ -4914,13 +5127,17 @@
         "        return x + n",
         "    return adder",
         "add5 = make_adder(5)",
-        "print(add5(3))  # → 8",
+        "print(add5(3))  # → 8"
+      ],
+      [
         "def make_multiplier(factor):",
         "    def multiply(x):",
         "        return x * factor",
         "    return multiply",
         "double = make_multiplier(2)",
-        "print(double(7))  # → 14",
+        "print(double(7))  # → 14"
+      ],
+      [
         "def counter():",
         "    count = 0",
         "    def inc():",
@@ -4929,13 +5146,17 @@
         "        return count",
         "    return inc",
         "c = counter()",
-        "print(c(), c())  # → 1 2",
+        "print(c(), c())  # → 1 2"
+      ],
+      [
         "def make_greeting(greeting):",
         "    def greet(name):",
         "        return f'{greeting}, {name}!'",
         "    return greet",
         "hello = make_greeting('Hello')",
-        "print(hello('Bob'))  # → Hello, Bob!",
+        "print(hello('Bob'))  # → Hello, Bob!"
+      ],
+      [
         "# Проверка замыкания",
         "def outer():",
         "    x = 'closure'",
@@ -4943,7 +5164,9 @@
         "        return x",
         "    return inner",
         "f = outer()",
-        "print(f())  # → closure",
+        "print(f())  # → closure"
+      ],
+      [
         "# __closure__",
         "def make_pow(n):",
         "    def power(x):",
@@ -5098,7 +5321,9 @@
         "    global count",
         "    count += 1",
         "inc()",
-        "print(count)  # → 1",
+        "print(count)  # → 1"
+      ],
+      [
         "def outer():",
         "    n = 10",
         "    def inner():",
@@ -5106,16 +5331,22 @@
         "        n += 1",
         "    inner()",
         "    return n",
-        "print(outer())  # → 11",
+        "print(outer())  # → 11"
+      ],
+      [
         "# Ловушка: чтение до присваивания",
-        "x2 = 5",
+        "x2 = 5"
+      ],
+      [
         "def bad():",
         "    print(x2)  # UnboundLocalError!",
         "    x2 = 10",
         "# Встроенные имена",
         "def f2():",
         "    print(len([1,2,3]))  # → 3 (built-in)",
-        "f2()",
+        "f2()"
+      ],
+      [
         "# Enclosing",
         "def outer2():",
         "    msg = 'hi'",
@@ -5194,19 +5425,25 @@
         "def lcm(a, b):",
         "    return a * b // gcd(a, b)",
         "print(lcm(4, 6))   # → 12",
-        "print(lcm(12, 18)) # → 36",
+        "print(lcm(12, 18)) # → 36"
+      ],
+      [
         "# Стандартная библиотека",
         "import math",
         "print(math.gcd(48, 36))    # → 12",
         "print(math.lcm(4, 6))      # → 12",
         "print(math.gcd(0, 5))      # → 5",
-        "print(math.gcd(12, 18, 24))  # → 6 (Python 3.9+)",
+        "print(math.gcd(12, 18, 24))  # → 6 (Python 3.9+)"
+      ],
+      [
         "# Расширенный алгоритм Евклида",
         "def extended_gcd(a, b):",
         "    if b == 0: return a, 1, 0",
         "    g, x, y = extended_gcd(b, a%b)",
         "    return g, y, x - (a//b)*y",
-        "print(extended_gcd(48, 18))  # → (6, -1, 3), то есть 48*(-1)+18*3=6",
+        "print(extended_gcd(48, 18))  # → (6, -1, 3), то есть 48*(-1)+18*3=6"
+      ],
+      [
         "# Несколько чисел",
         "from functools import reduce",
         "import math",
@@ -5270,19 +5507,27 @@
     "examples": [
       [
         "n = 12345",
-        "digit_sum = sum(int(d) for d in str(n))",
-        "print(digit_sum)  # → 15",
+        "print(sum(int(d) for d in str(n)))  # → 15 — сумма цифр",
+        "print(len(str(abs(n))))  # → 5 — количество цифр",
+        "print(max(int(d) for d in str(n)))  # → 5 — наибольшая цифра"
+      ],
+      [
+        "n = 12345",
         "product = 1",
         "for d in str(n):",
         "    product *= int(d)",
-        "    print(product)  # → 120",
-        "    count = len(str(abs(n)))",
-        "    print(count)  # → 5 (количество цифр)",
-        "    max_digit = max(int(d) for d in str(n))",
-        "    print(max_digit)  # → 5",
-        "    n2 = 4321",
-        "    reversed_n = int(str(n2)[::-1])",
-        "    print(reversed_n)  # → 1234 (перевёрнутое число)"
+        "print(product)  # → 120 — произведение цифр"
+      ],
+      [
+        "# Без перевода в строку: divmod",
+        "n, total = 12345, 0",
+        "while n:",
+        "    n, d = divmod(n, 10)",
+        "    total += d",
+        "print(total)  # → 15"
+      ],
+      [
+        "print(int(str(4321)[::-1]))  # → 1234 — перевёрнутое число"
       ]
     ],
     "related": [
@@ -5541,7 +5786,10 @@
         "queue.append('c')",
         "print(queue.popleft())  # → a",
         "print(queue.popleft())  # → b",
-        "print(queue)  # → deque(['c'])",
+        "print(queue)  # → deque(['c'])"
+      ],
+      [
+        "from collections import deque",
         "# BFS обход графа",
         "def bfs(graph, start):",
         "    visited = set([start])",
@@ -5556,13 +5804,17 @@
         "                queue.append(neighbor)",
         "    return order",
         "g = {1:[2,3],2:[4],3:[4],4:[]}",
-        "print(bfs(g, 1))  # → [1,2,3,4]",
+        "print(bfs(g, 1))  # → [1,2,3,4]"
+      ],
+      [
         "# queue.Queue (потокобезопасный)",
         "import queue",
         "q = queue.Queue()",
         "q.put(1); q.put(2)",
         "print(q.get())  # → 1",
-        "print(q.qsize())  # → 1",
+        "print(q.qsize())  # → 1"
+      ],
+      [
         "# Скользящее окно максимума",
         "from collections import deque",
         "def max_sliding_window(nums, k):",
@@ -5575,7 +5827,11 @@
         "        if dq[0] <= i-k: dq.popleft()",
         "        if i >= k-1: result.append(nums[dq[0]])",
         "    return result",
-        "print(max_sliding_window([1,3,-1,-3,5,3,6,7], 3))  # → [3,3,5,5,6,7]",
+        "print(max_sliding_window([1,3,-1,-3,5,3,6,7], 3))  # → [3,3,5,5,6,7]"
+      ],
+      [
+        "from collections import deque",
+        "import queue",
         "# Задача Джозефуса",
         "def josephus(n, k):",
         "    queue = deque(range(1, n+1))",
@@ -5644,15 +5900,21 @@
         "def sub(a, b):",
         "    return a - b",
         "print(sub(10, 3))  # → 7",
-        "print(sub(b=3, a=10))  # → 7 (ключевые)",
+        "print(sub(b=3, a=10))  # → 7 (ключевые)"
+      ],
+      [
         "def full_name(first, last):",
         "    return first + ' ' + last",
         "print(full_name('Ivan', 'Petrov'))  # → Ivan Petrov",
-        "print(full_name(last='Petrov', first='Ivan'))  # → Ivan Petrov",
+        "print(full_name(last='Petrov', first='Ivan'))  # → Ivan Petrov"
+      ],
+      [
         "def power(base, exp):",
         "    return base ** exp",
         "print(power(2, 8))  # → 256",
-        "print(power(exp=3, base=2))  # → 8",
+        "print(power(exp=3, base=2))  # → 8"
+      ],
+      [
         "def greet(name, punct='!'):",
         "    return 'Hello, ' + name + punct",
         "print(greet('Bob'))  # → Hello, Bob!"
@@ -5713,13 +5975,17 @@
         "def greet(name='World'):",
         "    return f'Hello, {name}!'",
         "print(greet())  # → Hello, World!",
-        "print(greet('Alice'))  # → Hello, Alice!",
+        "print(greet('Alice'))  # → Hello, Alice!"
+      ],
+      [
         "# Ловушка: изменяемый default",
         "def bad(lst=[]):",
         "    lst.append(1)",
         "    return lst",
         "print(bad())  # → [1]",
-        "print(bad())  # → [1, 1] — тот же список!",
+        "print(bad())  # → [1, 1] — тот же список!"
+      ],
+      [
         "# None-паттерн (правильно)",
         "def good(lst=None):",
         "    if lst is None:",
@@ -5727,7 +5993,9 @@
         "    lst.append(1)",
         "    return lst",
         "print(good())  # → [1]",
-        "print(good())  # → [1]",
+        "print(good())  # → [1]"
+      ],
+      [
         "def connect(host='localhost', port=5432):",
         "    return f'{host}:{port}'",
         "print(connect())  # → localhost:5432",
@@ -6075,15 +6343,21 @@
     ],
     "examples": [
       [
-        "for x, y in [(1,2),(3,4),(5,6)]:",
-        "    print(x+y, end=\" \")  # → 3 7 11",
-        "    pairs = {\"a\":1,\"b\":2,\"c\":3}",
-        "    for k, v in pairs.items():",
-        "        print(f\"{k}={v}\", end=\" \")  # → a=1 b=2 c=3",
-        "    for i, (x,y) in enumerate([(1,2),(3,4)]):",
-        "        print(i, x, y)  # → 0 1 2  затем  1 3 4",
-        "    for a, *rest in [(1,2,3),(4,5,6)]:",
-        "        print(a, rest)  # → 1 [2, 3]  затем  4 [5, 6]"
+        "for x, y in [(1, 2), (3, 4), (5, 6)]:",
+        "    print(x + y, end=\" \")  # → 3 7 11"
+      ],
+      [
+        "pairs = {\"a\": 1, \"b\": 2, \"c\": 3}",
+        "for k, v in pairs.items():",
+        "    print(f\"{k}={v}\", end=\" \")  # → a=1 b=2 c=3"
+      ],
+      [
+        "for i, (x, y) in enumerate([(1, 2), (3, 4)]):",
+        "    print(i, x, y)  # → 0 1 2 / 1 3 4"
+      ],
+      [
+        "for a, *rest in [(1, 2, 3), (4, 5, 6)]:",
+        "    print(a, rest)  # → 1 [2, 3] / 4 [5, 6]"
       ]
     ],
     "related": [
@@ -6143,31 +6417,43 @@
         "    if n == 0:",
         "        return 1",
         "    return n * factorial(n - 1)",
-        "print(factorial(5))  # → 120",
+        "print(factorial(5))  # → 120"
+      ],
+      [
         "def fib(n):",
         "    if n <= 1:",
         "        return n",
         "    return fib(n-1) + fib(n-2)",
-        "print(fib(7))  # → 13",
+        "print(fib(7))  # → 13"
+      ],
+      [
         "def sum_list(lst):",
         "    if not lst:",
         "        return 0",
         "    return lst[0] + sum_list(lst[1:])",
-        "print(sum_list([1,2,3,4]))  # → 10",
+        "print(sum_list([1,2,3,4]))  # → 10"
+      ],
+      [
         "def power(base, exp):",
         "    if exp == 0:",
         "        return 1",
         "    return base * power(base, exp-1)",
-        "print(power(2, 10))  # → 1024",
+        "print(power(2, 10))  # → 1024"
+      ],
+      [
         "import sys",
         "print(sys.getrecursionlimit())  # → 1000",
-        "sys.setrecursionlimit(2000)",
+        "sys.setrecursionlimit(2000)"
+      ],
+      [
         "def count_down(n):",
         "    if n <= 0:",
         "        return",
         "    print(n, end=' ')",
         "    count_down(n-1)",
-        "count_down(5)  # → 5 4 3 2 1",
+        "count_down(5)  # → 5 4 3 2 1"
+      ],
+      [
         "def flatten(lst):",
         "    result = []",
         "    for item in lst:",
@@ -6242,32 +6528,44 @@
         "print(f'{42:b}')  # → 101010 (без префикса)",
         "print(f'{42:o}')  # → 52",
         "print(f'{42:x}')  # → 2a",
-        "print(f'{42:X}')  # → 2A",
+        "print(f'{42:X}')  # → 2A"
+      ],
+      [
         "# Другие → десятичное",
         "print(int('101010', 2))  # → 42",
         "print(int('52', 8))      # → 42",
         "print(int('2a', 16))     # → 42",
-        "print(int('0b101010', 2))  # → 42",
+        "print(int('0b101010', 2))  # → 42"
+      ],
+      [
         "# Литералы",
         "a = 0b1010  # двоичный",
         "b = 0o17    # восьмеричный",
         "c = 0xff    # шестнадцатеричный",
-        "print(a, b, c)  # → 10 15 255",
+        "print(a, b, c)  # → 10 15 255"
+      ],
+      [
         "# Произвольное основание",
         "def to_base(n, base):",
         "    digits = '0123456789ABCDEF'",
         "    if n < base: return digits[n]",
         "    return to_base(n//base, base) + digits[n%base]",
         "print(to_base(255, 16))  # → FF",
-        "print(to_base(10, 2))    # → 1010",
+        "print(to_base(10, 2))    # → 1010"
+      ],
+      [
         "# Форматирование с заполнением",
         "print(f'{255:08b}')  # → 11111111",
         "print(f'{15:04x}')   # → 000f",
-        "print(format(42, '08b'))  # → 00101010",
+        "print(format(42, '08b'))  # → 00101010"
+      ],
+      [
         "# Перевод RGB hex",
         "color = '#ff5733'",
         "r, g, b = int(color[1:3],16), int(color[3:5],16), int(color[5:7],16)",
-        "print(r, g, b)  # → 255 87 51",
+        "print(r, g, b)  # → 255 87 51"
+      ],
+      [
         "# ASCII и ord",
         "print(ord('A'))  # → 65 (это 0x41)",
         "print(hex(ord('A')))  # → 0x41"
@@ -6688,7 +6986,9 @@
         "stack.append(3)",
         "print(stack[-1])  # peek → 3",
         "print(stack.pop())  # → 3",
-        "print(stack)  # → [1,2]",
+        "print(stack)  # → [1,2]"
+      ],
+      [
         "# Проверка правильности скобок",
         "def is_balanced(s):",
         "    stack = []",
@@ -6702,7 +7002,9 @@
         "            stack.pop()",
         "    return len(stack) == 0",
         "print(is_balanced('({[]})'))  # → True",
-        "print(is_balanced('([)]'))    # → False",
+        "print(is_balanced('([)]'))    # → False"
+      ],
+      [
         "# Обращение строки через стек",
         "def reverse_string(s):",
         "    stack = list(s)",
@@ -6710,7 +7012,9 @@
         "    while stack:",
         "        result.append(stack.pop())",
         "    return ''.join(result)",
-        "print(reverse_string('hello'))  # → olleh",
+        "print(reverse_string('hello'))  # → olleh"
+      ],
+      [
         "# Перевод в двоичную систему",
         "def to_binary(n):",
         "    if n == 0: return '0'",
@@ -6720,7 +7024,9 @@
         "        n //= 2",
         "    return ''.join(str(b) for b in reversed(stack))",
         "print(to_binary(10))   # → 1010",
-        "print(to_binary(255))  # → 11111111",
+        "print(to_binary(255))  # → 11111111"
+      ],
+      [
         "# Вычисление постфиксного выражения",
         "def eval_postfix(tokens):",
         "    stack = []",
@@ -6734,7 +7040,9 @@
         "            elif t=='*': stack.append(a*b)",
         "            elif t=='/': stack.append(a//b)",
         "    return stack[0]",
-        "print(eval_postfix(['3','4','+','2','*']))  # → 14",
+        "print(eval_postfix(['3','4','+','2','*']))  # → 14"
+      ],
+      [
         "# Минимальный стек (O(1) min)",
         "class MinStack:",
         "    def __init__(self):",
@@ -6999,12 +7307,17 @@
         "from collections import Counter",
         "words = 'the cat sat on the mat the cat sat'.split()",
         "c = Counter(words)",
-        "print(c.most_common(3))  # → [('the',3),('cat',2),('sat',2)]",
+        "print(c.most_common(3))  # → [('the',3),('cat',2),('sat',2)]"
+      ],
+      [
+        "from collections import Counter",
         "# Анаграммы",
         "def are_anagrams(s1, s2):",
         "    return Counter(s1) == Counter(s2)",
         "print(are_anagrams('listen', 'silent'))  # → True",
-        "print(are_anagrams('hello', 'world'))   # → False",
+        "print(are_anagrams('hello', 'world'))   # → False"
+      ],
+      [
         "# Первый неповторяющийся символ",
         "def first_unique(s):",
         "    count = {}",
@@ -7014,7 +7327,9 @@
         "        if count[ch] == 1:",
         "            return ch",
         "    return None",
-        "print(first_unique('leetcode'))  # → l",
+        "print(first_unique('leetcode'))  # → l"
+      ],
+      [
         "# Two Sum с хеш-таблицей O(n)",
         "def two_sum_hash(nums, target):",
         "    seen = {}",
@@ -7023,7 +7338,9 @@
         "            return [seen[target-x], i]",
         "        seen[x] = i",
         "    return []",
-        "print(two_sum_hash([2,7,11,15], 9))  # → [0,1]",
+        "print(two_sum_hash([2,7,11,15], 9))  # → [0,1]"
+      ],
+      [
         "# Кэш с defaultdict",
         "from collections import defaultdict",
         "graph = defaultdict(list)",
@@ -7217,19 +7534,25 @@
         "    for _ in range(2, n+1):",
         "        a, b = b, a+b",
         "        return b",
-        "print([fib_iter(i) for i in range(10)])  # → [0,1,1,2,3,5,8,13,21,34]",
+        "print([fib_iter(i) for i in range(10)])  # → [0,1,1,2,3,5,8,13,21,34]"
+      ],
+      [
         "# Рекурсивно — O(2^n) (медленно!)",
         "def fib_rec(n):",
         "    if n <= 1: return n",
         "    return fib_rec(n-1) + fib_rec(n-2)",
-        "print(fib_rec(10))  # → 55 (для малых n)",
+        "print(fib_rec(10))  # → 55 (для малых n)"
+      ],
+      [
         "# С lru_cache — O(n) + мемоизация",
         "from functools import lru_cache",
         "@lru_cache(maxsize=None)",
         "def fib_memo(n):",
         "    if n <= 1: return n",
         "    return fib_memo(n-1) + fib_memo(n-2)",
-        "print(fib_memo(50))  # → 12586269025",
+        "print(fib_memo(50))  # → 12586269025"
+      ],
+      [
         "# Генератор Фибоначчи",
         "def fib_gen():",
         "    a, b = 0, 1",
@@ -7254,7 +7577,9 @@
         "    if n == 0: return 0",
         "    M = [[1,1],[1,0]]",
         "    return mat_pow(M, n)[0][1]",
-        "print(fib_matrix(10))  # → 55",
+        "print(fib_matrix(10))  # → 55"
+      ],
+      [
         "# Числа Фибоначчи в программировании",
         "# Сумма чисел Фибоначчи до N",
         "def fib_until(n):",
@@ -9678,9 +10003,13 @@
     "examples": [
       [
         "print(float.from_number(7))                 # → 7.0",
-        "print(float.from_number(-2.5))              # → -2.5",
+        "print(float.from_number(-2.5))              # → -2.5"
+      ],
+      [
         "from decimal import Decimal",
-        "print(float.from_number(Decimal('1.25')))   # → 1.25",
+        "print(float.from_number(Decimal('1.25')))   # → 1.25"
+      ],
+      [
         "from fractions import Fraction",
         "print(float.from_number(Fraction(1, 4)))    # → 0.25"
       ]

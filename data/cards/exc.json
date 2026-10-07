@@ -48,21 +48,29 @@
         "try:",
         "    divide(1, 0)",
         "except AssertionError as e:",
-        "    print(e)  # → Denominator must not be zero",
+        "    print(e)  # → Denominator must not be zero"
+      ],
+      [
         "def get_positive(n):",
         "    assert isinstance(n, int) and n > 0, f'Expected positive int, got {n!r}'",
         "    return n",
-        "print(get_positive(5))  # → 5",
+        "print(get_positive(5))  # → 5"
+      ],
+      [
         "def test_add():",
         "    assert 1 + 1 == 2",
         "    assert 'hello'.upper() == 'HELLO'",
         "    assert len([1,2,3]) == 3",
-        "test_add()  # ничего не печатает — все assert верны",
+        "test_add()  # ничего не печатает — все assert верны"
+      ],
+      [
         "# assert с коллекцией",
         "def first(lst):",
         "    assert len(lst) > 0, 'List is empty'",
         "    return lst[0]",
-        "print(first([10,20]))  # → 10",
+        "print(first([10,20]))  # → 10"
+      ],
+      [
         "# ВАЖНО: assert отключается при python -O",
         "# Не используй для валидации входных данных в продакшн!",
         "x = 10",
@@ -119,7 +127,9 @@
     "examples": [
       [
         "x = 42",
-        "x.upper()            # AttributeError: 'int' has no 'upper'",
+        "x.upper()            # AttributeError: 'int' has no 'upper'"
+      ],
+      [
         "class A: pass",
         "A().run()            # AttributeError"
       ]
@@ -180,16 +190,20 @@
         "except ValueError:",
         "    print('error')",
         "else:",
-        "    print(f'success: {result}')  # → success: 42",
+        "    print(f'success: {result}')  # → success: 42"
+      ],
+      [
         "def safe_open(path):",
         "    try:",
         "        f = open(path)",
         "    except FileNotFoundError:",
         "        return None",
         "    else:",
-        "        data = f.read()",
-        "        f.close()",
-        "        return data",
+        "        with f:",
+        "            return f.read()",
+        "print(safe_open('/нет/такого/файла'))  # → None"
+      ],
+      [
         "# else + finally",
         "try:",
         "    x = 10 / 2",
@@ -198,8 +212,10 @@
         "else:",
         "    print(f'result: {x}')  # → result: 5.0",
         "finally:",
-        "    print('done')  # → done",
-        "    import json",
+        "    print('done')  # → done"
+      ],
+      [
+        "import json",
         "def parse(s):",
         "    try:",
         "        data = json.loads(s)",
@@ -207,11 +223,13 @@
         "        print('invalid JSON')",
         "    else:",
         "        return data",
-        "print(parse('{\"a\":1}'))  # → {'a':1}",
-        "# else vs перемещение кода после try",
-        "# В else — только код, который НЕ должен вызывать то же исключение",
+        "print(parse('{\"a\": 1}'))  # → {'a': 1}",
+        "print(parse('{'))  # → invalid JSON, затем None"
+      ],
+      [
+        "# В else — только код, который НЕ должен ловиться этим except",
         "try:",
-        "    n = int(input('Enter number: ') if False else '5')",
+        "    n = int('5')",
         "except ValueError:",
         "    print('not a number')",
         "else:",
@@ -341,14 +359,18 @@
         "        return a / b",
         "    finally:",
         "        print('division attempted')  # → division attempted",
-        "print(divide(10, 2))  # → 5.0",
+        "print(divide(10, 2))  # → 5.0"
+      ],
+      [
         "# finally при return",
         "def func():",
         "    try:",
         "        return 'try'",
         "    finally:",
         "        return 'finally'  # перекрывает return из try!",
-        "print(func())  # → finally",
+        "print(func())  # → finally"
+      ],
+      [
         "# finally при raise",
         "def func2():",
         "    try:",
@@ -358,7 +380,9 @@
         "try:",
         "    func2()",
         "except ValueError:",
-        "    pass",
+        "    pass"
+      ],
+      [
         "# Классический паттерн с ресурсом",
         "import sqlite3",
         "conn = None",
@@ -650,7 +674,9 @@
     ],
     "examples": [
       [
-        "print(x)             # NameError: name 'x' is not defined",
+        "print(x)             # NameError: name 'x' is not defined"
+      ],
+      [
         "def f():",
         "    return undefined_var  # NameError"
       ]
@@ -893,7 +919,9 @@
         "try:",
         "    check_age(-1)",
         "except ValueError as e:",
-        "    print(e)  # → Age cannot be negative: -1",
+        "    print(e)  # → Age cannot be negative: -1"
+      ],
+      [
         "# raise from",
         "try:",
         "    try:",
@@ -901,7 +929,9 @@
         "    except ValueError as e:",
         "        raise RuntimeError('conversion failed') from e",
         "except RuntimeError as err:",
-        "    print(type(err.__cause__).__name__)  # → ValueError — исходная причина сохранена",
+        "    print(type(err.__cause__).__name__)  # → ValueError — исходная причина сохранена"
+      ],
+      [
         "# Re-raise",
         "def safe():",
         "    try:",
@@ -912,7 +942,9 @@
         "try:",
         "    safe()",
         "except ZeroDivisionError:",
-        "    print('handled')  # → caught / handled",
+        "    print('handled')  # → caught / handled"
+      ],
+      [
         "# raise с кастомным классом",
         "class ValidationError(ValueError):",
         "    pass",
@@ -922,7 +954,9 @@
         "try:",
         "    validate(-5)",
         "except ValidationError as e:",
-        "    print(e)  # → Invalid value: -5",
+        "    print(e)  # → Invalid value: -5"
+      ],
+      [
         "# raise без аргументов в except",
         "try:",
         "    try:",
@@ -930,7 +964,9 @@
         "    except ZeroDivisionError:",
         "        raise  # пробрасываем",
         "except ZeroDivisionError:",
-        "    print('outer caught')  # → outer caught",
+        "    print('outer caught')  # → outer caught"
+      ],
+      [
         "# Цепочка __cause__ и __context__",
         "try:",
         "    raise ValueError('first') from TypeError('cause')",
@@ -1050,7 +1086,9 @@
         "it = iter([1, 2])",
         "next(it)  # 1",
         "next(it)  # 2",
-        "next(it)  # StopIteration",
+        "next(it)  # StopIteration"
+      ],
+      [
         "# В генераторе raise StopIteration = return",
         "def gen():",
         "    yield 1",
@@ -1113,39 +1151,51 @@
         "try:",
         "    x = 1 / 0",
         "except ZeroDivisionError:",
-        "    print('division by zero')  # → division by zero",
-        "    try:",
-        "        int('abc')",
-        "    except ValueError as e:",
-        "        print(e)  # → invalid literal for int()...",
-        "# Несколько except",
+        "    print('division by zero')  # → division by zero"
+      ],
+      [
         "try:",
-        "    lst = [1,2,3]",
+        "    int('abc')",
+        "except ValueError as e:",
+        "    print(e)  # → invalid literal for int() with base 10: 'abc'"
+      ],
+      [
+        "# Несколько except: срабатывает первый подходящий",
+        "try:",
+        "    lst = [1, 2, 3]",
         "    print(lst[10])",
         "except IndexError:",
         "    print('index error')  # → index error",
         "except Exception as e:",
-        "    print('other:', e)",
+        "    print('other:', e)"
+      ],
+      [
         "# else — если исключений не было",
         "try:",
         "    result = 10 / 2",
         "except ZeroDivisionError:",
         "    print('error')",
         "else:",
-        "    print(result)  # → 5.0",
-        "# finally — всегда выполняется",
+        "    print(result)  # → 5.0"
+      ],
+      [
+        "# finally — выполняется всегда",
         "try:",
         "    f = open('/nonexistent')",
         "except FileNotFoundError:",
-        "    print('not found')",
+        "    print('not found')  # → not found",
         "finally:",
-        "    print('always')  # → not found / always",
-        "# Перехват нескольких типов в одном except",
+        "    print('always')  # → always"
+      ],
+      [
+        "# Несколько типов в одном except",
         "try:",
         "    x = int(None)",
         "except (TypeError, ValueError) as e:",
-        "    print(f'Caught: {e}')  # → Caught: ...",
-        "# Базовый Exception — ловит всё (кроме SystemExit и KeyboardInterrupt)",
+        "    print(type(e).__name__)  # → TypeError"
+      ],
+      [
+        "# Exception ловит всё, кроме SystemExit, KeyboardInterrupt и GeneratorExit",
         "try:",
         "    raise RuntimeError('oops')",
         "except Exception as e:",
@@ -1203,7 +1253,9 @@
     "examples": [
       [
         "'2' + 2              # TypeError",
-        "len(42)              # TypeError",
+        "len(42)              # TypeError"
+      ],
+      [
         "def add(a, b):",
         "    return a + b",
         "add(1, '2')          # TypeError"
@@ -1319,35 +1371,25 @@
     ],
     "examples": [
       [
-        "try:",
-        "    int('abc')",
-        "except ValueError as e:",
-        "    print(f'ValueError: {e}')  # → invalid literal...",
+        "print([c.__name__ for c in ZeroDivisionError.__mro__])",
+        "# → ['ZeroDivisionError', 'ArithmeticError', 'Exception', 'BaseException', 'object']",
+        "print(issubclass(KeyError, LookupError))  # → True",
+        "print(issubclass(KeyboardInterrupt, Exception))  # → False"
+      ],
+      [
+        "# Базовый класс ловит всех наследников",
+        "for action in (lambda: [1, 2][5], lambda: {}['missing']):",
         "    try:",
-        "        x = [1,2][5]",
-        "    except IndexError as e:",
-        "        print(f'IndexError: {e}')  # → list index out of range",
+        "        action()",
+        "    except LookupError as e:",
+        "        print(type(e).__name__)  # → IndexError, затем KeyError"
+      ],
+      [
+        "for bad in (lambda: int('abc'), lambda: 'str' + 1, lambda: None.attr):",
         "    try:",
-        "        d = {}",
-        "        d['missing']",
-        "    except KeyError as e:",
-        "        print(f'KeyError: {e}')  # → 'missing'",
-        "    try:",
-        "        'str' + 1",
-        "    except TypeError as e:",
-        "        print(f'TypeError: {e}')  # → can only concatenate...",
-        "    try:",
-        "        1 / 0",
-        "    except ZeroDivisionError as e:",
-        "        print(f'ZeroDivisionError: {e}')  # → division by zero",
-        "    try:",
-        "        open('/nonexistent_file')",
-        "    except FileNotFoundError as e:",
-        "        print(f'FileNotFoundError: {e}')",
-        "    try:",
-        "        None.attr",
-        "    except AttributeError as e:",
-        "        print(f'AttributeError: {e}')  # → 'NoneType' object has no attribute..."
+        "        bad()",
+        "    except Exception as e:",
+        "        print(type(e).__name__)  # → ValueError, TypeError, AttributeError"
       ]
     ],
     "related": [
@@ -1410,7 +1452,9 @@
         "try:",
         "    raise DatabaseError('Connection failed')",
         "except AppError as e:",
-        "    print(type(e).__name__, e)  # → DatabaseError Connection failed",
+        "    print(type(e).__name__, e)  # → DatabaseError Connection failed"
+      ],
+      [
         "class ValidationError(ValueError):",
         "    def __init__(self, field, message):",
         "        self.field = field",
@@ -1418,7 +1462,9 @@
         "try:",
         "    raise ValidationError('email', 'invalid format')",
         "except ValidationError as e:",
-        "    print(e.field, e)  # → email email: invalid format",
+        "    print(e.field, e)  # → email email: invalid format"
+      ],
+      [
         "class HttpError(Exception):",
         "    def __init__(self, status_code, message):",
         "        self.status_code = status_code",
@@ -1429,7 +1475,9 @@
         "try:",
         "    raise NotFoundError('/api/users')",
         "except HttpError as e:",
-        "    print(e.status_code, e)  # → 404 HTTP 404: /api/users not found",
+        "    print(e.status_code, e)  # → 404 HTTP 404: /api/users not found"
+      ],
+      [
         "# Иерархия ошибок",
         "class PaymentError(Exception): pass",
         "class InsufficientFundsError(PaymentError):",
@@ -1439,7 +1487,9 @@
         "try:",
         "    raise InsufficientFundsError(100, 60)",
         "except InsufficientFundsError as e:",
-        "    print(e, e.shortage)  # → Need 40 more 40",
+        "    print(e, e.shortage)  # → Need 40 more 40"
+      ],
+      [
         "# raise ... from",
         "class ServiceError(Exception): pass",
         "try:",
@@ -1449,7 +1499,9 @@
         "        raise ServiceError('Parse failed') from e",
         "except ServiceError as e:",
         "    print(e)                    # → Parse failed",
-        "    print(type(e.__cause__))   # → <class 'ValueError'>",
+        "    print(type(e.__cause__))   # → <class 'ValueError'>"
+      ],
+      [
         "# repr дефолтный",
         "class SimpleError(Exception):",
         "    pass",

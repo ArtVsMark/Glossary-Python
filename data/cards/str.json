@@ -105,26 +105,40 @@
     "examples": [
       [
         "name = 'Alice'",
-        "print(f'Hello, {name}!')",
+        "print(f'Hello, {name}!')"
+      ],
+      [
         "# → 'Hello, Alice!'",
         "x = 3.14159",
-        "print(f'{x:.2f}')",
+        "print(f'{x:.2f}')"
+      ],
+      [
         "# → '3.14'",
-        "print(f'{2 ** 10}')",
+        "print(f'{2 ** 10}')"
+      ],
+      [
         "# → '1024'",
         "n = 42",
         "print(f'{n:>10d}')",
         "# → '        42'",
-        "print(f'{n:010d}')",
+        "print(f'{n:010d}')"
+      ],
+      [
         "# → '0000000042'",
         "s = 'hello'",
-        "print(f'{s!r}')",
+        "print(f'{s!r}')"
+      ],
+      [
         "# → \"'hello'\"",
         "width = 10",
-        "print(f'{\"center\":^{width}}')",
+        "print(f'{\"center\":^{width}}')"
+      ],
+      [
         "# → center (выравнивание по центру, ширина 10)",
         "val = 1234567.89",
-        "print(f'{val:,.2f}')",
+        "print(f'{val:,.2f}')"
+      ],
+      [
         "# → '1,234,567.89'"
       ]
     ],
@@ -179,19 +193,33 @@
     ],
     "examples": [
       [
-        "print('{} {}'.format('Hello', 'World'))",
+        "print('{} {}'.format('Hello', 'World'))"
+      ],
+      [
         "# → 'Hello World'",
-        "print('{0} {1} {0}'.format('ha', 'ho'))",
+        "print('{0} {1} {0}'.format('ha', 'ho'))"
+      ],
+      [
         "# → 'ha ho ha'",
-        "print('{name} is {age}'.format(name='Alice', age=30))",
+        "print('{name} is {age}'.format(name='Alice', age=30))"
+      ],
+      [
         "# → 'Alice is 30'",
-        "print('{:.2f}'.format(3.14159))",
+        "print('{:.2f}'.format(3.14159))"
+      ],
+      [
         "# → '3.14'",
-        "print('{:>10}'.format('hi'))",
+        "print('{:>10}'.format('hi'))"
+      ],
+      [
         "# → '        hi'",
-        "print('{:0>5}'.format(42))",
+        "print('{:0>5}'.format(42))"
+      ],
+      [
         "# → '00042'",
-        "print('{:,}'.format(1000000))",
+        "print('{:,}'.format(1000000))"
+      ],
+      [
         "# → '1,000,000'"
       ]
     ],
@@ -248,15 +276,25 @@
     ],
     "examples": [
       [
-        "print('py' in 'python')",
+        "print('py' in 'python')"
+      ],
+      [
         "# → True",
-        "print('xyz' in 'python')",
+        "print('xyz' in 'python')"
+      ],
+      [
         "# → False",
-        "print('xyz' not in 'python')",
+        "print('xyz' not in 'python')"
+      ],
+      [
         "# → True",
-        "print('' in 'any')",
+        "print('' in 'any')"
+      ],
+      [
         "# → True (пустая всегда входит)",
-        "print('P' in 'python')",
+        "print('P' in 'python')"
+      ],
+      [
         "# → False (регистрозависимо)"
       ]
     ],
@@ -310,13 +348,21 @@
     ],
     "examples": [
       [
-        "print(len(''))",
+        "print(len(''))"
+      ],
+      [
         "# → 0",
-        "print(len('hello'))",
+        "print(len('hello'))"
+      ],
+      [
         "# → 5",
-        "print(len('   '))",
+        "print(len('   '))"
+      ],
+      [
         "# → 3",
-        "print(len('Привет'))",
+        "print(len('Привет'))"
+      ],
+      [
         "# → 6",
         "s = 'test'",
         "if len(s) > 3:",
@@ -377,7 +423,9 @@
       [
         "print(r\"\\n\\t\")           # → \\n\\t  (без переноса и табуляции)",
         "print(len(r\"\\n\"))        # → 2",
-        "print(r\"C:\\Users\\name\")  # → C:\\Users\\name",
+        "print(r\"C:\\Users\\name\")  # → C:\\Users\\name"
+      ],
+      [
         "import re",
         "m = re.search(r\"\\d+\", \"abc123\")",
         "print(m.group())        # → 123",
@@ -445,10 +493,14 @@
         "# → 'n'",
         "print(s[-2])",
         "# → 'o'",
-        "print(s[5])",
+        "print(s[5])"
+      ],
+      [
         "# → 'n'",
         "s2 = 'AB'",
-        "print(s2[0], s2[1], s2[-1])",
+        "print(s2[0], s2[1], s2[-1])"
+      ],
+      [
         "# → 'A' 'B' 'B'"
       ]
     ],
@@ -504,18 +556,28 @@
     ],
     "examples": [
       [
-        "print('Hello' + ' ' + 'World')",
+        "print('Hello' + ' ' + 'World')"
+      ],
+      [
         "# → 'Hello World'",
         "a = 'foo'",
         "b = 'bar'",
-        "print(a + b)",
+        "print(a + b)"
+      ],
+      [
         "# → 'foobar'",
-        "print('py' + 'thon')",
+        "print('py' + 'thon')"
+      ],
+      [
         "# → 'python'",
         "prefix = 'pre_'",
-        "print(prefix + 'fix')",
+        "print(prefix + 'fix')"
+      ],
+      [
         "# → 'pre_fix'",
-        "print('' + 'empty left')",
+        "print('' + 'empty left')"
+      ],
+      [
         "# → 'empty left'"
       ]
     ],
@@ -569,16 +631,26 @@
     ],
     "examples": [
       [
-        "print('ab' * 3)",
+        "print('ab' * 3)"
+      ],
+      [
         "# → 'ababab'",
-        "print('-' * 20)",
+        "print('-' * 20)"
+      ],
+      [
         "# → '--------------------'",
-        "print('ha' * 0)",
+        "print('ha' * 0)"
+      ],
+      [
         "# → ''",
         "sep = '=-' * 5",
-        "print(sep)",
+        "print(sep)"
+      ],
+      [
         "# → '=-=-=-=-=-=-=-=-'",
-        "print(3 * 'go!')",
+        "print(3 * 'go!')"
+      ],
+      [
         "# → 'go!go!go!'"
       ]
     ],
@@ -634,21 +706,35 @@
     ],
     "examples": [
       [
-        "s1 = 'hello'",
+        "s1 = 'hello'"
+      ],
+      [
         "# → 'hello'",
-        "s2 = \"world\"",
+        "s2 = \"world\""
+      ],
+      [
         "# → 'world'",
         "s3 = '''line1",
         "line2",
-        "line3'''",
+        "line3'''"
+      ],
+      [
         "# → 'line1\\nline2\\nline3'",
-        "s4 = r'C:\\Users\\name'",
+        "s4 = r'C:\\Users\\name'"
+      ],
+      [
         "# → 'C:\\\\Users\\\\name' (без escape)",
-        "s5 = b'bytes'",
+        "s5 = b'bytes'"
+      ],
+      [
         "# → b'bytes'",
-        "s6 = 'tab:\\there'",
+        "s6 = 'tab:\\there'"
+      ],
+      [
         "# → 'tab:\\there' (\\t — табуляция)",
-        "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'",
+        "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'"
+      ],
+      [
         "# → 'Привет'"
       ]
     ],
@@ -704,15 +790,25 @@
     ],
     "examples": [
       [
-        "print('abc' == 'abc')",
+        "print('abc' == 'abc')"
+      ],
+      [
         "# → True",
-        "print('abc' < 'abd')",
+        "print('abc' < 'abd')"
+      ],
+      [
         "# → True ('c' < 'd')",
-        "print('b' > 'a')",
+        "print('b' > 'a')"
+      ],
+      [
         "# → True",
-        "print('Z' < 'a')",
+        "print('Z' < 'a')"
+      ],
+      [
         "# → True (ASCII: Z=90, a=97)",
-        "print('abc' == 'ABC')",
+        "print('abc' == 'ABC')"
+      ],
+      [
         "# → False (регистрозависимо)"
       ]
     ],
@@ -782,7 +878,9 @@
         "# → 'aceg'",
         "print(s[-3:])",
         "# → 'fgh'",
-        "print(s[1:7:2])",
+        "print(s[1:7:2])"
+      ],
+      [
         "# → 'bdf'"
       ]
     ],
@@ -857,7 +955,9 @@
         "print(x is y)",
         "# → True (принудительное интернирование)",
         "s2 = s.replace('h', 'H')",
-        "print(s, s2)",
+        "print(s, s2)"
+      ],
+      [
         "# → hello Hello (оригинал не изменился)"
       ]
     ],
@@ -914,7 +1014,9 @@
     "examples": [
       [
         "s = \"\"\"строка 1\\nстрока 2\"\"\"",
-        "print(len(s))        # → 17",
+        "print(len(s))        # → 17"
+      ],
+      [
         "def foo():",
         "    \"\"\"Докстринг функции.\"\"\"",
         "    pass",
@@ -975,15 +1077,25 @@
     ],
     "examples": [
       [
-        "print('Hello, %s!' % 'World')",
+        "print('Hello, %s!' % 'World')"
+      ],
+      [
         "# → 'Hello, World!'",
-        "print('x=%d, y=%d' % (3, 5))",
+        "print('x=%d, y=%d' % (3, 5))"
+      ],
+      [
         "# → 'x=3, y=5'",
-        "print('pi=%.3f' % 3.14159)",
+        "print('pi=%.3f' % 3.14159)"
+      ],
+      [
         "# → 'pi=3.142'",
-        "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})",
+        "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})"
+      ],
+      [
         "# → 'Bob is 25'",
-        "print('%05d' % 42)",
+        "print('%05d' % 42)"
+      ],
+      [
         "# → '00042'"
       ]
     ],

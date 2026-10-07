@@ -26,6 +26,7 @@
 
 import argparse
 import sys
+import urllib.parse
 from typing import Final, Literal
 
 from automerge import REPOSITORY, REST, NotRunError, _call, _object
@@ -57,11 +58,12 @@ def decide(outcome: str, alarm: int | None) -> Action:
     return "close" if alarm is not None else "none"
 
 
-def open_alarm() -> int | None:
-    """Номер открытой задачи-тревоги; ``None`` — её нет."""
+def open_alarm(labels: tuple[str, ...] = (LABEL,)) -> int | None:
+    """Номер открытой задачи-тревоги с этими метками; ``None`` — её нет."""
     # Предел намеренный — одна запись (правило 212): вопрос «поднята ли тревога»,
     # и ответ на него даёт первая же открытая задача с меткой.
-    url = f"{REST}/repos/{REPOSITORY}/issues?labels={LABEL}&state=open&per_page=1"
+    query = urllib.parse.quote(",".join(labels), safe=",")
+    url = f"{REST}/repos/{REPOSITORY}/issues?labels={query}&state=open&per_page=1"
     found = _call(url)
     if not isinstance(found, list):
         raise NotRunError(f"{url} ответил объектом там, где ждали список")
@@ -88,10 +90,12 @@ def undelivered(sent: dict[str, object], published: dict[str, object]) -> list[s
         str(label.get("name")) if isinstance(label, dict) else str(label)
         for label in (labels if isinstance(labels, list) else [])
     }
-    if LABEL not in names:
-        problems.append(
-            f"метки {LABEL} нет — следующий прогон тревогу не найдёт и заведёт вторую"
-        )
+    wanted = sent.get("labels")
+    problems.extend(
+        f"метки {label} нет — следующий прогон тревогу не найдёт и заведёт вторую"
+        for label in (wanted if isinstance(wanted, list) else [])
+        if str(label) not in names
+    )
     problems.extend(
         f"поле {field} опубликовано не тем, что отправлено"
         for field in ("title", "body")
@@ -114,7 +118,7 @@ def body(version: str, run_url: str) -> str:
 
 
 def reconcile(outcome: str, version: str, run_url: str) -> str:
-    """Свести состояние задачи с исходом прогона.
+    """Свести задачу-тревогу python-next с исходом прогона.
 
     Args:
         outcome: Исход прогона: ``success`` или ``failure``.
@@ -127,15 +131,41 @@ def reconcile(outcome: str, version: str, run_url: str) -> str:
     Raises:
         NotRunError: Обращение к площадке не состоялось.
     """
-    alarm = open_alarm()
+    return reconcile_alarm(
+        outcome,
+        labels=(LABEL,),
+        title=f"Python {version}: прогон python-next красный",
+        text=body(version, run_url),
+        closing=f"Прогон на Python {version} позеленел: {run_url}",
+    )
+
+
+def reconcile_alarm(
+    outcome: str, *, labels: tuple[str, ...], title: str, text: str, closing: str
+) -> str:
+    """Свести задачу-тревогу, найденную по меткам, с исходом прогона.
+
+    Одна логика на все тревоги проекта: python-next и прогоны по расписанию
+    (``scripts/schedule_alarm.py``) отличаются только метками и текстом.
+
+    Args:
+        outcome: Исход прогона: ``success`` или ``failure``.
+        labels: Метки, по которым тревога находится.
+        title: Заголовок новой задачи.
+        text: Тело новой задачи.
+        closing: Комментарий при закрытии.
+
+    Returns:
+        Что сделано, словами.
+
+    Raises:
+        NotRunError: Обращение к площадке не состоялось.
+    """
+    alarm = open_alarm(labels)
     action = decide(outcome, alarm)
     issues = f"{REST}/repos/{REPOSITORY}/issues"
     if action == "open":
-        sent: dict[str, object] = {
-            "title": f"Python {version}: прогон python-next красный",
-            "body": body(version, run_url),
-            "labels": [LABEL],
-        }
+        sent: dict[str, object] = {"title": title, "body": text, "labels": list(labels)}
         number = _object(_call(issues, sent), issues)["number"]
         # Перечитывается то, что лежит у площадки, а не ответ на запрос (188).
         published = _object(_call(f"{issues}/{number}"), f"{issues}/{number}")
@@ -149,7 +179,7 @@ def reconcile(outcome: str, version: str, run_url: str) -> str:
     if action == "close":
         _call(
             f"{issues}/{alarm}/comments",
-            {"body": f"Прогон на Python {version} позеленел: {run_url}"},
+            {"body": closing},
         )
         _call(f"{issues}/{alarm}", {"state": "closed"}, method="PATCH")
         state = _object(_call(f"{issues}/{alarm}"), f"{issues}/{alarm}").get("state")

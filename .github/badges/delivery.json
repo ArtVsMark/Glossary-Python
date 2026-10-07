@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T14:09:09+00:00",
+  "generated_at": "2026-10-07T15:39:21+00:00",
   "form": "6.0",
   "snapshot": {
     "cards": 1625,
     "schema_version": 6,
-    "digest": "77f68d6146a4"
+    "digest": "56dbe1c38d23"
   },
   "groups": {
     "builtin": [
@@ -3014,7 +3014,7 @@
         "kind": "function",
         "summary": {
           "ru": "Возвращает число элементов в объекте (длину): последовательности, множества, словаря, строки.",
-          "en": "Return the number of items in a container (its length)."
+          "en": "Returns the number of items in an object (its length): a sequence, set, dict or string."
         },
         "body": {
           "ru": "len() ничего не пересчитывает: контейнеры хранят свою длину, поэтому вызов работает за O(1) хоть на миллионе элементов. Но он требует наличия __len__ — у генератора и вообще у любого итератора длины нет, и вы получите TypeError; длину потока считают через sum(1 for _ in it) или сначала материализуют его в список.",
@@ -4932,7 +4932,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Результат арифметической операции слишком велик для типа (обычно float): math.exp(1000).",
-          "en": "The result of an arithmetic operation is too large to represent (typically for float)."
+          "en": "The result of an arithmetic operation is too large for its type (typically float): math.exp(1000)."
         },
         "body": {
           "ru": "Целые в Python неограниченной точности, поэтому обычная int-арифметика такого исключения не даёт — оно про float и си-шные типы под капотом. Причём переполнение самого float молчаливое: 1e308 * 10 просто вернёт inf, зато функции math и попытка перевести гигантский int во float честно бросают OverflowError. Оборачивать в try имеет смысл конкретное вычисление, а не всю программу.",
@@ -5041,7 +5041,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Условие оператора assert оказалось ложным: assert x > 0.",
-          "en": "An assert statement's condition was false."
+          "en": "The condition of an assert statement was false: assert x > 0."
         },
         "body": {
           "ru": "assert — проверка собственных допущений, а не валидация пользовательского ввода: при запуске интерпретатора с флагом -O все assert выбрасываются из байткода, и проверка бесследно исчезает. Классическая ловушка — assert (x > 0, 'сообщение'): скобки превращают аргументы в непустой кортеж, который всегда истинен, поэтому такой assert не сработает никогда. Правильно писать без скобок: assert x > 0, 'сообщение'.",
@@ -5634,7 +5634,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Операция с buffer-протоколом невозможна (напр. изменение размера при экспортированном буфере).",
-          "en": "A buffer-related operation could not be performed."
+          "en": "A buffer-protocol operation is impossible (e.g. resizing a bytearray while a buffer is exported)."
         },
         "body": {
           "ru": "На практике почти всегда один и тот же сценарий: пока на bytearray жив memoryview, менять размер нельзя — append, extend, del и resize упадут. Лечится это не обёрткой в try/except, а освобождением представления: mv.release() или удаление последней ссылки на него, после чего буфер снова можно изменять.",
@@ -5742,7 +5742,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Синтаксически некорректный код (обнаруживается при компиляции): eval('1 +').",
-          "en": "Syntactically invalid code, detected at compile time."
+          "en": "Syntactically invalid code, detected at compile time: eval('1 +')."
         },
         "body": {
           "ru": "Обернуть собственный сломанный код в try/except невозможно: файл разбирается целиком до запуска, и ошибка возникает раньше, чем выполнится первая строка. Перехват осмыслен только для кода, компилируемого на лету — eval(), exec(), compile(), импорт стороннего модуля. У объекта есть msg, filename, lineno, offset и text, по ним показывают точное место; IndentationError и TabError — его подклассы.",
@@ -5958,7 +5958,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Не удалось декодировать байты в строку: b'\\xff'.decode('utf-8').",
-          "en": "Failed to decode bytes into a string."
+          "en": "Bytes could not be decoded into a string, e.g. b'\\xff'.decode('utf-8')."
         },
         "body": {
           "ru": "Почти всегда виноваты не данные, а неверно угаданная кодировка: open() без encoding= берёт кодировку системы, поэтому файл в UTF-8 спокойно читается на Linux и падает на Windows с cp1251. Ловить это исключение обычно бессмысленно — правильнее явно передать encoding='utf-8', а если битые байты действительно ожидаемы, добавить errors='replace' или 'ignore'. У объекта есть поля encoding, object, start, end и reason: они показывают точную позицию байта, на котором декодер сдался.",
@@ -6286,7 +6286,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Системный вызов был прерван сигналом (подкласс OSError). В современном Python обычно повторяется автоматически.",
-          "en": "A system call was interrupted by a signal (a subclass of OSError)."
+          "en": "A system call was interrupted by a signal (a subclass of OSError). Modern Python usually retries such calls automatically."
         },
         "body": {
           "ru": "После PEP 475 (Python 3.5) прерванные сигналом системные вызовы Python повторяет сам, поэтому вручную писать цикл «поймал — повторил вызов» больше не нужно, и в обычном коде это исключение практически не всплывает. Не путай с Ctrl+C: там прилетит KeyboardInterrupt, а не InterruptedError. Как подкласс OSError оно спокойно ловится общим except OSError вместе с остальными ошибками ввода-вывода.",
@@ -7153,7 +7153,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Сомнительное поведение во время выполнения.",
-          "en": "Dubious runtime behavior."
+          "en": "Warns about dubious behaviour at run time."
         },
         "body": {
           "ru": "В отличие от ResourceWarning показывается по умолчанию, но лишь один раз для каждого места в коде, поэтому внутри цикла легко решить, что проблема исчезла. Самый частый случай в учебном коде — coroutine ... was never awaited: корутину вызвали, но не дождались через await или asyncio.run, и её тело просто не выполнилось. Перехватывать предупреждение бессмысленно, чинить надо причину.",
@@ -7207,7 +7207,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Сомнительный синтаксис (напр. подозрительное сравнение).",
-          "en": "Dubious syntax."
+          "en": "Warns about dubious syntax (e.g. a suspicious comparison such as x is 1)."
         },
         "body": {
           "ru": "Это предупреждение, а не ошибка: компилятор печатает его один раз и продолжает работу, так что до except дело обычно не доходит. Чаще всего студент ловит его на сравнении is с литералом (нужно ==) и на нераспознанной escape-последовательности в обычной строке — с Python 3.12 такая строка даёт именно SyntaxWarning, лечится r-префиксом. Чтобы такие места падали, а не проскакивали, запускайте с ключом -W error::SyntaxWarning.",
@@ -7315,7 +7315,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Изменение поведения в будущем, предназначенное для конечных пользователей.",
-          "en": "A coming behavior change aimed at end users."
+          "en": "Warns end users about behaviour that will change in a future version."
         },
         "body": {
           "ru": "Это предупреждение, а не ошибка: его не поднимают через raise, а выдают через warnings.warn(..., FutureWarning), после чего программа спокойно продолжает работать. Отличие от DeprecationWarning — в адресате: FutureWarning виден по умолчанию и обращён к тем, кто просто пользуется библиотекой, а DeprecationWarning по умолчанию показывается только в __main__ и адресован разработчикам. Если хотите, чтобы такое предупреждение роняло прогон (например, в тестах), запускайте с -W error::FutureWarning.",
@@ -7809,7 +7809,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Некорректные данные для статистической функции: statistics.mean([]).",
-          "en": "Inappropriate argument value (of correct type)"
+          "en": "Invalid data for a statistics function, e.g. statistics.mean([])."
         },
         "body": {
           "ru": "Почти всегда за ним стоит пустая или слишком короткая выборка: mean и median требуют хотя бы одно значение, variance и stdev — минимум два. Проверить длину данных до вызова обычно честнее, чем ловить исключение постфактум. Класс наследует ValueError, так что привычный except ValueError сработает — но заодно проглотит и другие ошибки значений.",
@@ -7865,7 +7865,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Попытка изменить поле frozen-dataclass (@dataclass(frozen=True)).",
-          "en": "Attribute not found"
+          "en": "Raised on an attempt to set or delete a field of a frozen dataclass (@dataclass(frozen=True))."
         },
         "body": {
           "ru": "Это подкласс AttributeError, поэтому широкий except AttributeError проглотит его незаметно — ловите именно FrozenInstanceError, если хотите отличить попытку записи в frozen-объект от опечатки в имени атрибута. И помните, что frozen=True запрещает только присваивание и удаление атрибутов самого объекта: список или словарь, лежащий в поле, по-прежнему меняется на месте, так что неизменяемость тут поверхностная. Чтобы получить объект с другим значением поля, делают изменённую копию через dataclasses.replace().",
@@ -7922,7 +7922,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Операция не поддержана потоком (напр. запись в файл, открытый для чтения; подкласс OSError и ValueError).",
-          "en": "Base class for I/O related errors"
+          "en": "The stream does not support the operation (e.g. writing to a file opened for reading); a subclass of OSError and ValueError."
         },
         "body": {
           "ru": "Возникает не из-за плохих данных, а из-за режима открытия: запись в файл, открытый на 'r', чтение из 'w', seek() по непозиционируемому потоку вроде stdin или пайпа. Вместо ловли исключения обычно правильнее спросить сам поток: writable(), readable(), seekable(). Учтите двойное наследование от OSError и ValueError — блок except ValueError перехватит его тоже, и это часто оказывается сюрпризом.",
@@ -7979,7 +7979,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Ошибка упаковки/распаковки struct (несоответствие формата и данных).",
-          "en": "Common base class for all non-exit exceptions"
+          "en": "A struct packing or unpacking error (the format does not match the data)."
         },
         "body": {
           "ru": "Две основные причины: при unpack длина буфера не совпадает со struct.calcsize(формат) — для чтения только начала есть unpack_from — либо значение не влезает в код формата, как 300 в 'B'. Учтите и то, что по умолчанию размеры считаются нативными, с выравниванием; предсказуемую раскладку дают префиксы '<', '>' или '='. Наследуется напрямую от Exception, а не от ValueError, поэтому привычный except ValueError его пропустит.",
@@ -8035,7 +8035,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Ошибка сжатия/распаковки zlib (напр. повреждённые данные).",
-          "en": "Common base class for all non-exit exceptions"
+          "en": "A zlib compression or decompression error (e.g. corrupted data)."
         },
         "body": {
           "ru": "Наследуется прямо от Exception, а не от ValueError или OSError, поэтому привычные except ValueError и except OSError его не поймают. Самая частая причина — скормить zlib.decompress данные не того формата: у gzip другой заголовок (нужен wbits=16+zlib.MAX_WBITS или модуль gzip), а обрезанный поток падает как неполный, а не возвращает то, что успело распаковаться. Если данные приходят кусками, распаковывайте через zlib.decompressobj.",
@@ -8090,7 +8090,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Ошибка операции копирования в модуле copy.",
-          "en": "Common base class for all non-exit exceptions"
+          "en": "Raised by the copy module when an object cannot be copied."
         },
         "body": {
           "ru": "Одной этой ловушки мало: большинство некопируемых объектов (сокеты, блокировки, открытые файлы) падают с TypeError из pickle-механизма, а copy.Error достаётся лишь тем, у кого нет ни __copy__/__deepcopy__, ни __reduce_ex__. Поэтому при копировании чужих объектов ловите copy.Error и TypeError вместе — либо вообще не копируйте то, что держит внешний ресурс.",
@@ -8146,7 +8146,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Ошибка модуля locale (напр. неизвестная локаль в setlocale).",
-          "en": "Common base class for all non-exit exceptions"
+          "en": "An error in the locale module (e.g. an unknown locale passed to setlocale)."
         },
         "body": {
           "ru": "Главная причина — имя локали, которого нет в системе: строка вроде 'ru_RU.UTF-8' работает на Linux и macOS, а на Windows нужна 'Russian_Russia.1251', так что зашитое в код имя ломает переносимость. Разумная реакция — не падать, а поймать ошибку и остаться на локали по умолчанию (пустая строка '' берёт системную). Помните, что setlocale меняет состояние всего процесса и не потокобезопасен, поэтому дёргать его посреди работы программы — плохая идея.",
@@ -8310,7 +8310,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Базовая ошибка операций shutil (напр. copytree собрала несколько ошибок).",
-          "en": "Base class for I/O related errors"
+          "en": "The base error of shutil operations (e.g. copytree collecting several errors)."
         },
         "body": {
           "ru": "Это про многофайловые операции: copytree не останавливается на первом сбое, а копирует что может и в конце бросает одну Error, у которой args[0] — список кортежей (источник, назначение, причина). Значит, разбирать надо именно этот список, а не одно сообщение, иначе потеряете часть отказов. Класс наследует OSError, поэтому общий except OSError его тоже перехватит.",
@@ -8423,7 +8423,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Операция над специальным файлом (сокет/устройство), который нельзя скопировать как обычный.",
-          "en": "Raised when trying to do a kind of operation (e.g"
+          "en": "An operation hit a special file (a socket or device) that cannot be copied like a regular one."
         },
         "body": {
           "ru": "copyfile отсеивает только именованные каналы (FIFO) — сокеты и файлы-устройства не проверяются, так что копирование чего-нибудь вроде /dev/zero просто будет читать бесконечно. Класс наследуется от OSError, а не от shutil.Error, поэтому except shutil.Error его пропустит. На Windows встретить его практически негде: FIFO там не объекты файловой системы.",
@@ -8647,7 +8647,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Barrier сломан (сброшен/таймаут), пока поток ждал на нём.",
-          "en": "Unspecified run-time error"
+          "en": "A Barrier was broken (reset or timed out) while a thread was waiting on it."
         },
         "body": {
           "ru": "Главная деталь: если хотя бы один поток вышел из wait() по таймауту, барьер ломается для всех — исключение получат и остальные участники, а не только опоздавший. Тот же эффект даёт явный abort(), которым намеренно разблокируют застрявшие потоки. Вернуть барьер в строй можно только через reset(), причём в момент, когда на нём никто не ждёт.",
@@ -8703,7 +8703,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Ошибка токенизации Python-исходника (напр. незакрытая скобка/строка).",
-          "en": "Common base class for all non-exit exceptions"
+          "en": "An error while tokenizing Python source (e.g. an unclosed bracket or string)."
         },
         "body": {
           "ru": "Это сигнал «исходник оборвался на полуслове»: не закрыта скобка или тройная кавычка, и токенизатор дошёл до конца ввода внутри конструкции. Про синтаксис вообще речи нет — tokenize не разбирает грамматику, так что бессмысленный, но корректно разбитый на токены код пройдёт без жалоб. В интерактивных инструментах эта ошибка обычно значит не «отвергнуть ввод», а «попросить ещё одну строку».",
@@ -8759,7 +8759,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Не удалось импортировать модуль из ZIP-архива (подкласс ImportError).",
-          "en": "Import can't find module, or can't find name in module"
+          "en": "A module could not be imported from a ZIP archive (a subclass of ImportError)."
         },
         "body": {
           "ru": "Наследуется от ImportError, так что обычный except ImportError его уже перехватывает — отдельная ветка нужна, только когда важно отличить проблему с самим архивом от просто отсутствующего модуля. Порождает его модуль zipimport: конструктор zipimporter(path) бросает эту ошибку, если путь не указывает на читаемый ZIP-архив. Вручную такое исключение почти никто не поднимает — оно всплывает само, когда в sys.path оказывается .zip.",
@@ -8815,7 +8815,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Ошибка setitimer/getitimer (подкласс OSError).",
-          "en": "Base class for I/O related errors"
+          "en": "An error from setitimer or getitimer (a subclass of OSError)."
         },
         "body": {
           "ru": "Появляется только вокруг signal.setitimer() и getitimer() — например, при отрицательном интервале или неизвестном типе таймера. Обе функции существуют лишь на Unix: на Windows их просто нет, и обращение даст AttributeError, а не это исключение. Наследуется от OSError, поэтому широкий except OSError его тоже перехватит.",
@@ -8879,7 +8879,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Базовый класс всех сигналов-исключений модуля decimal (подкласс ArithmeticError).",
-          "en": "Base class for arithmetic errors"
+          "en": "The base class of all decimal signal exceptions (a subclass of ArithmeticError)."
         },
         "body": {
           "ru": "Общий предок всех сигналов decimal и одновременно подкласс ArithmeticError, так что except ArithmeticError перехватит и его — удобно, но слишком широко, если рядом возможны обычные деления и переполнения. Главное, чего не видно из имени: большинство сигналов по умолчанию вообще не поднимаются. В стандартном контексте включены ловушки только для InvalidOperation, DivisionByZero и Overflow, остальные условия просто ставят флаг в контексте, и обнаружить их можно лишь по этому флагу.",
@@ -8936,7 +8936,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Недопустимая операция decimal (напр. Decimal('nan') в сравнении, деление 0/0).",
-          "en": "Base class for arithmetic errors"
+          "en": "An invalid decimal operation (e.g. an ordering comparison with Decimal('nan'), or 0/0)."
         },
         "body": {
           "ru": "Частая ловушка на разборе ввода: Decimal(\"abc\") кидает именно InvalidOperation, а не ValueError, как int(\"abc\"), поэтому привычный except ValueError вокруг чтения числа её не поймает (общий except ArithmeticError — поймает). Ловушка на этот сигнал включена в контексте по умолчанию; если снять её через getcontext().traps, операция молча вернёт NaN, и дальше этот NaN протечёт через все вычисления, не выдав себя ничем, кроме липкого флага в getcontext().flags.",
@@ -8992,7 +8992,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Деление ненулевого Decimal на ноль (аналог ZeroDivisionError для decimal).",
-          "en": "Second argument to a division or modulo operation was zero"
+          "en": "A non-zero Decimal was divided by zero (the decimal counterpart of ZeroDivisionError)."
         },
         "body": {
           "ru": "Класс наследуется и от DecimalException, и от встроенного ZeroDivisionError, поэтому привычный except ZeroDivisionError сработает и на Decimal — отдельная ветка нужна, только если вы различаете источники ошибки. Деление нуля на ноль сюда не относится: это неопределённость, и она сигнализируется как InvalidOperation. И если выключить ловушку в контексте, исключения не будет — операция вернёт бесконечность соответствующего знака.",
@@ -9048,7 +9048,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Целочисленное деление decimal не может дать корректный результат.",
-          "en": "Base class for arithmetic errors"
+          "en": "Decimal integer division cannot produce a correct result."
         },
         "body": {
           "ru": "Речь не про обычное деление, а про целочисленное: сигнал возникает, когда целая часть результата // или divmod требует больше цифр, чем precision текущего контекста. Это подкласс InvalidOperation, а его ловушка в контексте по умолчанию включена, поэтому исключение действительно вылетает; со снятой ловушкой вместо него вернётся NaN. Чинится увеличением precision, а не перехватом.",
@@ -9104,7 +9104,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Деление 0/0 в decimal (результат не определён).",
-          "en": "Second argument to a division or modulo operation was zero"
+          "en": "Decimal division 0/0 was attempted (the result is undefined)."
         },
         "body": {
           "ru": "Срабатывает именно на 0/0 — деление ненулевого числа на ноль даёт другой сигнал, DivisionByZero. Класс наследует сразу и InvalidOperation, и ZeroDivisionError, так что обычный except ZeroDivisionError его тоже поймает. Ловушка InvalidOperation включена по умолчанию; если её снять, операция молча вернёт NaN.",
@@ -9160,7 +9160,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Экспонента результата decimal превысила максимум контекста.",
-          "en": "Base class for arithmetic errors"
+          "en": "The exponent of a decimal result exceeded the context maximum."
         },
         "body": {
           "ru": "Это не встроенный OverflowError — перехватывать нужно именно decimal.Overflow (или общий ArithmeticError). Порог задаёт Emax текущего контекста, а он по умолчанию равен 999999, так что на практике сигнал видят только после сужения контекста вручную. Ловушка включена по умолчанию; если её снять, результатом станет либо Infinity, либо наибольшее конечное число — что именно, решает режим округления.",
@@ -9217,7 +9217,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Результат decimal слишком мал (субнормализован и округлён к нулю).",
-          "en": "Base class for arithmetic errors"
+          "en": "A decimal result is too small: it became subnormal and was rounded to zero."
         },
         "body": {
           "ru": "Underflow наследуется сразу от Subnormal, Inexact и Rounded, поэтому широкий except decimal.Subnormal перехватит и его — более конкретные классы ставьте раньше в цепочке except. Ловушка по умолчанию выключена: без неё результат просто становится нулём нужного знака, и такое молчаливое обнуление легко принять за ошибку в собственной формуле, хотя это переполнение вниз по Emin.",
@@ -9274,7 +9274,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Округление decimal отбросило ненулевые разряды (результат неточен).",
-          "en": "Base class for arithmetic errors"
+          "en": "Decimal rounding discarded non-zero digits (the result is inexact)."
         },
         "body": {
           "ru": "Ловушка по умолчанию выключена — сигнал просто взводит флаг в context.flags, а округлённый результат возвращается как ни в чём не бывало. Её включают, когда важно узнать, что цифры реально потерялись: например, что сумма не разделилась нацело. Не путать с Rounded: тот взводится при любом отбрасывании разрядов, даже нулевых, а Inexact — только когда отброшено что-то значащее.",
@@ -9330,7 +9330,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Результат decimal был округлён (даже если точность не потеряна).",
-          "en": "Base class for arithmetic errors"
+          "en": "A decimal result was rounded (even if no precision was lost)."
         },
         "body": {
           "ru": "Это сигнал, а не обычная ошибка: ловушка на него по умолчанию выключена, и узнать о срабатывании можно через getcontext().flags[decimal.Rounded] — флаг липкий, сам не сбрасывается, чистить его надо руками (clear_flags). Не путать с Inexact: Rounded срабатывает при любом отбрасывании цифр, даже если отброшены нули и значение не изменилось, а Inexact — только когда действительно потеряна ненулевая часть.",
@@ -9386,7 +9386,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Результат decimal субнормален (экспонента ниже Emin).",
-          "en": "Base class for arithmetic errors"
+          "en": "A decimal result is subnormal (its exponent is below Emin)."
         },
         "body": {
           "ru": "Ловушка на этот сигнал по умолчанию выключена, а при дефолтном Emin, равном -999999, он практически недостижим — вы его увидите, только если сузите контекст вручную. Сам по себе Subnormal не значит, что результат испорчен: он лишь предупреждает, что число ушло ниже Emin и представлено меньшим числом значащих цифр. Реальная потеря — это уже Underflow, то есть субнормальный и одновременно неточный результат.",
@@ -9442,7 +9442,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Экспонента результата decimal изменена, чтобы уложиться в допустимый диапазон.",
-          "en": "Base class for arithmetic errors"
+          "en": "The exponent of a decimal result was changed to fit the allowed range."
         },
         "body": {
           "ru": "Clamped — сигнал, а не обычная ошибка: в стандартном контексте ловушка для него выключена, вычисление продолжается молча, и факт срабатывания виден только по флагу в контексте. Чтобы он действительно поднялся как исключение, ловушку включают в контексте вручную. Само число при этом не портится — подгоняются экспонента и число нулей в записи, поэтому сигнал важен, когда вам принципиально точное представление (например, количество знаков после запятой), а не значение.",
@@ -9498,7 +9498,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Некорректная строка при создании Decimal из строки.",
-          "en": "Base class for arithmetic errors"
+          "en": "An invalid string was given when creating a Decimal from a string."
         },
         "body": {
           "ru": "Ловить этот класс напрямую бесполезно: на некорректной строке decimal поднимает InvalidOperation, а ConversionSyntax — лишь имя уточняющего условия, а не то, что реально прилетит в except. Пишите except decimal.InvalidOperation. А если ловушку InvalidOperation в контексте выключить, исключения не будет вовсе — вместо него вернётся Decimal NaN, и ошибку придётся замечать по флагу контекста или проверкой is_nan().",
@@ -9554,7 +9554,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Смешивание Decimal и float при включённой ловушке FloatOperation.",
-          "en": "Base class for arithmetic errors"
+          "en": "Decimal and float were mixed while the FloatOperation trap is enabled."
         },
         "body": {
           "ru": "По умолчанию ловушка выключена: смешивать Decimal и float в конструкторе и в сравнениях можно, факт смешения лишь молча взводит флаг в контексте. Включают её осознанно — чтобы отловить случайно затесавшийся float в денежных расчётах. Даже с включённой ловушкой тихими остаются сравнения на равенство и явные преобразования вроде Decimal.from_float(), а сам класс наследуется ещё и от TypeError.",
@@ -9610,7 +9610,7 @@
         "kind": "exception",
         "summary": {
           "ru": "Недопустимая настройка контекста decimal.",
-          "en": "Base class for arithmetic errors"
+          "en": "A decimal context was configured with an invalid setting."
         },
         "body": {
           "ru": "Говорит не о плохих данных, а об испорченном контексте: неизвестный или неподдерживаемый режим округления либо precision за пределами возможностей реализации. Подкласс InvalidOperation, ловушка которого включена по умолчанию; без ловушки операция вернёт NaN. Причину искать там, где Context собирали руками, а не в самой арифметике.",
@@ -19556,10 +19556,10 @@
       {
         "id": "datetime.strftime",
         "title": {
-          "ru": "datetime.strftime",
-          "en": "datetime.strftime"
+          "ru": "datetime.datetime.strftime()",
+          "en": "datetime.datetime.strftime()"
         },
-        "kind": "term",
+        "kind": "function",
         "summary": {
           "ru": "Форматирует объект datetime в строку по шаблону формата (коды %Y, %m, %d, %H и т.д.).",
           "en": "Formats a datetime object into a string following a format template (the codes %Y, %m, %d, %H and so on)."
@@ -19588,6 +19588,7 @@
           "вывести дату в нужном формате"
         ],
         "keywords": [
+          "datetime.datetime.strftime",
           "datetime.strftime",
           "strftime"
         ],
@@ -19615,10 +19616,10 @@
       {
         "id": "datetime.strptime",
         "title": {
-          "ru": "datetime.strptime",
-          "en": "datetime.strptime"
+          "ru": "datetime.datetime.strptime()",
+          "en": "datetime.datetime.strptime()"
         },
-        "kind": "term",
+        "kind": "function",
         "summary": {
           "ru": "Парсит строку в объект datetime по шаблону формата (коды %Y, %m, %d и т.д.). Обратная операция для strftime().",
           "en": "Parses a string into a datetime object following a format template (the codes %Y, %m, %d and so on). The inverse of strftime()."
@@ -19647,6 +19648,7 @@
           "распарсить дату по шаблону"
         ],
         "keywords": [
+          "datetime.datetime.strptime",
           "datetime.strptime",
           "strptime"
         ],
@@ -30204,7 +30206,7 @@
         "kind": "term",
         "summary": {
           "ru": "Календарная дата (год, месяц, день) без времени. date.today() — сегодня, weekday() — день недели (0=пн).",
-          "en": "A calendar date (year, month, day) without time."
+          "en": "A calendar date (year, month, day) without time. date.today() gives today, weekday() the day of week (0 = Monday)."
         },
         "body": {
           "ru": "Вечный источник путаницы — нумерация дней недели: weekday() считает с нуля от понедельника, а isoweekday() — с единицы. Несуществующая дата вроде date(2024, 2, 31) роняет ValueError прямо в конструкторе, так что валидировать вручную не нужно, достаточно поймать исключение. Объект неизменяем и «плюс месяц» не умеет: складывать можно только с timedelta, то есть в днях и неделях.",
@@ -31721,7 +31723,7 @@
         "kind": "term",
         "summary": {
           "ru": "Обёртка, принудительно делающая значение членом перечисления (Python 3.11+); полезно для функций/дескрипторов.",
-          "en": "A wrapper forcing a value to become an enum member (3.11+)."
+          "en": "A wrapper that forces a value to become an enum member (Python 3.11+); useful for functions and descriptors."
         },
         "body": {
           "ru": "Нужна ровно там, где обычные правила Enum срабатывают против вас: функция, lambda, дескриптор или вложенный класс в теле перечисления членом не становятся — Python считает их методами класса. Обёртка снимает это исключение и заставляет значение стать полноценным членом с .name и .value. Для обычных чисел и строк она избыточна, а до Python 3.11 приходилось хитрить, заворачивая функцию, например, в functools.partial.",
@@ -32948,7 +32950,7 @@
         "kind": "function",
         "summary": {
           "ru": "Остаток по IEEE 754: x − round(x/y)·y, результат в [−y/2, y/2].",
-          "en": "The IEEE 754 remainder: x − round(x/y)·y."
+          "en": "The IEEE 754 remainder: x − round(x/y)·y, the result lies in [−y/2, y/2]."
         },
         "body": {
           "ru": "Частное округляется к ближайшему целому (ровная половина — к чётному), поэтому знак результата не привязан ни к x, ни к y, а модуль никогда не превышает половину y: remainder(11, 3) даёт -1.0, хотя оба числа положительные. Это ровно то, что нужно для приведения углов и фаз в симметричный диапазон, но не «остаток» в бытовом смысле — для него берите % или math.fmod. Нулевой делитель даёт ValueError.",
@@ -33064,7 +33066,7 @@
         "kind": "function",
         "summary": {
           "ru": "Раскладывает число на мантиссу m и экспоненту e: x = m·2^e, 0.5 ≤ |m| < 1.",
-          "en": "Decompose a number into mantissa m and exponent e: x = m·2^e."
+          "en": "Decomposes a number into mantissa m and exponent e: x = m·2^e, with 0.5 ≤ |m| < 1."
         },
         "body": {
           "ru": "Разложение двоичное, а не десятичное: frexp(8) даёт (0.5, 4), потому что 8 = 0.5·2^4, а не (8.0, 0), как подсказывает привычка к научной записи по основанию 10. Операция точная, без округления, и math.ldexp(*math.frexp(x)) вернёт исходное число бит в бит. Мантисса — float, экспонента — int; для нуля результат (0.0, 0).",
@@ -33178,7 +33180,7 @@
         "kind": "function",
         "summary": {
           "ru": "Обратная frexp: x·2^i (собирает число из мантиссы и экспоненты).",
-          "en": "The inverse of frexp: x·2^i."
+          "en": "The inverse of frexp: x·2**i (builds a number from its mantissa and exponent)."
         },
         "body": {
           "ru": "Умножение на степень двойки — точная операция: сдвигается только экспонента, значащие биты не меняются, поэтому ldexp надёжнее, чем x * 2 ** i, где при большом i промежуточное 2 ** i раздувается в гигантское целое. Если результат не влезает в диапазон float, будет OverflowError, а при слишком маленьком — постепенная потеря точности через субнормальные числа и в пределе 0.0.",
@@ -33349,7 +33351,7 @@
         "kind": "function",
         "summary": {
           "ru": "Евклидово расстояние между двумя точками (последовательностями координат).",
-          "en": "The Euclidean distance between two points."
+          "en": "The Euclidean distance between two points (sequences of coordinates)."
         },
         "body": {
           "ru": "Появился в 3.8; точки — любые последовательности координат любой размерности, но длины обязаны совпадать, иначе ValueError. Внутри считается так же, как hypot: без переполнения на промежуточных квадратах и с меньшей ошибкой округления, чем у ручного корня из суммы квадратов. Если расстояния только сравниваются между собой, дешевле обойтись суммой квадратов, не извлекая корень.",
@@ -33710,7 +33712,7 @@
         "kind": "term",
         "summary": {
           "ru": "Абстрактный базовый класс контекстного менеджера (протокол __enter__/__exit__); любой класс с этими методами — его виртуальный подкласс.",
-          "en": "The ABC for context managers (the __enter__/__exit__ protocol)."
+          "en": "The abstract base class of context managers (the __enter__/__exit__ protocol); any class with these methods is its virtual subclass."
         },
         "body": {
           "ru": "Это не обязанность, а удобство: issubclass проходит для любого класса с __enter__ и __exit__, даже если он ничего не наследовал, — поэтому свой менеджер писать через наследование не нужно. Смысл наследования в том, что базовый класс уже даёт __enter__, возвращающий self, и остаётся описать только __exit__; ещё его удобно указывать в аннотациях типов. Асинхронные менеджеры сюда не попадают — у них отдельный AbstractAsyncContextManager.",
@@ -33881,7 +33883,7 @@
         "kind": "term",
         "summary": {
           "ru": "Асинхронный аналог ExitStack: динамически регистрирует и корректно закрывает несколько (async) контекстных менеджеров (Python 3.7+).",
-          "en": "An async ExitStack: dynamically manage several (async) context managers (3.7+)."
+          "en": "The async counterpart of ExitStack: registers several (async) context managers dynamically and closes them correctly (Python 3.7+)."
         },
         "body": {
           "ru": "Нужен там, где число ресурсов известно только в рантайме: открыть N соединений в цикле нельзя одним async with, а стек примет их по одному и закроет в обратном порядке при выходе. Асинхронные менеджеры регистрируются через enter_async_context() и push_async_exit(), обычные синхронные — через те же enter_context()/callback(), что и у ExitStack; перепутать методы — самая частая ошибка. Ещё приём: pop_all() переносит уже накопленные ресурсы в новый стек, чтобы не закрывать их, если инициализация дошла до конца успешно.",
@@ -34057,7 +34059,7 @@
         "kind": "term",
         "summary": {
           "ru": "Вспомогательный базовый класс с метаклассом ABCMeta: наследование от него делает класс абстрактным (нельзя создать экземпляр при наличии абстрактных методов).",
-          "en": "A helper base class using ABCMeta; subclassing it makes a class abstract."
+          "en": "A helper base class with ABCMeta as its metaclass: subclassing it makes a class abstract (it cannot be instantiated while abstract methods remain)."
         },
         "body": {
           "ru": "Абстрактность проверяется только в момент создания экземпляра: если наследник забыл переопределить хотя бы один абстрактный метод, TypeError прилетит на вызове конструктора, а не при определении класса. Само наследование от ABC ничего не запрещает — потомок без абстрактных методов создаётся спокойно. Если нужна проверка «подходит ли объект по набору методов» без наследования, смотрите в сторону typing.Protocol со структурной типизацией.",
@@ -34484,7 +34486,7 @@
         "kind": "function",
         "summary": {
           "ru": "Пересчитывает набор абстрактных методов класса (напр. после динамического добавления методов; Python 3.10+).",
-          "en": "Recompute a class's set of abstract methods (3.10+)."
+          "en": "Recomputes a class's set of abstract methods (e.g. after methods are added dynamically; Python 3.10+)."
         },
         "body": {
           "ru": "Набор __abstractmethods__ считается один раз, в момент создания класса, поэтому всё, что дописывает или подменяет методы позже (декоратор класса, миксин, ручное присваивание), оставляет его протухшим: класс либо спокойно создаётся с недореализованными методами, либо отказывается создаваться, хотя всё уже реализовано. Функция возвращает тот же самый класс, так что её удобно вешать декоратором.",
@@ -35966,7 +35968,7 @@
         "kind": "term",
         "summary": {
           "ru": "Обёртка над dict с содержимым в атрибуте .data; основа для собственных словарных классов через наследование (в отличие от прямого наследования dict, все методы идут через .data).",
-          "en": "A dict wrapper exposing its contents via .data; a base for custom mapping classes."
+          "en": "A dict wrapper keeping its contents in .data; a base for your own dict classes, since every method goes through .data unlike subclassing dict directly."
         },
         "body": {
           "ru": "Смысл обёртки — в наследовании: если унаследоваться от dict напрямую, переопределённый __setitem__ тихо обойдут update(), setdefault() и сам конструктор, потому что они реализованы на C и пишут в хранилище мимо ваших методов; UserDict проводит через ваш код каждую запись. Плата — скорость и то, что isinstance(obj, dict) даёт False: код, проверяющий тип, ваш объект не примет, туда отдавайте .data.",
@@ -36133,7 +36135,7 @@
         "kind": "term",
         "summary": {
           "ru": "Абстрактный базовый класс всех потоков ввода-вывода (файлов и StringIO/BytesIO); задаёт общий интерфейс close/readable/writable/seekable.",
-          "en": "The abstract base class of all I/O streams (files, StringIO/BytesIO)."
+          "en": "The abstract base class of all I/O streams (files and StringIO/BytesIO); it defines the shared close/readable/writable/seekable interface."
         },
         "body": {
           "ru": "isinstance(obj, io.IOBase) подтверждает только «это поток», но не что у него есть read() или write(): сами эти методы объявлены уже в наследниках, а IOBase задаёт лишь close(), закрытие по with и запросы readable()/writable()/seekable(). Обращение к уже закрытому потоку даёт ValueError с текстом про I/O operation on closed file, а не OSError, — ловить надо именно ValueError.",
@@ -36369,7 +36371,7 @@
         "kind": "term",
         "summary": {
           "ru": "Сырой (небуферизованный) бинарный поток к файлу по имени или дескриптору; низкоуровневая основа, поверх которой open() строит буферизацию.",
-          "en": "A raw (unbuffered) binary stream to a file by name or descriptor."
+          "en": "A raw (unbuffered) binary stream to a file by name or descriptor; the low-level base on which open() builds buffering."
         },
         "body": {
           "ru": "Напрямую его создают редко: open(path, 'rb', buffering=0) возвращает ровно FileIO, а обычный open() надстраивает над ним буфер и текстовую обёртку. Главная ловушка сырого потока — read(n) делает один системный вызов и вправе вернуть меньше n байт задолго до конца файла, поэтому читают либо readall(), либо циклом до пустого результата.",
@@ -36433,7 +36435,7 @@
         "kind": "term",
         "summary": {
           "ru": "Буферизованный поток бинарного чтения поверх сырого потока; сглаживает мелкие read() крупными блоками.",
-          "en": "A buffered binary read stream wrapping a raw stream."
+          "en": "A buffered binary reading stream over a raw stream; it serves many small read() calls from large blocks."
         },
         "body": {
           "ru": "Обычно его не создают руками — именно BufferedReader возвращает open(path, 'rb'), а через .buffer до него можно добраться у текстового файла или у sys.stdin. Полезное отличие от сырого потока: read(n) отдаёт ровно n байт и меньше только на конце файла, а peek() позволяет заглянуть вперёд, не сдвигая позицию. Помните, что read() без аргумента затягивает весь файл в память — большие файлы читайте кусками фиксированного размера или построчно.",
@@ -36553,7 +36555,7 @@
         "kind": "term",
         "summary": {
           "ru": "Буферизованный поток с произвольным доступом (чтение и запись + seek) поверх сырого потока — для файлов, открытых в режиме 'r+b'.",
-          "en": "A buffered random-access stream (read+write+seek) over a raw stream."
+          "en": "A buffered random-access stream (reading, writing and seek) over a raw stream, used for files opened in 'r+b' mode."
         },
         "body": {
           "ru": "Вручную этот класс почти не собирают — его возвращает open(path, 'r+b'), и разница с соседними режимами важнее самого класса: 'r+b' требует существующий файл и не обрезает его, а 'w+b' обнуляет содержимое при открытии. Запись уходит в буфер, поэтому до flush() или close() другой процесс (и даже другой дескриптор того же файла) увидит старые данные — если нужна немедленная видимость, вызывайте flush() явно.",
@@ -36615,7 +36617,7 @@
         "kind": "term",
         "summary": {
           "ru": "Буферизованный объект, объединяющий отдельный поток чтения и отдельный поток записи (например, для сокета или пары каналов).",
-          "en": "A buffered object pairing a separate reader and writer stream."
+          "en": "A buffered object combining a separate reader stream and a separate writer stream (e.g. for a socket or a pair of pipes)."
         },
         "body": {
           "ru": "Класс имеет смысл только для по-настоящему раздельных каналов — сокет, пара пайпов; передавать один и тот же объект и как reader, и как writer нельзя, для двустороннего доступа к одному потоку есть BufferedRandom. Произвольный доступ здесь не поддерживается: seekable() возвращает False, а сам объект не синхронизирует обращения к нижележащим сырым потокам, так что в многопоточном коде на него полагаться не стоит.",
@@ -36678,7 +36680,7 @@
         "kind": "term",
         "summary": {
           "ru": "Инкрементальный декодер, приводящий переводы строк к '\\n' (universal newlines) по мере поступления байтов; используется текстовыми потоками.",
-          "en": "An incremental decoder that normalizes newlines to '\\n' as bytes arrive."
+          "en": "An incremental decoder that translates line endings to '\\n' (universal newlines) as bytes arrive; text streams use it."
         },
         "body": {
           "ru": "Декодер помнит состояние между вызовами: если очередной кусок данных обрывается на '\\r', этот символ придерживается до следующего вызова — пока неизвестно, одиночный это перевод строки или половина '\\r\\n'. Из-за этого decode() иногда возвращает меньше, чем вы подали, и в конце потока нужен завершающий вызов с final=True. Руками его почти не создают: это внутренний помощник TextIOWrapper для файлов, открытых с newline=None.",
@@ -36732,8 +36734,8 @@
         },
         "kind": "function",
         "summary": {
-          "ru": "Возвращает переданную кодировку, а если это None — кодировку по умолчанию для текстовых файлов (обычно 'utf-8'); помогает библиотекам корректно проставлять encoding (Python 3.10+).",
-          "en": "Return the given encoding, or the default text encoding if None (3.10+)."
+          "ru": "Возвращает переданную кодировку, а для None — кодировку текста по умолчанию: 'locale', а в режиме UTF-8 — 'utf-8'; помогает библиотекам корректно передавать encoding (3.10+).",
+          "en": "Returns the given encoding, or for None the default text encoding: 'locale', or 'utf-8' in UTF-8 Mode; helps libraries pass encoding on correctly (3.10+)."
         },
         "body": {
           "ru": "Функция ничего не открывает и не проверяет: любую непустую строку она возвращает как есть, включая несуществующее имя кодека — ошибка всплывёт уже в open(). При encoding равном None возвращается не имя кодировки, а строка 'locale' (или 'utf-8', если включён UTF-8-режим), которую open() понимает. Смысл вызывать её в своих обёртках над open() в том, что под -X warn_default_encoding она выдаст EncodingWarning, и благодаря stacklevel=2 предупреждение укажет на того, кто вызвал вашу обёртку, а не на саму обёртку.",
@@ -36791,7 +36793,7 @@
         "kind": "function",
         "summary": {
           "ru": "Открывает файл для чтения как исполняемый код с учётом аудит-хуков безопасности; предпочтительнее open() для загрузки кода (Python 3.8+).",
-          "en": "Open a file for reading as executable code, honoring audit hooks (3.8+)."
+          "en": "Opens a file for reading as executable code, honouring security audit hooks; prefer it over open() for loading code (Python 3.8+)."
         },
         "body": {
           "ru": "Это всегда бинарное чтение: режим 'rb', параметров encoding и newline нет, а путь ожидается абсолютной строкой. Сама функция ничего не проверяет и безопасности не добавляет — ценность в единой точке перехвата: приложение или встраивающая среда может подменить её реализацию (или повесить аудит-хук) и, например, отказаться отдавать неподписанный файл. Через неё же импорт-механизм читает то, что собирается выполнить.",
@@ -37089,7 +37091,7 @@
         "kind": "function",
         "summary": {
           "ru": "Случайное число из логнормального распределения (логарифм подчинён нормальному с mu, sigma); результат всегда положителен.",
-          "en": "A random number from the log-normal distribution; always positive."
+          "en": "A random number from the log-normal distribution (its logarithm is normal with mu, sigma); the result is always positive."
         },
         "body": {
           "ru": "mu и sigma описывают логарифм результата, а не сам результат: медиана выдачи равна exp(mu), а среднее — exp(mu + sigma^2/2). Подставлять сюда желаемое среднее и разброс самих чисел — типичная ошибка. Распределение скошено вправо: длинный хвост больших значений тянет среднее заметно выше медианы, из-за чего оно и годится для моделирования доходов, времени отклика, размеров файлов.",
@@ -37318,7 +37320,7 @@
         "kind": "function",
         "summary": {
           "ru": "Случайный угол из распределения фон Мизеса (кругового аналога нормального) с центром mu и концентрацией kappa; результат в [0, 2π].",
-          "en": "A random angle from the von Mises distribution (mu, kappa); in [0, 2π]."
+          "en": "A random angle from the von Mises distribution (a circular analogue of the normal) with mean mu and concentration kappa; the result is in [0, 2π]."
         },
         "body": {
           "ru": "kappa — мера кучности: при kappa = 0 концентрации нет вовсе и функция выдаёт равномерный угол по всему кругу, а при больших kappa разброс вокруг mu близок к нормальному со стандартным отклонением примерно 1/sqrt(kappa). Помните, что это угол в радианах с заворотом через 2π: усреднять такие значения арифметически нельзя — «среднее» 0.1 и 6.2 радиан даст 3.15, то есть ровно противоположное направление.",
@@ -37432,8 +37434,8 @@
         },
         "kind": "function",
         "summary": {
-          "ru": "Целое число из k случайных бит (0 ≤ результат < 2**k); опирается на воспроизводимое ядро генератора, поэтому под фиксированным seed стабильно между версиями Python.",
-          "en": "An int of k random bits (0 ≤ result < 2**k); reproducible under a fixed seed."
+          "ru": "Целое число из k случайных бит (0 ≤ результат < 2**k); опирается на ядро генератора, поэтому под фиксированным seed воспроизводимо.",
+          "en": "An integer of k random bits (0 <= result < 2**k); it draws on the core generator, so it is reproducible under a fixed seed."
         },
         "body": {
           "ru": "Под капотом Mersenne Twister: по достаточному числу выданных значений его внутреннее состояние восстанавливается, поэтому пароли, токены и ключи генерируют через secrets.randbits() или os.urandom(), а не здесь. Отрицательное k даёт ValueError, а k=0 законно и всегда возвращает 0.",
@@ -37491,7 +37493,7 @@
         "kind": "function",
         "summary": {
           "ru": "Возвращает bytes из n случайных байтов (Python 3.9+); удобно для генерации токенов/солей в некриптографических задачах.",
-          "en": "Return n random bytes as a bytes object (3.9+)."
+          "en": "Returns n random bytes (Python 3.9+); handy for tokens or salts in non-cryptographic tasks."
         },
         "body": {
           "ru": "Настоящее преимущество перед os.urandom — воспроизводимость: под фиксированным seed вернётся та же цепочка байт, и бинарные фикстуры в тестах становятся детерминированными. Для солей, сессионных токенов и вообще всего, что охраняет доступ, берут secrets.token_bytes() — этот генератор предсказуем, если понаблюдать за его выдачей.",
@@ -37605,7 +37607,7 @@
         "kind": "function",
         "summary": {
           "ru": "Восстанавливает внутреннее состояние генератора из объекта, полученного ранее через getstate — генерация продолжится с той же точки.",
-          "en": "Restore the generator's internal state from a getstate() object."
+          "en": "Restores the generator's internal state from an object obtained earlier via getstate, so generation resumes from the same point."
         },
         "body": {
           "ru": "Объект state — непрозрачный кортеж, завязанный на конкретную реализацию генератора: складывать его в файл и подсовывать другой версии Python не стоит, для воспроизводимости надёжнее запомнить seed. И помните, что setstate перематывает общий генератор модуля — откатывается случайность всей программы, включая сторонние библиотеки; если нужна изоляция, заведите свой экземпляр random.Random().",
@@ -37661,7 +37663,7 @@
         "kind": "term",
         "summary": {
           "ru": "Метакласс всех перечислений: именно он превращает класс с атрибутами-константами в Enum (проверяет уникальность, создаёт члены). Актуальное имя с Python 3.11.",
-          "en": "The metaclass of all enumerations; turns a class of constants into an Enum (3.11+ name)."
+          "en": "The metaclass of all enums: it turns a class of constant attributes into an Enum (checks uniqueness, creates members). The current name since Python 3.11."
         },
         "body": {
           "ru": "Напрямую его называют редко, но именно он объясняет, почему у класса-перечисления работают len(Color), обход в цикле, Color['RED'] и Color(1): эти операции определены на метаклассе, а не на самом Enum. До Python 3.11 он назывался EnumMeta, и старое имя оставлено как псевдоним, так что код с ним не сломался. Наследоваться от него имеет смысл только если пишешь свой вид перечисления с изменённым поиском членов.",
@@ -37832,7 +37834,7 @@
         "kind": "function",
         "summary": {
           "ru": "Декоратор класса-перечисления: переносит его члены в глобальное пространство имён модуля (доступ по имени без префикса) и настраивает их repr под «модульный» стиль.",
-          "en": "A class decorator that injects an enum's members into the module globals and adjusts their repr."
+          "en": "A decorator for an enum class: it copies the members into the module's global namespace (usable without the prefix) and gives them a module-style repr."
         },
         "body": {
           "ru": "Декоратор придуман ради стандартной библиотеки, где константы исторически лежат прямо в модуле (re.IGNORECASE, socket.AF_INET), а перечисление добавили позже — он даёт новый класс, не ломая старый способ обращения. В своём коде применять его почти всегда не стоит: имена появляются в globals() в обход обычного присваивания, поэтому линтеры и автодополнение IDE их не видят, а случайное совпадение имён молча затрёт существующую переменную модуля.",
@@ -38612,7 +38614,7 @@
         "kind": "function",
         "summary": {
           "ru": "Возвращает +a (унарный плюс; для чисел — само значение, но может вызывать __pos__).",
-          "en": "Return +a (unary plus)."
+          "en": "Returns +a (unary plus; for numbers the value itself, but it may call __pos__)."
         },
         "body": {
           "ru": "Для int и float pos ничего не меняет, но не всегда бесполезна: у decimal.Decimal унарный плюс применяет точность текущего контекста и округляет значение, а у collections.Counter убирает нулевые и отрицательные счётчики. В собственном классе поведение задаёт __pos__.",
@@ -38671,7 +38673,7 @@
         "kind": "function",
         "summary": {
           "ru": "Побитовое И: a & b (подчёркивание в имени — чтобы не совпасть с ключевым словом `and`).",
-          "en": "Bitwise AND: a & b."
+          "en": "Bitwise AND: a & b (the trailing underscore avoids clashing with the keyword `and`)."
         },
         "body": {
           "ru": "Это побитовое &, а не логическое and: оба аргумента вычисляются всегда, короткого замыкания нет, и результат другой — and_(2, 1) даёт 0, а 2 and 1 даёт 1. Для множеств and_ — пересечение, для bool — логическое И без замыкания. Чтобы проверить, что истинны все элементы, нужна all(), а не reduce с and_.",
@@ -38732,7 +38734,7 @@
         "kind": "function",
         "summary": {
           "ru": "Побитовое ИЛИ: a | b (подчёркивание — чтобы не совпасть с `or`).",
-          "en": "Bitwise OR: a | b."
+          "en": "Bitwise OR: a | b (the underscore avoids clashing with `or`)."
         },
         "body": {
           "ru": "Это побитовое |, а не логическое or: короткого замыкания нет, or_(1, 2) даёт 3, а 1 or 2 даёт 1. Для множеств or_ — объединение, для словарей с Python 3.9 — слияние, где при совпадении ключа побеждает правый: or_({'a': 1}, {'a': 2}) вернёт {'a': 2}. Объединить много множеств: functools.reduce(operator.or_, sets, set()).",
@@ -38793,8 +38795,8 @@
         },
         "kind": "function",
         "summary": {
-          "ru": "Побитовое исключающее ИЛИ: a ^ b.",
-          "en": "Bitwise XOR: a ^ b."
+          "ru": "Побитовое исключающее ИЛИ: a ^ b — единицы там, где бит стоит ровно в одном операнде.",
+          "en": "Bitwise exclusive OR: a ^ b, the bits set in exactly one operand."
         },
         "body": {
           "ru": "Для множеств xor — симметрическая разность: элементы, которые есть ровно в одном из двух. Для bool — «истинно ровно одно из двух», и своего ключевого слова у этой логической операции нет. Классический приём — найти число без пары: functools.reduce(operator.xor, xs) оставляет элемент, встретившийся нечётное число раз.",
@@ -38856,7 +38858,7 @@
         "kind": "function",
         "summary": {
           "ru": "Побитовая инверсия ~a (эквивалентно −a−1 для int).",
-          "en": "Bitwise inversion ~a."
+          "en": "Bitwise inversion ~a (equal to -a-1 for int)."
         },
         "body": {
           "ru": "Для int результат всегда -a - 1, потому что в Python у целых нет фиксированной ширины: ~5 даёт -6, а не 250, как в восьмибитном типе. Для маски нужной ширины добавьте & 0xFF. С bool не применяйте: ~True равно -2, а не False; с Python 3.12 это предупреждение DeprecationWarning, удаление запланировано на 3.16. Для логического отрицания есть not.",
@@ -38972,7 +38974,7 @@
         "kind": "function",
         "summary": {
           "ru": "Сдвиг влево: a << b (умножение на 2**b).",
-          "en": "Left shift: a << b."
+          "en": "Left shift: a << b (multiplication by 2**b)."
         },
         "body": {
           "ru": "У целых Python нет переполнения: lshift(1, 100) честно даёт число из 31 цифры, а не ноль, как в языках с фиксированной шириной. Отрицательный сдвиг поднимает ValueError, а не сдвигает в другую сторону. Сдвиг удобен для битовых масок (1 << n), но для умножения на степень двойки понятнее записать a * 2**n.",
@@ -39029,7 +39031,7 @@
         "kind": "function",
         "summary": {
           "ru": "Сдвиг вправо: a >> b (целочисленное деление на 2**b).",
-          "en": "Right shift: a >> b."
+          "en": "Right shift: a >> b (floor division by 2**b)."
         },
         "body": {
           "ru": "Для отрицательных чисел сдвиг округляет вниз, к минус бесконечности: rshift(-5, 1) даёт -3, а не -2. Это согласовано с floordiv: a >> n равно a // 2**n. Отрицательный сдвиг поднимает ValueError. Чтобы достать отдельный бит, сдвиг сочетают с маской: (a >> k) & 1.",
@@ -39089,7 +39091,7 @@
         "kind": "function",
         "summary": {
           "ru": "Возвращает a == b (функциональный эквивалент `==`).",
-          "en": "Return a == b."
+          "en": "Returns a == b (the function form of `==`)."
         },
         "body": {
           "ru": "Вызывает __eq__ левого операнда, а если тот не умеет сравнивать — правого, поэтому eq(1, 1.0) истинно. Результат не обязан быть bool: массив NumPy вернёт массив поэлементных сравнений. NaN не равен даже себе — eq(nan, nan) даёт False. С functools.partial получается предикат: filter(partial(operator.eq, 0), xs) оставит нули.",
@@ -39440,7 +39442,7 @@
         "kind": "function",
         "summary": {
           "ru": "Проверка тождества: a is b (тот же объект в памяти).",
-          "en": "Identity test: a is b."
+          "en": "Identity test: a is b (the very same object in memory)."
         },
         "body": {
           "ru": "Сравнивает объекты, а не значения, поэтому годится для None, синглтонов-маркеров и проверки «это тот же список, а не копия». Для чисел и строк результат зависит от кэширования интерпретатора: is_(256, 256) обычно истинно, а для больших чисел или собранных строк — нет. Сравнивать значения нужно через eq.",
@@ -39617,7 +39619,7 @@
         "kind": "function",
         "summary": {
           "ru": "Возвращает истинностное значение объекта как bool (эквивалент bool(a)).",
-          "en": "Return the truth value of a as a bool."
+          "en": "Returns the truth value of an object as a bool (the same as bool(a))."
         },
         "body": {
           "ru": "Делает ровно то же, что bool(a). На практике bool короче и понятнее; truth встречается в старом коде и в таблицах операций. filter(None, xs) проверяет истинность сам, поэтому писать filter(operator.truth, xs) нет нужды.",
@@ -39674,7 +39676,7 @@
         "kind": "function",
         "summary": {
           "ru": "Конкатенация двух последовательностей: a + b (списки, строки, кортежи).",
-          "en": "Concatenate two sequences: a + b."
+          "en": "Concatenates two sequences: a + b (lists, strings, tuples)."
         },
         "body": {
           "ru": "Строже, чем add: оба аргумента должны быть последовательностями, поэтому concat(1, 2) поднимает TypeError, а add(1, 2) вернул бы 3. Типы должны совпадать: список с кортежем не склеится. Для множества кусков concat через reduce медленна — каждый шаг копирует всё накопленное. Склеивать много строк быстрее через str.join, много списков — через itertools.chain.",
@@ -39973,7 +39975,7 @@
         "kind": "function",
         "summary": {
           "ru": "Присваивание по ключу/индексу: a[b] = c (мутирует объект).",
-          "en": "Item assignment: a[b] = c."
+          "en": "Assigns by key or index: a[b] = c (mutates the object)."
         },
         "body": {
           "ru": "Возвращает None и меняет объект на месте — результат вызова не нужно никуда присваивать. Полезна там, где присваивание как инструкция недоступно: в лямбде, в обработчике событий, в map ради побочного эффекта. С кортежем или строкой поднимает TypeError: неизменяемые последовательности присваивание по индексу не поддерживают.",
@@ -40091,7 +40093,7 @@
         "kind": "function",
         "summary": {
           "ru": "Оценка длины объекта: точная (len) или предполагаемая через __length_hint__ (для итераторов); второй аргумент — значение по умолчанию.",
-          "en": "Estimate an object's length (exact or via __length_hint__)."
+          "en": "Estimates an object's length: exact via len or approximate via __length_hint__ (for iterators); the second argument is the default."
         },
         "body": {
           "ru": "Это оценка, а не обещание: итератор может выдать больше или меньше. Генератор длины не сообщает вовсе, и length_hint вернёт значение по умолчанию — 0, если не задано иное. Нужна в основном авторам коллекций, чтобы заранее выделить память; в обычном коде для точной длины есть len, а для итератора — list(it).",
@@ -40449,7 +40451,7 @@
         "kind": "function",
         "summary": {
           "ru": "In-place сложение: a += b (для изменяемых типов мутирует a, для неизменяемых — как add).",
-          "en": "In-place addition: a += b."
+          "en": "In-place addition a += b: it mutates a mutable a and behaves like add for an immutable one."
         },
         "body": {
           "ru": "Возвращаемое значение нужно присвоить: iadd(x, 1) для числа не меняет x, потому что int неизменяем, — правильно x = iadd(x, 1). Для списка iadd меняет его на месте и принимает любое итерируемое: iadd([1], (2,)) даёт [1, 2], хотя [1] + (2,) поднимает TypeError. Если на список есть другие ссылки, они увидят изменение.",
@@ -41556,7 +41558,7 @@
         "kind": "function",
         "summary": {
           "ru": "Нормализует регистр и разделители пути; на POSIX возвращает строку без изменений, на Windows приводит к нижнему регистру и меняет / на \\.",
-          "en": "Normalize path case and separators; a no-op on POSIX."
+          "en": "Normalizes path case and separators: unchanged on POSIX, lower-cased with / turned into \\ on Windows."
         },
         "body": {
           "ru": "Нужна для сравнения путей, а не для их показа: на Windows результат в нижнем регистре и с обратными слешами, поэтому выводить его пользователю не стоит. Ссылки не разрешает и '..' не убирает — для полного сравнения сочетайте с normpath или используйте samefile. На macOS файловая система обычно тоже нечувствительна к регистру, но normcase там ничего не меняет.",
@@ -41845,7 +41847,7 @@
         "kind": "function",
         "summary": {
           "ru": "Возвращает нормализованный абсолютный путь (относительный достраивается от текущего каталога).",
-          "en": "Return a normalized absolute version of a path."
+          "en": "Returns a normalized absolute path (a relative one is resolved against the current directory)."
         },
         "body": {
           "ru": "Символические ссылки не разрешает — это normpath(join(os.getcwd(), path)), поэтому для пути через ссылку с '..' результат может указывать не туда. Если нужен настоящий путь на диске, используйте realpath. Результат зависит от текущего каталога в момент вызова: после os.chdir тот же относительный путь даст другой ответ.",
@@ -46758,7 +46760,7 @@
         "kind": "function",
         "summary": {
           "ru": "Запускает новую программу (путь + список аргументов) в отдельном процессе; возвращает PID или код возврата в зависимости от режима.",
-          "en": "Run a new program in a new process (path + args list)."
+          "en": "Runs a new program (a path plus an argument list) in a separate process; returns the PID or the exit code depending on the mode."
         },
         "body": {
           "ru": "Результат зависит от режима: с P_WAIT — код возврата программы, с P_NOWAIT — PID, которого потом нужно дождаться через waitpid. Первым в списке аргументов идёт имя программы. Это старый интерфейс; документация рекомендует subprocess, где есть перехват вывода, таймауты и понятные ошибки.",
@@ -51262,7 +51264,7 @@
         "kind": "function",
         "summary": {
           "ru": "Создаёт жёсткую ссылку на файл (второе имя того же inode).",
-          "en": "Create a hard link to a file."
+          "en": "Creates a hard link to a file (a second name for the same inode)."
         },
         "body": {
           "ru": "Жёсткая ссылка — второе имя тех же данных: изменение через одно имя видно через другое, а данные исчезнут, только когда удалят все имена (счётчик в st_nlink). Ссылка возможна лишь в пределах одной файловой системы, и на каталоги её обычно не создать. На Windows работает с 3.2, но только на NTFS.",
@@ -51574,7 +51576,7 @@
         "kind": "function",
         "summary": {
           "ru": "Меняет права доступа к файлу (режим). На Windows поддерживается лишь бит «только чтение».",
-          "en": "Change a file's permission bits (mode)."
+          "en": "Changes a file's access permissions (mode). On Windows only the read-only bit is supported."
         },
         "body": {
           "ru": "Режим удобно писать в восьмеричной системе: 0o644, а не 644 — десятичное 644 даст совсем другие права. На Windows меняется только флаг «только чтение», остальные биты игнорируются. Для символических прав используйте константы stat, например stat.S_IRUSR | stat.S_IWUSR. Права — не всё: ACL и атрибуты файловой системы chmod не трогает.",
@@ -52371,7 +52373,7 @@
         "kind": "function",
         "summary": {
           "ru": "Открывает канал к команде оболочки: возвращает файловый объект для чтения её вывода или записи ввода.",
-          "en": "Open a pipe to a shell command as a file object."
+          "en": "Opens a pipe to a shell command and returns a file object to read its output or write its input."
         },
         "body": {
           "ru": "Это обёртка над subprocess.Popen с shell=True: строка команды идёт в оболочку, и данные пользователя в ней открывают путь к внедрению команд. Метод close() возвращает None при успехе, иначе закодированный статус — на Unix его переводят через waitstatus_to_exitcode. Ошибка команды не поднимает исключение; для проверок удобнее subprocess.run(..., check=True).",
@@ -55360,7 +55362,7 @@
         "kind": "term",
         "summary": {
           "ru": "Класс-кодер объектов Python → JSON; для сериализации нестандартных типов переопределяют метод default. json.dumps использует его внутри.",
-          "en": "The Python→JSON encoder class; override default() to serialize custom types."
+          "en": "The class that encodes Python objects to JSON; override its default method to serialize unsupported types. json.dumps uses it internally."
         },
         "body": {
           "ru": "На практике свой кодер редко создают вручную — подкласс передают как json.dumps(obj, cls=MyEncoder). Метод default вызывается только для значений, которые кодер не осилил сам, и обязан вернуть уже сериализуемый объект (словарь, список, строку), а не готовый JSON-текст; для всего по-прежнему чужого нужно вызвать super().default(o), чтобы получить честный TypeError. Заодно помни: кортежи превратятся в массивы, а нестроковые ключи словаря будут приведены к строкам.",
@@ -84848,7 +84850,7 @@
         "kind": "function",
         "summary": {
           "ru": "Сериализует объект Python в JSON-строку (dict/list/str/int/float/bool/None).",
-          "en": "Serialize a Python object to a JSON string."
+          "en": "Serializes a Python object to a JSON string (dict, list, str, int, float, bool, None)."
         },
         "body": {
           "ru": "В JSON ключи бывают только строковыми: dumps({1: 'a'}) даст {\"1\": \"a\"}, и после обратного разбора ключ останется строкой — тип не восстановится. Всё, что вне dict/list/tuple/str/int/float/bool/None (set, datetime, Decimal, свои классы), роняет TypeError; такие объекты переводят через параметр default. Ещё nan и inf сериализуются как NaN/Infinity — Python их прочитает, а строгий чужой парсер откажется.",
@@ -85319,7 +85321,7 @@
         "kind": "function",
         "summary": {
           "ru": "Медиана — среднее значение отсортированных данных (для чётной длины — среднее двух центральных).",
-          "en": "Median — the middle value of sorted data."
+          "en": "The median: the middle value of sorted data (for an even length, the mean of the two middle values)."
         },
         "body": {
           "ru": "Предварительно сортировать данные не нужно — median() сортирует сама, отсюда и цена O(n log n). При чётной длине она усредняет два центральных значения, поэтому результат бывает дробным и может вообще отсутствовать в исходных данных; если нужен реальный элемент выборки, берите median_low() или median_high(). Пустая последовательность даёт StatisticsError, а не ноль и не None.",
@@ -86009,7 +86011,7 @@
         "kind": "function",
         "summary": {
           "ru": "Линейная регрессия: наклон и точка пересечения (slope, intercept) методом наименьших квадратов (Python 3.10+).",
-          "en": "Linear regression: slope and intercept by least squares (3.10+)."
+          "en": "Linear regression: the slope and intercept of the least-squares line (Python 3.10+)."
         },
         "body": {
           "ru": "Подгонка несимметрична: x считается независимой переменной, y — зависимой, и от перестановки аргументов прямая получается другая. О том, насколько хорошо линия описывает данные, функция не говорит ничего — силу связи оценивает statistics.correlation. Точек нужно минимум две, и значения x не должны быть все одинаковыми, иначе StatisticsError.",
@@ -91819,7 +91821,7 @@
         "kind": "function",
         "summary": {
           "ru": "Проверяет, что все байты — ASCII (0–127); пустая последовательность тоже True.",
-          "en": "Check that all bytes are ASCII (0–127)."
+          "en": "Checks that every byte is ASCII (0–127); an empty sequence also gives True."
         },
         "body": {
           "ru": "ASCII здесь означает только диапазон 0-127, а не «печатаемый текст»: нулевой байт, перевод строки и прочие управляющие символы проверку проходят. Практическая польза — гарантия: если вернулось True, то decode('ascii') точно не упадёт, и любая ASCII-совместимая кодировка даст тот же результат. Метод появился в Python 3.7.",
@@ -94462,8 +94464,8 @@
         },
         "kind": "function",
         "summary": {
-          "ru": "Последовательность в «заголовочном» регистре.",
-          "en": "The bytes are title-cased."
+          "ru": "Проверяет «заголовочный» регистр: каждое слово начинается с заглавной ASCII-буквы, за которой идут строчные.",
+          "en": "Checks that the sequence is in title case: each word starts with an uppercase ASCII letter followed by lowercase ones."
         },
         "body": {
           "ru": "Проверка чисто механическая: каждая цепочка букв должна начинаться с заглавной, а дальше идти только строчные — к правилам оформления заголовков в живом языке это отношения не имеет. Любой небуквенный байт (цифра, дефис, пунктуация) считается границей слова, поэтому b'Hello2World' проходит проверку, а b'HI There' — нет из-за второй заглавной подряд.",
@@ -100241,7 +100243,7 @@
         "kind": "function",
         "summary": {
           "ru": "Маркер недостижимой ветки (напр. в исчерпывающем match): средство проверки типов проверит недостижимость, а во время выполнения всегда бросает AssertionError (Python 3.11+).",
-          "en": "A marker for unreachable code; always raises AssertionError at runtime (3.11+)."
+          "en": "Marks an unreachable branch (e.g. in an exhaustive match): a type checker proves it unreachable, and at run time it always raises AssertionError (3.11+)."
         },
         "body": {
           "ru": "Приём для исчерпывающих match или цепочек if-elif: в финальной, якобы недостижимой ветке средство проверки типов убеждается, что туда не попадает ни один вариант, а стоит добавить новый — и оно ткнёт носом именно в этот вызов. Во время выполнения полезной работы не несёт: раз управление сюда дошло, это уже баг, поэтому всегда бросает AssertionError.",
@@ -100358,7 +100360,7 @@
         "kind": "term",
         "summary": {
           "ru": "Фабрика различимых типов-псевдонимов: создаёт «отдельный» тип поверх базового для проверки типов; во время выполнения вызов возвращает аргумент как есть.",
-          "en": "A factory for distinct type aliases; at runtime the call returns its argument unchanged."
+          "en": "A factory of distinct alias types: it creates a 'separate' type over a base one for type checking; at run time the call returns its argument unchanged."
         },
         "body": {
           "ru": "NewType живёт только для проверяльщика типов: во время выполнения UserId — не класс, isinstance с ним падает, наследоваться от него нельзя, и никакой валидации он не делает. Смысл — отличать UserId от обычного int: простой псевдоним UserId = int взаимозаменяем с int, а NewType заставит проверяльщик ругаться на перепутанные значения.",
@@ -100416,7 +100418,7 @@
         "kind": "term",
         "summary": {
           "ru": "Переменная-спецификация параметров: захватывает сигнатуру вызова (позиционные и именованные) для типизации декораторов/обёрток (Python 3.10+).",
-          "en": "A parameter specification variable capturing a callable's signature (3.10+)."
+          "en": "A parameter specification variable: it captures a call signature (positional and keyword) to type decorators and wrappers (Python 3.10+)."
         },
         "body": {
           "ru": "Нужен, когда пишешь декоратор-обёртку и хочешь сохранить исходную сигнатуру: без ParamSpec обёртку типизируют как Callable[..., T] и теряют параметры, из-за чего проверяльщик перестаёт ловить неправильные вызовы. Работает в паре с Callable и Concatenate; доступен с Python 3.10 (раньше — через typing_extensions).",
@@ -100592,7 +100594,7 @@
         "kind": "term",
         "summary": {
           "ru": "Переменная переменной арности (variadic): захватывает произвольное число типов для типизации обобщений с изменяемым числом параметров (Python 3.11+).",
-          "en": "A variadic type variable capturing an arbitrary number of types (3.11+)."
+          "en": "A variadic type variable: it captures any number of types to type generics with a variable number of parameters (Python 3.11+)."
         },
         "body": {
           "ru": "TypeVarTuple почти никогда не используют в одиночку — его разворачивают звёздочкой или через Unpack внутри Generic, чтобы захватить хвост из произвольного числа типов (канонический случай — форма многомерного массива с заранее неизвестным числом осей). Обычный TypeVar ловит ровно один тип, этот — целую последовательность. С Python 3.12 то же самое пишется встроенным синтаксисом параметров, без обращения к typing.",
@@ -100775,7 +100777,7 @@
         "kind": "term",
         "summary": {
           "ru": "Обобщённый тип файловых объектов (потоков) для аннотаций; параметризуется типом элемента (str или bytes).",
-          "en": "A generic type for file-like objects (streams) in annotations."
+          "en": "A generic type of file objects (streams) for annotations; parameterized by the element type (str or bytes)."
         },
         "body": {
           "ru": "На практике вместо IO[str] и IO[bytes] чаще берут специализированные TextIO и BinaryIO — те же потоки, но с дополнительными атрибутами (encoding, buffer и т.п.) и более читаемым именем. Сам IO нужен, когда параметру важен только факт «это поток» независимо от конкретного класса — результат open(), io.StringIO, обёртка над сокетом.",
@@ -101522,7 +101524,7 @@
         "kind": "function",
         "summary": {
           "ru": "Декоратор, помечающий метод как переопределение метода базового класса; средство проверки типов проверит, что такой метод действительно существует у предка (Python 3.12+).",
-          "en": "A decorator marking a method as overriding a base-class method (3.12+)."
+          "en": "A decorator marking a method as overriding a base-class method; a type checker verifies that the parent really has such a method (Python 3.12+)."
         },
         "body": {
           "ru": "Во время выполнения это no-op (лишь ставит атрибут __override__) — вся польза на стороне проверяльщика типов. Он ловит классическую ошибку: метод в базовом классе переименовали или удалили, и «переопределение» в наследнике молча стало новым несвязанным методом — без @override об этом никто не предупредит.",
@@ -101580,7 +101582,7 @@
         "kind": "function",
         "summary": {
           "ru": "Декоратор, отключающий проверку типов для функции или класса (аннотации игнорируются средством проверки типов).",
-          "en": "A decorator disabling type checking for a function or class."
+          "en": "A decorator that turns off type checking for a function or class (the type checker ignores its annotations)."
         },
         "body": {
           "ru": "На классе действует рекурсивно — снимает проверку сразу со всех методов, тогда как комментарий # type: ignore гасит ровно одну строку. Инструмент грубый, «всё или ничего»; практический смысл он имеет в основном для динамически сгенерированного кода, где аннотации не должны трактоваться как типы.",

@@ -933,7 +933,9 @@
       "объект отложенного результата",
       "проверить, готова ли задача"
     ],
-    "keywords": [],
+    "keywords": [
+      "Future"
+    ],
     "tags": [
       "module"
     ],
@@ -983,7 +985,9 @@
       "почему потоки не ускоряют вычисления",
       "ограничение параллелизма"
     ],
-    "keywords": [],
+    "keywords": [
+      "GIL"
+    ],
     "tags": [
       "module"
     ],
@@ -1037,7 +1041,9 @@
       "объект-заглушка",
       "имитация зависимости"
     ],
-    "keywords": [],
+    "keywords": [
+      "MagicMock"
+    ],
     "tags": [
       "module"
     ],
@@ -1088,7 +1094,9 @@
       "пул процессов",
       "параллельные вычисления на нескольких ядрах"
     ],
-    "keywords": [],
+    "keywords": [
+      "ProcessPoolExecutor"
+    ],
     "tags": [
       "module"
     ],
@@ -1139,7 +1147,9 @@
       "пул потоков",
       "параллельные задачи ввода-вывода"
     ],
-    "keywords": [],
+    "keywords": [
+      "ThreadPoolExecutor"
+    ],
     "tags": [
       "module"
     ],
@@ -1252,7 +1262,9 @@
       "действия после создания объекта",
       "вычисляемое поле датакласса"
     ],
-    "keywords": [],
+    "keywords": [
+      "__post_init__"
+    ],
     "tags": [
       "module"
     ],
@@ -1309,7 +1321,10 @@
       "обработка неизвестного значения перечисления",
       "запасной член перечисления"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.Enum._missing_",
+      "_missing_"
+    ],
     "tags": [
       "module"
     ],
@@ -1419,7 +1434,10 @@
       "автоматические значения перечисления",
       "автонумерация членов перечисления"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.auto",
+      "auto"
+    ],
     "tags": [
       "module"
     ],
@@ -1472,7 +1490,10 @@
       "позиция вставки в отсортированный список",
       "бинарный поиск места вставки"
     ],
-    "keywords": [],
+    "keywords": [
+      "bisect.bisect",
+      "bisect"
+    ],
     "tags": [
       "module"
     ],
@@ -1727,7 +1748,10 @@
       "поиск по нескольким словарям",
       "несколько словарей как один"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.ChainMap",
+      "ChainMap"
+    ],
     "tags": [
       "module"
     ],
@@ -1782,7 +1806,10 @@
       "частота элементов",
       "самый частый элемент"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.Counter",
+      "Counter"
+    ],
     "tags": [
       "module"
     ],
@@ -1833,7 +1860,10 @@
       "словарь со значением по умолчанию",
       "автоматическое создание ключа"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.defaultdict",
+      "defaultdict"
+    ],
     "tags": [
       "module"
     ],
@@ -1886,7 +1916,10 @@
       "быстрое удаление из начала списка",
       "скользящее окно"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.deque",
+      "deque"
+    ],
     "tags": [
       "collections"
     ],
@@ -1966,7 +1999,10 @@
       "кортеж с именами полей",
       "обращение к полям кортежа по имени"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.namedtuple",
+      "namedtuple"
+    ],
     "tags": [
       "module"
     ],
@@ -2017,7 +2053,10 @@
       "словарь с порядком вставки",
       "переместить ключ в конец словаря"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.OrderedDict",
+      "OrderedDict"
+    ],
     "tags": [
       "module"
     ],
@@ -2068,7 +2107,10 @@
       "автоматически закрыть объект после with",
       "закрытие ресурса без своего менеджера"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.closing",
+      "closing"
+    ],
     "tags": [
       "module"
     ],
@@ -2122,7 +2164,10 @@
       "создать свой контекстный менеджер",
       "контекстный менеджер из генератора"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.contextmanager",
+      "contextmanager"
+    ],
     "tags": [
       "module"
     ],
@@ -2180,7 +2225,10 @@
       "несколько контекстных менеджеров сразу",
       "динамическое число блоков with"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.ExitStack",
+      "ExitStack"
+    ],
     "tags": [
       "module"
     ],
@@ -2233,7 +2281,10 @@
       "пустой контекстный менеджер",
       "заглушка вместо контекстного менеджера"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.nullcontext",
+      "nullcontext"
+    ],
     "tags": [
       "module"
     ],
@@ -2285,7 +2336,10 @@
       "подавить исключение",
       "проигнорировать ошибку"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.suppress",
+      "suppress"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -2346,7 +2400,10 @@
       "поверхностная копия",
       "копия верхнего уровня объекта"
     ],
-    "keywords": [],
+    "keywords": [
+      "copy.copy",
+      "copy"
+    ],
     "tags": [
       "module"
     ],
@@ -2461,7 +2518,11 @@
       "класс для хранения данных",
       "класс с автоматическим конструктором"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.dataclass",
+      "dataclass",
+      "field"
+    ],
     "tags": [
       "module"
     ],
@@ -2564,7 +2625,11 @@
       "запретить менять поля объекта",
       "хэшируемый датакласс"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.dataclass",
+      "frozen=True",
+      "FrozenInstanceError"
+    ],
     "tags": [
       "module"
     ],
@@ -2622,7 +2687,11 @@
       "сортировка объектов датакласса",
       "сравнивать датаклассы по полям"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.dataclass",
+      "order=True",
+      "__lt__"
+    ],
     "tags": [
       "module"
     ],
@@ -2677,7 +2746,10 @@
       "список полей датакласса",
       "перебрать поля датакласса"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.fields",
+      "fields"
+    ],
     "tags": [
       "module"
     ],
@@ -2732,7 +2804,10 @@
       "копия датакласса с изменённым полем",
       "изменить поле замороженного датакласса"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.replace",
+      "replace"
+    ],
     "tags": [
       "module"
     ],
@@ -2788,7 +2863,12 @@
       "прибавить дни к дате",
       "вычитание дат"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.date",
+      "datetime.timedelta",
+      "timedelta",
+      "date"
+    ],
     "tags": [
       "module"
     ],
@@ -3049,7 +3129,10 @@
       "дата в строку",
       "вывести дату в нужном формате"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.strftime",
+      "strftime"
+    ],
     "tags": [
       "module"
     ],
@@ -3101,7 +3184,10 @@
       "разобрать дату из строки",
       "распарсить дату по шаблону"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.strptime",
+      "strptime"
+    ],
     "tags": [
       "module"
     ],
@@ -3631,7 +3717,9 @@
       "именованные константы",
       "набор допустимых значений"
     ],
-    "keywords": [],
+    "keywords": [
+      "Enum"
+    ],
     "tags": [
       "module"
     ],
@@ -3740,7 +3828,10 @@
       "значение по умолчанию поля датакласса",
       "фабрика значений по умолчанию"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.field",
+      "field"
+    ],
     "tags": [
       "module"
     ],
@@ -3796,7 +3887,11 @@
       "построчная запись в файл",
       "размер буфера при открытии файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "open",
+      "buffering",
+      "flush"
+    ],
     "tags": [
       "module"
     ],
@@ -3852,7 +3947,12 @@
       "игнорировать битые символы",
       "не удаётся декодировать файл"
     ],
-    "keywords": [],
+    "keywords": [
+      "open",
+      "errors",
+      "encoding",
+      "UnicodeDecodeError"
+    ],
     "tags": [
       "module"
     ],
@@ -4137,7 +4237,10 @@
       "вычислить свойство один раз",
       "ленивое свойство"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.cached_property",
+      "cached_property"
+    ],
     "tags": [
       "module"
     ],
@@ -4194,7 +4297,10 @@
       "зафиксировать часть аргументов",
       "функция с заранее заданными аргументами"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.partial",
+      "partial"
+    ],
     "tags": [
       "module"
     ],
@@ -4255,7 +4361,10 @@
       "накопление результата по списку",
       "сворачивание в одно значение"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.reduce",
+      "reduce"
+    ],
     "tags": [
       "module"
     ],
@@ -4306,7 +4415,10 @@
       "обобщённая функция",
       "диспетчеризация по типу"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.singledispatch",
+      "singledispatch"
+    ],
     "tags": [
       "module"
     ],
@@ -4364,7 +4476,10 @@
       "сделать объекты класса сравнимыми",
       "дописать методы сравнения класса"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.total_ordering",
+      "total_ordering"
+    ],
     "tags": [
       "module"
     ],
@@ -4420,7 +4535,10 @@
       "правильный декоратор",
       "обёртка не теряет имя функции"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.wraps",
+      "wraps"
+    ],
     "tags": [
       "module"
     ],
@@ -4649,7 +4767,10 @@
       "превратить список в кучу",
       "построить кучу из готового списка"
     ],
-    "keywords": [],
+    "keywords": [
+      "heapq.heapify",
+      "heapify"
+    ],
     "tags": [
       "module"
     ],
@@ -5086,7 +5207,10 @@
       "бинарный буфер в памяти",
       "работать с байтами как с файлом"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.BytesIO",
+      "BytesIO"
+    ],
     "tags": [
       "module"
     ],
@@ -5140,7 +5264,10 @@
       "строка как файловый объект",
       "текстовый буфер в памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.StringIO",
+      "StringIO"
+    ],
     "tags": [
       "module"
     ],
@@ -5194,7 +5321,10 @@
       "обернуть байтовый поток в текстовый",
       "задать кодировку существующему потоку"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.TextIOWrapper",
+      "TextIOWrapper"
+    ],
     "tags": [
       "module"
     ],
@@ -5249,7 +5379,10 @@
       "записывать логи в файл",
       "лог-файл"
     ],
-    "keywords": [],
+    "keywords": [
+      "logging.FileHandler",
+      "FileHandler"
+    ],
     "tags": [
       "module"
     ],
@@ -5300,7 +5433,10 @@
       "добавить время и уровень в лог",
       "настроить вид сообщений лога"
     ],
-    "keywords": [],
+    "keywords": [
+      "logging.Formatter",
+      "Formatter"
+    ],
     "tags": [
       "module"
     ],
@@ -5352,7 +5488,10 @@
       "обработчик логов",
       "куда отправляются логи"
     ],
-    "keywords": [],
+    "keywords": [
+      "logging.Handler",
+      "Handler"
+    ],
     "tags": [
       "module"
     ],
@@ -5402,7 +5541,10 @@
       "логи на экран",
       "логи в поток ошибок"
     ],
-    "keywords": [],
+    "keywords": [
+      "logging.StreamHandler",
+      "StreamHandler"
+    ],
     "tags": [
       "module"
     ],
@@ -5768,7 +5910,10 @@
       "обратный косинус",
       "угол по косинусу"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.acos",
+      "acos"
+    ],
     "tags": [
       "module"
     ],
@@ -5820,7 +5965,10 @@
       "обратный синус",
       "угол по синусу"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.asin",
+      "asin"
+    ],
     "tags": [
       "module"
     ],
@@ -5872,7 +6020,10 @@
       "обратный тангенс",
       "угол по тангенсу"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.atan",
+      "atan"
+    ],
     "tags": [
       "module"
     ],
@@ -5924,7 +6075,10 @@
       "арктангенс с учётом квадранта",
       "полярный угол"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.atan2",
+      "atan2"
+    ],
     "tags": [
       "module"
     ],
@@ -5976,7 +6130,10 @@
       "округлить вверх до целого",
       "потолок числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.ceil",
+      "ceil"
+    ],
     "tags": [
       "module"
     ],
@@ -6028,7 +6185,10 @@
       "биномиальный коэффициент",
       "сколькими способами выбрать"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.comb",
+      "comb"
+    ],
     "tags": [
       "module"
     ],
@@ -6080,7 +6240,10 @@
       "косинус угла",
       "косинус в градусах"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.cos",
+      "cos"
+    ],
     "tags": [
       "module"
     ],
@@ -6131,7 +6294,10 @@
       "перевод радиан в градусы",
       "получить угол в градусах"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.degrees",
+      "degrees"
+    ],
     "tags": [
       "module"
     ],
@@ -6186,7 +6352,10 @@
       "число эйлера",
       "основание натурального логарифма"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.e",
+      "e"
+    ],
     "tags": [
       "module"
     ],
@@ -6237,7 +6406,10 @@
       "экспонента",
       "показательная функция"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.exp",
+      "exp"
+    ],
     "tags": [
       "module"
     ],
@@ -6289,7 +6461,10 @@
       "абсолютное значение",
       "убрать минус у числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.fabs",
+      "fabs"
+    ],
     "tags": [
       "module"
     ],
@@ -6339,7 +6514,10 @@
       "факториал",
       "произведение чисел от 1 до n"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.factorial",
+      "factorial"
+    ],
     "tags": [
       "module"
     ],
@@ -6391,7 +6569,10 @@
       "округлить вниз до целого",
       "нижнее целое"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.floor",
+      "floor"
+    ],
     "tags": [
       "module"
     ],
@@ -6442,7 +6623,10 @@
       "точная сумма дробных чисел",
       "сумма без ошибок округления"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.fsum",
+      "fsum"
+    ],
     "tags": [
       "module"
     ],
@@ -6503,7 +6687,10 @@
       "нод",
       "сократить дробь"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.gcd",
+      "gcd"
+    ],
     "tags": [
       "module"
     ],
@@ -6554,7 +6741,10 @@
       "теорема пифагора",
       "длина вектора"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.hypot",
+      "hypot"
+    ],
     "tags": [
       "module"
     ],
@@ -6605,7 +6795,10 @@
       "бесконечность",
       "начальное значение при поиске минимума"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.inf",
+      "inf"
+    ],
     "tags": [
       "module"
     ],
@@ -6657,7 +6850,10 @@
       "приблизительное равенство",
       "сравнить вещественные числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.isclose",
+      "isclose"
+    ],
     "tags": [
       "module"
     ],
@@ -6708,7 +6904,10 @@
       "проверка на конечность числа",
       "конечное ли число"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.isfinite",
+      "isfinite"
+    ],
     "tags": [
       "module"
     ],
@@ -6760,7 +6959,10 @@
       "бесконечно ли число",
       "деление дало бесконечность"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.isinf",
+      "isinf"
+    ],
     "tags": [
       "module"
     ],
@@ -6812,7 +7014,10 @@
       "нечисловой результат вычислений",
       "значение не равно само себе"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.isnan",
+      "isnan"
+    ],
     "tags": [
       "module"
     ],
@@ -6864,7 +7069,10 @@
       "нок",
       "общий знаменатель"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.lcm",
+      "lcm"
+    ],
     "tags": [
       "module"
     ],
@@ -6915,7 +7123,10 @@
       "натуральный логарифм",
       "логарифм по основанию"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.log",
+      "log"
+    ],
     "tags": [
       "module"
     ],
@@ -6968,7 +7179,10 @@
       "логарифм по основанию 10",
       "порядок числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.log10",
+      "log10"
+    ],
     "tags": [
       "module"
     ],
@@ -7018,7 +7232,10 @@
       "двоичный логарифм",
       "логарифм по основанию 2"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.log2",
+      "log2"
+    ],
     "tags": [
       "module"
     ],
@@ -7069,7 +7286,10 @@
       "не число",
       "нечисловое значение"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.nan",
+      "nan"
+    ],
     "tags": [
       "module"
     ],
@@ -7120,7 +7340,10 @@
       "число размещений",
       "количество перестановок из n по k"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.perm",
+      "perm"
+    ],
     "tags": [
       "module"
     ],
@@ -7171,7 +7394,10 @@
       "число пи",
       "константа пи"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.pi",
+      "pi"
+    ],
     "tags": [
       "module"
     ],
@@ -7223,7 +7449,10 @@
       "возведение в степень",
       "число в степени"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.pow",
+      "pow"
+    ],
     "tags": [
       "module"
     ],
@@ -7274,7 +7503,10 @@
       "произведение элементов списка",
       "перемножить все числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.prod",
+      "prod"
+    ],
     "tags": [
       "module"
     ],
@@ -7325,7 +7557,10 @@
       "перевод градусов в радианы",
       "тригонометрия в градусах"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.radians",
+      "radians"
+    ],
     "tags": [
       "module"
     ],
@@ -7377,7 +7612,10 @@
       "синус угла",
       "синус в градусах"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.sin",
+      "sin"
+    ],
     "tags": [
       "module"
     ],
@@ -7430,7 +7668,10 @@
       "извлечь корень из числа",
       "корень числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.sqrt",
+      "sqrt"
+    ],
     "tags": [
       "module"
     ],
@@ -7481,7 +7722,10 @@
       "тангенс",
       "тангенс угла"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.tan",
+      "tan"
+    ],
     "tags": [
       "module"
     ],
@@ -7533,7 +7777,10 @@
       "два пи",
       "полный оборот в радианах"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.tau",
+      "tau"
+    ],
     "tags": [
       "module"
     ],
@@ -7584,7 +7831,10 @@
       "усечение дробной части",
       "округление к нулю"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.trunc",
+      "trunc"
+    ],
     "tags": [
       "module"
     ],
@@ -7747,7 +7997,10 @@
       "установить переменную окружения",
       "все переменные среды"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.environ",
+      "environ"
+    ],
     "tags": [
       "module"
     ],
@@ -7798,7 +8051,10 @@
       "pid текущей программы",
       "номер процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getpid",
+      "getpid"
+    ],
     "tags": [
       "module"
     ],
@@ -7850,7 +8106,10 @@
       "содержимое каталога",
       "какие файлы лежат в директории"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.listdir",
+      "listdir"
+    ],
     "tags": [
       "module"
     ],
@@ -7906,7 +8165,10 @@
       "собрать путь из частей",
       "путь к файлу в папке"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.join",
+      "join"
+    ],
     "tags": [
       "module"
     ],
@@ -7961,7 +8223,10 @@
       "имя файла без расширения",
       "сменить расширение"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.splitext",
+      "splitext"
+    ],
     "tags": [
       "module"
     ],
@@ -8128,7 +8393,10 @@
       "найти все файлы в подпапках",
       "рекурсивный обход каталога"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.walk",
+      "walk"
+    ],
     "tags": [
       "module"
     ],
@@ -8183,7 +8451,10 @@
       "работа с путями",
       "путь к файлу"
     ],
-    "keywords": [],
+    "keywords": [
+      "pathlib.Path",
+      "Path"
+    ],
     "tags": [
       "module"
     ],
@@ -8338,7 +8609,10 @@
       "дата изменения файла",
       "метаданные файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "pathlib.Path.stat",
+      "stat"
+    ],
     "tags": [
       "module"
     ],
@@ -8396,7 +8670,10 @@
       "выбрать случайно из списка",
       "случайный выбор"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.choice",
+      "choice"
+    ],
     "tags": [
       "module"
     ],
@@ -8451,7 +8728,10 @@
       "взвешенный случайный выбор",
       "несколько случайных элементов с возвратом"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.choices",
+      "choices"
+    ],
     "tags": [
       "module"
     ],
@@ -8505,7 +8785,10 @@
       "нормальное распределение",
       "колокол Гаусса"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.gauss",
+      "gauss"
+    ],
     "tags": [
       "module"
     ],
@@ -8558,7 +8841,10 @@
       "случайное число в заданном диапазоне",
       "рандом от и до"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.randint",
+      "randint"
+    ],
     "tags": [
       "module"
     ],
@@ -8612,7 +8898,10 @@
       "случайное вещественное число",
       "случайная дробь"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.random",
+      "random"
+    ],
     "tags": [
       "module"
     ],
@@ -8666,7 +8955,10 @@
       "случайный индекс списка",
       "случайное чётное число"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.randrange",
+      "randrange"
+    ],
     "tags": [
       "module"
     ],
@@ -8719,7 +9011,10 @@
       "выбрать несколько уникальных случайных элементов",
       "случайные неповторяющиеся элементы"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.sample",
+      "sample"
+    ],
     "tags": [
       "module"
     ],
@@ -8773,7 +9068,10 @@
       "воспроизводимые случайные числа",
       "зафиксировать случайную последовательность"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.seed",
+      "seed"
+    ],
     "tags": [
       "module"
     ],
@@ -8826,7 +9124,10 @@
       "случайный порядок элементов",
       "перетасовать колоду"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.shuffle",
+      "shuffle"
+    ],
     "tags": [
       "module"
     ],
@@ -8884,7 +9185,10 @@
       "криптостойкий генератор случайных чисел",
       "безопасная генерация случайных чисел"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.SystemRandom",
+      "SystemRandom"
+    ],
     "tags": [
       "module"
     ],
@@ -8939,7 +9243,10 @@
       "случайное число в диапазоне",
       "случайное дробное число в интервале"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.uniform",
+      "uniform"
+    ],
     "tags": [
       "module"
     ],
@@ -8992,7 +9299,12 @@
       "обращение к группе по имени",
       "дать имя группе в регулярном выражении"
     ],
-    "keywords": [],
+    "keywords": [
+      "(?P<name>...)",
+      "Match.group",
+      "Match.groupdict",
+      "re"
+    ],
     "tags": [
       "module"
     ],
@@ -9046,7 +9358,10 @@
       "заранее подготовленный шаблон",
       "ускорить повторный поиск по шаблону"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.compile",
+      "compile"
+    ],
     "tags": [
       "module"
     ],
@@ -9155,7 +9470,10 @@
       "список всех вхождений по шаблону",
       "вытащить все числа из строки"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.findall",
+      "findall"
+    ],
     "tags": [
       "module"
     ],
@@ -9205,7 +9523,10 @@
       "перебрать совпадения в цикле",
       "позиции всех совпадений"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.finditer",
+      "finditer"
+    ],
     "tags": [
       "module"
     ],
@@ -9256,7 +9577,10 @@
       "проверить строку на соответствие шаблону",
       "валидация строки по шаблону"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.fullmatch",
+      "fullmatch"
+    ],
     "tags": [
       "module"
     ],
@@ -9467,7 +9791,10 @@
       "совпадение с начала строки",
       "проверить начало строки шаблоном"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.match",
+      "match"
+    ],
     "tags": [
       "module"
     ],
@@ -9518,7 +9845,10 @@
       "поиск подстроки по шаблону",
       "есть ли совпадение в строке"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.search",
+      "search"
+    ],
     "tags": [
       "module"
     ],
@@ -9569,7 +9899,10 @@
       "разделить строку по нескольким разделителям",
       "разбиение по регулярному выражению"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.split",
+      "split"
+    ],
     "tags": [
       "module"
     ],
@@ -9619,7 +9952,10 @@
       "английский алфавит строчный и заглавный",
       "набор букв для пароля"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.ascii_letters",
+      "ascii_letters"
+    ],
     "tags": [
       "module"
     ],
@@ -9671,7 +10007,10 @@
       "прописные латинские буквы",
       "буквы алфавита по порядку"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.ascii_lowercase",
+      "ascii_lowercase"
+    ],
     "tags": [
       "module"
     ],
@@ -9721,7 +10060,10 @@
       "каждое слово с заглавной буквы",
       "привести слова к виду заголовка"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.capwords",
+      "capwords"
+    ],
     "tags": [
       "module"
     ],
@@ -9771,7 +10113,10 @@
       "все цифры от нуля до девяти",
       "строка со всеми цифрами"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.digits",
+      "digits"
+    ],
     "tags": [
       "module"
     ],
@@ -9823,7 +10168,10 @@
       "восьмеричные цифры",
       "допустимые символы шестнадцатеричного числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.hexdigits",
+      "hexdigits"
+    ],
     "tags": [
       "module"
     ],
@@ -9873,7 +10221,10 @@
       "все печатаемые символы",
       "набор допустимых символов текста"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.printable",
+      "printable"
+    ],
     "tags": [
       "module"
     ],
@@ -9924,7 +10275,10 @@
       "знаки препинания",
       "убрать пунктуацию из текста"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.punctuation",
+      "punctuation"
+    ],
     "tags": [
       "module"
     ],
@@ -9976,7 +10330,10 @@
       "подстановка переменных через знак доллара",
       "безопасная подстановка пользовательских данных"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.Template",
+      "Template"
+    ],
     "tags": [
       "module"
     ],
@@ -10029,7 +10386,10 @@
       "пробельные символы",
       "пробел табуляция перенос строки"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.whitespace",
+      "whitespace"
+    ],
     "tags": [
       "module"
     ],
@@ -10080,7 +10440,10 @@
       "перехватить вывод дочернего процесса",
       "перенаправление потоков процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "subprocess.PIPE",
+      "PIPE"
+    ],
     "tags": [
       "module"
     ],
@@ -10304,7 +10667,10 @@
       "параметры запуска скрипта",
       "передать значения скрипту при запуске"
     ],
-    "keywords": [],
+    "keywords": [
+      "sys.argv",
+      "argv"
+    ],
     "tags": [
       "module"
     ],
@@ -10357,7 +10723,10 @@
       "выйти из скрипта",
       "код возврата программы"
     ],
-    "keywords": [],
+    "keywords": [
+      "sys.exit",
+      "exit"
+    ],
     "tags": [
       "module"
     ],
@@ -10520,7 +10889,10 @@
       "сколько байт занимает объект",
       "потребление памяти объектом"
     ],
-    "keywords": [],
+    "keywords": [
+      "sys.getsizeof",
+      "getsizeof"
+    ],
     "tags": [
       "module"
     ],
@@ -10570,7 +10942,10 @@
       "интернирование строк",
       "одна копия строки в памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "sys.intern",
+      "intern"
+    ],
     "tags": [
       "module"
     ],
@@ -10624,7 +10999,10 @@
       "кэш импортов",
       "список импортированных модулей"
     ],
-    "keywords": [],
+    "keywords": [
+      "sys.modules",
+      "modules"
+    ],
     "tags": [
       "module"
     ],
@@ -10676,7 +11054,10 @@
       "пути поиска модулей",
       "добавить свой путь импорта"
     ],
-    "keywords": [],
+    "keywords": [
+      "sys.path",
+      "path"
+    ],
     "tags": [
       "module"
     ],
@@ -10838,7 +11219,10 @@
       "дождаться события в потоке",
       "флаг ожидания"
     ],
-    "keywords": [],
+    "keywords": [
+      "threading.Event",
+      "Event"
+    ],
     "tags": [
       "module"
     ],
@@ -10895,7 +11279,10 @@
       "защита общих данных от гонки",
       "блокировка критической секции"
     ],
-    "keywords": [],
+    "keywords": [
+      "threading.Lock",
+      "Lock"
+    ],
     "tags": [
       "module"
     ],
@@ -10950,7 +11337,10 @@
       "рекурсивный мьютекс",
       "повторный захват блокировки одним потоком"
     ],
-    "keywords": [],
+    "keywords": [
+      "threading.RLock",
+      "RLock"
+    ],
     "tags": [
       "module"
     ],
@@ -11003,7 +11393,10 @@
       "ограничить число одновременных потоков",
       "ограничение параллельных запросов"
     ],
-    "keywords": [],
+    "keywords": [
+      "threading.Semaphore",
+      "Semaphore"
+    ],
     "tags": [
       "module"
     ],
@@ -11057,7 +11450,10 @@
       "многопоточность",
       "выполнить функцию параллельно"
     ],
-    "keywords": [],
+    "keywords": [
+      "threading.Thread",
+      "Thread"
+    ],
     "tags": [
       "module"
     ],
@@ -11110,7 +11506,10 @@
       "время без даты",
       "часы минуты секунды"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.time",
+      "time"
+    ],
     "tags": [
       "module"
     ],
@@ -11163,7 +11562,9 @@
       "разница между датами",
       "прибавить дни к дате"
     ],
-    "keywords": [],
+    "keywords": [
+      "timedelta"
+    ],
     "tags": [
       "module"
     ],
@@ -11219,7 +11620,12 @@
       "время с учётом часового пояса",
       "наивное и осознанное время"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.timezone",
+      "timezone.utc",
+      "tzinfo",
+      "zoneinfo.ZoneInfo"
+    ],
     "tags": [
       "module"
     ],
@@ -11276,7 +11682,11 @@
       "проверка уникальности членов перечисления",
       "запретить псевдонимы членов"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.unique",
+      "unique",
+      "Enum"
+    ],
     "tags": [
       "module"
     ],
@@ -11331,7 +11741,10 @@
       "модульные тесты",
       "юнит-тесты"
     ],
-    "keywords": [],
+    "keywords": [
+      "unittest.TestCase",
+      "TestCase"
+    ],
     "tags": [
       "module"
     ],
@@ -11652,7 +12065,12 @@
       "проверить наличие элемента в отсортированном списке",
       "двоичный поиск средствами стандартной библиотеки"
     ],
-    "keywords": [],
+    "keywords": [
+      "bisect",
+      "bisect_left",
+      "bisect_right",
+      "insort"
+    ],
     "tags": [
       "module"
     ],
@@ -11706,7 +12124,9 @@
       "принудительно сбросить буфер на диск",
       "запись пачками вместо посимвольной"
     ],
-    "keywords": [],
+    "keywords": [
+      "Buffering"
+    ],
     "tags": [
       "module"
     ],
@@ -11761,7 +12181,12 @@
       "просмотр вперёд и назад",
       "незахватывающая группа"
     ],
-    "keywords": [],
+    "keywords": [
+      "(?P<name>...)",
+      "(?:...)",
+      "(?=...)",
+      "re"
+    ],
     "tags": [
       "module"
     ],
@@ -11813,7 +12238,11 @@
       "разница дат в днях",
       "посчитать количество дней"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.date",
+      "timedelta.days",
+      "days"
+    ],
     "tags": [
       "module"
     ],
@@ -11867,7 +12296,12 @@
       "получить список членов перечисления",
       "сравнение членов перечисления"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.Enum",
+      "Enum",
+      "is",
+      "__members__"
+    ],
     "tags": [
       "module"
     ],
@@ -11921,7 +12355,14 @@
       "процентные коды даты и времени",
       "обозначения года, месяца, дня"
     ],
-    "keywords": [],
+    "keywords": [
+      "strftime",
+      "strptime",
+      "%Y",
+      "%m",
+      "%d",
+      "%H"
+    ],
     "tags": [
       "module"
     ],
@@ -11973,7 +12414,12 @@
       "планировщик задач по приоритету",
       "хранить пары приоритет и значение"
     ],
-    "keywords": [],
+    "keywords": [
+      "heapq",
+      "heapq.heappush",
+      "heapq.heappop",
+      "priority queue"
+    ],
     "tags": [
       "module"
     ],
@@ -12028,7 +12474,12 @@
       "общие вложенные списки после копирования",
       "изменяемое значение по умолчанию"
     ],
-    "keywords": [],
+    "keywords": [
+      "copy.copy",
+      "copy.deepcopy",
+      "list.copy",
+      "id"
+    ],
     "tags": [
       "module"
     ],
@@ -12089,7 +12540,12 @@
       "склеить путь из частей",
       "добавить имя файла к папке"
     ],
-    "keywords": [],
+    "keywords": [
+      "pathlib.Path",
+      "/",
+      "__truediv__",
+      "Path"
+    ],
     "tags": [
       "module"
     ],
@@ -12141,7 +12597,15 @@
       "квантификаторы",
       "классы символов в шаблоне"
     ],
-    "keywords": [],
+    "keywords": [
+      "re",
+      ".",
+      "^",
+      "$",
+      "\\d",
+      "\\w",
+      "\\s"
+    ],
     "tags": [
       "module"
     ],
@@ -12192,7 +12656,13 @@
       "многострочный режим поиска",
       "точка совпадает с переводом строки"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.IGNORECASE",
+      "re.MULTILINE",
+      "re.DOTALL",
+      "re.VERBOSE",
+      "re.I"
+    ],
     "tags": [
       "module"
     ],
@@ -12246,7 +12716,10 @@
       "ускорить рекурсию кешем",
       "кеш последних вызовов"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.lru_cache",
+      "lru_cache"
+    ],
     "tags": [
       "functools"
     ],
@@ -12297,7 +12770,10 @@
       "кеш результатов функции",
       "запоминание вычислений"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.cache",
+      "cache"
+    ],
     "tags": [
       "functools"
     ],
@@ -12347,7 +12823,10 @@
       "своя функция сравнения при сортировке",
       "сравнение двух элементов в сортировке"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.cmp_to_key",
+      "cmp_to_key"
+    ],
     "tags": [
       "functools"
     ],
@@ -12396,7 +12875,10 @@
       "копирование метаданных функции",
       "ручная настройка обёртки декоратора"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.update_wrapper",
+      "update_wrapper"
+    ],
     "tags": [
       "functools"
     ],
@@ -12448,7 +12930,10 @@
       "год месяц день",
       "дата без времени"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.date",
+      "date"
+    ],
     "tags": [
       "datetime"
     ],
@@ -12498,7 +12983,10 @@
       "дата и время вместе",
       "момент времени"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.datetime",
+      "datetime"
+    ],
     "tags": [
       "datetime"
     ],
@@ -12547,7 +13035,10 @@
       "время суток",
       "хранение только времени"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.time",
+      "time"
+    ],
     "tags": [
       "datetime"
     ],
@@ -12595,7 +13086,10 @@
       "часовой пояс со смещением",
       "задать смещение от Гринвича"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.timezone",
+      "timezone"
+    ],
     "tags": [
       "datetime"
     ],
@@ -12645,7 +13139,10 @@
       "своя реализация часового пояса",
       "сведения о часовом поясе"
     ],
-    "keywords": [],
+    "keywords": [
+      "datetime.tzinfo",
+      "tzinfo"
+    ],
     "tags": [
       "datetime"
     ],
@@ -12697,7 +13194,10 @@
       "убрать общий отступ",
       "убрать отступы в многострочной строке"
     ],
-    "keywords": [],
+    "keywords": [
+      "textwrap.dedent",
+      "dedent"
+    ],
     "tags": [
       "textwrap"
     ],
@@ -12748,7 +13248,10 @@
       "добавить префикс к каждой строке",
       "сдвинуть строки вправо"
     ],
-    "keywords": [],
+    "keywords": [
+      "textwrap.indent",
+      "indent"
+    ],
     "tags": [
       "textwrap"
     ],
@@ -12798,7 +13301,10 @@
       "разбить текст на строки",
       "список строк заданной ширины"
     ],
-    "keywords": [],
+    "keywords": [
+      "textwrap.wrap",
+      "wrap"
+    ],
     "tags": [
       "textwrap"
     ],
@@ -12848,7 +13354,10 @@
       "текст с переносами одной строкой",
       "отформатировать абзац по ширине"
     ],
-    "keywords": [],
+    "keywords": [
+      "textwrap.fill",
+      "fill"
+    ],
     "tags": [
       "textwrap"
     ],
@@ -12899,7 +13408,10 @@
       "сократить текст многоточием",
       "укоротить строку до длины"
     ],
-    "keywords": [],
+    "keywords": [
+      "textwrap.shorten",
+      "shorten"
+    ],
     "tags": [
       "textwrap"
     ],
@@ -12949,7 +13461,10 @@
       "настраиваемый переносчик текста",
       "повторный перенос текста с настройками"
     ],
-    "keywords": [],
+    "keywords": [
+      "textwrap.TextWrapper",
+      "TextWrapper"
+    ],
     "tags": [
       "textwrap"
     ],
@@ -13001,7 +13516,10 @@
       "преобразовать объект в словарь",
       "сериализовать датакласс"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.asdict",
+      "asdict"
+    ],
     "tags": [
       "dataclasses"
     ],
@@ -13054,7 +13572,10 @@
       "датакласс в кортеж",
       "значения полей датакласса кортежем"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.astuple",
+      "astuple"
+    ],
     "tags": [
       "dataclasses"
     ],
@@ -13106,7 +13627,10 @@
       "проверить, датакласс ли объект",
       "определить датакласс во время выполнения"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.is_dataclass",
+      "is_dataclass"
+    ],
     "tags": [
       "dataclasses"
     ],
@@ -13156,7 +13680,10 @@
       "создать датакласс динамически",
       "датакласс из списка полей"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.make_dataclass",
+      "make_dataclass"
+    ],
     "tags": [
       "dataclasses"
     ],
@@ -13212,7 +13739,10 @@
       "поле датакласса только для инициализации",
       "параметр конструктора без атрибута"
     ],
-    "keywords": [],
+    "keywords": [
+      "dataclasses.InitVar",
+      "InitVar"
+    ],
     "tags": [
       "dataclasses"
     ],
@@ -13265,7 +13795,10 @@
       "заменить текст по шаблону",
       "подстановка вместо совпадений"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.sub",
+      "sub"
+    ],
     "tags": [
       "re"
     ],
@@ -13316,7 +13849,10 @@
       "сколько замен сделано",
       "число замен в строке"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.subn",
+      "subn"
+    ],
     "tags": [
       "re"
     ],
@@ -13366,7 +13902,10 @@
       "очистить кеш регулярных выражений",
       "сбросить скомпилированные шаблоны"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.purge",
+      "purge"
+    ],
     "tags": [
       "re"
     ],
@@ -13415,7 +13954,10 @@
       "скомпилированный шаблон",
       "объект регулярного выражения"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.Pattern",
+      "Pattern"
+    ],
     "tags": [
       "re"
     ],
@@ -13466,7 +14008,10 @@
       "перечисление флагов регулярок",
       "тип флагов регулярного выражения"
     ],
-    "keywords": [],
+    "keywords": [
+      "re.RegexFlag",
+      "RegexFlag"
+    ],
     "tags": [
       "re"
     ],
@@ -13516,7 +14061,10 @@
       "числовое перечисление",
       "перечисление вместо числовых констант"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.IntEnum",
+      "IntEnum"
+    ],
     "tags": [
       "enum"
     ],
@@ -13567,7 +14115,10 @@
       "строковое перечисление",
       "перечисление ведёт себя как строка"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.StrEnum",
+      "StrEnum"
+    ],
     "tags": [
       "enum"
     ],
@@ -13617,7 +14168,10 @@
       "перечисление битовых флагов",
       "набор флагов как класс"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.Flag",
+      "Flag"
+    ],
     "tags": [
       "enum"
     ],
@@ -13669,7 +14223,10 @@
       "флаги, которые ведут себя как числа",
       "битовая маска целым числом"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.IntFlag",
+      "IntFlag"
+    ],
     "tags": [
       "enum"
     ],
@@ -13719,7 +14276,10 @@
       "перечисление с repr как у значения",
       "enum со строковым представлением значения"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.ReprEnum",
+      "ReprEnum"
+    ],
     "tags": [
       "enum"
     ],
@@ -13771,7 +14331,10 @@
       "функция как член перечисления",
       "принудительно добавить в перечисление"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.member",
+      "member"
+    ],
     "tags": [
       "enum"
     ],
@@ -13820,7 +14383,10 @@
       "обычный атрибут в перечислении",
       "константа не член перечисления"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.nonmember",
+      "nonmember"
+    ],
     "tags": [
       "enum"
     ],
@@ -13871,7 +14437,10 @@
       "проверка непрерывности значений перечисления",
       "валидация перечисления при объявлении"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.verify",
+      "verify"
+    ],
     "tags": [
       "enum"
     ],
@@ -13921,7 +14490,10 @@
       "проверки перечисления в verify",
       "уникальность и непрерывность значений enum"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.EnumCheck",
+      "EnumCheck"
+    ],
     "tags": [
       "enum"
     ],
@@ -13973,7 +14545,10 @@
       "лишние биты во флаге",
       "что делать с неизвестными битами flag"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.FlagBoundary",
+      "FlagBoundary"
+    ],
     "tags": [
       "enum"
     ],
@@ -14026,7 +14601,10 @@
       "корень с округлением вниз",
       "квадратный корень без погрешности"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.isqrt",
+      "isqrt"
+    ],
     "tags": [
       "math"
     ],
@@ -14080,7 +14658,10 @@
       "кубический корень",
       "корень третьей степени"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.cbrt",
+      "cbrt"
+    ],
     "tags": [
       "math"
     ],
@@ -14130,7 +14711,10 @@
       "двойка в степени",
       "степень двойки"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.exp2",
+      "exp2"
+    ],
     "tags": [
       "math"
     ],
@@ -14180,7 +14764,10 @@
       "экспонента минус единица",
       "точная экспонента при малых значениях"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.expm1",
+      "expm1"
+    ],
     "tags": [
       "math"
     ],
@@ -14230,7 +14817,10 @@
       "логарифм от 1 плюс x",
       "точный натуральный логарифм при малых значениях"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.log1p",
+      "log1p"
+    ],
     "tags": [
       "math"
     ],
@@ -14282,7 +14872,10 @@
       "гиперболический синус",
       "гиперболические функции"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.sinh",
+      "sinh"
+    ],
     "tags": [
       "math"
     ],
@@ -14332,7 +14925,10 @@
       "гиперболический косинус",
       "гиперболические функции"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.cosh",
+      "cosh"
+    ],
     "tags": [
       "math"
     ],
@@ -14382,7 +14978,10 @@
       "гиперболический тангенс",
       "гиперболические функции"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.tanh",
+      "tanh"
+    ],
     "tags": [
       "math"
     ],
@@ -14432,7 +15031,10 @@
       "ареасинус",
       "обратный гиперболический синус"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.asinh",
+      "asinh"
+    ],
     "tags": [
       "math"
     ],
@@ -14482,7 +15084,10 @@
       "ареакосинус",
       "обратный гиперболический косинус"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.acosh",
+      "acosh"
+    ],
     "tags": [
       "math"
     ],
@@ -14534,7 +15139,10 @@
       "ареатангенс",
       "обратный гиперболический тангенс"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.atanh",
+      "atanh"
+    ],
     "tags": [
       "math"
     ],
@@ -14586,7 +15194,10 @@
       "функция ошибок",
       "интеграл вероятности"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.erf",
+      "erf"
+    ],
     "tags": [
       "math"
     ],
@@ -14637,7 +15248,10 @@
       "1 минус функция ошибок",
       "хвост нормального распределения"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.erfc",
+      "erfc"
+    ],
     "tags": [
       "math"
     ],
@@ -14687,7 +15301,10 @@
       "гамма-функция",
       "факториал нецелого числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.gamma",
+      "gamma"
+    ],
     "tags": [
       "math"
     ],
@@ -14739,7 +15356,10 @@
       "логарифм гамма-функции",
       "логарифм факториала без переполнения"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.lgamma",
+      "lgamma"
+    ],
     "tags": [
       "math"
     ],
@@ -14791,7 +15411,10 @@
       "остаток от деления дробных чисел",
       "знак остатка как у делимого"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.fmod",
+      "fmod"
+    ],
     "tags": [
       "math"
     ],
@@ -14844,7 +15467,10 @@
       "остаток по стандарту IEEE 754",
       "остаток от деления с округлением к ближайшему"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.remainder",
+      "remainder"
+    ],
     "tags": [
       "math"
     ],
@@ -14896,7 +15522,10 @@
       "скопировать знак числа",
       "задать знак числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.copysign",
+      "copysign"
+    ],
     "tags": [
       "math"
     ],
@@ -14946,7 +15575,10 @@
       "мантисса и порядок числа",
       "разложить число на мантиссу и экспоненту"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.frexp",
+      "frexp"
+    ],
     "tags": [
       "math"
     ],
@@ -14996,7 +15628,10 @@
       "дробная часть числа",
       "целая и дробная часть числа"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.modf",
+      "modf"
+    ],
     "tags": [
       "math"
     ],
@@ -15046,7 +15681,10 @@
       "собрать число из мантиссы и порядка",
       "умножить на степень двойки"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.ldexp",
+      "ldexp"
+    ],
     "tags": [
       "math"
     ],
@@ -15096,7 +15734,10 @@
       "размер младшего разряда",
       "шаг между соседними вещественными числами"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.ulp",
+      "ulp"
+    ],
     "tags": [
       "math"
     ],
@@ -15146,7 +15787,10 @@
       "следующее число с плавающей точкой",
       "ближайшее представимое число в сторону цели"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.nextafter",
+      "nextafter"
+    ],
     "tags": [
       "math"
     ],
@@ -15197,7 +15841,10 @@
       "евклидово расстояние",
       "длина отрезка по координатам"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.dist",
+      "dist"
+    ],
     "tags": [
       "math"
     ],
@@ -15249,7 +15896,10 @@
       "скалярное произведение векторов",
       "сумма попарных произведений"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.sumprod",
+      "sumprod"
+    ],
     "tags": [
       "math"
     ],
@@ -15302,7 +15952,10 @@
       "слитное умножение-сложение",
       "умножить и прибавить за одно округление"
     ],
-    "keywords": [],
+    "keywords": [
+      "math.fma",
+      "fma"
+    ],
     "tags": [
       "math"
     ],
@@ -15359,7 +16012,10 @@
       "перенаправить вывод в файл",
       "перехватить вывод программы"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.redirect_stdout",
+      "redirect_stdout"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15409,7 +16065,10 @@
       "перенаправить поток ошибок",
       "перехватить сообщения об ошибках"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.redirect_stderr",
+      "redirect_stderr"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15458,7 +16117,10 @@
       "временно сменить рабочий каталог",
       "временно перейти в другую директорию"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.chdir",
+      "chdir"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15512,7 +16174,10 @@
       "протокол контекстного менеджера",
       "базовый класс для своего менеджера контекста"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.AbstractContextManager",
+      "AbstractContextManager"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15562,7 +16227,10 @@
       "протокол асинхронного менеджера контекста",
       "свой класс для асинхронного контекста"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.AbstractAsyncContextManager",
+      "AbstractAsyncContextManager"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15611,7 +16279,10 @@
       "менеджер контекста как декоратор",
       "декоратор из контекстного менеджера"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.ContextDecorator",
+      "ContextDecorator"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15662,7 +16333,10 @@
       "асинхронный стек контекстных менеджеров",
       "динамическое закрытие нескольких асинхронных менеджеров"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.AsyncExitStack",
+      "AsyncExitStack"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15716,7 +16390,10 @@
       "создать асинхронный контекстный менеджер",
       "свой менеджер контекста для асинхронного кода"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.asynccontextmanager",
+      "asynccontextmanager"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15765,7 +16442,10 @@
       "закрыть асинхронный генератор",
       "автозакрытие асинхронного ресурса"
     ],
-    "keywords": [],
+    "keywords": [
+      "contextlib.aclosing",
+      "aclosing"
+    ],
     "tags": [
       "contextlib"
     ],
@@ -15817,7 +16497,10 @@
       "абстрактный базовый класс",
       "запретить создание экземпляра класса"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.ABC",
+      "ABC"
+    ],
     "tags": [
       "abc"
     ],
@@ -15870,7 +16553,10 @@
       "метакласс абстрактного класса",
       "абстрактный класс через метакласс"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.ABCMeta",
+      "ABCMeta"
+    ],
     "tags": [
       "abc"
     ],
@@ -15925,7 +16611,10 @@
       "обязательный метод в наследнике",
       "заставить подкласс переопределить метод"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.abstractmethod",
+      "abstractmethod"
+    ],
     "tags": [
       "abc"
     ],
@@ -15977,7 +16666,10 @@
       "абстрактное свойство",
       "обязательное свойство в наследнике"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.abstractproperty",
+      "abstractproperty"
+    ],
     "tags": [
       "abc"
     ],
@@ -16027,7 +16719,10 @@
       "абстрактный метод класса",
       "обязательный метод класса в наследнике"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.abstractclassmethod",
+      "abstractclassmethod"
+    ],
     "tags": [
       "abc"
     ],
@@ -16084,7 +16779,10 @@
       "абстрактный статический метод",
       "обязательный статический метод в наследнике"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.abstractstaticmethod",
+      "abstractstaticmethod"
+    ],
     "tags": [
       "abc"
     ],
@@ -16134,7 +16832,10 @@
       "токен кеша абстрактных классов",
       "сбросился ли кеш isinstance для abc"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.get_cache_token",
+      "get_cache_token"
+    ],
     "tags": [
       "abc"
     ],
@@ -16183,7 +16884,10 @@
       "пересчитать абстрактные методы",
       "обновить abstractmethods после изменения класса"
     ],
-    "keywords": [],
+    "keywords": [
+      "abc.update_abstractmethods",
+      "update_abstractmethods"
+    ],
     "tags": [
       "abc"
     ],
@@ -16233,7 +16937,10 @@
       "класс форматирования строк",
       "своя логика подстановки полей"
     ],
-    "keywords": [],
+    "keywords": [
+      "string.Formatter",
+      "Formatter"
+    ],
     "tags": [
       "string"
     ],
@@ -17547,7 +18254,10 @@
       "свой класс на основе словаря",
       "наследование от словаря"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.UserDict",
+      "UserDict"
+    ],
     "tags": [
       "collections"
     ],
@@ -17595,7 +18305,10 @@
       "свой класс на основе списка",
       "наследование от списка"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.UserList",
+      "UserList"
+    ],
     "tags": [
       "collections"
     ],
@@ -17643,7 +18356,10 @@
       "свой класс на основе строки",
       "наследование от строки"
     ],
-    "keywords": [],
+    "keywords": [
+      "collections.UserString",
+      "UserString"
+    ],
     "tags": [
       "collections"
     ],
@@ -17693,7 +18409,10 @@
       "проверить что объект файлоподобный",
       "общий предок файлов и потоков в памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.IOBase",
+      "IOBase"
+    ],
     "tags": [
       "io"
     ],
@@ -17746,7 +18465,10 @@
       "небуферизованный поток",
       "базовый класс сырого ввода-вывода"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.RawIOBase",
+      "RawIOBase"
+    ],
     "tags": [
       "io"
     ],
@@ -17797,7 +18519,10 @@
       "базовый класс буферизованного потока",
       "свой буферизованный файл"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.BufferedIOBase",
+      "BufferedIOBase"
+    ],
     "tags": [
       "io"
     ],
@@ -17850,7 +18575,10 @@
       "проверить что поток текстовый а не байтовый",
       "тип объекта открытого текстового файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.TextIOBase",
+      "TextIOBase"
+    ],
     "tags": [
       "io"
     ],
@@ -17901,7 +18629,10 @@
       "чтение файла без буферизации",
       "работа с файлом по дескриптору"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.FileIO",
+      "FileIO"
+    ],
     "tags": [
       "io"
     ],
@@ -17958,7 +18689,10 @@
       "буферизованное чтение бинарного файла",
       "объект открытого файла в двоичном режиме чтения"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.BufferedReader",
+      "BufferedReader"
+    ],
     "tags": [
       "io"
     ],
@@ -18013,7 +18747,10 @@
       "буферизованная запись байтов в файл",
       "объект открытого файла в двоичном режиме записи"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.BufferedWriter",
+      "BufferedWriter"
+    ],
     "tags": [
       "io"
     ],
@@ -18064,7 +18801,10 @@
       "буферизованный файл с произвольным доступом",
       "чтение и запись с seek"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.BufferedRandom",
+      "BufferedRandom"
+    ],
     "tags": [
       "io"
     ],
@@ -18119,7 +18859,10 @@
       "один объект для чтения и записи двух потоков",
       "пара буферов чтения и записи"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.BufferedRWPair",
+      "BufferedRWPair"
+    ],
     "tags": [
       "io"
     ],
@@ -18175,7 +18918,10 @@
       "привести переводы строк к одному виду",
       "универсальные переводы строк при декодировании"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.IncrementalNewlineDecoder",
+      "IncrementalNewlineDecoder"
+    ],
     "tags": [
       "io"
     ],
@@ -18223,7 +18969,10 @@
       "кодировка по умолчанию для текстовых файлов",
       "какая кодировка если encoding не указан"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.text_encoding",
+      "text_encoding"
+    ],
     "tags": [
       "io"
     ],
@@ -18274,7 +19023,10 @@
       "открыть файл с кодом для исполнения",
       "чтение исходника с аудитом"
     ],
-    "keywords": [],
+    "keywords": [
+      "io.open_code",
+      "open_code"
+    ],
     "tags": [
       "io"
     ],
@@ -18328,7 +19080,10 @@
       "бета-распределение",
       "случайное число из бета-распределения"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.betavariate",
+      "betavariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18381,7 +19136,10 @@
       "число успехов в испытаниях",
       "схема Бернулли"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.binomialvariate",
+      "binomialvariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18433,7 +19191,10 @@
       "экспоненциальное распределение",
       "показательное распределение"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.expovariate",
+      "expovariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18485,7 +19246,10 @@
       "гамма-распределение",
       "случайное число из гамма-распределения"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.gammavariate",
+      "gammavariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18537,7 +19301,10 @@
       "логнормальное распределение",
       "логарифмически нормальное распределение"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.lognormvariate",
+      "lognormvariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18587,7 +19354,10 @@
       "нормальный закон распределения",
       "случайное число со средним и стандартным отклонением"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.normalvariate",
+      "normalvariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18638,7 +19408,10 @@
       "распределение Парето",
       "закон Парето"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.paretovariate",
+      "paretovariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18688,7 +19461,10 @@
       "треугольное распределение",
       "случайное число с наиболее вероятным значением"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.triangular",
+      "triangular"
+    ],
     "tags": [
       "random"
     ],
@@ -18739,7 +19515,10 @@
       "случайный угол",
       "круговое нормальное распределение"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.vonmisesvariate",
+      "vonmisesvariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18789,7 +19568,10 @@
       "распределение Вейбулла",
       "случайное число из распределения Вейбулла"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.weibullvariate",
+      "weibullvariate"
+    ],
     "tags": [
       "random"
     ],
@@ -18839,7 +19621,10 @@
       "случайные биты",
       "случайное число заданной длины в битах"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.getrandbits",
+      "getrandbits"
+    ],
     "tags": [
       "random"
     ],
@@ -18890,7 +19675,10 @@
       "случайные байты",
       "сгенерировать случайный токен"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.randbytes",
+      "randbytes"
+    ],
     "tags": [
       "random"
     ],
@@ -18941,7 +19729,10 @@
       "повторить последовательность случайных чисел",
       "состояние генератора случайных чисел"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.getstate",
+      "getstate"
+    ],
     "tags": [
       "random"
     ],
@@ -18990,7 +19781,10 @@
       "восстановить состояние генератора",
       "продолжить генерацию с сохранённой точки"
     ],
-    "keywords": [],
+    "keywords": [
+      "random.setstate",
+      "setstate"
+    ],
     "tags": [
       "random"
     ],
@@ -19039,7 +19833,10 @@
       "метакласс перечислений",
       "как создаётся перечисление"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.EnumType",
+      "EnumType"
+    ],
     "tags": [
       "enum"
     ],
@@ -19087,7 +19884,10 @@
       "метакласс перечислений",
       "старое имя EnumType"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.EnumMeta",
+      "EnumMeta"
+    ],
     "tags": [
       "enum"
     ],
@@ -19138,7 +19938,10 @@
       "словарь пространства имён перечисления",
       "как enum собирает члены класса"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.EnumDict",
+      "EnumDict"
+    ],
     "tags": [
       "enum"
     ],
@@ -19186,7 +19989,10 @@
       "члены перечисления в модуле",
       "сделать константы enum глобальными"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.global_enum",
+      "global_enum"
+    ],
     "tags": [
       "enum"
     ],
@@ -19238,7 +20044,10 @@
       "repr глобального перечисления",
       "показать член enum как имя модуля"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.global_enum_repr",
+      "global_enum_repr"
+    ],
     "tags": [
       "enum"
     ],
@@ -19289,7 +20098,10 @@
       "repr глобального флага",
       "показать флаг как имена модуля"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.global_flag_repr",
+      "global_flag_repr"
+    ],
     "tags": [
       "enum"
     ],
@@ -19340,7 +20152,10 @@
       "str глобального перечисления",
       "строка члена enum без имени класса"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.global_str",
+      "global_str"
+    ],
     "tags": [
       "enum"
     ],
@@ -19392,7 +20207,10 @@
       "сериализация enum по имени члена",
       "pickle перечисления по имени"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.pickle_by_enum_name",
+      "pickle_by_enum_name"
+    ],
     "tags": [
       "enum"
     ],
@@ -19444,7 +20262,10 @@
       "сериализация enum по глобальному имени",
       "pickle глобализированного перечисления"
     ],
-    "keywords": [],
+    "keywords": [
+      "enum.pickle_by_global_name",
+      "pickle_by_global_name"
+    ],
     "tags": [
       "enum"
     ],
@@ -19495,7 +20316,10 @@
       "сложение как функция",
       "функция вместо оператора плюс"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.add",
+      "add"
+    ],
     "tags": [
       "operator"
     ],
@@ -19549,7 +20373,10 @@
       "вычитание как функция",
       "функция вместо оператора минус"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.sub",
+      "sub"
+    ],
     "tags": [
       "operator"
     ],
@@ -19603,7 +20430,10 @@
       "умножение как функция",
       "функция вместо оператора умножения"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.mul",
+      "mul"
+    ],
     "tags": [
       "operator"
     ],
@@ -19656,7 +20486,10 @@
       "деление как функция",
       "деление с дробным результатом"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.truediv",
+      "truediv"
+    ],
     "tags": [
       "operator"
     ],
@@ -19710,7 +20543,10 @@
       "целочисленное деление как функция",
       "деление нацело функцией"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.floordiv",
+      "floordiv"
+    ],
     "tags": [
       "operator"
     ],
@@ -19764,7 +20600,10 @@
       "остаток от деления как функция",
       "взять остаток функцией"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.mod",
+      "mod"
+    ],
     "tags": [
       "operator"
     ],
@@ -19817,7 +20656,10 @@
       "унарный минус как функция",
       "сменить знак числа на противоположный"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.neg",
+      "neg"
+    ],
     "tags": [
       "operator"
     ],
@@ -19869,7 +20711,10 @@
       "унарный плюс",
       "унарный плюс как функция"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.pos",
+      "pos"
+    ],
     "tags": [
       "operator"
     ],
@@ -19921,7 +20766,10 @@
       "побитовое И",
       "битовое И как функция"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.and_",
+      "and_"
+    ],
     "tags": [
       "operator"
     ],
@@ -19976,7 +20824,10 @@
       "объединить биты маской",
       "установить бит"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.or_",
+      "or_"
+    ],
     "tags": [
       "operator"
     ],
@@ -20031,7 +20882,10 @@
       "сложение по модулю два",
       "переключить биты маской"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.xor",
+      "xor"
+    ],
     "tags": [
       "operator"
     ],
@@ -20086,7 +20940,10 @@
       "инвертировать биты числа",
       "перевернуть все биты"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.invert",
+      "invert"
+    ],
     "tags": [
       "operator"
     ],
@@ -20137,7 +20994,10 @@
       "побитовая инверсия функцией",
       "тильда как функция"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.inv",
+      "inv"
+    ],
     "tags": [
       "operator"
     ],
@@ -20187,7 +21047,10 @@
       "сдвиг битов влево",
       "умножить на степень двойки"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.lshift",
+      "lshift"
+    ],
     "tags": [
       "operator"
     ],
@@ -20237,7 +21100,10 @@
       "сдвиг битов вправо",
       "поделить на степень двойки"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.rshift",
+      "rshift"
+    ],
     "tags": [
       "operator"
     ],
@@ -20290,7 +21156,10 @@
       "проверка на равенство",
       "равны ли два объекта"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.eq",
+      "eq"
+    ],
     "tags": [
       "operator"
     ],
@@ -20340,7 +21209,10 @@
       "не равно",
       "проверка на неравенство"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.ne",
+      "ne"
+    ],
     "tags": [
       "operator"
     ],
@@ -20391,7 +21263,10 @@
       "строго меньше",
       "меньше чем"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.lt",
+      "lt"
+    ],
     "tags": [
       "operator"
     ],
@@ -20442,7 +21317,10 @@
       "меньше или равно",
       "не больше чем"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.le",
+      "le"
+    ],
     "tags": [
       "operator"
     ],
@@ -20493,7 +21371,10 @@
       "строго больше",
       "больше чем"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.gt",
+      "gt"
+    ],
     "tags": [
       "operator"
     ],
@@ -20546,7 +21427,10 @@
       "больше или равно",
       "не меньше чем"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.ge",
+      "ge"
+    ],
     "tags": [
       "operator"
     ],
@@ -20599,7 +21483,10 @@
       "сравнение по ссылке",
       "тот же объект в памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.is_",
+      "is_"
+    ],
     "tags": [
       "operator"
     ],
@@ -20653,7 +21540,10 @@
       "проверка нетождественности",
       "разные объекты в памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.is_not",
+      "is_not"
+    ],
     "tags": [
       "operator"
     ],
@@ -20705,7 +21595,10 @@
       "логическое отрицание",
       "инвертировать условие"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.not_",
+      "not_"
+    ],
     "tags": [
       "operator"
     ],
@@ -20755,7 +21648,10 @@
       "истинность объекта",
       "привести к логическому значению"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.truth",
+      "truth"
+    ],
     "tags": [
       "operator"
     ],
@@ -20805,7 +21701,10 @@
       "склеить две последовательности",
       "конкатенация функцией"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.concat",
+      "concat"
+    ],
     "tags": [
       "operator"
     ],
@@ -20858,7 +21757,10 @@
       "проверить вхождение элемента",
       "есть ли элемент в последовательности"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.contains",
+      "contains"
+    ],
     "tags": [
       "operator"
     ],
@@ -20910,7 +21812,10 @@
       "сколько раз встречается элемент",
       "подсчёт вхождений в последовательности"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.countOf",
+      "countOf"
+    ],
     "tags": [
       "operator"
     ],
@@ -20962,7 +21867,10 @@
       "найти позицию элемента",
       "номер первого вхождения"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.indexOf",
+      "indexOf"
+    ],
     "tags": [
       "operator"
     ],
@@ -21014,7 +21922,10 @@
       "взять элемент по индексу функцией",
       "получить значение по ключу функцией"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.getitem",
+      "getitem"
+    ],
     "tags": [
       "operator"
     ],
@@ -21069,7 +21980,10 @@
       "записать значение по индексу",
       "присвоить элемент по ключу"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.setitem",
+      "setitem"
+    ],
     "tags": [
       "operator"
     ],
@@ -21120,7 +22034,10 @@
       "удалить элемент по индексу функцией",
       "удаление по ключу без оператора del"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.delitem",
+      "delitem"
+    ],
     "tags": [
       "operator"
     ],
@@ -21173,7 +22090,10 @@
       "оценка длины итератора",
       "предполагаемое число элементов"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.length_hint",
+      "length_hint"
+    ],
     "tags": [
       "operator"
     ],
@@ -21224,7 +22144,10 @@
       "умножение матриц",
       "матричное произведение"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.matmul",
+      "matmul"
+    ],
     "tags": [
       "operator"
     ],
@@ -21272,7 +22195,10 @@
       "вызвать объект как функцию",
       "вызов функции из переменной"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.call",
+      "call"
+    ],
     "tags": [
       "operator"
     ],
@@ -21325,7 +22251,10 @@
       "ключ сортировки по индексу",
       "сортировка кортежей по второму элементу"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.itemgetter",
+      "itemgetter"
+    ],
     "tags": [
       "operator"
     ],
@@ -21381,7 +22310,10 @@
       "извлечь атрибут по имени",
       "сортировка объектов по атрибуту"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.attrgetter",
+      "attrgetter"
+    ],
     "tags": [
       "operator"
     ],
@@ -21435,7 +22367,10 @@
       "вызвать метод по имени",
       "ключ сортировки через метод объекта"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.methodcaller",
+      "methodcaller"
+    ],
     "tags": [
       "operator"
     ],
@@ -21489,7 +22424,10 @@
       "сложение с присваиванием",
       "прибавить на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.iadd",
+      "iadd"
+    ],
     "tags": [
       "operator"
     ],
@@ -21545,7 +22483,10 @@
       "вычитание с присваиванием",
       "уменьшить значение на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.isub",
+      "isub"
+    ],
     "tags": [
       "operator"
     ],
@@ -21596,7 +22537,10 @@
       "умножение с присваиванием",
       "умножить на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.imul",
+      "imul"
+    ],
     "tags": [
       "operator"
     ],
@@ -21648,7 +22592,10 @@
       "деление с присваиванием",
       "истинное деление на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.itruediv",
+      "itruediv"
+    ],
     "tags": [
       "operator"
     ],
@@ -21701,7 +22648,10 @@
       "целочисленное деление с присваиванием",
       "поделить нацело на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.ifloordiv",
+      "ifloordiv"
+    ],
     "tags": [
       "operator"
     ],
@@ -21753,7 +22703,10 @@
       "остаток с присваиванием",
       "взять остаток на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.imod",
+      "imod"
+    ],
     "tags": [
       "operator"
     ],
@@ -21805,7 +22758,10 @@
       "возведение в степень с присваиванием",
       "степень на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.ipow",
+      "ipow"
+    ],
     "tags": [
       "operator"
     ],
@@ -21856,7 +22812,10 @@
       "побитовое И с присваиванием",
       "наложить маску на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.iand",
+      "iand"
+    ],
     "tags": [
       "operator"
     ],
@@ -21909,7 +22868,10 @@
       "побитовое ИЛИ с присваиванием",
       "объединить множества на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.ior",
+      "ior"
+    ],
     "tags": [
       "operator"
     ],
@@ -21962,7 +22924,10 @@
       "исключающее ИЛИ с присваиванием",
       "побитовое исключающее или на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.ixor",
+      "ixor"
+    ],
     "tags": [
       "operator"
     ],
@@ -22015,7 +22980,10 @@
       "сдвиг влево с присваиванием",
       "сдвинуть биты влево на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.ilshift",
+      "ilshift"
+    ],
     "tags": [
       "operator"
     ],
@@ -22065,7 +23033,10 @@
       "сдвиг вправо с присваиванием",
       "битовый сдвиг вправо на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.irshift",
+      "irshift"
+    ],
     "tags": [
       "operator"
     ],
@@ -22116,7 +23087,10 @@
       "дописать список на месте",
       "конкатенация с присваиванием"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.iconcat",
+      "iconcat"
+    ],
     "tags": [
       "operator"
     ],
@@ -22169,7 +23143,10 @@
       "матричное умножение с присваиванием",
       "перемножить матрицы на месте"
     ],
-    "keywords": [],
+    "keywords": [
+      "operator.imatmul",
+      "imatmul"
+    ],
     "tags": [
       "operator"
     ],
@@ -22217,7 +23194,10 @@
       "имя файла из пути",
       "последняя часть пути"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.basename",
+      "basename"
+    ],
     "tags": [
       "os"
     ],
@@ -22265,7 +23245,10 @@
       "папка файла",
       "родительский каталог из пути"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.dirname",
+      "dirname"
+    ],
     "tags": [
       "os"
     ],
@@ -22313,7 +23296,10 @@
       "разделить путь на папку и имя",
       "отделить имя файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.split",
+      "split"
+    ],
     "tags": [
       "os"
     ],
@@ -22360,7 +23346,10 @@
       "отделить букву диска",
       "диск из пути windows"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.splitdrive",
+      "splitdrive"
+    ],
     "tags": [
       "os"
     ],
@@ -22412,7 +23401,10 @@
       "разобрать путь на диск и корень",
       "корень пути"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.splitroot",
+      "splitroot"
+    ],
     "tags": [
       "os"
     ],
@@ -22463,7 +23455,10 @@
       "регистр пути для сравнения",
       "нормализовать регистр пути"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.normcase",
+      "normcase"
+    ],
     "tags": [
       "os"
     ],
@@ -22512,7 +23507,10 @@
       "убрать точки из пути",
       "нормализовать путь"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.normpath",
+      "normpath"
+    ],
     "tags": [
       "os"
     ],
@@ -22563,7 +23561,10 @@
       "общее начало строк",
       "общий префикс списка"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.commonprefix",
+      "commonprefix"
+    ],
     "tags": [
       "os"
     ],
@@ -22613,7 +23614,10 @@
       "общая папка нескольких путей",
       "лежит ли файл внутри каталога"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.commonpath",
+      "commonpath"
+    ],
     "tags": [
       "os"
     ],
@@ -22666,7 +23670,10 @@
       "относительный путь",
       "путь относительно папки"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.relpath",
+      "relpath"
+    ],
     "tags": [
       "os"
     ],
@@ -22717,7 +23724,10 @@
       "абсолютный путь к файлу",
       "полный путь из относительного"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.abspath",
+      "abspath"
+    ],
     "tags": [
       "os"
     ],
@@ -22768,7 +23778,10 @@
       "настоящий путь без ссылок",
       "раскрыть символические ссылки"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.realpath",
+      "realpath"
+    ],
     "tags": [
       "os"
     ],
@@ -22821,7 +23834,10 @@
       "развернуть тильду",
       "путь к домашней папке"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.expanduser",
+      "expanduser"
+    ],
     "tags": [
       "os"
     ],
@@ -22872,7 +23888,10 @@
       "подставить переменные в путь",
       "раскрыть $home в строке"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.expandvars",
+      "expandvars"
+    ],
     "tags": [
       "os"
     ],
@@ -22923,7 +23942,10 @@
       "абсолютный ли путь",
       "проверить, полный ли путь"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.isabs",
+      "isabs"
+    ],
     "tags": [
       "os"
     ],
@@ -22975,7 +23997,10 @@
       "проверить наличие файла",
       "есть ли такой путь"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.exists",
+      "exists"
+    ],
     "tags": [
       "os"
     ],
@@ -23023,7 +24048,10 @@
       "существует ли ссылка",
       "найти битую ссылку"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.lexists",
+      "lexists"
+    ],
     "tags": [
       "os"
     ],
@@ -23073,7 +24101,10 @@
       "это папка",
       "проверить, что путь — каталог"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.isdir",
+      "isdir"
+    ],
     "tags": [
       "os"
     ],
@@ -23122,7 +24153,10 @@
       "проверить, что путь — файл",
       "существует ли файл"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.isfile",
+      "isfile"
+    ],
     "tags": [
       "os"
     ],
@@ -23170,7 +24204,10 @@
       "это символическая ссылка",
       "проверить ярлык-ссылку"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.islink",
+      "islink"
+    ],
     "tags": [
       "os"
     ],
@@ -23221,7 +24258,10 @@
       "точка монтирования",
       "подключённый диск в папке"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.ismount",
+      "ismount"
+    ],
     "tags": [
       "os"
     ],
@@ -23272,7 +24312,10 @@
       "точка соединения ntfs",
       "junction в windows"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.isjunction",
+      "isjunction"
+    ],
     "tags": [
       "os"
     ],
@@ -23322,7 +24365,10 @@
       "диск для разработки windows",
       "путь на dev drive"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.isdevdrive",
+      "isdevdrive"
+    ],
     "tags": [
       "os"
     ],
@@ -23373,7 +24419,10 @@
       "сколько байт в файле",
       "вес файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.getsize",
+      "getsize"
+    ],
     "tags": [
       "os"
     ],
@@ -23428,7 +24477,10 @@
       "время изменения файла",
       "когда файл последний раз меняли"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.getmtime",
+      "getmtime"
+    ],
     "tags": [
       "os"
     ],
@@ -23482,7 +24534,10 @@
       "время последнего открытия файла",
       "когда файл читали"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.getatime",
+      "getatime"
+    ],
     "tags": [
       "os"
     ],
@@ -23536,7 +24591,10 @@
       "время создания файла",
       "время изменения метаданных"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.getctime",
+      "getctime"
+    ],
     "tags": [
       "os"
     ],
@@ -23588,7 +24646,10 @@
       "один и тот же файл",
       "два пути к одному файлу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.samefile",
+      "samefile"
+    ],
     "tags": [
       "os"
     ],
@@ -23642,7 +24703,10 @@
       "одинаковый ли файл по stat",
       "сравнить результаты stat"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.samestat",
+      "samestat"
+    ],
     "tags": [
       "os"
     ],
@@ -23696,7 +24760,10 @@
       "два дескриптора одного файла",
       "один ли файл открыт дважды"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.path.sameopenfile",
+      "sameopenfile"
+    ],
     "tags": [
       "os"
     ],
@@ -23744,7 +24811,10 @@
       "путь в байты",
       "закодировать имя файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fsencode",
+      "fsencode"
+    ],
     "tags": [
       "os"
     ],
@@ -23795,7 +24865,10 @@
       "байты пути в строку",
       "декодировать имя файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fsdecode",
+      "fsdecode"
+    ],
     "tags": [
       "os"
     ],
@@ -23845,7 +24918,10 @@
       "получить строку из pathlib",
       "путь как строка из объекта"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fspath",
+      "fspath"
+    ],
     "tags": [
       "os"
     ],
@@ -23900,7 +24976,10 @@
       "значение переменной среды",
       "переменная окружения или значение по умолчанию"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getenv",
+      "getenv"
+    ],
     "tags": [
       "os"
     ],
@@ -23952,7 +25031,10 @@
       "задать переменную окружения на уровне ос",
       "переменная для дочерних процессов"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.putenv",
+      "putenv"
+    ],
     "tags": [
       "os"
     ],
@@ -24002,7 +25084,10 @@
       "удалить переменную окружения на уровне ос",
       "убрать переменную для потомков"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.unsetenv",
+      "unsetenv"
+    ],
     "tags": [
       "os"
     ],
@@ -24053,7 +25138,10 @@
       "каталоги из path",
       "где ищутся программы"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.get_exec_path",
+      "get_exec_path"
+    ],
     "tags": [
       "os"
     ],
@@ -24102,7 +25190,10 @@
       "pid родителя",
       "кто запустил процесс"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getppid",
+      "getppid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -24152,7 +25243,10 @@
       "маска прав новых файлов",
       "права по умолчанию для файлов"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.umask",
+      "umask"
+    ],
     "tags": [
       "os"
     ],
@@ -24200,7 +25294,10 @@
       "процессорное время процесса",
       "сколько времени заняла программа"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.times",
+      "times"
+    ],
     "tags": [
       "os"
     ],
@@ -24251,7 +25348,10 @@
       "поля результата times",
       "user и system время"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.times_result",
+      "times_result"
+    ],
     "tags": [
       "os"
     ],
@@ -24301,7 +25401,10 @@
       "код возврата из статуса",
       "перевести статус os.system в код"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.waitstatus_to_exitcode",
+      "waitstatus_to_exitcode"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -24357,7 +25460,10 @@
       "число процессоров для пула",
       "количество потоков cpu"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.cpu_count",
+      "cpu_count"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -24408,7 +25514,10 @@
       "криптографически стойкое случайное",
       "сгенерировать соль"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.urandom",
+      "urandom"
+    ],
     "tags": [
       "os"
     ],
@@ -24459,7 +25568,10 @@
       "текст ошибки по коду",
       "описание errno"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.strerror",
+      "strerror"
+    ],
     "tags": [
       "os"
     ],
@@ -24509,7 +25621,10 @@
       "кодировка терминала",
       "какая кодировка у консоли"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.device_encoding",
+      "device_encoding"
+    ],
     "tags": [
       "os"
     ],
@@ -24561,7 +25676,10 @@
       "размер окна консоли",
       "сколько колонок в терминале"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.get_terminal_size",
+      "get_terminal_size"
+    ],
     "tags": [
       "os"
     ],
@@ -24615,7 +25733,10 @@
       "вывод в консоль или в файл",
       "перенаправлен ли вывод"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.isatty",
+      "isatty"
+    ],
     "tags": [
       "os"
     ],
@@ -24664,7 +25785,10 @@
       "размер терминала кортежем",
       "columns и lines"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.terminal_size",
+      "terminal_size"
+    ],
     "tags": [
       "os"
     ],
@@ -24716,7 +25840,10 @@
       "аварийно завершить программу",
       "упасть с дампом памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.abort",
+      "abort"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -24766,7 +25893,10 @@
       "выйти немедленно без очистки",
       "завершить дочерний процесс после fork"
     ],
-    "keywords": [],
+    "keywords": [
+      "os._exit",
+      "_exit"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -24817,7 +25947,10 @@
       "запустить команду из python",
       "вызвать консольную команду"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.system",
+      "system"
+    ],
     "tags": [
       "os"
     ],
@@ -24868,7 +26001,10 @@
       "где запущена программа",
       "рабочий каталог"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getcwd",
+      "getcwd"
+    ],
     "tags": [
       "os"
     ],
@@ -24915,7 +26051,10 @@
       "текущая папка в байтах",
       "рабочий каталог байтами"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getcwdb",
+      "getcwdb"
+    ],
     "tags": [
       "os"
     ],
@@ -24965,7 +26104,10 @@
       "закрыть файловый дескриптор",
       "освободить дескриптор"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.close",
+      "close"
+    ],
     "tags": [
       "os"
     ],
@@ -25015,7 +26157,10 @@
       "закрыть много дескрипторов сразу",
       "закрыть все лишние дескрипторы"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.closerange",
+      "closerange"
+    ],
     "tags": [
       "os"
     ],
@@ -25064,7 +26209,10 @@
       "скопировать дескриптор",
       "сохранить копию stdout"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.dup",
+      "dup"
+    ],
     "tags": [
       "os"
     ],
@@ -25116,7 +26264,10 @@
       "перенаправить stdout в файл",
       "подменить стандартный вывод на уровне ос"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.dup2",
+      "dup2"
+    ],
     "tags": [
       "os"
     ],
@@ -25168,7 +26319,10 @@
       "прочитать байты из дескриптора",
       "низкоуровневое чтение"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.read",
+      "read"
+    ],
     "tags": [
       "os"
     ],
@@ -25221,7 +26375,10 @@
       "записать байты в дескриптор",
       "низкоуровневая запись"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.write",
+      "write"
+    ],
     "tags": [
       "os"
     ],
@@ -25275,7 +26432,10 @@
       "узнать позицию в файле",
       "размер открытого файла через seek"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.lseek",
+      "lseek"
+    ],
     "tags": [
       "os"
     ],
@@ -25326,7 +26486,10 @@
       "размер открытого файла",
       "метаданные по дескриптору"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fstat",
+      "fstat"
+    ],
     "tags": [
       "os"
     ],
@@ -25376,7 +26539,10 @@
       "обрезать открытый файл",
       "изменить размер файла по дескриптору"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.ftruncate",
+      "ftruncate"
+    ],
     "tags": [
       "os"
     ],
@@ -25430,7 +26596,10 @@
       "файловый объект из дескриптора",
       "обернуть дескриптор в файл"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fdopen",
+      "fdopen"
+    ],
     "tags": [
       "os"
     ],
@@ -25481,7 +26650,10 @@
       "создать канал",
       "связать процессы каналом"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.pipe",
+      "pipe"
+    ],
     "tags": [
       "os"
     ],
@@ -25530,7 +26702,10 @@
       "наследуется ли дескриптор",
       "передастся ли файл дочернему процессу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.get_inheritable",
+      "get_inheritable"
+    ],
     "tags": [
       "os"
     ],
@@ -25581,7 +26756,10 @@
       "передать дескриптор потомку",
       "разрешить наследование файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.set_inheritable",
+      "set_inheritable"
+    ],
     "tags": [
       "os"
     ],
@@ -25631,7 +26809,10 @@
       "обрезать файл по пути",
       "изменить размер файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.truncate",
+      "truncate"
+    ],
     "tags": [
       "os"
     ],
@@ -25687,7 +26868,10 @@
       "можно ли записать в файл",
       "проверить права доступа"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.access",
+      "access"
+    ],
     "tags": [
       "os"
     ],
@@ -25739,7 +26923,10 @@
       "размер и время файла",
       "права файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.stat",
+      "stat"
+    ],
     "tags": [
       "os"
     ],
@@ -25794,7 +26981,10 @@
       "информация о самой ссылке",
       "stat без перехода по ссылке"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.lstat",
+      "lstat"
+    ],
     "tags": [
       "os"
     ],
@@ -25850,7 +27040,10 @@
       "файлы каталога с типами",
       "быстрый обход директории"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.scandir",
+      "scandir"
+    ],
     "tags": [
       "os"
     ],
@@ -25903,7 +27096,10 @@
       "поля результата stat",
       "st_size и st_mtime"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.stat_result",
+      "stat_result"
+    ],
     "tags": [
       "os"
     ],
@@ -25955,7 +27151,10 @@
       "элемент каталога из scandir",
       "имя и тип файла при обходе"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.DirEntry",
+      "DirEntry"
+    ],
     "tags": [
       "os"
     ],
@@ -26005,7 +27204,10 @@
       "процесс завершился нормально",
       "потомок вышел через exit"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WIFEXITED",
+      "WIFEXITED"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26059,7 +27261,10 @@
       "код возврата из статуса wait",
       "достать код завершения потомка"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WEXITSTATUS",
+      "WEXITSTATUS"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26112,7 +27317,10 @@
       "процесс убит сигналом",
       "потомка завершили сигналом"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WIFSIGNALED",
+      "WIFSIGNALED"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26164,7 +27372,10 @@
       "каким сигналом убит процесс",
       "номер сигнала завершения"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WTERMSIG",
+      "WTERMSIG"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26216,7 +27427,10 @@
       "процесс остановлен",
       "потомок приостановлен сигналом"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WIFSTOPPED",
+      "WIFSTOPPED"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26268,7 +27482,10 @@
       "каким сигналом остановлен процесс",
       "номер сигнала остановки"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WSTOPSIG",
+      "WSTOPSIG"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26320,7 +27537,10 @@
       "процесс продолжил работу",
       "потомок возобновлён после остановки"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WIFCONTINUED",
+      "WIFCONTINUED"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26374,7 +27594,10 @@
       "остался ли дамп памяти",
       "процесс упал с core dump"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.WCOREDUMP",
+      "WCOREDUMP"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26427,7 +27650,10 @@
       "создать копию процесса",
       "породить дочерний процесс"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fork",
+      "fork"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26482,7 +27708,10 @@
       "дочерний процесс с терминалом",
       "fork с псевдотерминалом"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.forkpty",
+      "forkpty"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26536,7 +27765,10 @@
       "обработчики вокруг fork",
       "сбросить состояние после fork"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.register_at_fork",
+      "register_at_fork"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26589,7 +27821,10 @@
       "заменить процесс новой программой",
       "передать управление другой программе"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execv",
+      "execv"
+    ],
     "tags": [
       "os"
     ],
@@ -26642,7 +27877,10 @@
       "exec с новым окружением",
       "запустить программу со своими переменными"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execve",
+      "execve"
+    ],
     "tags": [
       "os"
     ],
@@ -26695,7 +27933,10 @@
       "заменить процесс программой",
       "запустить программу вместо себя"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execl",
+      "execl"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26748,7 +27989,10 @@
       "запустить программу вместо себя с окружением",
       "exec со своими переменными среды"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execle",
+      "execle"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26802,7 +28046,10 @@
       "запустить программу из path вместо себя",
       "exec с поиском программы"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execlp",
+      "execlp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26856,7 +28103,10 @@
       "exec с поиском в path и окружением",
       "заменить процесс найденной программой"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execlpe",
+      "execlpe"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -26909,7 +28159,10 @@
       "запустить команду вместо текущего процесса",
       "exec с поиском в path"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execvp",
+      "execvp"
+    ],
     "tags": [
       "os"
     ],
@@ -26961,7 +28214,10 @@
       "exec с поиском и окружением",
       "заменить процесс командой с переменными"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.execvpe",
+      "execvpe"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27014,7 +28270,10 @@
       "запустить программу в новом процессе",
       "старый способ запуска программы"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnv",
+      "spawnv"
+    ],
     "tags": [
       "os"
     ],
@@ -27069,7 +28328,10 @@
       "spawnv с окружением",
       "запуск программы со своими переменными"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnve",
+      "spawnve"
+    ],
     "tags": [
       "os"
     ],
@@ -27123,7 +28385,10 @@
       "запустить программу и дождаться",
       "spawn с аргументами через запятую"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnl",
+      "spawnl"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27176,7 +28441,10 @@
       "spawn с окружением",
       "запустить программу со своими переменными"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnle",
+      "spawnle"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27230,7 +28498,10 @@
       "spawn с поиском в path",
       "запустить команду по имени"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnlp",
+      "spawnlp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27284,7 +28555,10 @@
       "spawn с поиском и окружением",
       "запустить команду с переменными"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnlpe",
+      "spawnlpe"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27339,7 +28613,10 @@
       "spawnv с поиском в path",
       "запустить команду списком аргументов"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnvp",
+      "spawnvp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27393,7 +28670,10 @@
       "spawnv с поиском и окружением",
       "запуск команды с переменными"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.spawnvpe",
+      "spawnvpe"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27449,7 +28729,10 @@
       "быстро запустить программу",
       "запуск процесса без fork"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.posix_spawn",
+      "posix_spawn"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27503,7 +28786,10 @@
       "запустить программу из path без fork",
       "posix_spawn с поиском"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.posix_spawnp",
+      "posix_spawnp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27557,7 +28843,10 @@
       "дождаться любого потомка",
       "ждать завершения дочернего процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.wait",
+      "wait"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27610,7 +28899,10 @@
       "дождаться процесса по pid",
       "ждать завершения потомка"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.waitpid",
+      "waitpid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27667,7 +28959,10 @@
       "дождаться потомка и узнать ресурсы",
       "сколько памяти съел потомок"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.wait3",
+      "wait3"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27721,7 +29016,10 @@
       "дождаться процесса и узнать его ресурсы",
       "потребление ресурсов потомком"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.wait4",
+      "wait4"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27775,7 +29073,10 @@
       "гибкое ожидание потомка",
       "ждать без сбора статуса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.waitid",
+      "waitid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27831,7 +29132,10 @@
       "поля результата waitid",
       "si_code и si_status"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.waitid_result",
+      "waitid_result"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27884,7 +29188,10 @@
       "завершить процесс по pid",
       "проверить, жив ли процесс"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.kill",
+      "kill"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27941,7 +29248,10 @@
       "сигнал группе процессов",
       "завершить процесс с потомками"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.killpg",
+      "killpg"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -27997,7 +29307,10 @@
       "понизить приоритет процесса",
       "сделать процесс фоновым"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.nice",
+      "nice"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28049,7 +29362,10 @@
       "приоритет процесса",
       "узнать nice процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getpriority",
+      "getpriority"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28103,7 +29419,10 @@
       "задать приоритет процесса",
       "изменить nice"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setpriority",
+      "setpriority"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28158,7 +29477,10 @@
       "уступить процессор",
       "отдать квант другим"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_yield",
+      "sched_yield"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28209,7 +29531,10 @@
       "на каких ядрах работает процесс",
       "доступные процессу ядра"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_getaffinity",
+      "sched_getaffinity"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28262,7 +29587,10 @@
       "привязать процесс к ядрам",
       "запускать только на одном ядре"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_setaffinity",
+      "sched_setaffinity"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28316,7 +29644,10 @@
       "политика планировщика",
       "sched_fifo или обычный процесс"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_getscheduler",
+      "sched_getscheduler"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28367,7 +29698,10 @@
       "процесс реального времени",
       "сменить политику планировщика"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_setscheduler",
+      "sched_setscheduler"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28421,7 +29755,10 @@
       "параметры планирования",
       "приоритет реального времени процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_getparam",
+      "sched_getparam"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28472,7 +29809,10 @@
       "задать приоритет планирования",
       "изменить приоритет реального времени"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_setparam",
+      "sched_setparam"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28526,7 +29866,10 @@
       "максимальный приоритет реального времени",
       "верхняя граница приоритета"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_get_priority_max",
+      "sched_get_priority_max"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28580,7 +29923,10 @@
       "минимальный приоритет политики",
       "нижняя граница приоритета"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_get_priority_min",
+      "sched_get_priority_min"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28633,7 +29979,10 @@
       "квант времени round-robin",
       "сколько времени даёт sched_rr"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_rr_get_interval",
+      "sched_rr_get_interval"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28685,7 +30034,10 @@
       "параметры планировщика",
       "приоритет для sched_setscheduler"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sched_param",
+      "sched_param"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28739,7 +30091,10 @@
       "uid процесса",
       "от какого пользователя запущено"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getuid",
+      "getuid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28791,7 +30146,10 @@
       "запущено ли от root",
       "эффективный пользователь процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.geteuid",
+      "geteuid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28842,7 +30200,10 @@
       "группа пользователя процесса",
       "реальный gid"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getgid",
+      "getgid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28892,7 +30253,10 @@
       "эффективная группа процесса",
       "gid для проверки прав"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getegid",
+      "getegid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28942,7 +30306,10 @@
       "все три uid процесса",
       "сохранённый uid"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getresuid",
+      "getresuid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -28993,7 +30360,10 @@
       "все три gid процесса",
       "сохранённый gid"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getresgid",
+      "getresgid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29045,7 +30415,10 @@
       "дополнительные группы процесса",
       "список групп текущего процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getgroups",
+      "getgroups"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29096,7 +30469,10 @@
       "в каких группах пользователь",
       "группы пользователя по имени"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getgrouplist",
+      "getgrouplist"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29146,7 +30522,10 @@
       "имя пользователя",
       "кто вошёл в систему"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getlogin",
+      "getlogin"
+    ],
     "tags": [
       "os"
     ],
@@ -29199,7 +30578,10 @@
       "сменить пользователя процесса",
       "сбросить права root"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setuid",
+      "setuid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29253,7 +30635,10 @@
       "временно сменить пользователя",
       "эффективный uid"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.seteuid",
+      "seteuid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29307,7 +30692,10 @@
       "сменить группу процесса",
       "сбросить группу root"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setgid",
+      "setgid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29361,7 +30749,10 @@
       "временно сменить группу",
       "эффективный gid"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setegid",
+      "setegid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29415,7 +30806,10 @@
       "задать реальный и эффективный uid",
       "поменять uid разом"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setreuid",
+      "setreuid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29469,7 +30863,10 @@
       "задать реальный и эффективный gid",
       "сменить группы разом"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setregid",
+      "setregid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29522,7 +30919,10 @@
       "задать все три uid",
       "окончательно сбросить права"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setresuid",
+      "setresuid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29575,7 +30975,10 @@
       "задать все три gid",
       "окончательно сбросить группу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setresgid",
+      "setresgid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29629,7 +31032,10 @@
       "задать дополнительные группы",
       "очистить группы процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setgroups",
+      "setgroups"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29683,7 +31089,10 @@
       "задать группы пользователя",
       "группы при смене пользователя"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.initgroups",
+      "initgroups"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29739,7 +31148,10 @@
       "группа процессов по pid",
       "pgid процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getpgid",
+      "getpgid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29793,7 +31205,10 @@
       "группа текущего процесса",
       "свой pgid"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getpgrp",
+      "getpgrp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29845,7 +31260,10 @@
       "идентификатор сессии",
       "сессия процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getsid",
+      "getsid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29899,7 +31317,10 @@
       "поместить процесс в группу",
       "своя группа процессов для потомка"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setpgid",
+      "setpgid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -29951,7 +31372,10 @@
       "стать лидером группы процессов",
       "новая группа процессов"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setpgrp",
+      "setpgrp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30004,7 +31428,10 @@
       "отвязать процесс от терминала",
       "демонизация процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setsid",
+      "setsid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30058,7 +31485,10 @@
       "какая группа у терминала",
       "передний план терминала"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.tcgetpgrp",
+      "tcgetpgrp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30111,7 +31541,10 @@
       "передать терминал группе",
       "вывести задание на передний план"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.tcsetpgrp",
+      "tcsetpgrp"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30165,7 +31598,10 @@
       "путь к управляющему терминалу",
       "имя терминала процесса"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.ctermid",
+      "ctermid"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30218,7 +31654,10 @@
       "создать псевдотерминал",
       "пара master и slave"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.openpty",
+      "openpty"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30271,7 +31710,10 @@
       "открыть ведущий псевдотерминал",
       "создать pty вручную"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.posix_openpt",
+      "posix_openpt"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30326,7 +31768,10 @@
       "права на ведомый псевдотерминал",
       "подготовить pty к открытию"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.grantpt",
+      "grantpt"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30379,7 +31824,10 @@
       "разблокировать псевдотерминал",
       "разрешить открытие slave pty"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.unlockpt",
+      "unlockpt"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30433,7 +31881,10 @@
       "путь к ведомому терминалу",
       "имя slave pty"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.ptsname",
+      "ptsname"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30488,7 +31939,10 @@
       "имя терминала по дескриптору",
       "какой tty у вывода"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.ttyname",
+      "ttyname"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30542,7 +31996,10 @@
       "сделать терминал управляющим",
       "подключить процесс к псевдотерминалу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.login_tty",
+      "login_tty"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -30596,7 +32053,10 @@
       "сменить текущую папку",
       "перейти в другой каталог"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.chdir",
+      "chdir"
+    ],
     "tags": [
       "os"
     ],
@@ -30650,7 +32110,10 @@
       "создать папку",
       "создать каталог"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.mkdir",
+      "mkdir"
+    ],
     "tags": [
       "os"
     ],
@@ -30707,7 +32170,10 @@
       "создать каталог со всеми родителями",
       "mkdir -p в python"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.makedirs",
+      "makedirs"
+    ],
     "tags": [
       "os"
     ],
@@ -30763,7 +32229,10 @@
       "удалить пустую папку",
       "удалить каталог"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.rmdir",
+      "rmdir"
+    ],
     "tags": [
       "os"
     ],
@@ -30818,7 +32287,10 @@
       "удалить пустые папки вверх по пути",
       "убрать вложенные пустые каталоги"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.removedirs",
+      "removedirs"
+    ],
     "tags": [
       "os"
     ],
@@ -30873,7 +32345,10 @@
       "переместить файл",
       "переименовать папку"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.rename",
+      "rename"
+    ],
     "tags": [
       "os"
     ],
@@ -30934,7 +32409,10 @@
       "переместить с созданием папок",
       "переименовать и убрать пустые каталоги"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.renames",
+      "renames"
+    ],
     "tags": [
       "os"
     ],
@@ -30993,7 +32471,10 @@
       "жёсткая ссылка",
       "второе имя файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.link",
+      "link"
+    ],
     "tags": [
       "os"
     ],
@@ -31051,7 +32532,10 @@
       "ярлык на файл",
       "ln -s в python"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.symlink",
+      "symlink"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31106,7 +32590,10 @@
       "куда указывает ссылка",
       "цель символической ссылки"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.readlink",
+      "readlink"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31161,7 +32648,10 @@
       "удалить файл",
       "unlink в python"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.unlink",
+      "unlink"
+    ],
     "tags": [
       "os"
     ],
@@ -31216,7 +32706,10 @@
       "touch в python",
       "сохранить дату изменения"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.utime",
+      "utime"
+    ],
     "tags": [
       "os"
     ],
@@ -31271,7 +32764,10 @@
       "сделать файл исполняемым",
       "запретить запись в файл"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.chmod",
+      "chmod"
+    ],
     "tags": [
       "os"
     ],
@@ -31327,7 +32823,10 @@
       "сменить владельца файла",
       "изменить группу файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.chown",
+      "chown"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31384,7 +32883,10 @@
       "владелец символической ссылки",
       "сменить владельца ссылки, а не цели"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.lchown",
+      "lchown"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31440,7 +32942,10 @@
       "сменить корневой каталог процесса",
       "изолировать процесс в папке"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.chroot",
+      "chroot"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31495,7 +33000,10 @@
       "именованный канал",
       "создать fifo"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.mkfifo",
+      "mkfifo"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31550,7 +33058,10 @@
       "создать файл устройства",
       "специальный файл"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.mknod",
+      "mknod"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31605,7 +33116,10 @@
       "сбросить буферы файла",
       "надёжное сохранение файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fsync",
+      "fsync"
+    ],
     "tags": [
       "os"
     ],
@@ -31658,7 +33172,10 @@
       "сбросить данные файла на диск",
       "быстрая синхронизация без метаданных"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fdatasync",
+      "fdatasync"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31712,7 +33229,10 @@
       "сбросить все буферы на диск",
       "синхронизировать файловые системы"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sync",
+      "sync"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31763,7 +33283,10 @@
       "перейти в каталог по дескриптору",
       "сменить папку по открытому каталогу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fchdir",
+      "fchdir"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31816,7 +33339,10 @@
       "изменить права открытого файла",
       "права по дескриптору"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fchmod",
+      "fchmod"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31873,7 +33399,10 @@
       "сменить владельца открытого файла",
       "владелец по дескриптору"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fchown",
+      "fchown"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31929,7 +33458,10 @@
       "заблокировать часть файла",
       "блокировка файла между процессами"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.lockf",
+      "lockf"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -31976,7 +33508,10 @@
       "выполнить команду и прочитать вывод",
       "вывод команды оболочки в строку"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.popen",
+      "popen"
+    ],
     "tags": [
       "os"
     ],
@@ -32027,7 +33562,10 @@
       "обход дерева с дескрипторами",
       "безопасный обход каталогов"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fwalk",
+      "fwalk"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32079,7 +33617,10 @@
       "свободное место на диске",
       "статистика файловой системы"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.statvfs",
+      "statvfs"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32133,7 +33674,10 @@
       "свободное место по дескриптору",
       "статистика файловой системы открытого файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fstatvfs",
+      "fstatvfs"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32187,7 +33731,10 @@
       "поля результата statvfs",
       "f_bavail и f_frsize"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.statvfs_result",
+      "statvfs_result"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32239,7 +33786,10 @@
       "максимальная длина имени файла",
       "ограничения файловой системы"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.pathconf",
+      "pathconf"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32291,7 +33841,10 @@
       "ограничения файловой системы по дескриптору",
       "максимальная длина имени для открытого каталога"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.fpathconf",
+      "fpathconf"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32347,7 +33900,10 @@
       "строковый параметр системы",
       "системная конфигурация строкой"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.confstr",
+      "confstr"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32401,7 +33957,10 @@
       "системный параметр числом",
       "размер страницы памяти"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sysconf",
+      "sysconf"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32456,7 +34015,10 @@
       "load average",
       "насколько загружен сервер"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getloadavg",
+      "getloadavg"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32508,7 +34070,10 @@
       "версия ядра",
       "архитектура процессора"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.uname",
+      "uname"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32560,7 +34125,10 @@
       "поля результата uname",
       "sysname и machine"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.uname_result",
+      "uname_result"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32611,7 +34179,10 @@
       "переменная окружения в байтах",
       "getenv для байтов"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getenvb",
+      "getenvb"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32663,7 +34234,10 @@
       "прочитать с заданной позиции",
       "чтение без смещения указателя"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.pread",
+      "pread"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32719,7 +34293,10 @@
       "записать в заданное место файла",
       "запись без смещения указателя"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.pwrite",
+      "pwrite"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32773,7 +34350,10 @@
       "прочитать с позиции в несколько буферов",
       "векторное чтение со смещением"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.preadv",
+      "preadv"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32826,7 +34406,10 @@
       "записать несколько буферов по позиции",
       "векторная запись со смещением"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.pwritev",
+      "pwritev"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32880,7 +34463,10 @@
       "прочитать в несколько буферов",
       "векторное чтение"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.readv",
+      "readv"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32934,7 +34520,10 @@
       "записать несколько буферов",
       "векторная запись"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.writev",
+      "writev"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -32988,7 +34577,10 @@
       "отправить файл в сокет",
       "быстрая отдача файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.sendfile",
+      "sendfile"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33040,7 +34632,10 @@
       "быстро скопировать часть файла",
       "копирование в ядре без чтения в память"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.copy_file_range",
+      "copy_file_range"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33092,7 +34687,10 @@
       "переслать данные через канал",
       "копирование без пространства пользователя"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.splice",
+      "splice"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33150,7 +34748,10 @@
       "прочитать расширенный атрибут",
       "метаданные файла xattr"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getxattr",
+      "getxattr"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33204,7 +34805,10 @@
       "записать расширенный атрибут",
       "добавить метаданные файлу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setxattr",
+      "setxattr"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33258,7 +34862,10 @@
       "список расширенных атрибутов",
       "какие xattr у файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.listxattr",
+      "listxattr"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33312,7 +34919,10 @@
       "удалить расширенный атрибут",
       "убрать xattr у файла"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.removexattr",
+      "removexattr"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33366,7 +34976,10 @@
       "счётчик событий в ядре",
       "разбудить цикл событий из потока"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.eventfd",
+      "eventfd"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33418,7 +35031,10 @@
       "прочитать счётчик событий",
       "дождаться события eventfd"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.eventfd_read",
+      "eventfd_read"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33469,7 +35085,10 @@
       "увеличить счётчик событий",
       "сообщить о событии через eventfd"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.eventfd_write",
+      "eventfd_write"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33520,7 +35139,10 @@
       "таймер как дескриптор",
       "периодический таймер linux"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.timerfd_create",
+      "timerfd_create"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33573,7 +35195,10 @@
       "запустить таймер",
       "задать период таймера"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.timerfd_settime",
+      "timerfd_settime"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33626,7 +35251,10 @@
       "запустить таймер в наносекундах",
       "точный период таймера"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.timerfd_settime_ns",
+      "timerfd_settime_ns"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33679,7 +35307,10 @@
       "сколько осталось до таймера",
       "период таймера"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.timerfd_gettime",
+      "timerfd_gettime"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33732,7 +35363,10 @@
       "остаток таймера в наносекундах",
       "точное время таймера"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.timerfd_gettime_ns",
+      "timerfd_gettime_ns"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33785,7 +35419,10 @@
       "файл в памяти",
       "анонимный файл без диска"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.memfd_create",
+      "memfd_create"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33836,7 +35473,10 @@
       "дескриптор процесса",
       "надёжно послать сигнал процессу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.pidfd_open",
+      "pidfd_open"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33887,7 +35527,10 @@
       "канал с флагами",
       "неблокирующий канал сразу"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.pipe2",
+      "pipe2"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33938,7 +35581,10 @@
       "войти в пространство имён",
       "присоединиться к контейнеру"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.setns",
+      "setns"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -33993,7 +35639,10 @@
       "новое пространство имён",
       "изоляция процесса как в контейнере"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.unshare",
+      "unshare"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -34046,7 +35695,10 @@
       "подсказка ядру о чтении файла",
       "не засорять кеш файлом"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.posix_fadvise",
+      "posix_fadvise"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -34099,7 +35751,10 @@
       "зарезервировать место под файл",
       "выделить место на диске заранее"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.posix_fallocate",
+      "posix_fallocate"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -34152,7 +35807,10 @@
       "блокирующий ли дескриптор",
       "проверить неблокирующий режим"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.get_blocking",
+      "get_blocking"
+    ],
     "tags": [
       "os"
     ],
@@ -34204,7 +35862,10 @@
       "неблокирующий режим",
       "сделать дескриптор неблокирующим"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.set_blocking",
+      "set_blocking"
+    ],
     "tags": [
       "os"
     ],
@@ -34255,7 +35916,10 @@
       "случайные байты из ядра",
       "криптографически стойкие байты linux"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.getrandom",
+      "getrandom"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -34307,7 +35971,10 @@
       "старший номер устройства",
       "драйвер устройства по номеру"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.major",
+      "major"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -34359,7 +36026,10 @@
       "младший номер устройства",
       "номер раздела устройства"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.minor",
+      "minor"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -34411,7 +36081,10 @@
       "собрать номер устройства",
       "номер устройства из major и minor"
     ],
-    "keywords": [],
+    "keywords": [
+      "os.makedev",
+      "makedev"
+    ],
     "tags": [
       "os",
       "platform:posix"
@@ -34463,7 +36136,10 @@
       "частичное применение метода",
       "метод с заранее заданными аргументами"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.partialmethod",
+      "partialmethod"
+    ],
     "tags": [
       "functools"
     ],
@@ -34514,7 +36190,10 @@
       "перегрузка метода по типу аргумента",
       "одиночная диспетчеризация в классе"
     ],
-    "keywords": [],
+    "keywords": [
+      "functools.singledispatchmethod",
+      "singledispatchmethod"
+    ],
     "tags": [
       "functools"
     ],
@@ -34565,7 +36244,10 @@
       "настроить разбор json",
       "свой декодер json"
     ],
-    "keywords": [],
+    "keywords": [
+      "json.JSONDecoder",
+      "JSONDecoder"
+    ],
     "tags": [
       "json"
     ],
@@ -34615,7 +36297,10 @@
       "сериализация своих классов в json",
       "как сохранить нестандартный тип в json"
     ],
-    "keywords": [],
+    "keywords": [
+      "json.JSONEncoder",
+      "JSONEncoder"
+    ],
     "tags": [
       "json"
     ],
@@ -34665,7 +36350,9 @@
       "объект среза",
       "срез как отдельный объект"
     ],
-    "keywords": [],
+    "keywords": [
+      "slice"
+    ],
     "tags": [
       "slice"
     ],
@@ -34716,7 +36403,10 @@
       "ядерная оценка плотности",
       "оценка плотности распределения"
     ],
-    "keywords": [],
+    "keywords": [
+      "statistics.kde",
+      "kde"
+    ],
     "tags": [
       "statistics"
     ],
@@ -34767,7 +36457,10 @@
       "генерация значений по ядерной оценке плотности",
       "смоделировать выборку по имеющимся данным"
     ],
-    "keywords": [],
+    "keywords": [
+      "statistics.kde_random",
+      "kde_random"
+    ],
     "tags": [
       "statistics"
     ],

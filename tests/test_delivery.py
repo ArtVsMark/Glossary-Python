@@ -14,6 +14,7 @@ from typing import Any
 
 import pytest
 
+import version as version_module
 from glossary import delivery, taxonomy
 from glossary.cards import assemble, default_cards_dir, read_cards
 from glossary.cli import EXIT_OK, EXIT_USAGE, main
@@ -211,7 +212,10 @@ def test_repository_delivery_matches_its_schema():
 def write_moved(cards_dir: Path, mapping: dict[str, str]) -> None:
     """Положить ``moved.json`` рядом с каталогом карточек, как ``data/moved.json``."""
     (cards_dir.parent / delivery.MOVED_FILE).write_text(
-        json.dumps(mapping, ensure_ascii=False), "utf-8"
+        json.dumps(
+            {"_описание": "пояснение", delivery.MOVES_KEY: mapping}, ensure_ascii=False
+        ),
+        "utf-8",
     )
 
 
@@ -223,8 +227,27 @@ def test_no_moved_file_means_no_moves(tmp_path: Path):
 def test_moved_reaches_the_delivery(tmp_path: Path):
     """Слитая карточка исчезла — потребитель узнаёт, куда вести её ссылки."""
     source = make_cards(tmp_path / "cards", {"builtin": [card(id="new")]})
-    write_moved(source, {"old": "new", "_описание": "пояснение"})
+    write_moved(source, {"old": "new"})
     assert delivery.collect(source)["moved"] == {"old": "new"}
+
+
+def test_move_of_an_underscored_id_reaches_the_delivery(tmp_path: Path):
+    """Id с подчёркиванием — переезд, а не пояснение (#172).
+
+    Прежде пояснением считался любой ключ с ``_``, и переезд карточки
+    ``__str__-__repr__`` молча выпадал из выгрузки.
+    """
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="repr-vs-str")]})
+    write_moved(source, {"__str__-__repr__": "repr-vs-str"})
+    assert delivery.collect(source)["moved"] == {"__str__-__repr__": "repr-vs-str"}
+
+
+def test_moves_outside_their_key_are_refused(tmp_path: Path):
+    """Файл прежней формы не читается молча как «переездов нет»."""
+    source = make_cards(tmp_path / "cards", {"builtin": [card(id="new")]})
+    (source.parent / delivery.MOVED_FILE).write_text('{"old": "new"}', "utf-8")
+    with pytest.raises(DataFormatError, match="moves"):
+        delivery.collect(source)
 
 
 def test_move_into_nowhere_is_refused(tmp_path: Path):
@@ -261,6 +284,52 @@ def test_moved_target_must_be_a_string(tmp_path: Path):
 def test_repository_moves_point_at_live_cards():
     """Переезды дерева сверены с карточками: сборка выгрузки не падает."""
     delivery.collect()
+
+
+# ----------------------- исчезнувший id (#172) -----------------------
+
+
+def vanished(previous: set[str], current: set[str], moves: dict[str, str]) -> list[str]:
+    """Id прошлого выпуска, которых нет ни среди карточек, ни среди переездов."""
+    return sorted(previous - current - moves.keys())
+
+
+def test_vanished_id_is_caught_on_a_fake():
+    assert vanished({"a", "b", "c"}, {"a", "d"}, {"b": "d"}) == ["c"]
+    assert vanished({"a", "_x"}, {"a", "y"}, {"_x": "y"}) == []
+
+
+@pytest.mark.live_surface
+def test_no_released_id_vanishes_without_a_move():
+    """Id из выпуска не исчезает молча: либо карточка есть, либо записан переезд.
+
+    Ссылка потребителя на исчезнувший id становится битой без единого сигнала —
+    так пропал ``__str__-__repr__`` (#172). Сверка идёт со сборкой КАЖДОГО тега
+    выпуска, а не только последнего: потребитель закрепляет любой, а id,
+    исчезнувший до последнего выпуска, в нём уже не виден. Выпуски до самой
+    выгрузки (в них нет ``src/glossary/delivery.py``) контрактом не были: v0.1.0
+    нёс другие 581 карточку, и обещания про их id не давалось.
+    """
+    listed = version_module.git("tag", "--list", version_module.TAG_GLOB)
+    tags = [
+        tag
+        for tag in (listed or "").split()
+        if version_module.TAG_RE.match(tag)
+        and version_module.git("cat-file", "-e", f"{tag}:src/glossary/delivery.py")
+        is not None
+    ]
+    if not tags:
+        pytest.skip("тегов выпуска в клоне не видно: git fetch --tags")
+    previous: set[str] = set()
+    for tag in tags:
+        shown = version_module.git("show", f"{tag}:data/glossary.json")
+        if shown is not None:
+            previous |= {entry["id"] for entry in json.loads(shown)["entries"]}
+    current = {
+        card["id"] for cards in delivery.collect()["groups"].values() for card in cards
+    }
+    lost = vanished(previous, current, delivery.moved())
+    assert not lost, f"id выпусков {tags} исчезли без записи в data/moved.json: {lost}"
 
 
 # --------------------------- навигация (форма 6.1) ---------------------------

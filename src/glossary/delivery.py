@@ -30,7 +30,10 @@
 (форма 4.1, #79). Карточку сливают с дублем, и её ``id`` исчезает, а у
 потребителя на него остались ссылки. Без списка такая ссылка молча ведёт в
 пустоту; со списком потребитель перенаправляет её сам. Источник — файл
-``data/moved.json`` рядом с каталогом карточек.
+``data/moved.json`` рядом с каталогом карточек: переезды лежат под ключом
+``moves``, пояснения — рядом. Прежде пояснением считался любой ключ с ``_``, и
+переезд карточки ``__str__-__repr__`` молча выпадал из выгрузки (#172): id
+вправе начинаться с подчёркивания, а пояснение — нет.
 
 ``navigation`` — как разложить карточки по разделам и семействам и как их
 подписать (форма 6.1): порядок семейств, их подписи ``{ru, en}`` и раздел →
@@ -81,6 +84,9 @@ CARD_SCHEMA: Final = "data/glossary.schema.json"
 MOVED_FILE: Final = "moved.json"
 """Файл переездов — рядом с каталогом карточек: ``data/moved.json``."""
 
+MOVES_KEY: Final = "moves"
+"""Ключ, под которым в файле лежат переезды; остальные ключи — пояснения."""
+
 
 def groups_of(entries: list[Entry]) -> dict[str, list[dict[str, Any]]]:
     """Разложить опубликованные карточки по группам в форме файлов источника.
@@ -117,7 +123,9 @@ def moved(
         raw = json.loads(path.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
         raise DataFormatError(f"{path}: не JSON — {exc}") from exc
-    mapping = {k: v for k, v in raw.items() if not k.startswith("_")}
+    mapping = raw.get(MOVES_KEY) if isinstance(raw, dict) else None
+    if not isinstance(mapping, dict):
+        raise DataFormatError(f"{path}: переезды лежат объектом под ключом {MOVES_KEY!r}")
     if not all(isinstance(v, str) for v in mapping.values()):
         raise DataFormatError(f"{path}: новый id должен быть строкой")
     if ids:

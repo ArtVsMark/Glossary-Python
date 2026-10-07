@@ -355,6 +355,7 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
     <div class="filters" id="kindFilters"></div>
     <div class="filters" id="familyFilters"></div>
     <div class="filters" id="sectionFilters" hidden></div>
+    <div class="filters" id="pyFilters"></div>
   </div>
 </div>
 
@@ -407,7 +408,7 @@ const STORE = { theme:"glossary-theme", lang:"glossary-lang" };
 
 const I18N = {
   ru:{
-    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", sinceAll:"все Python 3", sinceAllHint:"Есть во всех версиях Python 3 — появилось ещё в Python 2", sinceHint:"Появилось в этой версии Python и работает в более новых", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)", deprecated:"устарело в", deprecatedHint:"Объявлено устаревшим в этой версии Python и может быть удалено", removed:"до", removedHint:"Удалено или будет удалено в этой версии Python: работает в версиях раньше неё",
+    title:"Python Glossary", subtitle:"Справочник стандартной библиотеки", pyHint:"Что доступно в выбранной версии: появилось не позже неё и ещё не удалено", pyNew:"только новое", pyNewHint:"Только то, что появилось именно в выбранной версии", sinceAll:"все Python 3", sinceAllHint:"Есть во всех версиях Python 3 — появилось ещё в Python 2", sinceHint:"Появилось в этой версии Python и работает в более новых", platformsHint:"Доступно только на этих системах; карточки без значка работают везде (AllOS)", deprecated:"устарело в", deprecatedHint:"Объявлено устаревшим в этой версии Python и может быть удалено", removed:"до", removedHint:"Удалено или будет удалено в этой версии Python: работает в версиях раньше неё",
     download:"Скачать", downloaded:"Готово", theme:"Сменить тему",
     search:"Поиск по имени, синонимам, ключевым словам…",
     bySection:"По разделам", kind:"Вид", group:"Раздел", moduleWord:"модуль",
@@ -422,7 +423,7 @@ const I18N = {
     resetHint:"Удалить сохранённые тему и язык"
   },
   en:{
-    title:"Python Glossary", subtitle:"Standard library reference", sinceAll:"all Python 3", sinceAllHint:"Available in every Python 3 release — it dates back to Python 2", sinceHint:"Added in this Python version and available in later ones", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
+    title:"Python Glossary", subtitle:"Standard library reference", pyHint:"What is available in the chosen version: added no later and not yet removed", pyNew:"new only", pyNewHint:"Only what was added in exactly the chosen version", sinceAll:"all Python 3", sinceAllHint:"Available in every Python 3 release — it dates back to Python 2", sinceHint:"Added in this Python version and available in later ones", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
     download:"Download", downloaded:"Saved", theme:"Toggle theme",
     search:"Search by name, alias, keyword…",
     bySection:"By section", kind:"Kind", group:"Section", moduleWord:"module",
@@ -523,7 +524,7 @@ function haystack(d){
 }
 
 /* ---------- состояние ---------- */
-const state = { q:"", kind:"", fam:"", section:"", sort:"az" };
+const state = { q:"", kind:"", fam:"", section:"", py:"", pyNew:false, sort:"az" };
 let visible = [];
 let drawn = 0;
 const CHUNK = 48;
@@ -531,7 +532,23 @@ const CHUNK = 48;
 const $ = sel => document.querySelector(sel);
 const grid = $("#grid"), empty = $("#empty"), counter = $("#counter");
 
+/* Версия Python (#154): «<3.0» раньше любой 3.x — возможность была всегда. */
+const verKey = v => v.startsWith("<") ? [2, 7] : v.split(".").map(Number);
+const verCmp = (a, b) => { const x = verKey(a), y = verKey(b); return x[0] - y[0] || x[1] - y[1]; };
+/* Доступно в версии: появилось не позже неё и ещё не удалено. Флаг «только
+   новое» сужает до появившегося ровно в ней — вопрос «что нового в 3.12». */
+function availableIn(d, v){
+  if(!d.added || verCmp(d.added, v) > 0) return false;
+  return !d.removed || verCmp(d.removed, v) > 0;
+}
+/* Ряд версий выводится из данных: появится карточка из 3.16 — появится и фишка.
+   Берётся только added: «удалено в 3.17» — обещание будущего, а не версия, в
+   которой учащийся пишет код. */
+const PY_VERSIONS = Array.from(new Set(DATA.map(d => d.added)
+  .filter(v => v && !v.startsWith("<") && verCmp(v, "3.9") >= 0))).sort(verCmp);
+
 function matches(d){
+  if(state.py && !(state.pyNew ? d.added === state.py : availableIn(d, state.py))) return false;
   if(state.kind && d.kind !== state.kind) return false;
   if(state.fam && famOf(d) !== state.fam) return false;
   if(state.section && d.section !== state.section) return false;
@@ -684,6 +701,21 @@ function buildKindFilters(){
   });
 }
 
+function buildPyFilters(){
+  const box = $("#pyFilters");
+  const count = v => DATA.filter(d => state.pyNew ? d.added === v : availableIn(d, v)).length;
+  box.innerHTML = `<span class="fil-label" title="${esc(t("pyHint"))}">Python</span>` +
+    chip(t("all"), state.py === "", DATA.length) +
+    PY_VERSIONS.map(v => chip(v, state.py === v, count(v))).join("") +
+    `<button class="chip toggle${state.pyNew ? " active" : ""}" type="button" title="${esc(t("pyNewHint"))}">${esc(t("pyNew"))}</button>`;
+  const chips = box.querySelectorAll(".chip");
+  chips.forEach((b, i) => {
+    b.onclick = i === chips.length - 1
+      ? () => { state.pyNew = !state.pyNew; buildPyFilters(); render(); }
+      : () => { state.py = i === 0 ? "" : PY_VERSIONS[i-1]; buildPyFilters(); render(); };
+  });
+}
+
 /* Фильтр в два уровня, как в глоссарии грейдера: семейство, внутри него
    раздел. Раньше здесь были цветовые группы карточек — коды вроде «seq» и
    «mapset», которые читателю ничего не говорят и на русский не переводились. */
@@ -801,8 +833,9 @@ function revealHash(){
   if(!id || !BY_ID.has(id)) return;
   if(!visible.some(d => d.id === id)){
     state.q = ""; state.kind = ""; state.fam = ""; state.section = "";
+    state.py = ""; state.pyNew = false;
     $("#search").value = "";
-    buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); render();
+    buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); buildPyFilters(); render();
   }
   scrollToIndex(visible.findIndex(d => d.id === id), "center");
 }
@@ -849,7 +882,7 @@ function applyLang(lang, persist = true){
     b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
   $("#search").placeholder = t("search");
   $("#footStats").textContent = I18N[lang].stats(DATA.length, SECTIONS.length);
-  buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); render();
+  buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); buildPyFilters(); render();
   $("#resetBtn").textContent = t("reset");
   $("#resetBtn").title = t("resetHint");
   if(persist){ try{ localStorage.setItem(STORE.lang, lang); }catch(_){} }

@@ -21,6 +21,8 @@
 * **версии раньше младшего снимка.** ``2.7`` против ``3.5`` неразличимы: обе
   раньше 3.11, и в снимке имя есть в обоих случаях;
 * **имена вне инвентаря** — синтаксис, понятия, модули вне ``STDLIB_MODULES``;
+* **перенос в патч-выпуски.** Исправление безопасности, перенесённое в старые
+  ветки, снимок видит раньше версии появления — такие имена в ``BACKPORTED``;
 * **«появилось в инвентаре» ≠ «появилось в языке».** Класс, переехавший в
   подмодуль, функция, доступная на этой ОС позже, чем на другой, или имя,
   позже вошедшее в ``__all__`` модуля, видны инвентарю позже срока. Такие
@@ -51,11 +53,34 @@ SEEN_LATER: Final[dict[str, str]] = {
     "hashlib.scrypt": "есть с 3.6, но в hashlib.__all__ вошло в 3.15",
     "asyncio.TaskGroup": "есть с 3.11, но в asyncio.__all__ вошло в 3.12",
     "traceback.print_list": "есть с Python 2, но в traceback.__all__ вошло в 3.14",
+    "signal.ItimerError": "есть с Python 2, но до 3.13 класс назывался itimer_error",
 }
 """Имена, которые инвентарь видит позже, чем они появились в языке.
 
 Список закрытый: каждая строка — разобранный случай с причиной, а не способ
 заглушить находку.
+"""
+
+_FILTERS: Final = (
+    "фильтры распаковки — в 3.12, перенесены исправлением безопасности в "
+    "патч-выпуски 3.8–3.11; документация велит проверять hasattr, а не версию"
+)
+BACKPORTED: Final[dict[str, str]] = {
+    "tarfile.FilterError": _FILTERS,
+    "tarfile.AbsolutePathError": _FILTERS,
+    "tarfile.OutsideDestinationError": _FILTERS,
+    "tarfile.SpecialFileError": _FILTERS,
+    "tarfile.AbsoluteLinkError": _FILTERS,
+    "tarfile.LinkOutsideDestinationError": _FILTERS,
+    "tarfile.LinkFallbackError": "в 3.14, перенесено исправлением безопасности "
+    "в патч-выпуски прежних веток",
+}
+"""Имена, которые инвентарь видит РАНЬШЕ версии появления: перенос в патч-выпуски.
+
+Снимок берёт последний патч ветки, поэтому исправление безопасности, перенесённое
+в 3.11.x, видно в снимке 3.11, хотя возможность объявлена в 3.12 и в 3.11.0 её
+нет. Поле added называет выпуск, где возможность объявлена, — сверять его с
+патчем нечем. Список закрытый, как и SEEN_LATER.
 """
 
 
@@ -97,7 +122,7 @@ def findings(cards: list[dict[str, Any]], dumps: list[dict[str, Any]]) -> list[F
             (
                 seen[name]
                 for name in names(card)
-                if name in seen and name not in SEEN_LATER
+                if name in seen and name not in SEEN_LATER and name not in BACKPORTED
             ),
             key=whatsnew.version_key,
         )

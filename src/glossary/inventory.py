@@ -168,6 +168,13 @@ STDLIB_MODULES: Final[frozenset[str]] = frozenset(
         "urllib.request",
         "zipfile",
         "zlib",
+        # Третья волна #147: тяжёлые модули.
+        "ast",
+        "http.client",
+        "inspect",
+        "multiprocessing",
+        "socket",
+        "xml.etree.ElementTree",
     }
 )
 """Курируемый набор модулей.

@@ -1838,8 +1838,8 @@
         "en": "A typed named tuple defined by inheritance. Class syntax with annotations."
       },
       "body": {
-        "ru": "Берите NamedTuple, когда нужна неизменяемая хешируемая запись, которая ведёт себя как кортеж: распаковка, индексация, использование ключом словаря, экономия памяти. Если поля должны меняться или планируется наследование и своя логика — это работа для dataclass. Ловушка ровно в том, что это настоящий кортеж: Point(1.0, 2.0) == (1.0, 2.0) даёт True, так что тип не спасёт от случайного смешивания с обычными кортежами.",
-        "en": "Reach for NamedTuple when you want an immutable, hashable record that still behaves like a tuple: unpacking, indexing, use as a dict key, small memory footprint. If the fields have to change, or you need inheritance and custom behaviour, a dataclass fits better. The trap is that it really is a tuple: Point(1.0, 2.0) == (1.0, 2.0) is True, so the type will not protect you from mixing it up with plain tuples."
+        "ru": "Берите NamedTuple, когда нужна неизменяемая хешируемая запись, которая ведёт себя как кортеж: распаковка, индексация, использование ключом словаря, экономия памяти. Если поля должны меняться или планируется наследование и своя логика — это работа для dataclass. Ловушка ровно в том, что это настоящий кортеж: Point(1.0, 2.0) == (1.0, 2.0) даёт True, так что тип не спасёт от случайного смешивания с обычными кортежами. Функциональная форма NamedTuple('NT', x=int) с именованными аргументами и вызов без списка полей устарели в 3.13 и запрещены с 3.15: пишите класс, как в примере, или NamedTuple('NT', [('x', int)]).",
+        "en": "Reach for NamedTuple when you want an immutable, hashable record that still behaves like a tuple: unpacking, indexing, use as a dict key, small memory footprint. If the fields have to change, or you need inheritance and custom behaviour, a dataclass fits better. The trap is that it really is a tuple: Point(1.0, 2.0) == (1.0, 2.0) is True, so the type will not protect you from mixing it up with plain tuples. The functional form NamedTuple('NT', x=int) with keyword arguments, and a call without a field list, were deprecated in 3.13 and are disallowed from 3.15: write a class as in the example, or NamedTuple('NT', [('x', int)])."
       },
       "syntax": "from typing import NamedTuple\nclass MyTuple(NamedTuple):\n    field: type",
       "status": "ready",
@@ -2103,8 +2103,8 @@
         "en": "A dictionary with a fixed set of typed keys. For static analysis only; at runtime it is an ordinary dict."
       },
       "body": {
-        "ru": "Главная ловушка: проверок в рантайме нет — лишний ключ, отсутствующий ключ или строка вместо float спокойно пройдут, ошибку покажет только mypy или другой статический анализатор. Это не класс: экземпляр создаётся как обычный литерал словаря, доступ идёт через p['x'], а не p.x, и isinstance с TypedDict не работает. Берите его для готовых dict-данных (JSON от API, конфиг), а если структуру вы создаёте сами — удобнее dataclass или NamedTuple с атрибутами.",
-        "en": "The main trap: nothing is checked at runtime — an extra key, a missing key or a string where a float was declared all pass silently, and only mypy or another static checker will complain. It is not a real class: you build it as a plain dict literal, read it as p['x'] rather than p.x, and isinstance against a TypedDict is not allowed. Reach for it when the data already arrives as a dict (JSON from an API, a config); if you design the structure yourself, a dataclass or NamedTuple with real attributes is usually nicer."
+        "ru": "Главная ловушка: проверок в рантайме нет — лишний ключ, отсутствующий ключ или строка вместо float спокойно пройдут, ошибку покажет только mypy или другой статический анализатор. Это не класс: экземпляр создаётся как обычный литерал словаря, доступ идёт через p['x'], а не p.x, и isinstance с TypedDict не работает. Берите его для готовых dict-данных (JSON от API, конфиг), а если структуру вы создаёте сами — удобнее dataclass или NamedTuple с атрибутами. Функциональная форма без словаря полей — TypedDict('TD') или TypedDict('TD', None) — устарела в 3.13 и запрещена с 3.15: пустой тип пишется как TypedDict('TD', {}).",
+        "en": "The main trap: nothing is checked at runtime — an extra key, a missing key or a string where a float was declared all pass silently, and only mypy or another static checker will complain. It is not a real class: you build it as a plain dict literal, read it as p['x'] rather than p.x, and isinstance against a TypedDict is not allowed. Reach for it when the data already arrives as a dict (JSON from an API, a config); if you design the structure yourself, a dataclass or NamedTuple with real attributes is usually nicer. The functional form without a field dict — TypedDict('TD') or TypedDict('TD', None) — was deprecated in 3.13 and is disallowed from 3.15: write an empty type as TypedDict('TD', {})."
       },
       "syntax": "from typing import TypedDict\nclass MyDict(TypedDict):\n    key: type",
       "status": "ready",
@@ -85745,8 +85745,8 @@
         "en": "A class method. Its first parameter is cls (a reference to the class). Used for alternative constructors."
       },
       "body": {
-        "ru": "cls — это тот класс, на котором метод фактически вызвали, поэтому в подклассе cls(...) построит объект подкласса, а не родителя; именно за это classmethod ценят в альтернативных конструкторах. Если фабрике сам класс не нужен, берите staticmethod или обычную функцию.",
-        "en": "cls is whichever class the method was actually called on, so in a subclass cls(...) builds an instance of the subclass, not the parent — exactly why alternative constructors rely on classmethod. If the factory doesn't need the class at all, reach for staticmethod or a plain function instead."
+        "ru": "cls — это тот класс, на котором метод фактически вызвали, поэтому в подклассе cls(...) построит объект подкласса, а не родителя; именно за это classmethod ценят в альтернативных конструкторах. Если фабрике сам класс не нужен, берите staticmethod или обычную функцию. Старые учебники показывают @classmethod поверх @property как «свойство класса»: это работало в 3.9–3.12, устарело в 3.11 и удалено в 3.13 — теперь A.name вернёт связанный метод, а не значение.",
+        "en": "cls is whichever class the method was actually called on, so in a subclass cls(...) builds an instance of the subclass, not the parent — exactly why alternative constructors rely on classmethod. If the factory doesn't need the class at all, reach for staticmethod or a plain function instead. Older tutorials stack @classmethod on top of @property to get a “class property”: that worked in 3.9–3.12, was deprecated in 3.11 and removed in 3.13 — now A.name returns a bound method, not the value."
       },
       "syntax": "@classmethod\ndef method(cls, ...): ...",
       "status": "ready",
@@ -85849,6 +85849,15 @@
           "    pass",
           "cat = Cat.make('Whiskers')",
           "print(type(cat).__name__, cat.name)  # → Cat Whiskers"
+        ],
+        [
+          "# Python 3.13+",
+          "class A:",
+          "    @classmethod",
+          "    @property",
+          "    def name(cls):",
+          "        return cls.__name__",
+          "print(type(A.name).__name__)  # → method — а не 'A': цепочка удалена в 3.13"
         ]
       ],
       "related": [

@@ -15,7 +15,7 @@ from typing import Any
 import pytest
 
 import version as version_module
-from glossary import delivery
+from glossary import delivery, taxonomy
 from glossary.cards import assemble, default_cards_dir, read_cards
 from glossary.cli import EXIT_OK, EXIT_USAGE, main
 from glossary.contracts import PRODUCER
@@ -330,3 +330,31 @@ def test_no_released_id_vanishes_without_a_move():
     }
     lost = vanished(previous, current, delivery.moved())
     assert not lost, f"id выпусков {tags} исчезли без записи в data/moved.json: {lost}"
+
+
+# --------------------------- навигация (форма 6.1) ---------------------------
+
+
+def test_navigation_labels_every_section_of_the_delivery(tmp_path: Path):
+    """Каждый раздел выгрузки подписан и отнесён к семейству — своей таблицы
+    потребителю держать не нужно."""
+    source = make_cards(
+        tmp_path / "cards",
+        {"builtin": [card(id="a", section="Модуль os"), card(id="b", section="Циклы")]},
+    )
+    navigation = delivery.collect(source)["navigation"]
+    assert navigation["sections"] == {
+        "Модуль os": {"group": "modules", "ru": "os", "en": "os"},
+        "Циклы": {"group": "syntax", "ru": "Циклы", "en": "Loops"},
+    }
+    assert navigation["groups"][0] == "types"
+    assert navigation["labels"]["modules"] == {"ru": "Модули", "en": "Modules"}
+
+
+def test_navigation_is_the_showcase_table():
+    """Одна классификация на витрину и выгрузку (правило 214)."""
+    collected = delivery.collect()
+    sections = sorted(
+        {card["section"] for cards in collected["groups"].values() for card in cards}
+    )
+    assert collected["navigation"] == taxonomy.table(sections)

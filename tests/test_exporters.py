@@ -4,6 +4,8 @@ import csv
 import io
 import json
 import re
+import shutil
+import subprocess
 
 import pytest
 
@@ -216,3 +218,49 @@ def test_filter_counts_follow_the_other_filters():
         "buildPyFilters",
     ):
         assert builder + "()" in body, f"render() не пересчитывает {builder}"
+
+
+def _run_in_python(cases: list[tuple[dict[str, str], str, str]]) -> list[bool]:
+    """Исполнить ``inPython`` из шаблона на ``node`` и вернуть ответы по случаям."""
+    node = shutil.which("node")
+    if node is None:
+        pytest.skip("node не установлен — функцию витрины исполнить нечем")
+    template = load_template()
+    source = (
+        "function inPython"
+        + template.split("function inPython", 1)[1].split("\n}", 1)[0]
+        + "\n}"
+    )
+    script = (
+        "const availableIn = () => true;\n"
+        + source
+        + f"\nconsole.log(JSON.stringify({json.dumps(cases)}.map("
+        + "([d, v, m]) => inPython(d, v, m))));"
+    )
+    done = subprocess.run(  # noqa: S603 — исполняется наш шаблон
+        [node, "-e", script], capture_output=True, text=True, check=True, timeout=30
+    )
+    return json.loads(done.stdout)
+
+
+@pytest.mark.live_surface
+def test_lifecycle_mode_without_version_keeps_only_python3_events():
+    """«Появилось» без версии — появившееся в Python 3, а не все карточки.
+
+    Поле ``added`` есть у каждой карточки, у старых — ``<3.0``. Когда режим без
+    версии пропускал любую непустую дату, «появилось» не сужало ничего, и
+    счётчики остальных рядов не менялись — в отличие от «устарело» и «удалено».
+    """
+    old = {"added": "<3.0", "deprecated": "", "removed": ""}
+    new = {"added": "3.12", "deprecated": "", "removed": ""}
+    gone = {"added": "<3.0", "deprecated": "3.4", "removed": "3.12"}
+    assert _run_in_python(
+        [
+            (old, "", "added"),
+            (new, "", "added"),
+            (new, "3.12", "added"),
+            (old, "", "deprecated"),
+            (gone, "", "deprecated"),
+            (gone, "", "removed"),
+        ]
+    ) == [False, True, True, False, True, True]

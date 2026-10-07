@@ -1,4 +1,4 @@
-"""Свод называет срок жизни окна: правило каталога 006.
+"""Свод называет срок жизни окна (006), событие перезапуска (047) и имя окна (038).
 
 Держится здесь одна вещь, зато та, ради которой раздел заведён: **срок назван
 числом** там, где окно читает его при старте. Прозаическое «окно не должно жить
@@ -64,3 +64,17 @@ def test_section_is_found_by_heading():
     """Разбор ищет заголовок, а не подстроку: слова «про окно» есть и в прозе."""
     text = SVOD.read_text(encoding="utf-8")
     assert text.count(SECTION) == 1, "заголовок раздела должен быть один"
+
+
+@pytest.mark.live_surface
+def test_rule_change_restarts_windows(window: str):
+    """Правило 047: смена правил — событие для перезапуска, а не повод ждать срока."""
+    assert "Сменились правила работы — окна перезапускают" in window
+
+
+@pytest.mark.live_surface
+def test_window_name_starts_with_its_environment(window: str):
+    """Правило 038: метки окружения названы, и сказано, когда метка ставится."""
+    missing = [tag for tag in ("[WEB]", "[LOCAL]", "[CLI]") if tag not in window]
+    assert not missing, "метки окружения названы не все: " + ", ".join(missing)
+    assert "при открытии" in window

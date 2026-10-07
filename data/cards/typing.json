@@ -1525,7 +1525,10 @@
       "ru": "обобщения и параметры",
       "en": "generics and parameters"
     },
-    "aliases": [],
+    "aliases": [
+      "тип P.args",
+      "аннотация args для ParamSpec"
+    ],
     "keywords": [],
     "tags": [
       "typing"
@@ -1573,7 +1576,10 @@
       "ru": "обобщения и параметры",
       "en": "generics and parameters"
     },
-    "aliases": [],
+    "aliases": [
+      "тип P.kwargs",
+      "аннотация kwargs для ParamSpec"
+    ],
     "keywords": [],
     "tags": [
       "typing"
@@ -2500,7 +2506,10 @@
       "ru": "декораторы и маркеры",
       "en": "decorators and markers"
     },
-    "aliases": [],
+    "aliases": [
+      "декоратор без проверки типов",
+      "отключить проверку типов декоратором"
+    ],
     "keywords": [],
     "tags": [
       "typing"
@@ -2603,7 +2612,10 @@
       "ru": "декораторы и маркеры",
       "en": "decorators and markers"
     },
-    "aliases": [],
+    "aliases": [
+      "свой декоратор как dataclass",
+      "подсказать проверщику типов поля"
+    ],
     "keywords": [],
     "tags": [
       "typing"
@@ -2650,7 +2662,10 @@
       "ru": "декораторы и маркеры",
       "en": "decorators and markers"
     },
-    "aliases": [],
+    "aliases": [
+      "очистить реестр перегрузок",
+      "сбросить overload"
+    ],
     "keywords": [],
     "tags": [
       "typing"

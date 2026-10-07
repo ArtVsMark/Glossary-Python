@@ -3700,7 +3700,10 @@
         "en": "bytearray — padding"
       },
       "color_group": "seq",
-      "aliases": [],
+      "aliases": [
+        "заменить табуляции пробелами в байтах",
+        "развернуть табы в bytearray"
+      ],
       "keywords": [],
       "tags": [
         "bytearray"
@@ -4358,7 +4361,10 @@
         "en": "bytearray — is* checks"
       },
       "color_group": "seq",
-      "aliases": [],
+      "aliases": [
+        "каждое слово с заглавной в байтах",
+        "проверка заголовочного регистра bytearray"
+      ],
       "keywords": [],
       "tags": [
         "bytearray"
@@ -10960,7 +10966,10 @@
         "en": "built-in exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "неполный ввод в интерактивной оболочке",
+        "многострочный ввод ещё не закончен"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -11429,7 +11438,11 @@
         "en": "built-in exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "операция заблокировалась бы",
+        "неблокирующий сокет без данных",
+        "нет данных для чтения прямо сейчас"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -11524,7 +11537,10 @@
         "en": "built-in exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "нельзя изменить размер буфера",
+        "буфер занят memoryview"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -11570,7 +11586,10 @@
         "en": "built-in exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "сравнение байтов со строкой",
+        "предупреждение при str от bytes"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -11616,7 +11635,10 @@
         "en": "built-in exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "нет дочерних процессов",
+        "ошибка ожидания потомка"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -11961,7 +11983,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "экспонента подрезана",
+        "показатель степени decimal изменён"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -12159,7 +12184,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "целочисленное деление decimal невозможно",
+        "слишком большое частное decimal"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -12206,7 +12234,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "ноль делить на ноль в decimal",
+        "неопределённое деление decimal"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -12253,7 +12284,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "смешали decimal и float",
+        "запретить float в decimal"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -12350,7 +12384,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "неверные настройки контекста decimal",
+        "ошибка контекста десятичных вычислений"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -12548,7 +12585,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "очень маленькое десятичное число",
+        "субнормальный результат decimal"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -12781,7 +12821,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "ошибка регистрации кодека",
+        "не удалось найти кодек"
+      ],
       "keywords": [],
       "tags": [
         "encodings"
@@ -13568,7 +13611,10 @@
         "en": "built-in exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "системный вызов прерван сигналом",
+        "прерванная операция ввода-вывода"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -14973,7 +15019,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "устаревшее исключение shutil",
+        "ошибка выполнения в shutil"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -15070,7 +15119,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "ошибка регистрации формата архива",
+        "формат архива уже зарегистрирован"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -15167,7 +15219,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "нельзя скопировать именованный канал",
+        "копирование сокета или устройства"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -15214,7 +15269,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "ошибка интервального таймера",
+        "сбой setitimer"
+      ],
       "keywords": [],
       "tags": [
         "exc",
@@ -15718,7 +15776,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "барьер потоков сломан",
+        "поток не дождался остальных на барьере"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -15814,7 +15875,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "незакрытая скобка в исходнике",
+        "ошибка разбора кода на токены"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -16199,7 +16263,10 @@
         "en": "built-in exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "ошибка перевода символов юникода",
+        "сбой str.translate с кодеком"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -16496,7 +16563,10 @@
         "en": "module exceptions"
       },
       "color_group": "exc",
-      "aliases": [],
+      "aliases": [
+        "не удалось импортировать из zip",
+        "ошибка импорта из архива"
+      ],
       "keywords": [],
       "tags": [
         "exc"
@@ -20108,7 +20178,10 @@
         "en": "abc utilities"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "токен кеша абстрактных классов",
+        "сбросился ли кеш isinstance для abc"
+      ],
       "keywords": [],
       "tags": [
         "abc"
@@ -20155,7 +20228,10 @@
         "en": "abc utilities"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "пересчитать абстрактные методы",
+        "обновить abstractmethods после изменения класса"
+      ],
       "keywords": [],
       "tags": [
         "abc"
@@ -20203,7 +20279,10 @@
         "en": "position"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "позиция вставки в отсортированный список",
+        "бинарный поиск места вставки"
+      ],
       "keywords": [],
       "tags": [
         "module"
@@ -20976,7 +21055,10 @@
         "en": "collections.abc — protocols"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "устаревший тип байтовой строки",
+        "общий тип bytes и bytearray"
+      ],
       "keywords": [
         "буфер"
       ],
@@ -26172,7 +26254,10 @@
         "en": "checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "проверки перечисления в verify",
+        "уникальность и непрерывность значений enum"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26222,7 +26307,10 @@
         "en": "metaclass"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "словарь пространства имён перечисления",
+        "как enum собирает члены класса"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26268,7 +26356,10 @@
         "en": "metaclass"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "метакласс перечислений",
+        "старое имя EnumType"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26419,7 +26510,10 @@
         "en": "flags"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "лишние биты во флаге",
+        "что делать с неизвестными битами flag"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26572,7 +26666,10 @@
         "en": "enum kinds"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "перечисление с repr как у значения",
+        "enum со строковым представлением значения"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26672,7 +26769,10 @@
         "en": "globalization"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "члены перечисления в модуле",
+        "сделать константы enum глобальными"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26722,7 +26822,10 @@
         "en": "globalization"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "repr глобального перечисления",
+        "показать член enum как имя модуля"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26771,7 +26874,10 @@
         "en": "globalization"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "repr глобального флага",
+        "показать флаг как имена модуля"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26820,7 +26926,10 @@
         "en": "globalization"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "str глобального перечисления",
+        "строка члена enum без имени класса"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -26972,7 +27081,10 @@
         "en": "pickle"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сериализация enum по имени члена",
+        "pickle перечисления по имени"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -27022,7 +27134,10 @@
         "en": "pickle"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сериализация enum по глобальному имени",
+        "pickle глобализированного перечисления"
+      ],
       "keywords": [],
       "tags": [
         "enum"
@@ -28569,7 +28684,10 @@
         "en": "abstract bases"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "базовый класс буферизованного потока",
+        "свой буферизованный файл"
+      ],
       "keywords": [],
       "tags": [
         "io"
@@ -28620,7 +28738,10 @@
         "en": "binary streams"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "один объект для чтения и записи двух потоков",
+        "пара буферов чтения и записи"
+      ],
       "keywords": [],
       "tags": [
         "io"
@@ -28674,7 +28795,10 @@
         "en": "binary streams"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "буферизованный файл с произвольным доступом",
+        "чтение и запись с seek"
+      ],
       "keywords": [],
       "tags": [
         "io"
@@ -28947,7 +29071,10 @@
         "en": "utilities"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "привести переводы строк к одному виду",
+        "универсальные переводы строк при декодировании"
+      ],
       "keywords": [],
       "tags": [
         "io"
@@ -28993,7 +29120,10 @@
         "en": "abstract bases"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "небуферизованный поток",
+        "базовый класс сырого ввода-вывода"
+      ],
       "keywords": [],
       "tags": [
         "io"
@@ -29263,7 +29393,10 @@
         "en": "utilities"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "открыть файл с кодом для исполнения",
+        "чтение исходника с аудитом"
+      ],
       "keywords": [],
       "tags": [
         "io"
@@ -34348,7 +34481,10 @@
         "en": "bitwise"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "побитовая инверсия функцией",
+        "тильда как функция"
+      ],
       "keywords": [],
       "tags": [
         "operator"
@@ -36054,7 +36190,11 @@
         "en": "environment variables"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать переменную окружения",
+        "значение переменной окружения по умолчанию",
+        "получить токен из окружения"
+      ],
       "keywords": [
         "os.getenv"
       ],
@@ -36103,7 +36243,11 @@
         "en": "file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "быстро перебрать файлы в папке",
+        "список файлов с типами",
+        "обойти содержимое каталога"
+      ],
       "keywords": [
         "os.scandir"
       ],
@@ -36159,7 +36303,10 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "элемент каталога из scandir",
+        "имя и тип файла при обходе"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -36207,7 +36354,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "остался ли дамп памяти",
+        "процесс упал с core dump"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36258,7 +36408,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "код возврата из статуса wait",
+        "достать код завершения потомка"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36309,7 +36462,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "процесс продолжил работу",
+        "потомок возобновлён после остановки"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36361,7 +36517,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "процесс завершился нормально",
+        "потомок вышел через exit"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36413,7 +36572,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "процесс убит сигналом",
+        "потомка завершили сигналом"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36463,7 +36625,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "процесс остановлен",
+        "потомок приостановлен сигналом"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36513,7 +36678,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "каким сигналом остановлен процесс",
+        "номер сигнала остановки"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36563,7 +36731,10 @@
         "en": "os — status decoding (W*)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "каким сигналом убит процесс",
+        "номер сигнала завершения"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36612,7 +36783,10 @@
         "en": "os — abnormal termination"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "выйти немедленно без очистки",
+        "завершить дочерний процесс после fork"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36660,7 +36834,10 @@
         "en": "os — abnormal termination"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "аварийно завершить программу",
+        "упасть с дампом памяти"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36708,7 +36885,11 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "есть ли права на чтение файла",
+        "можно ли записать в файл",
+        "проверить права доступа"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -36757,7 +36938,10 @@
         "en": "os — directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сменить текущую папку",
+        "перейти в другой каталог"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -36809,7 +36993,11 @@
         "en": "os — permissions and ownership"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "изменить права файла",
+        "сделать файл исполняемым",
+        "запретить запись в файл"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -36863,7 +37051,10 @@
         "en": "os — permissions and ownership"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сменить владельца файла",
+        "изменить группу файла"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36918,7 +37109,10 @@
         "en": "os — directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сменить корневой каталог процесса",
+        "изолировать процесс в папке"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -36970,7 +37164,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "закрыть файловый дескриптор",
+        "освободить дескриптор"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37018,7 +37215,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "закрыть много дескрипторов сразу",
+        "закрыть все лишние дескрипторы"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37066,7 +37266,10 @@
         "en": "os — configuration"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "строковый параметр системы",
+        "системная конфигурация строкой"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37117,7 +37320,10 @@
         "en": "os — efficient copying"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "быстро скопировать часть файла",
+        "копирование в ядре без чтения в память"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37167,7 +37373,11 @@
         "en": "os — system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сколько ядер процессора",
+        "число процессоров для пула",
+        "количество потоков cpu"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37216,7 +37426,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "путь к управляющему терминалу",
+        "имя терминала процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37266,7 +37479,10 @@
         "en": "os — terminals and devices"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "кодировка терминала",
+        "какая кодировка у консоли"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37315,7 +37531,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "скопировать дескриптор",
+        "сохранить копию stdout"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37365,7 +37584,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "перенаправить stdout в файл",
+        "подменить стандартный вывод на уровне ос"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37415,7 +37637,11 @@
         "en": "environment"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "переменные окружения",
+        "установить переменную окружения",
+        "все переменные среды"
+      ],
       "keywords": [],
       "tags": [
         "module"
@@ -37463,7 +37689,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "счётчик событий в ядре",
+        "разбудить цикл событий из потока"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37513,7 +37742,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать счётчик событий",
+        "дождаться события eventfd"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37562,7 +37794,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "увеличить счётчик событий",
+        "сообщить о событии через eventfd"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37611,7 +37846,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "заменить процесс программой",
+        "запустить программу вместо себя"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37662,7 +37900,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить программу вместо себя с окружением",
+        "exec со своими переменными среды"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37714,7 +37955,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить программу из path вместо себя",
+        "exec с поиском программы"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37766,7 +38010,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "exec с поиском в path и окружением",
+        "заменить процесс найденной программой"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -37817,7 +38064,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "заменить процесс новой программой",
+        "передать управление другой программе"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37868,7 +38118,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "exec с новым окружением",
+        "запустить программу со своими переменными"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37919,7 +38172,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить команду вместо текущего процесса",
+        "exec с поиском в path"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -37969,7 +38225,10 @@
         "en": "os — running programs (exec)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "exec с поиском и окружением",
+        "заменить процесс командой с переменными"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38021,7 +38280,10 @@
         "en": "os — directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "перейти в каталог по дескриптору",
+        "сменить папку по открытому каталогу"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38072,7 +38334,10 @@
         "en": "os — permissions and ownership"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "изменить права открытого файла",
+        "права по дескриптору"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38127,7 +38392,10 @@
         "en": "os — permissions and ownership"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сменить владельца открытого файла",
+        "владелец по дескриптору"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38180,7 +38448,10 @@
         "en": "os — synchronization"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сбросить данные файла на диск",
+        "быстрая синхронизация без метаданных"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38231,7 +38502,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "файловый объект из дескриптора",
+        "обернуть дескриптор в файл"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38281,7 +38555,10 @@
         "en": "os — process creation"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "создать копию процесса",
+        "породить дочерний процесс"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38334,7 +38611,10 @@
         "en": "os — process creation"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "дочерний процесс с терминалом",
+        "fork с псевдотерминалом"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38386,7 +38666,10 @@
         "en": "os — configuration"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "ограничения файловой системы по дескриптору",
+        "максимальная длина имени для открытого каталога"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38439,7 +38722,10 @@
         "en": "os — path encoding"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "байты пути в строку",
+        "декодировать имя файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38487,7 +38773,10 @@
         "en": "os — path encoding"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "путь в байты",
+        "закодировать имя файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38536,7 +38825,10 @@
         "en": "os — path encoding"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "получить строку из pathlib",
+        "путь как строка из объекта"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38588,7 +38880,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "размер открытого файла",
+        "метаданные по дескриптору"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38637,7 +38932,10 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "свободное место по дескриптору",
+        "статистика файловой системы открытого файла"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38689,7 +38987,11 @@
         "en": "os — synchronization"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "гарантированно записать файл на диск",
+        "сбросить буферы файла",
+        "надёжное сохранение файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38740,7 +39042,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "обрезать открытый файл",
+        "изменить размер файла по дескриптору"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38793,7 +39098,10 @@
         "en": "os — tree walking"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "обход дерева с дескрипторами",
+        "безопасный обход каталогов"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -38842,7 +39150,10 @@
         "en": "os — descriptor mode"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "блокирующий ли дескриптор",
+        "проверить неблокирующий режим"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38892,7 +39203,10 @@
         "en": "os — environment"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "каталоги из path",
+        "где ищутся программы"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -38998,7 +39312,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "наследуется ли дескриптор",
+        "передастся ли файл дочернему процессу"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -39047,7 +39364,11 @@
         "en": "os — terminals and devices"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "ширина терминала",
+        "размер окна консоли",
+        "сколько колонок в терминале"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -39098,7 +39419,11 @@
         "en": "os — working directory"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "текущая папка",
+        "где запущена программа",
+        "рабочий каталог"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -39143,7 +39468,10 @@
         "en": "os — working directory"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "текущая папка в байтах",
+        "рабочий каталог байтами"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -39192,7 +39520,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "эффективная группа процесса",
+        "gid для проверки прав"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39240,7 +39571,11 @@
         "en": "os — environment"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать переменную окружения",
+        "значение переменной среды",
+        "переменная окружения или значение по умолчанию"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -39291,7 +39626,10 @@
         "en": "os — environment"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "переменная окружения в байтах",
+        "getenv для байтов"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39341,7 +39679,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запущено ли от root",
+        "эффективный пользователь процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39390,7 +39731,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "группа пользователя процесса",
+        "реальный gid"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39438,7 +39782,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "в каких группах пользователь",
+        "группы пользователя по имени"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39487,7 +39834,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "дополнительные группы процесса",
+        "список групп текущего процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39536,7 +39886,11 @@
         "en": "os — system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "загрузка системы",
+        "load average",
+        "насколько загружен сервер"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39584,7 +39938,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "имя пользователя",
+        "кто вошёл в систему"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -39635,7 +39992,10 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "группа процессов по pid",
+        "pgid процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39687,7 +40047,10 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "группа текущего процесса",
+        "свой pgid"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39736,7 +40099,11 @@
         "en": "process"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "идентификатор процесса",
+        "pid текущей программы",
+        "номер процесса"
+      ],
       "keywords": [],
       "tags": [
         "module"
@@ -39785,7 +40152,10 @@
         "en": "os — process"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "pid родителя",
+        "кто запустил процесс"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39834,7 +40204,10 @@
         "en": "os — signals and priority"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "приоритет процесса",
+        "узнать nice процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39885,7 +40258,10 @@
         "en": "os — randomness"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "случайные байты из ядра",
+        "криптографически стойкие байты linux"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39934,7 +40310,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "все три gid процесса",
+        "сохранённый gid"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -39983,7 +40362,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "все три uid процесса",
+        "сохранённый uid"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40033,7 +40415,10 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "идентификатор сессии",
+        "сессия процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40085,7 +40470,11 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "идентификатор пользователя",
+        "uid процесса",
+        "от какого пользователя запущено"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40134,7 +40523,10 @@
         "en": "os — extended attributes (xattr)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать расширенный атрибут",
+        "метаданные файла xattr"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40187,7 +40579,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "права на ведомый псевдотерминал",
+        "подготовить pty к открытию"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40238,7 +40633,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать группы пользователя",
+        "группы при смене пользователя"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40291,7 +40689,11 @@
         "en": "os — terminals and devices"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запущено ли в терминале",
+        "вывод в консоль или в файл",
+        "перенаправлен ли вывод"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -40338,7 +40740,11 @@
         "en": "os — signals and priority"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "послать сигнал процессу",
+        "завершить процесс по pid",
+        "проверить, жив ли процесс"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40393,7 +40799,10 @@
         "en": "os — signals and priority"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сигнал группе процессов",
+        "завершить процесс с потомками"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40509,7 +40918,10 @@
         "en": "os — permissions and ownership"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "владелец символической ссылки",
+        "сменить владельца ссылки, а не цели"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40562,7 +40974,10 @@
         "en": "os — links"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "жёсткая ссылка",
+        "второе имя файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -40617,7 +41032,11 @@
         "en": "directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "список файлов в папке",
+        "содержимое каталога",
+        "какие файлы лежат в директории"
+      ],
       "keywords": [],
       "tags": [
         "module"
@@ -40845,7 +41264,10 @@
         "en": "os — extended attributes (xattr)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "список расширенных атрибутов",
+        "какие xattr у файла"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40898,7 +41320,10 @@
         "en": "os — locks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "заблокировать часть файла",
+        "блокировка файла между процессами"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40944,7 +41369,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сделать терминал управляющим",
+        "подключить процесс к псевдотерминалу"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -40996,7 +41424,11 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "переместиться в файле по дескриптору",
+        "узнать позицию в файле",
+        "размер открытого файла через seek"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41045,7 +41477,10 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "информация о самой ссылке",
+        "stat без перехода по ссылке"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41099,7 +41534,10 @@
         "en": "os — device numbers"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "старший номер устройства",
+        "драйвер устройства по номеру"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41149,7 +41587,10 @@
         "en": "os — device numbers"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "собрать номер устройства",
+        "номер устройства из major и minor"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41199,7 +41640,11 @@
         "en": "os — directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "создать вложенные папки",
+        "создать каталог со всеми родителями",
+        "mkdir -p в python"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41253,7 +41698,10 @@
         "en": "os — special descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "файл в памяти",
+        "анонимный файл без диска"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41303,7 +41751,10 @@
         "en": "os — device numbers"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "младший номер устройства",
+        "номер раздела устройства"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41352,7 +41803,10 @@
         "en": "os — directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "создать папку",
+        "создать каталог"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41407,7 +41861,10 @@
         "en": "os — special files"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "именованный канал",
+        "создать fifo"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41460,7 +41917,10 @@
         "en": "os — special files"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "создать файл устройства",
+        "специальный файл"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41513,7 +41973,10 @@
         "en": "os — signals and priority"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "понизить приоритет процесса",
+        "сделать процесс фоновым"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41563,7 +42026,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "создать псевдотерминал",
+        "пара master и slave"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -41613,7 +42079,10 @@
         "en": "os.path — making paths absolute"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "абсолютный путь к файлу",
+        "полный путь из относительного"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41662,7 +42131,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "имя файла из пути",
+        "последняя часть пути"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41708,7 +42180,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "общая папка нескольких путей",
+        "лежит ли файл внутри каталога"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41759,7 +42234,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "общее начало строк",
+        "общий префикс списка"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41807,7 +42285,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "папка файла",
+        "родительский каталог из пути"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41853,7 +42334,11 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "существует ли файл",
+        "проверить наличие файла",
+        "есть ли такой путь"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41899,7 +42384,10 @@
         "en": "os.path — making paths absolute"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "развернуть тильду",
+        "путь к домашней папке"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41948,7 +42436,10 @@
         "en": "os.path — making paths absolute"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "подставить переменные в путь",
+        "раскрыть $home в строке"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -41997,7 +42488,10 @@
         "en": "os.path — metadata (stat)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "время последнего открытия файла",
+        "когда файл читали"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42049,7 +42543,10 @@
         "en": "os.path — metadata (stat)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "время создания файла",
+        "время изменения метаданных"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42099,7 +42596,10 @@
         "en": "os.path — metadata (stat)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "время изменения файла",
+        "когда файл последний раз меняли"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42151,7 +42651,11 @@
         "en": "os.path — metadata (stat)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "размер файла",
+        "сколько байт в файле",
+        "вес файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42204,7 +42708,10 @@
         "en": "os.path — making paths absolute"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "абсолютный ли путь",
+        "проверить, полный ли путь"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42253,7 +42760,10 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "диск для разработки windows",
+        "путь на dev drive"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42301,7 +42811,10 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "это папка",
+        "проверить, что путь — каталог"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42347,7 +42860,11 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "это файл",
+        "проверить, что путь — файл",
+        "существует ли файл"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42393,7 +42910,10 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "точка соединения ntfs",
+        "junction в windows"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42441,7 +42961,10 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "это символическая ссылка",
+        "проверить ярлык-ссылку"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42490,7 +43013,10 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "точка монтирования",
+        "подключённый диск в папке"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42595,7 +43121,11 @@
         "en": "os.path"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "склеить путь",
+        "собрать путь из частей",
+        "путь к файлу в папке"
+      ],
       "keywords": [],
       "tags": [
         "module"
@@ -42647,7 +43177,10 @@
         "en": "os.path — existence and type checks"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "существует ли ссылка",
+        "найти битую ссылку"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42695,7 +43228,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "регистр пути для сравнения",
+        "нормализовать регистр пути"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42742,7 +43278,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "убрать точки из пути",
+        "нормализовать путь"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42791,7 +43330,10 @@
         "en": "os.path — making paths absolute"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "настоящий путь без ссылок",
+        "раскрыть символические ссылки"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42842,7 +43384,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "относительный путь",
+        "путь относительно папки"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42891,7 +43436,10 @@
         "en": "os.path — metadata (stat)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "один и тот же файл",
+        "два пути к одному файлу"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42943,7 +43491,10 @@
         "en": "os.path — metadata (stat)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "два дескриптора одного файла",
+        "один ли файл открыт дважды"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -42989,7 +43540,10 @@
         "en": "os.path — metadata (stat)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "одинаковый ли файл по stat",
+        "сравнить результаты stat"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -43041,7 +43595,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "разделить путь на папку и имя",
+        "отделить имя файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -43086,7 +43643,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "отделить букву диска",
+        "диск из пути windows"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -43136,7 +43696,11 @@
         "en": "os.path"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "расширение файла",
+        "имя файла без расширения",
+        "сменить расширение"
+      ],
       "keywords": [],
       "tags": [
         "module"
@@ -43186,7 +43750,10 @@
         "en": "os.path — path parsing"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "разобрать путь на диск и корень",
+        "корень пути"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -43236,7 +43803,10 @@
         "en": "os — configuration"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "максимальная длина имени файла",
+        "ограничения файловой системы"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43285,7 +43855,10 @@
         "en": "os — special descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "дескриптор процесса",
+        "надёжно послать сигнал процессу"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43334,7 +43907,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "создать канал",
+        "связать процессы каналом"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -43381,7 +43957,10 @@
         "en": "os — special descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "канал с флагами",
+        "неблокирующий канал сразу"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43430,7 +44009,10 @@
         "en": "os — processes"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "выполнить команду и прочитать вывод",
+        "вывод команды оболочки в строку"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -43478,7 +44060,10 @@
         "en": "os — kernel hints"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "подсказка ядру о чтении файла",
+        "не засорять кеш файлом"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43529,7 +44114,10 @@
         "en": "os — kernel hints"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "зарезервировать место под файл",
+        "выделить место на диске заранее"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43581,7 +44169,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "открыть ведущий псевдотерминал",
+        "создать pty вручную"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43634,7 +44225,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "быстро запустить программу",
+        "запуск процесса без fork"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43686,7 +44280,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить программу из path без fork",
+        "posix_spawn с поиском"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43738,7 +44335,10 @@
         "en": "os — positional I/O"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать с заданной позиции",
+        "чтение без смещения указателя"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43791,7 +44391,10 @@
         "en": "os — positional I/O"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать с позиции в несколько буферов",
+        "векторное чтение со смещением"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43843,7 +44446,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "путь к ведомому терминалу",
+        "имя slave pty"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43895,7 +44501,10 @@
         "en": "os — environment"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать переменную окружения на уровне ос",
+        "переменная для дочерних процессов"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -43944,7 +44553,10 @@
         "en": "os — positional I/O"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "записать в заданное место файла",
+        "запись без смещения указателя"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -43996,7 +44608,10 @@
         "en": "os — positional I/O"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "записать несколько буферов по позиции",
+        "векторная запись со смещением"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44047,7 +44662,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать байты из дескриптора",
+        "низкоуровневое чтение"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -44159,7 +44777,10 @@
         "en": "os — links"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "куда указывает ссылка",
+        "цель символической ссылки"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44213,7 +44834,10 @@
         "en": "os — positional I/O"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "прочитать в несколько буферов",
+        "векторное чтение"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44265,7 +44889,10 @@
         "en": "os — process creation"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "обработчики вокруг fork",
+        "сбросить состояние после fork"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44373,7 +45000,10 @@
         "en": "os — removal"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "удалить файл",
+        "стереть файл"
+      ],
       "keywords": [
         "os.remove",
         "remove"
@@ -44430,7 +45060,10 @@
         "en": "os — directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "удалить пустые папки вверх по пути",
+        "убрать вложенные пустые каталоги"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -44482,7 +45115,10 @@
         "en": "os — extended attributes (xattr)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "удалить расширенный атрибут",
+        "убрать xattr у файла"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44534,7 +45170,11 @@
         "en": "os — renaming/moving"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "переименовать файл",
+        "переместить файл",
+        "переименовать папку"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -44593,7 +45233,10 @@
         "en": "os — renaming/moving"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "переместить с созданием папок",
+        "переименовать и убрать пустые каталоги"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -44650,7 +45293,10 @@
         "en": "os — directories"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "удалить пустую папку",
+        "удалить каталог"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -44703,7 +45349,11 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "перебрать файлы в папке",
+        "файлы каталога с типами",
+        "быстрый обход директории"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -44755,7 +45405,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "максимальный приоритет реального времени",
+        "верхняя граница приоритета"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44807,7 +45460,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "минимальный приоритет политики",
+        "нижняя граница приоритета"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44858,7 +45514,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "на каких ядрах работает процесс",
+        "доступные процессу ядра"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44909,7 +45568,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "параметры планирования",
+        "приоритет реального времени процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -44958,7 +45620,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "политика планировщика",
+        "sched_fifo или обычный процесс"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45008,7 +45673,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "параметры планировщика",
+        "приоритет для sched_setscheduler"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45058,7 +45726,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "квант времени round-robin",
+        "сколько времени даёт sched_rr"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45107,7 +45778,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "привязать процесс к ядрам",
+        "запускать только на одном ядре"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45159,7 +45833,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать приоритет планирования",
+        "изменить приоритет реального времени"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45210,7 +45887,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "процесс реального времени",
+        "сменить политику планировщика"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45263,7 +45943,10 @@
         "en": "os — scheduler (sched)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "уступить процессор",
+        "отдать квант другим"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45313,7 +45996,10 @@
         "en": "os — efficient copying"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "отправить файл в сокет",
+        "быстрая отдача файла"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45363,7 +46049,11 @@
         "en": "constants"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "разделитель пути",
+        "перевод строки в системе",
+        "разделитель path"
+      ],
       "keywords": [
         "os.sep",
         "os.linesep",
@@ -45415,7 +46105,10 @@
         "en": "os — descriptor mode"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "неблокирующий режим",
+        "сделать дескриптор неблокирующим"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -45528,7 +46221,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "передать дескриптор потомку",
+        "разрешить наследование файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -45577,7 +46273,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "временно сменить группу",
+        "эффективный gid"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45629,7 +46328,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "временно сменить пользователя",
+        "эффективный uid"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45681,7 +46383,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сменить группу процесса",
+        "сбросить группу root"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45733,7 +46438,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать дополнительные группы",
+        "очистить группы процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45784,7 +46492,10 @@
         "en": "os — namespaces"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "войти в пространство имён",
+        "присоединиться к контейнеру"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45838,7 +46549,10 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "поместить процесс в группу",
+        "своя группа процессов для потомка"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45888,7 +46602,10 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "стать лидером группы процессов",
+        "новая группа процессов"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45938,7 +46655,10 @@
         "en": "os — signals and priority"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать приоритет процесса",
+        "изменить nice"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -45991,7 +46711,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать реальный и эффективный gid",
+        "сменить группы разом"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46042,7 +46765,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать все три gid",
+        "окончательно сбросить группу"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46093,7 +46819,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать все три uid",
+        "окончательно сбросить права"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46145,7 +46874,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "задать реальный и эффективный uid",
+        "поменять uid разом"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46197,7 +46929,11 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "новая сессия",
+        "отвязать процесс от терминала",
+        "демонизация процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46249,7 +46985,10 @@
         "en": "os — user/group IDs"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сменить пользователя процесса",
+        "сбросить права root"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46300,7 +47039,10 @@
         "en": "os — extended attributes (xattr)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "записать расширенный атрибут",
+        "добавить метаданные файлу"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46352,7 +47094,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить программу и дождаться",
+        "spawn с аргументами через запятую"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46403,7 +47148,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "spawn с окружением",
+        "запустить программу со своими переменными"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46455,7 +47203,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "spawn с поиском в path",
+        "запустить команду по имени"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46507,7 +47258,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "spawn с поиском и окружением",
+        "запустить команду с переменными"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46559,7 +47313,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить программу в новом процессе",
+        "старый способ запуска программы"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -46612,7 +47369,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "spawnv с окружением",
+        "запуск программы со своими переменными"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -46665,7 +47425,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "spawnv с поиском в path",
+        "запустить команду списком аргументов"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46717,7 +47480,10 @@
         "en": "os — running programs (spawn)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "spawnv с поиском и окружением",
+        "запуск команды с переменными"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46770,7 +47536,10 @@
         "en": "os — efficient copying"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "переслать данные через канал",
+        "копирование без пространства пользователя"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -46886,7 +47655,11 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "информация о файле",
+        "размер и время файла",
+        "права файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -46939,7 +47712,10 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "поля результата stat",
+        "st_size и st_mtime"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -46990,7 +47766,10 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "свободное место на диске",
+        "статистика файловой системы"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47041,7 +47820,10 @@
         "en": "os — file system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "поля результата statvfs",
+        "f_bavail и f_frsize"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47090,7 +47872,10 @@
         "en": "os — system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "текст ошибки по коду",
+        "описание errno"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -47138,7 +47923,11 @@
         "en": "os — links"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "создать символическую ссылку",
+        "ярлык на файл",
+        "ln -s в python"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47192,7 +47981,10 @@
         "en": "os — synchronization"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сбросить все буферы на диск",
+        "синхронизировать файловые системы"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47241,7 +48033,10 @@
         "en": "os — configuration"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "системный параметр числом",
+        "размер страницы памяти"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47292,7 +48087,11 @@
         "en": "os — abnormal termination"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "выполнить команду оболочки",
+        "запустить команду из python",
+        "вызвать консольную команду"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -47341,7 +48140,10 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "какая группа у терминала",
+        "передний план терминала"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47392,7 +48194,10 @@
         "en": "os — sessions and process groups"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "передать терминал группе",
+        "вывести задание на передний план"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47443,7 +48248,10 @@
         "en": "os — terminals and devices"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "размер терминала кортежем",
+        "columns и lines"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -47493,7 +48301,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "таймер как дескриптор",
+        "периодический таймер linux"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47544,7 +48355,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "сколько осталось до таймера",
+        "период таймера"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47595,7 +48409,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "остаток таймера в наносекундах",
+        "точное время таймера"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47646,7 +48463,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить таймер",
+        "задать период таймера"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47697,7 +48517,10 @@
         "en": "os — events and timers (fd)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "запустить таймер в наносекундах",
+        "точный период таймера"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47748,7 +48571,10 @@
         "en": "os — process"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "процессорное время процесса",
+        "сколько времени заняла программа"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -47797,7 +48623,10 @@
         "en": "os — process"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "поля результата times",
+        "user и system время"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -47845,7 +48674,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "обрезать файл по пути",
+        "изменить размер файла"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -47899,7 +48731,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "имя терминала по дескриптору",
+        "какой tty у вывода"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -47950,7 +48785,10 @@
         "en": "os — process"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "маска прав новых файлов",
+        "права по умолчанию для файлов"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -47997,7 +48835,11 @@
         "en": "os — system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "имя операционной системы",
+        "версия ядра",
+        "архитектура процессора"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48047,7 +48889,10 @@
         "en": "os — system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "поля результата uname",
+        "sysname и machine"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48095,7 +48940,10 @@
         "en": "os — removal"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "удалить файл",
+        "unlink в python"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -48148,7 +48996,10 @@
         "en": "os — pseudo-terminals (pty)"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "разблокировать псевдотерминал",
+        "разрешить открытие slave pty"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48199,7 +49050,10 @@
         "en": "os — environment"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "удалить переменную окружения на уровне ос",
+        "убрать переменную для потомков"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -48248,7 +49102,10 @@
         "en": "os — namespaces"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "новое пространство имён",
+        "изоляция процесса как в контейнере"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48299,7 +49156,11 @@
         "en": "os — system"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "случайные байты",
+        "криптографически стойкое случайное",
+        "сгенерировать соль"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -48348,7 +49209,11 @@
         "en": "os — metadata"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "изменить время файла",
+        "touch в python",
+        "сохранить дату изменения"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -48401,7 +49266,10 @@
         "en": "os — waiting for processes"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "дождаться любого потомка",
+        "ждать завершения дочернего процесса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48453,7 +49321,10 @@
         "en": "os — waiting for processes"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "дождаться потомка и узнать ресурсы",
+        "сколько памяти съел потомок"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48505,7 +49376,10 @@
         "en": "os — waiting for processes"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "дождаться процесса и узнать его ресурсы",
+        "потребление ресурсов потомком"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48557,7 +49431,10 @@
         "en": "os — waiting for processes"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "гибкое ожидание потомка",
+        "ждать без сбора статуса"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48611,7 +49488,10 @@
         "en": "os — waiting for processes"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "поля результата waitid",
+        "si_code и si_status"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48661,7 +49541,10 @@
         "en": "os — waiting for processes"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "дождаться процесса по pid",
+        "ждать завершения потомка"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48715,7 +49598,10 @@
         "en": "os — process"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "код возврата из статуса",
+        "перевести статус os.system в код"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -48768,7 +49654,11 @@
         "en": "traversal"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "обойти все папки рекурсивно",
+        "найти все файлы в подпапках",
+        "рекурсивный обход каталога"
+      ],
       "keywords": [],
       "tags": [
         "module"
@@ -48820,7 +49710,10 @@
         "en": "os — file descriptors"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "записать байты в дескриптор",
+        "низкоуровневая запись"
+      ],
       "keywords": [],
       "tags": [
         "os"
@@ -48872,7 +49765,10 @@
         "en": "os — positional I/O"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "записать несколько буферов",
+        "векторная запись"
+      ],
       "keywords": [],
       "tags": [
         "os",
@@ -52341,7 +53237,10 @@
         "en": "cache"
       },
       "color_group": "module",
-      "aliases": [],
+      "aliases": [
+        "очистить кеш регулярных выражений",
+        "сбросить скомпилированные шаблоны"
+      ],
       "keywords": [],
       "tags": [
         "re"
@@ -56433,7 +57332,10 @@
         "en": "generics and parameters"
       },
       "color_group": "typing",
-      "aliases": [],
+      "aliases": [
+        "тип P.args",
+        "аннотация args для ParamSpec"
+      ],
       "keywords": [],
       "tags": [
         "typing"
@@ -56482,7 +57384,10 @@
         "en": "generics and parameters"
       },
       "color_group": "typing",
-      "aliases": [],
+      "aliases": [
+        "тип P.kwargs",
+        "аннотация kwargs для ParamSpec"
+      ],
       "keywords": [],
       "tags": [
         "typing"
@@ -57263,7 +58168,10 @@
         "en": "decorators and markers"
       },
       "color_group": "typing",
-      "aliases": [],
+      "aliases": [
+        "очистить реестр перегрузок",
+        "сбросить overload"
+      ],
       "keywords": [],
       "tags": [
         "typing"
@@ -57310,7 +58218,10 @@
         "en": "decorators and markers"
       },
       "color_group": "typing",
-      "aliases": [],
+      "aliases": [
+        "свой декоратор как dataclass",
+        "подсказать проверщику типов поля"
+      ],
       "keywords": [],
       "tags": [
         "typing"
@@ -57839,7 +58750,10 @@
         "en": "decorators and markers"
       },
       "color_group": "typing",
-      "aliases": [],
+      "aliases": [
+        "декоратор без проверки типов",
+        "отключить проверку типов декоратором"
+      ],
       "keywords": [],
       "tags": [
         "typing"
@@ -71738,7 +72652,10 @@
         "en": "as a number"
       },
       "color_group": "op",
-      "aliases": [],
+      "aliases": [
+        "сопряжённое вещественного числа",
+        "conjugate у float"
+      ],
       "keywords": [],
       "tags": [
         "float"
@@ -72197,7 +73114,10 @@
         "en": "as a number"
       },
       "color_group": "op",
-      "aliases": [],
+      "aliases": [
+        "сопряжённое целого числа",
+        "conjugate у int"
+      ],
       "keywords": [],
       "tags": [
         "int"
@@ -72296,7 +73216,10 @@
         "en": "as a fraction"
       },
       "color_group": "op",
-      "aliases": [],
+      "aliases": [
+        "целое ли число",
+        "is_integer у int"
+      ],
       "keywords": [],
       "tags": [
         "int"

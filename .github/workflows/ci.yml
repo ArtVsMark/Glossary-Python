@@ -246,6 +246,37 @@ jobs:
             echo '</details>'
           } >> "$GITHUB_STEP_SUMMARY"
 
+  # Карточка обещает работу с версии added до removed, а гейт выше исполняет
+  # примеры на одной 3.14 — и молчит о том, что вывод на 3.11 другой или вызова
+  # там нет вовсе (#154). Здесь примеры исполняет младшая версия, а гейт сам
+  # остаётся на планке: его синтаксис младшей версии не по силам. Поэтому
+  # установок две — сперва проверяемая, затем планка, которая и становится
+  # python по умолчанию. 3.14 проверяет работа data, 3.15 — python-next.yml.
+  examples:
+    timeout-minutes: 15
+    name: Примеры на Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v7
+
+      - id: target
+        uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+
+      - name: Примеры исполняются так, как обещают, на этой версии
+        run: |
+          python scripts/check_examples.py \
+            --python "${{ steps.target.outputs.python-path }}"
+
   # Единственная обязательная проверка защиты ветки. Имя постоянное и совпадает
   # с настройкой ruleset дословно: имена работ матрицы в список обязательных
   # не попадают никогда — они меняются вместе с составом версий.
@@ -259,7 +290,7 @@ jobs:
   check-pr:
     timeout-minutes: 5
     name: check PR
-    needs: [quality, tests, data, attribution, link, journal]
+    needs: [quality, tests, data, examples, attribution, link, journal]
     if: always()
     runs-on: ubuntu-latest
     steps:

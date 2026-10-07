@@ -46,10 +46,19 @@
 * **сеть.** Пример, ходящий в сеть, падает в изолированном прогоне и
   становится находкой — так и задумано: в примере для учащегося сети нет.
 
+ВЕРСИИ PYTHON (#154). Примеры исполняются на 3.14, а карточка обещает работу
+с версии ``added`` до ``removed``. Ключ ``--python`` исполняет примеры другим
+интерпретатором, а гейт сам остаётся на своём: так один и тот же закон
+проверяется на всей матрице. На версии V пропускаются карточки, которых в ней
+нет (``added`` позже V или ``removed`` не позже V), и блоки с первой строкой
+``# Python 3.N+``, где 3.N новее V, — пример показывает поведение новее самой
+возможности. Всё остальное обязано вести себя так, как обещано.
+
 Запуск::
 
     python scripts/check_examples.py              # гейт по data/glossary.json
     python scripts/check_examples.py --data FILE  # то же по другому файлу
+    python scripts/check_examples.py --python python3.11  # примеры на 3.11
 
 Исходы: 0 — находок нет; 1 — есть находки; 2 — проверка не отработала.
 """
@@ -92,6 +101,8 @@ FRAME: Final = re.compile(
 )
 MODULE_SCOPE: Final = "<module>"
 """Кадр верхнего уровня примера: пометку ставят на строку, которую видит читатель."""
+REQUIRES: Final = re.compile(r"^#\s*Python\s+(\d+)\.(\d+)\+")
+"""Первая строка блока, требующего версию новее карточки: ``# Python 3.12+``."""
 EXCEPTION_LINE: Final = re.compile(r"^(?P<name>[A-Za-z_][\w.]*)(?::|$)")
 NAME: Final = re.compile(r"[A-Za-z_][\w.]*")
 
@@ -356,7 +367,7 @@ def execute(entry_id: str, code: str) -> Result:
             # Код примера — наш собственный, из data/cards/, а не чужой ввод;
             # исполняется изолированно — ради этого гейт и заведён.
             done = subprocess.run(  # noqa: S603
-                [sys.executable, "-I", "-X", "utf8", FILENAME],
+                [INTERPRETER[0], "-I", "-X", "utf8", FILENAME],
                 cwd=tmp,
                 env=env,
                 stdin=subprocess.DEVNULL,
@@ -382,7 +393,46 @@ def execute(entry_id: str, code: str) -> Result:
     return classify(entry_id, code, done.stderr, timed_out=False)
 
 
-def examples(data: Path) -> dict[str, str]:
+INTERPRETER: list[str] = [sys.executable]
+"""Чем исполняются примеры; ``--python`` подменяет его на прогон всей матрицы."""
+
+
+def version_of(python: str) -> tuple[int, int]:
+    """Версия интерпретатора ``major.minor``."""
+    done = subprocess.run(  # noqa: S603 — интерпретатор назван владельцем прогона
+        [python, "-I", "-c", "import sys; print(*sys.version_info[:2])"],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        timeout=TIMEOUT,
+        check=True,
+    )
+    major, minor = done.stdout.split()
+    return int(major), int(minor)
+
+
+def _version(text: str) -> tuple[int, int]:
+    """Версия поля карточки: ``<3.0`` раньше любой 3.x."""
+    if text.startswith("<"):
+        return (2, 7)
+    major, minor = text.split(".")
+    return int(major), int(minor)
+
+
+def applicable(
+    entry: dict[str, object], block: list[str], version: tuple[int, int]
+) -> bool:
+    """Обещает ли карточка, что этот блок работает на версии ``version``."""
+    added, removed = str(entry.get("added") or ""), str(entry.get("removed") or "")
+    if added and _version(added) > version:
+        return False
+    if removed and _version(removed) <= version:
+        return False
+    marked = REQUIRES.match(block[0]) if block else None
+    return not marked or (int(marked[1]), int(marked[2])) <= version
+
+
+def examples(data: Path, version: tuple[int, int] | None = None) -> dict[str, str]:
     """Примеры карточек из собранного глоссария: метка блока → код.
 
     Блок исполняется сам по себе, в своём процессе (#125): пример, который
@@ -394,6 +444,8 @@ def examples(data: Path) -> dict[str, str]:
     for entry in payload["entries"]:
         blocks = entry.get("examples") or []
         for number, block in enumerate(blocks, start=1):
+            if version is not None and not applicable(entry, block, version):
+                continue
             label = f"{entry['id']} · пример {number}" if len(blocks) > 1 else entry["id"]
             codes[label] = "\n".join(block) + "\n"
     return codes
@@ -416,12 +468,27 @@ def main(argv: list[str] | None = None) -> int:
     """
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--data", type=Path, default=ROOT / DATA)
+    parser.add_argument(
+        "--python", default=None, metavar="PATH", help="интерпретатор для примеров"
+    )
     args = parser.parse_args(argv)
 
     if not args.data.exists():
         print(f"проверка не отработала: файла {args.data} нет", file=sys.stderr)
         return NOT_RUN
-    codes = examples(args.data)
+    version = (sys.version_info.major, sys.version_info.minor)
+    if args.python:
+        try:
+            version = version_of(args.python)
+        except (OSError, subprocess.SubprocessError, ValueError) as error:
+            print(
+                f"проверка не отработала: интерпретатор {args.python}: {error}",
+                file=sys.stderr,
+            )
+            return NOT_RUN
+        INTERPRETER[0] = args.python
+        print(f"примеры исполняет Python {version[0]}.{version[1]} ({args.python})")
+    codes = examples(args.data, version)
     if not codes:
         print(
             f"проверка не отработала: в {args.data} нет ни одного примера — "

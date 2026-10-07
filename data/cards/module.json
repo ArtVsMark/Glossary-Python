@@ -1402,12 +1402,13 @@
       [
         "# GIL мешает CPU-задачам: два потока не быстрее одного",
         "from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor",
+        "import multiprocessing",
         "def cpu_task(n):",
         "    return sum(range(n))",
         "if __name__ == '__main__':  # обязательно: процессы-помощники заново импортируют модуль",
         "    with ThreadPoolExecutor() as ex:   # потоки: байт-код исполняет один поток за раз",
         "        print(sum(ex.map(cpu_task, [10**6] * 4)))  # → 1999998000000",
-        "    with ProcessPoolExecutor() as ex:  # процессы: у каждого свой интерпретатор и свой GIL",
+        "    with ProcessPoolExecutor(mp_context=multiprocessing.get_context('spawn')) as ex:  # процессы: у каждого свой интерпретатор и свой GIL",
         "        print(sum(ex.map(cpu_task, [10**6] * 4)))  # → 1999998000000"
       ]
     ],

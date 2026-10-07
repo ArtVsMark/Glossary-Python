@@ -1,0 +1,1 @@
+устаревания, о которых сообщили сами примеры: os.path.commonprefix устарела в 3.15 (поле deprecated и замена в теле), unpack_archive в примере передаёт filter="data", а примеры operator.invert и os.path.commonpath называют DeprecationWarning у устаревшей формы вызова (#154)

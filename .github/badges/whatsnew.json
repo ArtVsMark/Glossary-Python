@@ -3,7 +3,7 @@
   "schema_of": "что появилось и исчезло между версиями Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T13:09:21+00:00",
+  "generated_at": "2026-10-07T13:56:18+00:00",
   "versions": [
     "3.11",
     "3.12",
@@ -38,13 +38,13 @@
           "qualname": "logging.getHandlerByName",
           "module": "logging",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "logging.getHandlerNames",
           "module": "logging",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "math.sumprod",
@@ -86,37 +86,37 @@
           "qualname": "sys.activate_stack_trampoline",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.deactivate_stack_trampoline",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.getunicodeinternedsize",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.is_stack_trampoline_active",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "threading.setprofile_all_threads",
           "module": "threading",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "threading.settrace_all_threads",
           "module": "threading",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "typing.TypeAliasType",
@@ -143,7 +143,7 @@
       "totals": {
         "added": 20,
         "removed": 1,
-        "undocumented": 9
+        "undocumented": 1
       }
     },
     {
@@ -299,7 +299,7 @@
           "qualname": "concurrent.futures.InterpreterPoolExecutor",
           "module": "concurrent.futures",
           "kind": "class",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "decimal.IEEEContext",
@@ -389,19 +389,19 @@
           "qualname": "sys.is_remote_debug_enabled",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.remote_exec",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "typing.Union",
           "module": "typing",
           "kind": "class",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "typing.evaluate_forward_ref",
@@ -413,19 +413,19 @@
           "qualname": "uuid.uuid6",
           "module": "uuid",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "uuid.uuid7",
           "module": "uuid",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "uuid.uuid8",
           "module": "uuid",
           "kind": "function",
-          "documented": false
+          "documented": true
         }
       ],
       "removed": [
@@ -434,7 +434,7 @@
       "totals": {
         "added": 24,
         "removed": 1,
-        "undocumented": 13
+        "undocumented": 6
       }
     },
     {

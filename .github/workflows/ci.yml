@@ -39,7 +39,7 @@ jobs:
   quality:
     timeout-minutes: 10
     name: Линтер и типы
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
 
@@ -73,7 +73,7 @@ jobs:
   tests:
     timeout-minutes: 15
     name: Тесты (Python ${{ matrix.python-version }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
       matrix:
@@ -109,7 +109,7 @@ jobs:
   attribution:
     timeout-minutes: 5
     name: Атрибуция коммитов изменения
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       # Полная история намеренно: атрибуция проверяется в том, что ляжет в
       # общую ветку, а при глубине 1 сравнивать не с чем (правило 123).
@@ -129,7 +129,7 @@ jobs:
   journal:
     timeout-minutes: 5
     name: Запись журнала едет с изменением
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       # Полная история намеренно: состав изменения считается против основы, а
       # при глубине 1 сравнивать не с чем (правило 138).
@@ -149,7 +149,7 @@ jobs:
   link:
     timeout-minutes: 5
     name: Связь изменения с задачей
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
 
@@ -178,7 +178,7 @@ jobs:
   data:
     timeout-minutes: 15
     name: Качество данных и синхронность витрины
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v7
 
@@ -255,7 +255,7 @@ jobs:
   examples:
     timeout-minutes: 15
     name: Примеры на Python ${{ matrix.python-version }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     strategy:
       fail-fast: false
       matrix:
@@ -292,7 +292,7 @@ jobs:
     name: check PR
     needs: [quality, tests, data, examples, attribution, link, journal]
     if: always()
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
       # Сводку пишет python планки, а не системный python раннера (217).
       - uses: actions/setup-python@v7

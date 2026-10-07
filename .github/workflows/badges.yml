@@ -63,7 +63,7 @@ permissions:
 jobs:
   inventory:
     name: Инвентарь языка (Python ${{ matrix.python-version }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     strategy:
       fail-fast: false
@@ -102,7 +102,7 @@ jobs:
     # из-за них публикацию незачем — работа необязательная и своё падение
     # показывает сама.
     name: Инвентарь языка (Python 3.15-rc)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     continue-on-error: true
     # ВЕРСИЯ ЗАДАНА МАТРИЦЕЙ, А НЕ ЛИТЕРАЛОМ, И ЭТО НАЗВАННЫЙ ОБХОД. Значок
@@ -135,7 +135,7 @@ jobs:
 
   publish:
     name: Опубликовать значки, факты, замечания и полноту
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     # `preview` объявлен зависимостью намеренно, при continue-on-error: так
     # публикация дожидается его результата, но не падает вместе с ним. Его

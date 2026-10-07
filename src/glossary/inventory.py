@@ -184,12 +184,29 @@ def _public_names(module: object) -> list[str]:
     """Публичные имена модуля: ``__all__``, если объявлен, иначе ``dir()``.
 
     ``__all__`` — заявление автора модуля о том, что здесь публично. Оно точнее
-    ``dir()``, который приносит ещё и импортированные модулем чужие имена.
+    ``dir()``, который приносит ещё и импортированные модулем чужие имена. Без
+    ``__all__`` чужое отсекается по ``__module__`` объекта: ``uuid.Enum`` — это
+    ``enum.Enum``, ``uuid.bytes_`` — встроенный ``bytes``, и описывать их как
+    часть ``uuid`` значило бы считать пропуском то, что пропуском не является.
+    Модуль-реализация на C (``_sqlite3`` у ``sqlite3``) своим считается.
     """
     declared = getattr(module, "__all__", None)
     if isinstance(declared, list | tuple):
         return [str(name) for name in declared if _is_public(str(name))]
-    return [name for name in dir(module) if _is_public(name)]
+    own = getattr(module, "__name__", "")
+    return [
+        name
+        for name in dir(module)
+        if _is_public(name) and _is_own(getattr(module, name, None), own)
+    ]
+
+
+def _is_own(member: object, module: str) -> bool:
+    """Объект определён в самом модуле, его подмодуле или его C-реализации."""
+    home = getattr(member, "__module__", None)
+    if not isinstance(home, str):
+        return True
+    return home in {module, f"_{module}"} or home.startswith(f"{module}.")
 
 
 def _classify(obj: object) -> str | None:

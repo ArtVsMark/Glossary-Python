@@ -157,6 +157,25 @@ def test_call_parentheses_in_title_do_not_break_the_match():
     assert completeness.build_completeness(glossary, tiny(FN))["builtins"].missing == ()
 
 
+def test_decorator_sign_in_title_does_not_break_the_match():
+    glossary = make_glossary(make_entry(id="иное", title="@functools.reduce"))
+    assert completeness.build_completeness(glossary, tiny(MEMBER))["stdlib"].missing == ()
+
+
+def test_inventory_skips_names_imported_from_elsewhere():
+    """Без __all__ чужое отсекается по __module__: uuid.Enum — это enum.Enum."""
+    names = build_inventory(frozenset({"uuid"})).qualnames
+    assert "uuid.UUID" in names
+    assert not {"uuid.Enum", "uuid.bytes_", "uuid.int_"} & names
+
+
+def test_inventory_keeps_names_of_the_c_implementation():
+    """sqlite3.connect живёт в _sqlite3 — это реализация модуля, а не чужое имя."""
+    names = build_inventory(frozenset({"sqlite3"})).qualnames
+    assert "sqlite3.connect" in names
+    assert "sqlite3.Date" not in names  # это datetime.date
+
+
 def test_alias_counts_as_a_name():
     glossary = make_glossary(make_entry(id="иное", aliases=("functools.reduce",)))
     assert completeness.build_completeness(glossary, tiny(MEMBER))["stdlib"].missing == ()

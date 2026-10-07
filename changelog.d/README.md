@@ -31,7 +31,12 @@ changelog.d/<slug>.<секция>.md
 make changelog-check     # форма записей (тот же гейт, что в CI)
 make changelog-preview   # как соберётся, ничего не меняя
 make changelog-collect   # перенести в [Unreleased] и удалить фрагменты
+make changelog-rotate    # выпуски за окном — в docs/changelog-archive.md
 ```
+
+Журнал держит три последних выпуска (правило каталога 108): четвёртый
+краснит `make changelog-check`. Старое переносит `make changelog-rotate` —
+машиной и потому дословно; руками архив не пишется.
 
 Форма повторяет конвенцию соседнего проекта `ArtVsMark/Stepik-Python-Grader`
 намеренно: две реализации одного алгоритма разошлись бы на первой же правке.

@@ -80,13 +80,14 @@ def known_names(glossary: Glossary) -> frozenset[str]:
 
     Берутся и идентификатор, и заголовок: карточка исключения хранит id в
     нижнем регистре (``indexerror``), а заголовком несёт настоящее имя
-    (``IndexError``). Регистр снимается, скобки вызова отбрасываются —
-    ``len()`` в заголовке и ``len`` в языке это одно и то же.
+    (``IndexError``). Регистр снимается, скобки вызова и знак декоратора
+    отбрасываются — ``len()`` и ``@dataclass`` в заголовке называют ``len`` и
+    ``dataclass`` языка.
     """
     names: set[str] = set()
     for entry in glossary:
         for raw in (entry.id, entry.title.ru, entry.title.en, *entry.aliases):
-            cleaned = raw.strip().removesuffix("()").lower()
+            cleaned = raw.strip().removeprefix("@").removesuffix("()").lower()
             if cleaned:
                 names.add(cleaned)
     return frozenset(names)

@@ -2048,8 +2048,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "str() возвращает «читаемое» представление объекта для вывода пользователю. repr() возвращает «однозначное» представление, пригодное для воспроизведения объекта в коде; используется в интерактивной консоли и при отладке.",
-      "en": "str() returns the 'readable' representation of an object, meant for the user. repr() returns the 'unambiguous' representation, suitable for recreating the object in code; it is what the interactive console and debugging show."
+      "ru": "str() — читаемое представление объекта для пользователя, repr() — однозначное, для разработчика и отладки; консоль показывает repr.",
+      "en": "str() gives a readable representation for users, repr() an unambiguous one for developers and debugging; the console shows repr."
     },
     "body": {
       "ru": "Внутри контейнеров элементы всегда показываются через repr — поэтому print(\"привет\") даёт голый текст, а print([\"привет\"]) выводит строку в кавычках, и это не баг. В своих классах достаточно определить __repr__: если __str__ нет, str() и print() падают обратно на него, а вот обратной подстановки не бывает. В f-строках отладочное представление включается суффиксом !r.",

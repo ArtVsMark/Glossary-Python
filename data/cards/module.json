@@ -4455,8 +4455,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Идиома из документации bisect: bisect.bisect() по списку границ возвращает номер диапазона, которым индексируют список меток. Табличный поиск за O(log n) вместо цепочки if/elif — оценки, тарифы, уровни.",
-      "en": "The idiom from the bisect docs: bisect.bisect() over a list of breakpoints returns the range index used to index a list of labels. An O(log n) table lookup instead of an if/elif chain — grades, price tiers, levels."
+      "ru": "Идиома из документации bisect: bisect по списку границ даёт номер диапазона — табличный поиск за O(log n) вместо цепочки if/elif.",
+      "en": "An idiom from the bisect docs: bisect over a list of breakpoints yields the range index — an O(log n) table lookup instead of an if/elif chain."
     },
     "body": {
       "ru": "Список меток должен быть ровно на один длиннее списка границ, иначе на крайних значениях вы получите IndexError или, что хуже, молча неверную метку. bisect() — это bisect_right, поэтому значение, точно равное границе, попадает в верхний диапазон; если граница должна принадлежать нижнему, берите bisect_left. И сами границы обязаны быть отсортированы по возрастанию — проверки нет.",
@@ -9075,8 +9075,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Экранирует все спецсимволы в строке, чтобы использовать её как литеральный паттерн в регулярном выражении. Полезно, когда паттерн формируется из пользовательского ввода. С Python 3.7 экранируются только символы, действительно значимые для regex.",
-      "en": "Escapes every special character in a string so that it can be used as a literal pattern inside a regular expression. Useful when the pattern is built from user input; since Python 3.7 only characters meaningful to regex are escaped."
+      "ru": "Экранирует спецсимволы в строке, чтобы искать её буквально, — нужно, когда шаблон собирается из пользовательского ввода.",
+      "en": "Escape special characters in a string so it is matched literally — needed when a pattern is built from user input."
     },
     "body": {
       "ru": "Нужна ровно там, где часть паттерна — это данные: имя файла, слово из пользовательского ввода, разделитель из переменной. Без экранирования точка, плюс или скобки внезапно станут метасимволами, а незакрытая скобка — ошибкой re.error. На строку замены в re.sub() это не распространяется: там свои правила, и пришедшие из данных \\1 или \\g<name> всё равно сработают как ссылки на группы — надёжнее передать вместо repl функцию.",
@@ -14107,8 +14107,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "2 в степени x (Python 3.11+).",
-      "en": "2 raised to the power x (3.11+)."
+      "ru": "Возвращает 2 в степени x как float (Python 3.11+).",
+      "en": "Return 2 raised to the power x as a float (Python 3.11+)."
     },
     "body": {
       "ru": "Для целых показателей привычное 2 ** n лучше: оно даёт точный int любой длины, а exp2 всегда возвращает float и падает с OverflowError, как только число перестаёт помещаться в float. Ниша exp2 — дробные показатели и численные расчёты, где нужен один корректно округлённый шаг вместо связки exp и логарифма.",
@@ -14259,8 +14259,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Гиперболический синус.",
-      "en": "Hyperbolic sine."
+      "ru": "Гиперболический синус x: (e**x - e**-x) / 2.",
+      "en": "The hyperbolic sine of x: (e**x - e**-x) / 2."
     },
     "body": {
       "ru": "Аргумент здесь — не угол: math.radians и math.degrees к гиперболическим функциям неприменимы, на вход идёт обычное вещественное число. Значение неограниченно и растёт экспоненциально, так что примерно с 710 по модулю вместо результата будет OverflowError.",
@@ -14309,8 +14309,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Гиперболический косинус.",
-      "en": "Hyperbolic cosine."
+      "ru": "Гиперболический косинус x: (e**x + e**-x) / 2.",
+      "en": "The hyperbolic cosine of x: (e**x + e**-x) / 2."
     },
     "body": {
       "ru": "Растёт экспоненциально, и примерно с аргумента 710 результат перестаёт помещаться в float — вместо числа прилетает OverflowError (math range error). С обычным косинусом общего мало: cosh чётная, но не колеблется и никогда не бывает меньше 1.",
@@ -14359,8 +14359,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Гиперболический тангенс.",
-      "en": "Hyperbolic tangent."
+      "ru": "Гиперболический тангенс x: sinh(x) / cosh(x); значения лежат между -1 и 1.",
+      "en": "The hyperbolic tangent of x: sinh(x) / cosh(x); values lie between -1 and 1."
     },
     "body": {
       "ru": "Единственная из гиперболических, которая не переполняется: результат всегда внутри (-1, 1), какой бы конечный аргумент ни подали. Зато она быстро насыщается — уже при аргументе около 19 float не отличает ответ от единицы и возвращается ровно 1.0, поэтому обратный ход через math.atanh на таких значениях упадёт с ValueError.",
@@ -14873,8 +14873,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Число с модулем x и знаком y.",
-      "en": "A value with the magnitude of x and the sign of y."
+      "ru": "Возвращает число с модулем x и знаком y, в том числе знаком нуля -0.0.",
+      "en": "Return a value with the magnitude of x and the sign of y, including the sign of -0.0."
     },
     "body": {
       "ru": "Самое неочевидное применение — отличить 0.0 от -0.0: сравнением это не сделать, потому что -0.0 == 0.0 истинно, а math.copysign(1, x) вернёт -1.0 именно для минус-нуля. Знак читается из знакового бита, так что функция работает и с nan, и с бесконечностями, а результат всегда float, даже если оба аргумента целые.",
@@ -20317,8 +20317,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает a != b.",
-      "en": "Return a != b."
+      "ru": "Возвращает a != b — функциональная форма оператора «не равно».",
+      "en": "Return a != b — the functional form of the \"not equal\" operator."
     },
     "body": {
       "ru": "Если в классе определён __eq__, а __ne__ нет, Python выводит ne как отрицание eq — писать оба метода не нужно. Для NaN ne(nan, nan) истинно, и это стандартный способ проверки на NaN без импорта math. Чтобы убрать из последовательности конкретное значение: filter(partial(operator.ne, None), xs).",
@@ -20368,8 +20368,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает a < b.",
-      "en": "Return a < b."
+      "ru": "Возвращает a < b — функциональная форма оператора «меньше».",
+      "en": "Return a < b — the functional form of the \"less than\" operator."
     },
     "body": {
       "ru": "С functools.partial порядок аргументов переворачивает смысл: partial(operator.lt, 0) — это x → 0 < x, то есть «больше нуля», а не «меньше». Сравнение несравнимых типов поднимает TypeError: lt(1, 'a') не даёт ни True, ни False. Для ключа сортировки lt не нужен — sorted сравнивает сам, а порядок задают key и reverse.",
@@ -20419,8 +20419,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает a <= b.",
-      "en": "Return a <= b."
+      "ru": "Возвращает a <= b — функциональная форма оператора «меньше или равно».",
+      "en": "Return a <= b — the functional form of the \"less than or equal\" operator."
     },
     "body": {
       "ru": "Для множеств le — проверка подмножества: le({1}, {1, 2}) истинно. Поэтому le для множеств задаёт лишь частичный порядок: le({1}, {2}) и le({2}, {1}) оба ложны. Как и у lt, при functools.partial фиксируется левый аргумент: partial(operator.le, 18) означает x → 18 <= x.",
@@ -20470,8 +20470,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает a > b.",
-      "en": "Return a > b."
+      "ru": "Возвращает a > b — функциональная форма оператора «больше».",
+      "en": "Return a > b — the functional form of the \"greater than\" operator."
     },
     "body": {
       "ru": "Если левый операнд не умеет сравнивать, Python пробует отражённую операцию правого: для gt это __lt__ второго аргумента. Поэтому в своём классе достаточно определить __lt__ и __eq__, а functools.total_ordering достроит остальное. При functools.partial фиксируется левый аргумент: partial(operator.gt, 10) — это x → 10 > x, то есть «меньше десяти».",
@@ -20523,8 +20523,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Возвращает a >= b.",
-      "en": "Return a >= b."
+      "ru": "Возвращает a >= b — функциональная форма оператора «больше или равно».",
+      "en": "Return a >= b — the functional form of the \"greater than or equal\" operator."
     },
     "body": {
       "ru": "Для множеств ge — проверка надмножества: ge({1, 2}, {1}) истинно. Строки сравниваются посимвольно по кодам Юникода, поэтому ge('a', 'B') истинно: строчные буквы идут после заглавных. Для сравнения без учёта регистра приводите строки через str.casefold.",
@@ -21522,8 +21522,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "In-place вычитание: a −= b.",
-      "en": "In-place subtraction: a −= b."
+      "ru": "Вычитание на месте: a -= b; для множеств — разность на месте.",
+      "en": "In-place subtraction: a -= b; for sets, an in-place difference."
     },
     "body": {
       "ru": "Для чисел ничего не меняет на месте — результат нужно присвоить: x = isub(x, 1). Для множества меняет его на месте, убирая элементы второго аргумента: после isub(s, {1}) из s пропадёт 1, и это увидят все ссылки на тот же объект. У списков операции -= нет вовсе: isub([1, 2], [1]) поднимает TypeError.",
@@ -21573,8 +21573,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "In-place умножение: a *= b.",
-      "en": "In-place multiplication: a *= b."
+      "ru": "Умножение на месте: a *= b; для списков — повторение на месте.",
+      "en": "In-place multiplication: a *= b; for lists, in-place repetition."
     },
     "body": {
       "ru": "Для списка повторяет содержимое на месте, и все копии ссылаются на одни и те же вложенные объекты: после imul([[]], 3) добавление в первый внутренний список отразится во всех трёх. Для чисел и строк результат нужно присвоить — они неизменяемы. Список списков надёжнее строить генератором: [[] for _ in range(3)].",
@@ -21730,8 +21730,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "In-place остаток: a %= b.",
-      "en": "In-place modulo: a %= b."
+      "ru": "Остаток на месте: a %= b; для строк — %-форматирование.",
+      "en": "In-place modulo: a %= b; for strings, %-formatting."
     },
     "body": {
       "ru": "Для строк % — это форматирование, а не остаток: imod('%s-%d', ('a', 3)) вернёт 'a-3'. Для чисел знак результата совпадает со знаком делителя, как у mod. Строки и числа неизменяемы, поэтому результат нужно присвоить: s = imod(s, args).",
@@ -21833,8 +21833,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "In-place побитовое И: a &= b.",
-      "en": "In-place bitwise AND: a &= b."
+      "ru": "Побитовое И на месте: a &= b; для множеств — пересечение на месте.",
+      "en": "In-place bitwise AND: a &= b; for sets, an in-place intersection."
     },
     "body": {
       "ru": "Для множества меняет его на месте, оставляя пересечение: после iand(s, {2, 3}) в s останутся только общие элементы, и это увидят все ссылки на s. Для int результат нужно присвоить. Как и and_, это побитовая операция без короткого замыкания, а не логическое and.",
@@ -30740,8 +30740,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Удаляет пустой каталог.",
-      "en": "Remove an empty directory."
+      "ru": "Удаляет пустой каталог; для непустого поднимает OSError — дерево удаляет shutil.rmtree.",
+      "en": "Remove an empty directory; a non-empty one raises OSError — shutil.rmtree removes a tree."
     },
     "body": {
       "ru": "Удаляет только пустой каталог: если внутри что-то есть, будет OSError. Для дерева целиком нужна shutil.rmtree — и с ней стоит быть осторожнее, чем с rmdir, потому что она удаляет без вопросов. На Windows каталог, открытый как текущий в другом процессе, удалить не получится.",
@@ -35833,8 +35833,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Открывает файл или папку в ассоциированном приложении — как двойной клик в Проводнике; возвращается сразу после запуска, дождаться завершения нельзя. Только Windows; параметры arguments/cwd/show_cmd — с Python 3.10.",
-      "en": "Start a file or folder with its associated application, like double-clicking it in Explorer; returns as soon as the application is launched, with no way to wait for it. Availability: Windows; the arguments/cwd/show_cmd parameters were added in Python 3.10."
+      "ru": "Открывает файл или папку в связанном приложении, как двойной щелчок в Проводнике; не ждёт завершения. Только Windows.",
+      "en": "Open a file or folder with its associated application, like double-clicking it in Explorer; does not wait. Windows only."
     },
     "body": {
       "ru": "Возвращается сразу после запуска и не сообщает, чем закончилась программа, — дождаться её нельзя. Параметр operation выбирает действие: 'open' по умолчанию, 'print', 'edit'. На macOS и Linux аналога в os нет: используют subprocess.run(['open', path]) и subprocess.run(['xdg-open', path]) соответственно.",
@@ -36425,5 +36425,431 @@
       "typeerror"
     ],
     "related_errors": []
+  },
+  {
+    "id": "notimplemented",
+    "title": {
+      "ru": "NotImplemented",
+      "en": "NotImplemented"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Особое значение, которое возвращает метод сравнения или арифметики, чтобы сказать «с этим типом не умею» и дать Python попробовать отражённую операцию.",
+      "en": "A special value a comparison or arithmetic method returns to say \"I can't handle this type\", letting Python try the reflected operation."
+    },
+    "body": {
+      "ru": "Возвращать нужно именно NotImplemented, а не поднимать NotImplementedError: значение даёт интерпретатору попробовать метод другого операнда и только потом поднять TypeError. С Python 3.14 bool(NotImplemented) поднимает TypeError — раньше значение считалось истинным, и проверка if result: молча пропускала ошибку. Это единственный экземпляр типа NotImplementedType, сравнивают его через is.",
+      "en": "Return NotImplemented itself rather than raising NotImplementedError: the value lets the interpreter try the other operand's method and only then raise TypeError. Since Python 3.14 bool(NotImplemented) raises TypeError — it used to be truthy, so an if result: check silently let mistakes through. It is the sole instance of NotImplementedType and is compared with is."
+    },
+    "syntax": "def __eq__(self, other):\n    if not isinstance(other, Point):\n        return NotImplemented",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/constants.html#NotImplemented",
+    "version": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Встроенные типы",
+    "subcat": {
+      "ru": "особые значения",
+      "en": "special values"
+    },
+    "aliases": [
+      "операция не поддерживается для этого типа",
+      "что вернуть из __eq__ для чужого типа",
+      "отражённая операция"
+    ],
+    "keywords": [
+      "NotImplemented",
+      "NotImplementedType"
+    ],
+    "tags": [
+      "constants",
+      "dunder"
+    ],
+    "examples": [
+      "class Money:",
+      "    def __init__(self, amount):",
+      "        self.amount = amount",
+      "    def __eq__(self, other):",
+      "        if not isinstance(other, Money):",
+      "            return NotImplemented",
+      "        return self.amount == other.amount",
+      "print(Money(5) == Money(5))   # → True",
+      "print(Money(5) == 5)   # → False: Python попробовал int.__eq__ и сравнил по тождеству",
+      "print(type(NotImplemented).__name__)   # → NotImplementedType",
+      "bool(NotImplemented)   # → TypeError: с Python 3.14 в логическом контексте нельзя"
+    ],
+    "related": [
+      "notimplementederror",
+      "__add__-__mul__-__eq__-__lt__-и-оператор",
+      "functools.total_ordering",
+      "operator.eq"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
+  },
+  {
+    "id": "types.GenericAlias",
+    "title": {
+      "ru": "types.GenericAlias",
+      "en": "types.GenericAlias"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Тип выражения вроде list[int]: параметризованный встроенный класс для аннотаций, хранящий исходный класс и аргументы типа.",
+      "en": "The type of an expression like list[int]: a parameterised built-in class used in annotations that keeps the original class and its type arguments."
+    },
+    "body": {
+      "ru": "list[int] не создаёт новый класс и ничего не проверяет во время выполнения: list[int]([1, 'a']) спокойно вернёт список со строкой. В isinstance такой объект передать нельзя — будет TypeError, проверяйте isinstance(x, list). Исходный класс и аргументы достают typing.get_origin и typing.get_args. С Python 3.9 встроенные коллекции поддерживают такую запись сами, без typing.List.",
+      "en": "list[int] creates no new class and checks nothing at run time: list[int]([1, 'a']) happily returns a list with a string. It cannot be passed to isinstance — that raises TypeError, so check isinstance(x, list). typing.get_origin and typing.get_args extract the original class and the arguments. Since Python 3.9 built-in collections support this syntax directly, without typing.List."
+    },
+    "syntax": "list[int]  # → types.GenericAlias",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/types.html#types.GenericAlias",
+    "version": "3.9",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Встроенные типы",
+    "subcat": {
+      "ru": "типы аннотаций",
+      "en": "annotation types"
+    },
+    "aliases": [
+      "что такое list[int]",
+      "параметризованный тип",
+      "аннотация коллекции с типом элементов"
+    ],
+    "keywords": [
+      "types.GenericAlias",
+      "GenericAlias",
+      "__origin__",
+      "__args__"
+    ],
+    "tags": [
+      "typing",
+      "annotations"
+    ],
+    "examples": [
+      "import types",
+      "import typing",
+      "alias = list[int]",
+      "print(type(alias) is types.GenericAlias)   # → True",
+      "print(typing.get_origin(alias), typing.get_args(alias))   # → <class 'list'> (<class 'int'>,)",
+      "print(alias([1, 'a']))   # → [1, 'a'] — тип элементов не проверяется",
+      "isinstance([], list[int])   # → TypeError: параметризованный тип в isinstance нельзя"
+    ],
+    "related": [
+      "generic-t",
+      "typing.get_origin",
+      "typing.get_args",
+      "isinstance"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
+  },
+  {
+    "id": "types.UnionType",
+    "title": {
+      "ru": "types.UnionType",
+      "en": "types.UnionType"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Тип выражения int | str — объединения типов. С Python 3.14 это псевдоним typing.Union, и обе записи дают один и тот же объект.",
+      "en": "The type of an int | str union expression. Since Python 3.14 it is an alias of typing.Union, so both spellings produce the same kind of object."
+    },
+    "body": {
+      "ru": "В отличие от list[int], объединение можно передать в isinstance: isinstance(3, int | str) истинно. Порядок и повторы не важны: int | str равно str | int, а int | int — это просто int. До 3.14 типы types.UnionType и typing.Union различались, и код, проверявший type(x) is types.UnionType, пропускал записи через typing.Union; с 3.14 надёжнее typing.get_origin(x) is typing.Union.",
+      "en": "Unlike list[int], a union can go into isinstance: isinstance(3, int | str) is true. Order and duplicates do not matter: int | str equals str | int, and int | int is just int. Before 3.14 types.UnionType and typing.Union were distinct, so code checking type(x) is types.UnionType missed typing.Union spellings; since 3.14 typing.get_origin(x) is typing.Union is the reliable check."
+    },
+    "syntax": "int | str  # → объединение типов",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/types.html#types.UnionType",
+    "version": "3.10",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Встроенные типы",
+    "subcat": {
+      "ru": "типы аннотаций",
+      "en": "annotation types"
+    },
+    "aliases": [
+      "тип выражения int | str",
+      "объединение типов через вертикальную черту",
+      "проверить значение на несколько типов"
+    ],
+    "keywords": [
+      "types.UnionType",
+      "UnionType",
+      "typing.Union",
+      "|"
+    ],
+    "tags": [
+      "typing",
+      "annotations"
+    ],
+    "examples": [
+      "import types",
+      "import typing",
+      "u = int | str",
+      "print(isinstance(3, u), isinstance(3.0, u))   # → True False",
+      "print((int | str) == (str | int))   # → True",
+      "print(typing.get_args(u))   # → (<class 'int'>, <class 'str'>)",
+      "print(types.UnionType is typing.Union)   # → ? True с Python 3.14, раньше — разные типы"
+    ],
+    "related": [
+      "union-x-y-x-y",
+      "optional-x-x-none",
+      "isinstance",
+      "typing.get_args"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "ctypes.CDLL",
+    "title": {
+      "ru": "ctypes.CDLL",
+      "en": "ctypes.CDLL"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Загружает динамическую библиотеку на C (.so, .dylib, .dll) и даёт вызывать её функции как атрибуты объекта.",
+      "en": "Load a C shared library (.so, .dylib, .dll) and call its functions as attributes of the returned object."
+    },
+    "body": {
+      "ru": "Без описания типов ctypes считает, что функция принимает и возвращает int: для double или указателя результат будет мусором. Поэтому задавайте argtypes и restype у каждой функции. Ошибка в типах не даёт исключения, а может уронить весь интерпретатор. Имя библиотеки зависит от системы, переносимо её ищет ctypes.util.find_library('c').",
+      "en": "Without type declarations ctypes assumes a function takes and returns int: for a double or a pointer the result is garbage. So set argtypes and restype on every function. A type mistake raises no exception and may crash the whole interpreter. Library names are platform-specific; ctypes.util.find_library('c') finds them portably."
+    },
+    "syntax": "lib = ctypes.CDLL(name)\nlib.func.argtypes = [ctypes.c_int]\nlib.func.restype = ctypes.c_int",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.CDLL",
+    "version": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль ctypes",
+    "subcat": {
+      "ru": "загрузка библиотек",
+      "en": "loading libraries"
+    },
+    "aliases": [
+      "вызвать функцию из библиотеки на си",
+      "подключить dll или so",
+      "загрузить динамическую библиотеку"
+    ],
+    "keywords": [
+      "ctypes.CDLL",
+      "CDLL",
+      "argtypes",
+      "restype",
+      "find_library"
+    ],
+    "tags": [
+      "ctypes",
+      "ffi"
+    ],
+    "examples": [
+      "import ctypes",
+      "import ctypes.util",
+      "libc = ctypes.CDLL(ctypes.util.find_library('c'))   # → ? имя библиотеки зависит от системы",
+      "libc.strlen.argtypes = [ctypes.c_char_p]",
+      "libc.strlen.restype = ctypes.c_size_t",
+      "print(libc.strlen(b'hello'))   # → ? 5 — функция стандартной библиотеки C"
+    ],
+    "related": [
+      "ctypes.c_int",
+      "ctypes.byref",
+      "ctypes.Structure",
+      "ctypes.ArgumentError"
+    ],
+    "related_errors": [
+      "oserror"
+    ]
+  },
+  {
+    "id": "ctypes.c_int",
+    "title": {
+      "ru": "ctypes.c_int",
+      "en": "ctypes.c_int"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Тип C int в ctypes: изменяемая обёртка над числом фиксированной ширины для передачи в функции на C.",
+      "en": "The C int type in ctypes: a mutable wrapper around a fixed-width number for passing to C functions."
+    },
+    "body": {
+      "ru": "В отличие от int Python, ширина фиксирована, и лишние биты молча отбрасываются: c_int(2**32 + 1).value равно 1. Значение читают и меняют через атрибут .value. Рядом лежат c_double, c_char_p, c_size_t и другие типы — размер даёт ctypes.sizeof. Строку из Python передавайте как bytes или через c_char_p, а не как str.",
+      "en": "Unlike Python's int the width is fixed, and extra bits are silently dropped: c_int(2**32 + 1).value is 1. The value is read and changed via the .value attribute. Alongside sit c_double, c_char_p, c_size_t and other types — ctypes.sizeof gives their size. Pass Python strings as bytes or via c_char_p, not as str."
+    },
+    "syntax": "x = ctypes.c_int(42)\nx.value  # → 42",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.c_int",
+    "version": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль ctypes",
+    "subcat": {
+      "ru": "типы C",
+      "en": "C types"
+    },
+    "aliases": [
+      "целое число си",
+      "тип int из си в python",
+      "переполнение целого фиксированной ширины"
+    ],
+    "keywords": [
+      "ctypes.c_int",
+      "c_int",
+      "c_double",
+      "c_char_p",
+      "sizeof"
+    ],
+    "tags": [
+      "ctypes",
+      "ffi"
+    ],
+    "examples": [
+      "import ctypes",
+      "x = ctypes.c_int(42)",
+      "print(x.value)   # → 42",
+      "x.value += 1",
+      "print(x.value)   # → 43",
+      "print(ctypes.c_int(2**32 + 1).value)   # → 1 — старшие биты отброшены",
+      "print(ctypes.sizeof(ctypes.c_double))   # → ? обычно 8 байт"
+    ],
+    "related": [
+      "ctypes.CDLL",
+      "ctypes.byref",
+      "ctypes.Structure"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
+  },
+  {
+    "id": "ctypes.Structure",
+    "title": {
+      "ru": "ctypes.Structure",
+      "en": "ctypes.Structure"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Базовый класс для описания структуры C: поля задаются списком _fields_ из пар «имя, тип ctypes».",
+      "en": "The base class for describing a C struct: fields are declared in a _fields_ list of (name, ctypes type) pairs."
+    },
+    "body": {
+      "ru": "Порядок и типы полей должны точно совпадать со структурой в коде на C, иначе данные прочитаются со сдвигом и без всякой ошибки. Выравнивание полей делается как у компилятора C, поэтому sizeof может оказаться больше суммы размеров полей; _pack_ его меняет. Для чтения и записи двоичных форматов без вызова C-кода проще модуль struct.",
+      "en": "Field order and types must match the C definition exactly, or the data is read shifted without any error. Fields are aligned the way the C compiler aligns them, so sizeof may exceed the sum of field sizes; _pack_ changes that. For reading and writing binary formats without calling C code the struct module is simpler."
+    },
+    "syntax": "class Point(ctypes.Structure):\n    _fields_ = [('x', ctypes.c_int), ('y', ctypes.c_int)]",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.Structure",
+    "version": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль ctypes",
+    "subcat": {
+      "ru": "структуры",
+      "en": "structures"
+    },
+    "aliases": [
+      "структура си в python",
+      "передать структуру в функцию на си",
+      "описать поля структуры"
+    ],
+    "keywords": [
+      "ctypes.Structure",
+      "Structure",
+      "_fields_",
+      "_pack_"
+    ],
+    "tags": [
+      "ctypes",
+      "ffi"
+    ],
+    "examples": [
+      "import ctypes",
+      "class Point(ctypes.Structure):",
+      "    _fields_ = [('x', ctypes.c_int), ('y', ctypes.c_int)]",
+      "p = Point(1, 2)",
+      "print(p.x, p.y)   # → 1 2",
+      "p.x = 10",
+      "print(p.x)   # → 10",
+      "print(ctypes.sizeof(Point))   # → ? обычно 8 байт — два int по 4"
+    ],
+    "related": [
+      "ctypes.c_int",
+      "ctypes.byref",
+      "struct.error"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
+  },
+  {
+    "id": "ctypes.byref",
+    "title": {
+      "ru": "ctypes.byref",
+      "en": "ctypes.byref"
+    },
+    "kind": "function",
+    "summary": {
+      "ru": "Передаёт объект ctypes в функцию на C по ссылке — как &x в C, чтобы функция могла записать результат в переменную.",
+      "en": "Pass a ctypes object to a C function by reference — like &x in C — so the function can write a result into the variable."
+    },
+    "body": {
+      "ru": "Нужна, когда функция C возвращает значение через указатель-параметр, как sscanf или функции, заполняющие структуру. Легче и быстрее, чем ctypes.pointer, но годится только для передачи в вызов: сохранить результат byref в переменной и разыменовать нельзя. Передавать по ссылке можно только объекты ctypes — c_int, Structure, массивы, — а не обычный int Python.",
+      "en": "Use it when a C function returns a value through a pointer parameter, like sscanf or functions that fill a struct. It is lighter and faster than ctypes.pointer but only fit for passing into a call: you cannot store a byref result and dereference it. Only ctypes objects — c_int, Structure, arrays — can be passed by reference, not a plain Python int."
+    },
+    "syntax": "lib.func(ctypes.byref(x))",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/ctypes.html#ctypes.byref",
+    "version": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль ctypes",
+    "subcat": {
+      "ru": "указатели",
+      "en": "pointers"
+    },
+    "aliases": [
+      "передать указатель на переменную",
+      "получить результат через параметр функции си",
+      "аналог амперсанда из си"
+    ],
+    "keywords": [
+      "ctypes.byref",
+      "byref",
+      "ctypes.pointer",
+      "POINTER"
+    ],
+    "tags": [
+      "ctypes",
+      "ffi"
+    ],
+    "examples": [
+      "import ctypes",
+      "import ctypes.util",
+      "libc = ctypes.CDLL(ctypes.util.find_library('c'))   # → ? имя библиотеки зависит от системы",
+      "n = ctypes.c_int(0)",
+      "libc.sscanf(b'17', b'%d', ctypes.byref(n))   # → ? sscanf есть в библиотеке C на Unix",
+      "print(n.value)   # → 17",
+      "print(ctypes.pointer(n).contents.value)   # → 17 — pointer даёт настоящий указатель"
+    ],
+    "related": [
+      "ctypes.CDLL",
+      "ctypes.c_int",
+      "ctypes.Structure"
+    ],
+    "related_errors": [
+      "typeerror"
+    ]
   }
 ]

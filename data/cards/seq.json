@@ -3367,8 +3367,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Убирает заданные байты слева.",
-      "en": "Strip given bytes from the left."
+      "ru": "Возвращает копию без указанных байтов слева; по умолчанию убирает пробельные байты ASCII.",
+      "en": "Return a copy with the given bytes removed from the left; by default strips ASCII whitespace."
     },
     "body": {
       "ru": "Аргумент — набор байтов, а не префикс: обрезка идёт слева побайтно, пока очередной байт входит в набор, поэтому b'abcabd'.lstrip(b'ab') оставляет b'cabd'. При чистке ведущих нулей это выстреливает: b'0000'.lstrip(b'0') даст пустое b'', а не b'0'. Нужно снять ровно известное начало — removeprefix().",
@@ -5034,8 +5034,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Проверяет заданный префикс.",
-      "en": "Check for a given prefix."
+      "ru": "Проверяет, начинается ли bytearray с заданного префикса; принимает и кортеж префиксов.",
+      "en": "Check whether the bytearray starts with the given prefix; a tuple of prefixes is accepted too."
     },
     "body": {
       "ru": "Аргументом можно передать кортеж префиксов — это заменяет цепочку проверок через or. В отличие от find, целое число здесь не примут, а str даст TypeError: байты со строкой Python сравнивать не станет. Если префикс надо не проверить, а отрезать, есть removeprefix() (Python 3.9+).",
@@ -5086,8 +5086,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Проверяет заданный суффикс.",
-      "en": "Check for a given suffix."
+      "ru": "Проверяет, заканчивается ли bytearray заданным суффиксом; принимает и кортеж суффиксов.",
+      "en": "Check whether the bytearray ends with the given suffix; a tuple of suffixes is accepted too."
     },
     "body": {
       "ru": "Сравнение побайтовое и регистрозависимое: b'.TXT' не совпадёт с b'.txt', так что перед проверкой приводите к одному регистру через lower(). Аргумент — bytes-подобный объект или кортеж таких; str здесь вызывает TypeError, а одиночное целое, в отличие от count() и find(), не принимается вовсе.",
@@ -5394,8 +5394,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Разбивает по границам строк.",
-      "en": "Split at line boundaries."
+      "ru": "Разбивает bytearray на список строк по границам строк; keepends=True сохраняет переводы.",
+      "en": "Split the bytearray into a list of lines at line boundaries; keepends=True keeps the line breaks."
     },
     "body": {
       "ru": "В отличие от split(b'\\n'), завершающий перевод строки не порождает лишний пустой элемент в конце, а пустой bytearray даёт пустой список — поэтому для построчного разбора данных берут именно splitlines. Для байтов границами считаются только \\n, \\r и \\r\\n (у str их заметно больше), а keepends=True оставляет сам разделитель приклеенным к концу строки.",
@@ -5494,8 +5494,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Убирает байты слева.",
-      "en": "Strip bytes from the left."
+      "ru": "Возвращает копию без указанных байтов слева; по умолчанию убирает пробельные байты ASCII.",
+      "en": "Return a copy with the given bytes removed from the left; by default strips ASCII whitespace."
     },
     "body": {
       "ru": "Аргумент — набор байтов, которые срезаются по одному, пока встречаются, а не префикс целиком: lstrip(b'xy') снимет слева любое количество 'x' и 'y' в любом порядке. Если нужно убрать ровно одну заданную последовательность, это работа для removeprefix. Сам bytearray не меняется — возвращается новый объект.",
@@ -5545,8 +5545,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Убирает байты справа.",
-      "en": "Strip bytes from the right."
+      "ru": "Возвращает копию без указанных байтов справа; по умолчанию убирает пробельные байты ASCII.",
+      "en": "Return a copy with the given bytes removed from the right; by default strips ASCII whitespace."
     },
     "body": {
       "ru": "Аргумент — набор байтов, а не суффикс: rstrip(b'an') срезает с конца подряд идущие 'a' и 'n', поэтому b'banana' сжимается до b'b'. Когда нужно убрать именно окончание целиком, берите removesuffix() (3.9+). Результат — новый bytearray, исходный не меняется.",
@@ -6105,8 +6105,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Все байты — ASCII (0–127).",
-      "en": "All bytes are ASCII (0–127)."
+      "ru": "Проверяет, что все байты — ASCII (0–127); пустой bytearray тоже даёт True.",
+      "en": "Check that every byte is ASCII (0–127); an empty bytearray also gives True."
     },
     "body": {
       "ru": "Единственный метод этого семейства, который на пустой последовательности возвращает True: условие «все байты в диапазоне 0-127» на пустом наборе выполняется тривиально. Проверяется только диапазон значений, а не читаемость — управляющие байты вроде нулевого или символа escape тоже ASCII. Метод появился в Python 3.7.",
@@ -6653,8 +6653,8 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Разворачивает байты на месте.",
-      "en": "Reverse the bytes in place."
+      "ru": "Разворачивает байты на месте, меняя сам bytearray; возвращает None.",
+      "en": "Reverse the bytes in place, modifying the bytearray itself; returns None."
     },
     "body": {
       "ru": "Метод меняет объект на месте и возвращает None, поэтому ba = ba.reverse() затрёт ваши данные значением None — вызывайте его отдельной строкой. Если нужна перевёрнутая копия, а оригинал должен уцелеть, берите срез ba[::-1].",

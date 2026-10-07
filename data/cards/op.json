@@ -6868,8 +6868,8 @@
       "en": "Return the complex conjugate; for an integer (a real number) it is the number itself."
     },
     "body": {
-      "ru": "",
-      "en": ""
+      "ru": "Для целого числа возвращает само число, потому что мнимая часть равна нулю. Метод существует ради общего числового интерфейса: функция, вызывающая x.conjugate(), работает одинаково для int, float, Fraction и complex без проверки типа. Для bool возвращает int: True.conjugate() даёт 1.",
+      "en": "For an integer it returns the number itself, since the imaginary part is zero. The method exists for the shared numeric interface: a function calling x.conjugate() works the same for int, float, Fraction and complex without a type check. For bool it returns an int: True.conjugate() gives 1."
     },
     "syntax": "n.conjugate()",
     "status": "ready",

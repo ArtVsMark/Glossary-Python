@@ -56,7 +56,7 @@
       "    assert 1 + 1 == 2",
       "    assert 'hello'.upper() == 'HELLO'",
       "    assert len([1,2,3]) == 3",
-      "    test_add()  # → OK",
+      "test_add()  # ничего не печатает — все assert верны",
       "# assert с коллекцией",
       "def first(lst):",
       "    assert len(lst) > 0, 'List is empty'",

@@ -820,8 +820,8 @@
       "exec('for i in range(3): print(i)')  # → 0 1 2",
       "def make_func(name):",
       "    exec(f'def {name}(): return \"{name}\"', globals())",
-      "    make_func('hello')",
-      "    print(hello())  # → hello"
+      "make_func('hello')",
+      "print(hello())  # → hello"
     ],
     "related": [
       "eval",

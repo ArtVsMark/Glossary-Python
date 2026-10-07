@@ -103,7 +103,7 @@
       "print(apply(lambda x: x * 2, 5))  # → 10",
       "def run(cb: Callable[[], None]) -> None:",
       "    cb()",
-      "    run(lambda: print('called'))  # → called",
+      "run(lambda: print('called'))  # → called",
       "def transform(data: list, fn: Callable[[int], int]) -> list:",
       "    return [fn(x) for x in data]",
       "print(transform([1, 2, 3], lambda x: x ** 2))  # → [1, 4, 9]",
@@ -650,9 +650,9 @@
       "if TYPE_CHECKING:",
       "    from collections import OrderedDict",
       "def process(path: 'str') -> None:",
-      "    print(path)  # → строковая аннотация",
-      "    process('test')  # → test",
-      "    print(bool(TYPE_CHECKING))  # → False"
+      "    print(path)",
+      "process('test')  # → test",
+      "print(bool(TYPE_CHECKING))  # → False"
     ],
     "related": [
       "аннотации-типов-type-hints",

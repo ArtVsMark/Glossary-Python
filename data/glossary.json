@@ -24612,11 +24612,13 @@
       "color_group": "module",
       "aliases": [
         "вставить в отсортированный список после равных",
-        "добавить элемент с сохранением сортировки справа"
+        "добавить элемент с сохранением сортировки справа",
+        "bisect.insort"
       ],
       "keywords": [
         "bisect.insort_right",
-        "insort_right"
+        "insort_right",
+        "bisect.insort"
       ],
       "tags": [
         "module"
@@ -25272,6 +25274,78 @@
         "collections.abc.Buffer",
         "bytes",
         "bytearray"
+      ],
+      "related_errors": []
+    },
+    {
+      "id": "collections.abc.Callable",
+      "title": {
+        "ru": "collections.abc.Callable",
+        "en": "collections.abc.Callable"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Абстрактный класс «вызываемый объект»: для isinstance-проверки и, главное, для аннотаций вида Callable[[int], str].",
+        "en": "The abstract base class for callable objects: used in isinstance checks and, above all, in annotations like Callable[[int], str]."
+      },
+      "body": {
+        "ru": "Для проверки в рантайме проще встроенная callable(obj): она смотрит на слот вызова типа, а isinstance(obj, Callable) — на метод __call__ в MRO, и они расходятся на краях: класс с __call__ = None для callable() «вызываем», а для Callable — нет. Параметризованная форма Callable[[int], str] годится только в аннотации: isinstance с ней падает TypeError, сигнатуру в рантайме никто не проверяет. Аннотация typing.Callable — устаревший псевдоним этого же класса, с 3.9 пишут collections.abc.Callable.",
+        "en": "For a runtime check the built-in callable(obj) is simpler: it looks at the type's call slot, while isinstance(obj, Callable) looks for __call__ in the MRO, and they disagree at the edges — a class with __call__ = None is callable() but not a Callable. The parameterised form Callable[[int], str] is for annotations only: isinstance with it raises TypeError, and nothing checks the signature at runtime. typing.Callable is a deprecated alias of this same class; since 3.9 write collections.abc.Callable."
+      },
+      "syntax": "from collections.abc import Callable\ndef apply(f: Callable[[int], str], x: int) -> str: ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable",
+      "added": "3.3",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль collections",
+      "subcat": {
+        "ru": "collections.abc — протоколы",
+        "en": "collections.abc — protocols"
+      },
+      "color_group": "module",
+      "aliases": [
+        "проверить что объект можно вызвать",
+        "тип функции в аннотации",
+        "аннотация для колбэка"
+      ],
+      "keywords": [
+        "collections.abc.Callable",
+        "Callable",
+        "__call__",
+        "callable",
+        "typing.Callable"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from collections.abc import Callable",
+          "print(isinstance(len, Callable), isinstance(42, Callable))  # → True False",
+          "class Box:",
+          "    __call__ = None",
+          "print(callable(Box()), isinstance(Box(), Callable))  # → True False — края расходятся"
+        ],
+        [
+          "from collections.abc import Callable",
+          "def apply(f: Callable[[int], str], x: int) -> str:",
+          "    return f(x)",
+          "print(apply(hex, 255))  # → 0xff",
+          "try:",
+          "    isinstance(hex, Callable[[int], str])",
+          "except TypeError as e:",
+          "    print(e)  # → isinstance() argument 2 cannot be a parameterized generic"
+        ]
+      ],
+      "related": [
+        "callable",
+        "callable-arg-ret",
+        "collections.abc.Iterable",
+        "protocol"
       ],
       "related_errors": []
     },
@@ -26195,6 +26269,85 @@
         "collections.abc.MutableSequence",
         "collections.abc.Collection",
         "collections.abc.Mapping"
+      ],
+      "related_errors": []
+    },
+    {
+      "id": "collections.abc.Set",
+      "title": {
+        "ru": "collections.abc.Set",
+        "en": "collections.abc.Set"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Абстрактный класс неизменяемого множества: реализуйте __contains__, __iter__ и __len__ — и получите &, |, -, ^, сравнения и isdisjoint.",
+        "en": "The abstract base class for read-only sets: implement __contains__, __iter__ and __len__ and you get &, |, -, ^, comparisons and isdisjoint."
+      },
+      "body": {
+        "ru": "Три метода дают операторы, но не именованные методы: union(), intersection() и add() у вашего класса не появятся — это API set, а не Set. Результаты &, | и - строятся через classmethod _from_iterable, который зовёт cls(iterable): если конструктор принимает другие аргументы, его нужно переопределить. Определив __eq__, класс теряет хешируемость; для словарных ключей нужен __hash__ = Set._hash. Set — это и set, и frozenset, и dict.keys()/dict.items(), но не dict.values() и не list.",
+        "en": "The three methods buy you operators, not named methods: union(), intersection() and add() do not appear — they are the set API, not Set. The results of &, | and - are built by the classmethod _from_iterable, which calls cls(iterable), so override it if your constructor takes other arguments. Because Set defines __eq__, your class becomes unhashable; set __hash__ = Set._hash to use it as a dict key. set, frozenset, dict.keys() and dict.items() are all Sets, but dict.values() and list are not."
+      },
+      "syntax": "class MySet(collections.abc.Set):\n    def __contains__(self, x): ...\n    def __iter__(self): ...\n    def __len__(self): ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/collections.abc.html#collections.abc.Set",
+      "added": "3.3",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль collections",
+      "subcat": {
+        "ru": "collections.abc — протоколы",
+        "en": "collections.abc — protocols"
+      },
+      "color_group": "module",
+      "aliases": [
+        "своё множество с операциями",
+        "проверить что объект множество",
+        "интерфейс множества"
+      ],
+      "keywords": [
+        "collections.abc.Set",
+        "Set",
+        "__contains__",
+        "__iter__",
+        "__len__",
+        "_from_iterable",
+        "_hash"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from collections.abc import Set",
+          "class Ordered(Set):",
+          "    def __init__(self, items):",
+          "        self._items = list(dict.fromkeys(items))",
+          "    def __contains__(self, x):",
+          "        return x in self._items",
+          "    def __iter__(self):",
+          "        return iter(self._items)",
+          "    def __len__(self):",
+          "        return len(self._items)",
+          "a, b = Ordered([1, 2, 3]), Ordered([2, 3, 4])",
+          "print(list(a & b), list(a | b), list(a - b))  # → [2, 3] [1, 2, 3, 4] [1]",
+          "print(Ordered([1, 2]) <= a, a == {1, 2, 3})  # → True True",
+          "print(hasattr(a, 'union'), a.__hash__)  # → False None"
+        ],
+        [
+          "from collections.abc import Set",
+          "d = {'a': 1}",
+          "print(isinstance(frozenset(), Set), isinstance(d.keys(), Set))  # → True True",
+          "print(isinstance(d.values(), Set), isinstance([], Set))  # → False False"
+        ]
+      ],
+      "related": [
+        "collections.abc.MutableSet",
+        "set",
+        "frozenset",
+        "collections.abc.KeysView"
       ],
       "related_errors": []
     },
@@ -28679,6 +28832,92 @@
         "__copy__-__deepcopy__",
         "ловушки-копирования",
         "dict.copy"
+      ],
+      "related_errors": []
+    },
+    {
+      "id": "copy.replace",
+      "title": {
+        "ru": "copy.replace()",
+        "en": "copy.replace()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Создаёт копию объекта того же типа с заменой части полей. Работает с dataclass, namedtuple, datetime и любым классом с __replace__.",
+        "en": "Creates a copy of an object of the same type with some fields replaced. Works for dataclasses, namedtuples, datetime and any class with __replace__."
+      },
+      "body": {
+        "ru": "Это общий фасад: copy.replace(obj, **changes) просто вызывает obj.__replace__(**changes), поэтому один код меняет поля и у dataclass, и у namedtuple (вместо _replace), и у date/datetime. Обычный класс без __replace__ даёт TypeError, а не поверхностную копию — для этого есть copy.copy. Неизвестное имя поля — тоже TypeError, у dataclass нельзя передать поле с init=False. Копия поверхностная: вложенные списки остаются общими. Появилась в 3.13; на старых версиях — dataclasses.replace или _replace.",
+        "en": "It is a common façade: copy.replace(obj, **changes) just calls obj.__replace__(**changes), so the same code updates a dataclass, a namedtuple (instead of _replace) and a date/datetime. A plain class without __replace__ raises TypeError rather than making a shallow copy — use copy.copy for that. An unknown field name is a TypeError too, and a dataclass field with init=False cannot be passed. The copy is shallow: nested lists stay shared. New in 3.13; older versions need dataclasses.replace or _replace."
+      },
+      "syntax": "copy.replace(obj, /, **changes)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/copy.html#copy.replace",
+      "added": "3.13",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль copy",
+      "subcat": {
+        "ru": "замена полей",
+        "en": "field replacement"
+      },
+      "color_group": "module",
+      "aliases": [
+        "копия объекта с изменённым полем",
+        "заменить поле в неизменяемом объекте",
+        "replace для namedtuple и dataclass"
+      ],
+      "keywords": [
+        "copy.replace",
+        "replace",
+        "__replace__",
+        "_replace",
+        "dataclasses.replace"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import copy",
+          "from collections import namedtuple",
+          "from dataclasses import dataclass",
+          "Point = namedtuple('Point', 'x y')",
+          "@dataclass(frozen=True)",
+          "class User:",
+          "    name: str",
+          "    age: int",
+          "print(copy.replace(Point(1, 2), y=5))  # → Point(x=1, y=5)",
+          "print(copy.replace(User('Ann', 30), age=31))  # → User(name='Ann', age=31)"
+        ],
+        [
+          "import copy",
+          "class Plain:",
+          "    pass",
+          "try:",
+          "    copy.replace(Plain())",
+          "except TypeError as e:",
+          "    print(e)  # → replace() does not support Plain objects"
+        ],
+        [
+          "import copy",
+          "class Money:",
+          "    def __init__(self, amount, currency):",
+          "        self.amount, self.currency = amount, currency",
+          "    def __replace__(self, **changes):",
+          "        return Money(changes.get('amount', self.amount), changes.get('currency', self.currency))",
+          "m = copy.replace(Money(10, 'RUB'), amount=25)",
+          "print(m.amount, m.currency)  # → 25 RUB"
+        ]
+      ],
+      "related": [
+        "dataclasses.replace",
+        "copy.copy",
+        "__copy__-__deepcopy__",
+        "namedtuple"
       ],
       "related_errors": []
     },
@@ -32844,6 +33083,81 @@
       "related_errors": []
     },
     {
+      "id": "enum.property",
+      "title": {
+        "ru": "enum.property",
+        "en": "enum.property"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Аналог встроенного property для перечислений: позволяет атрибуту члена называться так же, как другой член, — так устроены name и value.",
+        "en": "An enum-aware version of the built-in property: it lets a member attribute share its name with a member — that is how name and value work."
+      },
+      "body": {
+        "ru": "Благодаря ему в Enum можно завести члены с именами name и value: Field.name — член, а Field.name.name — его имя. Свойство и одноимённый член должны быть в разных классах: свойство в базовом Enum, член — в наследнике. При обращении через класс, а не через член, enum.property даёт AttributeError, тогда как обычный property вернул бы сам объект property. Для своих вычисляемых атрибутов членов хватает и обычного @property; enum.property нужен, когда имя может совпасть с членом.",
+        "en": "Thanks to it an Enum may have members called name and value: Field.name is a member and Field.name.name is its name. The property and the same-named member must live in different classes: the property in the base Enum, the member in the subclass. Accessed on the class instead of a member, enum.property raises AttributeError, whereas a plain property would return the property object. For your own computed member attributes a plain @property is enough; enum.property matters when a name may clash with a member."
+      },
+      "syntax": "@enum.property\ndef attr(self): ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/enum.html#enum.property",
+      "added": "3.11",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль enum",
+      "subcat": {
+        "ru": "атрибуты",
+        "en": "attributes"
+      },
+      "color_group": "module",
+      "aliases": [
+        "свойство у членов enum",
+        "член enum с именем name",
+        "вычисляемый атрибут перечисления"
+      ],
+      "keywords": [
+        "enum.property",
+        "property",
+        "name",
+        "value",
+        "DynamicClassAttribute"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from enum import Enum",
+          "class Field(Enum):",
+          "    name = 1",
+          "    value = 2",
+          "print(Field.name, Field.name.name, Field.value.value)  # → Field.name name 2"
+        ],
+        [
+          "import enum",
+          "class Planet(enum.Enum):",
+          "    EARTH = (5.97e24, 6.37e6)",
+          "    @enum.property",
+          "    def mass(self):",
+          "        return self.value[0]",
+          "print(Planet.EARTH.mass)  # → 5.97e+24",
+          "try:",
+          "    Planet.mass",
+          "except AttributeError as e:",
+          "    print(e)  # → <enum 'Planet'> has no attribute 'mass'"
+        ]
+      ],
+      "related": [
+        "enum.Enum.name",
+        "enum.Enum.value",
+        "enum.member",
+        "enum"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "enum.verify",
       "title": {
         "ru": "enum.verify",
@@ -34992,6 +35306,71 @@
       ]
     },
     {
+      "id": "heapq.heapify_max",
+      "title": {
+        "ru": "heapq.heapify_max()",
+        "en": "heapq.heapify_max()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Превращает список на месте в max-кучу: наибольший элемент оказывается в heap[0]. Основа для остальных функций с суффиксом _max.",
+        "en": "Turns a list into a max-heap in place, so the largest item ends up at heap[0]. It is the starting point for the other _max functions."
+      },
+      "body": {
+        "ru": "Появилась в Python 3.14; раньше max-кучу имитировали, кладя в обычную кучу отрицательные числа (-x) и меняя знак при извлечении, а для строк и объектов этот трюк не работал вовсе. Функция возвращает None, а не кучу: x = heapify_max(data) даёт None. Список после неё не отсортирован — упорядочен только корень; и смешивать с ним heappush/heappop (функции min-кучи) нельзя: инвариант молча сломается.",
+        "en": "Added in Python 3.14; before that a max-heap was faked by pushing negated numbers (-x) into a regular heap and flipping the sign back on pop, a trick that does not work for strings or objects at all. The function returns None, not the heap: x = heapify_max(data) gives None. The list is not sorted afterwards, only the root is in place, and mixing in heappush/heappop (the min-heap functions) silently breaks the invariant."
+      },
+      "syntax": "heapq.heapify_max(x) -> None",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heapify_max",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль heapq",
+      "subcat": {
+        "ru": "операции",
+        "en": "operations"
+      },
+      "color_group": "module",
+      "aliases": [
+        "max-куча в python",
+        "куча с максимумом наверху",
+        "приоритетная очередь по убыванию"
+      ],
+      "keywords": [
+        "heapq.heapify_max",
+        "heapify_max",
+        "max-heap"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import heapq",
+          "data = [3, 1, 4, 1, 5]",
+          "print(heapq.heapify_max(data))  # → None",
+          "print(data[0])  # → 5"
+        ],
+        [
+          "import heapq",
+          "# старый способ до 3.14: отрицательные числа",
+          "old = [-x for x in [3, 1, 4]]",
+          "heapq.heapify(old)",
+          "print(-old[0])  # → 4"
+        ]
+      ],
+      "related": [
+        "heapq.heapify",
+        "heapq.heappop_max",
+        "heapq.heappush_max"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "heapq.heappop",
       "title": {
         "ru": "heapq.heappop()",
@@ -35049,6 +35428,72 @@
       ],
       "related_errors": [
         "IndexError"
+      ]
+    },
+    {
+      "id": "heapq.heappop_max",
+      "title": {
+        "ru": "heapq.heappop_max()",
+        "en": "heapq.heappop_max()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Извлекает и возвращает наибольший элемент max-кучи, сохраняя её свойство. Аналог heappop() для кучи с максимумом в корне.",
+        "en": "Pops and returns the largest item of a max-heap while keeping the heap invariant. It is the max-heap counterpart of heappop()."
+      },
+      "body": {
+        "ru": "Появилась в Python 3.14; раньше max-кучу имитировали, кладя в обычную кучу отрицательные числа (-x) и меняя знак при извлечении, а для строк и объектов этот трюк не работал вовсе. Работает только со списком, уже превращённым в max-кучу через heapify_max(): на обычном списке вернёт heap[0], а не максимум. На пустой куче — IndexError, поэтому цикл пишут как while heap:.",
+        "en": "Added in Python 3.14; before that a max-heap was faked by pushing negated numbers (-x) into a regular heap and flipping the sign back on pop, a trick that does not work for strings or objects at all. It only works on a list already turned into a max-heap with heapify_max(): on a plain list it returns heap[0], not the maximum. On an empty heap it raises IndexError, so loops are written as while heap:."
+      },
+      "syntax": "heapq.heappop_max(heap) -> item",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappop_max",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль heapq",
+      "subcat": {
+        "ru": "операции",
+        "en": "operations"
+      },
+      "color_group": "module",
+      "aliases": [
+        "достать максимум из кучи",
+        "извлечь наибольший элемент"
+      ],
+      "keywords": [
+        "heapq.heappop_max",
+        "heappop_max",
+        "IndexError"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import heapq",
+          "h = [2, 9, 4, 7]",
+          "heapq.heapify_max(h)",
+          "print([heapq.heappop_max(h) for _ in range(len(h))])  # → [9, 7, 4, 2]"
+        ],
+        [
+          "import heapq",
+          "try:",
+          "    heapq.heappop_max([])",
+          "except IndexError as e:",
+          "    print(e)  # → index out of range"
+        ]
+      ],
+      "related": [
+        "heapq.heappop",
+        "heapq.heapify_max",
+        "heapq.heappush_max"
+      ],
+      "related_errors": [
+        "indexerror"
       ]
     },
     {
@@ -35112,6 +35557,70 @@
       ]
     },
     {
+      "id": "heapq.heappush_max",
+      "title": {
+        "ru": "heapq.heappush_max()",
+        "en": "heapq.heappush_max()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Добавляет элемент в max-кучу, сохраняя наибольший элемент в heap[0]. Аналог heappush() для кучи с максимумом в корне.",
+        "en": "Pushes an item onto a max-heap so that the largest item stays at heap[0]. It is the max-heap counterpart of heappush()."
+      },
+      "body": {
+        "ru": "Появилась в Python 3.14; раньше max-кучу имитировали, кладя в обычную кучу отрицательные числа (-x) и меняя знак при извлечении, а для строк и объектов этот трюк не работал вовсе. list.append() вместо неё ломает кучу молча: элемент ляжет в конец и не всплывёт. Элементы должны сравниваться между собой: кортежи (приоритет, объект) с равным приоритетом сравнят объекты и могут упасть с TypeError — добавляйте счётчик вторым полем.",
+        "en": "Added in Python 3.14; before that a max-heap was faked by pushing negated numbers (-x) into a regular heap and flipping the sign back on pop, a trick that does not work for strings or objects at all. Using list.append() instead silently breaks the heap: the item stays at the end and never sifts up. Items must be comparable: (priority, obj) tuples with equal priorities compare the objects and may raise TypeError, so add a counter as the second field."
+      },
+      "syntax": "heapq.heappush_max(heap, item) -> None",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappush_max",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль heapq",
+      "subcat": {
+        "ru": "операции",
+        "en": "operations"
+      },
+      "color_group": "module",
+      "aliases": [
+        "добавить в max-кучу",
+        "положить элемент в кучу по убыванию"
+      ],
+      "keywords": [
+        "heapq.heappush_max",
+        "heappush_max",
+        "max-heap"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import heapq",
+          "h = []",
+          "for x in [5, 1, 8, 3]:",
+          "    heapq.heappush_max(h, x)",
+          "print(h[0])  # → 8"
+        ],
+        [
+          "import heapq",
+          "h = [('low', 1), ('high', 3)]",
+          "heapq.heapify_max(h)",
+          "print(h[0])  # → ('low', 1) — строки сравниваются по алфавиту, а не по смыслу"
+        ]
+      ],
+      "related": [
+        "heapq.heappush",
+        "heapq.heappop_max",
+        "heapq.heapify_max"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "heapq.heappushpop",
       "title": {
         "ru": "heapq.heappushpop()",
@@ -35168,6 +35677,62 @@
       "related_errors": [
         "TypeError"
       ]
+    },
+    {
+      "id": "heapq.heappushpop_max",
+      "title": {
+        "ru": "heapq.heappushpop_max()",
+        "en": "heapq.heappushpop_max()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Добавляет элемент в max-кучу и сразу извлекает наибольший — быстрее, чем heappush_max() и heappop_max() по отдельности.",
+        "en": "Pushes an item onto a max-heap and then pops the largest one, faster than separate heappush_max() and heappop_max() calls."
+      },
+      "body": {
+        "ru": "Появилась в Python 3.14; раньше max-кучу имитировали, кладя в обычную кучу отрицательные числа (-x) и меняя знак при извлечении, а для строк и объектов этот трюк не работал вовсе. Порядок «сначала положить, потом достать»: если новый элемент больше корня, он же и вернётся, а куча не изменится. Отсюда отличие от heapreplace_max(), которая сначала достаёт старый корень и потому может вернуть значение меньше нового.",
+        "en": "Added in Python 3.14; before that a max-heap was faked by pushing negated numbers (-x) into a regular heap and flipping the sign back on pop, a trick that does not work for strings or objects at all. The order is push first, then pop: if the new item is larger than the root, that same item comes back and the heap is untouched. That is the difference from heapreplace_max(), which pops the old root first and so may return something smaller than the new item."
+      },
+      "syntax": "heapq.heappushpop_max(heap, item) -> item",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heappushpop_max",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль heapq",
+      "subcat": {
+        "ru": "операции",
+        "en": "operations"
+      },
+      "color_group": "module",
+      "aliases": [
+        "положить и достать максимум",
+        "добавить и извлечь из max-кучи"
+      ],
+      "keywords": [
+        "heapq.heappushpop_max",
+        "heappushpop_max"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import heapq",
+          "h = [5, 3]",
+          "print(heapq.heappushpop_max(h, 9), h)  # → 9 [5, 3]",
+          "print(heapq.heappushpop_max(h, 1), h)  # → 5 [3, 1]"
+        ]
+      ],
+      "related": [
+        "heapq.heappushpop",
+        "heapq.heapreplace_max",
+        "heapq.heappop_max"
+      ],
+      "related_errors": []
     },
     {
       "id": "heapq.heapreplace",
@@ -35227,6 +35792,137 @@
         "IndexError",
         "TypeError"
       ]
+    },
+    {
+      "id": "heapq.heapreplace_max",
+      "title": {
+        "ru": "heapq.heapreplace_max()",
+        "en": "heapq.heapreplace_max()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Извлекает наибольший элемент max-кучи и кладёт на его место новый за один проход — куча при этом не меняет размер.",
+        "en": "Pops the largest item of a max-heap and pushes a new one in a single pass, so the heap keeps its size."
+      },
+      "body": {
+        "ru": "Появилась в Python 3.14; раньше max-кучу имитировали, кладя в обычную кучу отрицательные числа (-x) и меняя знак при извлечении, а для строк и объектов этот трюк не работал вовсе. Порядок «сначала достать, потом положить»: вернётся старый корень, даже если новый элемент больше него. На пустой куче — IndexError. Когда нужен максимум из старых элементов и нового, берут heappushpop_max().",
+        "en": "Added in Python 3.14; before that a max-heap was faked by pushing negated numbers (-x) into a regular heap and flipping the sign back on pop, a trick that does not work for strings or objects at all. The order is pop first, then push: the old root is returned even if the new item is larger. On an empty heap it raises IndexError. When you need the maximum of the old items and the new one, use heappushpop_max()."
+      },
+      "syntax": "heapq.heapreplace_max(heap, item) -> item",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.heapreplace_max",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль heapq",
+      "subcat": {
+        "ru": "операции",
+        "en": "operations"
+      },
+      "color_group": "module",
+      "aliases": [
+        "заменить максимум в куче",
+        "достать и положить в max-кучу"
+      ],
+      "keywords": [
+        "heapq.heapreplace_max",
+        "heapreplace_max",
+        "IndexError"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import heapq",
+          "h = [5, 3]",
+          "print(heapq.heapreplace_max(h, 9), h)  # → 5 [9, 3]"
+        ],
+        [
+          "import heapq",
+          "try:",
+          "    heapq.heapreplace_max([], 1)",
+          "except IndexError as e:",
+          "    print(e)  # → index out of range"
+        ]
+      ],
+      "related": [
+        "heapq.heapreplace",
+        "heapq.heappushpop_max",
+        "heapq.heappop_max"
+      ],
+      "related_errors": [
+        "indexerror"
+      ]
+    },
+    {
+      "id": "heapq.merge",
+      "title": {
+        "ru": "heapq.merge()",
+        "en": "heapq.merge()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Сливает несколько уже отсортированных последовательностей в один отсортированный ленивый итератор, не загружая всё в память.",
+        "en": "Merges several already sorted iterables into one sorted lazy iterator without loading everything into memory."
+      },
+      "body": {
+        "ru": "Входы обязаны быть отсортированы заранее, и это не проверяется: на неотсортированных данных merge молча вернёт неупорядоченный результат. Возвращает итератор, а не список — его можно пройти один раз. С reverse=True каждый вход должен быть отсортирован по убыванию. Если данные помещаются в память, sorted(a + b) проще и не хуже.",
+        "en": "The inputs must already be sorted, and nobody checks: on unsorted data merge silently returns an unordered result. It returns an iterator, not a list, so it can be consumed only once. With reverse=True every input must be sorted in descending order. If the data fits in memory, sorted(a + b) is simpler and just as good."
+      },
+      "syntax": "heapq.merge(*iterables, key=None, reverse=False) -> iterator",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/heapq.html#heapq.merge",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль heapq",
+      "subcat": {
+        "ru": "слияние",
+        "en": "merging"
+      },
+      "color_group": "module",
+      "aliases": [
+        "слить отсортированные списки",
+        "объединить отсортированные файлы",
+        "сортировка слиянием"
+      ],
+      "keywords": [
+        "heapq.merge",
+        "merge",
+        "key",
+        "reverse"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import heapq",
+          "print(list(heapq.merge([1, 4, 7], [2, 5, 8], [3, 6])))  # → [1, 2, 3, 4, 5, 6, 7, 8]"
+        ],
+        [
+          "import heapq",
+          "print(list(heapq.merge([3, 1, 2], [0])))  # → [0, 3, 1, 2] — вход не отсортирован, ошибки нет"
+        ],
+        [
+          "import heapq",
+          "words = heapq.merge(['ccc', 'a'], ['bb'], key=len, reverse=True)",
+          "print(list(words))  # → ['ccc', 'bb', 'a']"
+        ]
+      ],
+      "related": [
+        "sorted",
+        "heapq.nsmallest",
+        "heapq.heapify"
+      ],
+      "related_errors": []
     },
     {
       "id": "heapq.nlargest",
@@ -42060,6 +42756,66 @@
       "related_errors": []
     },
     {
+      "id": "operator.abs",
+      "title": {
+        "ru": "operator.abs()",
+        "en": "operator.abs()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Функция-обёртка над встроенной abs(): возвращает модуль числа. Нужна там, где функцию передают как значение.",
+        "en": "A function wrapper around the built-in abs(): it returns the absolute value. It is meant for places where a function is passed as a value."
+      },
+      "body": {
+        "ru": "По результату ничем не отличается от встроенной abs() — так же вызывает __abs__. Смысл в единообразии: в коде, который строит таблицу операций вроде {'+': operator.add, 'abs': operator.abs}, все функции берутся из одного модуля. Для map(abs, data) отдельный импорт не нужен — встроенная abs тоже передаётся как значение.",
+        "en": "In its result it is identical to the built-in abs(): both call __abs__. The point is uniformity: code building an operation table such as {'+': operator.add, 'abs': operator.abs} takes every function from one module. For map(abs, data) no import is needed, the built-in abs is passed as a value just as well."
+      },
+      "syntax": "operator.abs(obj)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/operator.html#operator.abs",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль operator",
+      "subcat": {
+        "ru": "арифметика",
+        "en": "arithmetic"
+      },
+      "color_group": "module",
+      "aliases": [
+        "модуль числа как функция",
+        "abs для map"
+      ],
+      "keywords": [
+        "operator.abs",
+        "abs",
+        "__abs__"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import operator",
+          "print(list(map(operator.abs, [-1, 2, -3])))  # → [1, 2, 3]"
+        ],
+        [
+          "import operator",
+          "ops = {'neg': operator.neg, 'abs': operator.abs}",
+          "print(ops['abs'](-7.5))  # → 7.5"
+        ]
+      ],
+      "related": [
+        "abs",
+        "operator.neg",
+        "operator.add"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "operator.add",
       "title": {
         "ru": "operator.add",
@@ -45012,6 +45768,76 @@
       ],
       "related_errors": [
         "TypeError"
+      ]
+    },
+    {
+      "id": "operator.pow",
+      "title": {
+        "ru": "operator.pow()",
+        "en": "operator.pow()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Функция-эквивалент выражения a ** b: возведение в степень, которое удобно передать в map, reduce или functools.partial.",
+        "en": "The function form of a ** b: exponentiation you can pass to map, reduce or functools.partial."
+      },
+      "body": {
+        "ru": "В отличие от встроенной pow(), третьего аргумента-модуля нет: operator.pow(2, 10, 7) — TypeError, а для быстрого a ** b % m нужна pow(a, b, m). Внимание к reduce: reduce(operator.pow, [2, 3, 2]) считает слева, (2 ** 3) ** 2 = 64, а выражение 2 ** 3 ** 2 — справа и даёт 512.",
+        "en": "Unlike the built-in pow(), there is no third modulus argument: operator.pow(2, 10, 7) raises TypeError, and a fast a ** b % m needs pow(a, b, m). Beware of reduce: reduce(operator.pow, [2, 3, 2]) folds from the left, (2 ** 3) ** 2 = 64, while the expression 2 ** 3 ** 2 groups from the right and gives 512."
+      },
+      "syntax": "operator.pow(a, b)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/operator.html#operator.pow",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль operator",
+      "subcat": {
+        "ru": "арифметика",
+        "en": "arithmetic"
+      },
+      "color_group": "module",
+      "aliases": [
+        "степень как функция",
+        "возведение в степень в map"
+      ],
+      "keywords": [
+        "operator.pow",
+        "pow",
+        "__pow__",
+        "**"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import operator",
+          "print(list(map(operator.pow, [2, 3], [10, 2])))  # → [1024, 9]"
+        ],
+        [
+          "import functools, operator",
+          "print(functools.reduce(operator.pow, [2, 3, 2]), 2 ** 3 ** 2)  # → 64 512"
+        ],
+        [
+          "import operator",
+          "try:",
+          "    operator.pow(2, 10, 7)",
+          "except TypeError as e:",
+          "    print(e)  # → pow expected 2 arguments, got 3"
+        ]
+      ],
+      "related": [
+        "pow",
+        "functools.reduce",
+        "functools.partial",
+        "math.pow"
+      ],
+      "related_errors": [
+        "typeerror"
       ]
     },
     {
@@ -51917,6 +52743,82 @@
       "related_errors": []
     },
     {
+      "id": "os.open",
+      "title": {
+        "ru": "os.open()",
+        "en": "os.open()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Низкоуровневое открытие файла: возвращает целое число — файловый дескриптор — по флагам O_*. Это не встроенный open() и не файловый объект.",
+        "en": "Low-level file opening: returns an integer file descriptor according to O_* flags. It is not the built-in open() and not a file object."
+      },
+      "body": {
+        "ru": "Результат — число, у него нет read()/write(): работают os.read/os.write с байтами, закрывают os.close(fd), а with не поддерживается — забытый дескриптор утекает. Флаги складываются через |: O_WRONLY|O_CREAT|O_TRUNC, и без O_CREAT отсутствующий файл даёт FileNotFoundError. Ценность в том, чего нет у open(): O_CREAT|O_EXCL атомарно создаёт файл или даёт FileExistsError, а mode задаёт права нового файла (с учётом umask). Чтобы получить обычный файловый объект, оберните дескриптор os.fdopen(fd); на Windows для двоичных данных добавьте O_BINARY.",
+        "en": "The result is a number with no read()/write(): you use os.read/os.write with bytes and close it with os.close(fd), and with is not supported, so a forgotten descriptor leaks. Flags are combined with |, as in O_WRONLY|O_CREAT|O_TRUNC, and without O_CREAT a missing file raises FileNotFoundError. Its value lies in what open() lacks: O_CREAT|O_EXCL atomically creates the file or raises FileExistsError, and mode sets the new file's permissions (minus the umask). To get a normal file object wrap the descriptor with os.fdopen(fd); on Windows add O_BINARY for binary data."
+      },
+      "syntax": "fd = os.open(path, flags, mode=0o777, *, dir_fd=None)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/os.html#os.open",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль os",
+      "subcat": {
+        "ru": "os — файловые дескрипторы",
+        "en": "os — file descriptors"
+      },
+      "color_group": "module",
+      "aliases": [
+        "открыть файл по дескриптору",
+        "создать файл только если его нет",
+        "флаги O_CREAT O_EXCL"
+      ],
+      "keywords": [
+        "os.open",
+        "O_RDONLY",
+        "O_WRONLY",
+        "O_RDWR",
+        "O_CREAT",
+        "O_EXCL",
+        "O_TRUNC",
+        "O_APPEND"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import os",
+          "fd = os.open('data.bin', os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o644)",
+          "print(type(fd).__name__)  # → int",
+          "print(os.write(fd, b'hello'))  # → 5",
+          "os.close(fd)",
+          "with os.fdopen(os.open('data.bin', os.O_RDONLY), 'rb') as f:",
+          "    print(f.read())  # → b'hello'"
+        ],
+        [
+          "import os",
+          "flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL",
+          "os.close(os.open('lock', flags))",
+          "try:",
+          "    os.open('lock', flags)",
+          "except FileExistsError:",
+          "    print('уже занят')  # → уже занят"
+        ]
+      ],
+      "related": [
+        "open",
+        "os.close",
+        "os.fdopen",
+        "os.write"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "os.openpty",
       "title": {
         "ru": "os.openpty",
@@ -55658,6 +56560,72 @@
         "OSError",
         "PermissionError"
       ]
+    },
+    {
+      "id": "os.replace",
+      "title": {
+        "ru": "os.replace()",
+        "en": "os.replace()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Переименовывает файл, перезаписывая существующий одинаково на всех ОС. В пределах одной файловой системы замена атомарна.",
+        "en": "Renames a file, overwriting an existing target the same way on every OS. Within one file system the replacement is atomic."
+      },
+      "body": {
+        "ru": "Главное отличие от os.rename: если цель существует, rename на Windows падает FileExistsError, а на Linux молча её заменяет, тогда как replace перезаписывает везде. Атомарность даёт надёжную запись: пишем во временный файл рядом и делаем replace — читатель видит либо старую версию, либо новую, но не половину. «Рядом» обязательно: между разными файловыми системами (другой диск, /tmp) будет OSError с EXDEV, и нужен shutil.move. Каталог файлом не заменить — IsADirectoryError или PermissionError.",
+        "en": "The key difference from os.rename: if the target exists, rename fails with FileExistsError on Windows and silently replaces it on Linux, whereas replace overwrites everywhere. Atomicity gives safe saving: write to a temporary file next to the target and replace — a reader sees either the old version or the new one, never half. 'Next to' matters: across file systems (another drive, /tmp) you get OSError with EXDEV and need shutil.move. A directory cannot be replaced by a file — IsADirectoryError or PermissionError."
+      },
+      "syntax": "os.replace(src, dst, *, src_dir_fd=None, dst_dir_fd=None)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/os.html#os.replace",
+      "added": "3.3",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль os",
+      "subcat": {
+        "ru": "os — переименование/перемещение",
+        "en": "os — renaming/moving"
+      },
+      "color_group": "module",
+      "aliases": [
+        "переименовать с заменой файла",
+        "атомарно сохранить файл",
+        "перезаписать файл при переименовании"
+      ],
+      "keywords": [
+        "os.replace",
+        "replace",
+        "os.rename",
+        "src",
+        "dst",
+        "EXDEV"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import os",
+          "with open('config.json', 'w', encoding='utf-8') as f:",
+          "    f.write('{\"v\": 1}')",
+          "with open('config.json.tmp', 'w', encoding='utf-8') as f:",
+          "    f.write('{\"v\": 2}')",
+          "os.replace('config.json.tmp', 'config.json')",
+          "with open('config.json', encoding='utf-8') as f:",
+          "    print(f.read())  # → {\"v\": 2}",
+          "print(os.path.exists('config.json.tmp'))  # → False"
+        ]
+      ],
+      "related": [
+        "os.rename",
+        "os.renames",
+        "os.remove"
+      ],
+      "related_errors": []
     },
     {
       "id": "os.rmdir",
@@ -79551,6 +80519,81 @@
       ]
     },
     {
+      "id": "typing.final",
+      "title": {
+        "ru": "typing.final",
+        "en": "typing.final"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Декоратор @final: класс нельзя наследовать, метод нельзя переопределять. Запрет проверяет только тайп-чекер, а не интерпретатор.",
+        "en": "The @final decorator: the class must not be subclassed and the method must not be overridden. Only a type checker enforces it, not the interpreter."
+      },
+      "body": {
+        "ru": "Не путайте с Final: typing.Final — аннотация переменной (MAX: Final = 10, «не переприсваивать»), а @final — декоратор класса или метода. В рантайме наследование от @final-класса проходит молча, ошибку покажут только mypy или pyright. С 3.11 декоратор ставит __final__ = True, но это обычный атрибут класса, и наследник получает его тоже, так что getattr(Sub, '__final__') у подкласса тоже True — для проверки берите vars(cls).",
+        "en": "Do not confuse it with Final: typing.Final annotates a variable (MAX: Final = 10, 'do not reassign'), while @final decorates a class or a method. At runtime subclassing a @final class succeeds silently; only mypy or pyright report it. Since 3.11 the decorator sets __final__ = True, but that is an ordinary class attribute that subclasses inherit too, so getattr(Sub, '__final__') is True for a subclass as well — check vars(cls) instead."
+      },
+      "syntax": "@final\nclass Leaf: ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/typing.html#typing.final",
+      "added": "3.8",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль typing",
+      "subcat": {
+        "ru": "декораторы и маркеры",
+        "en": "decorators and markers"
+      },
+      "color_group": "module",
+      "aliases": [
+        "запретить наследование класса",
+        "запретить переопределение метода",
+        "финальный класс"
+      ],
+      "keywords": [
+        "typing.final",
+        "final",
+        "__final__",
+        "Final",
+        "override"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from typing import final",
+          "@final",
+          "class Leaf:",
+          "    pass",
+          "class Other(Leaf):  # mypy: Cannot inherit from final class",
+          "    pass",
+          "print(Leaf.__final__, getattr(Other, '__final__', False))  # → True True — атрибут унаследован",
+          "print('__final__' in vars(Other))  # → False"
+        ],
+        [
+          "from typing import final",
+          "class Base:",
+          "    @final",
+          "    def done(self) -> str:",
+          "        return 'base'",
+          "class Sub(Base):",
+          "    def done(self) -> str:  # mypy: Cannot override final attribute",
+          "        return 'sub'",
+          "print(Sub().done())  # → sub — интерпретатор не мешает"
+        ]
+      ],
+      "related": [
+        "final",
+        "typing.override",
+        "typing.overload"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "typing.get_args",
       "title": {
         "ru": "typing.get_args",
@@ -95807,10 +96850,12 @@
       "aliases": [
         "открыть файл",
         "режимы открытия файла",
-        "открыть файл на запись"
+        "открыть файл на запись",
+        "io.open"
       ],
       "keywords": [
-        "open"
+        "open",
+        "io.open"
       ],
       "tags": [
         "op",
@@ -98858,6 +99903,209 @@
       ]
     },
     {
+      "id": "decimal.Context",
+      "title": {
+        "ru": "decimal.Context",
+        "en": "decimal.Context"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Контекст вычислений decimal: точность (prec), способ округления, пределы экспоненты и то, какие ошибки бросают исключение.",
+        "en": "A decimal arithmetic context: precision (prec), rounding mode, exponent limits and which conditions raise exceptions."
+      },
+      "body": {
+        "ru": "prec — число значащих цифр, а не знаков после запятой: при prec=5 результат 12345.678 станет 12346. Созданный Context(...) ни на что не влияет, пока его не передали в setcontext() или localcontext() либо не вызвали его методы напрямую (ctx.divide(1, 3)). Точность применяется к результатам операций, а не к созданию Decimal('1.23456789').",
+        "en": "prec is the number of significant digits, not decimal places: with prec=5 the result 12345.678 becomes 12346. A Context(...) you create affects nothing until you pass it to setcontext() or localcontext() or call its methods directly (ctx.divide(1, 3)). Precision applies to operation results, not to constructing Decimal('1.23456789')."
+      },
+      "syntax": "decimal.Context(prec=None, rounding=None, Emin=None, Emax=None, capitals=None, clamp=None, flags=None, traps=None)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Context",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Числа и математика",
+      "subcat": {
+        "ru": "decimal",
+        "en": "decimal"
+      },
+      "color_group": "module",
+      "aliases": [
+        "точность вычислений decimal",
+        "настроить округление decimal"
+      ],
+      "keywords": [
+        "decimal.Context",
+        "Context",
+        "prec",
+        "rounding",
+        "traps",
+        "flags"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from decimal import Context, Decimal",
+          "ctx = Context(prec=5)",
+          "print(ctx.divide(1, 3))  # → 0.33333",
+          "print(Decimal(1) / 3)  # → 0.3333333333333333333333333333"
+        ],
+        [
+          "from decimal import Context, Decimal",
+          "print(Context(prec=5).plus(Decimal('12345.678')))  # → 12346"
+        ]
+      ],
+      "related": [
+        "decimal.getcontext",
+        "decimal.setcontext",
+        "decimal.localcontext",
+        "decimal.decimal"
+      ],
+      "related_errors": []
+    },
+    {
+      "id": "decimal.DecimalTuple",
+      "title": {
+        "ru": "decimal.DecimalTuple",
+        "en": "decimal.DecimalTuple"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Именованный кортеж (sign, digits, exponent), который возвращает Decimal.as_tuple(): знак, цифры и показатель степени числа.",
+        "en": "The named tuple (sign, digits, exponent) returned by Decimal.as_tuple(): the sign, digits and exponent of a number."
+      },
+      "body": {
+        "ru": "sign — это 0 для положительных и 1 для отрицательных, а не +1/-1. Кортеж хранит запись числа, а не значение: Decimal('1.2') и Decimal('1.20') равны, но кортежи у них разные. Сам класс в документации отдельно не описан; чаще всего им пользуются, чтобы узнать число знаков после запятой — это -exponent.",
+        "en": "sign is 0 for positive and 1 for negative numbers, not +1/-1. The tuple keeps the representation, not the value: Decimal('1.2') and Decimal('1.20') are equal, but their tuples differ. The class has no entry of its own in the docs; it is mostly used to count decimal places, which is -exponent."
+      },
+      "syntax": "Decimal(x).as_tuple() -> DecimalTuple(sign, digits, exponent)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Decimal.as_tuple",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Числа и математика",
+      "subcat": {
+        "ru": "decimal",
+        "en": "decimal"
+      },
+      "color_group": "module",
+      "aliases": [
+        "разобрать decimal на цифры",
+        "число знаков после запятой decimal"
+      ],
+      "keywords": [
+        "decimal.DecimalTuple",
+        "DecimalTuple",
+        "as_tuple",
+        "sign",
+        "digits",
+        "exponent"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from decimal import Decimal",
+          "print(Decimal('-1.50').as_tuple())  # → DecimalTuple(sign=1, digits=(1, 5, 0), exponent=-2)"
+        ],
+        [
+          "from decimal import Decimal",
+          "print(Decimal('1.2') == Decimal('1.20'))  # → True",
+          "print(Decimal('1.2').as_tuple() == Decimal('1.20').as_tuple())  # → False"
+        ],
+        [
+          "from decimal import Decimal",
+          "print(Decimal((0, (3, 1, 4), -2)))  # → 3.14"
+        ]
+      ],
+      "related": [
+        "decimal.decimal",
+        "наименованный-кортеж-namedtuple",
+        "decimal.Context"
+      ],
+      "related_errors": []
+    },
+    {
+      "id": "decimal.IEEEContext",
+      "title": {
+        "ru": "decimal.IEEEContext()",
+        "en": "decimal.IEEEContext()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Создаёт контекст decimal под формат обмена IEEE 754 (decimal32, decimal64, decimal128) по числу бит, кратному 32.",
+        "en": "Creates a decimal context matching an IEEE 754 interchange format (decimal32, decimal64, decimal128) from a bit count that is a multiple of 32."
+      },
+      "body": {
+        "ru": "Появилась в Python 3.14. Число бит — не точность: IEEEContext(64) даёт prec=16, IEEEContext(32) — prec=7. В отличие от контекста по умолчанию, ловушки у него выключены: деление на ноль не бросает DivisionByZero, а молча даёт Infinity и лишь ставит флаг. Аргумент не кратный 32 или больше 512 — ValueError.",
+        "en": "Added in Python 3.14. The bit count is not the precision: IEEEContext(64) gives prec=16 and IEEEContext(32) gives prec=7. Unlike the default context, its traps are off: division by zero does not raise DivisionByZero but silently yields Infinity and only sets a flag. An argument that is not a multiple of 32 or exceeds 512 raises ValueError."
+      },
+      "syntax": "decimal.IEEEContext(bits) -> Context",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.IEEEContext",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Числа и математика",
+      "subcat": {
+        "ru": "decimal",
+        "en": "decimal"
+      },
+      "color_group": "module",
+      "aliases": [
+        "контекст ieee 754 decimal",
+        "decimal64 в python"
+      ],
+      "keywords": [
+        "decimal.IEEEContext",
+        "IEEEContext",
+        "IEEE_CONTEXT_MAX_BITS",
+        "decimal64"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import decimal",
+          "ctx = decimal.IEEEContext(32)",
+          "print(ctx.prec, ctx.divide(1, 3))  # → 7 0.3333333"
+        ],
+        [
+          "import decimal",
+          "ctx = decimal.IEEEContext(64)",
+          "print(ctx.divide(1, 0), ctx.flags[decimal.DivisionByZero])  # → Infinity True"
+        ],
+        [
+          "import decimal",
+          "try:",
+          "    decimal.IEEEContext(40)",
+          "except ValueError as e:",
+          "    print(e)  # → argument must be a multiple of 32, with a maximum of 512"
+        ]
+      ],
+      "related": [
+        "decimal.Context",
+        "decimal.divisionbyzero",
+        "decimal.setcontext"
+      ],
+      "related_errors": [
+        "valueerror"
+      ]
+    },
+    {
       "id": "decimal.decimal",
       "title": {
         "ru": "decimal.Decimal",
@@ -98971,6 +100219,71 @@
       ],
       "related": [
         "decimal.setcontext"
+      ],
+      "related_errors": []
+    },
+    {
+      "id": "decimal.localcontext",
+      "title": {
+        "ru": "decimal.localcontext()",
+        "en": "decimal.localcontext()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Контекстный менеджер: внутри with действует копия контекста decimal с другими настройками, а на выходе прежний восстанавливается.",
+        "en": "A context manager: inside the with block a copy of the decimal context with different settings is active, and the old one is restored on exit."
+      },
+      "body": {
+        "ru": "Главная ловушка — getcontext().prec = 50: это меняет точность для всего потока до конца программы, в том числе в чужих функциях и тестах. localcontext() ограничивает изменение блоком with и восстанавливает старый контекст даже при исключении. Числа, посчитанные внутри, сохраняют лишние цифры и снаружи — округлите их унарным плюсом (+x) уже после блока.",
+        "en": "The classic trap is getcontext().prec = 50: it changes precision for the whole thread until the program ends, including other people's functions and tests. localcontext() limits the change to the with block and restores the old context even on an exception. Numbers computed inside keep their extra digits outside, so round them with unary plus (+x) after the block."
+      },
+      "syntax": "with decimal.localcontext(ctx=None, **kwargs) as ctx: ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.localcontext",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Числа и математика",
+      "subcat": {
+        "ru": "decimal",
+        "en": "decimal"
+      },
+      "color_group": "module",
+      "aliases": [
+        "временно изменить точность decimal",
+        "точность decimal внутри блока"
+      ],
+      "keywords": [
+        "decimal.localcontext",
+        "localcontext",
+        "getcontext",
+        "prec",
+        "with"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from decimal import Decimal, localcontext",
+          "with localcontext(prec=5):",
+          "    x = Decimal(1) / 3",
+          "print(x)  # → 0.33333",
+          "print(Decimal(1) / 3)  # → 0.3333333333333333333333333333"
+        ],
+        [
+          "from decimal import Decimal, getcontext",
+          "getcontext().prec = 3",
+          "print(Decimal(2) / 3)  # → 0.667 — и так теперь везде"
+        ]
+      ],
+      "related": [
+        "decimal.getcontext",
+        "decimal.setcontext",
+        "decimal.Context"
       ],
       "related_errors": []
     },

@@ -162,6 +162,26 @@ def test_promise_spellings_are_understood(promise: str, output: str):
     assert gate.unmet(f"print(0)  # → {promise}\n", output) == []
 
 
+def test_slash_inside_the_note_is_not_a_list():
+    assert gate.unmet("print(0)  # → False True (falsy / truthy)\n", "False True\n") == []
+
+
+def test_cyrillic_note_does_not_hide_a_wrong_record():
+    """Запись — числа; кириллица лишь в пояснении, и расхождение видно."""
+    code = "print(0)  # → 100 33 20 (без деления на 0)\n"
+    assert gate.unmet(code, "20\n") == [(1, "100 33 20 (без деления на 0)")]
+
+
+def test_exception_inside_try_is_a_trap_not_output():
+    code = "try:\n    print(s.x)  # → AttributeError\nexcept AttributeError:\n    pass\n"
+    assert gate.unmet(code, "") == []
+
+
+def test_exception_name_outside_try_is_still_checked():
+    code = "print(type(e).__name__)  # → ExecError\n"
+    assert gate.unmet(code, "RuntimeError\n") == [(1, "ExecError")]
+
+
 def test_words_are_an_explanation_not_output():
     """Словесное обещание сверять не с чем — оно не находка."""
     assert (

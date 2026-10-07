@@ -104,6 +104,11 @@ ALTERNATIVES: Final = re.compile(r"\s+/\s+|,?\s+затем\s+|\s+then\s+")
 """Как карточки перечисляют вывод нескольких строк: «a 1 / b 2», «[1], затем [2]»."""
 EXPLANATION: Final = re.compile(r"\s+(?:—|--)\s+")
 CYRILLIC: Final = re.compile(r"[а-яё]", re.IGNORECASE)
+TRAILING_NOTE: Final = re.compile(r"\s*\([^()]*\)\s*$")
+"""Пояснение в скобках в конце обещания: «False True (falsy / truthy)»."""
+EXCEPTION_NAME: Final = re.compile(
+    r"^[A-Z]\w*(?:Error|Exception|Warning|Exit|Interrupt|Iteration)\b"
+)
 CALL: Final = re.compile(r"^\s*(?:await\s+)?(?P<name>\w+)\(.*\)\s*$")
 """Строка — вызов функции и только он: ``show(a=1)``, ``await main()``."""
 
@@ -195,11 +200,12 @@ def kept(fragment: str, output: str) -> bool | None:
 
     Обещание сравнивается без пробелов, без пояснения в скобках в конце, без
     кавычек вокруг строки и до многоточия («3.14159...»). Не найденное обещание
-    с кириллицей — пояснение словами, а не запись вывода: ``None``.
+    с кириллицей в самой записи — пояснение словами, а не запись вывода: ``None``.
+    Кириллица только в скобках словесным обещание не делает: в «100 33 20 (без
+    деления на 0)» запись — числа, и сверять их есть с чем.
     """
-    variants = [fragment]
-    if " (" in fragment:
-        variants.append(fragment.split(" (", 1)[0])
+    core = fragment.split(" (", 1)[0] if " (" in fragment else fragment
+    variants = [fragment, core] if core != fragment else [fragment]
     variants += [v[1:-1] for v in variants if v[:1] == v[-1:] and v[:1] in {"'", '"'}]
     flat = _squash(output)
     for variant in variants:
@@ -207,14 +213,38 @@ def kept(fragment: str, output: str) -> bool | None:
         needle = _squash(cut.rstrip(".…") if cut.endswith(("...", "…")) else cut)
         if needle and needle in flat:
             return True
-    return None if CYRILLIC.search(fragment) else False
+    return None if CYRILLIC.search(core) else False
+
+
+def _guarded(code: str) -> set[int]:
+    """Строки тел ``try``: исключение там — ожидаемый исход, а не молчание."""
+    try:
+        tree = ast.parse(code)
+    except SyntaxError:
+        return set()
+    rows: set[int] = set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Try | ast.TryStar):
+            for stmt in node.body:
+                rows.update(range(stmt.lineno, (stmt.end_lineno or stmt.lineno) + 1))
+    return rows
 
 
 def unmet(code: str, output: str) -> list[tuple[int, str]]:
-    """Обещания, которых нет в напечатанном."""
+    """Обещания, которых нет в напечатанном.
+
+    Пояснение в скобках отрезается до деления на части: косая черта внутри
+    него — «(falsy / truthy)» — не перечисление вывода. Имя исключения у строки
+    в теле ``try`` — запись ловушки (``print(s.__secret)  # → AttributeError``),
+    а не обещание печати: строка до печати не доходит.
+    """
+    guarded = _guarded(code)
     broken = []
     for row, text in promises(code):
         value = EXPLANATION.split(text, maxsplit=1)[0]
+        value = TRAILING_NOTE.sub("", value) or value
+        if row in guarded and EXCEPTION_NAME.match(value):
+            continue
         parts = [part.strip() for part in ALTERNATIVES.split(value) if part.strip()]
         if any(kept(part, output) is False for part in parts):
             broken.append((row, text))

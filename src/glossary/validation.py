@@ -47,6 +47,13 @@ CYRILLIC: Final = re.compile(r"[А-Яа-яЁё]")
 LATIN: Final = re.compile(r"[A-Za-z]")
 VERSION_PATTERN: Final = re.compile(r"^\d+\.\d+$")
 ADDED_PATTERN: Final = re.compile(r"^<?\d+\.\d+$")
+# Сводка называет устаревшим сам предмет карточки: с начала фразы или через
+# «a deprecated <что>». Оборот «a deprecated feature» у DeprecationWarning
+# говорит о чужих возможностях и сюда не попадает.
+DEPRECATED_TEXT: Final = re.compile(
+    r"(?:^|\.\s+)(?:A\s+)?deprecated\b(?!\s+feature)", re.IGNORECASE
+)
+REMOVAL_TEXT: Final = re.compile(r"\b(?:removal|removed)\s+in\s+\d+\.\d+")
 """``added`` допускает ``<N.N`` — «появилось раньше этой версии» (#122)."""
 DOCS_PREFIX: Final = "https://docs.python.org/3/"
 DUPLICATE_THRESHOLD: Final = 2
@@ -515,6 +522,31 @@ def rule_version_format(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
                 )
 
 
+def rule_deprecated_text(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """Сводка говорит об устаревании или удалении — поле обязано это знать (#122).
+
+    Текст «Deprecated (removal in 3.17)» читает человек, а витрина, выгрузка и
+    грейдер читают поля: без них возможность выглядит живой. Проверяется
+    английская сводка — в ней предмет назван устаревшим в устойчивой форме.
+    """
+    for entry in g.entries:
+        summary = entry.summary.en
+        if DEPRECATED_TEXT.search(summary) and not entry.deprecated:
+            yield Issue(
+                Severity.ERROR,
+                "deprecated-text",
+                "сводка называет возможность устаревшей, а поле deprecated пусто",
+                entry.id,
+            )
+        if REMOVAL_TEXT.search(summary) and not entry.removed:
+            yield Issue(
+                Severity.ERROR,
+                "deprecated-text",
+                "сводка называет версию удаления, а поле removed пусто",
+                entry.id,
+            )
+
+
 def rule_added(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """У карточки названа версия, с которой возможность есть (#122).
 
@@ -735,6 +767,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_body_length,
     rule_version_format,
     rule_added,
+    rule_deprecated_text,
     rule_platforms,
     rule_platforms_summary,
     rule_examples,

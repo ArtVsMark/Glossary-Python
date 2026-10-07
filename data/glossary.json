@@ -33096,8 +33096,8 @@
         "en": "Return a + b (the functional form of `+`)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Нужна там, где ждут функцию, а не выражение: functools.reduce(operator.add, xs), map с двумя последовательностями, таблица «символ → действие» в калькуляторе. Работает быстрее лямбды и, в отличие от неё, сериализуется pickle — это важно для multiprocessing. Для сложения чисел в цикле проще sum(); для склейки строк — str.join, потому что reduce с add склеивает квадратично.",
+        "en": "Use it wherever a function is expected rather than an expression: functools.reduce(operator.add, xs), map over two sequences, a \"symbol → action\" table in a calculator. It is faster than a lambda and, unlike one, can be pickled — which matters for multiprocessing. To total numbers prefer sum(); to join strings prefer str.join, since reduce with add concatenates in quadratic time."
       },
       "syntax": "operator.add(a, b)",
       "status": "ready",
@@ -33151,8 +33151,8 @@
         "en": "Bitwise AND: a & b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Это побитовое &, а не логическое and: оба аргумента вычисляются всегда, короткого замыкания нет, и результат другой — and_(2, 1) даёт 0, а 2 and 1 даёт 1. Для множеств and_ — пересечение, для bool — логическое И без замыкания. Чтобы проверить, что истинны все элементы, нужна all(), а не reduce с and_.",
+        "en": "This is bitwise &, not logical and: both arguments are always evaluated, there is no short-circuit, and the result differs — and_(2, 1) is 0 while 2 and 1 is 1. For sets and_ is intersection, for bools a non-short-circuit logical AND. To check that all items are true use all(), not reduce with and_."
       },
       "syntax": "operator.and_(a, b)",
       "status": "ready",
@@ -33206,8 +33206,8 @@
         "en": "A factory returning a callable that fetches attributes by fixed name."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Понимает точечные пути: attrgetter('owner.name') пройдёт по цепочке атрибутов. Как и у itemgetter, несколько имён дают кортеж: attrgetter('last', 'first') — удобный ключ сортировки по двум полям. Если атрибута нет, поднимается AttributeError: значения по умолчанию, как у getattr, не предусмотрено.",
+        "en": "It understands dotted paths: attrgetter('owner.name') walks the chain of attributes. As with itemgetter, several names yield a tuple: attrgetter('last', 'first') is a handy two-field sort key. A missing attribute raises AttributeError — there is no default value as with getattr."
       },
       "syntax": "f = operator.attrgetter('attr')",
       "status": "ready",
@@ -33261,8 +33261,8 @@
         "en": "Call an object: call(f, *args, **kwargs) == f(*args, **kwargs) (3.11+)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Позволяет вызвать набор функций одной строкой: list(map(operator.call, callbacks)) выполнит каждую без аргументов. С аргументами удобна вместе с itertools.starmap. Появилась в Python 3.11; на более ранних версиях то же даёт лямбда lambda f, *a: f(*a). Порядок важен: первым идёт сам вызываемый объект.",
+        "en": "It lets you invoke a set of functions in one line: list(map(operator.call, callbacks)) runs each one with no arguments. With arguments it pairs well with itertools.starmap. It was added in Python 3.11; on older versions lambda f, *a: f(*a) does the same. Order matters: the callable comes first."
       },
       "syntax": "operator.call(f, *args, **kwargs)",
       "status": "ready",
@@ -33314,8 +33314,8 @@
         "en": "Concatenate two sequences: a + b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Строже, чем add: оба аргумента должны быть последовательностями, поэтому concat(1, 2) поднимает TypeError, а add(1, 2) вернул бы 3. Типы должны совпадать: список с кортежем не склеится. Для множества кусков concat через reduce медленна — каждый шаг копирует всё накопленное. Склеивать много строк быстрее через str.join, много списков — через itertools.chain.",
+        "en": "It is stricter than add: both arguments must be sequences, so concat(1, 2) raises TypeError where add(1, 2) would return 3. The types must match: a list will not concatenate with a tuple. Repeated concat via reduce is slow because every step copies everything so far. To join many strings use str.join; many lists, itertools.chain."
       },
       "syntax": "operator.concat(a, b)",
       "status": "ready",
@@ -33368,8 +33368,8 @@
         "en": "Membership test: b in a (note the argument order)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Порядок аргументов обратный записи b in a: сначала контейнер, потом искомое. Поэтому partial(operator.contains, allowed) — это предикат «x входит в allowed», удобный для filter. Для словаря проверяются ключи, а не значения: contains({'a': 1}, 1) ложно. Скорость зависит от контейнера: у set и dict проверка почти мгновенна, у list — перебор.",
+        "en": "The argument order is the reverse of b in a: container first, then the item. That makes partial(operator.contains, allowed) a ready predicate \"x is in allowed\" for filter. For a dict it checks keys, not values: contains({'a': 1}, 1) is false. Speed depends on the container: set and dict answer almost instantly, a list is scanned."
       },
       "syntax": "operator.contains(a, b)",
       "status": "ready",
@@ -33421,8 +33421,8 @@
         "en": "The number of occurrences of b in a."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Работает с любым итерируемым, а не только со списком: генератор или файл тоже подойдут, но будут израсходованы. Сравнение идёт сначала по тождеству, потом по ==, поэтому один и тот же объект NaN считается равным себе. Для подсчёта многих значений сразу выгоднее один проход collections.Counter, чем много вызовов countOf.",
+        "en": "It works on any iterable, not just lists: a generator or a file will do, but will be consumed. Comparison checks identity first, then ==, so one and the same NaN object counts as equal to itself. To count many values at once a single pass of collections.Counter beats repeated countOf calls."
       },
       "syntax": "operator.countOf(a, b)",
       "status": "ready",
@@ -33474,8 +33474,8 @@
         "en": "Item deletion: del a[b]."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Как и del a[b], поддерживает срезы: delitem(xs, slice(0, 2)) удаляет первые два элемента. Для отсутствующего ключа поднимается KeyError — если ключа может не быть, используйте dict.pop(key, None). Удаление из начала списка сдвигает все остальные элементы, поэтому для очереди лучше collections.deque.",
+        "en": "Like del a[b] it supports slices: delitem(xs, slice(0, 2)) removes the first two items. A missing key raises KeyError — if the key may be absent use dict.pop(key, None). Deleting from the front of a list shifts every other item, so a queue is better served by collections.deque."
       },
       "syntax": "operator.delitem(a, b)",
       "status": "ready",
@@ -33528,8 +33528,8 @@
         "en": "Return a == b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Вызывает __eq__ левого операнда, а если тот не умеет сравнивать — правого, поэтому eq(1, 1.0) истинно. Результат не обязан быть bool: массив NumPy вернёт массив поэлементных сравнений. NaN не равен даже себе — eq(nan, nan) даёт False. С functools.partial получается предикат: filter(partial(operator.eq, 0), xs) оставит нули.",
+        "en": "It calls the left operand's __eq__ and falls back to the right one's if the left cannot compare, which is why eq(1, 1.0) is true. The result need not be a bool: a NumPy array returns an array of element-wise comparisons. NaN is not equal even to itself — eq(nan, nan) is False. With functools.partial it becomes a predicate: filter(partial(operator.eq, 0), xs) keeps the zeros."
       },
       "syntax": "operator.eq(a, b)",
       "status": "ready",
@@ -33579,8 +33579,8 @@
         "en": "Return a // b — floor division (the functional form of `//`)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Округление идёт вниз, к минус бесконечности, а не к нулю: floordiv(-7, 2) равно -4, а не -3, как в C или Java. Для float результат тоже float: floordiv(7.5, 2) даёт 3.0. Если нужны и частное, и остаток сразу, divmod делает это за один вызов и гарантирует согласованность пары.",
+        "en": "Rounding goes down, towards minus infinity, not towards zero: floordiv(-7, 2) is -4, not -3 as in C or Java. With floats the result is a float too: floordiv(7.5, 2) gives 3.0. When you need both quotient and remainder, divmod returns them in one call and guarantees the pair is consistent."
       },
       "syntax": "operator.floordiv(a, b)",
       "status": "ready",
@@ -33634,8 +33634,8 @@
         "en": "Return a >= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для множеств ge — проверка надмножества: ge({1, 2}, {1}) истинно. Строки сравниваются посимвольно по кодам Юникода, поэтому ge('a', 'B') истинно: строчные буквы идут после заглавных. Для сравнения без учёта регистра приводите строки через str.casefold.",
+        "en": "For sets ge tests for a superset: ge({1, 2}, {1}) is true. Strings compare character by character by Unicode code point, so ge('a', 'B') is true: lowercase letters come after uppercase. For case-insensitive comparison normalise the strings with str.casefold."
       },
       "syntax": "operator.ge(a, b)",
       "status": "ready",
@@ -33688,8 +33688,8 @@
         "en": "Item access: a[b]."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Второй аргумент может быть срезом: getitem(s, slice(1, 3)) — то же, что s[1:3]. Для отсутствующего ключа поднимается KeyError, для индекса за границей — IndexError; безопасного варианта с умолчанием нет, для словарей есть dict.get. Если ключ фиксирован и функция нужна многократно, лучше operator.itemgetter: функция создаётся один раз и читается яснее, чем partial(getitem, …).",
+        "en": "The second argument may be a slice: getitem(s, slice(1, 3)) is the same as s[1:3]. A missing key raises KeyError and an out-of-range index raises IndexError; there is no safe default variant — dicts have dict.get. When the key is fixed and the function is reused, prefer operator.itemgetter: the function is built once and reads more clearly than partial(getitem, …)."
       },
       "syntax": "operator.getitem(a, b)",
       "status": "ready",
@@ -33744,8 +33744,8 @@
         "en": "Return a > b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Если левый операнд не умеет сравнивать, Python пробует отражённую операцию правого: для gt это __lt__ второго аргумента. Поэтому в своём классе достаточно определить __lt__ и __eq__, а functools.total_ordering достроит остальное. При functools.partial фиксируется левый аргумент: partial(operator.gt, 10) — это x → 10 > x, то есть «меньше десяти».",
+        "en": "If the left operand cannot compare, Python tries the reflected operation of the right one: for gt that is the second argument's __lt__. So a class only needs __lt__ and __eq__, and functools.total_ordering fills in the rest. functools.partial fixes the left argument: partial(operator.gt, 10) is x → 10 > x, i.e. \"less than ten\"."
       },
       "syntax": "operator.gt(a, b)",
       "status": "ready",
@@ -33798,8 +33798,8 @@
         "en": "In-place addition: a += b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Возвращаемое значение нужно присвоить: iadd(x, 1) для числа не меняет x, потому что int неизменяем, — правильно x = iadd(x, 1). Для списка iadd меняет его на месте и принимает любое итерируемое: iadd([1], (2,)) даёт [1, 2], хотя [1] + (2,) поднимает TypeError. Если на список есть другие ссылки, они увидят изменение.",
+        "en": "The return value has to be assigned: iadd(x, 1) on a number does not change x, because int is immutable — write x = iadd(x, 1). For a list iadd mutates it in place and accepts any iterable: iadd([1], (2,)) gives [1, 2], although [1] + (2,) raises TypeError. Other references to the list will see the change."
       },
       "syntax": "operator.iadd(a, b)",
       "status": "ready",
@@ -33855,8 +33855,8 @@
         "en": "In-place bitwise AND: a &= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для множества меняет его на месте, оставляя пересечение: после iand(s, {2, 3}) в s останутся только общие элементы, и это увидят все ссылки на s. Для int результат нужно присвоить. Как и and_, это побитовая операция без короткого замыкания, а не логическое and.",
+        "en": "For a set it mutates in place, leaving the intersection: after iand(s, {2, 3}) only the shared items remain in s, and every reference to s sees it. For ints assign the result. Like and_, it is a bitwise operation with no short-circuit, not logical and."
       },
       "syntax": "operator.iand(a, b)",
       "status": "ready",
@@ -33909,8 +33909,8 @@
         "en": "In-place concatenation: a += b for sequences."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Требует, чтобы первый аргумент был последовательностью, иначе TypeError, но второй может быть любым итерируемым, если первый — список: iconcat([1], (2,)) даёт [1, 2]. Для списка это то же, что list.extend, с теми же последствиями для других ссылок. Для строк и кортежей результат нужно присвоить — они неизменяемы.",
+        "en": "The first argument must be a sequence or TypeError is raised, but when it is a list the second can be any iterable: iconcat([1], (2,)) gives [1, 2]. For a list it is the same as list.extend, with the same effect on other references. For strings and tuples assign the result — they are immutable."
       },
       "syntax": "operator.iconcat(a, b)",
       "status": "ready",
@@ -33963,8 +33963,8 @@
         "en": "In-place floor division: a //= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "У встроенных типов на месте ничего не меняется — int и float неизменяемы, результат нужно присвоить: x = ifloordiv(x, 2). Округление, как и у //, идёт к минус бесконечности: для -7 и 2 получится -4. Изменить объект на месте может пользовательский класс, определив __ifloordiv__.",
+        "en": "Built-in types change nothing in place — int and float are immutable, so assign the result: x = ifloordiv(x, 2). Rounding, as with //, goes towards minus infinity: -7 and 2 give -4. A user class can mutate in place by defining __ifloordiv__."
       },
       "syntax": "operator.ifloordiv(a, b)",
       "status": "ready",
@@ -34016,8 +34016,8 @@
         "en": "In-place left shift: a <<= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Встроенных изменяемых типов с <<= нет, поэтому результат всегда нужно присваивать: x = ilshift(x, 1). Целые Python не переполняются, и сдвиг влево не обнуляет ненулевое число. Отрицательный сдвиг поднимает ValueError.",
+        "en": "No built-in mutable type supports <<=, so the result always has to be assigned: x = ilshift(x, 1). Python integers never overflow, so a left shift never turns a non-zero number into zero. A negative shift count raises ValueError."
       },
       "syntax": "operator.ilshift(a, b)",
       "status": "ready",
@@ -34067,8 +34067,8 @@
         "en": "In-place matrix multiplication: a @= b (invokes __imatmul__)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Встроенные типы не поддерживают @=: imatmul([1], [2]) поднимает TypeError. Смысл появляется у библиотечных массивов. Если в классе нет __imatmul__, вызов откатывается на __matmul__ и возвращает новый объект, а исходный не меняется, — поэтому, как и для неизменяемых типов, результат нужно присваивать.",
+        "en": "Built-in types do not support @=: imatmul([1], [2]) raises TypeError. It is meaningful for library arrays. If a class lacks __imatmul__, the call falls back to __matmul__ and returns a new object, leaving the original untouched — so, as with immutable types, assign the result."
       },
       "syntax": "operator.imatmul(a, b)",
       "status": "ready",
@@ -34116,8 +34116,8 @@
         "en": "In-place modulo: a %= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для строк % — это форматирование, а не остаток: imod('%s-%d', ('a', 3)) вернёт 'a-3'. Для чисел знак результата совпадает со знаком делителя, как у mod. Строки и числа неизменяемы, поэтому результат нужно присвоить: s = imod(s, args).",
+        "en": "For strings % is formatting, not a remainder: imod('%s-%d', ('a', 3)) returns 'a-3'. For numbers the sign of the result follows the divisor, as with mod. Strings and numbers are immutable, so assign the result: s = imod(s, args)."
       },
       "syntax": "operator.imod(a, b)",
       "status": "ready",
@@ -34169,8 +34169,8 @@
         "en": "In-place multiplication: a *= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для списка повторяет содержимое на месте, и все копии ссылаются на одни и те же вложенные объекты: после imul([[]], 3) добавление в первый внутренний список отразится во всех трёх. Для чисел и строк результат нужно присвоить — они неизменяемы. Список списков надёжнее строить генератором: [[] for _ in range(3)].",
+        "en": "For a list it repeats the contents in place, and all copies point to the same nested objects: after imul([[]], 3) appending to the first inner list shows up in all three. For numbers and strings assign the result — they are immutable. A list of lists is safer to build with a comprehension: [[] for _ in range(3)]."
       },
       "syntax": "operator.imul(a, b)",
       "status": "ready",
@@ -34222,8 +34222,8 @@
         "en": "Returns a converted to an integer via the __index__() protocol — equivalent to a.__index__(); since 3.10 the result always has exact type int."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Строже, чем int(): float не принимается вовсе — index(3.0) поднимает TypeError, а не отбрасывает дробную часть. Принимает bool, потому что bool — подкласс int: index(True) даёт 1. Нужна, когда значение будет индексом или границей среза: так ведут себя range и list.__getitem__, и тип NumPy с __index__ проходит без явного преобразования.",
+        "en": "It is stricter than int(): a float is refused outright — index(3.0) raises TypeError rather than truncating. It accepts bool, a subclass of int: index(True) gives 1. Use it when a value will become an index or slice bound: that is how range and list.__getitem__ behave, and a NumPy integer with __index__ passes without an explicit conversion."
       },
       "syntax": "operator.index(a)",
       "status": "ready",
@@ -34279,8 +34279,8 @@
         "en": "The index of the first occurrence of b in a."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "В отличие от list.index, принимает любое итерируемое, в том числе генератор, но частично его расходует: всё до найденного элемента включительно уже прочитано. Если элемента нет, поднимается ValueError — для «найти или вернуть по умолчанию» удобнее next((i for i, x in enumerate(xs) if x == v), -1).",
+        "en": "Unlike list.index it accepts any iterable, including a generator, but partly consumes it: everything up to and including the match has been read. If the item is absent it raises ValueError; for \"find or default\" next((i for i, x in enumerate(xs) if x == v), -1) is handier."
       },
       "syntax": "operator.indexOf(a, b)",
       "status": "ready",
@@ -34332,8 +34332,8 @@
         "en": "An alias of operator.invert: bitwise inversion ~a."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Документация описывает inv и invert вместе: это два имени одной операции ~. Это отдельные объекты с одинаковым поведением, а не одна функция под двумя именами, поэтому сравнение inv is invert даёт False. В новом коде предпочтительнее invert — это имя совпадает со специальным методом __invert__.",
+        "en": "The documentation describes inv and invert together: two names for the one ~ operation. They are separate objects with identical behaviour, not one function under two names, so inv is invert is False. New code should prefer invert, whose name matches the special method __invert__."
       },
       "syntax": "operator.inv(a)",
       "status": "ready",
@@ -34380,8 +34380,8 @@
         "en": "Bitwise inversion ~a."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для int результат всегда -a - 1, потому что в Python у целых нет фиксированной ширины: ~5 даёт -6, а не 250, как в восьмибитном типе. Для маски нужной ширины добавьте & 0xFF. С bool не применяйте: ~True равно -2, а не False; с Python 3.12 это предупреждение DeprecationWarning, удаление запланировано на 3.16. Для логического отрицания есть not.",
+        "en": "For ints the result is always -a - 1, because Python integers have no fixed width: ~5 gives -6, not 250 as an 8-bit type would. For a mask of a given width add & 0xFF. Do not use it on bools: ~True is -2, not False; since Python 3.12 this emits a DeprecationWarning, with removal planned for 3.16. Use not for logical negation."
       },
       "syntax": "operator.invert(a)",
       "status": "ready",
@@ -34433,8 +34433,8 @@
         "en": "In-place bitwise OR: a |= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для словаря с Python 3.9 — то же, что dict.update: меняет словарь на месте, и при совпадении ключа побеждает правый аргумент. Для множества — объединение на месте. Для int результат нужно присвоить — так обычно собирают флаги: flags = ior(flags, FLAG_X).",
+        "en": "For a dict since Python 3.9 it equals dict.update: the dict changes in place and the right argument wins on a shared key. For a set it is an in-place union. For ints assign the result — the usual way to accumulate flags: flags = ior(flags, FLAG_X)."
       },
       "syntax": "operator.ior(a, b)",
       "status": "ready",
@@ -34487,8 +34487,8 @@
         "en": "In-place exponentiation: a **= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для int результат точный и может быть огромным: ipow(2, 100) — число из 31 цифры, переполнения нет. Отрицательная степень int даёт float: ipow(2, -1) равно 0.5. Модульного возведения в степень, как у трёхаргументного pow(base, exp, mod), здесь нет — для криптографии и больших степеней по модулю используйте pow.",
+        "en": "For ints the result is exact and may be huge: ipow(2, 100) is a 31-digit number with no overflow. A negative exponent on an int yields a float: ipow(2, -1) is 0.5. There is no modular exponentiation like the three-argument pow(base, exp, mod) — use pow for cryptography and large powers modulo n."
       },
       "syntax": "operator.ipow(a, b)",
       "status": "ready",
@@ -34539,8 +34539,8 @@
         "en": "In-place right shift: a >>= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Результат нужно присвоить: x = irshift(x, 1) — встроенные типы с >>= неизменяемы. Для отрицательных чисел сдвиг округляет к минус бесконечности: -5 >> 1 даёт -3. В цикле «пока число не обнулится» это важно: отрицательное число сдвигами вправо до нуля не дойдёт, а застрянет на -1.",
+        "en": "Assign the result: x = irshift(x, 1) — built-in types with >>= are immutable. For negative numbers the shift rounds towards minus infinity: -5 >> 1 gives -3. This matters in a \"shift until zero\" loop: a negative number never reaches zero by right shifts and gets stuck at -1."
       },
       "syntax": "operator.irshift(a, b)",
       "status": "ready",
@@ -34591,8 +34591,8 @@
         "en": "Identity test: a is b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Сравнивает объекты, а не значения, поэтому годится для None, синглтонов-маркеров и проверки «это тот же список, а не копия». Для чисел и строк результат зависит от кэширования интерпретатора: is_(256, 256) обычно истинно, а для больших чисел или собранных строк — нет. Сравнивать значения нужно через eq.",
+        "en": "It compares objects, not values, so it suits None, sentinel singletons and checks like \"is this the same list, not a copy\". For numbers and strings the result depends on interpreter caching: is_(256, 256) is usually true, but not for large numbers or built-up strings. Compare values with eq."
       },
       "syntax": "operator.is_(a, b)",
       "status": "ready",
@@ -34645,8 +34645,8 @@
         "en": "Returns a is None — the identity test against None in functional form. Added in Python 3.14."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Удобна как предикат там, где нужна функция: itertools.filterfalse(operator.is_none, xs) или any(map(operator.is_none, row)) — «есть ли пропуски». Сравнивает по тождеству, поэтому 0, пустая строка и False не считаются None. На версиях до 3.14 то же даёт partial(operator.is_, None).",
+        "en": "It is handy as a predicate where a function is required: itertools.filterfalse(operator.is_none, xs) or any(map(operator.is_none, row)) — \"are there gaps\". It compares by identity, so 0, the empty string and False are not None. Before 3.14 partial(operator.is_, None) does the same."
       },
       "syntax": "operator.is_none(a)",
       "status": "ready",
@@ -34702,8 +34702,8 @@
         "en": "Negated identity test: a is not b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Как предикат удобен с functools.partial: filter(partial(operator.is_not, None), xs) убирает None и оставляет 0, пустые строки и False — в отличие от filter(None, xs), который выбрасывает всё ложное. С Python 3.14 для этого есть готовый operator.is_not_none.",
+        "en": "As a predicate it pairs well with functools.partial: filter(partial(operator.is_not, None), xs) drops None but keeps 0, empty strings and False — unlike filter(None, xs), which discards everything falsy. Since Python 3.14 operator.is_not_none does this out of the box."
       },
       "syntax": "operator.is_not(a, b)",
       "status": "ready",
@@ -34755,8 +34755,8 @@
         "en": "Returns a is not None — functional form of the \"value is set\" check; handy as a predicate for filter(). Added in Python 3.14."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "В отличие от filter(None, xs), filter(operator.is_not_none, xs) оставляет 0, пустые строки и False — выбрасывает только None. Это частая ошибка при очистке данных, где ноль — законное значение. На версиях до 3.14 тот же предикат даёт partial(operator.is_not, None).",
+        "en": "Unlike filter(None, xs), filter(operator.is_not_none, xs) keeps 0, empty strings and False — it drops None only. That is a common mistake when cleaning data where zero is a legitimate value. Before 3.14 partial(operator.is_not, None) gives the same predicate."
       },
       "syntax": "operator.is_not_none(a)",
       "status": "ready",
@@ -34812,8 +34812,8 @@
         "en": "In-place subtraction: a −= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для чисел ничего не меняет на месте — результат нужно присвоить: x = isub(x, 1). Для множества меняет его на месте, убирая элементы второго аргумента: после isub(s, {1}) из s пропадёт 1, и это увидят все ссылки на тот же объект. У списков операции -= нет вовсе: isub([1, 2], [1]) поднимает TypeError.",
+        "en": "For numbers nothing changes in place — assign the result: x = isub(x, 1). For a set it mutates in place, removing the second argument's items: after isub(s, {1}) the 1 is gone from s, and every reference to that object sees it. Lists have no -= at all: isub([1, 2], [1]) raises TypeError."
       },
       "syntax": "operator.isub(a, b)",
       "status": "ready",
@@ -34864,8 +34864,8 @@
         "en": "A factory returning a callable that fetches items by fixed index/key."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Число ключей меняет форму результата: itemgetter(1) вернёт сам элемент, а itemgetter(1, 2) — кортеж. Это ловушка при генерации кода, где ключей может оказаться один. Работает и со словарями, и со срезами: itemgetter(slice(0, 2)). Быстрее лямбды и, в отличие от неё, сериализуется pickle; поэтому её предпочитают в key= у sorted, min и max.",
+        "en": "The number of keys changes the result's shape: itemgetter(1) returns the item itself, while itemgetter(1, 2) returns a tuple. That is a trap in generated code where there might be a single key. It works with dicts and with slices: itemgetter(slice(0, 2)). It is faster than a lambda and, unlike one, can be pickled; hence its popularity in key= for sorted, min and max."
       },
       "syntax": "f = operator.itemgetter(index)",
       "status": "ready",
@@ -34922,8 +34922,8 @@
         "en": "In-place true division: a /= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Тип результата может смениться: для int деление всегда даёт float, поэтому после x = itruediv(x, 2) переменная, бывшая целой, станет дробной — и, например, перестанет годиться как индекс списка. Изменяемых встроенных типов с /= нет, так что результат всегда нужно присваивать.",
+        "en": "The result type may change: dividing ints always yields a float, so after x = itruediv(x, 2) a variable that held an int now holds a float — and, for instance, no longer works as a list index. No built-in mutable type supports /=, so the result always has to be assigned."
       },
       "syntax": "operator.itruediv(a, b)",
       "status": "ready",
@@ -34976,8 +34976,8 @@
         "en": "In-place bitwise XOR: a ^= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для множества меняет его на месте на симметрическую разность: ixor({1, 2}, {2, 3}) даёт {1, 3}. Для int результат нужно присвоить; так переключают биты: flags = ixor(flags, MASK) инвертирует ровно те биты, что стоят в маске.",
+        "en": "For a set it mutates in place into the symmetric difference: ixor({1, 2}, {2, 3}) gives {1, 3}. For ints assign the result; this toggles bits: flags = ixor(flags, MASK) flips exactly the bits set in the mask."
       },
       "syntax": "operator.ixor(a, b)",
       "status": "ready",
@@ -35030,8 +35030,8 @@
         "en": "Return a <= b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для множеств le — проверка подмножества: le({1}, {1, 2}) истинно. Поэтому le для множеств задаёт лишь частичный порядок: le({1}, {2}) и le({2}, {1}) оба ложны. Как и у lt, при functools.partial фиксируется левый аргумент: partial(operator.le, 18) означает x → 18 <= x.",
+        "en": "For sets le tests for a subset: le({1}, {1, 2}) is true. That makes le on sets a partial order only: le({1}, {2}) and le({2}, {1}) are both false. As with lt, functools.partial fixes the left argument: partial(operator.le, 18) means x → 18 <= x."
       },
       "syntax": "operator.le(a, b)",
       "status": "ready",
@@ -35082,8 +35082,8 @@
         "en": "Estimate an object's length (exact or via __length_hint__)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Это оценка, а не обещание: итератор может выдать больше или меньше. Генератор длины не сообщает вовсе, и length_hint вернёт значение по умолчанию — 0, если не задано иное. Нужна в основном авторам коллекций, чтобы заранее выделить память; в обычном коде для точной длины есть len, а для итератора — list(it).",
+        "en": "It is an estimate, not a promise: an iterator may yield more or fewer items. A generator reports no length at all, so length_hint returns the default — 0 unless you pass another. It mostly serves authors of collections who want to preallocate; in everyday code use len for an exact size, or list(it) for an iterator."
       },
       "syntax": "operator.length_hint(obj, default=0)",
       "status": "ready",
@@ -35134,8 +35134,8 @@
         "en": "Left shift: a << b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "У целых Python нет переполнения: lshift(1, 100) честно даёт число из 31 цифры, а не ноль, как в языках с фиксированной шириной. Отрицательный сдвиг поднимает ValueError, а не сдвигает в другую сторону. Сдвиг удобен для битовых масок (1 << n), но для умножения на степень двойки понятнее записать a * 2**n.",
+        "en": "Python integers never overflow: lshift(1, 100) honestly yields a 31-digit number, not zero as in fixed-width languages. A negative shift raises ValueError instead of shifting the other way. Shifts suit bit masks (1 << n), but to multiply by a power of two a * 2**n reads more clearly."
       },
       "syntax": "operator.lshift(a, b)",
       "status": "ready",
@@ -35185,8 +35185,8 @@
         "en": "Return a < b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "С functools.partial порядок аргументов переворачивает смысл: partial(operator.lt, 0) — это x → 0 < x, то есть «больше нуля», а не «меньше». Сравнение несравнимых типов поднимает TypeError: lt(1, 'a') не даёт ни True, ни False. Для ключа сортировки lt не нужен — sorted сравнивает сам, а порядок задают key и reverse.",
+        "en": "With functools.partial the argument order flips the meaning: partial(operator.lt, 0) is x → 0 < x, i.e. \"greater than zero\", not \"less\". Comparing unorderable types raises TypeError: lt(1, 'a') yields neither True nor False. You do not need lt for sorting — sorted compares by itself, and order is set with key and reverse."
       },
       "syntax": "operator.lt(a, b)",
       "status": "ready",
@@ -35237,8 +35237,8 @@
         "en": "Matrix multiplication: a @ b (invokes __matmul__)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Ни один встроенный тип не поддерживает @: matmul(2, 3) поднимает TypeError. Оператор появился в Python 3.5 (PEP 465) специально для библиотек линейной алгебры — NumPy, PyTorch. В своём классе поддержку дают методы __matmul__ и отражённый __rmatmul__.",
+        "en": "No built-in type supports @: matmul(2, 3) raises TypeError. The operator arrived in Python 3.5 (PEP 465) specifically for linear-algebra libraries such as NumPy and PyTorch. Your own class gains support through __matmul__ and the reflected __rmatmul__."
       },
       "syntax": "operator.matmul(a, b)",
       "status": "ready",
@@ -35286,8 +35286,8 @@
         "en": "A factory returning a callable that calls a fixed method on its argument."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Аргументы фиксируются в момент создания: methodcaller('split', ',') всегда будет делить по запятой. Удобна, когда метод нужно применить к каждому элементу: map(methodcaller('strip'), lines). Для метода без аргументов проще передать сам метод класса — map(str.strip, lines), — но он сработает лишь для одного типа, а methodcaller — для любого объекта с таким методом.",
+        "en": "Arguments are fixed when the caller is created: methodcaller('split', ',') will always split on commas. It helps when a method must be applied to every item: map(methodcaller('strip'), lines). For a method without arguments passing the class method is simpler — map(str.strip, lines) — but that works for a single type, while methodcaller works for any object with such a method."
       },
       "syntax": "f = operator.methodcaller('method', *args)",
       "status": "ready",
@@ -35341,8 +35341,8 @@
         "en": "Return a % b — the remainder (the functional form of `%`)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Знак результата совпадает со знаком делителя, а не делимого: mod(-7, 2) равно 1, mod(7, -2) равно -1. Это согласовано с floordiv: a == (a // b) * b + a % b. Для строк % — это старое форматирование, а не остаток: mod('%s!', 'hi') вернёт 'hi!'. Для float с отрицательными числами точнее math.fmod.",
+        "en": "The sign of the result follows the divisor, not the dividend: mod(-7, 2) is 1, mod(7, -2) is -1. This keeps it consistent with floordiv: a == (a // b) * b + a % b. For strings % is old-style formatting, not a remainder: mod('%s!', 'hi') returns 'hi!'. For floats with negative operands math.fmod is more precise."
       },
       "syntax": "operator.mod(a, b)",
       "status": "ready",
@@ -35395,8 +35395,8 @@
         "en": "Return a * b (the functional form of `*`)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Типичное применение — произведение элементов: functools.reduce(operator.mul, xs, 1). Начальное значение 1 обязательно, иначе пустой список даст TypeError. С Python 3.8 для этого есть math.prod, и он читается лучше. Для последовательностей mul — повторение: mul([0], 3) даёт [0, 0, 0], и вложенные изменяемые элементы при этом не копируются.",
+        "en": "The classic use is the product of items: functools.reduce(operator.mul, xs, 1). The initial 1 is required, otherwise an empty list raises TypeError. Since Python 3.8 math.prod does the same and reads better. For sequences mul means repetition: mul([0], 3) gives [0, 0, 0], and nested mutable items are not copied."
       },
       "syntax": "operator.mul(a, b)",
       "status": "ready",
@@ -35448,8 +35448,8 @@
         "en": "Return a != b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Если в классе определён __eq__, а __ne__ нет, Python выводит ne как отрицание eq — писать оба метода не нужно. Для NaN ne(nan, nan) истинно, и это стандартный способ проверки на NaN без импорта math. Чтобы убрать из последовательности конкретное значение: filter(partial(operator.ne, None), xs).",
+        "en": "If a class defines __eq__ but not __ne__, Python derives ne as the negation of eq — you do not need both methods. For NaN ne(nan, nan) is true, the classic way to detect NaN without importing math. To drop a specific value from a sequence: filter(partial(operator.ne, None), xs)."
       },
       "syntax": "operator.ne(a, b)",
       "status": "ready",
@@ -35500,8 +35500,8 @@
         "en": "Return −a (unary negation)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Пригодится как ключ сортировки по убыванию для чисел: sorted(xs, key=operator.neg). Для строк так не выйдет — для них есть reverse=True. У float знак сохраняется даже у нуля: neg(0.0) даёт -0.0, что видно при печати и в math.copysign. Пользовательский класс поддерживает neg, определив __neg__.",
+        "en": "It works as a descending sort key for numbers: sorted(xs, key=operator.neg). That does not work for strings — use reverse=True there. Floats keep the sign even for zero: neg(0.0) gives -0.0, visible when printed and through math.copysign. A user class supports neg by defining __neg__."
       },
       "syntax": "operator.neg(a)",
       "status": "ready",
@@ -35553,8 +35553,8 @@
         "en": "Logical negation: not a."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Результат всегда bool, даже если аргумент — пустой список или ноль. Истинность определяется методом __bool__, а если его нет — __len__: пустые коллекции ложны. Как функция полезна в map и filter: filter(operator.not_, xs) оставит пустые строки, нули и None. Подчёркивание в имени нужно, потому что not — ключевое слово.",
+        "en": "The result is always a bool, even when the argument is an empty list or zero. Truthiness comes from __bool__ or, if that is missing, __len__: empty collections are false. As a function it is handy in map and filter: filter(operator.not_, xs) keeps the empty strings, zeros and None. The trailing underscore is needed because not is a keyword."
       },
       "syntax": "operator.not_(a)",
       "status": "ready",
@@ -35605,8 +35605,8 @@
         "en": "Bitwise OR: a | b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Это побитовое |, а не логическое or: короткого замыкания нет, or_(1, 2) даёт 3, а 1 or 2 даёт 1. Для множеств or_ — объединение, для словарей с Python 3.9 — слияние, где при совпадении ключа побеждает правый: or_({'a': 1}, {'a': 2}) вернёт {'a': 2}. Объединить много множеств: functools.reduce(operator.or_, sets, set()).",
+        "en": "This is bitwise |, not logical or: there is no short-circuit, or_(1, 2) is 3 while 1 or 2 is 1. For sets or_ is union; for dicts since Python 3.9 it merges, and the right side wins on a shared key: or_({'a': 1}, {'a': 2}) returns {'a': 2}. To union many sets: functools.reduce(operator.or_, sets, set())."
       },
       "syntax": "operator.or_(a, b)",
       "status": "ready",
@@ -35661,8 +35661,8 @@
         "en": "Return +a (unary plus)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для int и float pos ничего не меняет, но не всегда бесполезна: у decimal.Decimal унарный плюс применяет точность текущего контекста и округляет значение, а у collections.Counter убирает нулевые и отрицательные счётчики. В собственном классе поведение задаёт __pos__.",
+        "en": "For int and float pos changes nothing, but it is not always a no-op: on decimal.Decimal unary plus applies the current context precision and rounds the value, and on collections.Counter it drops zero and negative counts. In your own class __pos__ defines the behaviour."
       },
       "syntax": "operator.pos(a)",
       "status": "ready",
@@ -35714,8 +35714,8 @@
         "en": "Right shift: a >> b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для отрицательных чисел сдвиг округляет вниз, к минус бесконечности: rshift(-5, 1) даёт -3, а не -2. Это согласовано с floordiv: a >> n равно a // 2**n. Отрицательный сдвиг поднимает ValueError. Чтобы достать отдельный бит, сдвиг сочетают с маской: (a >> k) & 1.",
+        "en": "For negative numbers the shift rounds down, towards minus infinity: rshift(-5, 1) gives -3, not -2. This matches floordiv: a >> n equals a // 2**n. A negative shift count raises ValueError. To read a single bit, combine the shift with a mask: (a >> k) & 1."
       },
       "syntax": "operator.rshift(a, b)",
       "status": "ready",
@@ -35768,8 +35768,8 @@
         "en": "Item assignment: a[b] = c."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Возвращает None и меняет объект на месте — результат вызова не нужно никуда присваивать. Полезна там, где присваивание как инструкция недоступно: в лямбде, в обработчике событий, в map ради побочного эффекта. С кортежем или строкой поднимает TypeError: неизменяемые последовательности присваивание по индексу не поддерживают.",
+        "en": "It returns None and changes the object in place — there is nothing to assign the result to. It helps where an assignment statement is not allowed: inside a lambda, an event callback, or map used for its side effect. On a tuple or string it raises TypeError: immutable sequences do not support item assignment."
       },
       "syntax": "operator.setitem(a, b, c)",
       "status": "ready",
@@ -35820,8 +35820,8 @@
         "en": "Return a − b (the functional form of `-`)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Порядок аргументов значим: sub(a, b) — это a − b, а не b − a. С functools.partial это легко перепутать: partial(operator.sub, 10) даёт функцию x → 10 − x, а не x − 10. Для «вычесть константу» понятнее лямбда. У множеств sub — разность: sub({1, 2, 3}, {2}) вернёт {1, 3}.",
+        "en": "Argument order matters: sub(a, b) is a − b, not b − a. It is easy to get wrong with functools.partial: partial(operator.sub, 10) gives x → 10 − x, not x − 10. For \"subtract a constant\" a lambda reads better. For sets sub is the difference: sub({1, 2, 3}, {2}) returns {1, 3}."
       },
       "syntax": "operator.sub(a, b)",
       "status": "ready",
@@ -35875,8 +35875,8 @@
         "en": "Return a / b — true division (the functional form of `/`)."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Результат для двух int всегда float, даже если делится нацело: truediv(6, 3) вернёт 2.0, а не 2. Если нужен целый результат — floordiv или divmod; если нужна точность без потерь — fractions.Fraction. Деление на ноль поднимает ZeroDivisionError и для int, и для float: бесконечности, как в NumPy, не будет.",
+        "en": "The result for two ints is always a float, even when the division is exact: truediv(6, 3) returns 2.0, not 2. For an integer result use floordiv or divmod; for exact arithmetic use fractions.Fraction. Division by zero raises ZeroDivisionError for both int and float — you will not get an infinity as in NumPy."
       },
       "syntax": "operator.truediv(a, b)",
       "status": "ready",
@@ -35931,8 +35931,8 @@
         "en": "Return the truth value of a as a bool."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Делает ровно то же, что bool(a). На практике bool короче и понятнее; truth встречается в старом коде и в таблицах операций. filter(None, xs) проверяет истинность сам, поэтому писать filter(operator.truth, xs) нет нужды.",
+        "en": "It does exactly what bool(a) does. In practice bool is shorter and clearer; truth shows up in older code and in operation tables. filter(None, xs) already tests truthiness, so there is no need to write filter(operator.truth, xs)."
       },
       "syntax": "operator.truth(a)",
       "status": "ready",
@@ -35982,8 +35982,8 @@
         "en": "Bitwise XOR: a ^ b."
       },
       "body": {
-        "ru": "",
-        "en": ""
+        "ru": "Для множеств xor — симметрическая разность: элементы, которые есть ровно в одном из двух. Для bool — «истинно ровно одно из двух», и своего ключевого слова у этой логической операции нет. Классический приём — найти число без пары: functools.reduce(operator.xor, xs) оставляет элемент, встретившийся нечётное число раз.",
+        "en": "For sets xor is the symmetric difference: items present in exactly one of the two. For bools it means \"exactly one is true\", a logical operation that has no keyword of its own. A classic trick finds the unpaired number: functools.reduce(operator.xor, xs) leaves the item that occurs an odd number of times."
       },
       "syntax": "operator.xor(a, b)",
       "status": "ready",

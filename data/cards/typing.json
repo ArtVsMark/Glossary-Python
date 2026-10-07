@@ -432,17 +432,15 @@
     "examples": [
       [
         "from typing import Literal",
-        "Mode = Literal['r', 'w', 'a']"
-      ],
-      [
-        "from typing import Literal",
+        "Mode = Literal['r', 'w', 'a']",
         "def open_file(path: str, mode: Mode) -> None:",
         "    print(f'open {path} as {mode}')",
         "open_file('f.txt', 'r')  # → open f.txt as r",
-        "open_file('f.txt', 'w')  # → open f.txt as w",
-        "Direction = Literal['N', 'S', 'E', 'W']"
+        "open_file('f.txt', 'w')  # → open f.txt as w"
       ],
       [
+        "from typing import Literal",
+        "Direction = Literal['N', 'S', 'E', 'W']",
         "def move(d: Direction) -> str:",
         "    return f'Moving {d}'",
         "print(move('N'))  # → Moving N",
@@ -826,17 +824,15 @@
     "examples": [
       [
         "from typing import TypeVar",
-        "T = TypeVar('T')"
-      ],
-      [
-        "from typing import TypeVar",
+        "T = TypeVar('T')",
         "def first(lst: list[T]) -> T:",
         "    return lst[0]",
         "print(first([1, 2, 3]))  # → 1",
-        "print(first(['a', 'b']))  # → 'a'",
-        "N = TypeVar('N', int, float)"
+        "print(first(['a', 'b']))  # → 'a'"
       ],
       [
+        "from typing import TypeVar",
+        "N = TypeVar('N', int, float)",
         "def double(x: N) -> N:",
         "    return x * 2",
         "print(double(3))  # → 6",
@@ -1913,6 +1909,7 @@
         "print(Unpack[Ts])   # → typing.Unpack[Ts]"
       ],
       [
+        "# Python 3.12+",
         "def pack[*Us](*args: *Us) -> tuple[*Us]: return args",
         "print(pack(1, 'a', True))   # → (1, 'a', True)",
         "print(pack())   # → ()",

@@ -5327,6 +5327,7 @@
     ],
     "examples": [
       [
+        "# Python 3.14+",
         "import shutil",
         "try:",
         "    raise shutil.ExecError",

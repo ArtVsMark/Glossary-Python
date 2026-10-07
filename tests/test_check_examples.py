@@ -121,6 +121,73 @@ def test_lineage_of_unknown_name_is_the_name_itself():
     assert gate.lineage("MyOwnError") == {"MyOwnError"}
 
 
+# --------------------------- обещанный вывод ---------------------------
+
+
+def test_kept_promise_is_ok():
+    assert outcome("print([0,1])  # → [0, 1]\n").outcome == "ok"
+
+
+def test_swallowed_call_is_a_mismatch():
+    """Вызов, уехавший в тело функции, не падает — он молчит (#125)."""
+    code = "def show():\n    print('a')\n    show()  # → a\n"
+    result = outcome(code)
+    assert (result.outcome, result.detail) == ("mismatch", "строка 3: не напечатано «a»")
+
+
+def test_comment_line_belongs_to_the_print_above():
+    assert gate.promises("print(1)\n# → 1\n") == [(2, "1")]
+
+
+def test_value_without_print_is_not_a_promise():
+    assert gate.promises("x = 5 / 2  # → 2.5\n") == []
+
+
+def test_environment_mark_is_not_checked():
+    assert gate.promises("import os\nprint(os.getpid())  # → ? номер процесса\n") == []
+
+
+@pytest.mark.parametrize(
+    ("promise", "output"),
+    [
+        ("a 1 / b 2", "a 1\nb 2\n"),
+        ("[1, 2], затем [3, 4]", "[1, 2]\n[3, 4]\n"),
+        ("'a'", "a\n"),
+        ("3.14159...", "3.141592653589793\n"),
+        ("False (bool != int при type())", "False\n"),
+        ("10 — сумма", "10\n"),
+    ],
+)
+def test_promise_spellings_are_understood(promise: str, output: str):
+    assert gate.unmet(f"print(0)  # → {promise}\n", output) == []
+
+
+def test_words_are_an_explanation_not_output():
+    """Словесное обещание сверять не с чем — оно не находка."""
+    assert (
+        gate.unmet(
+            "print(2 ** 100)  # → большое число\n", "1267650600228229401496703205376\n"
+        )
+        == []
+    )
+
+
+def test_mismatches_over_the_ceiling_fail(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr(gate, "OUTPUT_CEILING", 0)
+    data = write(tmp_path / "g.json", {"a": [["print(1)  # → 2"]]})
+    assert gate.main(["--data", str(data)]) == 1
+
+
+def test_mismatches_under_the_ceiling_pass(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    monkeypatch.setattr(gate, "OUTPUT_CEILING", 1)
+    data = write(tmp_path / "g.json", {"a": [["print(1)  # → 2"]]})
+    assert gate.main(["--data", str(data)]) == 0
+
+
 # --------------------------- точка входа ---------------------------
 
 
@@ -173,3 +240,7 @@ def test_findings_on_the_tree_do_not_grow():
     results = gate.check(gate.examples(gate.ROOT / gate.DATA))
     found = sorted(r.entry_id for r in results if r.outcome == "finding")
     assert len(found) <= CEILING, f"находок стало больше потолка {CEILING}: {found}"
+    mismatched = sorted(r.entry_id for r in results if r.outcome == "mismatch")
+    assert len(mismatched) <= gate.OUTPUT_CEILING, (
+        f"вывод расходится в {len(mismatched)} блоках — больше потолка: {mismatched}"
+    )

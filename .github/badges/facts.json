@@ -3,14 +3,14 @@
   "schema_of": "факты о проекте-витрине глоссария по договору фактов витрины 1.3: по каждому показателю значение или причина в none",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T16:45:27+00:00",
+  "generated_at": "2026-10-07T17:32:08+00:00",
   "repo": "ArtVsMark/Glossary-Python",
-  "commit": "6a763d2cb4ee14bced743770a074ab411bb2b789",
+  "commit": "70e56e55223f1fcb47e0041933447f293f17140f",
   "ci": {
     "workflow": "ci.yml"
   },
   "glossary": {
-    "cards": 1625,
+    "cards": 1650,
     "groups": 61,
     "errors": 0,
     "warnings": 0,
@@ -20,16 +20,16 @@
   },
   "rules": {
     "total": 214,
-    "gate": 72,
+    "gate": 74,
     "document": 39,
     "pipeline": 16,
-    "mechanised": 127,
+    "mechanised": 129,
     "none": 16,
-    "not_applicable": 71
+    "not_applicable": 69
   },
   "tests": {
-    "functions": 709,
-    "modules": 45
+    "functions": 734,
+    "modules": 46
   },
   "python": {
     "supported": [
@@ -43,7 +43,7 @@
     ]
   },
   "checks_per_pr": {
-    "count": 7,
+    "count": 10,
     "names": [
       "Линтер и типы",
       "Тесты (Python 3.14)",
@@ -51,6 +51,9 @@
       "Запись журнала едет с изменением",
       "Связь изменения с задачей",
       "Качество данных и синхронность витрины",
+      "Примеры на Python 3.11",
+      "Примеры на Python 3.12",
+      "Примеры на Python 3.13",
       "check PR"
     ]
   },
@@ -59,5 +62,5 @@
   ],
   "coverage_percent": 97.7,
   "release": "1.1",
-  "version": "1.1.47"
+  "version": "1.1.53"
 }

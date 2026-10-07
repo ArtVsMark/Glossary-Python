@@ -3,7 +3,7 @@
   "schema_of": "что появилось и исчезло между версиями Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T16:45:34+00:00",
+  "generated_at": "2026-10-07T17:32:16+00:00",
   "versions": [
     "3.11",
     "3.12",
@@ -445,139 +445,139 @@
           "qualname": "ImportCycleError",
           "module": "builtins",
           "kind": "exception",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "bytearray.take_bytes",
           "module": "builtins",
           "kind": "method",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "enum.bin",
           "module": "enum",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "enum.show_flag_values",
           "module": "enum",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "frozendict",
           "module": "builtins",
           "kind": "class",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "hashlib.scrypt",
           "module": "hashlib",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "math.fmax",
           "module": "math",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "math.fmin",
           "module": "math",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "math.isnormal",
           "module": "math",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "math.issubnormal",
           "module": "math",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "math.signbit",
           "module": "math",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "os.statx",
           "module": "os",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "os.statx_result",
           "module": "os",
           "kind": "class",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "re.prefixmatch",
           "module": "re",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sentinel",
           "module": "builtins",
           "kind": "class",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.get_lazy_imports",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.get_lazy_imports_filter",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.set_lazy_imports",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "sys.set_lazy_imports_filter",
           "module": "sys",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "threading.concurrent_tee",
           "module": "threading",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "threading.serialize_iterator",
           "module": "threading",
           "kind": "class",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "threading.synchronized_iterator",
           "module": "threading",
           "kind": "function",
-          "documented": false
+          "documented": true
         },
         {
           "qualname": "typing.disjoint_base",
           "module": "typing",
           "kind": "function",
-          "documented": false
+          "documented": true
         }
       ],
       "removed": [
@@ -587,7 +587,7 @@
       "totals": {
         "added": 23,
         "removed": 2,
-        "undocumented": 23
+        "undocumented": 0
       }
     }
   ]

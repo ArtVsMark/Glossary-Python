@@ -739,3 +739,10 @@ def test_every_rule_has_a_forgery_of_its_own():
 def test_the_forgery_search_can_actually_come_up_empty():
     """Разбор обязан уметь не найти, иначе его молчание ничего не значит."""
     assert "rule_такого_нет" not in exercised_rules()
+
+
+def test_example_compiles_checks_each_block_on_its_own():
+    """Блок без отступа тела ловится, даже если соседний блок его бы «закрыл»."""
+    entry = make_entry(examples=(("x = 1",), ("for x in range(3):",)))
+    issues = list(rule_example_compiles(make_glossary(entry), CFG))
+    assert [i.message.split(":")[0] for i in issues] == ["пример 2 не компилируется"]

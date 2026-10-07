@@ -124,21 +124,28 @@ def test_lineage_of_unknown_name_is_the_name_itself():
 # --------------------------- точка входа ---------------------------
 
 
-def write(path: Path, examples: dict[str, list[str]]) -> Path:
-    entries = [{"id": key, "examples": lines} for key, lines in examples.items()]
+def write(path: Path, examples: dict[str, list[list[str]]]) -> Path:
+    entries = [{"id": key, "examples": blocks} for key, blocks in examples.items()]
     path.write_text(json.dumps({"entries": entries}), encoding="utf-8")
     return path
 
 
 def test_main_reports_findings(tmp_path: Path, capsys: pytest.CaptureFixture[str]):
-    data = write(tmp_path / "g.json", {"a": ["print(1)"], "b": ["print(y)"]})
+    data = write(tmp_path / "g.json", {"a": [["print(1)"]], "b": [["print(y)"]]})
     assert gate.main(["--data", str(data)]) == 1
     assert "b: строка 1: NameError" in capsys.readouterr().err
 
 
 def test_main_is_clean(tmp_path: Path):
-    data = write(tmp_path / "g.json", {"a": ["print(1)"]})
+    data = write(tmp_path / "g.json", {"a": [["print(1)"]]})
     assert gate.main(["--data", str(data)]) == 0
+
+
+def test_each_block_runs_on_its_own(tmp_path: Path, capsys: pytest.CaptureFixture[str]):
+    """Блок, держащийся на определении из соседнего, — находка с номером (#125)."""
+    data = write(tmp_path / "g.json", {"a": [["x = 1", "print(x)"], ["print(x)"]]})
+    assert gate.main(["--data", str(data)]) == 1
+    assert "a · пример 2: строка 1: NameError" in capsys.readouterr().err
 
 
 def test_missing_data_is_the_third_outcome(tmp_path: Path, capsys):

@@ -41,16 +41,18 @@
       "mapset"
     ],
     "examples": [
-      "import copy",
-      "orig = {\"a\": [1,2], \"b\": 3}",
-      "shallow = orig.copy(); shallow[\"a\"].append(99)",
-      "print(orig)     # → {'a': [1, 2, 99], 'b': 3}  (список общий)",
-      "orig2 = {\"a\": [1,2], \"b\": 3}",
-      "deep = copy.deepcopy(orig2); deep[\"a\"].append(99)",
-      "print(orig2)    # → {'a': [1, 2], 'b': 3}        (оригинал цел)",
-      "d = {\"x\": 1}; d2 = d.copy()",
-      "print(d is d2)  # → False",
-      "d2[\"y\"] = 2; print(d)  # → {'x': 1}  (d не изменился)"
+      [
+        "import copy",
+        "orig = {\"a\": [1,2], \"b\": 3}",
+        "shallow = orig.copy(); shallow[\"a\"].append(99)",
+        "print(orig)     # → {'a': [1, 2, 99], 'b': 3}  (список общий)",
+        "orig2 = {\"a\": [1,2], \"b\": 3}",
+        "deep = copy.deepcopy(orig2); deep[\"a\"].append(99)",
+        "print(orig2)    # → {'a': [1, 2], 'b': 3}        (оригинал цел)",
+        "d = {\"x\": 1}; d2 = d.copy()",
+        "print(d is d2)  # → False",
+        "d2[\"y\"] = 2; print(d)  # → {'x': 1}  (d не изменился)"
+      ]
     ],
     "related": [
       "dict.copy",
@@ -103,12 +105,14 @@
       "mapset"
     ],
     "examples": [
-      "a = {'x': 1, 'y': 2}",
-      "b = {'y': 10, 'z': 3}",
-      "result = a | b",
-      "print(result)  # {'x': 1, 'y': 10, 'z': 3}",
-      "# аналог без оператора (до 3.9):",
-      "result = {**a, **b}"
+      [
+        "a = {'x': 1, 'y': 2}",
+        "b = {'y': 10, 'z': 3}",
+        "result = a | b",
+        "print(result)  # {'x': 1, 'y': 10, 'z': 3}",
+        "# аналог без оператора (до 3.9):",
+        "result = {**a, **b}"
+      ]
     ],
     "related": [
       "dict-merge-update",
@@ -160,11 +164,13 @@
       "mapset"
     ],
     "examples": [
-      "config = {'debug': False, 'host': 'localhost'}",
-      "overrides = {'debug': True, 'port': 8080}",
-      "config |= overrides",
-      "print(config)",
-      "# {'debug': True, 'host': 'localhost', 'port': 8080}"
+      [
+        "config = {'debug': False, 'host': 'localhost'}",
+        "overrides = {'debug': True, 'port': 8080}",
+        "config |= overrides",
+        "print(config)",
+        "# {'debug': True, 'host': 'localhost', 'port': 8080}"
+      ]
     ],
     "related": [
       "dict-merge",
@@ -215,12 +221,14 @@
       "mapset"
     ],
     "examples": [
-      "print(dict.fromkeys([\"a\",\"b\",\"c\"]))      # → {'a': None, 'b': None, 'c': None}",
-      "print(dict.fromkeys(\"xyz\", 0))           # → {'x': 0, 'y': 0, 'z': 0}",
-      "keys = [\"name\",\"age\",\"city\"]",
-      "d = dict.fromkeys(keys, \"N/A\")",
-      "print(d)   # → {'name': 'N/A', 'age': 'N/A', 'city': 'N/A'}",
-      "print(dict.fromkeys([1,2,1,3]))          # → {1: None, 2: None, 3: None}"
+      [
+        "print(dict.fromkeys([\"a\",\"b\",\"c\"]))      # → {'a': None, 'b': None, 'c': None}",
+        "print(dict.fromkeys(\"xyz\", 0))           # → {'x': 0, 'y': 0, 'z': 0}",
+        "keys = [\"name\",\"age\",\"city\"]",
+        "d = dict.fromkeys(keys, \"N/A\")",
+        "print(d)   # → {'name': 'N/A', 'age': 'N/A', 'city': 'N/A'}",
+        "print(dict.fromkeys([1,2,1,3]))          # → {1: None, 2: None, 3: None}"
+      ]
     ],
     "related": [
       "создание-словаря",
@@ -271,24 +279,26 @@
       "mapset"
     ],
     "examples": [
-      "fs = frozenset([1, 2, 3])",
-      "print(fs)",
-      "# → frozenset({1, 2, 3})",
-      "try:",
-      "    fs.add(4)",
-      "except AttributeError as e:",
-      "    print(e)",
-      "    # → 'frozenset' object has no attribute 'add'",
-      "    d = {frozenset([1, 2]): 'pair'}",
-      "    print(d[frozenset([1, 2])])",
-      "    # → 'pair' (как ключ словаря)",
-      "    s = {frozenset([1, 2]), frozenset([3, 4])}",
-      "    print(len(s))",
-      "    # → 2 (frozenset как элемент множества)",
-      "    fs2 = frozenset([1, 2, 3])",
-      "    fs3 = frozenset([2, 3, 4])",
-      "    print(fs2 & fs3)",
-      "    # → frozenset({2, 3})"
+      [
+        "fs = frozenset([1, 2, 3])",
+        "print(fs)",
+        "# → frozenset({1, 2, 3})",
+        "try:",
+        "    fs.add(4)",
+        "except AttributeError as e:",
+        "    print(e)",
+        "    # → 'frozenset' object has no attribute 'add'",
+        "    d = {frozenset([1, 2]): 'pair'}",
+        "    print(d[frozenset([1, 2])])",
+        "    # → 'pair' (как ключ словаря)",
+        "    s = {frozenset([1, 2]), frozenset([3, 4])}",
+        "    print(len(s))",
+        "    # → 2 (frozenset как элемент множества)",
+        "    fs2 = frozenset([1, 2, 3])",
+        "    fs3 = frozenset([2, 3, 4])",
+        "    print(fs2 & fs3)",
+        "    # → frozenset({2, 3})"
+      ]
     ],
     "related": [
       "frozenset",
@@ -341,20 +351,22 @@
       "mapset"
     ],
     "examples": [
-      "s = {1, 2, 3, 4, 5}",
-      "print(3 in s)",
-      "# → True",
-      "print(6 in s)",
-      "# → False",
-      "print(6 not in s)",
-      "# → True",
-      "big = set(range(10**6))",
-      "print(999999 in big)",
-      "# → True (мгновенно, O(1))",
-      "banned = {'spam', 'ads', 'junk'}",
-      "msg = 'spam email'",
-      "print(any(w in banned for w in msg.split()))",
-      "# → True"
+      [
+        "s = {1, 2, 3, 4, 5}",
+        "print(3 in s)",
+        "# → True",
+        "print(6 in s)",
+        "# → False",
+        "print(6 not in s)",
+        "# → True",
+        "big = set(range(10**6))",
+        "print(999999 in big)",
+        "# → True (мгновенно, O(1))",
+        "banned = {'spam', 'ads', 'junk'}",
+        "msg = 'spam email'",
+        "print(any(w in banned for w in msg.split()))",
+        "# → True"
+      ]
     ],
     "related": [
       "in-not-in-для-списков",
@@ -410,17 +422,19 @@
       "mapset"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "print('a' in d)",
-      "# → True",
-      "print('c' in d)",
-      "# → False",
-      "print('c' not in d)",
-      "# → True",
-      "print(1 in d)",
-      "# → False (1 — не ключ!)",
-      "print(1 in d.values())",
-      "# → True (проверка значений)"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "print('a' in d)",
+        "# → True",
+        "print('c' in d)",
+        "# → False",
+        "print('c' not in d)",
+        "# → True",
+        "print(1 in d)",
+        "# → False (1 — не ключ!)",
+        "print(1 in d.values())",
+        "# → True (проверка значений)"
+      ]
     ],
     "related": [
       "dict.get",
@@ -474,30 +488,32 @@
       "mapset"
     ],
     "examples": [
-      "user = {'name': 'Alice', 'address': {'city': 'Moscow', 'zip': '101000'}}",
-      "print(user['address']['city'])",
-      "# → 'Moscow'",
-      "user['address']['country'] = 'Russia'",
-      "print(user['address'])",
-      "# → {'city': 'Moscow', 'zip': '101000', 'country': 'Russia'}",
-      "db = {'alice': {'age': 30}, 'bob': {'age': 25}}",
-      "for name, info in db.items():",
-      "    print(name, info['age'])",
-      "    # → alice 30 / bob 25",
-      "    print(user.get('phone', {}).get('mobile', 'N/A'))",
-      "    # → 'N/A' (безопасный доступ)",
-      "    catalog = {}",
-      "    catalog.setdefault('fruits', {})['apple'] = 1.5",
-      "    catalog.setdefault('fruits', {})['banana'] = 0.8",
-      "    print(catalog)",
-      "    # → {'fruits': {'apple': 1.5, 'banana': 0.8}}",
-      "    nested = {'a': {'b': {'c': 42}}}",
-      "    print(nested['a']['b']['c'])",
-      "    # → 42",
-      "    config = {'db': {'host': 'localhost', 'port': 5432}, 'debug': True}",
-      "    config['db']['host'] = '192.168.1.1'",
-      "    print(config['db'])",
-      "    # → {'host': '192.168.1.1', 'port': 5432}"
+      [
+        "user = {'name': 'Alice', 'address': {'city': 'Moscow', 'zip': '101000'}}",
+        "print(user['address']['city'])",
+        "# → 'Moscow'",
+        "user['address']['country'] = 'Russia'",
+        "print(user['address'])",
+        "# → {'city': 'Moscow', 'zip': '101000', 'country': 'Russia'}",
+        "db = {'alice': {'age': 30}, 'bob': {'age': 25}}",
+        "for name, info in db.items():",
+        "    print(name, info['age'])",
+        "    # → alice 30 / bob 25",
+        "    print(user.get('phone', {}).get('mobile', 'N/A'))",
+        "    # → 'N/A' (безопасный доступ)",
+        "    catalog = {}",
+        "    catalog.setdefault('fruits', {})['apple'] = 1.5",
+        "    catalog.setdefault('fruits', {})['banana'] = 0.8",
+        "    print(catalog)",
+        "    # → {'fruits': {'apple': 1.5, 'banana': 0.8}}",
+        "    nested = {'a': {'b': {'c': 42}}}",
+        "    print(nested['a']['b']['c'])",
+        "    # → 42",
+        "    config = {'db': {'host': 'localhost', 'port': 5432}, 'debug': True}",
+        "    config['db']['host'] = '192.168.1.1'",
+        "    print(config['db'])",
+        "    # → {'host': '192.168.1.1', 'port': 5432}"
+      ]
     ],
     "related": [
       "dict.get",
@@ -550,22 +566,24 @@
       "mapset"
     ],
     "examples": [
-      "squares = {x**2 for x in range(6)}",
-      "print(sorted(squares))",
-      "# → [0, 1, 4, 9, 16, 25]",
-      "evens = {x for x in range(10) if x % 2 == 0}",
-      "print(evens)",
-      "# → {0, 2, 4, 6, 8}",
-      "words = ['hello', 'world', 'hello', 'python']",
-      "unique_len = {len(w) for w in words}",
-      "print(unique_len)",
-      "# → {5, 6} (уникальные длины)",
-      "unique_first = {w[0] for w in words}",
-      "print(sorted(unique_first))",
-      "# → ['h', 'p', 'w'] (у множества строк порядок не определён, поэтому сортируем)",
-      "no_vowels = {c for c in 'hello' if c not in 'aeiou'}",
-      "print(sorted(no_vowels))",
-      "# → ['h', 'l']"
+      [
+        "squares = {x**2 for x in range(6)}",
+        "print(sorted(squares))",
+        "# → [0, 1, 4, 9, 16, 25]",
+        "evens = {x for x in range(10) if x % 2 == 0}",
+        "print(evens)",
+        "# → {0, 2, 4, 6, 8}",
+        "words = ['hello', 'world', 'hello', 'python']",
+        "unique_len = {len(w) for w in words}",
+        "print(unique_len)",
+        "# → {5, 6} (уникальные длины)",
+        "unique_first = {w[0] for w in words}",
+        "print(sorted(unique_first))",
+        "# → ['h', 'p', 'w'] (у множества строк порядок не определён, поэтому сортируем)",
+        "no_vowels = {c for c in 'hello' if c not in 'aeiou'}",
+        "print(sorted(no_vowels))",
+        "# → ['h', 'l']"
+      ]
     ],
     "related": [
       "списочные-выражения-list-comprehension",
@@ -618,28 +636,30 @@
       "mapset"
     ],
     "examples": [
-      "d1 = {'a': 1, 'b': 2}",
-      "d2 = {'b': 20, 'c': 3}",
-      "d1.update(d2)",
-      "print(d1)",
-      "# → {'a': 1, 'b': 20, 'c': 3}",
-      "d3 = {'a': 1, 'b': 2}",
-      "merged = {**d3, **d2}",
-      "print(merged)",
-      "# → {'a': 1, 'b': 20, 'c': 3}",
-      "d4 = d3 | d2",
-      "print(d4)",
-      "# → {'a': 1, 'b': 20, 'c': 3} (Python 3.9+)",
-      "extra = {'x': 9}",
-      "combined = {**d3, **d2, **extra}",
-      "print(combined)",
-      "# → {'a': 1, 'b': 20, 'c': 3, 'x': 9}",
-      "print(d3)",
-      "# → {'a': 1, 'b': 2} (** не изменяет оригинал)",
-      "d5 = {'a': 1}",
-      "d5 |= {'b': 2, 'a': 99}",
-      "print(d5)",
-      "# → {'a': 99, 'b': 2}"
+      [
+        "d1 = {'a': 1, 'b': 2}",
+        "d2 = {'b': 20, 'c': 3}",
+        "d1.update(d2)",
+        "print(d1)",
+        "# → {'a': 1, 'b': 20, 'c': 3}",
+        "d3 = {'a': 1, 'b': 2}",
+        "merged = {**d3, **d2}",
+        "print(merged)",
+        "# → {'a': 1, 'b': 20, 'c': 3}",
+        "d4 = d3 | d2",
+        "print(d4)",
+        "# → {'a': 1, 'b': 20, 'c': 3} (Python 3.9+)",
+        "extra = {'x': 9}",
+        "combined = {**d3, **d2, **extra}",
+        "print(combined)",
+        "# → {'a': 1, 'b': 20, 'c': 3, 'x': 9}",
+        "print(d3)",
+        "# → {'a': 1, 'b': 2} (** не изменяет оригинал)",
+        "d5 = {'a': 1}",
+        "d5 |= {'b': 2, 'a': 99}",
+        "print(d5)",
+        "# → {'a': 99, 'b': 2}"
+      ]
     ],
     "related": [
       "dict.update",
@@ -691,12 +711,14 @@
       "mapset"
     ],
     "examples": [
-      "a = {\"x\": 1, \"y\": 2}; b = {\"y\": 99, \"z\": 3}",
-      "print(a | b)       # → {'x': 1, 'y': 99, 'z': 3}",
-      "print(b | a)       # → {'y': 2, 'z': 3, 'x': 1}",
-      "a |= b; print(a)   # → {'x': 1, 'y': 99, 'z': 3}",
-      "print({} | {\"k\": 1})  # → {'k': 1}",
-      "c = {\"p\": 5}; c |= {\"q\": 6}; print(c)  # → {'p': 5, 'q': 6}"
+      [
+        "a = {\"x\": 1, \"y\": 2}; b = {\"y\": 99, \"z\": 3}",
+        "print(a | b)       # → {'x': 1, 'y': 99, 'z': 3}",
+        "print(b | a)       # → {'y': 2, 'z': 3, 'x': 1}",
+        "a |= b; print(a)   # → {'x': 1, 'y': 99, 'z': 3}",
+        "print({} | {\"k\": 1})  # → {'k': 1}",
+        "c = {\"p\": 5}; c |= {\"q\": 6}; print(c)  # → {'p': 5, 'q': 6}"
+      ]
     ],
     "related": [
       "dict-merge",
@@ -752,28 +774,30 @@
       "mapset"
     ],
     "examples": [
-      "a = {1, 2, 3, 4}",
-      "b = {3, 4, 5, 6}",
-      "print(a | b)",
-      "# → {1, 2, 3, 4, 5, 6}",
-      "print(a & b)",
-      "# → {3, 4}",
-      "print(a - b)",
-      "# → {1, 2}",
-      "print(b - a)",
-      "# → {5, 6}",
-      "print(a ^ b)",
-      "# → {1, 2, 5, 6}",
-      "c = {1, 2}",
-      "c |= {3, 4}",
-      "print(c)",
-      "# → {1, 2, 3, 4}",
-      "d = {1, 2, 3}",
-      "d &= {2, 3, 4}",
-      "print(d)",
-      "# → {2, 3}",
-      "print({1, 2} ^ {2, 3})",
-      "# → {1, 3}"
+      [
+        "a = {1, 2, 3, 4}",
+        "b = {3, 4, 5, 6}",
+        "print(a | b)",
+        "# → {1, 2, 3, 4, 5, 6}",
+        "print(a & b)",
+        "# → {3, 4}",
+        "print(a - b)",
+        "# → {1, 2}",
+        "print(b - a)",
+        "# → {5, 6}",
+        "print(a ^ b)",
+        "# → {1, 2, 5, 6}",
+        "c = {1, 2}",
+        "c |= {3, 4}",
+        "print(c)",
+        "# → {1, 2, 3, 4}",
+        "d = {1, 2, 3}",
+        "d &= {2, 3, 4}",
+        "print(d)",
+        "# → {2, 3}",
+        "print({1, 2} ^ {2, 3})",
+        "# → {1, 3}"
+      ]
     ],
     "related": [
       "set.union",
@@ -828,27 +852,29 @@
       "mapset"
     ],
     "examples": [
-      "lst = [1, 2, 2, 3, 3, 3, 4]",
-      "unique = sorted(set(lst))",
-      "print(unique)",
-      "# → [1, 2, 3, 4]",
-      "a = [1, 2, 3, 4]",
-      "b = [3, 4, 5, 6]",
-      "common = set(a) & set(b)",
-      "print(common)",
-      "# → {3, 4}",
-      "only_a = set(a) - set(b)",
-      "print(only_a)",
-      "# → {1, 2}",
-      "print(len(set(lst)))",
-      "# → 4 (число уникальных)",
-      "has_dup = len(lst) != len(set(lst))",
-      "print(has_dup)",
-      "# → True (есть дубликаты)",
-      "tags1 = {'python', 'data', 'ml'}",
-      "tags2 = {'java', 'data', 'web'}",
-      "print(sorted(tags1.symmetric_difference(tags2)))",
-      "# → ['java', 'ml', 'python', 'web'] (у множества строк порядок не определён, поэтому сортируем)"
+      [
+        "lst = [1, 2, 2, 3, 3, 3, 4]",
+        "unique = sorted(set(lst))",
+        "print(unique)",
+        "# → [1, 2, 3, 4]",
+        "a = [1, 2, 3, 4]",
+        "b = [3, 4, 5, 6]",
+        "common = set(a) & set(b)",
+        "print(common)",
+        "# → {3, 4}",
+        "only_a = set(a) - set(b)",
+        "print(only_a)",
+        "# → {1, 2}",
+        "print(len(set(lst)))",
+        "# → 4 (число уникальных)",
+        "has_dup = len(lst) != len(set(lst))",
+        "print(has_dup)",
+        "# → True (есть дубликаты)",
+        "tags1 = {'python', 'data', 'ml'}",
+        "tags2 = {'java', 'data', 'web'}",
+        "print(sorted(tags1.symmetric_difference(tags2)))",
+        "# → ['java', 'ml', 'python', 'web'] (у множества строк порядок не определён, поэтому сортируем)"
+      ]
     ],
     "related": [
       "создание-множества",
@@ -901,27 +927,29 @@
       "mapset"
     ],
     "examples": [
-      "def greet(name, age):",
-      "    return f'{name} is {age}'",
-      "info = {'name': 'Alice', 'age': 30}",
-      "print(greet(**info))",
-      "# → 'Alice is 30'",
-      "d1 = {'a': 1, 'b': 2}",
-      "d2 = {'c': 3, 'd': 4}",
-      "merged = {**d1, **d2}",
-      "print(merged)",
-      "# → {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
-      "d3 = {'a': 1}",
-      "d4 = {'a': 99, 'b': 2}",
-      "print({**d3, **d4})",
-      "# → {'a': 99, 'b': 2} (d4 перекрывает d3)",
-      "defaults = {'color': 'black', 'size': 'M'}",
-      "user_prefs = {'size': 'L'}",
-      "settings = {**defaults, **user_prefs}",
-      "print(settings)",
-      "# → {'color': 'black', 'size': 'L'}",
-      "print({**{'x': 1}, 'y': 2, **{'z': 3}})",
-      "# → {'x': 1, 'y': 2, 'z': 3}"
+      [
+        "def greet(name, age):",
+        "    return f'{name} is {age}'",
+        "info = {'name': 'Alice', 'age': 30}",
+        "print(greet(**info))",
+        "# → 'Alice is 30'",
+        "d1 = {'a': 1, 'b': 2}",
+        "d2 = {'c': 3, 'd': 4}",
+        "merged = {**d1, **d2}",
+        "print(merged)",
+        "# → {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
+        "d3 = {'a': 1}",
+        "d4 = {'a': 99, 'b': 2}",
+        "print({**d3, **d4})",
+        "# → {'a': 99, 'b': 2} (d4 перекрывает d3)",
+        "defaults = {'color': 'black', 'size': 'M'}",
+        "user_prefs = {'size': 'L'}",
+        "settings = {**defaults, **user_prefs}",
+        "print(settings)",
+        "# → {'color': 'black', 'size': 'L'}",
+        "print({**{'x': 1}, 'y': 2, **{'z': 3}})",
+        "# → {'x': 1, 'y': 2, 'z': 3}"
+      ]
     ],
     "related": [
       "kwargs",
@@ -974,35 +1002,37 @@
       "mapset"
     ],
     "examples": [
-      "squares = {x: x**2 for x in range(5)}",
-      "print(squares)",
-      "# → {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}",
-      "d = {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
-      "even_vals = {k: v for k, v in d.items() if v % 2 == 0}",
-      "print(even_vals)",
-      "# → {'b': 2, 'd': 4}",
-      "inverted = {v: k for k, v in d.items()}",
-      "print(inverted)",
-      "# → {1: 'a', 2: 'b', 3: 'c', 4: 'd'}",
-      "words = ['hello', 'world', 'python']",
-      "lengths = {w: len(w) for w in words}",
-      "print(lengths)",
-      "# → {'hello': 5, 'world': 5, 'python': 6}",
-      "keys = ['a', 'b', 'c']",
-      "vals = [1, 2, 3]",
-      "combined = {k: v for k, v in zip(keys, vals)}",
-      "print(combined)",
-      "# → {'a': 1, 'b': 2, 'c': 3}",
-      "upper_d = {k.upper(): v*2 for k, v in d.items()}",
-      "print(upper_d)",
-      "# → {'A': 2, 'B': 4, 'C': 6, 'D': 8}",
-      "matrix = {(i, j): i*j for i in range(3) for j in range(3)}",
-      "print(matrix[(2, 2)])",
-      "# → 4",
-      "data = [('a', 1), ('b', 2), ('a', 3)]",
-      "last = {k: v for k, v in data}",
-      "print(last)",
-      "# → {'a': 3, 'b': 2} (последнее значение для дублей)"
+      [
+        "squares = {x: x**2 for x in range(5)}",
+        "print(squares)",
+        "# → {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}",
+        "d = {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
+        "even_vals = {k: v for k, v in d.items() if v % 2 == 0}",
+        "print(even_vals)",
+        "# → {'b': 2, 'd': 4}",
+        "inverted = {v: k for k, v in d.items()}",
+        "print(inverted)",
+        "# → {1: 'a', 2: 'b', 3: 'c', 4: 'd'}",
+        "words = ['hello', 'world', 'python']",
+        "lengths = {w: len(w) for w in words}",
+        "print(lengths)",
+        "# → {'hello': 5, 'world': 5, 'python': 6}",
+        "keys = ['a', 'b', 'c']",
+        "vals = [1, 2, 3]",
+        "combined = {k: v for k, v in zip(keys, vals)}",
+        "print(combined)",
+        "# → {'a': 1, 'b': 2, 'c': 3}",
+        "upper_d = {k.upper(): v*2 for k, v in d.items()}",
+        "print(upper_d)",
+        "# → {'A': 2, 'B': 4, 'C': 6, 'D': 8}",
+        "matrix = {(i, j): i*j for i in range(3) for j in range(3)}",
+        "print(matrix[(2, 2)])",
+        "# → 4",
+        "data = [('a', 1), ('b', 2), ('a', 3)]",
+        "last = {k: v for k, v in data}",
+        "print(last)",
+        "# → {'a': 3, 'b': 2} (последнее значение для дублей)"
+      ]
     ],
     "related": [
       "списочные-выражения-list-comprehension",
@@ -1056,27 +1086,29 @@
       "mapset"
     ],
     "examples": [
-      "s = {1, 2, 3}",
-      "# → {1, 2, 3}",
-      "s2 = set([1, 2, 2, 3, 3])",
-      "print(s2)",
-      "# → {1, 2, 3} (дубли удалены)",
-      "s3 = set('hello')",
-      "print(s3)",
-      "# → {'h', 'e', 'l', 'o'}",
-      "empty = set()",
-      "print(type(empty))",
-      "# → <class 'set'> ({} — это dict!)",
-      "fs = frozenset([1, 2, 3])",
-      "print(fs)",
-      "# → frozenset({1, 2, 3})",
-      "nums = [1, 1, 2, 2, 3]",
-      "unique = list(set(nums))",
-      "print(sorted(unique))",
-      "# → [1, 2, 3]",
-      "s4 = {x**2 for x in range(5)}",
-      "print(sorted(s4))",
-      "# → [0, 1, 4, 9, 16]"
+      [
+        "s = {1, 2, 3}",
+        "# → {1, 2, 3}",
+        "s2 = set([1, 2, 2, 3, 3])",
+        "print(s2)",
+        "# → {1, 2, 3} (дубли удалены)",
+        "s3 = set('hello')",
+        "print(s3)",
+        "# → {'h', 'e', 'l', 'o'}",
+        "empty = set()",
+        "print(type(empty))",
+        "# → <class 'set'> ({} — это dict!)",
+        "fs = frozenset([1, 2, 3])",
+        "print(fs)",
+        "# → frozenset({1, 2, 3})",
+        "nums = [1, 1, 2, 2, 3]",
+        "unique = list(set(nums))",
+        "print(sorted(unique))",
+        "# → [1, 2, 3]",
+        "s4 = {x**2 for x in range(5)}",
+        "print(sorted(s4))",
+        "# → [0, 1, 4, 9, 16]"
+      ]
     ],
     "related": [
       "set",
@@ -1130,23 +1162,25 @@
       "mapset"
     ],
     "examples": [
-      "d1 = {}",
-      "# → {}",
-      "d2 = {'a': 1, 'b': 2}",
-      "# → {'a': 1, 'b': 2}",
-      "d3 = dict(x=1, y=2)",
-      "# → {'x': 1, 'y': 2}",
-      "d4 = dict([('a', 1), ('b', 2)])",
-      "# → {'a': 1, 'b': 2}",
-      "d5 = dict.fromkeys(['a', 'b', 'c'], 0)",
-      "print(d5)",
-      "# → {'a': 0, 'b': 0, 'c': 0}",
-      "d6 = dict.fromkeys('abc')",
-      "print(d6)",
-      "# → {'a': None, 'b': None, 'c': None}",
-      "d7 = {i: i**2 for i in range(4)}",
-      "print(d7)",
-      "# → {0: 0, 1: 1, 2: 4, 3: 9}"
+      [
+        "d1 = {}",
+        "# → {}",
+        "d2 = {'a': 1, 'b': 2}",
+        "# → {'a': 1, 'b': 2}",
+        "d3 = dict(x=1, y=2)",
+        "# → {'x': 1, 'y': 2}",
+        "d4 = dict([('a', 1), ('b', 2)])",
+        "# → {'a': 1, 'b': 2}",
+        "d5 = dict.fromkeys(['a', 'b', 'c'], 0)",
+        "print(d5)",
+        "# → {'a': 0, 'b': 0, 'c': 0}",
+        "d6 = dict.fromkeys('abc')",
+        "print(d6)",
+        "# → {'a': None, 'b': None, 'c': None}",
+        "d7 = {i: i**2 for i in range(4)}",
+        "print(d7)",
+        "# → {0: 0, 1: 1, 2: 4, 3: 9}"
+      ]
     ],
     "related": [
       "dict.fromkeys",
@@ -1199,19 +1233,21 @@
       "mapset"
     ],
     "examples": [
-      "d = {'banana': 3, 'apple': 1, 'cherry': 2}",
-      "print(sorted(d.items()))",
-      "# → [('apple', 1), ('banana', 3), ('cherry', 2)]",
-      "print(sorted(d.items(), key=lambda x: x[1]))",
-      "# → [('apple', 1), ('cherry', 2), ('banana', 3)]",
-      "print(sorted(d.keys()))",
-      "# → ['apple', 'banana', 'cherry']",
-      "print(dict(sorted(d.items())))",
-      "# → {'apple': 1, 'banana': 3, 'cherry': 2} (по ключу)",
-      "print(dict(sorted(d.items(), key=lambda x: x[1], reverse=True)))",
-      "# → {'banana': 3, 'cherry': 2, 'apple': 1} (по значению убыв.)",
-      "print(sorted(d, key=d.get))",
-      "# → ['apple', 'cherry', 'banana']"
+      [
+        "d = {'banana': 3, 'apple': 1, 'cherry': 2}",
+        "print(sorted(d.items()))",
+        "# → [('apple', 1), ('banana', 3), ('cherry', 2)]",
+        "print(sorted(d.items(), key=lambda x: x[1]))",
+        "# → [('apple', 1), ('cherry', 2), ('banana', 3)]",
+        "print(sorted(d.keys()))",
+        "# → ['apple', 'banana', 'cherry']",
+        "print(dict(sorted(d.items())))",
+        "# → {'apple': 1, 'banana': 3, 'cherry': 2} (по ключу)",
+        "print(dict(sorted(d.items(), key=lambda x: x[1], reverse=True)))",
+        "# → {'banana': 3, 'cherry': 2, 'apple': 1} (по значению убыв.)",
+        "print(sorted(d, key=d.get))",
+        "# → ['apple', 'cherry', 'banana']"
+      ]
     ],
     "related": [
       "dict.items",
@@ -1262,10 +1298,12 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "d.clear()",
-      "print(d)        # → {}",
-      "print(len(d))   # → 0"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "d.clear()",
+        "print(d)        # → {}",
+        "print(len(d))   # → 0"
+      ]
     ],
     "related": [
       "del-для-словаря",
@@ -1315,11 +1353,13 @@
       "dict"
     ],
     "examples": [
-      "a = {'x': 1}",
-      "b = a.copy()",
-      "b['y'] = 2",
-      "print(a)   # → {'x': 1}",
-      "print(b)   # → {'x': 1, 'y': 2}"
+      [
+        "a = {'x': 1}",
+        "b = a.copy()",
+        "b['y'] = 2",
+        "print(a)   # → {'x': 1}",
+        "print(b)   # → {'x': 1, 'y': 2}"
+      ]
     ],
     "related": [
       "copy-deepcopy-словаря",
@@ -1370,10 +1410,12 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1}",
-      "print(d.get('a'))      # → 1",
-      "print(d.get('z'))      # → None",
-      "print(d.get('z', 0))   # → 0"
+      [
+        "d = {'a': 1}",
+        "print(d.get('a'))      # → 1",
+        "print(d.get('z'))      # → None",
+        "print(d.get('z', 0))   # → 0"
+      ]
     ],
     "related": [
       "доступ-d-key",
@@ -1425,9 +1467,11 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "print(list(d.items()))   # → [('a', 1), ('b', 2)]",
-      "print(dict(d.items()))   # → {'a': 1, 'b': 2}"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "print(list(d.items()))   # → [('a', 1), ('b', 2)]",
+        "print(dict(d.items()))   # → {'a': 1, 'b': 2}"
+      ]
     ],
     "related": [
       "dict.keys",
@@ -1479,11 +1523,13 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "print(list(d.keys()))   # → ['a', 'b']",
-      "view = d.keys()",
-      "d['c'] = 3",
-      "print(list(view))       # → ['a', 'b', 'c'] (view динамичен)"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "print(list(d.keys()))   # → ['a', 'b']",
+        "view = d.keys()",
+        "d['c'] = 3",
+        "print(list(view))       # → ['a', 'b', 'c'] (view динамичен)"
+      ]
     ],
     "related": [
       "dict.values",
@@ -1533,10 +1579,12 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "print(d.pop('a'))       # → 1",
-      "print(d.pop('z', -1))   # → -1",
-      "print(d)                # → {'b': 2}"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "print(d.pop('a'))       # → 1",
+        "print(d.pop('z', -1))   # → -1",
+        "print(d)                # → {'b': 2}"
+      ]
     ],
     "related": [
       "dict.popitem",
@@ -1589,9 +1637,11 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "print(d.popitem())   # → ('b', 2)",
-      "print(d)             # → {'a': 1}"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "print(d.popitem())   # → ('b', 2)",
+        "print(d)             # → {'a': 1}"
+      ]
     ],
     "related": [
       "dict.pop",
@@ -1643,10 +1693,12 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1}",
-      "print(d.setdefault('a', 0))   # → 1",
-      "print(d.setdefault('b', 2))   # → 2",
-      "print(d)                      # → {'a': 1, 'b': 2}"
+      [
+        "d = {'a': 1}",
+        "print(d.setdefault('a', 0))   # → 1",
+        "print(d.setdefault('b', 2))   # → 2",
+        "print(d)                      # → {'a': 1, 'b': 2}"
+      ]
     ],
     "related": [
       "dict.get",
@@ -1696,12 +1748,14 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1}",
-      "d.update({'b': 2})",
-      "d.update(c=3)",
-      "print(d)        # → {'a': 1, 'b': 2, 'c': 3}",
-      "d.update(a=10)",
-      "print(d['a'])   # → 10 (перезапись)"
+      [
+        "d = {'a': 1}",
+        "d.update({'b': 2})",
+        "d.update(c=3)",
+        "print(d)        # → {'a': 1, 'b': 2, 'c': 3}",
+        "d.update(a=10)",
+        "print(d['a'])   # → 10 (перезапись)"
+      ]
     ],
     "related": [
       "dict-merge-update",
@@ -1752,9 +1806,11 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "print(list(d.values()))   # → [1, 2]",
-      "print(sum(d.values()))    # → 3"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "print(list(d.values()))   # → [1, 2]",
+        "print(sum(d.values()))    # → 3"
+      ]
     ],
     "related": [
       "dict.keys",
@@ -1806,10 +1862,12 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "del d['a']",
-      "print(d)          # → {'b': 2}",
-      "print('a' in d)   # → False"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "del d['a']",
+        "print(d)          # → {'b': 2}",
+        "print('a' in d)   # → False"
+      ]
     ],
     "related": [
       "dict.pop",
@@ -1865,9 +1923,11 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1, 'b': 2}",
-      "print(d['a'])         # → 1",
-      "print('z' in d)       # → False (проверка перед d[key])"
+      [
+        "d = {'a': 1, 'b': 2}",
+        "print(d['a'])         # → 1",
+        "print('z' in d)       # → False (проверка перед d[key])"
+      ]
     ],
     "related": [
       "dict.get",
@@ -1923,11 +1983,13 @@
       "dict"
     ],
     "examples": [
-      "d = {'a': 1}",
-      "d['b'] = 2",
-      "print(d)   # → {'a': 1, 'b': 2}",
-      "d['a'] = 99",
-      "print(d)   # → {'a': 99, 'b': 2}"
+      [
+        "d = {'a': 1}",
+        "d['b'] = 2",
+        "print(d)   # → {'a': 1, 'b': 2}",
+        "d['a'] = 99",
+        "print(d)   # → {'a': 99, 'b': 2}"
+      ]
     ],
     "related": [
       "доступ-d-key",
@@ -1980,11 +2042,13 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2}",
-      "s.add(3)",
-      "print(sorted(s))   # → [1, 2, 3]",
-      "s.add(2)",
-      "print(sorted(s))   # → [1, 2, 3]"
+      [
+        "s = {1, 2}",
+        "s.add(3)",
+        "print(sorted(s))   # → [1, 2, 3]",
+        "s.add(2)",
+        "print(sorted(s))   # → [1, 2, 3]"
+      ]
     ],
     "related": [
       "set.update",
@@ -2038,9 +2102,11 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2}",
-      "s.update({3, 4}, {5})",
-      "print(sorted(s))   # → [1, 2, 3, 4, 5]"
+      [
+        "s = {1, 2}",
+        "s.update({3, 4}, {5})",
+        "print(sorted(s))   # → [1, 2, 3, 4, 5]"
+      ]
     ],
     "related": [
       "set.add",
@@ -2091,9 +2157,11 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2, 3}",
-      "s.remove(2)",
-      "print(sorted(s))   # → [1, 3]"
+      [
+        "s = {1, 2, 3}",
+        "s.remove(2)",
+        "print(sorted(s))   # → [1, 3]"
+      ]
     ],
     "related": [
       "set.discard",
@@ -2146,10 +2214,12 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2, 3}",
-      "s.discard(2)",
-      "s.discard(9)",
-      "print(sorted(s))   # → [1, 3]"
+      [
+        "s = {1, 2, 3}",
+        "s.discard(2)",
+        "s.discard(9)",
+        "print(sorted(s))   # → [1, 3]"
+      ]
     ],
     "related": [
       "set.remove",
@@ -2200,10 +2270,12 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2, 3}",
-      "x = s.pop()",
-      "print(x in {1, 2, 3})   # → True",
-      "print(len(s))           # → 2"
+      [
+        "s = {1, 2, 3}",
+        "x = s.pop()",
+        "print(x in {1, 2, 3})   # → True",
+        "print(len(s))           # → 2"
+      ]
     ],
     "related": [
       "set.remove",
@@ -2256,9 +2328,11 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2, 3}",
-      "s.clear()",
-      "print(s)   # → set()"
+      [
+        "s = {1, 2, 3}",
+        "s.clear()",
+        "print(s)   # → set()"
+      ]
     ],
     "related": [
       "list.clear",
@@ -2309,11 +2383,13 @@
       "set"
     ],
     "examples": [
-      "a = {1, 2}",
-      "b = a.copy()",
-      "b.add(3)",
-      "print(sorted(a))   # → [1, 2]",
-      "print(sorted(b))   # → [1, 2, 3]"
+      [
+        "a = {1, 2}",
+        "b = a.copy()",
+        "b.add(3)",
+        "print(sorted(a))   # → [1, 2]",
+        "print(sorted(b))   # → [1, 2, 3]"
+      ]
     ],
     "related": [
       "frozenset.copy",
@@ -2365,12 +2441,14 @@
       "set"
     ],
     "examples": [
-      "print(sorted({1, 2}.union({2, 3})))                # → [1, 2, 3]",
-      "print(sorted({1}.union({2}, {3})))                 # → [1, 2, 3]",
-      "print(sorted({1, 2} | {2, 3}))                     # → [1, 2, 3]",
-      "print(sorted({1, 2}.union([2, 3], (4,))))          # → [1, 2, 3, 4]",
-      "print(sorted(set('abc').union('bcd')))             # → ['a', 'b', 'c', 'd']",
-      "print({1, 2} | [3])                                # → TypeError"
+      [
+        "print(sorted({1, 2}.union({2, 3})))                # → [1, 2, 3]",
+        "print(sorted({1}.union({2}, {3})))                 # → [1, 2, 3]",
+        "print(sorted({1, 2} | {2, 3}))                     # → [1, 2, 3]",
+        "print(sorted({1, 2}.union([2, 3], (4,))))          # → [1, 2, 3, 4]",
+        "print(sorted(set('abc').union('bcd')))             # → ['a', 'b', 'c', 'd']",
+        "print({1, 2} | [3])                                # → TypeError"
+      ]
     ],
     "related": [
       "set.update",
@@ -2421,12 +2499,14 @@
       "set"
     ],
     "examples": [
-      "print(sorted({1, 2, 3}.intersection({2, 3, 4})))   # → [2, 3]",
-      "print(sorted({1, 2, 3}.intersection({2, 3}, [3, 9])))   # → [3]",
-      "print(sorted({1, 2, 3} & {3, 4}))   # → [3]",
-      "print(sorted(set('python').intersection('typo')))   # → ['o', 'p', 't', 'y']",
-      "print({1, 2}.intersection({3}))   # → set()",
-      "print({1, 2} & [2])   # → TypeError"
+      [
+        "print(sorted({1, 2, 3}.intersection({2, 3, 4})))   # → [2, 3]",
+        "print(sorted({1, 2, 3}.intersection({2, 3}, [3, 9])))   # → [3]",
+        "print(sorted({1, 2, 3} & {3, 4}))   # → [3]",
+        "print(sorted(set('python').intersection('typo')))   # → ['o', 'p', 't', 'y']",
+        "print({1, 2}.intersection({3}))   # → set()",
+        "print({1, 2} & [2])   # → TypeError"
+      ]
     ],
     "related": [
       "set.intersection_update",
@@ -2478,12 +2558,14 @@
       "set"
     ],
     "examples": [
-      "print(sorted({1, 2, 3}.difference({2, 3})))   # → [1]",
-      "print(sorted({1, 2, 3, 4}.difference({2}, [3])))   # → [1, 4]",
-      "print(sorted({1, 2, 3} - {3}))   # → [1, 2]",
-      "print(sorted({1, 2, 3}.difference({3, 4})), sorted({3, 4}.difference({1, 2, 3})))   # → [1, 2] [4]",
-      "print(sorted({1, 2}.difference({1, 2, 3})))   # → []",
-      "print({1, 2, 3} - [3])   # → TypeError"
+      [
+        "print(sorted({1, 2, 3}.difference({2, 3})))   # → [1]",
+        "print(sorted({1, 2, 3, 4}.difference({2}, [3])))   # → [1, 4]",
+        "print(sorted({1, 2, 3} - {3}))   # → [1, 2]",
+        "print(sorted({1, 2, 3}.difference({3, 4})), sorted({3, 4}.difference({1, 2, 3})))   # → [1, 2] [4]",
+        "print(sorted({1, 2}.difference({1, 2, 3})))   # → []",
+        "print({1, 2, 3} - [3])   # → TypeError"
+      ]
     ],
     "related": [
       "set.difference_update",
@@ -2535,12 +2617,14 @@
       "set"
     ],
     "examples": [
-      "print(sorted({1, 2, 3}.symmetric_difference({2, 3, 4})))   # → [1, 4]",
-      "print(sorted({1, 2, 3} ^ {2, 3, 4}))                       # → [1, 4]",
-      "print(sorted({1, 2}.symmetric_difference([2, 3])))         # → [1, 3]",
-      "print({1, 2}.symmetric_difference({1, 2}))                 # → set()",
-      "print(sorted({1, 2, 3}.difference({2, 3, 4})))             # → [1]",
-      "print({1, 2} ^ [2, 3])                                     # → TypeError"
+      [
+        "print(sorted({1, 2, 3}.symmetric_difference({2, 3, 4})))   # → [1, 4]",
+        "print(sorted({1, 2, 3} ^ {2, 3, 4}))                       # → [1, 4]",
+        "print(sorted({1, 2}.symmetric_difference([2, 3])))         # → [1, 3]",
+        "print({1, 2}.symmetric_difference({1, 2}))                 # → set()",
+        "print(sorted({1, 2, 3}.difference({2, 3, 4})))             # → [1]",
+        "print({1, 2} ^ [2, 3])                                     # → TypeError"
+      ]
     ],
     "related": [
       "set.symmetric_difference_update",
@@ -2591,9 +2675,11 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2, 3, 4}",
-      "s.difference_update({2, 4})",
-      "print(sorted(s))   # → [1, 3]"
+      [
+        "s = {1, 2, 3, 4}",
+        "s.difference_update({2, 4})",
+        "print(sorted(s))   # → [1, 3]"
+      ]
     ],
     "related": [
       "set.difference",
@@ -2644,9 +2730,11 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2, 3, 4}",
-      "s.intersection_update({2, 3, 5})",
-      "print(sorted(s))   # → [2, 3]"
+      [
+        "s = {1, 2, 3, 4}",
+        "s.intersection_update({2, 3, 5})",
+        "print(sorted(s))   # → [2, 3]"
+      ]
     ],
     "related": [
       "set.intersection",
@@ -2696,9 +2784,11 @@
       "set"
     ],
     "examples": [
-      "s = {1, 2, 3}",
-      "s.symmetric_difference_update({3, 4})",
-      "print(sorted(s))   # → [1, 2, 4]"
+      [
+        "s = {1, 2, 3}",
+        "s.symmetric_difference_update({3, 4})",
+        "print(sorted(s))   # → [1, 2, 4]"
+      ]
     ],
     "related": [
       "set.symmetric_difference",
@@ -2749,12 +2839,14 @@
       "set"
     ],
     "examples": [
-      "print({1, 2}.issubset({1, 2, 3}))   # → True",
-      "print({1, 4}.issubset({1, 2, 3}))   # → False",
-      "print({1, 2}.issubset([1, 2, 3]))   # → True",
-      "print(set().issubset({1, 2}))   # → True",
-      "print({1, 2} <= {1, 2}, {1, 2} < {1, 2})   # → True False",
-      "print({1, 2} <= [1, 2, 3])   # → TypeError"
+      [
+        "print({1, 2}.issubset({1, 2, 3}))   # → True",
+        "print({1, 4}.issubset({1, 2, 3}))   # → False",
+        "print({1, 2}.issubset([1, 2, 3]))   # → True",
+        "print(set().issubset({1, 2}))   # → True",
+        "print({1, 2} <= {1, 2}, {1, 2} < {1, 2})   # → True False",
+        "print({1, 2} <= [1, 2, 3])   # → TypeError"
+      ]
     ],
     "related": [
       "set.issuperset",
@@ -2805,12 +2897,14 @@
       "set"
     ],
     "examples": [
-      "print({1, 2, 3}.issuperset({1, 2}))   # → True",
-      "print({1, 2}.issuperset({1, 3}))      # → False",
-      "print({1, 2, 3} >= {1, 2})            # → True",
-      "print({1, 2, 3}.issuperset([1, 3]))   # → True",
-      "print({1, 2}.issuperset(set()))       # → True",
-      "print({1, 2} >= [1])                  # → TypeError"
+      [
+        "print({1, 2, 3}.issuperset({1, 2}))   # → True",
+        "print({1, 2}.issuperset({1, 3}))      # → False",
+        "print({1, 2, 3} >= {1, 2})            # → True",
+        "print({1, 2, 3}.issuperset([1, 3]))   # → True",
+        "print({1, 2}.issuperset(set()))       # → True",
+        "print({1, 2} >= [1])                  # → TypeError"
+      ]
     ],
     "related": [
       "set.issubset",
@@ -2861,12 +2955,14 @@
       "set"
     ],
     "examples": [
-      "print({1, 2}.isdisjoint({3, 4}))   # → True",
-      "print({1, 2}.isdisjoint({2, 3}))   # → False",
-      "print({1, 2}.isdisjoint([3, 4, 5]))   # → True",
-      "print({1, 2}.isdisjoint(set()))   # → True",
-      "print({'spam', 'ads'}.isdisjoint('hello world spam'.split()))   # → False",
-      "print(not ({1, 2} & {2, 3}))   # → False"
+      [
+        "print({1, 2}.isdisjoint({3, 4}))   # → True",
+        "print({1, 2}.isdisjoint({2, 3}))   # → False",
+        "print({1, 2}.isdisjoint([3, 4, 5]))   # → True",
+        "print({1, 2}.isdisjoint(set()))   # → True",
+        "print({'spam', 'ads'}.isdisjoint('hello world spam'.split()))   # → False",
+        "print(not ({1, 2} & {2, 3}))   # → False"
+      ]
     ],
     "related": [
       "set.intersection",
@@ -2916,12 +3012,14 @@
       "frozenset"
     ],
     "examples": [
-      "f = frozenset({1, 2})",
-      "print(f.copy() is f)   # → True",
-      "print(f.copy())   # → frozenset({1, 2})",
-      "print(frozenset().copy())   # → frozenset()",
-      "s = {1, 2}",
-      "print(s.copy() is s)   # → False"
+      [
+        "f = frozenset({1, 2})",
+        "print(f.copy() is f)   # → True",
+        "print(f.copy())   # → frozenset({1, 2})",
+        "print(frozenset().copy())   # → frozenset()",
+        "s = {1, 2}",
+        "print(s.copy() is s)   # → False"
+      ]
     ],
     "related": [
       "set.copy",
@@ -2971,12 +3069,14 @@
       "frozenset"
     ],
     "examples": [
-      "print(frozenset({1, 2}).union({3}))   # → frozenset({1, 2, 3})",
-      "print(sorted(frozenset({1, 2}).union([2, 3], (4,))))   # → [1, 2, 3, 4]",
-      "print(sorted(frozenset('ab').union('bc')))   # → ['a', 'b', 'c']",
-      "print(frozenset().union())   # → frozenset()",
-      "print(type(frozenset({1}).union({2, 3})).__name__)   # → frozenset",
-      "print(frozenset({1, 2}) | [3])   # → TypeError"
+      [
+        "print(frozenset({1, 2}).union({3}))   # → frozenset({1, 2, 3})",
+        "print(sorted(frozenset({1, 2}).union([2, 3], (4,))))   # → [1, 2, 3, 4]",
+        "print(sorted(frozenset('ab').union('bc')))   # → ['a', 'b', 'c']",
+        "print(frozenset().union())   # → frozenset()",
+        "print(type(frozenset({1}).union({2, 3})).__name__)   # → frozenset",
+        "print(frozenset({1, 2}) | [3])   # → TypeError"
+      ]
     ],
     "related": [
       "set.union",
@@ -3027,12 +3127,14 @@
       "frozenset"
     ],
     "examples": [
-      "print(frozenset({1, 2, 3}).intersection({2, 3}))   # → frozenset({2, 3})",
-      "print(frozenset({1, 2, 3, 4}).intersection({2, 3, 4}, {3, 4, 5}))   # → frozenset({3, 4})",
-      "print(frozenset({1, 2, 3}).intersection([3, 4, 5]))   # → frozenset({3})",
-      "print(sorted(frozenset('hello').intersection('world')))   # → ['l', 'o']",
-      "print(frozenset({1, 2}).intersection({3, 4}))   # → frozenset()",
-      "print(frozenset({1, 2, 3}) & [2, 3])   # → TypeError"
+      [
+        "print(frozenset({1, 2, 3}).intersection({2, 3}))   # → frozenset({2, 3})",
+        "print(frozenset({1, 2, 3, 4}).intersection({2, 3, 4}, {3, 4, 5}))   # → frozenset({3, 4})",
+        "print(frozenset({1, 2, 3}).intersection([3, 4, 5]))   # → frozenset({3})",
+        "print(sorted(frozenset('hello').intersection('world')))   # → ['l', 'o']",
+        "print(frozenset({1, 2}).intersection({3, 4}))   # → frozenset()",
+        "print(frozenset({1, 2, 3}) & [2, 3])   # → TypeError"
+      ]
     ],
     "related": [
       "set.intersection",
@@ -3083,12 +3185,14 @@
       "frozenset"
     ],
     "examples": [
-      "print(frozenset({1, 2, 3}).difference({2}))   # → frozenset({1, 3})",
-      "print(frozenset({1, 2, 3, 4}).difference({2}, {4}))   # → frozenset({1, 3})",
-      "print(frozenset({1, 2, 3}).difference([1, 2]))   # → frozenset({3})",
-      "print(sorted(frozenset('hello').difference('aeiou')))   # → ['h', 'l']",
-      "print(frozenset({1, 2}).difference({1, 2}))   # → frozenset()",
-      "print(frozenset({1, 2, 3}) - [1])   # → TypeError"
+      [
+        "print(frozenset({1, 2, 3}).difference({2}))   # → frozenset({1, 3})",
+        "print(frozenset({1, 2, 3, 4}).difference({2}, {4}))   # → frozenset({1, 3})",
+        "print(frozenset({1, 2, 3}).difference([1, 2]))   # → frozenset({3})",
+        "print(sorted(frozenset('hello').difference('aeiou')))   # → ['h', 'l']",
+        "print(frozenset({1, 2}).difference({1, 2}))   # → frozenset()",
+        "print(frozenset({1, 2, 3}) - [1])   # → TypeError"
+      ]
     ],
     "related": [
       "set.difference",
@@ -3138,12 +3242,14 @@
       "frozenset"
     ],
     "examples": [
-      "print(frozenset({1, 2}).symmetric_difference({2, 3}))   # → frozenset({1, 3})",
-      "print(frozenset({1, 2}).symmetric_difference({3, 4}))   # → frozenset({1, 2, 3, 4})",
-      "print(frozenset({1, 2, 3}).symmetric_difference([3, 4]))   # → frozenset({1, 2, 4})",
-      "print(sorted(frozenset('abc').symmetric_difference('bcd')))   # → ['a', 'd']",
-      "print(frozenset({1, 2}).symmetric_difference({1, 2}))   # → frozenset()",
-      "print(frozenset({1, 2}) ^ {2, 3})   # → frozenset({1, 3})"
+      [
+        "print(frozenset({1, 2}).symmetric_difference({2, 3}))   # → frozenset({1, 3})",
+        "print(frozenset({1, 2}).symmetric_difference({3, 4}))   # → frozenset({1, 2, 3, 4})",
+        "print(frozenset({1, 2, 3}).symmetric_difference([3, 4]))   # → frozenset({1, 2, 4})",
+        "print(sorted(frozenset('abc').symmetric_difference('bcd')))   # → ['a', 'd']",
+        "print(frozenset({1, 2}).symmetric_difference({1, 2}))   # → frozenset()",
+        "print(frozenset({1, 2}) ^ {2, 3})   # → frozenset({1, 3})"
+      ]
     ],
     "related": [
       "set.symmetric_difference",
@@ -3194,12 +3300,14 @@
       "frozenset"
     ],
     "examples": [
-      "print(frozenset({1, 2}).isdisjoint({3, 4}))   # → True",
-      "print(frozenset({1, 2}).isdisjoint({2, 3}))   # → False",
-      "print(frozenset({1, 2}).isdisjoint([3, 4, 5]))   # → True",
-      "print(frozenset('rhythm').isdisjoint('aeiou'))   # → True",
-      "print(frozenset({1, 2, 3}).isdisjoint(range(3, 6)))   # → False",
-      "print(frozenset().isdisjoint({1, 2}))   # → True"
+      [
+        "print(frozenset({1, 2}).isdisjoint({3, 4}))   # → True",
+        "print(frozenset({1, 2}).isdisjoint({2, 3}))   # → False",
+        "print(frozenset({1, 2}).isdisjoint([3, 4, 5]))   # → True",
+        "print(frozenset('rhythm').isdisjoint('aeiou'))   # → True",
+        "print(frozenset({1, 2, 3}).isdisjoint(range(3, 6)))   # → False",
+        "print(frozenset().isdisjoint({1, 2}))   # → True"
+      ]
     ],
     "related": [
       "set.isdisjoint",
@@ -3249,12 +3357,14 @@
       "frozenset"
     ],
     "examples": [
-      "print(frozenset({1, 2}).issubset({1, 2, 3}))   # → True",
-      "print(frozenset({1, 4}).issubset({1, 2, 3}))   # → False",
-      "print(frozenset({1, 2}).issubset([1, 2, 3]))   # → True",
-      "print(frozenset('cat').issubset('character'))   # → True",
-      "print(frozenset({1, 2}).issubset({1, 2}))   # → True",
-      "print(frozenset({1, 2}) < {1, 2})   # → False"
+      [
+        "print(frozenset({1, 2}).issubset({1, 2, 3}))   # → True",
+        "print(frozenset({1, 4}).issubset({1, 2, 3}))   # → False",
+        "print(frozenset({1, 2}).issubset([1, 2, 3]))   # → True",
+        "print(frozenset('cat').issubset('character'))   # → True",
+        "print(frozenset({1, 2}).issubset({1, 2}))   # → True",
+        "print(frozenset({1, 2}) < {1, 2})   # → False"
+      ]
     ],
     "related": [
       "frozenset.issuperset",
@@ -3304,12 +3414,14 @@
       "frozenset"
     ],
     "examples": [
-      "print(frozenset({1, 2, 3}).issuperset({1, 2}))   # → True",
-      "print(frozenset({1, 2, 3}).issuperset({1, 5}))   # → False",
-      "print(frozenset({1, 2, 3}).issuperset([2, 3]))   # → True",
-      "print(frozenset('0123456789').issuperset('2026'))   # → True",
-      "print(frozenset({1, 2}).issuperset([]))   # → True",
-      "print(frozenset({1, 2}) > {1, 2})   # → False"
+      [
+        "print(frozenset({1, 2, 3}).issuperset({1, 2}))   # → True",
+        "print(frozenset({1, 2, 3}).issuperset({1, 5}))   # → False",
+        "print(frozenset({1, 2, 3}).issuperset([2, 3]))   # → True",
+        "print(frozenset('0123456789').issuperset('2026'))   # → True",
+        "print(frozenset({1, 2}).issuperset([]))   # → True",
+        "print(frozenset({1, 2}) > {1, 2})   # → False"
+      ]
     ],
     "related": [
       "frozenset.issubset",

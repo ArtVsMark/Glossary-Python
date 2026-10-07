@@ -609,9 +609,10 @@ def _from_the_future(version: str) -> bool:
 def rule_example_compiles(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
     """Пример карточки — синтаксически верный Python.
 
-    Проверка та же, которой пользуется источник: ``compile`` по склеенным
-    строкам примера. Раньше здесь стояла эвристика «блок открыт, а строки с
-    отступом нет» — она ловила самый частый случай, но не всякий, и давала
+    Проверка та же, которой пользуется источник: ``compile`` по строкам
+    примера — по каждому блоку отдельно. Раньше здесь стояла эвристика «блок
+    открыт, а строки с отступом нет» — она ловила самый частый случай, но не
+    всякий, и давала
     число, несравнимое с числом источника. Общий инвариант дороже своей мерки:
     возражение читается без перевода.
 
@@ -627,26 +628,30 @@ def rule_example_compiles(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]
     словами: по нему карточки правятся в ``data/cards/``.
     """
     for entry in g.entries:
-        if not entry.examples or _from_the_future(entry.added):
+        if _from_the_future(entry.added):
             continue
-        try:
-            compile("\n".join(entry.examples), f"<{entry.id}>", "exec")
-        except SyntaxError as exc:
-            yield Issue(
-                Severity.WARNING,
-                "example-compiles",
-                f"пример не компилируется: {type(exc).__name__} — {exc.msg}",
-                entry.id,
-            )
-        except ValueError as exc:
-            # Нулевой байт и подобное: compile() отвергает это ValueError,
-            # и такой пример так же непригоден, как несобирающийся.
-            yield Issue(
-                Severity.WARNING,
-                "example-compiles",
-                f"пример не компилируется: {exc}",
-                entry.id,
-            )
+        # Блоки самостоятельны (#125), и компилируется каждый отдельно: склейка
+        # спрятала бы блок, который держится только на соседе.
+        for number, block in enumerate(entry.examples, start=1):
+            where = f"пример {number}" if len(entry.examples) > 1 else "пример"
+            try:
+                compile("\n".join(block), f"<{entry.id}:{number}>", "exec")
+            except SyntaxError as exc:
+                yield Issue(
+                    Severity.WARNING,
+                    "example-compiles",
+                    f"{where} не компилируется: {type(exc).__name__} — {exc.msg}",
+                    entry.id,
+                )
+            except ValueError as exc:
+                # Нулевой байт и подобное: compile() отвергает это ValueError,
+                # и такой пример так же непригоден, как несобирающийся.
+                yield Issue(
+                    Severity.WARNING,
+                    "example-compiles",
+                    f"{where} не компилируется: {exc}",
+                    entry.id,
+                )
 
 
 def rule_related_resolves(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:

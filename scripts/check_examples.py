@@ -202,13 +202,20 @@ def execute(entry_id: str, code: str) -> Result:
 
 
 def examples(data: Path) -> dict[str, str]:
-    """Примеры карточек из собранного глоссария: ``id`` → код."""
+    """Примеры карточек из собранного глоссария: метка блока → код.
+
+    Блок исполняется сам по себе, в своём процессе (#125): пример, который
+    держится на определении из соседнего, — находка, а не случайность склейки.
+    Метка — ``id`` карточки, а у карточки с несколькими блоками ещё и номер.
+    """
     payload = json.loads(data.read_text(encoding="utf-8"))
-    return {
-        entry["id"]: "\n".join(entry["examples"]) + "\n"
-        for entry in payload["entries"]
-        if entry.get("examples")
-    }
+    codes: dict[str, str] = {}
+    for entry in payload["entries"]:
+        blocks = entry.get("examples") or []
+        for number, block in enumerate(blocks, start=1):
+            label = f"{entry['id']} · пример {number}" if len(blocks) > 1 else entry["id"]
+            codes[label] = "\n".join(block) + "\n"
+    return codes
 
 
 def check(codes: dict[str, str]) -> list[Result]:

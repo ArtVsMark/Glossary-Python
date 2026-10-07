@@ -78,10 +78,11 @@ class MarkdownExporter:
         if entry.examples:
             yield "<details><summary>Примеры</summary>"
             yield ""
-            yield "```python"
-            yield from entry.examples
-            yield "```"
-            yield ""
+            for block in entry.examples:
+                yield "```python"
+                yield from block
+                yield "```"
+                yield ""
             yield "</details>"
             yield ""
         if entry.related:

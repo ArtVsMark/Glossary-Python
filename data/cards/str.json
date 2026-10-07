@@ -42,12 +42,14 @@
       "str"
     ],
     "examples": [
-      "b = b\"hello\"; print(type(b))    # → <class 'bytes'>",
-      "print(b[0])                       # → 104",
-      "print(b\"hello\" + b\" world\")     # → b'hello world'",
-      "print(b\"hi\" * 3)                # → b'hihihi'",
-      "print(b\"hello\".decode(\"utf-8\"))  # → hello",
-      "print(\"hello\".encode(\"utf-8\"))   # → b'hello'"
+      [
+        "b = b\"hello\"; print(type(b))    # → <class 'bytes'>",
+        "print(b[0])                       # → 104",
+        "print(b\"hello\" + b\" world\")     # → b'hello world'",
+        "print(b\"hi\" * 3)                # → b'hihihi'",
+        "print(b\"hello\".decode(\"utf-8\"))  # → hello",
+        "print(\"hello\".encode(\"utf-8\"))   # → b'hello'"
+      ]
     ],
     "related": [
       "bytes",
@@ -101,28 +103,30 @@
       "str"
     ],
     "examples": [
-      "name = 'Alice'",
-      "print(f'Hello, {name}!')",
-      "# → 'Hello, Alice!'",
-      "x = 3.14159",
-      "print(f'{x:.2f}')",
-      "# → '3.14'",
-      "print(f'{2 ** 10}')",
-      "# → '1024'",
-      "n = 42",
-      "print(f'{n:>10d}')",
-      "# → '        42'",
-      "print(f'{n:010d}')",
-      "# → '0000000042'",
-      "s = 'hello'",
-      "print(f'{s!r}')",
-      "# → \"'hello'\"",
-      "width = 10",
-      "print(f'{\"center\":^{width}}')",
-      "# → center (выравнивание по центру, ширина 10)",
-      "val = 1234567.89",
-      "print(f'{val:,.2f}')",
-      "# → '1,234,567.89'"
+      [
+        "name = 'Alice'",
+        "print(f'Hello, {name}!')",
+        "# → 'Hello, Alice!'",
+        "x = 3.14159",
+        "print(f'{x:.2f}')",
+        "# → '3.14'",
+        "print(f'{2 ** 10}')",
+        "# → '1024'",
+        "n = 42",
+        "print(f'{n:>10d}')",
+        "# → '        42'",
+        "print(f'{n:010d}')",
+        "# → '0000000042'",
+        "s = 'hello'",
+        "print(f'{s!r}')",
+        "# → \"'hello'\"",
+        "width = 10",
+        "print(f'{\"center\":^{width}}')",
+        "# → center (выравнивание по центру, ширина 10)",
+        "val = 1234567.89",
+        "print(f'{val:,.2f}')",
+        "# → '1,234,567.89'"
+      ]
     ],
     "related": [
       "format-метод-форматирования",
@@ -174,20 +178,22 @@
       "str"
     ],
     "examples": [
-      "print('{} {}'.format('Hello', 'World'))",
-      "# → 'Hello World'",
-      "print('{0} {1} {0}'.format('ha', 'ho'))",
-      "# → 'ha ho ha'",
-      "print('{name} is {age}'.format(name='Alice', age=30))",
-      "# → 'Alice is 30'",
-      "print('{:.2f}'.format(3.14159))",
-      "# → '3.14'",
-      "print('{:>10}'.format('hi'))",
-      "# → '        hi'",
-      "print('{:0>5}'.format(42))",
-      "# → '00042'",
-      "print('{:,}'.format(1000000))",
-      "# → '1,000,000'"
+      [
+        "print('{} {}'.format('Hello', 'World'))",
+        "# → 'Hello World'",
+        "print('{0} {1} {0}'.format('ha', 'ho'))",
+        "# → 'ha ho ha'",
+        "print('{name} is {age}'.format(name='Alice', age=30))",
+        "# → 'Alice is 30'",
+        "print('{:.2f}'.format(3.14159))",
+        "# → '3.14'",
+        "print('{:>10}'.format('hi'))",
+        "# → '        hi'",
+        "print('{:0>5}'.format(42))",
+        "# → '00042'",
+        "print('{:,}'.format(1000000))",
+        "# → '1,000,000'"
+      ]
     ],
     "related": [
       "f-строки",
@@ -241,16 +247,18 @@
       "str"
     ],
     "examples": [
-      "print('py' in 'python')",
-      "# → True",
-      "print('xyz' in 'python')",
-      "# → False",
-      "print('xyz' not in 'python')",
-      "# → True",
-      "print('' in 'any')",
-      "# → True (пустая всегда входит)",
-      "print('P' in 'python')",
-      "# → False (регистрозависимо)"
+      [
+        "print('py' in 'python')",
+        "# → True",
+        "print('xyz' in 'python')",
+        "# → False",
+        "print('xyz' not in 'python')",
+        "# → True",
+        "print('' in 'any')",
+        "# → True (пустая всегда входит)",
+        "print('P' in 'python')",
+        "# → False (регистрозависимо)"
+      ]
     ],
     "related": [
       "str.find",
@@ -301,18 +309,20 @@
       "str"
     ],
     "examples": [
-      "print(len(''))",
-      "# → 0",
-      "print(len('hello'))",
-      "# → 5",
-      "print(len('   '))",
-      "# → 3",
-      "print(len('Привет'))",
-      "# → 6",
-      "s = 'test'",
-      "if len(s) > 3:",
-      "    print('длинная')",
-      "    # → 'длинная'"
+      [
+        "print(len(''))",
+        "# → 0",
+        "print(len('hello'))",
+        "# → 5",
+        "print(len('   '))",
+        "# → 3",
+        "print(len('Привет'))",
+        "# → 6",
+        "s = 'test'",
+        "if len(s) > 3:",
+        "    print('длинная')",
+        "    # → 'длинная'"
+      ]
     ],
     "related": [
       "len",
@@ -364,13 +374,15 @@
       "str"
     ],
     "examples": [
-      "print(r\"\\n\\t\")           # → \\n\\t  (без переноса и табуляции)",
-      "print(len(r\"\\n\"))        # → 2",
-      "print(r\"C:\\Users\\name\")  # → C:\\Users\\name",
-      "import re",
-      "m = re.search(r\"\\d+\", \"abc123\")",
-      "print(m.group())        # → 123",
-      "print(r\"abc\" == \"abc\")  # → True"
+      [
+        "print(r\"\\n\\t\")           # → \\n\\t  (без переноса и табуляции)",
+        "print(len(r\"\\n\"))        # → 2",
+        "print(r\"C:\\Users\\name\")  # → C:\\Users\\name",
+        "import re",
+        "m = re.search(r\"\\d+\", \"abc123\")",
+        "print(m.group())        # → 123",
+        "print(r\"abc\" == \"abc\")  # → True"
+      ]
     ],
     "related": [
       "создание-строк",
@@ -423,20 +435,22 @@
       "str"
     ],
     "examples": [
-      "s = 'Python'",
-      "print(s[0])",
-      "# → 'P'",
-      "print(s[1])",
-      "# → 'y'",
-      "print(s[-1])",
-      "# → 'n'",
-      "print(s[-2])",
-      "# → 'o'",
-      "print(s[5])",
-      "# → 'n'",
-      "s2 = 'AB'",
-      "print(s2[0], s2[1], s2[-1])",
-      "# → 'A' 'B' 'B'"
+      [
+        "s = 'Python'",
+        "print(s[0])",
+        "# → 'P'",
+        "print(s[1])",
+        "# → 'y'",
+        "print(s[-1])",
+        "# → 'n'",
+        "print(s[-2])",
+        "# → 'o'",
+        "print(s[5])",
+        "# → 'n'",
+        "s2 = 'AB'",
+        "print(s2[0], s2[1], s2[-1])",
+        "# → 'A' 'B' 'B'"
+      ]
     ],
     "related": [
       "срезы-строк",
@@ -489,19 +503,21 @@
       "str"
     ],
     "examples": [
-      "print('Hello' + ' ' + 'World')",
-      "# → 'Hello World'",
-      "a = 'foo'",
-      "b = 'bar'",
-      "print(a + b)",
-      "# → 'foobar'",
-      "print('py' + 'thon')",
-      "# → 'python'",
-      "prefix = 'pre_'",
-      "print(prefix + 'fix')",
-      "# → 'pre_fix'",
-      "print('' + 'empty left')",
-      "# → 'empty left'"
+      [
+        "print('Hello' + ' ' + 'World')",
+        "# → 'Hello World'",
+        "a = 'foo'",
+        "b = 'bar'",
+        "print(a + b)",
+        "# → 'foobar'",
+        "print('py' + 'thon')",
+        "# → 'python'",
+        "prefix = 'pre_'",
+        "print(prefix + 'fix')",
+        "# → 'pre_fix'",
+        "print('' + 'empty left')",
+        "# → 'empty left'"
+      ]
     ],
     "related": [
       "str.join",
@@ -552,17 +568,19 @@
       "str"
     ],
     "examples": [
-      "print('ab' * 3)",
-      "# → 'ababab'",
-      "print('-' * 20)",
-      "# → '--------------------'",
-      "print('ha' * 0)",
-      "# → ''",
-      "sep = '=-' * 5",
-      "print(sep)",
-      "# → '=-=-=-=-=-=-=-=-'",
-      "print(3 * 'go!')",
-      "# → 'go!go!go!'"
+      [
+        "print('ab' * 3)",
+        "# → 'ababab'",
+        "print('-' * 20)",
+        "# → '--------------------'",
+        "print('ha' * 0)",
+        "# → ''",
+        "sep = '=-' * 5",
+        "print(sep)",
+        "# → '=-=-=-=-=-=-=-=-'",
+        "print(3 * 'go!')",
+        "# → 'go!go!go!'"
+      ]
     ],
     "related": [
       "конкатенация-строк",
@@ -615,22 +633,24 @@
       "str"
     ],
     "examples": [
-      "s1 = 'hello'",
-      "# → 'hello'",
-      "s2 = \"world\"",
-      "# → 'world'",
-      "s3 = '''line1",
-      "line2",
-      "line3'''",
-      "# → 'line1\\nline2\\nline3'",
-      "s4 = r'C:\\Users\\name'",
-      "# → 'C:\\\\Users\\\\name' (без escape)",
-      "s5 = b'bytes'",
-      "# → b'bytes'",
-      "s6 = 'tab:\\there'",
-      "# → 'tab:\\there' (\\t — табуляция)",
-      "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'",
-      "# → 'Привет'"
+      [
+        "s1 = 'hello'",
+        "# → 'hello'",
+        "s2 = \"world\"",
+        "# → 'world'",
+        "s3 = '''line1",
+        "line2",
+        "line3'''",
+        "# → 'line1\\nline2\\nline3'",
+        "s4 = r'C:\\Users\\name'",
+        "# → 'C:\\\\Users\\\\name' (без escape)",
+        "s5 = b'bytes'",
+        "# → b'bytes'",
+        "s6 = 'tab:\\there'",
+        "# → 'tab:\\there' (\\t — табуляция)",
+        "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'",
+        "# → 'Привет'"
+      ]
     ],
     "related": [
       "str",
@@ -683,16 +703,18 @@
       "str"
     ],
     "examples": [
-      "print('abc' == 'abc')",
-      "# → True",
-      "print('abc' < 'abd')",
-      "# → True ('c' < 'd')",
-      "print('b' > 'a')",
-      "# → True",
-      "print('Z' < 'a')",
-      "# → True (ASCII: Z=90, a=97)",
-      "print('abc' == 'ABC')",
-      "# → False (регистрозависимо)"
+      [
+        "print('abc' == 'abc')",
+        "# → True",
+        "print('abc' < 'abd')",
+        "# → True ('c' < 'd')",
+        "print('b' > 'a')",
+        "# → True",
+        "print('Z' < 'a')",
+        "# → True (ASCII: Z=90, a=97)",
+        "print('abc' == 'ABC')",
+        "# → False (регистрозависимо)"
+      ]
     ],
     "related": [
       "операторы-сравнения",
@@ -746,21 +768,23 @@
       "str"
     ],
     "examples": [
-      "s = 'abcdefgh'",
-      "print(s[2:5])",
-      "# → 'cde'",
-      "print(s[:3])",
-      "# → 'abc'",
-      "print(s[5:])",
-      "# → 'fgh'",
-      "print(s[::-1])",
-      "# → 'hgfedcba'",
-      "print(s[::2])",
-      "# → 'aceg'",
-      "print(s[-3:])",
-      "# → 'fgh'",
-      "print(s[1:7:2])",
-      "# → 'bdf'"
+      [
+        "s = 'abcdefgh'",
+        "print(s[2:5])",
+        "# → 'cde'",
+        "print(s[:3])",
+        "# → 'abc'",
+        "print(s[5:])",
+        "# → 'fgh'",
+        "print(s[::-1])",
+        "# → 'hgfedcba'",
+        "print(s[::2])",
+        "# → 'aceg'",
+        "print(s[-3:])",
+        "# → 'fgh'",
+        "print(s[1:7:2])",
+        "# → 'bdf'"
+      ]
     ],
     "related": [
       "индексирование-строк",
@@ -814,26 +838,28 @@
       "str"
     ],
     "examples": [
-      "s = 'hello'",
-      "try:",
-      "    s[0] = 'H'",
-      "except TypeError as e:",
-      "    print(e)",
-      "# → 'str' object does not support item assignment",
-      "a = 'hello'",
-      "b = 'hello'",
-      "print(a == b)",
-      "# → True",
-      "print(a is b)",
-      "# → True (интернирование коротких строк)",
-      "import sys",
-      "x = sys.intern('some_long_string')",
-      "y = sys.intern('some_long_string')",
-      "print(x is y)",
-      "# → True (принудительное интернирование)",
-      "s2 = s.replace('h', 'H')",
-      "print(s, s2)",
-      "# → hello Hello (оригинал не изменился)"
+      [
+        "s = 'hello'",
+        "try:",
+        "    s[0] = 'H'",
+        "except TypeError as e:",
+        "    print(e)",
+        "# → 'str' object does not support item assignment",
+        "a = 'hello'",
+        "b = 'hello'",
+        "print(a == b)",
+        "# → True",
+        "print(a is b)",
+        "# → True (интернирование коротких строк)",
+        "import sys",
+        "x = sys.intern('some_long_string')",
+        "y = sys.intern('some_long_string')",
+        "print(x is y)",
+        "# → True (принудительное интернирование)",
+        "s2 = s.replace('h', 'H')",
+        "print(s, s2)",
+        "# → hello Hello (оригинал не изменился)"
+      ]
     ],
     "related": [
       "is-is-not",
@@ -886,15 +912,17 @@
       "str"
     ],
     "examples": [
-      "s = \"\"\"строка 1\\nстрока 2\"\"\"",
-      "print(len(s))        # → 17",
-      "def foo():",
-      "    \"\"\"Докстринг функции.\"\"\"",
-      "    pass",
-      "print(foo.__doc__)   # → Докстринг функции.",
-      "s2 = \"\"\"можно \\\"кавычки\\\" внутри\"\"\"",
-      "print(\"кавычки\" in s2)  # → True",
-      "print(type(s2))      # → <class 'str'>"
+      [
+        "s = \"\"\"строка 1\\nстрока 2\"\"\"",
+        "print(len(s))        # → 17",
+        "def foo():",
+        "    \"\"\"Докстринг функции.\"\"\"",
+        "    pass",
+        "print(foo.__doc__)   # → Докстринг функции.",
+        "s2 = \"\"\"можно \\\"кавычки\\\" внутри\"\"\"",
+        "print(\"кавычки\" in s2)  # → True",
+        "print(type(s2))      # → <class 'str'>"
+      ]
     ],
     "related": [
       "создание-строк",
@@ -946,16 +974,18 @@
       "str"
     ],
     "examples": [
-      "print('Hello, %s!' % 'World')",
-      "# → 'Hello, World!'",
-      "print('x=%d, y=%d' % (3, 5))",
-      "# → 'x=3, y=5'",
-      "print('pi=%.3f' % 3.14159)",
-      "# → 'pi=3.142'",
-      "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})",
-      "# → 'Bob is 25'",
-      "print('%05d' % 42)",
-      "# → '00042'"
+      [
+        "print('Hello, %s!' % 'World')",
+        "# → 'Hello, World!'",
+        "print('x=%d, y=%d' % (3, 5))",
+        "# → 'x=3, y=5'",
+        "print('pi=%.3f' % 3.14159)",
+        "# → 'pi=3.142'",
+        "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})",
+        "# → 'Bob is 25'",
+        "print('%05d' % 42)",
+        "# → '00042'"
+      ]
     ],
     "related": [
       "f-строки",
@@ -1008,9 +1038,11 @@
       "str"
     ],
     "examples": [
-      "print('привет МИР'.capitalize())   # → Привет мир",
-      "print('123abc'.capitalize())       # → 123abc",
-      "print('ALREADY Done'.capitalize())  # → Already done"
+      [
+        "print('привет МИР'.capitalize())   # → Привет мир",
+        "print('123abc'.capitalize())       # → 123abc",
+        "print('ALREADY Done'.capitalize())  # → Already done"
+      ]
     ],
     "related": [
       "str.title",
@@ -1060,9 +1092,11 @@
       "str"
     ],
     "examples": [
-      "print('hello world'.title())   # → Hello World",
-      "print('пример строки'.title())  # → Пример Строки",
-      "print(\"don't stop\".title())    # → Don'T Stop"
+      [
+        "print('hello world'.title())   # → Hello World",
+        "print('пример строки'.title())  # → Пример Строки",
+        "print(\"don't stop\".title())    # → Don'T Stop"
+      ]
     ],
     "related": [
       "str.capitalize",
@@ -1113,9 +1147,11 @@
       "str"
     ],
     "examples": [
-      "print('Hello World'.swapcase())  # → hELLO wORLD",
-      "print('Привет'.swapcase())       # → пРИВЕТ",
-      "print('abcABC123'.swapcase())    # → ABCabc123"
+      [
+        "print('Hello World'.swapcase())  # → hELLO wORLD",
+        "print('Привет'.swapcase())       # → пРИВЕТ",
+        "print('abcABC123'.swapcase())    # → ABCabc123"
+      ]
     ],
     "related": [
       "str.upper",
@@ -1165,9 +1201,11 @@
       "str"
     ],
     "examples": [
-      "print('Hello'.upper())     # → HELLO",
-      "print('привет'.upper())    # → ПРИВЕТ",
-      "print('straße'.upper())    # → STRASSE"
+      [
+        "print('Hello'.upper())     # → HELLO",
+        "print('привет'.upper())    # → ПРИВЕТ",
+        "print('straße'.upper())    # → STRASSE"
+      ]
     ],
     "related": [
       "str.lower",
@@ -1217,9 +1255,11 @@
       "str"
     ],
     "examples": [
-      "print('HELLO'.lower())     # → hello",
-      "print('ПРИВЕТ'.lower())    # → привет",
-      "print('Hello World'.lower())  # → hello world"
+      [
+        "print('HELLO'.lower())     # → hello",
+        "print('ПРИВЕТ'.lower())    # → привет",
+        "print('Hello World'.lower())  # → hello world"
+      ]
     ],
     "related": [
       "str.upper",
@@ -1269,9 +1309,11 @@
       "str"
     ],
     "examples": [
-      "print('Straße'.casefold())  # → strasse",
-      "print('ß'.casefold() == 'ss')  # → True",
-      "print('HeLLo'.casefold())   # → hello"
+      [
+        "print('Straße'.casefold())  # → strasse",
+        "print('ß'.casefold() == 'ss')  # → True",
+        "print('HeLLo'.casefold())   # → hello"
+      ]
     ],
     "related": [
       "str.lower",
@@ -1321,9 +1363,11 @@
       "str"
     ],
     "examples": [
-      "print('abc123'.isalnum())  # → True",
-      "print('a b'.isalnum())     # → False",
-      "print(''.isalnum())        # → False"
+      [
+        "print('abc123'.isalnum())  # → True",
+        "print('a b'.isalnum())     # → False",
+        "print(''.isalnum())        # → False"
+      ]
     ],
     "related": [
       "str.isalpha",
@@ -1373,9 +1417,11 @@
       "str"
     ],
     "examples": [
-      "print('abc'.isalpha())    # → True",
-      "print('Привет'.isalpha())  # → True",
-      "print('abc1'.isalpha())   # → False"
+      [
+        "print('abc'.isalpha())    # → True",
+        "print('Привет'.isalpha())  # → True",
+        "print('abc1'.isalpha())   # → False"
+      ]
     ],
     "related": [
       "str.isalnum",
@@ -1426,9 +1472,11 @@
       "str"
     ],
     "examples": [
-      "print('123'.isdigit())   # → True",
-      "print('²'.isdigit())     # → True",
-      "print('12.3'.isdigit())  # → False"
+      [
+        "print('123'.isdigit())   # → True",
+        "print('²'.isdigit())     # → True",
+        "print('12.3'.isdigit())  # → False"
+      ]
     ],
     "related": [
       "str.isdecimal",
@@ -1478,9 +1526,11 @@
       "str"
     ],
     "examples": [
-      "print('123'.isdecimal())  # → True",
-      "print('²'.isdecimal())    # → False",
-      "print(''.isdecimal())     # → False"
+      [
+        "print('123'.isdecimal())  # → True",
+        "print('²'.isdecimal())    # → False",
+        "print(''.isdecimal())     # → False"
+      ]
     ],
     "related": [
       "str.isdigit",
@@ -1530,9 +1580,11 @@
       "str"
     ],
     "examples": [
-      "print('123'.isnumeric())  # → True",
-      "print('½'.isnumeric())    # → True",
-      "print('1.2'.isnumeric())  # → False"
+      [
+        "print('123'.isnumeric())  # → True",
+        "print('½'.isnumeric())    # → True",
+        "print('1.2'.isnumeric())  # → False"
+      ]
     ],
     "related": [
       "str.isdigit",
@@ -1582,9 +1634,11 @@
       "str"
     ],
     "examples": [
-      "print('   '.isspace())    # → True",
-      "print(' \\t\\n'.isspace())  # → True",
-      "print(''.isspace())       # → False"
+      [
+        "print('   '.isspace())    # → True",
+        "print(' \\t\\n'.isspace())  # → True",
+        "print(''.isspace())       # → False"
+      ]
     ],
     "related": [
       "str.strip",
@@ -1634,9 +1688,11 @@
       "str"
     ],
     "examples": [
-      "print('abc'.islower())    # → True",
-      "print('Abc'.islower())    # → False",
-      "print('abc123'.islower())  # → True"
+      [
+        "print('abc'.islower())    # → True",
+        "print('Abc'.islower())    # → False",
+        "print('abc123'.islower())  # → True"
+      ]
     ],
     "related": [
       "str.isupper",
@@ -1686,9 +1742,11 @@
       "str"
     ],
     "examples": [
-      "print('ABC'.isupper())   # → True",
-      "print('Abc'.isupper())   # → False",
-      "print('ABC!'.isupper())  # → True"
+      [
+        "print('ABC'.isupper())   # → True",
+        "print('Abc'.isupper())   # → False",
+        "print('ABC!'.isupper())  # → True"
+      ]
     ],
     "related": [
       "str.islower",
@@ -1738,9 +1796,11 @@
       "str"
     ],
     "examples": [
-      "print('Hello World'.istitle())  # → True",
-      "print('hello world'.istitle())  # → False",
-      "print('HELLO'.istitle())        # → False"
+      [
+        "print('Hello World'.istitle())  # → True",
+        "print('hello world'.istitle())  # → False",
+        "print('HELLO'.istitle())        # → False"
+      ]
     ],
     "related": [
       "str.title",
@@ -1790,9 +1850,11 @@
       "str"
     ],
     "examples": [
-      "print('x1'.isidentifier())    # → True",
-      "print('1x'.isidentifier())    # → False",
-      "print('for'.isidentifier())   # → True"
+      [
+        "print('x1'.isidentifier())    # → True",
+        "print('1x'.isidentifier())    # → False",
+        "print('for'.isidentifier())   # → True"
+      ]
     ],
     "related": [
       "переменные",
@@ -1841,9 +1903,11 @@
       "str"
     ],
     "examples": [
-      "print('abc'.isascii())     # → True",
-      "print('café'.isascii())    # → False",
-      "print(''.isascii())        # → True"
+      [
+        "print('abc'.isascii())     # → True",
+        "print('café'.isascii())    # → False",
+        "print(''.isascii())        # → True"
+      ]
     ],
     "related": [
       "str.isprintable",
@@ -1893,9 +1957,11 @@
       "str"
     ],
     "examples": [
-      "print('abc 123'.isprintable())  # → True",
-      "print('a\\tb'.isprintable())     # → False",
-      "print(''.isprintable())         # → True"
+      [
+        "print('abc 123'.isprintable())  # → True",
+        "print('a\\tb'.isprintable())     # → False",
+        "print(''.isprintable())         # → True"
+      ]
     ],
     "related": [
       "str.isascii",
@@ -1946,9 +2012,11 @@
       "str"
     ],
     "examples": [
-      "print('hello'.find('l'))     # → 2",
-      "print('hello'.find('z'))     # → -1",
-      "print('hello'.find('l', 3))  # → 3"
+      [
+        "print('hello'.find('l'))     # → 2",
+        "print('hello'.find('z'))     # → -1",
+        "print('hello'.find('l', 3))  # → 3"
+      ]
     ],
     "related": [
       "str.index",
@@ -1999,9 +2067,11 @@
       "str"
     ],
     "examples": [
-      "print('hello'.rfind('l'))  # → 3",
-      "print('hello'.rfind('z'))  # → -1",
-      "print('abcabc'.rfind('a'))  # → 3"
+      [
+        "print('hello'.rfind('l'))  # → 3",
+        "print('hello'.rfind('z'))  # → -1",
+        "print('abcabc'.rfind('a'))  # → 3"
+      ]
     ],
     "related": [
       "str.find",
@@ -2051,9 +2121,11 @@
       "str"
     ],
     "examples": [
-      "print('hello'.index('e'))    # → 1",
-      "print('abcabc'.index('c'))   # → 2",
-      "print('hello'.index('l', 3))  # → 3"
+      [
+        "print('hello'.index('e'))    # → 1",
+        "print('abcabc'.index('c'))   # → 2",
+        "print('hello'.index('l', 3))  # → 3"
+      ]
     ],
     "related": [
       "str.find",
@@ -2106,9 +2178,11 @@
       "str"
     ],
     "examples": [
-      "print('abcabc'.rindex('a'))  # → 3",
-      "print('abcabc'.rindex('b'))  # → 4",
-      "print('hello'.rindex('l'))   # → 3"
+      [
+        "print('abcabc'.rindex('a'))  # → 3",
+        "print('abcabc'.rindex('b'))  # → 4",
+        "print('hello'.rindex('l'))   # → 3"
+      ]
     ],
     "related": [
       "str.rfind",
@@ -2161,9 +2235,11 @@
       "str"
     ],
     "examples": [
-      "print('banana'.count('a'))   # → 3",
-      "print('banana'.count('na'))  # → 2",
-      "print('aaa'.count('aa'))     # → 1"
+      [
+        "print('banana'.count('a'))   # → 3",
+        "print('banana'.count('na'))  # → 2",
+        "print('aaa'.count('aa'))     # → 1"
+      ]
     ],
     "related": [
       "str.find",
@@ -2215,9 +2291,11 @@
       "str"
     ],
     "examples": [
-      "print('hello'.startswith('he'))          # → True",
-      "print('hello'.startswith('lo'))          # → False",
-      "print('hello'.startswith(('hi', 'he')))  # → True"
+      [
+        "print('hello'.startswith('he'))          # → True",
+        "print('hello'.startswith('lo'))          # → False",
+        "print('hello'.startswith(('hi', 'he')))  # → True"
+      ]
     ],
     "related": [
       "str.endswith",
@@ -2268,9 +2346,11 @@
       "str"
     ],
     "examples": [
-      "print('file.py'.endswith('.py'))            # → True",
-      "print('file.py'.endswith('.txt'))           # → False",
-      "print('file.py'.endswith(('.py', '.txt')))  # → True"
+      [
+        "print('file.py'.endswith('.py'))            # → True",
+        "print('file.py'.endswith('.txt'))           # → False",
+        "print('file.py'.endswith(('.py', '.txt')))  # → True"
+      ]
     ],
     "related": [
       "str.startswith",
@@ -2321,9 +2401,11 @@
       "str"
     ],
     "examples": [
-      "print('a,b,c'.split(','))   # → ['a', 'b', 'c']",
-      "print('a  b   c'.split())   # → ['a', 'b', 'c']",
-      "print('a,b,c'.split(',', 1))  # → ['a', 'b,c']"
+      [
+        "print('a,b,c'.split(','))   # → ['a', 'b', 'c']",
+        "print('a  b   c'.split())   # → ['a', 'b', 'c']",
+        "print('a,b,c'.split(',', 1))  # → ['a', 'b,c']"
+      ]
     ],
     "related": [
       "str.rsplit",
@@ -2374,9 +2456,11 @@
       "str"
     ],
     "examples": [
-      "print('a,b,c'.rsplit(',', 1))  # → ['a,b', 'c']",
-      "print('a,b,c'.rsplit(','))     # → ['a', 'b', 'c']",
-      "print('a b c'.rsplit(None, 1))  # → ['a b', 'c']"
+      [
+        "print('a,b,c'.rsplit(',', 1))  # → ['a,b', 'c']",
+        "print('a,b,c'.rsplit(','))     # → ['a', 'b', 'c']",
+        "print('a b c'.rsplit(None, 1))  # → ['a b', 'c']"
+      ]
     ],
     "related": [
       "str.split",
@@ -2426,9 +2510,11 @@
       "str"
     ],
     "examples": [
-      "print('a\\nb\\nc'.splitlines())  # → ['a', 'b', 'c']",
-      "print('a\\nb\\n'.splitlines())   # → ['a', 'b']",
-      "print('one line'.splitlines())  # → ['one line']"
+      [
+        "print('a\\nb\\nc'.splitlines())  # → ['a', 'b', 'c']",
+        "print('a\\nb\\n'.splitlines())   # → ['a', 'b']",
+        "print('one line'.splitlines())  # → ['one line']"
+      ]
     ],
     "related": [
       "str.split",
@@ -2478,9 +2564,11 @@
       "str"
     ],
     "examples": [
-      "print('a=b=c'.partition('='))  # → ('a', '=', 'b=c')",
-      "print('abc'.partition('='))    # → ('abc', '', '')",
-      "print('k: v'.partition(': '))  # → ('k', ': ', 'v')"
+      [
+        "print('a=b=c'.partition('='))  # → ('a', '=', 'b=c')",
+        "print('abc'.partition('='))    # → ('abc', '', '')",
+        "print('k: v'.partition(': '))  # → ('k', ': ', 'v')"
+      ]
     ],
     "related": [
       "str.rpartition",
@@ -2530,9 +2618,11 @@
       "str"
     ],
     "examples": [
-      "print('a=b=c'.rpartition('='))  # → ('a=b', '=', 'c')",
-      "print('abc'.rpartition('='))    # → ('', '', 'abc')",
-      "print('a/b/c'.rpartition('/'))  # → ('a/b', '/', 'c')"
+      [
+        "print('a=b=c'.rpartition('='))  # → ('a=b', '=', 'c')",
+        "print('abc'.rpartition('='))    # → ('', '', 'abc')",
+        "print('a/b/c'.rpartition('/'))  # → ('a/b', '/', 'c')"
+      ]
     ],
     "related": [
       "str.partition",
@@ -2583,9 +2673,11 @@
       "str"
     ],
     "examples": [
-      "print(','.join(['a', 'b', 'c']))  # → a,b,c",
-      "print(''.join(['1', '2', '3']))   # → 123",
-      "print('-'.join('abc'))            # → a-b-c"
+      [
+        "print(','.join(['a', 'b', 'c']))  # → a,b,c",
+        "print(''.join(['1', '2', '3']))   # → 123",
+        "print('-'.join('abc'))            # → a-b-c"
+      ]
     ],
     "related": [
       "str.split",
@@ -2638,9 +2730,11 @@
       "str"
     ],
     "examples": [
-      "print('  hi  '.strip())    # → hi",
-      "print('xxhixx'.strip('x'))  # → hi",
-      "print('...a.'.strip('.'))   # → a"
+      [
+        "print('  hi  '.strip())    # → hi",
+        "print('xxhixx'.strip('x'))  # → hi",
+        "print('...a.'.strip('.'))   # → a"
+      ]
     ],
     "related": [
       "str.lstrip",
@@ -2691,9 +2785,11 @@
       "str"
     ],
     "examples": [
-      "print('  hi'.lstrip())     # → hi",
-      "print('xxhi'.lstrip('x'))  # → hi",
-      "print('--a--'.lstrip('-'))  # → a--"
+      [
+        "print('  hi'.lstrip())     # → hi",
+        "print('xxhi'.lstrip('x'))  # → hi",
+        "print('--a--'.lstrip('-'))  # → a--"
+      ]
     ],
     "related": [
       "str.strip",
@@ -2744,9 +2840,11 @@
       "str"
     ],
     "examples": [
-      "print('hi  '.rstrip())     # → hi",
-      "print('hixx'.rstrip('x'))  # → hi",
-      "print('--a--'.rstrip('-'))  # → --a"
+      [
+        "print('hi  '.rstrip())     # → hi",
+        "print('hixx'.rstrip('x'))  # → hi",
+        "print('--a--'.rstrip('-'))  # → --a"
+      ]
     ],
     "related": [
       "str.strip",
@@ -2797,9 +2895,11 @@
       "str"
     ],
     "examples": [
-      "print('hi'.center(6, '*'))  # → **hi**",
-      "print('hi'.center(5))       # →   hi ",
-      "print('hi'.center(1))       # → hi"
+      [
+        "print('hi'.center(6, '*'))  # → **hi**",
+        "print('hi'.center(5))       # →   hi ",
+        "print('hi'.center(1))       # → hi"
+      ]
     ],
     "related": [
       "str.ljust",
@@ -2850,9 +2950,11 @@
       "str"
     ],
     "examples": [
-      "print('hi'.ljust(5, '.'))  # → hi...",
-      "print('hi'.ljust(5) + '|')  # → hi   |",
-      "print('hello'.ljust(3))    # → hello"
+      [
+        "print('hi'.ljust(5, '.'))  # → hi...",
+        "print('hi'.ljust(5) + '|')  # → hi   |",
+        "print('hello'.ljust(3))    # → hello"
+      ]
     ],
     "related": [
       "str.rjust",
@@ -2903,9 +3005,11 @@
       "str"
     ],
     "examples": [
-      "print('hi'.rjust(5, '.'))  # → ...hi",
-      "print('42'.rjust(5, '0'))  # → 00042",
-      "print('hello'.rjust(3))    # → hello"
+      [
+        "print('hi'.rjust(5, '.'))  # → ...hi",
+        "print('42'.rjust(5, '0'))  # → 00042",
+        "print('hello'.rjust(3))    # → hello"
+      ]
     ],
     "related": [
       "str.ljust",
@@ -2956,9 +3060,11 @@
       "str"
     ],
     "examples": [
-      "print('42'.zfill(5))    # → 00042",
-      "print('-42'.zfill(5))   # → -0042",
-      "print('3.14'.zfill(6))  # → 003.14"
+      [
+        "print('42'.zfill(5))    # → 00042",
+        "print('-42'.zfill(5))   # → -0042",
+        "print('3.14'.zfill(6))  # → 003.14"
+      ]
     ],
     "related": [
       "str.rjust",
@@ -3009,9 +3115,11 @@
       "str"
     ],
     "examples": [
-      "print('a.b.c'.replace('.', '_'))    # → a_b_c",
-      "print('aaa'.replace('a', 'b', 2))   # → bba",
-      "print('hello'.replace('l', ''))     # → heo"
+      [
+        "print('a.b.c'.replace('.', '_'))    # → a_b_c",
+        "print('aaa'.replace('a', 'b', 2))   # → bba",
+        "print('hello'.replace('l', ''))     # → heo"
+      ]
     ],
     "related": [
       "str.translate",
@@ -3063,9 +3171,11 @@
       "str"
     ],
     "examples": [
-      "print('abc'.translate(str.maketrans('abc', 'xyz')))  # → xyz",
-      "print('a-b-c'.translate(str.maketrans('', '', '-')))  # → abc",
-      "print('cat'.translate({ord('a'): 'A'}))  # → cAt"
+      [
+        "print('abc'.translate(str.maketrans('abc', 'xyz')))  # → xyz",
+        "print('a-b-c'.translate(str.maketrans('', '', '-')))  # → abc",
+        "print('cat'.translate({ord('a'): 'A'}))  # → cAt"
+      ]
     ],
     "related": [
       "str.maketrans",
@@ -3116,9 +3226,11 @@
       "str"
     ],
     "examples": [
-      "print('abc'.translate(str.maketrans('ab', 'AB')))  # → ABc",
-      "t = str.maketrans({'x': 'y'}); print('xox'.translate(t))  # → yoy",
-      "print('a1b2'.translate(str.maketrans('', '', '12')))  # → ab"
+      [
+        "print('abc'.translate(str.maketrans('ab', 'AB')))  # → ABc",
+        "t = str.maketrans({'x': 'y'}); print('xox'.translate(t))  # → yoy",
+        "print('a1b2'.translate(str.maketrans('', '', '12')))  # → ab"
+      ]
     ],
     "related": [
       "str.translate",
@@ -3171,9 +3283,11 @@
       "str"
     ],
     "examples": [
-      "print('test_foo'.removeprefix('test_'))  # → foo",
-      "print('foo'.removeprefix('test_'))       # → foo",
-      "print('__x'.removeprefix('_'))           # → _x"
+      [
+        "print('test_foo'.removeprefix('test_'))  # → foo",
+        "print('foo'.removeprefix('test_'))       # → foo",
+        "print('__x'.removeprefix('_'))           # → _x"
+      ]
     ],
     "related": [
       "str.removesuffix",
@@ -3224,9 +3338,11 @@
       "str"
     ],
     "examples": [
-      "print('file.py'.removesuffix('.py'))   # → file",
-      "print('file'.removesuffix('.py'))      # → file",
-      "print('x__'.removesuffix('_'))         # → x_"
+      [
+        "print('file.py'.removesuffix('.py'))   # → file",
+        "print('file'.removesuffix('.py'))      # → file",
+        "print('x__'.removesuffix('_'))         # → x_"
+      ]
     ],
     "related": [
       "str.removeprefix",
@@ -3276,9 +3392,11 @@
       "str"
     ],
     "examples": [
-      "print('a\\tb'.expandtabs(4))   # → a   b",
-      "print('ab\\tc'.expandtabs(4))  # → ab  c",
-      "print('a\\tb'.expandtabs(1))   # → a b"
+      [
+        "print('a\\tb'.expandtabs(4))   # → a   b",
+        "print('ab\\tc'.expandtabs(4))  # → ab  c",
+        "print('a\\tb'.expandtabs(1))   # → a b"
+      ]
     ],
     "related": [
       "str.replace",
@@ -3329,9 +3447,11 @@
       "str"
     ],
     "examples": [
-      "print('abc'.encode())            # → b'abc'",
-      "print('café'.encode('utf-8'))    # → b'caf\\xc3\\xa9'",
-      "print('hi'.encode('ascii'))      # → b'hi'"
+      [
+        "print('abc'.encode())            # → b'abc'",
+        "print('café'.encode('utf-8'))    # → b'caf\\xc3\\xa9'",
+        "print('hi'.encode('ascii'))      # → b'hi'"
+      ]
     ],
     "related": [
       "bytes.decode",
@@ -3384,9 +3504,11 @@
       "str"
     ],
     "examples": [
-      "print('{x}!'.format_map({'x': 'ok'}))          # → ok!",
-      "print('{a}-{b}'.format_map({'a': 1, 'b': 2}))  # → 1-2",
-      "print('{name}'.format_map({'name': 'Аня'}))    # → Аня"
+      [
+        "print('{x}!'.format_map({'x': 'ok'}))          # → ok!",
+        "print('{a}-{b}'.format_map({'a': 1, 'b': 2}))  # → 1-2",
+        "print('{name}'.format_map({'name': 'Аня'}))    # → Аня"
+      ]
     ],
     "related": [
       "format-метод-форматирования",
@@ -3439,12 +3561,14 @@
       "bytearray"
     ],
     "examples": [
-      "b = bytearray(b'abc')",
-      "print(b.resize(5))   # → None",
-      "print(b)             # → bytearray(b'abc\\x00\\x00')",
-      "print(len(b))        # → 5",
-      "b.resize(2)",
-      "print(b)             # → bytearray(b'ab')"
+      [
+        "b = bytearray(b'abc')",
+        "print(b.resize(5))   # → None",
+        "print(b)             # → bytearray(b'abc\\x00\\x00')",
+        "print(len(b))        # → 5",
+        "b.resize(2)",
+        "print(b)             # → bytearray(b'ab')"
+      ]
     ],
     "related": [
       "bytearray",

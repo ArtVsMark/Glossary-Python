@@ -16,7 +16,8 @@ name: schedule-alarm
 
 on:
   workflow_run:
-    workflows: [CI, "Значки, факты, замечания и полнота", rules-inbox]
+    workflows:
+      [CI, "Значки, факты, замечания и полнота", rules-inbox, "Публикация витрины"]
     types: [completed]
     branches: [main]
   # Ручная кнопка — свести тревогу руками: например, закрыть её, когда прогон

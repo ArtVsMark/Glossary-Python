@@ -105,10 +105,8 @@
         "config = {'debug': False, 'host': 'localhost'}",
         "overrides = {'debug': True, 'port': 8080}",
         "config |= overrides",
-        "print(config)"
-      ],
-      [
-        "# {'debug': True, 'host': 'localhost', 'port': 8080}"
+        "print(config)",
+        "# → {'debug': True, 'host': 'localhost', 'port': 8080}"
       ]
     ],
     "related": [
@@ -295,20 +293,18 @@
         "# → True",
         "print(6 in s)",
         "# → False",
-        "print(6 not in s)"
+        "print(6 not in s)",
+        "# → True"
       ],
       [
-        "# → True",
         "big = set(range(10**6))",
-        "print(999999 in big)"
+        "print(999999 in big)",
+        "# → True (мгновенно, O(1))"
       ],
       [
-        "# → True (мгновенно, O(1))",
         "banned = {'spam', 'ads', 'junk'}",
         "msg = 'spam email'",
-        "print(any(w in banned for w in msg.split()))"
-      ],
-      [
+        "print(any(w in banned for w in msg.split()))",
         "# → True"
       ]
     ],
@@ -376,9 +372,7 @@
         "# → True",
         "print(1 in d)",
         "# → False (1 — не ключ!)",
-        "print(1 in d.values())"
-      ],
-      [
+        "print(1 in d.values())",
         "# → True (проверка значений)"
       ]
     ],
@@ -484,7 +478,7 @@
     "syntax": "{expr for var in iterable [if cond]}",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#set-displays",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -511,28 +505,26 @@
     "examples": [
       [
         "squares = {x**2 for x in range(6)}",
-        "print(sorted(squares))"
+        "print(sorted(squares))",
+        "# → [0, 1, 4, 9, 16, 25]"
       ],
       [
-        "# → [0, 1, 4, 9, 16, 25]",
         "evens = {x for x in range(10) if x % 2 == 0}",
-        "print(evens)"
+        "print(evens)",
+        "# → {0, 2, 4, 6, 8}"
       ],
       [
-        "# → {0, 2, 4, 6, 8}",
         "words = ['hello', 'world', 'hello', 'python']",
         "unique_len = {len(w) for w in words}",
         "print(unique_len)",
         "# → {5, 6} (уникальные длины)",
         "unique_first = {w[0] for w in words}",
-        "print(sorted(unique_first))"
+        "print(sorted(unique_first))",
+        "# → ['h', 'p', 'w'] (у множества строк порядок не определён, поэтому сортируем)"
       ],
       [
-        "# → ['h', 'p', 'w'] (у множества строк порядок не определён, поэтому сортируем)",
         "no_vowels = {c for c in 'hello' if c not in 'aeiou'}",
-        "print(sorted(no_vowels))"
-      ],
-      [
+        "print(sorted(no_vowels))",
         "# → ['h', 'l']"
       ]
     ],
@@ -562,7 +554,7 @@
     "syntax": "d1.update(d2)  |  {**d1, **d2}  |  d1 | d2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
-    "added": "3.9",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -604,15 +596,13 @@
         "combined = {**d3, **d2, **extra}",
         "print(combined)",
         "# → {'a': 1, 'b': 20, 'c': 3, 'x': 9}",
-        "print(d3)"
+        "print(d3)",
+        "# → {'a': 1, 'b': 2} (** не изменяет оригинал)"
       ],
       [
-        "# → {'a': 1, 'b': 2} (** не изменяет оригинал)",
         "d5 = {'a': 1}",
         "d5 |= {'b': 2, 'a': 99}",
-        "print(d5)"
-      ],
-      [
+        "print(d5)",
         "# → {'a': 99, 'b': 2}"
       ]
     ],
@@ -740,25 +730,23 @@
         "# → {1, 2}",
         "print(b - a)",
         "# → {5, 6}",
-        "print(a ^ b)"
+        "print(a ^ b)",
+        "# → {1, 2, 5, 6}"
       ],
       [
-        "# → {1, 2, 5, 6}",
         "c = {1, 2}",
         "c |= {3, 4}",
-        "print(c)"
+        "print(c)",
+        "# → {1, 2, 3, 4}"
       ],
       [
-        "# → {1, 2, 3, 4}",
         "d = {1, 2, 3}",
         "d &= {2, 3, 4}",
-        "print(d)"
+        "print(d)",
+        "# → {2, 3}"
       ],
       [
-        "# → {2, 3}",
-        "print({1, 2} ^ {2, 3})"
-      ],
-      [
+        "print({1, 2} ^ {2, 3})",
         "# → {1, 3}"
       ]
     ],
@@ -831,15 +819,13 @@
         "print(len(set(lst)))",
         "# → 4 (число уникальных)",
         "has_dup = len(lst) != len(set(lst))",
-        "print(has_dup)"
+        "print(has_dup)",
+        "# → True (есть дубликаты)"
       ],
       [
-        "# → True (есть дубликаты)",
         "tags1 = {'python', 'data', 'ml'}",
         "tags2 = {'java', 'data', 'web'}",
-        "print(sorted(tags1.symmetric_difference(tags2)))"
-      ],
-      [
+        "print(sorted(tags1.symmetric_difference(tags2)))",
         "# → ['java', 'ml', 'python', 'web'] (у множества строк порядок не определён, поэтому сортируем)"
       ]
     ],
@@ -898,33 +884,31 @@
         "def greet(name, age):",
         "    return f'{name} is {age}'",
         "info = {'name': 'Alice', 'age': 30}",
-        "print(greet(**info))"
+        "print(greet(**info))",
+        "# → 'Alice is 30'"
       ],
       [
-        "# → 'Alice is 30'",
         "d1 = {'a': 1, 'b': 2}",
         "d2 = {'c': 3, 'd': 4}",
         "merged = {**d1, **d2}",
-        "print(merged)"
+        "print(merged)",
+        "# → {'a': 1, 'b': 2, 'c': 3, 'd': 4}"
       ],
       [
-        "# → {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
         "d3 = {'a': 1}",
         "d4 = {'a': 99, 'b': 2}",
-        "print({**d3, **d4})"
+        "print({**d3, **d4})",
+        "# → {'a': 99, 'b': 2} (d4 перекрывает d3)"
       ],
       [
-        "# → {'a': 99, 'b': 2} (d4 перекрывает d3)",
         "defaults = {'color': 'black', 'size': 'M'}",
         "user_prefs = {'size': 'L'}",
         "settings = {**defaults, **user_prefs}",
-        "print(settings)"
+        "print(settings)",
+        "# → {'color': 'black', 'size': 'L'}"
       ],
       [
-        "# → {'color': 'black', 'size': 'L'}",
-        "print({**{'x': 1}, 'y': 2, **{'z': 3}})"
-      ],
-      [
+        "print({**{'x': 1}, 'y': 2, **{'z': 3}})",
         "# → {'x': 1, 'y': 2, 'z': 3}"
       ]
     ],
@@ -954,7 +938,7 @@
     "syntax": "{k: v for ... in ...}  |  {k: v for ... in ... if cond}",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -981,10 +965,10 @@
     "examples": [
       [
         "squares = {x: x**2 for x in range(5)}",
-        "print(squares)"
+        "print(squares)",
+        "# → {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}"
       ],
       [
-        "# → {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}",
         "d = {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
         "even_vals = {k: v for k, v in d.items() if v % 2 == 0}",
         "print(even_vals)",
@@ -1002,20 +986,18 @@
         "print(combined)",
         "# → {'a': 1, 'b': 2, 'c': 3}",
         "upper_d = {k.upper(): v*2 for k, v in d.items()}",
-        "print(upper_d)"
+        "print(upper_d)",
+        "# → {'A': 2, 'B': 4, 'C': 6, 'D': 8}"
       ],
       [
-        "# → {'A': 2, 'B': 4, 'C': 6, 'D': 8}",
         "matrix = {(i, j): i*j for i in range(3) for j in range(3)}",
-        "print(matrix[(2, 2)])"
+        "print(matrix[(2, 2)])",
+        "# → 4"
       ],
       [
-        "# → 4",
         "data = [('a', 1), ('b', 2), ('a', 3)]",
         "last = {k: v for k, v in data}",
-        "print(last)"
-      ],
-      [
+        "print(last)",
         "# → {'a': 3, 'b': 2} (последнее значение для дублей)"
       ]
     ],
@@ -1035,8 +1017,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Множество создаётся литералом {}, конструктором set() или frozenset(). Дубликаты автоматически удаляются. Порядок не гарантирован.",
-      "en": "A set is written as a {} literal or built with set() or frozenset(). Duplicates are removed automatically. The order is not guaranteed."
+      "ru": "Множество создаётся литералом {1, 2}, конструктором set() или frozenset(); пустое — только set(). Дубликаты удаляются. Порядок не гарантирован.",
+      "en": "A set is written as a {1, 2} literal or built with set() or frozenset(); an empty one only with set(). Duplicates are removed. The order is not guaranteed."
     },
     "body": {
       "ru": "Пустое множество создаётся только вызовом set(): фигурные скобки {} дают пустой словарь. Элементы обязаны быть хешируемыми — список внутрь не положить (кортеж можно), и обычное множество не может быть элементом другого множества, для этого есть неизменяемый frozenset. Ещё ловушка: set('abc') разбирает строку на отдельные символы, а не кладёт её целиком.",
@@ -1072,40 +1054,38 @@
     ],
     "examples": [
       [
-        "s = {1, 2, 3}"
+        "s = {1, 2, 3}",
+        "# → {1, 2, 3}"
       ],
       [
-        "# → {1, 2, 3}",
         "s2 = set([1, 2, 2, 3, 3])",
-        "print(s2)"
+        "print(s2)",
+        "# → {1, 2, 3} (дубли удалены)"
       ],
       [
-        "# → {1, 2, 3} (дубли удалены)",
         "s3 = set('hello')",
-        "print(s3)"
+        "print(sorted(s3))",
+        "# → ['e', 'h', 'l', 'o'] (порядок элементов множества не определён, поэтому сортируем)"
       ],
       [
-        "# → {'h', 'e', 'l', 'o'}",
         "empty = set()",
-        "print(type(empty))"
+        "print(type(empty))",
+        "# → <class 'set'> ({} — это dict!)"
       ],
       [
-        "# → <class 'set'> ({} — это dict!)",
         "fs = frozenset([1, 2, 3])",
-        "print(fs)"
+        "print(fs)",
+        "# → frozenset({1, 2, 3})"
       ],
       [
-        "# → frozenset({1, 2, 3})",
         "nums = [1, 1, 2, 2, 3]",
         "unique = list(set(nums))",
-        "print(sorted(unique))"
+        "print(sorted(unique))",
+        "# → [1, 2, 3]"
       ],
       [
-        "# → [1, 2, 3]",
         "s4 = {x**2 for x in range(5)}",
-        "print(sorted(s4))"
-      ],
-      [
+        "print(sorted(s4))",
         "# → [0, 1, 4, 9, 16]"
       ]
     ],
@@ -1162,36 +1142,34 @@
     ],
     "examples": [
       [
-        "d1 = {}"
+        "d1 = {}",
+        "# → {}"
       ],
       [
-        "# → {}",
-        "d2 = {'a': 1, 'b': 2}"
+        "d2 = {'a': 1, 'b': 2}",
+        "# → {'a': 1, 'b': 2}"
       ],
       [
-        "# → {'a': 1, 'b': 2}",
-        "d3 = dict(x=1, y=2)"
+        "d3 = dict(x=1, y=2)",
+        "# → {'x': 1, 'y': 2}"
       ],
       [
-        "# → {'x': 1, 'y': 2}",
-        "d4 = dict([('a', 1), ('b', 2)])"
+        "d4 = dict([('a', 1), ('b', 2)])",
+        "# → {'a': 1, 'b': 2}"
       ],
       [
-        "# → {'a': 1, 'b': 2}",
         "d5 = dict.fromkeys(['a', 'b', 'c'], 0)",
-        "print(d5)"
+        "print(d5)",
+        "# → {'a': 0, 'b': 0, 'c': 0}"
       ],
       [
-        "# → {'a': 0, 'b': 0, 'c': 0}",
         "d6 = dict.fromkeys('abc')",
-        "print(d6)"
+        "print(d6)",
+        "# → {'a': None, 'b': None, 'c': None}"
       ],
       [
-        "# → {'a': None, 'b': None, 'c': None}",
         "d7 = {i: i**2 for i in range(4)}",
-        "print(d7)"
-      ],
-      [
+        "print(d7)",
         "# → {0: 0, 1: 1, 2: 4, 3: 9}"
       ]
     ],
@@ -1258,9 +1236,7 @@
         "# → {'apple': 1, 'banana': 3, 'cherry': 2} (по ключу)",
         "print(dict(sorted(d.items(), key=lambda x: x[1], reverse=True)))",
         "# → {'banana': 3, 'cherry': 2, 'apple': 1} (по значению убыв.)",
-        "print(sorted(d, key=d.get))"
-      ],
-      [
+        "print(sorted(d, key=d.get))",
         "# → ['apple', 'cherry', 'banana']"
       ]
     ],
@@ -1585,7 +1561,7 @@
       "ru": "Не путайте с list.pop(): у списка аргумент — индекс и второго параметра-заглушки нет, здесь же первый аргумент — ключ. d.pop(key, None) — стандартный способ снести ключ, которого может не быть: del d[key] в такой ситуации упадёт с KeyError. Возврат значения делает pop удобным, когда нужно «забрать и удалить» за одно действие, например вынуть служебный ключ из словаря параметров.",
       "en": "Do not confuse it with list.pop(), whose argument is an index and which has no default parameter; here the first argument is a key. d.pop(key, None) is the usual way to drop a key that may not be there — del d[key] would raise KeyError instead. Because it returns the value, pop is handy when you need to take and remove in one step, such as pulling a service key out of a dict of options."
     },
-    "syntax": "d.pop(key, default)",
+    "syntax": "d.pop(key[, default])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.pop",
     "added": "<3.0",
@@ -1754,7 +1730,7 @@
       "ru": "Метод меняет словарь на месте и возвращает None, так что строка d = d.update(other) молча превратит d в None — классическая студенческая опечатка. Совпадающие ключи перезаписываются без предупреждения, прежние значения теряются; если нужен новый словарь, а не мутация исходного, берите d1 | d2 (Python 3.9+). Аргументом может быть не только словарь, но и любой итерируемый объект пар — например, список кортежей или zip.",
       "en": "update() mutates the dict in place and returns None, so d = d.update(other) silently turns d into None — a classic beginner typo. Colliding keys are overwritten without warning and the old values are gone; if you want a new dict rather than a mutated original, use d1 | d2 (Python 3.9+). The argument need not be a dict either: any iterable of key/value pairs works, such as a list of tuples or a zip object."
     },
-    "syntax": "d.update(other, **kwargs)",
+    "syntax": "d.update([other], **kwargs)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
     "added": "<3.0",

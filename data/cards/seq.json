@@ -7,8 +7,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Оператор del удаляет элемент по индексу, срез или весь список из памяти. Изменяет объект на месте.",
-      "en": "The del statement removes an item by index, a slice, or the whole list from memory. It modifies the object in place."
+      "ru": "Оператор del удаляет элемент по индексу или срез, изменяя список на месте; del lst убирает только имя, а не сам объект.",
+      "en": "The del statement removes an item by index or a slice, changing the list in place; del lst removes only the name, not the object."
     },
     "body": {
       "ru": "del lst[i] и lst.pop(i) удаляют одно и то же, но del ничего не возвращает — берите pop, когда значение ещё нужно. del lst[a:b] режет список на месте, поэтому все другие имена, ссылающиеся на этот же список, увидят изменение, а lst = lst[:a] + lst[b:] лишь создаёт новый объект и перепривязывает имя. Отдельно del lst убирает только имя: сам объект живёт, пока на него есть другие ссылки.",
@@ -49,26 +49,24 @@
         "print(lst)",
         "# → [0, 1, 3, 4]",
         "del lst[1:3]",
-        "print(lst)"
+        "print(lst)",
+        "# → [0, 4]"
       ],
       [
-        "# → [0, 4]",
         "lst2 = list(range(6))",
         "del lst2[::2]",
-        "print(lst2)"
+        "print(lst2)",
+        "# → [1, 3, 5]"
       ],
       [
-        "# → [1, 3, 5]",
         "lst3 = [1, 2, 3]",
         "del lst3[:]",
-        "print(lst3)"
+        "print(lst3)",
+        "# → [] (очистка через срез)"
       ],
       [
-        "# → [] (очистка через срез)",
         "lst4 = [1, 2, 3]",
-        "del lst4"
-      ],
-      [
+        "del lst4",
         "# NameError при обращении к lst4 после del"
       ]
     ],
@@ -165,7 +163,7 @@
     "syntax": "item in lst  |  item not in lst",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
-    "added": "3.8",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -197,17 +195,15 @@
         "# → True",
         "print(6 in lst)",
         "# → False",
-        "print(6 not in lst)"
+        "print(6 not in lst)",
+        "# → True"
       ],
       [
-        "# → True",
-        "print([1, 2] in [[1, 2], [3, 4]])"
+        "print([1, 2] in [[1, 2], [3, 4]])",
+        "# → True (сравнение подсписков)"
       ],
       [
-        "# → True (сравнение подсписков)",
-        "print(None in [1, None, 3])"
-      ],
-      [
+        "print(None in [1, None, 3])",
         "# → True"
       ]
     ],
@@ -272,9 +268,7 @@
         "# → 1",
         "print(max(t))",
         "# → 9",
-        "print(sum(t))"
-      ],
-      [
+        "print(sum(t))",
         "# → 31"
       ]
     ],
@@ -608,9 +602,7 @@
         "# → (50, 40, 30, 20, 10)",
         "print(t[::2])",
         "# → (10, 30, 50)",
-        "print(t[2:4])"
-      ],
-      [
+        "print(t[2:4])",
         "# → (30, 40)"
       ]
     ],
@@ -678,9 +670,7 @@
         "print(lst)",
         "# → [10, 99, 30, 40, 50]",
         "lst[-1] = 0",
-        "print(lst)"
-      ],
-      [
+        "print(lst)",
         "# → [10, 99, 30, 40, 0]"
       ]
     ],
@@ -752,16 +742,14 @@
         "print(parse_point('3,4'))",
         "# → (3, 4)",
         "result = minmax([3, 1, 4])",
-        "print(type(result))"
+        "print(type(result))",
+        "# → <class 'tuple'>"
       ],
       [
-        "# → <class 'tuple'>",
         "def triple(x):",
         "    return x, x*2, x*3",
         "a, b, c = triple(5)",
-        "print(a, b, c)"
-      ],
-      [
+        "print(a, b, c)",
         "# → 5 10 15"
       ]
     ],
@@ -817,36 +805,34 @@
     "examples": [
       [
         "coords = {(0, 0): 'origin', (1, 0): 'right', (0, 1): 'up'}",
-        "print(coords[(0, 0)])"
+        "print(coords[(0, 0)])",
+        "# → 'origin'"
       ],
       [
-        "# → 'origin'",
         "grid = {}",
         "for i in range(3):",
         "    for j in range(3):",
         "        grid[(i, j)] = i * 3 + j",
-        "print(grid[(2, 1)])"
+        "print(grid[(2, 1)])",
+        "# → 7"
       ],
       [
-        "# → 7",
         "try:",
         "    d = {[1, 2]: 'list'}",
         "except TypeError as e:",
-        "    print(e)"
+        "    print(e)",
+        "# → ? текст TypeError зависит от версии: 3.14 добавил «cannot use 'list' as a dict key»"
       ],
       [
-        "# → ? текст TypeError зависит от версии: 3.14 добавил «cannot use 'list' as a dict key»",
         "pair_count = {}",
         "pairs = [(1, 2), (3, 4), (1, 2)]",
         "for p in pairs:",
         "    pair_count[p] = pair_count.get(p, 0) + 1",
-        "print(pair_count)"
+        "print(pair_count)",
+        "# → {(1, 2): 2, (3, 4): 1}"
       ],
       [
-        "# → {(1, 2): 2, (3, 4): 1}",
-        "print(hash((1, 2, 3)))"
-      ],
-      [
+        "print(hash((1, 2, 3)))",
         "# → ? хеш кортежа: солится PYTHONHASHSEED и меняется от запуска"
       ]
     ],
@@ -915,16 +901,14 @@
         "p2 = p._replace(x=10)",
         "print(p2)",
         "# → Point(x=10, y=4)",
-        "print(Point._fields)"
+        "print(Point._fields)",
+        "# → ('x', 'y')"
       ],
       [
         "from collections import namedtuple",
-        "# → ('x', 'y')",
         "Card = namedtuple('Card', 'rank suit')",
         "c = Card('A', 'spades')",
-        "print(f'{c.rank} of {c.suit}')"
-      ],
-      [
+        "print(f'{c.rank} of {c.suit}')",
         "# → 'A of spades'"
       ]
     ],
@@ -1019,8 +1003,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Оператор + возвращает новый список-объединение. * повторяет список n раз. Для mutable объектов * создаёт shallow копии.",
-      "en": "The + operator returns a new list — the concatenation of the two. * repeats a list n times. For mutable objects * produces shallow copies."
+      "ru": "Оператор + возвращает новый список-объединение. * повторяет список n раз, но элементы не копирует: повторяются ссылки на те же объекты.",
+      "en": "The + operator returns a new list — the concatenation of the two. * repeats a list n times without copying the items: it repeats references to the same objects."
     },
     "body": {
       "ru": "Оба оператора строят новый список целиком, поэтому накопление в цикле вида res = res + [x] квадратично по времени — используйте append() или extend(). Различайте lst += other и lst = lst + other: += меняет список на месте, как extend, и это видят все, кто держит ссылку на тот же объект, к тому же справа допустим любой итерируемый объект; обычный + требует, чтобы справа тоже был список, иначе TypeError.",
@@ -1056,27 +1040,25 @@
     ],
     "examples": [
       [
-        "print([1, 2] + [3, 4])"
+        "print([1, 2] + [3, 4])",
+        "# → [1, 2, 3, 4]"
       ],
       [
-        "# → [1, 2, 3, 4]",
-        "print([0] * 5)"
+        "print([0] * 5)",
+        "# → [0, 0, 0, 0, 0]"
       ],
       [
-        "# → [0, 0, 0, 0, 0]",
-        "print(['a', 'b'] * 3)"
+        "print(['a', 'b'] * 3)",
+        "# → ['a', 'b', 'a', 'b', 'a', 'b']"
       ],
       [
-        "# → ['a', 'b', 'a', 'b', 'a', 'b']",
-        "print([1, 2] + [])"
+        "print([1, 2] + [])",
+        "# → [1, 2]"
       ],
       [
-        "# → [1, 2]",
         "trap = [[]] * 3",
         "trap[0].append(1)",
-        "print(trap)"
-      ],
-      [
+        "print(trap)",
         "# → [[1], [1], [1]] (одна ссылка!)"
       ]
     ],
@@ -1105,7 +1087,7 @@
     "syntax": "a, b = t  |  a, *rest = t  |  a, _, b = t",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
-    "added": "3.0",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1133,43 +1115,43 @@
     "examples": [
       [
         "a, b, c = (1, 2, 3)",
-        "print(a, b, c)"
+        "print(a, b, c)",
+        "# → 1 2 3"
       ],
       [
-        "# → 1 2 3",
         "x, y = (10, 20)",
         "x, y = y, x",
-        "print(x, y)"
+        "print(x, y)",
+        "# → 20 10 (swap)"
       ],
       [
-        "# → 20 10 (swap)",
         "first, *rest = (1, 2, 3, 4, 5)",
-        "print(first, rest)"
+        "print(first, rest)",
+        "# → 1 [2, 3, 4, 5]"
       ],
       [
-        "# → 1 [2, 3, 4, 5]",
         "*head, last = (1, 2, 3, 4, 5)",
-        "print(head, last)"
+        "print(head, last)",
+        "# → [1, 2, 3, 4] 5"
       ],
       [
-        "# → [1, 2, 3, 4] 5",
         "a, _, c = (1, 999, 3)",
-        "print(a, c)"
+        "print(a, c)",
+        "# → 1 3 (_ игнорируется)"
       ],
       [
-        "# → 1 3 (_ игнорируется)",
         "point = (3, 4)",
         "import math",
         "dist = math.sqrt(sum(v**2 for v in point))",
-        "print(dist)"
+        "print(dist)",
+        "# → 5.0"
       ],
       [
-        "# → 5.0",
         "(a, b), c = (1, 2), 3",
-        "print(a, b, c)"
+        "print(a, b, c)",
+        "# → 1 2 3 (вложенная распаковка)"
       ],
       [
-        "# → 1 2 3 (вложенная распаковка)",
         "for a, b in [(1, 2), (3, 4)]:",
         "    print(a + b)",
         "    # → 3 / 7"
@@ -1227,36 +1209,34 @@
     "examples": [
       [
         "a, b, c = [1, 2, 3]",
-        "print(a, b, c)"
+        "print(a, b, c)",
+        "# → 1 2 3"
       ],
       [
-        "# → 1 2 3",
         "first, *rest = [1, 2, 3, 4, 5]",
-        "print(first, rest)"
+        "print(first, rest)",
+        "# → 1 [2, 3, 4, 5]"
       ],
       [
-        "# → 1 [2, 3, 4, 5]",
         "*head, last = [1, 2, 3, 4, 5]",
-        "print(head, last)"
+        "print(head, last)",
+        "# → [1, 2, 3, 4] 5"
       ],
       [
-        "# → [1, 2, 3, 4] 5",
         "a, *_, b = [1, 2, 3, 4, 5]",
-        "print(a, b)"
+        "print(a, b)",
+        "# → 1 5"
       ],
       [
-        "# → 1 5",
         "lst1, lst2 = [1, 2, 3], [4, 5]",
         "combined = [*lst1, *lst2]",
-        "print(combined)"
+        "print(combined)",
+        "# → [1, 2, 3, 4, 5]"
       ],
       [
-        "# → [1, 2, 3, 4, 5]",
         "def func(*args): return sum(args)",
         "nums = [1, 2, 3]",
-        "print(func(*nums))"
-      ],
-      [
+        "print(func(*nums))",
         "# → 6"
       ]
     ],
@@ -1311,33 +1291,31 @@
     ],
     "examples": [
       [
-        "t0 = ()"
+        "t0 = ()",
+        "# → ()"
       ],
       [
-        "# → ()",
-        "t1 = (1,)"
+        "t1 = (1,)",
+        "# → (1,) (не (1) — это просто 1)"
       ],
       [
-        "# → (1,) (не (1) — это просто 1)",
-        "t2 = (1, 2, 3)"
+        "t2 = (1, 2, 3)",
+        "# → (1, 2, 3)"
       ],
       [
-        "# → (1, 2, 3)",
-        "t3 = 1, 2, 3"
+        "t3 = 1, 2, 3",
+        "# → (1, 2, 3)"
       ],
       [
-        "# → (1, 2, 3)",
-        "t4 = tuple([1, 2, 3])"
+        "t4 = tuple([1, 2, 3])",
+        "# → (1, 2, 3)"
       ],
       [
-        "# → (1, 2, 3)",
-        "t5 = tuple('abc')"
+        "t5 = tuple('abc')",
+        "# → ('a', 'b', 'c')"
       ],
       [
-        "# → ('a', 'b', 'c')",
-        "print(type((1)))"
-      ],
-      [
+        "print(type((1)))",
         "# → <class 'int'> (без запятой — не кортеж!)"
       ]
     ],
@@ -1392,33 +1370,31 @@
     ],
     "examples": [
       [
-        "a = []"
+        "a = []",
+        "# → []"
       ],
       [
-        "# → []",
-        "b = [1, 2, 3]"
+        "b = [1, 2, 3]",
+        "# → [1, 2, 3]"
       ],
       [
-        "# → [1, 2, 3]",
-        "c = list('abc')"
+        "c = list('abc')",
+        "# → ['a', 'b', 'c']"
       ],
       [
-        "# → ['a', 'b', 'c']",
-        "d = list(range(5))"
+        "d = list(range(5))",
+        "# → [0, 1, 2, 3, 4]"
       ],
       [
-        "# → [0, 1, 2, 3, 4]",
-        "e = [x**2 for x in range(4)]"
+        "e = [x**2 for x in range(4)]",
+        "# → [0, 1, 4, 9]"
       ],
       [
-        "# → [0, 1, 4, 9]",
-        "f = [1, 'two', 3.0, None]"
+        "f = [1, 'two', 3.0, None]",
+        "# → [1, 'two', 3.0, None]"
       ],
       [
-        "# → [1, 'two', 3.0, None]",
-        "g = [0] * 5"
-      ],
-      [
+        "g = [0] * 5",
         "# → [0, 0, 0, 0, 0]"
       ]
     ],
@@ -1476,37 +1452,35 @@
     "examples": [
       [
         "words = ['banana', 'apple', 'fig', 'cherry']",
-        "print(sorted(words, key=len))"
+        "print(sorted(words, key=len))",
+        "# → ['fig', 'apple', 'banana', 'cherry']"
       ],
       [
-        "# → ['fig', 'apple', 'banana', 'cherry']",
         "pairs = [(2, 'b'), (1, 'c'), (3, 'a')]",
         "print(sorted(pairs, key=lambda x: x[1]))",
         "# → [(3, 'a'), (2, 'b'), (1, 'c')]",
-        "print(sorted(pairs, key=lambda x: x[0], reverse=True))"
+        "print(sorted(pairs, key=lambda x: x[0], reverse=True))",
+        "# → [(3, 'a'), (2, 'b'), (1, 'c')]"
       ],
       [
-        "# → [(3, 'a'), (2, 'b'), (1, 'c')]",
         "people = [('Alice', 30), ('Bob', 25), ('Carol', 30)]",
-        "print(sorted(people, key=lambda p: (p[1], p[0])))"
+        "print(sorted(people, key=lambda p: (p[1], p[0])))",
+        "# → [('Bob', 25), ('Alice', 30), ('Carol', 30)]"
       ],
       [
-        "# → [('Bob', 25), ('Alice', 30), ('Carol', 30)]",
         "nums = ['-3', '1', '-10', '2']",
-        "print(sorted(nums, key=lambda x: abs(int(x))))"
+        "print(sorted(nums, key=lambda x: abs(int(x))))",
+        "# → ['1', '2', '-3', '-10']"
       ],
       [
-        "# → ['1', '2', '-3', '-10']",
         "strs = ['Banana', 'apple', 'Cherry']",
-        "print(sorted(strs, key=str.lower))"
+        "print(sorted(strs, key=str.lower))",
+        "# → ['apple', 'Banana', 'Cherry']"
       ],
       [
-        "# → ['apple', 'Banana', 'Cherry']",
         "from operator import itemgetter",
         "data = [{'name': 'b', 'val': 2}, {'name': 'a', 'val': 3}]",
-        "print(sorted(data, key=itemgetter('name')))"
-      ],
-      [
+        "print(sorted(data, key=itemgetter('name')))",
         "# → [{'name': 'a', 'val': 3}, {'name': 'b', 'val': 2}]"
       ]
     ],
@@ -1563,45 +1537,43 @@
     "examples": [
       [
         "squares = [x**2 for x in range(6)]",
-        "print(squares)"
+        "print(squares)",
+        "# → [0, 1, 4, 9, 16, 25]"
       ],
       [
-        "# → [0, 1, 4, 9, 16, 25]",
         "evens = [x for x in range(10) if x % 2 == 0]",
-        "print(evens)"
+        "print(evens)",
+        "# → [0, 2, 4, 6, 8]"
       ],
       [
-        "# → [0, 2, 4, 6, 8]",
         "pairs = [(x, y) for x in [1, 2] for y in [3, 4]]",
-        "print(pairs)"
+        "print(pairs)",
+        "# → [(1, 3), (1, 4), (2, 3), (2, 4)]"
       ],
       [
-        "# → [(1, 3), (1, 4), (2, 3), (2, 4)]",
         "words = ['hello', 'world', 'python']",
         "upper = [w.upper() for w in words]",
-        "print(upper)"
+        "print(upper)",
+        "# → ['HELLO', 'WORLD', 'PYTHON']"
       ],
       [
-        "# → ['HELLO', 'WORLD', 'PYTHON']",
         "flat = [x for row in [[1,2],[3,4],[5,6]] for x in row]",
-        "print(flat)"
+        "print(flat)",
+        "# → [1, 2, 3, 4, 5, 6]"
       ],
       [
-        "# → [1, 2, 3, 4, 5, 6]",
         "mapped = [x if x > 0 else 0 for x in [-1, 2, -3, 4]]",
-        "print(mapped)"
+        "print(mapped)",
+        "# → [0, 2, 0, 4]"
       ],
       [
-        "# → [0, 2, 0, 4]",
         "digits = [int(c) for c in '12345']",
-        "print(digits)"
+        "print(digits)",
+        "# → [1, 2, 3, 4, 5]"
       ],
       [
-        "# → [1, 2, 3, 4, 5]",
         "nested = [[i*j for j in range(1, 4)] for i in range(1, 4)]",
-        "print(nested)"
-      ],
-      [
+        "print(nested)",
         "# → [[1, 2, 3], [2, 4, 6], [3, 6, 9]]"
       ]
     ],
@@ -1734,9 +1706,7 @@
         "print(copy is lst)",
         "# → False (новый объект)",
         "lst[1:4] = [10, 20, 30]",
-        "print(lst)"
-      ],
-      [
+        "print(lst)",
         "# → [0, 10, 20, 30, 4, 5]"
       ]
     ],
@@ -1766,7 +1736,7 @@
     "syntax": "[выражение for x in iterable if условие]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comprehensions",
-    "added": "3.6",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2104,7 +2074,7 @@
       "ru": "В отличие от str.find, «промаха» тут нет: если значения в списке нет, метод бросает ValueError, поэтому либо оборачивайте вызов в try, либо сначала проверяйте наличие через in. Поиск линейный, слева направо, и при заданных start/end возвращается всё равно индекс в исходном списке, а не смещение от start.",
       "en": "Unlike str.find there is no \"not found\" return value: a missing item raises ValueError, so either wrap the call in try or check with in first. The scan is linear and left to right, and with start/end the number you get back is still an index into the whole list, not an offset from start."
     },
-    "syntax": "lst.index(value, start=0, stop=len)",
+    "syntax": "lst.index(value[, start[, stop]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.index",
     "added": "<3.0",
@@ -2512,7 +2482,7 @@
       "ru": "Если значения нет, index бросает ValueError — мягкого аналога str.find(), возвращающего -1, у кортежей не существует, так что либо оборачивайте вызов в try, либо сначала проверяйте value in t. Аргумент start только сдвигает точку начала поиска: возвращаемый индекс всё равно отсчитывается от начала кортежа, а не от start.",
       "en": "A missing value raises ValueError — tuples have no forgiving counterpart to str.find() that returns -1, so either wrap the call in try or test value in t first. The start argument only moves where the scan begins; the index you get back is still counted from the beginning of the tuple, not from start."
     },
-    "syntax": "t.index(value, start=0, stop=len)",
+    "syntax": "t.index(value[, start[, stop]])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
     "added": "<3.0",

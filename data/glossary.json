@@ -370,7 +370,7 @@
       "syntax": "def gcd(a, b):\n    while b: a, b = b, a%b\n    return a",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/math.html#math.gcd",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -583,7 +583,7 @@
       "syntax": "prefix[i] = prefix[i-1] + arr[i]\nsum(l, r) = prefix[r] - prefix[l-1]",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
-      "added": "3.2",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -1909,7 +1909,7 @@
       "syntax": "from typing import Optional\nOptional[X]  # эквивалентно X | None\n# Python 3.10+: X | None",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/typing.html#typing.Optional",
-      "added": "3.10",
+      "added": "3.5",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -2043,8 +2043,8 @@
         "en": "A boolean constant that is True only during static analysis (mypy, pyright). Lets you import types for annotations alone, avoiding circular imports at runtime."
       },
       "body": {
-        "ru": "Раз импорт под if TYPE_CHECKING в рантайме не выполняется, имя из него не должно попадать в вычисляемое выражение: аннотацию берут в кавычки либо ставят from __future__ import annotations в начале файла, иначе будет NameError при загрузке модуля. Побочный эффект — такие аннотации остаются строками, и всё, что читает типы во время работы программы (typing.get_type_hints, dataclasses, валидаторы), может не суметь их разрешить.",
-        "en": "Because the import under if TYPE_CHECKING never runs, the name must not end up in an expression that is actually evaluated: quote the annotation or put from __future__ import annotations at the top of the file, otherwise the module raises NameError on import. The side effect is that such annotations stay strings, so anything that inspects types at runtime — typing.get_type_hints, dataclasses, validation libraries — may fail to resolve them."
+        "ru": "Раз импорт под if TYPE_CHECKING в рантайме не выполняется, имя из него не должно попадать в вычисляемый код — в значения по умолчанию, cast(), isinstance. В аннотациях с Python 3.14 его можно писать без кавычек: аннотации вычисляются лениво, и модуль загрузится без ошибки (до 3.14 нужны были кавычки или from __future__ import annotations, иначе NameError при загрузке). Побочный эффект остаётся: всё, что читает типы во время работы программы (typing.get_type_hints, __annotations__, dataclasses, валидаторы), не сможет разрешить такое имя и получит NameError.",
+        "en": "Because the import under if TYPE_CHECKING never runs, the name must not end up in code that is actually evaluated — default values, cast(), isinstance. In annotations, since Python 3.14, you may write it unquoted: annotations are evaluated lazily and the module loads fine (before 3.14 you needed quotes or from __future__ import annotations, otherwise NameError on import). The side effect remains: anything that reads types at runtime (typing.get_type_hints, __annotations__, dataclasses, validation libraries) cannot resolve such a name and gets NameError."
       },
       "syntax": "from typing import TYPE_CHECKING\nif TYPE_CHECKING:\n    from module import SomeType",
       "status": "ready",
@@ -2305,7 +2305,7 @@
       "syntax": "from typing import Union\nUnion[int, str]   # int или str\n# Python 3.10+: int | str",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/typing.html#typing.Union",
-      "added": "3.10",
+      "added": "3.5",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -2846,7 +2846,7 @@
       "syntax": "a - b | -a",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -2899,17 +2899,17 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Оператор деления. Всегда возвращает float, даже при делении двух целых. Деление на ноль вызывает ZeroDivisionError.",
-        "en": "The division operator. It always returns a float, even when both operands are integers. Division by zero raises ZeroDivisionError."
+        "ru": "Оператор деления. Для int и float всегда возвращает float, даже при делении двух целых. Деление на ноль вызывает ZeroDivisionError.",
+        "en": "The division operator. For int and float it always returns a float, even when both operands are integers. Division by zero raises ZeroDivisionError."
       },
       "body": {
-        "ru": "Результат всегда float, а у float всего 53 бита мантиссы: на больших целых младшие разряды тихо теряются, а совсем крупные числа вроде 10**400 / 2 падают с OverflowError — там, где нужен точный целый ответ, бери // и не превращай float обратно в int. Деление на 0.0 тоже даёт ZeroDivisionError, а не inf, как в C или NumPy.",
-        "en": "The result is always a float, and a float has only 53 bits of mantissa: with large integers the low digits are silently lost, and truly huge values such as 10**400 / 2 raise OverflowError — when you need an exact integer answer use // instead of dividing and converting back. Dividing by 0.0 also raises ZeroDivisionError rather than producing inf as C or NumPy would."
+        "ru": "Для int и float результат всегда float (complex, Decimal и Fraction делятся в свой тип), а у float всего 53 бита мантиссы: на больших целых младшие разряды тихо теряются, а совсем крупные числа вроде 10**400 / 2 падают с OverflowError — там, где нужен точный целый ответ, бери // и не превращай float обратно в int. Деление на 0.0 тоже даёт ZeroDivisionError, а не inf, как в C или NumPy.",
+        "en": "For int and float the result is always a float (complex, Decimal and Fraction keep their own type), and a float has only 53 bits of mantissa: with large integers the low digits are silently lost, and truly huge values such as 10**400 / 2 raise OverflowError — when you need an exact integer answer use // instead of dividing and converting back. Dividing by 0.0 also raises ZeroDivisionError rather than producing inf as C or NumPy would."
       },
       "syntax": "a / b -> float",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-      "added": "3.5",
+      "added": "3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -3040,7 +3040,7 @@
       "syntax": "a % b",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -3100,8 +3100,8 @@
         "en": "Operators that work on numbers bit by bit: & (AND), | (OR), ^ (XOR), ~ (NOT/inversion), << (left shift), >> (right shift)."
       },
       "body": {
-        "ru": "Первым кусается приоритет: x & 1 == 0 разбирается как x & (1 == 0), потому что сравнение связывает сильнее битовых операторов — нужны скобки. Целые в Python неограниченной длины и ведут себя как дополнительный код, поэтому ~x всегда равно -x - 1, сдвиг влево не переполняется (растёт число, а не обрезается), а >> у отрицательных сохраняет знак. Отрицательное число разрядов в сдвиге — ValueError.",
-        "en": "Precedence bites first: x & 1 == 0 parses as x & (1 == 0), because comparisons bind tighter than bitwise operators — add parentheses. Python ints are arbitrary precision and behave as two's complement, so ~x is always -x - 1, a left shift never overflows (the number just grows), and >> keeps the sign of a negative value. A negative shift count raises ValueError."
+        "ru": "Первым кусается приоритет: битовые операторы связывают слабее арифметики, поэтому x & 1 + 1 разбирается как x & (1 + 1), а 1 << n - 1 — как 1 << (n - 1); нужны скобки. Со сравнениями наоборот, и не так, как в C: x & 1 == 0 — это (x & 1) == 0. Целые в Python неограниченной длины и ведут себя как дополнительный код, поэтому ~x всегда равно -x - 1, сдвиг влево не переполняется (растёт число, а не обрезается), а >> у отрицательных сохраняет знак. Отрицательное число разрядов в сдвиге — ValueError.",
+        "en": "Precedence bites first: bitwise operators bind more loosely than arithmetic, so x & 1 + 1 parses as x & (1 + 1) and 1 << n - 1 as 1 << (n - 1) — add parentheses. With comparisons it is the other way round, unlike C: x & 1 == 0 means (x & 1) == 0. Python ints are arbitrary precision and behave as two's complement, so ~x is always -x - 1, a left shift never overflows (the number just grows), and >> keeps the sign of a negative value. A negative shift count raises ValueError."
       },
       "syntax": "a & b  a | b  a ^ b  ~a  a << n  a >> n",
       "status": "ready",
@@ -3223,8 +3223,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Бинарный оператор сложения. Для чисел — арифметическое сложение; для строк и списков — конкатенация; для множеств — объединение.",
-        "en": "The binary addition operator. For numbers it is arithmetic addition; for strings and lists, concatenation; for sets, union."
+        "ru": "Бинарный оператор сложения. Для чисел — арифметическое сложение; для строк, списков и кортежей — конкатенация. Множества через + не складываются: объединение — это |.",
+        "en": "The binary addition operator. For numbers it is arithmetic addition; for strings, lists and tuples, concatenation. Sets do not support +: union is spelled |."
       },
       "body": {
         "ru": "Неявных преобразований нет: \"5\" + 1 сразу даёт TypeError, а список нельзя сложить с кортежем — типы приводят вручную. Для последовательностей + всегда создаёт новый объект и копирует оба операнда, поэтому склейка в цикле выходит квадратичной по времени: строки собирайте через \"\".join(), к спискам добавляйте append() или extend().",
@@ -3233,7 +3233,7 @@
       "syntax": "a + b",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -3294,7 +3294,7 @@
       "syntax": "a ** b",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#the-power-operator",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -3356,7 +3356,7 @@
       "syntax": "a * b",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -3416,7 +3416,7 @@
       "syntax": "a // b",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -3479,7 +3479,7 @@
       "syntax": "a < b < c  a == b == c  a <= b >= c",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
-      "added": "3.8",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -3666,8 +3666,8 @@
       },
       "kind": "function",
       "summary": {
-        "ru": "Оборачивает корутину в Task, запуская её в фоне event loop. Задача стартует немедленно, не дожидаясь await.",
-        "en": "Wraps a coroutine in a Task, running it in the background of the event loop. The task starts immediately, without waiting for an await."
+        "ru": "Оборачивает корутину в Task и планирует её в event loop: задача начнёт работу при ближайшем await текущей корутины, ждать её результата сразу не нужно.",
+        "en": "Wraps a coroutine in a Task and schedules it on the event loop: it starts at the current coroutine's next await, and you need not await its result right away."
       },
       "body": {
         "ru": "Корутина не стартует прямо в точке вызова: задача лишь ставится в очередь event loop и начинает выполняться, когда текущая корутина сама дойдёт до ближайшего await. Вторая ловушка — ссылка: loop держит на задачу только слабую ссылку, поэтому task, никуда не сохранённый, может быть собран сборщиком мусора посреди работы; храните его в переменной или во множестве до завершения. И исключение внутри задачи молчит, пока её не заawait'или — потерянные задачи легко прячут ошибки.",
@@ -3707,7 +3707,7 @@
           "    return 'done'",
           "async def main():",
           "    t = asyncio.create_task(bg())",
-          "    print('working...')  # → working... — задача уже запущена, но ещё не готова",
+          "    print('working...')  # → working... — задача запланирована, но ещё не начала выполняться",
           "    result = await t",
           "    print(result)  # → done",
           "asyncio.run(main())"
@@ -3902,7 +3902,7 @@
           "    print('start')",
           "    await asyncio.sleep(0)",
           "    print('end')",
-          "    asyncio.run(hello()) # → start\\nend"
+          "asyncio.run(hello())  # → start / end"
         ]
       ],
       "related": [
@@ -9526,9 +9526,9 @@
           "# name = input(\"Введите имя: \")  # пользователь вводит строку",
           "# age = int(input(\"Возраст: \"))  # → преобразование в int",
           "# price = float(input(\"Цена: \"))  # → преобразование в float",
-          "# Проверка: x = int(input()) if input().isdigit() else 0",
+          "# Проверка: s = input(); x = int(s) if s.isdigit() else 0  # input() один раз",
           "# line1 = input(\"Строка 1: \"); line2 = input(\"Строка 2: \")",
-          "# s = input(\"  hello  \").strip()  # → \"hello\" (убирает пробелы)",
+          "# s = input().strip()  # ввели \"  hello  \" → \"hello\" (strip чистит сам ввод)",
           "# Симуляция ввода без клавиатуры:",
           "import io, sys",
           "sys.stdin = io.StringIO('Alice\\n')",
@@ -9889,7 +9889,7 @@
       "syntax": "0b<биты>  0o<цифры>  0x<цифры>  <цифры>_<цифры>  <число>e<порядок>",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#",
-      "added": "3.6",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -10385,7 +10385,7 @@
         "ru": "Появилась в Python 3.10. Возвращает не элемент, а awaitable: без await получите объект корутины и предупреждение 'coroutine was never awaited', а элемент так и не прочитается. Второй аргумент работает как у next(): вместо StopAsyncIteration отдаёт значение по умолчанию — короче, чем оборачивать вызов в try/except.",
         "en": "Added in Python 3.10. It returns an awaitable, not the item: forget the await and you get a coroutine object plus a 'coroutine was never awaited' warning, while nothing is actually consumed. The second argument behaves like the one in next() — it yields a default instead of raising StopAsyncIteration, which is tidier than wrapping the call in try/except."
       },
-      "syntax": "anext(async_iterator, default)",
+      "syntax": "anext(async_iterator[, default])",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/functions.html#anext",
       "added": "3.10",
@@ -11808,7 +11808,7 @@
           "f = StringIO('a\\nb\\nc')",
           "for line in iter(f.readline, ''):",
           "    print(line.strip())",
-          "    print(list(iter(range(5))))  # → [0,1,2,3,4]"
+          "print(list(iter(range(5))))  # → [0, 1, 2, 3, 4]"
         ],
         [
           "it = iter([1,2,3])",
@@ -11964,8 +11964,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Возвращает словарь текущего локального пространства имён. В модуле совпадает с globals(). Копия, не ссылка.",
-        "en": "Returns a dictionary of the current local namespace. At module level it matches globals(). A copy, not a reference."
+        "ru": "Возвращает словарь текущего локального пространства имён. В модуле это тот же объект, что globals(); внутри функции — снимок, не ссылка.",
+        "en": "Returns a dictionary of the current local namespace. At module level it is the very object globals() returns; inside a function it is a snapshot, not a reference."
       },
       "body": {
         "ru": "Внутри функции это снимок: записать что-то в полученный словарь и ждать появления новой локальной переменной бесполезно — обратной связи с кадром нет (в Python 3.13 это закреплено PEP 667, раньше поведение зависело от реализации). На уровне модуля и в теле класса locals() отдаёт настоящий словарь пространства имён, и правки в нём как раз видны — отсюда путаница. В функции попадают только те имена, которым уже что-то присвоено к моменту вызова.",
@@ -12474,11 +12474,11 @@
       ],
       "examples": [
         [
-          "print(repr('hello'))  # → \"'hello'\"",
-          "print(repr([1,2,3]))  # → '[1, 2, 3]'",
-          "print(repr(None))     # → 'None'",
-          "print(repr(3.14))     # → '3.14'",
-          "print(repr({'a':1}))  # → \"{'a': 1}\""
+          "print(repr('hello'))  # → 'hello'",
+          "print(repr([1,2,3]))  # → [1, 2, 3]",
+          "print(repr(None))     # → None",
+          "print(repr(3.14))     # → 3.14",
+          "print(repr({'a':1}))  # → {'a': 1}"
         ]
       ],
       "related": [
@@ -12738,8 +12738,8 @@
         "en": "Sums the items of an iterable. start is the initial value."
       },
       "body": {
-        "ru": "Строки sum складывать отказывается — будет TypeError с подсказкой использовать ''.join(). Склейка списков через sum(списки, []) формально работает, но на каждом шаге создаёт новый список и растёт квадратично; для длинных данных берите itertools.chain.",
-        "en": "sum refuses to concatenate strings — it raises TypeError and points you at ''.join() instead. Flattening lists with sum(lists, []) does work, but it builds a fresh list at every step and scales quadratically, so reach for itertools.chain on anything long."
+        "ru": "Строки sum складывать отказывается: sum(['a', 'b']) падает с TypeError про сложение int и str (start по умолчанию 0), а sum(['a', 'b'], '') — с прямой подсказкой использовать ''.join(). Склейка списков через sum(списки, []) формально работает, но на каждом шаге создаёт новый список и растёт квадратично; для длинных данных берите itertools.chain.",
+        "en": "sum refuses to concatenate strings: sum(['a', 'b']) raises TypeError about adding int and str (start defaults to 0), and sum(['a', 'b'], '') raises one that points you at ''.join(). Flattening lists with sum(lists, []) does work, but it builds a fresh list at every step and scales quadratically, so reach for itertools.chain on anything long."
       },
       "syntax": "sum(iterable, start=0)",
       "status": "ready",
@@ -14293,8 +14293,8 @@
         "en": "Decimal integer division cannot produce a correct result."
       },
       "body": {
-        "ru": "Речь не про обычное деление, а про целочисленное: сигнал возникает, когда целая часть результата // или divmod требует больше цифр, чем precision текущего контекста. Это подкласс InvalidOperation, а его ловушка в контексте по умолчанию включена, поэтому исключение действительно вылетает; со снятой ловушкой вместо него вернётся NaN. Чинится увеличением precision, а не перехватом.",
-        "en": "This is about integer division rather than the plain / operator: it fires when the integer part produced by // or divmod would need more digits than the context precision allows. It subclasses InvalidOperation, whose trap is enabled in the default context, so you genuinely get an exception; untrap it and the operation returns NaN instead. The cure is a larger precision, not a try/except."
+        "ru": "Речь не про обычное деление, а про целочисленное: сигнал возникает, когда целая часть результата // или divmod требует больше цифр, чем precision текущего контекста. Это подкласс InvalidOperation, ловушка которого в контексте по умолчанию включена, поэтому исключение действительно вылетает — но это InvalidOperation, а не DivisionImpossible, и except decimal.DivisionImpossible его не поймает; ловите decimal.InvalidOperation. Со снятой ловушкой вместо исключения вернётся NaN. Чинится увеличением precision, а не перехватом.",
+        "en": "This is about integer division rather than the plain / operator: it fires when the integer part produced by // or divmod would need more digits than the context precision allows. It subclasses InvalidOperation, whose trap is enabled in the default context, so you genuinely get an exception — but it is InvalidOperation, not DivisionImpossible, and except decimal.DivisionImpossible will not catch it; catch decimal.InvalidOperation. Untrap it and the operation returns NaN instead. The cure is a larger precision, not a try/except."
       },
       "syntax": "raise decimal.DivisionImpossible",
       "status": "ready",
@@ -14350,8 +14350,8 @@
         "en": "Decimal division 0/0 was attempted (the result is undefined)."
       },
       "body": {
-        "ru": "Срабатывает именно на 0/0 — деление ненулевого числа на ноль даёт другой сигнал, DivisionByZero. Класс наследует сразу и InvalidOperation, и ZeroDivisionError, так что обычный except ZeroDivisionError его тоже поймает. Ловушка InvalidOperation включена по умолчанию; если её снять, операция молча вернёт NaN.",
-        "en": "It is specifically the 0/0 case: dividing a non-zero value by zero raises DivisionByZero instead. The class inherits from both InvalidOperation and ZeroDivisionError, so an ordinary except ZeroDivisionError catches it as well. The InvalidOperation trap is on by default; remove it and the operation quietly yields NaN."
+        "ru": "Срабатывает именно на 0/0 — деление ненулевого числа на ноль даёт другой сигнал, DivisionByZero. Хотя класс наследует и InvalidOperation, и ZeroDivisionError, в except прилетает не он, а InvalidOperation: DivisionUndefined — лишь имя условия. Поэтому ни except ZeroDivisionError, ни except decimal.DivisionUndefined деление 0/0 не поймают — пишите except decimal.InvalidOperation. Ловушка InvalidOperation включена по умолчанию; если её снять, операция молча вернёт NaN.",
+        "en": "It is specifically the 0/0 case: dividing a non-zero value by zero raises DivisionByZero instead. Although the class inherits from both InvalidOperation and ZeroDivisionError, what reaches your except is InvalidOperation, not this class — DivisionUndefined is only the name of the condition. So neither except ZeroDivisionError nor except decimal.DivisionUndefined catches 0/0; write except decimal.InvalidOperation. The InvalidOperation trap is on by default; remove it and the operation quietly yields NaN."
       },
       "syntax": "raise decimal.DivisionUndefined",
       "status": "ready",
@@ -14521,8 +14521,8 @@
         "en": "A decimal context was configured with an invalid setting."
       },
       "body": {
-        "ru": "Говорит не о плохих данных, а об испорченном контексте: неизвестный или неподдерживаемый режим округления либо precision за пределами возможностей реализации. Подкласс InvalidOperation, ловушка которого включена по умолчанию; без ловушки операция вернёт NaN. Причину искать там, где Context собирали руками, а не в самой арифметике.",
-        "en": "It points at a malformed context rather than bad data: an unknown or unsupported rounding mode, or a precision beyond what the implementation can handle. It subclasses InvalidOperation, whose trap is on by default; untrapped, the operation returns NaN. Look for the bug where the Context was built by hand, not in the arithmetic itself."
+        "ru": "Условие из стандарта decimal для испорченного контекста — неизвестного режима округления или precision за пределами возможностей реализации. В CPython вы его практически не встретите: контекст проверяется уже при создании и присваивании, и неверное округление сразу даёт TypeError, а недопустимая prec или Emax — ValueError, независимо от ловушек. Если условие всё же возникнет, наружу оно придёт как InvalidOperation (ловушка включена по умолчанию; без неё — NaN), так что отдельный except InvalidContext не нужен.",
+        "en": "The decimal standard's condition for a broken context — an unknown rounding mode or a precision beyond what the implementation can handle. In CPython you will practically never see it: a context is validated on creation and assignment, so a bad rounding mode raises TypeError right away and an invalid prec or Emax raises ValueError, regardless of traps. If the condition ever does occur, it surfaces as InvalidOperation (trapped by default; untrapped, NaN), so a dedicated except InvalidContext is pointless."
       },
       "syntax": "raise decimal.InvalidContext",
       "status": "ready",
@@ -14574,7 +14574,7 @@
       },
       "kind": "exception",
       "summary": {
-        "ru": "Недопустимая операция decimal (напр. Decimal('nan') в сравнении, деление 0/0).",
+        "ru": "Недопустимая операция decimal (напр. Decimal('nan') в сравнении на больше/меньше, деление 0/0).",
         "en": "An invalid decimal operation (e.g. an ordering comparison with Decimal('nan'), or 0/0)."
       },
       "body": {
@@ -15680,12 +15680,12 @@
       },
       "kind": "exception",
       "summary": {
-        "ru": "Вызывается, если импорт модуля не удался — модуль найден, но при загрузке произошла ошибка.",
-        "en": "Raised when a module import fails — the module was found, but something went wrong while loading it."
+        "ru": "Вызывается, если импорт не удался: модуль не найден (ModuleNotFoundError) или в from … import нет запрошенного имени.",
+        "en": "Raised when an import fails: the module cannot be found (ModuleNotFoundError) or a from … import names something the module lacks."
       },
       "body": {
-        "ru": "Главная путаница — с ModuleNotFoundError: он подкласс ImportError, поэтому except ImportError ловит сразу и «модуля вообще нет», и «модуль нашёлся, но при загрузке что-то упало». Отсюда грабли: try/except ImportError вокруг импорта необязательной зависимости молча проглотит настоящую поломку внутри самого модуля — его собственный битый импорт или опечатку в коде. У пойманного объекта есть атрибуты name и path, по ним видно, о каком именно модуле и файле речь.",
-        "en": "The usual confusion is with ModuleNotFoundError: it is a subclass of ImportError, so except ImportError catches both \"no such module\" and \"module found, but it blew up while loading\". That is the trap — wrapping an optional dependency in try/except ImportError silently swallows a real failure inside that module, such as its own broken import or a typo in its code. The caught object carries name and path attributes telling you which module and file actually failed."
+        "ru": "Главная путаница — с ModuleNotFoundError: он подкласс ImportError, поэтому except ImportError ловит сразу и «модуля вообще нет», и «модуль есть, но нужного имени в нём нет». Отсюда грабли: try/except ImportError вокруг импорта необязательной зависимости молча проглотит и настоящую поломку внутри самого модуля — его собственный битый импорт. А вот ошибка в теле модуля (опечатка даёт NameError) летит как есть, и except ImportError её не ловит. У пойманного объекта есть атрибуты name и path, по ним видно, о каком именно модуле и файле речь.",
+        "en": "The usual confusion is with ModuleNotFoundError: it is a subclass of ImportError, so except ImportError catches both \"no such module\" and \"module exists, but the requested name is not in it\". That is the trap — wrapping an optional dependency in try/except ImportError also silently swallows a real failure inside that module, namely its own broken import. An error in the module body itself (a typo gives NameError) propagates unchanged, and except ImportError does not catch it. The caught object carries name and path attributes telling you which module and file actually failed."
       },
       "syntax": "raise ImportError('сообщение')",
       "status": "ready",
@@ -16073,7 +16073,7 @@
       "kind": "exception",
       "summary": {
         "ru": "Некорректный JSON при разборе: json.loads('{bad'). Несёт позицию ошибки (pos/lineno/colno).",
-        "en": "Subclass of ValueError with the following additional properties:"
+        "en": "Malformed JSON while parsing: json.loads('{bad'). Carries the error position (pos/lineno/colno)."
       },
       "body": {
         "ru": "Чаще всего разбираемая строка вообще не JSON: пустой ответ сервера, HTML-страница ошибки или питоновский repr словаря с одинарными кавычками — JSON требует двойные и запрещает висячую запятую. В обработчике полезны атрибуты pos, lineno, colno и doc: они показывают точное место обрыва, а не просто факт неудачи. Это подкласс ValueError, так что except ValueError ловит его заодно; ловить нужно только этот класс, если хотите отличить битый JSON от прочих ошибок.",
@@ -16135,7 +16135,7 @@
         "en": "The user interrupted execution (Ctrl+C). Inherits BaseException, so `except Exception` won't catch it."
       },
       "body": {
-        "ru": "Главная ловушка — голый except: или except BaseException внутри цикла: он проглатывает Ctrl+C, и программа перестаёт останавливаться. Если перехват всё-таки нужен (закрыть файл, сохранить прогресс), сделай очистку и пробрось исключение дальше через raise. Прерывание приходит в главный поток и может возникнуть между любыми двумя инструкциями, так что состояние на момент перехвата бывает半 недоделанным.",
+        "ru": "Главная ловушка — голый except: или except BaseException внутри цикла: он проглатывает Ctrl+C, и программа перестаёт останавливаться. Если перехват всё-таки нужен (закрыть файл, сохранить прогресс), сделай очистку и пробрось исключение дальше через raise. Прерывание приходит в главный поток и может возникнуть между любыми двумя инструкциями, так что состояние на момент перехвата бывает недоделанным наполовину.",
         "en": "The classic trap is a bare except: or except BaseException inside a loop — it swallows Ctrl+C and the program stops being interruptible. If you do need to catch it (close a file, save progress), clean up and re-raise. The interrupt lands in the main thread and can arrive between any two instructions, so whatever you were doing may be half-finished."
       },
       "syntax": "raise KeyboardInterrupt",
@@ -16879,8 +16879,8 @@
         "en": "The given process does not exist (a subclass of OSError)."
       },
       "body": {
-        "ru": "Соответствует POSIX-ошибке ESRCH и прилетает из os.kill или os.waitpid, когда процесса с таким pid уже нет — как правило, он успел завершиться между вашей проверкой и сигналом. Именно из-за этой гонки правильный приём — послать сигнал и спокойно поймать ProcessLookupError, а не «сначала убедиться, что процесс жив». И помните про переиспользование pid: отсутствие ошибки не доказывает, что вы попали именно в нужный процесс.",
-        "en": "Maps to the POSIX ESRCH error and comes out of os.kill or os.waitpid when no process with that pid exists any more — usually because it exited between your check and your signal. Because of that race, the right pattern is to send the signal and catch ProcessLookupError rather than to test \"is it alive?\" first. Keep pid reuse in mind too: no error does not prove you hit the process you meant."
+        "ru": "Соответствует POSIX-ошибке ESRCH и прилетает из os.kill или os.killpg, когда процесса с таким pid уже нет — как правило, он успел завершиться между вашей проверкой и сигналом. Именно из-за этой гонки правильный приём — послать сигнал и спокойно поймать ProcessLookupError, а не «сначала убедиться, что процесс жив». И помните про переиспользование pid: отсутствие ошибки не доказывает, что вы попали именно в нужный процесс. (os.waitpid по чужому или уже собранному pid даёт другое исключение — ChildProcessError.)",
+        "en": "Maps to the POSIX ESRCH error and comes out of os.kill or os.killpg when no process with that pid exists any more — usually because it exited between your check and your signal. Because of that race, the right pattern is to send the signal and catch ProcessLookupError rather than to test \"is it alive?\" first. Keep pid reuse in mind too: no error does not prove you hit the process you meant. (os.waitpid on a foreign or already reaped pid raises something else — ChildProcessError.)"
       },
       "syntax": "raise ProcessLookupError",
       "status": "ready",
@@ -17787,7 +17787,7 @@
       "syntax": "raise signal.ItimerError",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/signal.html#signal.ItimerError",
-      "added": "3.3",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -17822,8 +17822,6 @@
           "    try:",
           "        raise ItimerError",
           "    except ItimerError as e:",
-          "        # Имя класса — itimer_error, а не ItimerError: в signal он объявлен",
-          "        # под C-именем, и `signal.ItimerError` лишь ссылка на него.",
           "        print(type(e).__name__)  # → ?"
         ]
       ],
@@ -17995,7 +17993,7 @@
           "next(it)  # StopIteration"
         ],
         [
-          "# В генераторе raise StopIteration = return",
+          "# В генераторе завершайте через return: raise StopIteration здесь даёт RuntimeError (PEP 479)",
           "def gen():",
           "    yield 1",
           "    return  # автоматически поднимает StopIteration"
@@ -19066,8 +19064,8 @@
         "en": "Base class for Unicode encoding/decoding errors (a subclass of ValueError)."
       },
       "body": {
-        "ru": "Общий предок UnicodeDecodeError и UnicodeEncodeError, поэтому один except UnicodeError ловит обе стороны сразу — но не говорит, где именно сломалось; если реакция должна отличаться, ловите конкретный класс. Он же наследник ValueError, так что стоящий выше except ValueError перехватит его первым, и это легко проглядеть. Изредка UnicodeError возбуждается и сам по себе — например, кодек idna так жалуется на пустую или слишком длинную метку домена.",
-        "en": "It is the common ancestor of UnicodeDecodeError and UnicodeEncodeError, so a single except UnicodeError covers both directions — at the cost of not telling you which one failed; catch the specific class when the handling differs. It also inherits from ValueError, so an earlier except ValueError will swallow it, which is easy to miss when reading a chain of handlers. Occasionally UnicodeError is raised on its own — the idna codec, for instance, uses it to complain about an empty or over-long domain label."
+        "ru": "Общий предок UnicodeDecodeError и UnicodeEncodeError, поэтому один except UnicodeError ловит обе стороны сразу — но не говорит, где именно сломалось; если реакция должна отличаться, ловите конкретный класс. Он же наследник ValueError, так что стоящий выше except ValueError перехватит его первым, и это легко проглядеть. Изредка UnicodeError возбуждается и сам по себе — например, кодек undefined на любую строку или idna на неподдерживаемый режим errors; а вот пустая или слишком длинная метка домена в idna даёт уже подкласс UnicodeEncodeError.",
+        "en": "It is the common ancestor of UnicodeDecodeError and UnicodeEncodeError, so a single except UnicodeError covers both directions — at the cost of not telling you which one failed; catch the specific class when the handling differs. It also inherits from ValueError, so an earlier except ValueError will swallow it, which is easy to miss when reading a chain of handlers. Occasionally UnicodeError is raised on its own — the undefined codec does so for any string, and idna for an unsupported errors mode; an empty or over-long domain label in idna, however, raises the UnicodeEncodeError subclass."
       },
       "syntax": "raise UnicodeError",
       "status": "ready",
@@ -19320,7 +19318,7 @@
         [
           "int('abc')           # ValueError",
           "float('inf')         # ok — inf допустим",
-          "list.index(99)       # ValueError если 99 нет",
+          "[1, 2, 3].index(99)  # ValueError: 99 нет в списке",
           "try:",
           "    x = int('нет')",
           "except ValueError as e:",
@@ -20650,9 +20648,7 @@
           "# → 1",
           "print(max(t))",
           "# → 9",
-          "print(sum(t))"
-        ],
-        [
+          "print(sum(t))",
           "# → 31"
         ]
       ],
@@ -20734,7 +20730,7 @@
         "ru": "Если значения нет, index бросает ValueError — мягкого аналога str.find(), возвращающего -1, у кортежей не существует, так что либо оборачивайте вызов в try, либо сначала проверяйте value in t. Аргумент start только сдвигает точку начала поиска: возвращаемый индекс всё равно отсчитывается от начала кортежа, а не от start.",
         "en": "A missing value raises ValueError — tuples have no forgiving counterpart to str.find() that returns -1, so either wrap the call in try or test value in t first. The start argument only moves where the scan begins; the index you get back is still counted from the beginning of the tuple, not from start."
       },
-      "syntax": "t.index(value, start=0, stop=len)",
+      "syntax": "t.index(value[, start[, stop]])",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/stdtypes.html#common-sequence-operations",
       "added": "<3.0",
@@ -20898,9 +20894,7 @@
           "# → (50, 40, 30, 20, 10)",
           "print(t[::2])",
           "# → (10, 30, 50)",
-          "print(t[2:4])"
-        ],
-        [
+          "print(t[2:4])",
           "# → (30, 40)"
         ]
       ],
@@ -20972,16 +20966,14 @@
           "print(parse_point('3,4'))",
           "# → (3, 4)",
           "result = minmax([3, 1, 4])",
-          "print(type(result))"
+          "print(type(result))",
+          "# → <class 'tuple'>"
         ],
         [
-          "# → <class 'tuple'>",
           "def triple(x):",
           "    return x, x*2, x*3",
           "a, b, c = triple(5)",
-          "print(a, b, c)"
-        ],
-        [
+          "print(a, b, c)",
           "# → 5 10 15"
         ]
       ],
@@ -21038,36 +21030,34 @@
       "examples": [
         [
           "coords = {(0, 0): 'origin', (1, 0): 'right', (0, 1): 'up'}",
-          "print(coords[(0, 0)])"
+          "print(coords[(0, 0)])",
+          "# → 'origin'"
         ],
         [
-          "# → 'origin'",
           "grid = {}",
           "for i in range(3):",
           "    for j in range(3):",
           "        grid[(i, j)] = i * 3 + j",
-          "print(grid[(2, 1)])"
+          "print(grid[(2, 1)])",
+          "# → 7"
         ],
         [
-          "# → 7",
           "try:",
           "    d = {[1, 2]: 'list'}",
           "except TypeError as e:",
-          "    print(e)"
+          "    print(e)",
+          "# → ? текст TypeError зависит от версии: 3.14 добавил «cannot use 'list' as a dict key»"
         ],
         [
-          "# → ? текст TypeError зависит от версии: 3.14 добавил «cannot use 'list' as a dict key»",
           "pair_count = {}",
           "pairs = [(1, 2), (3, 4), (1, 2)]",
           "for p in pairs:",
           "    pair_count[p] = pair_count.get(p, 0) + 1",
-          "print(pair_count)"
+          "print(pair_count)",
+          "# → {(1, 2): 2, (3, 4): 1}"
         ],
         [
-          "# → {(1, 2): 2, (3, 4): 1}",
-          "print(hash((1, 2, 3)))"
-        ],
-        [
+          "print(hash((1, 2, 3)))",
           "# → ? хеш кортежа: солится PYTHONHASHSEED и меняется от запуска"
         ]
       ],
@@ -21137,16 +21127,14 @@
           "p2 = p._replace(x=10)",
           "print(p2)",
           "# → Point(x=10, y=4)",
-          "print(Point._fields)"
+          "print(Point._fields)",
+          "# → ('x', 'y')"
         ],
         [
           "from collections import namedtuple",
-          "# → ('x', 'y')",
           "Card = namedtuple('Card', 'rank suit')",
           "c = Card('A', 'spades')",
-          "print(f'{c.rank} of {c.suit}')"
-        ],
-        [
+          "print(f'{c.rank} of {c.suit}')",
           "# → 'A of spades'"
         ]
       ],
@@ -21252,7 +21240,7 @@
       "syntax": "a, b = t  |  a, *rest = t  |  a, _, b = t",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#assignment-statements",
-      "added": "3.0",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -21281,43 +21269,43 @@
       "examples": [
         [
           "a, b, c = (1, 2, 3)",
-          "print(a, b, c)"
+          "print(a, b, c)",
+          "# → 1 2 3"
         ],
         [
-          "# → 1 2 3",
           "x, y = (10, 20)",
           "x, y = y, x",
-          "print(x, y)"
+          "print(x, y)",
+          "# → 20 10 (swap)"
         ],
         [
-          "# → 20 10 (swap)",
           "first, *rest = (1, 2, 3, 4, 5)",
-          "print(first, rest)"
+          "print(first, rest)",
+          "# → 1 [2, 3, 4, 5]"
         ],
         [
-          "# → 1 [2, 3, 4, 5]",
           "*head, last = (1, 2, 3, 4, 5)",
-          "print(head, last)"
+          "print(head, last)",
+          "# → [1, 2, 3, 4] 5"
         ],
         [
-          "# → [1, 2, 3, 4] 5",
           "a, _, c = (1, 999, 3)",
-          "print(a, c)"
+          "print(a, c)",
+          "# → 1 3 (_ игнорируется)"
         ],
         [
-          "# → 1 3 (_ игнорируется)",
           "point = (3, 4)",
           "import math",
           "dist = math.sqrt(sum(v**2 for v in point))",
-          "print(dist)"
+          "print(dist)",
+          "# → 5.0"
         ],
         [
-          "# → 5.0",
           "(a, b), c = (1, 2), 3",
-          "print(a, b, c)"
+          "print(a, b, c)",
+          "# → 1 2 3 (вложенная распаковка)"
         ],
         [
-          "# → 1 2 3 (вложенная распаковка)",
           "for a, b in [(1, 2), (3, 4)]:",
           "    print(a + b)",
           "    # → 3 / 7"
@@ -21375,33 +21363,31 @@
       ],
       "examples": [
         [
-          "t0 = ()"
+          "t0 = ()",
+          "# → ()"
         ],
         [
-          "# → ()",
-          "t1 = (1,)"
+          "t1 = (1,)",
+          "# → (1,) (не (1) — это просто 1)"
         ],
         [
-          "# → (1,) (не (1) — это просто 1)",
-          "t2 = (1, 2, 3)"
+          "t2 = (1, 2, 3)",
+          "# → (1, 2, 3)"
         ],
         [
-          "# → (1, 2, 3)",
-          "t3 = 1, 2, 3"
+          "t3 = 1, 2, 3",
+          "# → (1, 2, 3)"
         ],
         [
-          "# → (1, 2, 3)",
-          "t4 = tuple([1, 2, 3])"
+          "t4 = tuple([1, 2, 3])",
+          "# → (1, 2, 3)"
         ],
         [
-          "# → (1, 2, 3)",
-          "t5 = tuple('abc')"
+          "t5 = tuple('abc')",
+          "# → ('a', 'b', 'c')"
         ],
         [
-          "# → ('a', 'b', 'c')",
-          "print(type((1)))"
-        ],
-        [
+          "print(type((1)))",
           "# → <class 'int'> (без запятой — не кортеж!)"
         ]
       ],
@@ -22000,20 +21986,18 @@
           "# → True",
           "print(6 in s)",
           "# → False",
-          "print(6 not in s)"
+          "print(6 not in s)",
+          "# → True"
         ],
         [
-          "# → True",
           "big = set(range(10**6))",
-          "print(999999 in big)"
+          "print(999999 in big)",
+          "# → True (мгновенно, O(1))"
         ],
         [
-          "# → True (мгновенно, O(1))",
           "banned = {'spam', 'ads', 'junk'}",
           "msg = 'spam email'",
-          "print(any(w in banned for w in msg.split()))"
-        ],
-        [
+          "print(any(w in banned for w in msg.split()))",
           "# → True"
         ]
       ],
@@ -23032,7 +23016,7 @@
       "syntax": "{expr for var in iterable [if cond]}",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#set-displays",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -23060,28 +23044,26 @@
       "examples": [
         [
           "squares = {x**2 for x in range(6)}",
-          "print(sorted(squares))"
+          "print(sorted(squares))",
+          "# → [0, 1, 4, 9, 16, 25]"
         ],
         [
-          "# → [0, 1, 4, 9, 16, 25]",
           "evens = {x for x in range(10) if x % 2 == 0}",
-          "print(evens)"
+          "print(evens)",
+          "# → {0, 2, 4, 6, 8}"
         ],
         [
-          "# → {0, 2, 4, 6, 8}",
           "words = ['hello', 'world', 'hello', 'python']",
           "unique_len = {len(w) for w in words}",
           "print(unique_len)",
           "# → {5, 6} (уникальные длины)",
           "unique_first = {w[0] for w in words}",
-          "print(sorted(unique_first))"
+          "print(sorted(unique_first))",
+          "# → ['h', 'p', 'w'] (у множества строк порядок не определён, поэтому сортируем)"
         ],
         [
-          "# → ['h', 'p', 'w'] (у множества строк порядок не определён, поэтому сортируем)",
           "no_vowels = {c for c in 'hello' if c not in 'aeiou'}",
-          "print(sorted(no_vowels))"
-        ],
-        [
+          "print(sorted(no_vowels))",
           "# → ['h', 'l']"
         ]
       ],
@@ -23152,25 +23134,23 @@
           "# → {1, 2}",
           "print(b - a)",
           "# → {5, 6}",
-          "print(a ^ b)"
+          "print(a ^ b)",
+          "# → {1, 2, 5, 6}"
         ],
         [
-          "# → {1, 2, 5, 6}",
           "c = {1, 2}",
           "c |= {3, 4}",
-          "print(c)"
+          "print(c)",
+          "# → {1, 2, 3, 4}"
         ],
         [
-          "# → {1, 2, 3, 4}",
           "d = {1, 2, 3}",
           "d &= {2, 3, 4}",
-          "print(d)"
+          "print(d)",
+          "# → {2, 3}"
         ],
         [
-          "# → {2, 3}",
-          "print({1, 2} ^ {2, 3})"
-        ],
-        [
+          "print({1, 2} ^ {2, 3})",
           "# → {1, 3}"
         ]
       ],
@@ -23244,15 +23224,13 @@
           "print(len(set(lst)))",
           "# → 4 (число уникальных)",
           "has_dup = len(lst) != len(set(lst))",
-          "print(has_dup)"
+          "print(has_dup)",
+          "# → True (есть дубликаты)"
         ],
         [
-          "# → True (есть дубликаты)",
           "tags1 = {'python', 'data', 'ml'}",
           "tags2 = {'java', 'data', 'web'}",
-          "print(sorted(tags1.symmetric_difference(tags2)))"
-        ],
-        [
+          "print(sorted(tags1.symmetric_difference(tags2)))",
           "# → ['java', 'ml', 'python', 'web'] (у множества строк порядок не определён, поэтому сортируем)"
         ]
       ],
@@ -23272,8 +23250,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Множество создаётся литералом {}, конструктором set() или frozenset(). Дубликаты автоматически удаляются. Порядок не гарантирован.",
-        "en": "A set is written as a {} literal or built with set() or frozenset(). Duplicates are removed automatically. The order is not guaranteed."
+        "ru": "Множество создаётся литералом {1, 2}, конструктором set() или frozenset(); пустое — только set(). Дубликаты удаляются. Порядок не гарантирован.",
+        "en": "A set is written as a {1, 2} literal or built with set() or frozenset(); an empty one only with set(). Duplicates are removed. The order is not guaranteed."
       },
       "body": {
         "ru": "Пустое множество создаётся только вызовом set(): фигурные скобки {} дают пустой словарь. Элементы обязаны быть хешируемыми — список внутрь не положить (кортеж можно), и обычное множество не может быть элементом другого множества, для этого есть неизменяемый frozenset. Ещё ловушка: set('abc') разбирает строку на отдельные символы, а не кладёт её целиком.",
@@ -23310,40 +23288,38 @@
       ],
       "examples": [
         [
-          "s = {1, 2, 3}"
+          "s = {1, 2, 3}",
+          "# → {1, 2, 3}"
         ],
         [
-          "# → {1, 2, 3}",
           "s2 = set([1, 2, 2, 3, 3])",
-          "print(s2)"
+          "print(s2)",
+          "# → {1, 2, 3} (дубли удалены)"
         ],
         [
-          "# → {1, 2, 3} (дубли удалены)",
           "s3 = set('hello')",
-          "print(s3)"
+          "print(sorted(s3))",
+          "# → ['e', 'h', 'l', 'o'] (порядок элементов множества не определён, поэтому сортируем)"
         ],
         [
-          "# → {'h', 'e', 'l', 'o'}",
           "empty = set()",
-          "print(type(empty))"
+          "print(type(empty))",
+          "# → <class 'set'> ({} — это dict!)"
         ],
         [
-          "# → <class 'set'> ({} — это dict!)",
           "fs = frozenset([1, 2, 3])",
-          "print(fs)"
+          "print(fs)",
+          "# → frozenset({1, 2, 3})"
         ],
         [
-          "# → frozenset({1, 2, 3})",
           "nums = [1, 1, 2, 2, 3]",
           "unique = list(set(nums))",
-          "print(sorted(unique))"
+          "print(sorted(unique))",
+          "# → [1, 2, 3]"
         ],
         [
-          "# → [1, 2, 3]",
           "s4 = {x**2 for x in range(5)}",
-          "print(sorted(s4))"
-        ],
-        [
+          "print(sorted(s4))",
           "# → [0, 1, 4, 9, 16]"
         ]
       ],
@@ -27074,17 +27050,17 @@
           "c = Counter('aabbccca')",
           "print(c)",
           "# → Counter({'a': 3, 'c': 3, 'b': 2})",
-          "print(c.most_common(2))"
+          "print(c.most_common(2))",
+          "# → [('a', 3), ('c', 3)]"
         ],
         [
           "from collections import Counter",
-          "# → [('a', 3), ('c', 3)]",
           "c2 = Counter(['apple', 'banana', 'apple', 'cherry', 'apple'])",
-          "print(c2.most_common(1))"
+          "print(c2.most_common(1))",
+          "# → [('apple', 3)]"
         ],
         [
           "from collections import Counter",
-          "# → [('apple', 3)]",
           "c3 = Counter('hello')",
           "c4 = Counter('world')",
           "print(c3 + c4)",
@@ -27093,16 +27069,14 @@
           "# → Counter({'h': 1, 'e': 1, 'l': 1}) (только положительные)",
           "print(c3 & c4)",
           "# → Counter({'l': 1, 'o': 1}) (пересечение, min)",
-          "print(c3 | c4)"
+          "print(c3 | c4)",
+          "# → Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1, 'w': 1, 'r': 1, 'd': 1}) (объединение, max)"
         ],
         [
           "from collections import Counter",
-          "# → Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1, 'w': 1, 'r': 1, 'd': 1}) (объединение, max)",
           "words = 'the cat sat on the mat'.split()",
           "wc = Counter(words)",
-          "print(wc.most_common(3))"
-        ],
-        [
+          "print(wc.most_common(3))",
           "# → [('the', 2), ('cat', 1), ('sat', 1)]"
         ]
       ],
@@ -27408,9 +27382,6 @@
           "print(list(od))  # → ['a', 'b', 'c'] — в начало",
           "print(od.popitem(last=True))  # → ('c', 3) — последний",
           "print(od.popitem(last=False))  # → ('a', 1) — первый"
-        ],
-        [
-          "# → ('b', 2) (первый)"
         ]
       ],
       "related": [
@@ -29892,7 +29863,7 @@
       "syntax": "from dataclasses import dataclass\n@dataclass\nclass Point:\n    x: float\n    y: float",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass",
-      "added": "3.10",
+      "added": "3.7",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -30091,7 +30062,7 @@
       "syntax": "@dataclass(order=True)\nclass X:\n    a: int; b: int",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass",
-      "added": "3.10",
+      "added": "3.7",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -32006,7 +31977,7 @@
       "syntax": "from datetime import timezone\ndatetime.now(timezone.utc)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/datetime.html#aware-and-naive-objects",
-      "added": "3.2",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -32133,7 +32104,7 @@
       "syntax": "%Y %m %d %H %M %S %A %B %p",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes",
-      "added": "3.6",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -33789,7 +33760,7 @@
       "syntax": "list(MyEnum)  # все элементы\nfor m in MyEnum: ...\nmember is MyEnum.X",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/howto/enum.html#iteration",
-      "added": "3.11",
+      "added": "3.4",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -36462,9 +36433,7 @@
           "data = [3, 1, 4, 1, 5, 9, 2, 6]",
           "heapq.nlargest(3, data) # → [9, 6, 5]",
           "records = [{'v': 5}, {'v': 1}, {'v': 9}]",
-          "heapq.nlargest(2, records, key=lambda x: x['v'])"
-        ],
-        [
+          "heapq.nlargest(2, records, key=lambda x: x['v'])",
           "# → [{'v': 9}, {'v': 5}]"
         ]
       ],
@@ -85232,8 +85201,8 @@
         "en": "The method behind <. On its own it is enough for sorted() and min() to order objects."
       },
       "body": {
-        "ru": "sorted, min, max и heapq сравнивают только через <, поэтому для сортировки достаточно __lt__. Операторы >, <= и >= сами из него не выводятся — их даёт декоратор functools.total_ordering по __eq__ и одному из сравнений. Для a > b при отсутствии __gt__ Python пробует отражённое b < a.",
-        "en": "sorted, min, max and heapq compare only with <, so __lt__ alone is enough for sorting. The operators >, <= and >= are not derived from it automatically — functools.total_ordering supplies them from __eq__ and one comparison. For a > b without __gt__ Python tries the reflected b < a."
+        "ru": "sorted, min и heapq сравнивают только через <, поэтому для сортировки достаточно __lt__; max сравнивает через >, но и ему хватает одного __lt__: для a > b при отсутствии __gt__ Python пробует отражённое b < a. Операторы <= и >= из __lt__ не выводятся — их даёт декоратор functools.total_ordering по __eq__ и одному из сравнений.",
+        "en": "sorted, min and heapq compare only with <, so __lt__ alone is enough for sorting; max compares with >, yet __lt__ alone suffices there too: for a > b without __gt__ Python tries the reflected b < a. The operators <= and >= are not derived from __lt__ — functools.total_ordering supplies them from __eq__ and one comparison."
       },
       "syntax": "def __lt__(self, other): ...",
       "status": "ready",
@@ -86087,10 +86056,10 @@
           "        self.next = None",
           "    def set_next(self, node):",
           "        self.next = node",
-          "        n1 = Node(1)",
-          "        n2 = Node(2)",
-          "        n1.set_next(n2)",
-          "        print(n1.next.val)  # → 2",
+          "n1 = Node(1)",
+          "n2 = Node(2)",
+          "n1.set_next(n2)",
+          "print(n1.next.val)  # → 2",
           "class Builder:",
           "    def __init__(self):",
           "        self.items = []",
@@ -86116,9 +86085,9 @@
           "    prefix = '[LOG]'",
           "    def log(self, msg):",
           "        print(f'{self.prefix} {msg}')",
-          "        l = Logger()",
-          "        l.prefix = '[INFO]'",
-          "        l.log('test')  # → [INFO] test"
+          "l = Logger()",
+          "l.prefix = '[INFO]'",
+          "l.log('test')  # → [INFO] test"
         ]
       ],
       "related": [
@@ -86421,7 +86390,7 @@
       "syntax": "from abc import ABC, abstractmethod\nclass Shape(ABC):\n    @abstractmethod\n    def area(self): ...",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABC",
-      "added": "3.4",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -87389,10 +87358,8 @@
           "config = {'debug': False, 'host': 'localhost'}",
           "overrides = {'debug': True, 'port': 8080}",
           "config |= overrides",
-          "print(config)"
-        ],
-        [
-          "# {'debug': True, 'host': 'localhost', 'port': 8080}"
+          "print(config)",
+          "# → {'debug': True, 'host': 'localhost', 'port': 8080}"
         ]
       ],
       "related": [
@@ -87779,7 +87746,7 @@
         "ru": "Не путайте с list.pop(): у списка аргумент — индекс и второго параметра-заглушки нет, здесь же первый аргумент — ключ. d.pop(key, None) — стандартный способ снести ключ, которого может не быть: del d[key] в такой ситуации упадёт с KeyError. Возврат значения делает pop удобным, когда нужно «забрать и удалить» за одно действие, например вынуть служебный ключ из словаря параметров.",
         "en": "Do not confuse it with list.pop(), whose argument is an index and which has no default parameter; here the first argument is a key. d.pop(key, None) is the usual way to drop a key that may not be there — del d[key] would raise KeyError instead. Because it returns the value, pop is handy when you need to take and remove in one step, such as pulling a service key out of a dict of options."
       },
-      "syntax": "d.pop(key, default)",
+      "syntax": "d.pop(key[, default])",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.pop",
       "added": "<3.0",
@@ -87951,7 +87918,7 @@
         "ru": "Метод меняет словарь на месте и возвращает None, так что строка d = d.update(other) молча превратит d в None — классическая студенческая опечатка. Совпадающие ключи перезаписываются без предупреждения, прежние значения теряются; если нужен новый словарь, а не мутация исходного, берите d1 | d2 (Python 3.9+). Аргументом может быть не только словарь, но и любой итерируемый объект пар — например, список кортежей или zip.",
         "en": "update() mutates the dict in place and returns None, so d = d.update(other) silently turns d into None — a classic beginner typo. Colliding keys are overwritten without warning and the old values are gone; if you want a new dict rather than a mutated original, use d1 | d2 (Python 3.9+). The argument need not be a dict either: any iterable of key/value pairs works, such as a list of tuples or a zip object."
       },
-      "syntax": "d.update(other, **kwargs)",
+      "syntax": "d.update([other], **kwargs)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
       "added": "<3.0",
@@ -88105,9 +88072,7 @@
           "# → True",
           "print(1 in d)",
           "# → False (1 — не ключ!)",
-          "print(1 in d.values())"
-        ],
-        [
+          "print(1 in d.values())",
           "# → True (проверка значений)"
         ]
       ],
@@ -88338,7 +88303,7 @@
       "syntax": "d1.update(d2)  |  {**d1, **d2}  |  d1 | d2",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/stdtypes.html#dict.update",
-      "added": "3.9",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -88381,15 +88346,13 @@
           "combined = {**d3, **d2, **extra}",
           "print(combined)",
           "# → {'a': 1, 'b': 20, 'c': 3, 'x': 9}",
-          "print(d3)"
+          "print(d3)",
+          "# → {'a': 1, 'b': 2} (** не изменяет оригинал)"
         ],
         [
-          "# → {'a': 1, 'b': 2} (** не изменяет оригинал)",
           "d5 = {'a': 1}",
           "d5 |= {'b': 2, 'a': 99}",
-          "print(d5)"
-        ],
-        [
+          "print(d5)",
           "# → {'a': 99, 'b': 2}"
         ]
       ],
@@ -88508,33 +88471,31 @@
           "def greet(name, age):",
           "    return f'{name} is {age}'",
           "info = {'name': 'Alice', 'age': 30}",
-          "print(greet(**info))"
+          "print(greet(**info))",
+          "# → 'Alice is 30'"
         ],
         [
-          "# → 'Alice is 30'",
           "d1 = {'a': 1, 'b': 2}",
           "d2 = {'c': 3, 'd': 4}",
           "merged = {**d1, **d2}",
-          "print(merged)"
+          "print(merged)",
+          "# → {'a': 1, 'b': 2, 'c': 3, 'd': 4}"
         ],
         [
-          "# → {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
           "d3 = {'a': 1}",
           "d4 = {'a': 99, 'b': 2}",
-          "print({**d3, **d4})"
+          "print({**d3, **d4})",
+          "# → {'a': 99, 'b': 2} (d4 перекрывает d3)"
         ],
         [
-          "# → {'a': 99, 'b': 2} (d4 перекрывает d3)",
           "defaults = {'color': 'black', 'size': 'M'}",
           "user_prefs = {'size': 'L'}",
           "settings = {**defaults, **user_prefs}",
-          "print(settings)"
+          "print(settings)",
+          "# → {'color': 'black', 'size': 'L'}"
         ],
         [
-          "# → {'color': 'black', 'size': 'L'}",
-          "print({**{'x': 1}, 'y': 2, **{'z': 3}})"
-        ],
-        [
+          "print({**{'x': 1}, 'y': 2, **{'z': 3}})",
           "# → {'x': 1, 'y': 2, 'z': 3}"
         ]
       ],
@@ -88564,7 +88525,7 @@
       "syntax": "{k: v for ... in ...}  |  {k: v for ... in ... if cond}",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#dictionary-displays",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -88592,10 +88553,10 @@
       "examples": [
         [
           "squares = {x: x**2 for x in range(5)}",
-          "print(squares)"
+          "print(squares)",
+          "# → {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}"
         ],
         [
-          "# → {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}",
           "d = {'a': 1, 'b': 2, 'c': 3, 'd': 4}",
           "even_vals = {k: v for k, v in d.items() if v % 2 == 0}",
           "print(even_vals)",
@@ -88613,20 +88574,18 @@
           "print(combined)",
           "# → {'a': 1, 'b': 2, 'c': 3}",
           "upper_d = {k.upper(): v*2 for k, v in d.items()}",
-          "print(upper_d)"
+          "print(upper_d)",
+          "# → {'A': 2, 'B': 4, 'C': 6, 'D': 8}"
         ],
         [
-          "# → {'A': 2, 'B': 4, 'C': 6, 'D': 8}",
           "matrix = {(i, j): i*j for i in range(3) for j in range(3)}",
-          "print(matrix[(2, 2)])"
+          "print(matrix[(2, 2)])",
+          "# → 4"
         ],
         [
-          "# → 4",
           "data = [('a', 1), ('b', 2), ('a', 3)]",
           "last = {k: v for k, v in data}",
-          "print(last)"
-        ],
-        [
+          "print(last)",
           "# → {'a': 3, 'b': 2} (последнее значение для дублей)"
         ]
       ],
@@ -88684,36 +88643,34 @@
       ],
       "examples": [
         [
-          "d1 = {}"
+          "d1 = {}",
+          "# → {}"
         ],
         [
-          "# → {}",
-          "d2 = {'a': 1, 'b': 2}"
+          "d2 = {'a': 1, 'b': 2}",
+          "# → {'a': 1, 'b': 2}"
         ],
         [
-          "# → {'a': 1, 'b': 2}",
-          "d3 = dict(x=1, y=2)"
+          "d3 = dict(x=1, y=2)",
+          "# → {'x': 1, 'y': 2}"
         ],
         [
-          "# → {'x': 1, 'y': 2}",
-          "d4 = dict([('a', 1), ('b', 2)])"
+          "d4 = dict([('a', 1), ('b', 2)])",
+          "# → {'a': 1, 'b': 2}"
         ],
         [
-          "# → {'a': 1, 'b': 2}",
           "d5 = dict.fromkeys(['a', 'b', 'c'], 0)",
-          "print(d5)"
+          "print(d5)",
+          "# → {'a': 0, 'b': 0, 'c': 0}"
         ],
         [
-          "# → {'a': 0, 'b': 0, 'c': 0}",
           "d6 = dict.fromkeys('abc')",
-          "print(d6)"
+          "print(d6)",
+          "# → {'a': None, 'b': None, 'c': None}"
         ],
         [
-          "# → {'a': None, 'b': None, 'c': None}",
           "d7 = {i: i**2 for i in range(4)}",
-          "print(d7)"
-        ],
-        [
+          "print(d7)",
           "# → {0: 0, 1: 1, 2: 4, 3: 9}"
         ]
       ],
@@ -88781,9 +88738,7 @@
           "# → {'apple': 1, 'banana': 3, 'cherry': 2} (по ключу)",
           "print(dict(sorted(d.items(), key=lambda x: x[1], reverse=True)))",
           "# → {'banana': 3, 'cherry': 2, 'apple': 1} (по значению убыв.)",
-          "print(sorted(d, key=d.get))"
-        ],
-        [
+          "print(sorted(d, key=d.get))",
           "# → ['apple', 'cherry', 'banana']"
         ]
       ],
@@ -88803,8 +88758,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Оператор del удаляет элемент по индексу, срез или весь список из памяти. Изменяет объект на месте.",
-        "en": "The del statement removes an item by index, a slice, or the whole list from memory. It modifies the object in place."
+        "ru": "Оператор del удаляет элемент по индексу или срез, изменяя список на месте; del lst убирает только имя, а не сам объект.",
+        "en": "The del statement removes an item by index or a slice, changing the list in place; del lst removes only the name, not the object."
       },
       "body": {
         "ru": "del lst[i] и lst.pop(i) удаляют одно и то же, но del ничего не возвращает — берите pop, когда значение ещё нужно. del lst[a:b] режет список на месте, поэтому все другие имена, ссылающиеся на этот же список, увидят изменение, а lst = lst[:a] + lst[b:] лишь создаёт новый объект и перепривязывает имя. Отдельно del lst убирает только имя: сам объект живёт, пока на него есть другие ссылки.",
@@ -88846,26 +88801,24 @@
           "print(lst)",
           "# → [0, 1, 3, 4]",
           "del lst[1:3]",
-          "print(lst)"
+          "print(lst)",
+          "# → [0, 4]"
         ],
         [
-          "# → [0, 4]",
           "lst2 = list(range(6))",
           "del lst2[::2]",
-          "print(lst2)"
+          "print(lst2)",
+          "# → [1, 3, 5]"
         ],
         [
-          "# → [1, 3, 5]",
           "lst3 = [1, 2, 3]",
           "del lst3[:]",
-          "print(lst3)"
+          "print(lst3)",
+          "# → [] (очистка через срез)"
         ],
         [
-          "# → [] (очистка через срез)",
           "lst4 = [1, 2, 3]",
-          "del lst4"
-        ],
-        [
+          "del lst4",
           "# NameError при обращении к lst4 после del"
         ]
       ],
@@ -88963,7 +88916,7 @@
       "syntax": "item in lst  |  item not in lst",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
-      "added": "3.8",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -88996,17 +88949,15 @@
           "# → True",
           "print(6 in lst)",
           "# → False",
-          "print(6 not in lst)"
+          "print(6 not in lst)",
+          "# → True"
         ],
         [
-          "# → True",
-          "print([1, 2] in [[1, 2], [3, 4]])"
+          "print([1, 2] in [[1, 2], [3, 4]])",
+          "# → True (сравнение подсписков)"
         ],
         [
-          "# → True (сравнение подсписков)",
-          "print(None in [1, None, 3])"
-        ],
-        [
+          "print(None in [1, None, 3])",
           "# → True"
         ]
       ],
@@ -89321,7 +89272,7 @@
         "ru": "В отличие от str.find, «промаха» тут нет: если значения в списке нет, метод бросает ValueError, поэтому либо оборачивайте вызов в try, либо сначала проверяйте наличие через in. Поиск линейный, слева направо, и при заданных start/end возвращается всё равно индекс в исходном списке, а не смещение от start.",
         "en": "Unlike str.find there is no \"not found\" return value: a missing item raises ValueError, so either wrap the call in try or check with in first. The scan is linear and left to right, and with start/end the number you get back is still an index into the whole list, not an offset from start."
       },
-      "syntax": "lst.index(value, start=0, stop=len)",
+      "syntax": "lst.index(value[, start[, stop]])",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/stdtypes.html#list.index",
       "added": "<3.0",
@@ -89929,9 +89880,7 @@
           "print(lst)",
           "# → [10, 99, 30, 40, 50]",
           "lst[-1] = 0",
-          "print(lst)"
-        ],
-        [
+          "print(lst)",
           "# → [10, 99, 30, 40, 0]"
         ]
       ],
@@ -89951,8 +89900,8 @@
       },
       "kind": "term",
       "summary": {
-        "ru": "Оператор + возвращает новый список-объединение. * повторяет список n раз. Для mutable объектов * создаёт shallow копии.",
-        "en": "The + operator returns a new list — the concatenation of the two. * repeats a list n times. For mutable objects * produces shallow copies."
+        "ru": "Оператор + возвращает новый список-объединение. * повторяет список n раз, но элементы не копирует: повторяются ссылки на те же объекты.",
+        "en": "The + operator returns a new list — the concatenation of the two. * repeats a list n times without copying the items: it repeats references to the same objects."
       },
       "body": {
         "ru": "Оба оператора строят новый список целиком, поэтому накопление в цикле вида res = res + [x] квадратично по времени — используйте append() или extend(). Различайте lst += other и lst = lst + other: += меняет список на месте, как extend, и это видят все, кто держит ссылку на тот же объект, к тому же справа допустим любой итерируемый объект; обычный + требует, чтобы справа тоже был список, иначе TypeError.",
@@ -89989,27 +89938,25 @@
       ],
       "examples": [
         [
-          "print([1, 2] + [3, 4])"
+          "print([1, 2] + [3, 4])",
+          "# → [1, 2, 3, 4]"
         ],
         [
-          "# → [1, 2, 3, 4]",
-          "print([0] * 5)"
+          "print([0] * 5)",
+          "# → [0, 0, 0, 0, 0]"
         ],
         [
-          "# → [0, 0, 0, 0, 0]",
-          "print(['a', 'b'] * 3)"
+          "print(['a', 'b'] * 3)",
+          "# → ['a', 'b', 'a', 'b', 'a', 'b']"
         ],
         [
-          "# → ['a', 'b', 'a', 'b', 'a', 'b']",
-          "print([1, 2] + [])"
+          "print([1, 2] + [])",
+          "# → [1, 2]"
         ],
         [
-          "# → [1, 2]",
           "trap = [[]] * 3",
           "trap[0].append(1)",
-          "print(trap)"
-        ],
-        [
+          "print(trap)",
           "# → [[1], [1], [1]] (одна ссылка!)"
         ]
       ],
@@ -90066,36 +90013,34 @@
       "examples": [
         [
           "a, b, c = [1, 2, 3]",
-          "print(a, b, c)"
+          "print(a, b, c)",
+          "# → 1 2 3"
         ],
         [
-          "# → 1 2 3",
           "first, *rest = [1, 2, 3, 4, 5]",
-          "print(first, rest)"
+          "print(first, rest)",
+          "# → 1 [2, 3, 4, 5]"
         ],
         [
-          "# → 1 [2, 3, 4, 5]",
           "*head, last = [1, 2, 3, 4, 5]",
-          "print(head, last)"
+          "print(head, last)",
+          "# → [1, 2, 3, 4] 5"
         ],
         [
-          "# → [1, 2, 3, 4] 5",
           "a, *_, b = [1, 2, 3, 4, 5]",
-          "print(a, b)"
+          "print(a, b)",
+          "# → 1 5"
         ],
         [
-          "# → 1 5",
           "lst1, lst2 = [1, 2, 3], [4, 5]",
           "combined = [*lst1, *lst2]",
-          "print(combined)"
+          "print(combined)",
+          "# → [1, 2, 3, 4, 5]"
         ],
         [
-          "# → [1, 2, 3, 4, 5]",
           "def func(*args): return sum(args)",
           "nums = [1, 2, 3]",
-          "print(func(*nums))"
-        ],
-        [
+          "print(func(*nums))",
           "# → 6"
         ]
       ],
@@ -90151,33 +90096,31 @@
       ],
       "examples": [
         [
-          "a = []"
+          "a = []",
+          "# → []"
         ],
         [
-          "# → []",
-          "b = [1, 2, 3]"
+          "b = [1, 2, 3]",
+          "# → [1, 2, 3]"
         ],
         [
-          "# → [1, 2, 3]",
-          "c = list('abc')"
+          "c = list('abc')",
+          "# → ['a', 'b', 'c']"
         ],
         [
-          "# → ['a', 'b', 'c']",
-          "d = list(range(5))"
+          "d = list(range(5))",
+          "# → [0, 1, 2, 3, 4]"
         ],
         [
-          "# → [0, 1, 2, 3, 4]",
-          "e = [x**2 for x in range(4)]"
+          "e = [x**2 for x in range(4)]",
+          "# → [0, 1, 4, 9]"
         ],
         [
-          "# → [0, 1, 4, 9]",
-          "f = [1, 'two', 3.0, None]"
+          "f = [1, 'two', 3.0, None]",
+          "# → [1, 'two', 3.0, None]"
         ],
         [
-          "# → [1, 'two', 3.0, None]",
-          "g = [0] * 5"
-        ],
-        [
+          "g = [0] * 5",
           "# → [0, 0, 0, 0, 0]"
         ]
       ],
@@ -90236,37 +90179,35 @@
       "examples": [
         [
           "words = ['banana', 'apple', 'fig', 'cherry']",
-          "print(sorted(words, key=len))"
+          "print(sorted(words, key=len))",
+          "# → ['fig', 'apple', 'banana', 'cherry']"
         ],
         [
-          "# → ['fig', 'apple', 'banana', 'cherry']",
           "pairs = [(2, 'b'), (1, 'c'), (3, 'a')]",
           "print(sorted(pairs, key=lambda x: x[1]))",
           "# → [(3, 'a'), (2, 'b'), (1, 'c')]",
-          "print(sorted(pairs, key=lambda x: x[0], reverse=True))"
+          "print(sorted(pairs, key=lambda x: x[0], reverse=True))",
+          "# → [(3, 'a'), (2, 'b'), (1, 'c')]"
         ],
         [
-          "# → [(3, 'a'), (2, 'b'), (1, 'c')]",
           "people = [('Alice', 30), ('Bob', 25), ('Carol', 30)]",
-          "print(sorted(people, key=lambda p: (p[1], p[0])))"
+          "print(sorted(people, key=lambda p: (p[1], p[0])))",
+          "# → [('Bob', 25), ('Alice', 30), ('Carol', 30)]"
         ],
         [
-          "# → [('Bob', 25), ('Alice', 30), ('Carol', 30)]",
           "nums = ['-3', '1', '-10', '2']",
-          "print(sorted(nums, key=lambda x: abs(int(x))))"
+          "print(sorted(nums, key=lambda x: abs(int(x))))",
+          "# → ['1', '2', '-3', '-10']"
         ],
         [
-          "# → ['1', '2', '-3', '-10']",
           "strs = ['Banana', 'apple', 'Cherry']",
-          "print(sorted(strs, key=str.lower))"
+          "print(sorted(strs, key=str.lower))",
+          "# → ['apple', 'Banana', 'Cherry']"
         ],
         [
-          "# → ['apple', 'Banana', 'Cherry']",
           "from operator import itemgetter",
           "data = [{'name': 'b', 'val': 2}, {'name': 'a', 'val': 3}]",
-          "print(sorted(data, key=itemgetter('name')))"
-        ],
-        [
+          "print(sorted(data, key=itemgetter('name')))",
           "# → [{'name': 'a', 'val': 3}, {'name': 'b', 'val': 2}]"
         ]
       ],
@@ -90324,45 +90265,43 @@
       "examples": [
         [
           "squares = [x**2 for x in range(6)]",
-          "print(squares)"
+          "print(squares)",
+          "# → [0, 1, 4, 9, 16, 25]"
         ],
         [
-          "# → [0, 1, 4, 9, 16, 25]",
           "evens = [x for x in range(10) if x % 2 == 0]",
-          "print(evens)"
+          "print(evens)",
+          "# → [0, 2, 4, 6, 8]"
         ],
         [
-          "# → [0, 2, 4, 6, 8]",
           "pairs = [(x, y) for x in [1, 2] for y in [3, 4]]",
-          "print(pairs)"
+          "print(pairs)",
+          "# → [(1, 3), (1, 4), (2, 3), (2, 4)]"
         ],
         [
-          "# → [(1, 3), (1, 4), (2, 3), (2, 4)]",
           "words = ['hello', 'world', 'python']",
           "upper = [w.upper() for w in words]",
-          "print(upper)"
+          "print(upper)",
+          "# → ['HELLO', 'WORLD', 'PYTHON']"
         ],
         [
-          "# → ['HELLO', 'WORLD', 'PYTHON']",
           "flat = [x for row in [[1,2],[3,4],[5,6]] for x in row]",
-          "print(flat)"
+          "print(flat)",
+          "# → [1, 2, 3, 4, 5, 6]"
         ],
         [
-          "# → [1, 2, 3, 4, 5, 6]",
           "mapped = [x if x > 0 else 0 for x in [-1, 2, -3, 4]]",
-          "print(mapped)"
+          "print(mapped)",
+          "# → [0, 2, 0, 4]"
         ],
         [
-          "# → [0, 2, 0, 4]",
           "digits = [int(c) for c in '12345']",
-          "print(digits)"
+          "print(digits)",
+          "# → [1, 2, 3, 4, 5]"
         ],
         [
-          "# → [1, 2, 3, 4, 5]",
           "nested = [[i*j for j in range(1, 4)] for i in range(1, 4)]",
-          "print(nested)"
-        ],
-        [
+          "print(nested)",
           "# → [[1, 2, 3], [2, 4, 6], [3, 6, 9]]"
         ]
       ],
@@ -90497,9 +90436,7 @@
           "print(copy is lst)",
           "# → False (новый объект)",
           "lst[1:4] = [10, 20, 30]",
-          "print(lst)"
-        ],
-        [
+          "print(lst)",
           "# → [0, 10, 20, 30, 4, 5]"
         ]
       ],
@@ -90529,7 +90466,7 @@
       "syntax": "[выражение for x in iterable if условие]",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#comprehensions",
-      "added": "3.6",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -90678,40 +90615,38 @@
       "examples": [
         [
           "name = 'Alice'",
-          "print(f'Hello, {name}!')"
+          "print(f'Hello, {name}!')",
+          "# → 'Hello, Alice!'"
         ],
         [
-          "# → 'Hello, Alice!'",
           "x = 3.14159",
-          "print(f'{x:.2f}')"
+          "print(f'{x:.2f}')",
+          "# → '3.14'"
         ],
         [
-          "# → '3.14'",
-          "print(f'{2 ** 10}')"
+          "print(f'{2 ** 10}')",
+          "# → '1024'"
         ],
         [
-          "# → '1024'",
           "n = 42",
           "print(f'{n:>10d}')",
           "# → '        42'",
-          "print(f'{n:010d}')"
+          "print(f'{n:010d}')",
+          "# → '0000000042'"
         ],
         [
-          "# → '0000000042'",
           "s = 'hello'",
-          "print(f'{s!r}')"
+          "print(f'{s!r}')",
+          "# → \"'hello'\""
         ],
         [
-          "# → \"'hello'\"",
           "width = 10",
-          "print(f'{\"center\":^{width}}')"
+          "print(f'{\"center\":^{width}}')",
+          "# → center (выравнивание по центру, ширина 10)"
         ],
         [
-          "# → center (выравнивание по центру, ширина 10)",
           "val = 1234567.89",
-          "print(f'{val:,.2f}')"
-        ],
-        [
+          "print(f'{val:,.2f}')",
           "# → '1,234,567.89'"
         ]
       ],
@@ -90768,33 +90703,31 @@
       ],
       "examples": [
         [
-          "print('{} {}'.format('Hello', 'World'))"
+          "print('{} {}'.format('Hello', 'World'))",
+          "# → 'Hello World'"
         ],
         [
-          "# → 'Hello World'",
-          "print('{0} {1} {0}'.format('ha', 'ho'))"
+          "print('{0} {1} {0}'.format('ha', 'ho'))",
+          "# → 'ha ho ha'"
         ],
         [
-          "# → 'ha ho ha'",
-          "print('{name} is {age}'.format(name='Alice', age=30))"
+          "print('{name} is {age}'.format(name='Alice', age=30))",
+          "# → 'Alice is 30'"
         ],
         [
-          "# → 'Alice is 30'",
-          "print('{:.2f}'.format(3.14159))"
+          "print('{:.2f}'.format(3.14159))",
+          "# → '3.14'"
         ],
         [
-          "# → '3.14'",
-          "print('{:>10}'.format('hi'))"
+          "print('{:>10}'.format('hi'))",
+          "# → '        hi'"
         ],
         [
-          "# → '        hi'",
-          "print('{:0>5}'.format(42))"
+          "print('{:0>5}'.format(42))",
+          "# → '00042'"
         ],
         [
-          "# → '00042'",
-          "print('{:,}'.format(1000000))"
-        ],
-        [
+          "print('{:,}'.format(1000000))",
           "# → '1,000,000'"
         ]
       ],
@@ -90824,7 +90757,7 @@
       "syntax": "'sub' in s  |  'sub' not in s",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
-      "added": "3.8",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -90852,25 +90785,23 @@
       ],
       "examples": [
         [
-          "print('py' in 'python')"
+          "print('py' in 'python')",
+          "# → True"
         ],
         [
-          "# → True",
-          "print('xyz' in 'python')"
+          "print('xyz' in 'python')",
+          "# → False"
         ],
         [
-          "# → False",
-          "print('xyz' not in 'python')"
+          "print('xyz' not in 'python')",
+          "# → True"
         ],
         [
-          "# → True",
-          "print('' in 'any')"
+          "print('' in 'any')",
+          "# → True (пустая всегда входит)"
         ],
         [
-          "# → True (пустая всегда входит)",
-          "print('P' in 'python')"
-        ],
-        [
+          "print('P' in 'python')",
           "# → False (регистрозависимо)"
         ]
       ],
@@ -90925,22 +90856,22 @@
       ],
       "examples": [
         [
-          "print(len(''))"
+          "print(len(''))",
+          "# → 0"
         ],
         [
-          "# → 0",
-          "print(len('hello'))"
+          "print(len('hello'))",
+          "# → 5"
         ],
         [
-          "# → 5",
-          "print(len('   '))"
+          "print(len('   '))",
+          "# → 3"
         ],
         [
-          "# → 3",
-          "print(len('Привет'))"
+          "print(len('Привет'))",
+          "# → 6"
         ],
         [
-          "# → 6",
           "s = 'test'",
           "if len(s) > 3:",
           "    print('длинная')",
@@ -90972,7 +90903,7 @@
       "syntax": "r\"строка\"  r'строка'",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#raw-string-literals",
-      "added": "3.6",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -91311,7 +91242,7 @@
         "en": "True if the string ends with the suffix (or one of a tuple of suffixes)."
       },
       "body": {
-        "ru": "Второй аргумент — строка или именно кортеж строк: список вызовет TypeError, что регулярно ловят те, кто собрал расширения динамически (оберните в tuple()). Сравнение чувствительно к регистру, поэтому файл с расширением в верхнем регистре проверку на '.py' не пройдёт — приводите имя к нижнему регистру заранее.",
+        "ru": "Аргумент suffix — строка или именно кортеж строк: список вызовет TypeError, что регулярно ловят те, кто собрал расширения динамически (оберните в tuple()). Сравнение чувствительно к регистру, поэтому файл с расширением в верхнем регистре проверку на '.py' не пройдёт — приводите имя к нижнему регистру заранее.",
         "en": "The argument must be a string or a tuple of strings — a list raises TypeError, which bites people who build their extension list dynamically (wrap it in tuple()). Matching is case-sensitive, so an uppercase extension will not match '.py'; lowercase the name first, or compare Path(...).suffix instead."
       },
       "syntax": "s.endswith(suffix[, start[, end]])",
@@ -93374,8 +93305,8 @@
         "en": "Return a titlecased version: each word starts with an uppercase letter."
       },
       "body": {
-        "ru": "Началом слова title() считает любой символ после не-буквы, поэтому апостроф ломает результат (don't превращается в Don'T), а внутренние заглавные затираются: McDonald становится Mcdonald. Для человеческих заголовков берите string.capwords() или собственную обработку по словам — title() годится лишь для простого текста без апострофов и составных имён.",
-        "en": "title() treats any character following a non-letter as a word start, so apostrophes break it (don't becomes Don'T) and inner capitals are lost: McDonald turns into Mcdonald. For real-world headings use string.capwords() or your own word-by-word logic; title() only suits plain text without apostrophes or compound names."
+        "ru": "Началом слова title() считает любой символ после не-буквы, поэтому апостроф ломает результат (don't превращается в Don'T), а внутренние заглавные затираются: McDonald становится Mcdonald. string.capwords() делит строку только по пробелам и апостроф не ломает, но внутренние заглавные сбрасывает так же; для человеческих заголовков нужна собственная обработка по словам — title() годится лишь для простого текста без апострофов и составных имён.",
+        "en": "title() treats any character following a non-letter as a word start, so apostrophes break it (don't becomes Don'T) and inner capitals are lost: McDonald turns into Mcdonald. string.capwords() splits on whitespace only and so handles apostrophes, but it lowercases inner capitals just the same; real-world headings need your own word-by-word logic; title() only suits plain text without apostrophes or compound names."
       },
       "syntax": "s.title()",
       "status": "ready",
@@ -93640,15 +93571,13 @@
           "# → 'n'",
           "print(s[-2])",
           "# → 'o'",
-          "print(s[5])"
+          "print(s[5])",
+          "# → 'n'"
         ],
         [
-          "# → 'n'",
           "s2 = 'AB'",
-          "print(s2[0], s2[1], s2[-1])"
-        ],
-        [
-          "# → 'A' 'B' 'B'"
+          "print(s2[0], s2[1], s2[-1])",
+          "# → A B B"
         ]
       ],
       "related": [
@@ -93704,28 +93633,26 @@
       ],
       "examples": [
         [
-          "print('Hello' + ' ' + 'World')"
+          "print('Hello' + ' ' + 'World')",
+          "# → 'Hello World'"
         ],
         [
-          "# → 'Hello World'",
           "a = 'foo'",
           "b = 'bar'",
-          "print(a + b)"
+          "print(a + b)",
+          "# → 'foobar'"
         ],
         [
-          "# → 'foobar'",
-          "print('py' + 'thon')"
+          "print('py' + 'thon')",
+          "# → 'python'"
         ],
         [
-          "# → 'python'",
           "prefix = 'pre_'",
-          "print(prefix + 'fix')"
+          "print(prefix + 'fix')",
+          "# → 'pre_fix'"
         ],
         [
-          "# → 'pre_fix'",
-          "print('' + 'empty left')"
-        ],
-        [
+          "print('' + 'empty left')",
           "# → 'empty left'"
         ]
       ],
@@ -93780,26 +93707,24 @@
       ],
       "examples": [
         [
-          "print('ab' * 3)"
+          "print('ab' * 3)",
+          "# → 'ababab'"
         ],
         [
-          "# → 'ababab'",
-          "print('-' * 20)"
+          "print('-' * 20)",
+          "# → '--------------------'"
         ],
         [
-          "# → '--------------------'",
-          "print('ha' * 0)"
+          "print(repr('ha' * 0))",
+          "# → ''"
         ],
         [
-          "# → ''",
           "sep = '=-' * 5",
-          "print(sep)"
+          "print(sep)",
+          "# → '=-=-=-=-=-'"
         ],
         [
-          "# → '=-=-=-=-=-=-=-=-'",
-          "print(3 * 'go!')"
-        ],
-        [
+          "print(3 * 'go!')",
           "# → 'go!go!go!'"
         ]
       ],
@@ -93828,7 +93753,7 @@
       "syntax": "s = 'text' | s = \"text\" | s = '''multi''' | s = r'raw' | s = b'bytes'",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#strings",
-      "added": "3.3",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -93856,35 +93781,33 @@
       ],
       "examples": [
         [
-          "s1 = 'hello'"
+          "s1 = 'hello'",
+          "# → 'hello'"
         ],
         [
-          "# → 'hello'",
-          "s2 = \"world\""
+          "s2 = \"world\"",
+          "# → 'world'"
         ],
         [
-          "# → 'world'",
           "s3 = '''line1",
           "line2",
-          "line3'''"
+          "line3'''",
+          "# → 'line1\\nline2\\nline3'"
         ],
         [
-          "# → 'line1\\nline2\\nline3'",
-          "s4 = r'C:\\Users\\name'"
+          "s4 = r'C:\\Users\\name'",
+          "# → 'C:\\\\Users\\\\name' (без escape)"
         ],
         [
-          "# → 'C:\\\\Users\\\\name' (без escape)",
-          "s5 = b'bytes'"
+          "s5 = b'bytes'",
+          "# → b'bytes'"
         ],
         [
-          "# → b'bytes'",
-          "s6 = 'tab:\\there'"
+          "s6 = 'tab:\\there'",
+          "# → 'tab:\\there' (\\t — табуляция)"
         ],
         [
-          "# → 'tab:\\there' (\\t — табуляция)",
-          "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'"
-        ],
-        [
+          "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'",
           "# → 'Привет'"
         ]
       ],
@@ -93914,7 +93837,7 @@
       "syntax": "s1 == s2  |  s1 < s2  |  s1 > s2",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#value-comparisons",
-      "added": "3.8",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -93941,25 +93864,23 @@
       ],
       "examples": [
         [
-          "print('abc' == 'abc')"
+          "print('abc' == 'abc')",
+          "# → True"
         ],
         [
-          "# → True",
-          "print('abc' < 'abd')"
+          "print('abc' < 'abd')",
+          "# → True ('c' < 'd')"
         ],
         [
-          "# → True ('c' < 'd')",
-          "print('b' > 'a')"
+          "print('b' > 'a')",
+          "# → True"
         ],
         [
-          "# → True",
-          "print('Z' < 'a')"
+          "print('Z' < 'a')",
+          "# → True (ASCII: Z=90, a=97)"
         ],
         [
-          "# → True (ASCII: Z=90, a=97)",
-          "print('abc' == 'ABC')"
-        ],
-        [
+          "print('abc' == 'ABC')",
           "# → False (регистрозависимо)"
         ]
       ],
@@ -94030,9 +93951,7 @@
           "# → 'aceg'",
           "print(s[-3:])",
           "# → 'fgh'",
-          "print(s[1:7:2])"
-        ],
-        [
+          "print(s[1:7:2])",
           "# → 'bdf'"
         ]
       ],
@@ -94108,9 +94027,7 @@
           "print(x is y)",
           "# → True (принудительное интернирование)",
           "s2 = s.replace('h', 'H')",
-          "print(s, s2)"
-        ],
-        [
+          "print(s, s2)",
           "# → hello Hello (оригинал не изменился)"
         ]
       ],
@@ -94140,7 +94057,7 @@
       "syntax": "\"\"\"текст\"\"\"\n'''текст'''",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals",
-      "added": "3.3",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -94232,25 +94149,23 @@
       ],
       "examples": [
         [
-          "print('Hello, %s!' % 'World')"
+          "print('Hello, %s!' % 'World')",
+          "# → 'Hello, World!'"
         ],
         [
-          "# → 'Hello, World!'",
-          "print('x=%d, y=%d' % (3, 5))"
+          "print('x=%d, y=%d' % (3, 5))",
+          "# → 'x=3, y=5'"
         ],
         [
-          "# → 'x=3, y=5'",
-          "print('pi=%.3f' % 3.14159)"
+          "print('pi=%.3f' % 3.14159)",
+          "# → 'pi=3.142'"
         ],
         [
-          "# → 'pi=3.142'",
-          "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})"
+          "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})",
+          "# → 'Bob is 25'"
         ],
         [
-          "# → 'Bob is 25'",
-          "print('%05d' % 42)"
-        ],
-        [
+          "print('%05d' % 42)",
           "# → '00042'"
         ]
       ],
@@ -95330,7 +95245,7 @@
       "syntax": "элемент in коллекция -> bool",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#in",
-      "added": "3.8",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -95393,7 +95308,7 @@
       "syntax": "a is b | a is not b",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#identity-comparisons",
-      "added": "3.8",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -95487,7 +95402,7 @@
         [
           "match \"quit\":",
           "    case \"quit\": print(\"выход\")   # → выход",
-          "    case \"help\": print(\"помощь\")  # → помощь",
+          "    case \"help\": print(\"помощь\")  # не выполнится: сработал первый case",
           "    case _:      print(\"неизвестно\")",
           "point = (0, 1)",
           "match point:",
@@ -95597,7 +95512,7 @@
       "syntax": "a == b | a != b | a > b | a < b | a >= b | a <= b",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
-      "added": "3.8",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -95666,7 +95581,7 @@
       "syntax": "значение_если_истина if условие else значение_если_ложь",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#conditional-expressions",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -98260,7 +98175,7 @@
       "syntax": "lambda параметры: выражение",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/expressions.html#lambda",
-      "added": "3.5",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -98592,8 +98507,8 @@
         "en": "Type hints for parameters and return values. They do not affect execution, but they help IDEs and mypy."
       },
       "body": {
-        "ru": "Аннотации — это просто метаданные: Python хранит их в __annotations__ и сам никогда не проверяет, поэтому передача строки туда, где объявлен int, не вызовет ошибки — её поймает только mypy. На тех же метаданных построены dataclasses и pydantic, которые читают аннотации во время выполнения; а чтобы сослаться на ещё не определённый класс, его имя берут в кавычки.",
-        "en": "Annotations are just metadata: Python stores them in __annotations__ and never checks them itself, so passing a str where an int is declared raises no error — only mypy will flag it. That same metadata powers dataclasses and pydantic, which read annotations at runtime; and to reference a class that isn't defined yet, put its name in quotes."
+        "ru": "Аннотации — это просто метаданные: Python хранит их в __annotations__ и сам никогда не проверяет, поэтому передача строки туда, где объявлен int, не вызовет ошибки — её поймает только mypy. На тех же метаданных построены dataclasses и pydantic, которые читают аннотации во время выполнения. С Python 3.14 аннотации вычисляются лениво, поэтому на ещё не определённый класс можно сослаться прямо по имени; в более старых версиях его имя берут в кавычки.",
+        "en": "Annotations are just metadata: Python stores them in __annotations__ and never checks them itself, so passing a str where an int is declared raises no error — only mypy will flag it. That same metadata powers dataclasses and pydantic, which read annotations at runtime. Since Python 3.14 annotations are evaluated lazily, so a class that isn't defined yet can be referenced by its bare name; on older versions put its name in quotes."
       },
       "syntax": "def f(x: int) -> str: ...",
       "status": "ready",
@@ -99021,7 +98936,7 @@
       "syntax": "x = 10  # глобальная\ndef f():\n    x = 5  # локальная",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/reference/executionmodel.html#resolution-of-names",
-      "added": "3.12",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -100384,8 +100299,8 @@
         "en": "The cmath module provides mathematical functions for complex numbers."
       },
       "body": {
-        "ru": "cmath всегда возвращает complex, даже когда результат по сути вещественный: cmath.sqrt(4) даст (2+0j), и передать это туда, где ждут float, уже не получится. Берите его ровно там, где math падает с ValueError — корень или логарифм отрицательного числа; сравнивать комплексные через < или > нельзя, будет TypeError, упорядочены только их модули через abs().",
-        "en": "cmath always hands back a complex, even when the answer is really a real number: cmath.sqrt(4) is (2+0j), which will not slot into code expecting a float. Reach for it exactly where math raises ValueError — roots and logs of negative numbers; and complex values cannot be ordered, so < or > raises TypeError and you have to compare abs() instead."
+        "ru": "Функции cmath вроде sqrt, exp и log всегда возвращают complex, даже когда результат по сути вещественный: cmath.sqrt(4) даст (2+0j), и передать это туда, где ждут float, уже не получится. Берите его ровно там, где math падает с ValueError — корень или логарифм отрицательного числа; сравнивать комплексные через < или > нельзя, будет TypeError, упорядочены только их модули через abs().",
+        "en": "cmath functions such as sqrt, exp and log always hand back a complex, even when the answer is really a real number: cmath.sqrt(4) is (2+0j), which will not slot into code expecting a float. Reach for it exactly where math raises ValueError — roots and logs of negative numbers; and complex values cannot be ordered, so < or > raises TypeError and you have to compare abs() instead."
       },
       "syntax": "import cmath\ncmath.sqrt(-1)  # → 1j",
       "status": "ready",
@@ -100772,7 +100687,7 @@
       "syntax": "from decimal import Decimal\nDecimal('1.1') + Decimal('2.2')",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Decimal",
-      "added": "3.6",
+      "added": "<3.0",
       "deprecated": "",
       "removed": "",
       "platforms": [
@@ -102950,7 +102865,7 @@
         "en": "Return the (fractional, integer) parts as a pair of floats."
       },
       "body": {
-        "ru": "Порядок пары легко перепутать: дробная часть идёт первой, целая — второй. Обе части float и обе несут знак аргумента, поэтому modf(-3.5) это (-0.5, -3.0), а не (0.5, -4.0), которые дал бы divmod(-3.5, 1) с округлением вниз. Если целая часть нужна как int, берите int(x) или math.trunc(x) — modf её так не отдаст.",
+        "ru": "Порядок пары легко перепутать: дробная часть идёт первой, целая — второй. Обе части float и обе несут знак аргумента, поэтому modf(-3.5) это (-0.5, -3.0), а divmod(-3.5, 1) с округлением вниз дал бы (-4.0, 0.5). Если целая часть нужна как int, берите int(x) или math.trunc(x) — modf её так не отдаст.",
         "en": "The order trips people up: the fractional part comes first, the integer part second. Both are floats and both carry the sign of the input, so modf(-3.5) is (-0.5, -3.0) — unlike divmod(-3.5, 1), which floors and yields (-4.0, 0.5). If you need the integer part as an int, use int(x) or math.trunc(x); modf never gives you one."
       },
       "syntax": "math.modf(...)",
@@ -103245,8 +103160,8 @@
         "en": "The hyperbolic tangent of x: sinh(x) / cosh(x); values lie between -1 and 1."
       },
       "body": {
-        "ru": "Единственная из гиперболических, которая не переполняется: результат всегда внутри (-1, 1), какой бы конечный аргумент ни подали. Зато она быстро насыщается — уже при аргументе около 19 float не отличает ответ от единицы и возвращается ровно 1.0, поэтому обратный ход через math.atanh на таких значениях упадёт с ValueError.",
-        "en": "This is the one hyperbolic function that cannot overflow: for any finite argument the result stays inside (-1, 1). It saturates fast, though — by an argument of about 19 the float is indistinguishable from one and you get exactly 1.0 back, so trying to invert it with math.atanh at that point raises ValueError."
+        "ru": "Единственная из гиперболических, которая не переполняется: результат всегда в пределах [-1, 1], какой бы конечный аргумент ни подали. Зато она быстро насыщается — уже при аргументе около 19 float не отличает ответ от единицы и возвращается ровно 1.0, поэтому обратный ход через math.atanh на таких значениях упадёт с ValueError.",
+        "en": "This is the one hyperbolic function that cannot overflow: for any finite argument the result stays within [-1, 1]. It saturates fast, though — by an argument of about 19 the float is indistinguishable from one and you get exactly 1.0 back, so trying to invert it with math.atanh at that point raises ValueError."
       },
       "syntax": "math.tanh(...)",
       "status": "ready",
@@ -103479,10 +103394,10 @@
         "en": "Computes the quantiles of a data set. n=4 → quartiles, n=100 → percentiles."
       },
       "body": {
-        "ru": "Возвращается n-1 точек разреза, а не n: при n=4 это три квартиля, а не четыре числа. По умолчанию method='exclusive' считает данные выборкой из большей популяции, поэтому цифры не совпадут с numpy.percentile, чьё поведение по умолчанию ближе к method='inclusive' — его и передавайте, если ваш набор и есть вся совокупность. Меньше двух значений на входе — StatisticsError.",
-        "en": "You get n-1 cut points, not n: with n=4 that is three quartiles, not four numbers. The default method='exclusive' treats the data as a sample drawn from a larger population, so results will not match numpy.percentile, whose default behaves closer to method='inclusive' — pass that when your data is the whole population. Fewer than two data points raises StatisticsError."
+        "ru": "Возвращается n-1 точек разреза, а не n: при n=4 это три квартиля, а не четыре числа. По умолчанию method='exclusive' считает данные выборкой из большей популяции, поэтому цифры не совпадут с numpy.percentile, чьё поведение по умолчанию ближе к method='inclusive' — его и передавайте, если ваш набор и есть вся совокупность. Пустые данные — StatisticsError; одно значение с Python 3.13 допустимо (раньше это тоже была ошибка). n и method передаются только по имени.",
+        "en": "You get n-1 cut points, not n: with n=4 that is three quartiles, not four numbers. The default method='exclusive' treats the data as a sample drawn from a larger population, so results will not match numpy.percentile, whose default behaves closer to method='inclusive' — pass that when your data is the whole population. Empty data raises StatisticsError; a single data point is accepted since Python 3.13 (it used to be an error too). n and method are keyword-only."
       },
-      "syntax": "statistics.quantiles(data, n=4, method='exclusive')",
+      "syntax": "statistics.quantiles(data, *, n=4, method='exclusive')",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.quantiles",
       "added": "3.8",
@@ -103515,9 +103430,7 @@
           "data = list(range(1, 11))",
           "statistics.quantiles(data, n=4) # → [3.25, 5.5, 7.75]",
           "statistics.quantiles(data, n=2) # → [5.5]  медиана",
-          "statistics.quantiles([1,2,3,4,5,6,7,8,9,10], n=10)"
-        ],
-        [
+          "statistics.quantiles([1,2,3,4,5,6,7,8,9,10], n=10)",
           "# → [1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1]"
         ]
       ],

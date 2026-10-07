@@ -1449,9 +1449,9 @@
         "# name = input(\"Введите имя: \")  # пользователь вводит строку",
         "# age = int(input(\"Возраст: \"))  # → преобразование в int",
         "# price = float(input(\"Цена: \"))  # → преобразование в float",
-        "# Проверка: x = int(input()) if input().isdigit() else 0",
+        "# Проверка: s = input(); x = int(s) if s.isdigit() else 0  # input() один раз",
         "# line1 = input(\"Строка 1: \"); line2 = input(\"Строка 2: \")",
-        "# s = input(\"  hello  \").strip()  # → \"hello\" (убирает пробелы)",
+        "# s = input().strip()  # ввели \"  hello  \" → \"hello\" (strip чистит сам ввод)",
         "# Симуляция ввода без клавиатуры:",
         "import io, sys",
         "sys.stdin = io.StringIO('Alice\\n')",
@@ -1587,7 +1587,7 @@
         "f = StringIO('a\\nb\\nc')",
         "for line in iter(f.readline, ''):",
         "    print(line.strip())",
-        "    print(list(iter(range(5))))  # → [0,1,2,3,4]"
+        "print(list(iter(range(5))))  # → [0, 1, 2, 3, 4]"
       ],
       [
         "it = iter([1,2,3])",
@@ -1687,8 +1687,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Возвращает словарь текущего локального пространства имён. В модуле совпадает с globals(). Копия, не ссылка.",
-      "en": "Returns a dictionary of the current local namespace. At module level it matches globals(). A copy, not a reference."
+      "ru": "Возвращает словарь текущего локального пространства имён. В модуле это тот же объект, что globals(); внутри функции — снимок, не ссылка.",
+      "en": "Returns a dictionary of the current local namespace. At module level it is the very object globals() returns; inside a function it is a snapshot, not a reference."
     },
     "body": {
       "ru": "Внутри функции это снимок: записать что-то в полученный словарь и ждать появления новой локальной переменной бесполезно — обратной связи с кадром нет (в Python 3.13 это закреплено PEP 667, раньше поведение зависело от реализации). На уровне модуля и в теле класса locals() отдаёт настоящий словарь пространства имён, и правки в нём как раз видны — отсюда путаница. В функции попадают только те имена, которым уже что-то присвоено к моменту вызова.",
@@ -2285,11 +2285,11 @@
     ],
     "examples": [
       [
-        "print(repr('hello'))  # → \"'hello'\"",
-        "print(repr([1,2,3]))  # → '[1, 2, 3]'",
-        "print(repr(None))     # → 'None'",
-        "print(repr(3.14))     # → '3.14'",
-        "print(repr({'a':1}))  # → \"{'a': 1}\""
+        "print(repr('hello'))  # → 'hello'",
+        "print(repr([1,2,3]))  # → [1, 2, 3]",
+        "print(repr(None))     # → None",
+        "print(repr(3.14))     # → 3.14",
+        "print(repr({'a':1}))  # → {'a': 1}"
       ]
     ],
     "related": [
@@ -2710,8 +2710,8 @@
       "en": "Sums the items of an iterable. start is the initial value."
     },
     "body": {
-      "ru": "Строки sum складывать отказывается — будет TypeError с подсказкой использовать ''.join(). Склейка списков через sum(списки, []) формально работает, но на каждом шаге создаёт новый список и растёт квадратично; для длинных данных берите itertools.chain.",
-      "en": "sum refuses to concatenate strings — it raises TypeError and points you at ''.join() instead. Flattening lists with sum(lists, []) does work, but it builds a fresh list at every step and scales quadratically, so reach for itertools.chain on anything long."
+      "ru": "Строки sum складывать отказывается: sum(['a', 'b']) падает с TypeError про сложение int и str (start по умолчанию 0), а sum(['a', 'b'], '') — с прямой подсказкой использовать ''.join(). Склейка списков через sum(списки, []) формально работает, но на каждом шаге создаёт новый список и растёт квадратично; для длинных данных берите itertools.chain.",
+      "en": "sum refuses to concatenate strings: sum(['a', 'b']) raises TypeError about adding int and str (start defaults to 0), and sum(['a', 'b'], '') raises one that points you at ''.join(). Flattening lists with sum(lists, []) does work, but it builds a fresh list at every step and scales quadratically, so reach for itertools.chain on anything long."
     },
     "syntax": "sum(iterable, start=0)",
     "status": "ready",
@@ -2947,7 +2947,7 @@
     "syntax": "0b<биты>  0o<цифры>  0x<цифры>  <цифры>_<цифры>  <число>e<порядок>",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#",
-    "added": "3.6",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3122,7 +3122,7 @@
       "ru": "Появилась в Python 3.10. Возвращает не элемент, а awaitable: без await получите объект корутины и предупреждение 'coroutine was never awaited', а элемент так и не прочитается. Второй аргумент работает как у next(): вместо StopAsyncIteration отдаёт значение по умолчанию — короче, чем оборачивать вызов в try/except.",
       "en": "Added in Python 3.10. It returns an awaitable, not the item: forget the await and you get a coroutine object plus a 'coroutine was never awaited' warning, while nothing is actually consumed. The second argument behaves like the one in next() — it yields a default instead of raising StopAsyncIteration, which is tidier than wrapping the call in try/except."
     },
-    "syntax": "anext(async_iterator, default)",
+    "syntax": "anext(async_iterator[, default])",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/functions.html#anext",
     "added": "3.10",

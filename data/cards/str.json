@@ -105,40 +105,38 @@
     "examples": [
       [
         "name = 'Alice'",
-        "print(f'Hello, {name}!')"
+        "print(f'Hello, {name}!')",
+        "# → 'Hello, Alice!'"
       ],
       [
-        "# → 'Hello, Alice!'",
         "x = 3.14159",
-        "print(f'{x:.2f}')"
+        "print(f'{x:.2f}')",
+        "# → '3.14'"
       ],
       [
-        "# → '3.14'",
-        "print(f'{2 ** 10}')"
+        "print(f'{2 ** 10}')",
+        "# → '1024'"
       ],
       [
-        "# → '1024'",
         "n = 42",
         "print(f'{n:>10d}')",
         "# → '        42'",
-        "print(f'{n:010d}')"
+        "print(f'{n:010d}')",
+        "# → '0000000042'"
       ],
       [
-        "# → '0000000042'",
         "s = 'hello'",
-        "print(f'{s!r}')"
+        "print(f'{s!r}')",
+        "# → \"'hello'\""
       ],
       [
-        "# → \"'hello'\"",
         "width = 10",
-        "print(f'{\"center\":^{width}}')"
+        "print(f'{\"center\":^{width}}')",
+        "# → center (выравнивание по центру, ширина 10)"
       ],
       [
-        "# → center (выравнивание по центру, ширина 10)",
         "val = 1234567.89",
-        "print(f'{val:,.2f}')"
-      ],
-      [
+        "print(f'{val:,.2f}')",
         "# → '1,234,567.89'"
       ]
     ],
@@ -194,33 +192,31 @@
     ],
     "examples": [
       [
-        "print('{} {}'.format('Hello', 'World'))"
+        "print('{} {}'.format('Hello', 'World'))",
+        "# → 'Hello World'"
       ],
       [
-        "# → 'Hello World'",
-        "print('{0} {1} {0}'.format('ha', 'ho'))"
+        "print('{0} {1} {0}'.format('ha', 'ho'))",
+        "# → 'ha ho ha'"
       ],
       [
-        "# → 'ha ho ha'",
-        "print('{name} is {age}'.format(name='Alice', age=30))"
+        "print('{name} is {age}'.format(name='Alice', age=30))",
+        "# → 'Alice is 30'"
       ],
       [
-        "# → 'Alice is 30'",
-        "print('{:.2f}'.format(3.14159))"
+        "print('{:.2f}'.format(3.14159))",
+        "# → '3.14'"
       ],
       [
-        "# → '3.14'",
-        "print('{:>10}'.format('hi'))"
+        "print('{:>10}'.format('hi'))",
+        "# → '        hi'"
       ],
       [
-        "# → '        hi'",
-        "print('{:0>5}'.format(42))"
+        "print('{:0>5}'.format(42))",
+        "# → '00042'"
       ],
       [
-        "# → '00042'",
-        "print('{:,}'.format(1000000))"
-      ],
-      [
+        "print('{:,}'.format(1000000))",
         "# → '1,000,000'"
       ]
     ],
@@ -250,7 +246,7 @@
     "syntax": "'sub' in s  |  'sub' not in s",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#membership-test-operations",
-    "added": "3.8",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -277,25 +273,23 @@
     ],
     "examples": [
       [
-        "print('py' in 'python')"
+        "print('py' in 'python')",
+        "# → True"
       ],
       [
-        "# → True",
-        "print('xyz' in 'python')"
+        "print('xyz' in 'python')",
+        "# → False"
       ],
       [
-        "# → False",
-        "print('xyz' not in 'python')"
+        "print('xyz' not in 'python')",
+        "# → True"
       ],
       [
-        "# → True",
-        "print('' in 'any')"
+        "print('' in 'any')",
+        "# → True (пустая всегда входит)"
       ],
       [
-        "# → True (пустая всегда входит)",
-        "print('P' in 'python')"
-      ],
-      [
+        "print('P' in 'python')",
         "# → False (регистрозависимо)"
       ]
     ],
@@ -349,22 +343,22 @@
     ],
     "examples": [
       [
-        "print(len(''))"
+        "print(len(''))",
+        "# → 0"
       ],
       [
-        "# → 0",
-        "print(len('hello'))"
+        "print(len('hello'))",
+        "# → 5"
       ],
       [
-        "# → 5",
-        "print(len('   '))"
+        "print(len('   '))",
+        "# → 3"
       ],
       [
-        "# → 3",
-        "print(len('Привет'))"
+        "print(len('Привет'))",
+        "# → 6"
       ],
       [
-        "# → 6",
         "s = 'test'",
         "if len(s) > 3:",
         "    print('длинная')",
@@ -396,7 +390,7 @@
     "syntax": "r\"строка\"  r'строка'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#raw-string-literals",
-    "added": "3.6",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -494,15 +488,13 @@
         "# → 'n'",
         "print(s[-2])",
         "# → 'o'",
-        "print(s[5])"
+        "print(s[5])",
+        "# → 'n'"
       ],
       [
-        "# → 'n'",
         "s2 = 'AB'",
-        "print(s2[0], s2[1], s2[-1])"
-      ],
-      [
-        "# → 'A' 'B' 'B'"
+        "print(s2[0], s2[1], s2[-1])",
+        "# → A B B"
       ]
     ],
     "related": [
@@ -557,28 +549,26 @@
     ],
     "examples": [
       [
-        "print('Hello' + ' ' + 'World')"
+        "print('Hello' + ' ' + 'World')",
+        "# → 'Hello World'"
       ],
       [
-        "# → 'Hello World'",
         "a = 'foo'",
         "b = 'bar'",
-        "print(a + b)"
+        "print(a + b)",
+        "# → 'foobar'"
       ],
       [
-        "# → 'foobar'",
-        "print('py' + 'thon')"
+        "print('py' + 'thon')",
+        "# → 'python'"
       ],
       [
-        "# → 'python'",
         "prefix = 'pre_'",
-        "print(prefix + 'fix')"
+        "print(prefix + 'fix')",
+        "# → 'pre_fix'"
       ],
       [
-        "# → 'pre_fix'",
-        "print('' + 'empty left')"
-      ],
-      [
+        "print('' + 'empty left')",
         "# → 'empty left'"
       ]
     ],
@@ -632,26 +622,24 @@
     ],
     "examples": [
       [
-        "print('ab' * 3)"
+        "print('ab' * 3)",
+        "# → 'ababab'"
       ],
       [
-        "# → 'ababab'",
-        "print('-' * 20)"
+        "print('-' * 20)",
+        "# → '--------------------'"
       ],
       [
-        "# → '--------------------'",
-        "print('ha' * 0)"
+        "print(repr('ha' * 0))",
+        "# → ''"
       ],
       [
-        "# → ''",
         "sep = '=-' * 5",
-        "print(sep)"
+        "print(sep)",
+        "# → '=-=-=-=-=-'"
       ],
       [
-        "# → '=-=-=-=-=-=-=-=-'",
-        "print(3 * 'go!')"
-      ],
-      [
+        "print(3 * 'go!')",
         "# → 'go!go!go!'"
       ]
     ],
@@ -680,7 +668,7 @@
     "syntax": "s = 'text' | s = \"text\" | s = '''multi''' | s = r'raw' | s = b'bytes'",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#strings",
-    "added": "3.3",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -707,35 +695,33 @@
     ],
     "examples": [
       [
-        "s1 = 'hello'"
+        "s1 = 'hello'",
+        "# → 'hello'"
       ],
       [
-        "# → 'hello'",
-        "s2 = \"world\""
+        "s2 = \"world\"",
+        "# → 'world'"
       ],
       [
-        "# → 'world'",
         "s3 = '''line1",
         "line2",
-        "line3'''"
+        "line3'''",
+        "# → 'line1\\nline2\\nline3'"
       ],
       [
-        "# → 'line1\\nline2\\nline3'",
-        "s4 = r'C:\\Users\\name'"
+        "s4 = r'C:\\Users\\name'",
+        "# → 'C:\\\\Users\\\\name' (без escape)"
       ],
       [
-        "# → 'C:\\\\Users\\\\name' (без escape)",
-        "s5 = b'bytes'"
+        "s5 = b'bytes'",
+        "# → b'bytes'"
       ],
       [
-        "# → b'bytes'",
-        "s6 = 'tab:\\there'"
+        "s6 = 'tab:\\there'",
+        "# → 'tab:\\there' (\\t — табуляция)"
       ],
       [
-        "# → 'tab:\\there' (\\t — табуляция)",
-        "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'"
-      ],
-      [
+        "s7 = '\\u041f\\u0440\\u0438\\u0432\\u0435\\u0442'",
         "# → 'Привет'"
       ]
     ],
@@ -765,7 +751,7 @@
     "syntax": "s1 == s2  |  s1 < s2  |  s1 > s2",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#value-comparisons",
-    "added": "3.8",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -791,25 +777,23 @@
     ],
     "examples": [
       [
-        "print('abc' == 'abc')"
+        "print('abc' == 'abc')",
+        "# → True"
       ],
       [
-        "# → True",
-        "print('abc' < 'abd')"
+        "print('abc' < 'abd')",
+        "# → True ('c' < 'd')"
       ],
       [
-        "# → True ('c' < 'd')",
-        "print('b' > 'a')"
+        "print('b' > 'a')",
+        "# → True"
       ],
       [
-        "# → True",
-        "print('Z' < 'a')"
+        "print('Z' < 'a')",
+        "# → True (ASCII: Z=90, a=97)"
       ],
       [
-        "# → True (ASCII: Z=90, a=97)",
-        "print('abc' == 'ABC')"
-      ],
-      [
+        "print('abc' == 'ABC')",
         "# → False (регистрозависимо)"
       ]
     ],
@@ -879,9 +863,7 @@
         "# → 'aceg'",
         "print(s[-3:])",
         "# → 'fgh'",
-        "print(s[1:7:2])"
-      ],
-      [
+        "print(s[1:7:2])",
         "# → 'bdf'"
       ]
     ],
@@ -956,9 +938,7 @@
         "print(x is y)",
         "# → True (принудительное интернирование)",
         "s2 = s.replace('h', 'H')",
-        "print(s, s2)"
-      ],
-      [
+        "print(s, s2)",
         "# → hello Hello (оригинал не изменился)"
       ]
     ],
@@ -988,7 +968,7 @@
     "syntax": "\"\"\"текст\"\"\"\n'''текст'''",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals",
-    "added": "3.3",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1078,25 +1058,23 @@
     ],
     "examples": [
       [
-        "print('Hello, %s!' % 'World')"
+        "print('Hello, %s!' % 'World')",
+        "# → 'Hello, World!'"
       ],
       [
-        "# → 'Hello, World!'",
-        "print('x=%d, y=%d' % (3, 5))"
+        "print('x=%d, y=%d' % (3, 5))",
+        "# → 'x=3, y=5'"
       ],
       [
-        "# → 'x=3, y=5'",
-        "print('pi=%.3f' % 3.14159)"
+        "print('pi=%.3f' % 3.14159)",
+        "# → 'pi=3.142'"
       ],
       [
-        "# → 'pi=3.142'",
-        "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})"
+        "print('%(name)s is %(age)d' % {'name': 'Bob', 'age': 25})",
+        "# → 'Bob is 25'"
       ],
       [
-        "# → 'Bob is 25'",
-        "print('%05d' % 42)"
-      ],
-      [
+        "print('%05d' % 42)",
         "# → '00042'"
       ]
     ],
@@ -1176,8 +1154,8 @@
       "en": "Return a titlecased version: each word starts with an uppercase letter."
     },
     "body": {
-      "ru": "Началом слова title() считает любой символ после не-буквы, поэтому апостроф ломает результат (don't превращается в Don'T), а внутренние заглавные затираются: McDonald становится Mcdonald. Для человеческих заголовков берите string.capwords() или собственную обработку по словам — title() годится лишь для простого текста без апострофов и составных имён.",
-      "en": "title() treats any character following a non-letter as a word start, so apostrophes break it (don't becomes Don'T) and inner capitals are lost: McDonald turns into Mcdonald. For real-world headings use string.capwords() or your own word-by-word logic; title() only suits plain text without apostrophes or compound names."
+      "ru": "Началом слова title() считает любой символ после не-буквы, поэтому апостроф ломает результат (don't превращается в Don'T), а внутренние заглавные затираются: McDonald становится Mcdonald. string.capwords() делит строку только по пробелам и апостроф не ломает, но внутренние заглавные сбрасывает так же; для человеческих заголовков нужна собственная обработка по словам — title() годится лишь для простого текста без апострофов и составных имён.",
+      "en": "title() treats any character following a non-letter as a word start, so apostrophes break it (don't becomes Don'T) and inner capitals are lost: McDonald turns into Mcdonald. string.capwords() splits on whitespace only and so handles apostrophes, but it lowercases inner capitals just the same; real-world headings need your own word-by-word logic; title() only suits plain text without apostrophes or compound names."
     },
     "syntax": "s.title()",
     "status": "ready",
@@ -2429,7 +2407,7 @@
       "en": "True if the string ends with the suffix (or one of a tuple of suffixes)."
     },
     "body": {
-      "ru": "Второй аргумент — строка или именно кортеж строк: список вызовет TypeError, что регулярно ловят те, кто собрал расширения динамически (оберните в tuple()). Сравнение чувствительно к регистру, поэтому файл с расширением в верхнем регистре проверку на '.py' не пройдёт — приводите имя к нижнему регистру заранее.",
+      "ru": "Аргумент suffix — строка или именно кортеж строк: список вызовет TypeError, что регулярно ловят те, кто собрал расширения динамически (оберните в tuple()). Сравнение чувствительно к регистру, поэтому файл с расширением в верхнем регистре проверку на '.py' не пройдёт — приводите имя к нижнему регистру заранее.",
       "en": "The argument must be a string or a tuple of strings — a list raises TypeError, which bites people who build their extension list dynamically (wrap it in tuple()). Matching is case-sensitive, so an uppercase extension will not match '.py'; lowercase the name first, or compare Path(...).suffix instead."
     },
     "syntax": "s.endswith(suffix[, start[, end]])",

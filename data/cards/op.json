@@ -460,8 +460,8 @@
       "en": "The cmath module provides mathematical functions for complex numbers."
     },
     "body": {
-      "ru": "cmath всегда возвращает complex, даже когда результат по сути вещественный: cmath.sqrt(4) даст (2+0j), и передать это туда, где ждут float, уже не получится. Берите его ровно там, где math падает с ValueError — корень или логарифм отрицательного числа; сравнивать комплексные через < или > нельзя, будет TypeError, упорядочены только их модули через abs().",
-      "en": "cmath always hands back a complex, even when the answer is really a real number: cmath.sqrt(4) is (2+0j), which will not slot into code expecting a float. Reach for it exactly where math raises ValueError — roots and logs of negative numbers; and complex values cannot be ordered, so < or > raises TypeError and you have to compare abs() instead."
+      "ru": "Функции cmath вроде sqrt, exp и log всегда возвращают complex, даже когда результат по сути вещественный: cmath.sqrt(4) даст (2+0j), и передать это туда, где ждут float, уже не получится. Берите его ровно там, где math падает с ValueError — корень или логарифм отрицательного числа; сравнивать комплексные через < или > нельзя, будет TypeError, упорядочены только их модули через abs().",
+      "en": "cmath functions such as sqrt, exp and log always hand back a complex, even when the answer is really a real number: cmath.sqrt(4) is (2+0j), which will not slot into code expecting a float. Reach for it exactly where math raises ValueError — roots and logs of negative numbers; and complex values cannot be ordered, so < or > raises TypeError and you have to compare abs() instead."
     },
     "syntax": "import cmath\ncmath.sqrt(-1)  # → 1j",
     "status": "ready",
@@ -731,7 +731,7 @@
     "syntax": "from decimal import Decimal\nDecimal('1.1') + Decimal('2.2')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/decimal.html#decimal.Decimal",
-    "added": "3.6",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -1910,7 +1910,7 @@
     "syntax": "элемент in коллекция -> bool",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#in",
-    "added": "3.8",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2031,7 +2031,7 @@
     "syntax": "a is b | a is not b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#identity-comparisons",
-    "added": "3.8",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2338,7 +2338,7 @@
     "syntax": "lambda параметры: выражение",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#lambda",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -2524,7 +2524,7 @@
       [
         "match \"quit\":",
         "    case \"quit\": print(\"выход\")   # → выход",
-        "    case \"help\": print(\"помощь\")  # → помощь",
+        "    case \"help\": print(\"помощь\")  # не выполнится: сработал первый case",
         "    case _:      print(\"неизвестно\")",
         "point = (0, 1)",
         "match point:",
@@ -3486,10 +3486,10 @@
       "en": "Computes the quantiles of a data set. n=4 → quartiles, n=100 → percentiles."
     },
     "body": {
-      "ru": "Возвращается n-1 точек разреза, а не n: при n=4 это три квартиля, а не четыре числа. По умолчанию method='exclusive' считает данные выборкой из большей популяции, поэтому цифры не совпадут с numpy.percentile, чьё поведение по умолчанию ближе к method='inclusive' — его и передавайте, если ваш набор и есть вся совокупность. Меньше двух значений на входе — StatisticsError.",
-      "en": "You get n-1 cut points, not n: with n=4 that is three quartiles, not four numbers. The default method='exclusive' treats the data as a sample drawn from a larger population, so results will not match numpy.percentile, whose default behaves closer to method='inclusive' — pass that when your data is the whole population. Fewer than two data points raises StatisticsError."
+      "ru": "Возвращается n-1 точек разреза, а не n: при n=4 это три квартиля, а не четыре числа. По умолчанию method='exclusive' считает данные выборкой из большей популяции, поэтому цифры не совпадут с numpy.percentile, чьё поведение по умолчанию ближе к method='inclusive' — его и передавайте, если ваш набор и есть вся совокупность. Пустые данные — StatisticsError; одно значение с Python 3.13 допустимо (раньше это тоже была ошибка). n и method передаются только по имени.",
+      "en": "You get n-1 cut points, not n: with n=4 that is three quartiles, not four numbers. The default method='exclusive' treats the data as a sample drawn from a larger population, so results will not match numpy.percentile, whose default behaves closer to method='inclusive' — pass that when your data is the whole population. Empty data raises StatisticsError; a single data point is accepted since Python 3.13 (it used to be an error too). n and method are keyword-only."
     },
-    "syntax": "statistics.quantiles(data, n=4, method='exclusive')",
+    "syntax": "statistics.quantiles(data, *, n=4, method='exclusive')",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/statistics.html#statistics.quantiles",
     "added": "3.8",
@@ -3521,9 +3521,7 @@
         "data = list(range(1, 11))",
         "statistics.quantiles(data, n=4) # → [3.25, 5.5, 7.75]",
         "statistics.quantiles(data, n=2) # → [5.5]  медиана",
-        "statistics.quantiles([1,2,3,4,5,6,7,8,9,10], n=10)"
-      ],
-      [
+        "statistics.quantiles([1,2,3,4,5,6,7,8,9,10], n=10)",
         "# → [1.9, 2.8, 3.7, 4.6, 5.5, 6.4, 7.3, 8.2, 9.1]"
       ]
     ],
@@ -4049,8 +4047,8 @@
       "en": "Type hints for parameters and return values. They do not affect execution, but they help IDEs and mypy."
     },
     "body": {
-      "ru": "Аннотации — это просто метаданные: Python хранит их в __annotations__ и сам никогда не проверяет, поэтому передача строки туда, где объявлен int, не вызовет ошибки — её поймает только mypy. На тех же метаданных построены dataclasses и pydantic, которые читают аннотации во время выполнения; а чтобы сослаться на ещё не определённый класс, его имя берут в кавычки.",
-      "en": "Annotations are just metadata: Python stores them in __annotations__ and never checks them itself, so passing a str where an int is declared raises no error — only mypy will flag it. That same metadata powers dataclasses and pydantic, which read annotations at runtime; and to reference a class that isn't defined yet, put its name in quotes."
+      "ru": "Аннотации — это просто метаданные: Python хранит их в __annotations__ и сам никогда не проверяет, поэтому передача строки туда, где объявлен int, не вызовет ошибки — её поймает только mypy. На тех же метаданных построены dataclasses и pydantic, которые читают аннотации во время выполнения. С Python 3.14 аннотации вычисляются лениво, поэтому на ещё не определённый класс можно сослаться прямо по имени; в более старых версиях его имя берут в кавычки.",
+      "en": "Annotations are just metadata: Python stores them in __annotations__ and never checks them itself, so passing a str where an int is declared raises no error — only mypy will flag it. That same metadata powers dataclasses and pydantic, which read annotations at runtime. Since Python 3.14 annotations are evaluated lazily, so a class that isn't defined yet can be referenced by its bare name; on older versions put its name in quotes."
     },
     "syntax": "def f(x: int) -> str: ...",
     "status": "ready",
@@ -4625,7 +4623,7 @@
     "syntax": "a - b | -a",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -4915,17 +4913,17 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Оператор деления. Всегда возвращает float, даже при делении двух целых. Деление на ноль вызывает ZeroDivisionError.",
-      "en": "The division operator. It always returns a float, even when both operands are integers. Division by zero raises ZeroDivisionError."
+      "ru": "Оператор деления. Для int и float всегда возвращает float, даже при делении двух целых. Деление на ноль вызывает ZeroDivisionError.",
+      "en": "The division operator. For int and float it always returns a float, even when both operands are integers. Division by zero raises ZeroDivisionError."
     },
     "body": {
-      "ru": "Результат всегда float, а у float всего 53 бита мантиссы: на больших целых младшие разряды тихо теряются, а совсем крупные числа вроде 10**400 / 2 падают с OverflowError — там, где нужен точный целый ответ, бери // и не превращай float обратно в int. Деление на 0.0 тоже даёт ZeroDivisionError, а не inf, как в C или NumPy.",
-      "en": "The result is always a float, and a float has only 53 bits of mantissa: with large integers the low digits are silently lost, and truly huge values such as 10**400 / 2 raise OverflowError — when you need an exact integer answer use // instead of dividing and converting back. Dividing by 0.0 also raises ZeroDivisionError rather than producing inf as C or NumPy would."
+      "ru": "Для int и float результат всегда float (complex, Decimal и Fraction делятся в свой тип), а у float всего 53 бита мантиссы: на больших целых младшие разряды тихо теряются, а совсем крупные числа вроде 10**400 / 2 падают с OverflowError — там, где нужен точный целый ответ, бери // и не превращай float обратно в int. Деление на 0.0 тоже даёт ZeroDivisionError, а не inf, как в C или NumPy.",
+      "en": "For int and float the result is always a float (complex, Decimal and Fraction keep their own type), and a float has only 53 bits of mantissa: with large integers the low digits are silently lost, and truly huge values such as 10**400 / 2 raise OverflowError — when you need an exact integer answer use // instead of dividing and converting back. Dividing by 0.0 also raises ZeroDivisionError rather than producing inf as C or NumPy would."
     },
     "syntax": "a / b -> float",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "added": "3.5",
+    "added": "3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5175,7 +5173,7 @@
     "syntax": "x = 10  # глобальная\ndef f():\n    x = 5  # локальная",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/executionmodel.html#resolution-of-names",
-    "added": "3.12",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5274,7 +5272,7 @@
     "syntax": "def gcd(a, b):\n    while b: a, b = b, a%b\n    return a",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/math.html#math.gcd",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5514,7 +5512,7 @@
     "syntax": "a == b | a != b | a > b | a < b | a >= b | a <= b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
-    "added": "3.8",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5582,7 +5580,7 @@
     "syntax": "a % b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5913,8 +5911,8 @@
       "en": "Operators that work on numbers bit by bit: & (AND), | (OR), ^ (XOR), ~ (NOT/inversion), << (left shift), >> (right shift)."
     },
     "body": {
-      "ru": "Первым кусается приоритет: x & 1 == 0 разбирается как x & (1 == 0), потому что сравнение связывает сильнее битовых операторов — нужны скобки. Целые в Python неограниченной длины и ведут себя как дополнительный код, поэтому ~x всегда равно -x - 1, сдвиг влево не переполняется (растёт число, а не обрезается), а >> у отрицательных сохраняет знак. Отрицательное число разрядов в сдвиге — ValueError.",
-      "en": "Precedence bites first: x & 1 == 0 parses as x & (1 == 0), because comparisons bind tighter than bitwise operators — add parentheses. Python ints are arbitrary precision and behave as two's complement, so ~x is always -x - 1, a left shift never overflows (the number just grows), and >> keeps the sign of a negative value. A negative shift count raises ValueError."
+      "ru": "Первым кусается приоритет: битовые операторы связывают слабее арифметики, поэтому x & 1 + 1 разбирается как x & (1 + 1), а 1 << n - 1 — как 1 << (n - 1); нужны скобки. Со сравнениями наоборот, и не так, как в C: x & 1 == 0 — это (x & 1) == 0. Целые в Python неограниченной длины и ведут себя как дополнительный код, поэтому ~x всегда равно -x - 1, сдвиг влево не переполняется (растёт число, а не обрезается), а >> у отрицательных сохраняет знак. Отрицательное число разрядов в сдвиге — ValueError.",
+      "en": "Precedence bites first: bitwise operators bind more loosely than arithmetic, so x & 1 + 1 parses as x & (1 + 1) and 1 << n - 1 as 1 << (n - 1) — add parentheses. With comparisons it is the other way round, unlike C: x & 1 == 0 means (x & 1) == 0. Python ints are arbitrary precision and behave as two's complement, so ~x is always -x - 1, a left shift never overflows (the number just grows), and >> keeps the sign of a negative value. A negative shift count raises ValueError."
     },
     "syntax": "a & b  a | b  a ^ b  ~a  a << n  a >> n",
     "status": "ready",
@@ -6049,7 +6047,7 @@
     "syntax": "prefix[i] = prefix[i-1] + arr[i]\nsum(l, r) = prefix[r] - prefix[l-1]",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/itertools.html#itertools.accumulate",
-    "added": "3.2",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6479,8 +6477,8 @@
     },
     "kind": "term",
     "summary": {
-      "ru": "Бинарный оператор сложения. Для чисел — арифметическое сложение; для строк и списков — конкатенация; для множеств — объединение.",
-      "en": "The binary addition operator. For numbers it is arithmetic addition; for strings and lists, concatenation; for sets, union."
+      "ru": "Бинарный оператор сложения. Для чисел — арифметическое сложение; для строк, списков и кортежей — конкатенация. Множества через + не складываются: объединение — это |.",
+      "en": "The binary addition operator. For numbers it is arithmetic addition; for strings, lists and tuples, concatenation. Sets do not support +: union is spelled |."
     },
     "body": {
       "ru": "Неявных преобразований нет: \"5\" + 1 сразу даёт TypeError, а список нельзя сложить с кортежем — типы приводят вручную. Для последовательностей + всегда создаёт новый объект и копирует оба операнда, поэтому склейка в цикле выходит квадратичной по времени: строки собирайте через \"\".join(), к спискам добавляйте append() или extend().",
@@ -6489,7 +6487,7 @@
     "syntax": "a + b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -6979,7 +6977,7 @@
     "syntax": "a ** b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#the-power-operator",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7040,7 +7038,7 @@
     "syntax": "значение_если_истина if условие else значение_если_ложь",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#conditional-expressions",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7109,7 +7107,7 @@
     "syntax": "a * b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7270,7 +7268,7 @@
     "syntax": "a // b",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#binary-arithmetic-operations",
-    "added": "3.5",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -7332,7 +7330,7 @@
     "syntax": "a < b < c  a == b == c  a <= b >= c",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/reference/expressions.html#comparisons",
-    "added": "3.8",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [

@@ -2421,17 +2421,17 @@
         "c = Counter('aabbccca')",
         "print(c)",
         "# → Counter({'a': 3, 'c': 3, 'b': 2})",
-        "print(c.most_common(2))"
+        "print(c.most_common(2))",
+        "# → [('a', 3), ('c', 3)]"
       ],
       [
         "from collections import Counter",
-        "# → [('a', 3), ('c', 3)]",
         "c2 = Counter(['apple', 'banana', 'apple', 'cherry', 'apple'])",
-        "print(c2.most_common(1))"
+        "print(c2.most_common(1))",
+        "# → [('apple', 3)]"
       ],
       [
         "from collections import Counter",
-        "# → [('apple', 3)]",
         "c3 = Counter('hello')",
         "c4 = Counter('world')",
         "print(c3 + c4)",
@@ -2440,16 +2440,14 @@
         "# → Counter({'h': 1, 'e': 1, 'l': 1}) (только положительные)",
         "print(c3 & c4)",
         "# → Counter({'l': 1, 'o': 1}) (пересечение, min)",
-        "print(c3 | c4)"
+        "print(c3 | c4)",
+        "# → Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1, 'w': 1, 'r': 1, 'd': 1}) (объединение, max)"
       ],
       [
         "from collections import Counter",
-        "# → Counter({'l': 2, 'h': 1, 'e': 1, 'o': 1, 'w': 1, 'r': 1, 'd': 1}) (объединение, max)",
         "words = 'the cat sat on the mat'.split()",
         "wc = Counter(words)",
-        "print(wc.most_common(3))"
-      ],
-      [
+        "print(wc.most_common(3))",
         "# → [('the', 2), ('cat', 1), ('sat', 1)]"
       ]
     ],
@@ -2751,9 +2749,6 @@
         "print(list(od))  # → ['a', 'b', 'c'] — в начало",
         "print(od.popitem(last=True))  # → ('c', 3) — последний",
         "print(od.popitem(last=False))  # → ('a', 1) — первый"
-      ],
-      [
-        "# → ('b', 2) (первый)"
       ]
     ],
     "related": [
@@ -3240,7 +3235,7 @@
     "syntax": "from dataclasses import dataclass\n@dataclass\nclass Point:\n    x: float\n    y: float",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass",
-    "added": "3.10",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -3437,7 +3432,7 @@
     "syntax": "@dataclass(order=True)\nclass X:\n    a: int; b: int",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/dataclasses.html#dataclasses.dataclass",
-    "added": "3.10",
+    "added": "3.7",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -5974,9 +5969,7 @@
         "data = [3, 1, 4, 1, 5, 9, 2, 6]",
         "heapq.nlargest(3, data) # → [9, 6, 5]",
         "records = [{'v': 5}, {'v': 1}, {'v': 9}]",
-        "heapq.nlargest(2, records, key=lambda x: x['v'])"
-      ],
-      [
+        "heapq.nlargest(2, records, key=lambda x: x['v'])",
         "# → [{'v': 9}, {'v': 5}]"
       ]
     ],
@@ -13145,7 +13138,7 @@
     "syntax": "from datetime import timezone\ndatetime.now(timezone.utc)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#aware-and-naive-objects",
-    "added": "3.2",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13867,7 +13860,7 @@
     "syntax": "list(MyEnum)  # все элементы\nfor m in MyEnum: ...\nmember is MyEnum.X",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/howto/enum.html#iteration",
-    "added": "3.11",
+    "added": "3.4",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -13930,7 +13923,7 @@
     "syntax": "%Y %m %d %H %M %S %A %B %p",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/datetime.html#strftime-and-strptime-format-codes",
-    "added": "3.6",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [
@@ -16767,8 +16760,8 @@
       "en": "The hyperbolic tangent of x: sinh(x) / cosh(x); values lie between -1 and 1."
     },
     "body": {
-      "ru": "Единственная из гиперболических, которая не переполняется: результат всегда внутри (-1, 1), какой бы конечный аргумент ни подали. Зато она быстро насыщается — уже при аргументе около 19 float не отличает ответ от единицы и возвращается ровно 1.0, поэтому обратный ход через math.atanh на таких значениях упадёт с ValueError.",
-      "en": "This is the one hyperbolic function that cannot overflow: for any finite argument the result stays inside (-1, 1). It saturates fast, though — by an argument of about 19 the float is indistinguishable from one and you get exactly 1.0 back, so trying to invert it with math.atanh at that point raises ValueError."
+      "ru": "Единственная из гиперболических, которая не переполняется: результат всегда в пределах [-1, 1], какой бы конечный аргумент ни подали. Зато она быстро насыщается — уже при аргументе около 19 float не отличает ответ от единицы и возвращается ровно 1.0, поэтому обратный ход через math.atanh на таких значениях упадёт с ValueError.",
+      "en": "This is the one hyperbolic function that cannot overflow: for any finite argument the result stays within [-1, 1]. It saturates fast, though — by an argument of about 19 the float is indistinguishable from one and you get exactly 1.0 back, so trying to invert it with math.atanh at that point raises ValueError."
     },
     "syntax": "math.tanh(...)",
     "status": "ready",
@@ -17465,7 +17458,7 @@
       "en": "Return the (fractional, integer) parts as a pair of floats."
     },
     "body": {
-      "ru": "Порядок пары легко перепутать: дробная часть идёт первой, целая — второй. Обе части float и обе несут знак аргумента, поэтому modf(-3.5) это (-0.5, -3.0), а не (0.5, -4.0), которые дал бы divmod(-3.5, 1) с округлением вниз. Если целая часть нужна как int, берите int(x) или math.trunc(x) — modf её так не отдаст.",
+      "ru": "Порядок пары легко перепутать: дробная часть идёт первой, целая — второй. Обе части float и обе несут знак аргумента, поэтому modf(-3.5) это (-0.5, -3.0), а divmod(-3.5, 1) с округлением вниз дал бы (-4.0, 0.5). Если целая часть нужна как int, берите int(x) или math.trunc(x) — modf её так не отдаст.",
       "en": "The order trips people up: the fractional part comes first, the integer part second. Both are floats and both carry the sign of the input, so modf(-3.5) is (-0.5, -3.0) — unlike divmod(-3.5, 1), which floors and yields (-4.0, 0.5). If you need the integer part as an int, use int(x) or math.trunc(x); modf never gives you one."
     },
     "syntax": "math.modf(...)",

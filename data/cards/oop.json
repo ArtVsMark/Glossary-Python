@@ -356,8 +356,8 @@
       "en": "The method behind <. On its own it is enough for sorted() and min() to order objects."
     },
     "body": {
-      "ru": "sorted, min, max и heapq сравнивают только через <, поэтому для сортировки достаточно __lt__. Операторы >, <= и >= сами из него не выводятся — их даёт декоратор functools.total_ordering по __eq__ и одному из сравнений. Для a > b при отсутствии __gt__ Python пробует отражённое b < a.",
-      "en": "sorted, min, max and heapq compare only with <, so __lt__ alone is enough for sorting. The operators >, <= and >= are not derived from it automatically — functools.total_ordering supplies them from __eq__ and one comparison. For a > b without __gt__ Python tries the reflected b < a."
+      "ru": "sorted, min и heapq сравнивают только через <, поэтому для сортировки достаточно __lt__; max сравнивает через >, но и ему хватает одного __lt__: для a > b при отсутствии __gt__ Python пробует отражённое b < a. Операторы <= и >= из __lt__ не выводятся — их даёт декоратор functools.total_ordering по __eq__ и одному из сравнений.",
+      "en": "sorted, min and heapq compare only with <, so __lt__ alone is enough for sorting; max compares with >, yet __lt__ alone suffices there too: for a > b without __gt__ Python tries the reflected b < a. The operators <= and >= are not derived from __lt__ — functools.total_ordering supplies them from __eq__ and one comparison."
     },
     "syntax": "def __lt__(self, other): ...",
     "status": "ready",
@@ -1832,10 +1832,10 @@
         "        self.next = None",
         "    def set_next(self, node):",
         "        self.next = node",
-        "        n1 = Node(1)",
-        "        n2 = Node(2)",
-        "        n1.set_next(n2)",
-        "        print(n1.next.val)  # → 2",
+        "n1 = Node(1)",
+        "n2 = Node(2)",
+        "n1.set_next(n2)",
+        "print(n1.next.val)  # → 2",
         "class Builder:",
         "    def __init__(self):",
         "        self.items = []",
@@ -1861,9 +1861,9 @@
         "    prefix = '[LOG]'",
         "    def log(self, msg):",
         "        print(f'{self.prefix} {msg}')",
-        "        l = Logger()",
-        "        l.prefix = '[INFO]'",
-        "        l.log('test')  # → [INFO] test"
+        "l = Logger()",
+        "l.prefix = '[INFO]'",
+        "l.log('test')  # → [INFO] test"
       ]
     ],
     "related": [
@@ -2080,7 +2080,7 @@
     "syntax": "from abc import ABC, abstractmethod\nclass Shape(ABC):\n    @abstractmethod\n    def area(self): ...",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/abc.html#abc.ABC",
-    "added": "3.4",
+    "added": "<3.0",
     "deprecated": "",
     "removed": "",
     "platforms": [

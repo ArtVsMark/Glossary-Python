@@ -63,7 +63,7 @@ def test_html_escapes_closing_tag_in_data():
     glossary = make_glossary(make_entry(examples=("print('</script>')",)))
     rendered = HtmlExporter(template=PLACEHOLDER).render(glossary)
     assert "</script>" not in rendered
-    assert json.loads(rendered)[0]["examples"] == ["print('</script>')"]
+    assert json.loads(rendered)[0]["examples"] == [["print('</script>')"]]
 
 
 def test_html_payload_is_compact(sample_glossary: Glossary):
@@ -102,10 +102,11 @@ def test_csv_has_header_and_row_per_entry(sample_glossary: Glossary):
 
 
 def test_csv_preserves_multiline_examples():
+    """Блоки примеров (#125) едут в ячейку целиком, вместе с границами."""
     glossary = make_glossary(make_entry(examples=("строка 1", "строка 2")))
     rendered = get_exporter("csv").render(glossary)
     rows = list(csv.DictReader(io.StringIO(rendered, newline="")))
-    assert rows[0]["examples"] == "['строка 1', 'строка 2']"
+    assert rows[0]["examples"] == "[['строка 1', 'строка 2']]"
 
 
 # ------------------------- Markdown -------------------------
@@ -154,3 +155,10 @@ def test_markdown_links_related_entries():
 def test_markdown_links_to_docs(sample_glossary: Glossary):
     rendered = get_exporter("markdown").render(sample_glossary)
     assert "[Документация](https://docs.python.org/3/" in rendered
+
+
+def test_markdown_fences_each_example_block():
+    glossary = make_glossary(make_entry(examples=(("a = 1",), ("b = 2",))))
+    rendered = get_exporter("markdown").render(glossary)
+    assert "```python\na = 1\n```" in rendered
+    assert "```python\nb = 2\n```" in rendered

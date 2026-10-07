@@ -145,3 +145,15 @@ def test_stats_on_empty_glossary():
 
 def test_default_schema_version():
     assert Glossary(entries=()).schema_version == SCHEMA_VERSION
+
+
+def test_flat_examples_read_as_one_block():
+    """Плоский список — прежняя форма и форма грейдера — читается одним блоком (#125)."""
+    entry = Entry.from_dict({"examples": ["a = 1", "", "print(a)"]})
+    assert entry.examples == (("a = 1", "print(a)"),)
+
+
+def test_example_blocks_keep_their_borders():
+    entry = Entry.from_dict({"examples": [["a = 1"], [], ["print(2)"]]})
+    assert entry.examples == (("a = 1",), ("print(2)",))
+    assert entry.to_dict()["examples"] == [["a = 1"], ["print(2)"]]

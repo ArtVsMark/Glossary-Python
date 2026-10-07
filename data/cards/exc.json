@@ -40,32 +40,34 @@
       "exc"
     ],
     "examples": [
-      "def divide(a, b):",
-      "    assert b != 0, 'Denominator must not be zero'",
-      "    return a / b",
-      "print(divide(10, 2))  # → 5.0",
-      "try:",
-      "    divide(1, 0)",
-      "except AssertionError as e:",
-      "    print(e)  # → Denominator must not be zero",
-      "def get_positive(n):",
-      "    assert isinstance(n, int) and n > 0, f'Expected positive int, got {n!r}'",
-      "    return n",
-      "print(get_positive(5))  # → 5",
-      "def test_add():",
-      "    assert 1 + 1 == 2",
-      "    assert 'hello'.upper() == 'HELLO'",
-      "    assert len([1,2,3]) == 3",
-      "test_add()  # ничего не печатает — все assert верны",
-      "# assert с коллекцией",
-      "def first(lst):",
-      "    assert len(lst) > 0, 'List is empty'",
-      "    return lst[0]",
-      "print(first([10,20]))  # → 10",
-      "# ВАЖНО: assert отключается при python -O",
-      "# Не используй для валидации входных данных в продакшн!",
-      "x = 10",
-      "assert x > 0  # только для разработки"
+      [
+        "def divide(a, b):",
+        "    assert b != 0, 'Denominator must not be zero'",
+        "    return a / b",
+        "print(divide(10, 2))  # → 5.0",
+        "try:",
+        "    divide(1, 0)",
+        "except AssertionError as e:",
+        "    print(e)  # → Denominator must not be zero",
+        "def get_positive(n):",
+        "    assert isinstance(n, int) and n > 0, f'Expected positive int, got {n!r}'",
+        "    return n",
+        "print(get_positive(5))  # → 5",
+        "def test_add():",
+        "    assert 1 + 1 == 2",
+        "    assert 'hello'.upper() == 'HELLO'",
+        "    assert len([1,2,3]) == 3",
+        "test_add()  # ничего не печатает — все assert верны",
+        "# assert с коллекцией",
+        "def first(lst):",
+        "    assert len(lst) > 0, 'List is empty'",
+        "    return lst[0]",
+        "print(first([10,20]))  # → 10",
+        "# ВАЖНО: assert отключается при python -O",
+        "# Не используй для валидации входных данных в продакшн!",
+        "x = 10",
+        "assert x > 0  # только для разработки"
+      ]
     ],
     "related": [
       "assertionerror",
@@ -115,10 +117,12 @@
       "exc"
     ],
     "examples": [
-      "x = 42",
-      "x.upper()            # AttributeError: 'int' has no 'upper'",
-      "class A: pass",
-      "A().run()            # AttributeError"
+      [
+        "x = 42",
+        "x.upper()            # AttributeError: 'int' has no 'upper'",
+        "class A: pass",
+        "A().run()            # AttributeError"
+      ]
     ],
     "related": [
       "getattr",
@@ -170,47 +174,49 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    result = int('42')",
-      "except ValueError:",
-      "    print('error')",
-      "else:",
-      "    print(f'success: {result}')  # → success: 42",
-      "def safe_open(path):",
-      "    try:",
-      "        f = open(path)",
-      "    except FileNotFoundError:",
-      "        return None",
-      "    else:",
-      "        data = f.read()",
-      "        f.close()",
-      "        return data",
-      "# else + finally",
-      "try:",
-      "    x = 10 / 2",
-      "except ZeroDivisionError:",
-      "    print('zero division')",
-      "else:",
-      "    print(f'result: {x}')  # → result: 5.0",
-      "finally:",
-      "    print('done')  # → done",
-      "    import json",
-      "def parse(s):",
-      "    try:",
-      "        data = json.loads(s)",
-      "    except json.JSONDecodeError:",
-      "        print('invalid JSON')",
-      "    else:",
-      "        return data",
-      "print(parse('{\"a\":1}'))  # → {'a':1}",
-      "# else vs перемещение кода после try",
-      "# В else — только код, который НЕ должен вызывать то же исключение",
-      "try:",
-      "    n = int(input('Enter number: ') if False else '5')",
-      "except ValueError:",
-      "    print('not a number')",
-      "else:",
-      "    print(n * 2)  # → 10"
+      [
+        "try:",
+        "    result = int('42')",
+        "except ValueError:",
+        "    print('error')",
+        "else:",
+        "    print(f'success: {result}')  # → success: 42",
+        "def safe_open(path):",
+        "    try:",
+        "        f = open(path)",
+        "    except FileNotFoundError:",
+        "        return None",
+        "    else:",
+        "        data = f.read()",
+        "        f.close()",
+        "        return data",
+        "# else + finally",
+        "try:",
+        "    x = 10 / 2",
+        "except ZeroDivisionError:",
+        "    print('zero division')",
+        "else:",
+        "    print(f'result: {x}')  # → result: 5.0",
+        "finally:",
+        "    print('done')  # → done",
+        "    import json",
+        "def parse(s):",
+        "    try:",
+        "        data = json.loads(s)",
+        "    except json.JSONDecodeError:",
+        "        print('invalid JSON')",
+        "    else:",
+        "        return data",
+        "print(parse('{\"a\":1}'))  # → {'a':1}",
+        "# else vs перемещение кода после try",
+        "# В else — только код, который НЕ должен вызывать то же исключение",
+        "try:",
+        "    n = int(input('Enter number: ') if False else '5')",
+        "except ValueError:",
+        "    print('not a number')",
+        "else:",
+        "    print(n * 2)  # → 10"
+      ]
     ],
     "related": [
       "try-except",
@@ -260,12 +266,14 @@
       "exc"
     ],
     "examples": [
-      "open('no_file.txt')         # FileNotFoundError",
-      "try:",
-      "    with open('data.txt') as f:",
-      "        text = f.read()",
-      "except FileNotFoundError:",
-      "    print('файл не найден')"
+      [
+        "open('no_file.txt')         # FileNotFoundError",
+        "try:",
+        "    with open('data.txt') as f:",
+        "        text = f.read()",
+        "except FileNotFoundError:",
+        "    print('файл не найден')"
+      ]
     ],
     "related": [
       "oserror",
@@ -316,51 +324,53 @@
       "exc"
     ],
     "examples": [
-      "def read_file(path):",
-      "    f = None",
-      "    try:",
-      "        f = open(path)",
-      "        return f.read()",
-      "    except FileNotFoundError:",
-      "        return None",
-      "    finally:",
-      "        if f:",
-      "            f.close()",
-      "        print('File handle closed')  # печатается всегда — и при успехе, и при ошибке",
-      "def divide(a, b):",
-      "    try:",
-      "        return a / b",
-      "    finally:",
-      "        print('division attempted')  # → division attempted",
-      "print(divide(10, 2))  # → 5.0",
-      "# finally при return",
-      "def func():",
-      "    try:",
-      "        return 'try'",
-      "    finally:",
-      "        return 'finally'  # перекрывает return из try!",
-      "print(func())  # → finally",
-      "# finally при raise",
-      "def func2():",
-      "    try:",
-      "        raise ValueError('oops')",
-      "    finally:",
-      "        print('cleanup')  # → cleanup (до распространения исключения)",
-      "try:",
-      "    func2()",
-      "except ValueError:",
-      "    pass",
-      "# Классический паттерн с ресурсом",
-      "import sqlite3",
-      "conn = None",
-      "try:",
-      "    conn = sqlite3.connect(':memory:')",
-      "except Exception as e:",
-      "    print(e)",
-      "finally:",
-      "    if conn:",
-      "        conn.close()",
-      "        print('Connection closed')  # → Connection closed"
+      [
+        "def read_file(path):",
+        "    f = None",
+        "    try:",
+        "        f = open(path)",
+        "        return f.read()",
+        "    except FileNotFoundError:",
+        "        return None",
+        "    finally:",
+        "        if f:",
+        "            f.close()",
+        "        print('File handle closed')  # печатается всегда — и при успехе, и при ошибке",
+        "def divide(a, b):",
+        "    try:",
+        "        return a / b",
+        "    finally:",
+        "        print('division attempted')  # → division attempted",
+        "print(divide(10, 2))  # → 5.0",
+        "# finally при return",
+        "def func():",
+        "    try:",
+        "        return 'try'",
+        "    finally:",
+        "        return 'finally'  # перекрывает return из try!",
+        "print(func())  # → finally",
+        "# finally при raise",
+        "def func2():",
+        "    try:",
+        "        raise ValueError('oops')",
+        "    finally:",
+        "        print('cleanup')  # → cleanup (до распространения исключения)",
+        "try:",
+        "    func2()",
+        "except ValueError:",
+        "    pass",
+        "# Классический паттерн с ресурсом",
+        "import sqlite3",
+        "conn = None",
+        "try:",
+        "    conn = sqlite3.connect(':memory:')",
+        "except Exception as e:",
+        "    print(e)",
+        "finally:",
+        "    if conn:",
+        "        conn.close()",
+        "        print('Connection closed')  # → Connection closed"
+      ]
     ],
     "related": [
       "try-except",
@@ -410,11 +420,13 @@
       "exc"
     ],
     "examples": [
-      "from os import nonexistent  # ImportError",
-      "try:",
-      "    import some_module",
-      "except ImportError:",
-      "    print('модуль недоступен')"
+      [
+        "from os import nonexistent  # ImportError",
+        "try:",
+        "    import some_module",
+        "except ImportError:",
+        "    print('модуль недоступен')"
+      ]
     ],
     "related": [
       "modulenotfounderror",
@@ -464,13 +476,15 @@
       "exc"
     ],
     "examples": [
-      "lst = [1, 2, 3]",
-      "lst[5]               # IndexError",
-      "lst[-1]              # 3 — ok",
-      "try:",
-      "    print(lst[10])",
-      "except IndexError:",
-      "    print('нет такого индекса')"
+      [
+        "lst = [1, 2, 3]",
+        "lst[5]               # IndexError",
+        "lst[-1]              # 3 — ok",
+        "try:",
+        "    print(lst[10])",
+        "except IndexError:",
+        "    print('нет такого индекса')"
+      ]
     ],
     "related": [
       "lookuperror",
@@ -520,13 +534,15 @@
       "exc"
     ],
     "examples": [
-      "d = {'a': 1}",
-      "d['b']               # KeyError: 'b'",
-      "d.get('b', 0)        # 0 — безопасно",
-      "try:",
-      "    v = d['x']",
-      "except KeyError:",
-      "    v = None"
+      [
+        "d = {'a': 1}",
+        "d['b']               # KeyError: 'b'",
+        "d.get('b', 0)        # 0 — безопасно",
+        "try:",
+        "    v = d['x']",
+        "except KeyError:",
+        "    v = None"
+      ]
     ],
     "related": [
       "dict.get",
@@ -577,11 +593,13 @@
       "exc"
     ],
     "examples": [
-      "import nonexistent_lib      # ModuleNotFoundError",
-      "try:",
-      "    import pandas",
-      "except ModuleNotFoundError:",
-      "    print('установи: pip install pandas')"
+      [
+        "import nonexistent_lib      # ModuleNotFoundError",
+        "try:",
+        "    import pandas",
+        "except ModuleNotFoundError:",
+        "    print('установи: pip install pandas')"
+      ]
     ],
     "related": [
       "importerror",
@@ -631,9 +649,11 @@
       "exc"
     ],
     "examples": [
-      "print(x)             # NameError: name 'x' is not defined",
-      "def f():",
-      "    return undefined_var  # NameError"
+      [
+        "print(x)             # NameError: name 'x' is not defined",
+        "def f():",
+        "    return undefined_var  # NameError"
+      ]
     ],
     "related": [
       "unboundlocalerror",
@@ -683,12 +703,14 @@
       "exc"
     ],
     "examples": [
-      "class Shape:",
-      "    def area(self):",
-      "        raise NotImplementedError('area() must be implemented')",
-      "class Circle(Shape):",
-      "    def area(self):",
-      "        return 3.14 * self.r ** 2"
+      [
+        "class Shape:",
+        "    def area(self):",
+        "        raise NotImplementedError('area() must be implemented')",
+        "class Circle(Shape):",
+        "    def area(self):",
+        "        return 3.14 * self.r ** 2"
+      ]
     ],
     "related": [
       "abc.abstractmethod",
@@ -737,12 +759,14 @@
       "exc"
     ],
     "examples": [
-      "import os",
-      "os.remove('no_file')  # FileNotFoundError (подкласс OSError)",
-      "try:",
-      "    os.mkdir('/root/test')",
-      "except OSError as e:",
-      "    print(e.strerror)"
+      [
+        "import os",
+        "os.remove('no_file')  # FileNotFoundError (подкласс OSError)",
+        "try:",
+        "    os.mkdir('/root/test')",
+        "except OSError as e:",
+        "    print(e.strerror)"
+      ]
     ],
     "related": [
       "filenotfounderror",
@@ -793,23 +817,25 @@
       "exc"
     ],
     "examples": [
-      "import os",
-      "import tempfile",
-      "from pathlib import Path",
-      "# Права — свойство ОС И пользователя. Под администратором (а в контейнере",
-      "# процесс часто идёт от root) запись разрешена даже в файл «только для чтения»,",
-      "# поэтому ожидания здесь помечены средозависимыми: карточка показывает ФОРМУ",
-      "# обработки, а не гарантированный исход. Прежний пример читал '/etc/shadow' —",
-      "# файла с таким именем нет ни на Windows, ни на macOS.",
-      "path = Path(tempfile.mkdtemp()) / 'readonly.txt'",
-      "path.write_text('данные', encoding='utf-8')",
-      "os.chmod(path, 0o444)",
-      "try:",
-      "    with open(path, 'w', encoding='utf-8') as f:",
-      "        f.write('перезапись')",
-      "    print('запись разрешена — у процесса права администратора')  # → ?",
-      "except PermissionError:",
-      "    print('нет прав на запись')  # → ?"
+      [
+        "import os",
+        "import tempfile",
+        "from pathlib import Path",
+        "# Права — свойство ОС И пользователя. Под администратором (а в контейнере",
+        "# процесс часто идёт от root) запись разрешена даже в файл «только для чтения»,",
+        "# поэтому ожидания здесь помечены средозависимыми: карточка показывает ФОРМУ",
+        "# обработки, а не гарантированный исход. Прежний пример читал '/etc/shadow' —",
+        "# файла с таким именем нет ни на Windows, ни на macOS.",
+        "path = Path(tempfile.mkdtemp()) / 'readonly.txt'",
+        "path.write_text('данные', encoding='utf-8')",
+        "os.chmod(path, 0o444)",
+        "try:",
+        "    with open(path, 'w', encoding='utf-8') as f:",
+        "        f.write('перезапись')",
+        "    print('запись разрешена — у процесса права администратора')  # → ?",
+        "except PermissionError:",
+        "    print('нет прав на запись')  # → ?"
+      ]
     ],
     "related": [
       "oserror",
@@ -859,56 +885,58 @@
       "exc"
     ],
     "examples": [
-      "def check_age(age):",
-      "    if age < 0:",
-      "        raise ValueError(f'Age cannot be negative: {age}')",
-      "    return age",
-      "try:",
-      "    check_age(-1)",
-      "except ValueError as e:",
-      "    print(e)  # → Age cannot be negative: -1",
-      "# raise from",
-      "try:",
-      "    try:",
-      "        int('abc')",
-      "    except ValueError as e:",
-      "        raise RuntimeError('conversion failed') from e",
-      "except RuntimeError as err:",
-      "    print(type(err.__cause__).__name__)  # → ValueError — исходная причина сохранена",
-      "# Re-raise",
-      "def safe():",
-      "    try:",
-      "        return 1/0",
-      "    except ZeroDivisionError:",
-      "        print('caught, re-raising')",
-      "        raise  # передаёт исходное исключение",
-      "try:",
-      "    safe()",
-      "except ZeroDivisionError:",
-      "    print('handled')  # → caught / handled",
-      "# raise с кастомным классом",
-      "class ValidationError(ValueError):",
-      "    pass",
-      "def validate(x):",
-      "    if x < 0:",
-      "        raise ValidationError(f'Invalid value: {x}')",
-      "try:",
-      "    validate(-5)",
-      "except ValidationError as e:",
-      "    print(e)  # → Invalid value: -5",
-      "# raise без аргументов в except",
-      "try:",
-      "    try:",
-      "        1/0",
-      "    except ZeroDivisionError:",
-      "        raise  # пробрасываем",
-      "except ZeroDivisionError:",
-      "    print('outer caught')  # → outer caught",
-      "# Цепочка __cause__ и __context__",
-      "try:",
-      "    raise ValueError('first') from TypeError('cause')",
-      "except ValueError as e:",
-      "    print(type(e.__cause__).__name__)  # → TypeError"
+      [
+        "def check_age(age):",
+        "    if age < 0:",
+        "        raise ValueError(f'Age cannot be negative: {age}')",
+        "    return age",
+        "try:",
+        "    check_age(-1)",
+        "except ValueError as e:",
+        "    print(e)  # → Age cannot be negative: -1",
+        "# raise from",
+        "try:",
+        "    try:",
+        "        int('abc')",
+        "    except ValueError as e:",
+        "        raise RuntimeError('conversion failed') from e",
+        "except RuntimeError as err:",
+        "    print(type(err.__cause__).__name__)  # → ValueError — исходная причина сохранена",
+        "# Re-raise",
+        "def safe():",
+        "    try:",
+        "        return 1/0",
+        "    except ZeroDivisionError:",
+        "        print('caught, re-raising')",
+        "        raise  # передаёт исходное исключение",
+        "try:",
+        "    safe()",
+        "except ZeroDivisionError:",
+        "    print('handled')  # → caught / handled",
+        "# raise с кастомным классом",
+        "class ValidationError(ValueError):",
+        "    pass",
+        "def validate(x):",
+        "    if x < 0:",
+        "        raise ValidationError(f'Invalid value: {x}')",
+        "try:",
+        "    validate(-5)",
+        "except ValidationError as e:",
+        "    print(e)  # → Invalid value: -5",
+        "# raise без аргументов в except",
+        "try:",
+        "    try:",
+        "        1/0",
+        "    except ZeroDivisionError:",
+        "        raise  # пробрасываем",
+        "except ZeroDivisionError:",
+        "    print('outer caught')  # → outer caught",
+        "# Цепочка __cause__ и __context__",
+        "try:",
+        "    raise ValueError('first') from TypeError('cause')",
+        "except ValueError as e:",
+        "    print(type(e.__cause__).__name__)  # → TypeError"
+      ]
     ],
     "related": [
       "try-except",
@@ -959,14 +987,16 @@
       "exc"
     ],
     "examples": [
-      "def infinite():",
-      "    return infinite()",
-      "try:",
-      "    infinite()",
-      "except RecursionError:",
-      "    print('слишком глубокая рекурсия')",
-      "    import sys",
-      "    sys.setrecursionlimit(2000)  # изменить лимит"
+      [
+        "def infinite():",
+        "    return infinite()",
+        "try:",
+        "    infinite()",
+        "except RecursionError:",
+        "    print('слишком глубокая рекурсия')",
+        "    import sys",
+        "    sys.setrecursionlimit(2000)  # изменить лимит"
+      ]
     ],
     "related": [
       "рекурсия",
@@ -1016,14 +1046,16 @@
       "exc"
     ],
     "examples": [
-      "it = iter([1, 2])",
-      "next(it)  # 1",
-      "next(it)  # 2",
-      "next(it)  # StopIteration",
-      "# В генераторе raise StopIteration = return",
-      "def gen():",
-      "    yield 1",
-      "    return  # автоматически поднимает StopIteration"
+      [
+        "it = iter([1, 2])",
+        "next(it)  # 1",
+        "next(it)  # 2",
+        "next(it)  # StopIteration",
+        "# В генераторе raise StopIteration = return",
+        "def gen():",
+        "    yield 1",
+        "    return  # автоматически поднимает StopIteration"
+      ]
     ],
     "related": [
       "next",
@@ -1077,46 +1109,48 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    x = 1 / 0",
-      "except ZeroDivisionError:",
-      "    print('division by zero')  # → division by zero",
-      "    try:",
-      "        int('abc')",
-      "    except ValueError as e:",
-      "        print(e)  # → invalid literal for int()...",
-      "# Несколько except",
-      "try:",
-      "    lst = [1,2,3]",
-      "    print(lst[10])",
-      "except IndexError:",
-      "    print('index error')  # → index error",
-      "except Exception as e:",
-      "    print('other:', e)",
-      "# else — если исключений не было",
-      "try:",
-      "    result = 10 / 2",
-      "except ZeroDivisionError:",
-      "    print('error')",
-      "else:",
-      "    print(result)  # → 5.0",
-      "# finally — всегда выполняется",
-      "try:",
-      "    f = open('/nonexistent')",
-      "except FileNotFoundError:",
-      "    print('not found')",
-      "finally:",
-      "    print('always')  # → not found / always",
-      "# Перехват нескольких типов в одном except",
-      "try:",
-      "    x = int(None)",
-      "except (TypeError, ValueError) as e:",
-      "    print(f'Caught: {e}')  # → Caught: ...",
-      "# Базовый Exception — ловит всё (кроме SystemExit и KeyboardInterrupt)",
-      "try:",
-      "    raise RuntimeError('oops')",
-      "except Exception as e:",
-      "    print(type(e).__name__, e)  # → RuntimeError oops"
+      [
+        "try:",
+        "    x = 1 / 0",
+        "except ZeroDivisionError:",
+        "    print('division by zero')  # → division by zero",
+        "    try:",
+        "        int('abc')",
+        "    except ValueError as e:",
+        "        print(e)  # → invalid literal for int()...",
+        "# Несколько except",
+        "try:",
+        "    lst = [1,2,3]",
+        "    print(lst[10])",
+        "except IndexError:",
+        "    print('index error')  # → index error",
+        "except Exception as e:",
+        "    print('other:', e)",
+        "# else — если исключений не было",
+        "try:",
+        "    result = 10 / 2",
+        "except ZeroDivisionError:",
+        "    print('error')",
+        "else:",
+        "    print(result)  # → 5.0",
+        "# finally — всегда выполняется",
+        "try:",
+        "    f = open('/nonexistent')",
+        "except FileNotFoundError:",
+        "    print('not found')",
+        "finally:",
+        "    print('always')  # → not found / always",
+        "# Перехват нескольких типов в одном except",
+        "try:",
+        "    x = int(None)",
+        "except (TypeError, ValueError) as e:",
+        "    print(f'Caught: {e}')  # → Caught: ...",
+        "# Базовый Exception — ловит всё (кроме SystemExit и KeyboardInterrupt)",
+        "try:",
+        "    raise RuntimeError('oops')",
+        "except Exception as e:",
+        "    print(type(e).__name__, e)  # → RuntimeError oops"
+      ]
     ],
     "related": [
       "raise",
@@ -1167,11 +1201,13 @@
       "exc"
     ],
     "examples": [
-      "'2' + 2              # TypeError",
-      "len(42)              # TypeError",
-      "def add(a, b):",
-      "    return a + b",
-      "add(1, '2')          # TypeError"
+      [
+        "'2' + 2              # TypeError",
+        "len(42)              # TypeError",
+        "def add(a, b):",
+        "    return a + b",
+        "add(1, '2')          # TypeError"
+      ]
     ],
     "related": [
       "valueerror",
@@ -1221,13 +1257,15 @@
       "exc"
     ],
     "examples": [
-      "int('abc')           # ValueError",
-      "float('inf')         # ok — inf допустим",
-      "list.index(99)       # ValueError если 99 нет",
-      "try:",
-      "    x = int('нет')",
-      "except ValueError as e:",
-      "    print('Ошибка:', e)"
+      [
+        "int('abc')           # ValueError",
+        "float('inf')         # ok — inf допустим",
+        "list.index(99)       # ValueError если 99 нет",
+        "try:",
+        "    x = int('нет')",
+        "except ValueError as e:",
+        "    print('Ошибка:', e)"
+      ]
     ],
     "related": [
       "typeerror",
@@ -1280,35 +1318,37 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    int('abc')",
-      "except ValueError as e:",
-      "    print(f'ValueError: {e}')  # → invalid literal...",
-      "    try:",
-      "        x = [1,2][5]",
-      "    except IndexError as e:",
-      "        print(f'IndexError: {e}')  # → list index out of range",
-      "    try:",
-      "        d = {}",
-      "        d['missing']",
-      "    except KeyError as e:",
-      "        print(f'KeyError: {e}')  # → 'missing'",
-      "    try:",
-      "        'str' + 1",
-      "    except TypeError as e:",
-      "        print(f'TypeError: {e}')  # → can only concatenate...",
-      "    try:",
-      "        1 / 0",
-      "    except ZeroDivisionError as e:",
-      "        print(f'ZeroDivisionError: {e}')  # → division by zero",
-      "    try:",
-      "        open('/nonexistent_file')",
-      "    except FileNotFoundError as e:",
-      "        print(f'FileNotFoundError: {e}')",
-      "    try:",
-      "        None.attr",
-      "    except AttributeError as e:",
-      "        print(f'AttributeError: {e}')  # → 'NoneType' object has no attribute..."
+      [
+        "try:",
+        "    int('abc')",
+        "except ValueError as e:",
+        "    print(f'ValueError: {e}')  # → invalid literal...",
+        "    try:",
+        "        x = [1,2][5]",
+        "    except IndexError as e:",
+        "        print(f'IndexError: {e}')  # → list index out of range",
+        "    try:",
+        "        d = {}",
+        "        d['missing']",
+        "    except KeyError as e:",
+        "        print(f'KeyError: {e}')  # → 'missing'",
+        "    try:",
+        "        'str' + 1",
+        "    except TypeError as e:",
+        "        print(f'TypeError: {e}')  # → can only concatenate...",
+        "    try:",
+        "        1 / 0",
+        "    except ZeroDivisionError as e:",
+        "        print(f'ZeroDivisionError: {e}')  # → division by zero",
+        "    try:",
+        "        open('/nonexistent_file')",
+        "    except FileNotFoundError as e:",
+        "        print(f'FileNotFoundError: {e}')",
+        "    try:",
+        "        None.attr",
+        "    except AttributeError as e:",
+        "        print(f'AttributeError: {e}')  # → 'NoneType' object has no attribute..."
+      ]
     ],
     "related": [
       "baseexception",
@@ -1360,61 +1400,63 @@
       "exc"
     ],
     "examples": [
-      "class AppError(Exception):",
-      "    pass",
-      "class DatabaseError(AppError):",
-      "    pass",
-      "class NetworkError(AppError):",
-      "    pass",
-      "try:",
-      "    raise DatabaseError('Connection failed')",
-      "except AppError as e:",
-      "    print(type(e).__name__, e)  # → DatabaseError Connection failed",
-      "class ValidationError(ValueError):",
-      "    def __init__(self, field, message):",
-      "        self.field = field",
-      "        super().__init__(f'{field}: {message}')",
-      "try:",
-      "    raise ValidationError('email', 'invalid format')",
-      "except ValidationError as e:",
-      "    print(e.field, e)  # → email email: invalid format",
-      "class HttpError(Exception):",
-      "    def __init__(self, status_code, message):",
-      "        self.status_code = status_code",
-      "        super().__init__(f'HTTP {status_code}: {message}')",
-      "class NotFoundError(HttpError):",
-      "    def __init__(self, url):",
-      "        super().__init__(404, f'{url} not found')",
-      "try:",
-      "    raise NotFoundError('/api/users')",
-      "except HttpError as e:",
-      "    print(e.status_code, e)  # → 404 HTTP 404: /api/users not found",
-      "# Иерархия ошибок",
-      "class PaymentError(Exception): pass",
-      "class InsufficientFundsError(PaymentError):",
-      "    def __init__(self, amount, balance):",
-      "        self.shortage = amount - balance",
-      "        super().__init__(f'Need {self.shortage} more')",
-      "try:",
-      "    raise InsufficientFundsError(100, 60)",
-      "except InsufficientFundsError as e:",
-      "    print(e, e.shortage)  # → Need 40 more 40",
-      "# raise ... from",
-      "class ServiceError(Exception): pass",
-      "try:",
-      "    try:",
-      "        int('abc')",
-      "    except ValueError as e:",
-      "        raise ServiceError('Parse failed') from e",
-      "except ServiceError as e:",
-      "    print(e)                    # → Parse failed",
-      "    print(type(e.__cause__))   # → <class 'ValueError'>",
-      "# repr дефолтный",
-      "class SimpleError(Exception):",
-      "    pass",
-      "e = SimpleError('something went wrong')",
-      "print(str(e))   # → something went wrong",
-      "print(repr(e))  # → SimpleError('something went wrong')"
+      [
+        "class AppError(Exception):",
+        "    pass",
+        "class DatabaseError(AppError):",
+        "    pass",
+        "class NetworkError(AppError):",
+        "    pass",
+        "try:",
+        "    raise DatabaseError('Connection failed')",
+        "except AppError as e:",
+        "    print(type(e).__name__, e)  # → DatabaseError Connection failed",
+        "class ValidationError(ValueError):",
+        "    def __init__(self, field, message):",
+        "        self.field = field",
+        "        super().__init__(f'{field}: {message}')",
+        "try:",
+        "    raise ValidationError('email', 'invalid format')",
+        "except ValidationError as e:",
+        "    print(e.field, e)  # → email email: invalid format",
+        "class HttpError(Exception):",
+        "    def __init__(self, status_code, message):",
+        "        self.status_code = status_code",
+        "        super().__init__(f'HTTP {status_code}: {message}')",
+        "class NotFoundError(HttpError):",
+        "    def __init__(self, url):",
+        "        super().__init__(404, f'{url} not found')",
+        "try:",
+        "    raise NotFoundError('/api/users')",
+        "except HttpError as e:",
+        "    print(e.status_code, e)  # → 404 HTTP 404: /api/users not found",
+        "# Иерархия ошибок",
+        "class PaymentError(Exception): pass",
+        "class InsufficientFundsError(PaymentError):",
+        "    def __init__(self, amount, balance):",
+        "        self.shortage = amount - balance",
+        "        super().__init__(f'Need {self.shortage} more')",
+        "try:",
+        "    raise InsufficientFundsError(100, 60)",
+        "except InsufficientFundsError as e:",
+        "    print(e, e.shortage)  # → Need 40 more 40",
+        "# raise ... from",
+        "class ServiceError(Exception): pass",
+        "try:",
+        "    try:",
+        "        int('abc')",
+        "    except ValueError as e:",
+        "        raise ServiceError('Parse failed') from e",
+        "except ServiceError as e:",
+        "    print(e)                    # → Parse failed",
+        "    print(type(e.__cause__))   # → <class 'ValueError'>",
+        "# repr дефолтный",
+        "class SimpleError(Exception):",
+        "    pass",
+        "e = SimpleError('something went wrong')",
+        "print(str(e))   # → something went wrong",
+        "print(repr(e))  # → SimpleError('something went wrong')"
+      ]
     ],
     "related": [
       "exception",
@@ -1465,10 +1507,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise BaseException",
-      "except BaseException as e:",
-      "    print(type(e).__name__)   # → BaseException"
+      [
+        "try:",
+        "    raise BaseException",
+        "except BaseException as e:",
+        "    print(type(e).__name__)   # → BaseException"
+      ]
     ],
     "related": [
       "exception",
@@ -1518,10 +1562,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise Exception",
-      "except Exception as e:",
-      "    print(type(e).__name__)   # → Exception"
+      [
+        "try:",
+        "    raise Exception",
+        "except Exception as e:",
+        "    print(type(e).__name__)   # → Exception"
+      ]
     ],
     "related": [
       "baseexception",
@@ -1571,10 +1617,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ArithmeticError",
-      "except ArithmeticError as e:",
-      "    print(type(e).__name__)   # → ArithmeticError"
+      [
+        "try:",
+        "    raise ArithmeticError",
+        "except ArithmeticError as e:",
+        "    print(type(e).__name__)   # → ArithmeticError"
+      ]
     ],
     "related": [
       "zerodivisionerror",
@@ -1624,10 +1672,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    1 / 0",
-      "except ZeroDivisionError as e:",
-      "    print(type(e).__name__)   # → ZeroDivisionError"
+      [
+        "try:",
+        "    1 / 0",
+        "except ZeroDivisionError as e:",
+        "    print(type(e).__name__)   # → ZeroDivisionError"
+      ]
     ],
     "related": [
       "arithmeticerror",
@@ -1677,10 +1727,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise OverflowError",
-      "except OverflowError as e:",
-      "    print(type(e).__name__)   # → OverflowError"
+      [
+        "try:",
+        "    raise OverflowError",
+        "except OverflowError as e:",
+        "    print(type(e).__name__)   # → OverflowError"
+      ]
     ],
     "related": [
       "arithmeticerror",
@@ -1729,10 +1781,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise FloatingPointError",
-      "except FloatingPointError as e:",
-      "    print(type(e).__name__)   # → FloatingPointError"
+      [
+        "try:",
+        "    raise FloatingPointError",
+        "except FloatingPointError as e:",
+        "    print(type(e).__name__)   # → FloatingPointError"
+      ]
     ],
     "related": [
       "arithmeticerror",
@@ -1782,10 +1836,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    assert 1 == 2",
-      "except AssertionError as e:",
-      "    print(type(e).__name__)   # → AssertionError"
+      [
+        "try:",
+        "    assert 1 == 2",
+        "except AssertionError as e:",
+        "    print(type(e).__name__)   # → AssertionError"
+      ]
     ],
     "related": [
       "assert",
@@ -1834,10 +1890,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise LookupError",
-      "except LookupError as e:",
-      "    print(type(e).__name__)   # → LookupError"
+      [
+        "try:",
+        "    raise LookupError",
+        "except LookupError as e:",
+        "    print(type(e).__name__)   # → LookupError"
+      ]
     ],
     "related": [
       "indexerror",
@@ -1886,10 +1944,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise RuntimeError",
-      "except RuntimeError as e:",
-      "    print(type(e).__name__)   # → RuntimeError"
+      [
+        "try:",
+        "    raise RuntimeError",
+        "except RuntimeError as e:",
+        "    print(type(e).__name__)   # → RuntimeError"
+      ]
     ],
     "related": [
       "recursionerror",
@@ -1940,10 +2000,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise EOFError",
-      "except EOFError as e:",
-      "    print(type(e).__name__)   # → EOFError"
+      [
+        "try:",
+        "    raise EOFError",
+        "except EOFError as e:",
+        "    print(type(e).__name__)   # → EOFError"
+      ]
     ],
     "related": [
       "input",
@@ -1993,10 +2055,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise KeyboardInterrupt",
-      "except KeyboardInterrupt as e:",
-      "    print(type(e).__name__)   # → KeyboardInterrupt"
+      [
+        "try:",
+        "    raise KeyboardInterrupt",
+        "except KeyboardInterrupt as e:",
+        "    print(type(e).__name__)   # → KeyboardInterrupt"
+      ]
     ],
     "related": [
       "baseexception",
@@ -2045,10 +2109,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise SystemExit",
-      "except SystemExit as e:",
-      "    print(type(e).__name__)   # → SystemExit"
+      [
+        "try:",
+        "    raise SystemExit",
+        "except SystemExit as e:",
+        "    print(type(e).__name__)   # → SystemExit"
+      ]
     ],
     "related": [
       "sys.exit",
@@ -2098,10 +2164,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise GeneratorExit",
-      "except GeneratorExit as e:",
-      "    print(type(e).__name__)   # → GeneratorExit"
+      [
+        "try:",
+        "    raise GeneratorExit",
+        "except GeneratorExit as e:",
+        "    print(type(e).__name__)   # → GeneratorExit"
+      ]
     ],
     "related": [
       "generator-function-yield",
@@ -2150,10 +2218,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise StopAsyncIteration",
-      "except StopAsyncIteration as e:",
-      "    print(type(e).__name__)   # → StopAsyncIteration"
+      [
+        "try:",
+        "    raise StopAsyncIteration",
+        "except StopAsyncIteration as e:",
+        "    print(type(e).__name__)   # → StopAsyncIteration"
+      ]
     ],
     "related": [
       "stopiteration",
@@ -2202,10 +2272,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise MemoryError",
-      "except MemoryError as e:",
-      "    print(type(e).__name__)   # → MemoryError"
+      [
+        "try:",
+        "    raise MemoryError",
+        "except MemoryError as e:",
+        "    print(type(e).__name__)   # → MemoryError"
+      ]
     ],
     "related": [
       "sys.getsizeof",
@@ -2253,10 +2325,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ReferenceError",
-      "except ReferenceError as e:",
-      "    print(type(e).__name__)   # → ReferenceError"
+      [
+        "try:",
+        "    raise ReferenceError",
+        "except ReferenceError as e:",
+        "    print(type(e).__name__)   # → ReferenceError"
+      ]
     ],
     "related": [],
     "related_errors": []
@@ -2301,10 +2375,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise SystemError",
-      "except SystemError as e:",
-      "    print(type(e).__name__)   # → SystemError"
+      [
+        "try:",
+        "    raise SystemError",
+        "except SystemError as e:",
+        "    print(type(e).__name__)   # → SystemError"
+      ]
     ],
     "related": [
       "runtimeerror",
@@ -2352,10 +2428,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise BufferError",
-      "except BufferError as e:",
-      "    print(type(e).__name__)   # → BufferError"
+      [
+        "try:",
+        "    raise BufferError",
+        "except BufferError as e:",
+        "    print(type(e).__name__)   # → BufferError"
+      ]
     ],
     "related": [
       "memoryview",
@@ -2404,10 +2482,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise UnboundLocalError",
-      "except UnboundLocalError as e:",
-      "    print(type(e).__name__)   # → UnboundLocalError"
+      [
+        "try:",
+        "    raise UnboundLocalError",
+        "except UnboundLocalError as e:",
+        "    print(type(e).__name__)   # → UnboundLocalError"
+      ]
     ],
     "related": [
       "nameerror",
@@ -2457,10 +2537,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    eval('1 +')",
-      "except SyntaxError as e:",
-      "    print(type(e).__name__)   # → SyntaxError"
+      [
+        "try:",
+        "    eval('1 +')",
+        "except SyntaxError as e:",
+        "    print(type(e).__name__)   # → SyntaxError"
+      ]
     ],
     "related": [
       "indentationerror",
@@ -2509,10 +2591,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    exec(' x = 1')",
-      "except IndentationError as e:",
-      "    print(type(e).__name__)   # → IndentationError"
+      [
+        "try:",
+        "    exec(' x = 1')",
+        "except IndentationError as e:",
+        "    print(type(e).__name__)   # → IndentationError"
+      ]
     ],
     "related": [
       "syntaxerror",
@@ -2560,10 +2644,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise TabError",
-      "except TabError as e:",
-      "    print(type(e).__name__)   # → TabError"
+      [
+        "try:",
+        "    raise TabError",
+        "except TabError as e:",
+        "    print(type(e).__name__)   # → TabError"
+      ]
     ],
     "related": [
       "indentationerror",
@@ -2611,10 +2697,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise UnicodeError",
-      "except UnicodeError as e:",
-      "    print(type(e).__name__)   # → UnicodeError"
+      [
+        "try:",
+        "    raise UnicodeError",
+        "except UnicodeError as e:",
+        "    print(type(e).__name__)   # → UnicodeError"
+      ]
     ],
     "related": [
       "unicodeencodeerror",
@@ -2664,10 +2752,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    b'\\xff'.decode('utf-8')",
-      "except UnicodeDecodeError as e:",
-      "    print(type(e).__name__)   # → UnicodeDecodeError"
+      [
+        "try:",
+        "    b'\\xff'.decode('utf-8')",
+        "except UnicodeDecodeError as e:",
+        "    print(type(e).__name__)   # → UnicodeDecodeError"
+      ]
     ],
     "related": [
       "unicodeencodeerror",
@@ -2718,10 +2808,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    '\\u2603'.encode('ascii')",
-      "except UnicodeEncodeError as e:",
-      "    print(type(e).__name__)   # → UnicodeEncodeError"
+      [
+        "try:",
+        "    '\\u2603'.encode('ascii')",
+        "except UnicodeEncodeError as e:",
+        "    print(type(e).__name__)   # → UnicodeEncodeError"
+      ]
     ],
     "related": [
       "unicodedecodeerror",
@@ -2771,10 +2863,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise UnicodeTranslateError('x', 0, 1, 'reason')",
-      "except UnicodeTranslateError as e:",
-      "    print(type(e).__name__)   # → UnicodeTranslateError"
+      [
+        "try:",
+        "    raise UnicodeTranslateError('x', 0, 1, 'reason')",
+        "except UnicodeTranslateError as e:",
+        "    print(type(e).__name__)   # → UnicodeTranslateError"
+      ]
     ],
     "related": [
       "unicodeerror",
@@ -2823,10 +2917,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise FileExistsError",
-      "except FileExistsError as e:",
-      "    print(type(e).__name__)   # → FileExistsError"
+      [
+        "try:",
+        "    raise FileExistsError",
+        "except FileExistsError as e:",
+        "    print(type(e).__name__)   # → FileExistsError"
+      ]
     ],
     "related": [
       "filenotfounderror",
@@ -2875,10 +2971,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise IsADirectoryError",
-      "except IsADirectoryError as e:",
-      "    print(type(e).__name__)   # → IsADirectoryError"
+      [
+        "try:",
+        "    raise IsADirectoryError",
+        "except IsADirectoryError as e:",
+        "    print(type(e).__name__)   # → IsADirectoryError"
+      ]
     ],
     "related": [
       "notadirectoryerror",
@@ -2927,10 +3025,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise NotADirectoryError",
-      "except NotADirectoryError as e:",
-      "    print(type(e).__name__)   # → NotADirectoryError"
+      [
+        "try:",
+        "    raise NotADirectoryError",
+        "except NotADirectoryError as e:",
+        "    print(type(e).__name__)   # → NotADirectoryError"
+      ]
     ],
     "related": [
       "isadirectoryerror",
@@ -2980,10 +3080,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise InterruptedError",
-      "except InterruptedError as e:",
-      "    print(type(e).__name__)   # → InterruptedError"
+      [
+        "try:",
+        "    raise InterruptedError",
+        "except InterruptedError as e:",
+        "    print(type(e).__name__)   # → InterruptedError"
+      ]
     ],
     "related": [
       "oserror",
@@ -3031,10 +3133,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ChildProcessError",
-      "except ChildProcessError as e:",
-      "    print(type(e).__name__)   # → ChildProcessError"
+      [
+        "try:",
+        "    raise ChildProcessError",
+        "except ChildProcessError as e:",
+        "    print(type(e).__name__)   # → ChildProcessError"
+      ]
     ],
     "related": [
       "oserror",
@@ -3083,10 +3187,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ProcessLookupError",
-      "except ProcessLookupError as e:",
-      "    print(type(e).__name__)   # → ProcessLookupError"
+      [
+        "try:",
+        "    raise ProcessLookupError",
+        "except ProcessLookupError as e:",
+        "    print(type(e).__name__)   # → ProcessLookupError"
+      ]
     ],
     "related": [
       "os.kill",
@@ -3135,10 +3241,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise TimeoutError",
-      "except TimeoutError as e:",
-      "    print(type(e).__name__)   # → TimeoutError"
+      [
+        "try:",
+        "    raise TimeoutError",
+        "except TimeoutError as e:",
+        "    print(type(e).__name__)   # → TimeoutError"
+      ]
     ],
     "related": [
       "oserror",
@@ -3188,10 +3296,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise BlockingIOError",
-      "except BlockingIOError as e:",
-      "    print(type(e).__name__)   # → BlockingIOError"
+      [
+        "try:",
+        "    raise BlockingIOError",
+        "except BlockingIOError as e:",
+        "    print(type(e).__name__)   # → BlockingIOError"
+      ]
     ],
     "related": [
       "oserror",
@@ -3241,10 +3351,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ConnectionError",
-      "except ConnectionError as e:",
-      "    print(type(e).__name__)   # → ConnectionError"
+      [
+        "try:",
+        "    raise ConnectionError",
+        "except ConnectionError as e:",
+        "    print(type(e).__name__)   # → ConnectionError"
+      ]
     ],
     "related": [
       "oserror",
@@ -3294,10 +3406,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ConnectionResetError",
-      "except ConnectionResetError as e:",
-      "    print(type(e).__name__)   # → ConnectionResetError"
+      [
+        "try:",
+        "    raise ConnectionResetError",
+        "except ConnectionResetError as e:",
+        "    print(type(e).__name__)   # → ConnectionResetError"
+      ]
     ],
     "related": [
       "connectionerror",
@@ -3346,10 +3460,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ConnectionRefusedError",
-      "except ConnectionRefusedError as e:",
-      "    print(type(e).__name__)   # → ConnectionRefusedError"
+      [
+        "try:",
+        "    raise ConnectionRefusedError",
+        "except ConnectionRefusedError as e:",
+        "    print(type(e).__name__)   # → ConnectionRefusedError"
+      ]
     ],
     "related": [
       "connectionerror",
@@ -3398,10 +3514,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ConnectionAbortedError",
-      "except ConnectionAbortedError as e:",
-      "    print(type(e).__name__)   # → ConnectionAbortedError"
+      [
+        "try:",
+        "    raise ConnectionAbortedError",
+        "except ConnectionAbortedError as e:",
+        "    print(type(e).__name__)   # → ConnectionAbortedError"
+      ]
     ],
     "related": [
       "connectionerror",
@@ -3450,10 +3568,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise BrokenPipeError",
-      "except BrokenPipeError as e:",
-      "    print(type(e).__name__)   # → BrokenPipeError"
+      [
+        "try:",
+        "    raise BrokenPipeError",
+        "except BrokenPipeError as e:",
+        "    print(type(e).__name__)   # → BrokenPipeError"
+      ]
     ],
     "related": [
       "connectionerror",
@@ -3502,10 +3622,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ExceptionGroup('несколько ошибок', [ValueError('a'), KeyError('b')])",
-      "except ExceptionGroup as e:",
-      "    print(type(e).__name__)   # → ExceptionGroup"
+      [
+        "try:",
+        "    raise ExceptionGroup('несколько ошибок', [ValueError('a'), KeyError('b')])",
+        "except ExceptionGroup as e:",
+        "    print(type(e).__name__)   # → ExceptionGroup"
+      ]
     ],
     "related": [
       "baseexceptiongroup",
@@ -3554,10 +3676,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise BaseExceptionGroup('группа', [KeyboardInterrupt()])",
-      "except BaseExceptionGroup as e:",
-      "    print(type(e).__name__)   # → BaseExceptionGroup"
+      [
+        "try:",
+        "    raise BaseExceptionGroup('группа', [KeyboardInterrupt()])",
+        "except BaseExceptionGroup as e:",
+        "    print(type(e).__name__)   # → BaseExceptionGroup"
+      ]
     ],
     "related": [
       "exceptiongroup",
@@ -3606,10 +3730,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise PythonFinalizationError",
-      "except PythonFinalizationError as e:",
-      "    print(type(e).__name__)   # → PythonFinalizationError"
+      [
+        "try:",
+        "    raise PythonFinalizationError",
+        "except PythonFinalizationError as e:",
+        "    print(type(e).__name__)   # → PythonFinalizationError"
+      ]
     ],
     "related": [
       "runtimeerror",
@@ -3658,10 +3784,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise Warning",
-      "except Warning as e:",
-      "    print(type(e).__name__)   # → Warning"
+      [
+        "try:",
+        "    raise Warning",
+        "except Warning as e:",
+        "    print(type(e).__name__)   # → Warning"
+      ]
     ],
     "related": [
       "userwarning",
@@ -3711,10 +3839,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise DeprecationWarning",
-      "except DeprecationWarning as e:",
-      "    print(type(e).__name__)   # → DeprecationWarning"
+      [
+        "try:",
+        "    raise DeprecationWarning",
+        "except DeprecationWarning as e:",
+        "    print(type(e).__name__)   # → DeprecationWarning"
+      ]
     ],
     "related": [
       "pendingdeprecationwarning",
@@ -3763,10 +3893,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise PendingDeprecationWarning",
-      "except PendingDeprecationWarning as e:",
-      "    print(type(e).__name__)   # → PendingDeprecationWarning"
+      [
+        "try:",
+        "    raise PendingDeprecationWarning",
+        "except PendingDeprecationWarning as e:",
+        "    print(type(e).__name__)   # → PendingDeprecationWarning"
+      ]
     ],
     "related": [
       "deprecationwarning",
@@ -3815,10 +3947,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise RuntimeWarning",
-      "except RuntimeWarning as e:",
-      "    print(type(e).__name__)   # → RuntimeWarning"
+      [
+        "try:",
+        "    raise RuntimeWarning",
+        "except RuntimeWarning as e:",
+        "    print(type(e).__name__)   # → RuntimeWarning"
+      ]
     ],
     "related": [
       "warning",
@@ -3867,10 +4001,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise SyntaxWarning",
-      "except SyntaxWarning as e:",
-      "    print(type(e).__name__)   # → SyntaxWarning"
+      [
+        "try:",
+        "    raise SyntaxWarning",
+        "except SyntaxWarning as e:",
+        "    print(type(e).__name__)   # → SyntaxWarning"
+      ]
     ],
     "related": [
       "syntaxerror",
@@ -3919,10 +4055,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise UserWarning",
-      "except UserWarning as e:",
-      "    print(type(e).__name__)   # → UserWarning"
+      [
+        "try:",
+        "    raise UserWarning",
+        "except UserWarning as e:",
+        "    print(type(e).__name__)   # → UserWarning"
+      ]
     ],
     "related": [
       "warning",
@@ -3971,10 +4109,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise FutureWarning",
-      "except FutureWarning as e:",
-      "    print(type(e).__name__)   # → FutureWarning"
+      [
+        "try:",
+        "    raise FutureWarning",
+        "except FutureWarning as e:",
+        "    print(type(e).__name__)   # → FutureWarning"
+      ]
     ],
     "related": [
       "deprecationwarning",
@@ -4023,10 +4163,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ImportWarning",
-      "except ImportWarning as e:",
-      "    print(type(e).__name__)   # → ImportWarning"
+      [
+        "try:",
+        "    raise ImportWarning",
+        "except ImportWarning as e:",
+        "    print(type(e).__name__)   # → ImportWarning"
+      ]
     ],
     "related": [
       "importerror",
@@ -4075,10 +4217,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise UnicodeWarning",
-      "except UnicodeWarning as e:",
-      "    print(type(e).__name__)   # → UnicodeWarning"
+      [
+        "try:",
+        "    raise UnicodeWarning",
+        "except UnicodeWarning as e:",
+        "    print(type(e).__name__)   # → UnicodeWarning"
+      ]
     ],
     "related": [
       "warning",
@@ -4127,10 +4271,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise BytesWarning",
-      "except BytesWarning as e:",
-      "    print(type(e).__name__)   # → BytesWarning"
+      [
+        "try:",
+        "    raise BytesWarning",
+        "except BytesWarning as e:",
+        "    print(type(e).__name__)   # → BytesWarning"
+      ]
     ],
     "related": [
       "warning",
@@ -4179,10 +4325,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise ResourceWarning",
-      "except ResourceWarning as e:",
-      "    print(type(e).__name__)   # → ResourceWarning"
+      [
+        "try:",
+        "    raise ResourceWarning",
+        "except ResourceWarning as e:",
+        "    print(type(e).__name__)   # → ResourceWarning"
+      ]
     ],
     "related": [
       "open",
@@ -4231,10 +4379,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise EncodingWarning",
-      "except EncodingWarning as e:",
-      "    print(type(e).__name__)   # → EncodingWarning"
+      [
+        "try:",
+        "    raise EncodingWarning",
+        "except EncodingWarning as e:",
+        "    print(type(e).__name__)   # → EncodingWarning"
+      ]
     ],
     "related": [
       "open",
@@ -4283,10 +4433,12 @@
       "exc"
     ],
     "examples": [
-      "try:",
-      "    raise _IncompleteInputError",
-      "except _IncompleteInputError as e:",
-      "    print(type(e).__name__)   # → _IncompleteInputError"
+      [
+        "try:",
+        "    raise _IncompleteInputError",
+        "except _IncompleteInputError as e:",
+        "    print(type(e).__name__)   # → _IncompleteInputError"
+      ]
     ],
     "related": [
       "syntaxerror",
@@ -4337,11 +4489,13 @@
       "exc"
     ],
     "examples": [
-      "import json",
-      "try:",
-      "    json.loads('{bad')",
-      "except json.JSONDecodeError as e:",
-      "    print(type(e).__name__)   # → JSONDecodeError"
+      [
+        "import json",
+        "try:",
+        "    json.loads('{bad')",
+        "except json.JSONDecodeError as e:",
+        "    print(type(e).__name__)   # → JSONDecodeError"
+      ]
     ],
     "related": [
       "json.loads",
@@ -4393,11 +4547,13 @@
       "exc"
     ],
     "examples": [
-      "import re",
-      "try:",
-      "    re.compile('[')",
-      "except re.PatternError as e:",
-      "    print(type(e).__name__)   # → PatternError"
+      [
+        "import re",
+        "try:",
+        "    re.compile('[')",
+        "except re.PatternError as e:",
+        "    print(type(e).__name__)   # → PatternError"
+      ]
     ],
     "related": [
       "re.compile",
@@ -4448,11 +4604,13 @@
       "exc"
     ],
     "examples": [
-      "import statistics",
-      "try:",
-      "    raise statistics.StatisticsError",
-      "except statistics.StatisticsError as e:",
-      "    print(type(e).__name__)   # → StatisticsError"
+      [
+        "import statistics",
+        "try:",
+        "    raise statistics.StatisticsError",
+        "except statistics.StatisticsError as e:",
+        "    print(type(e).__name__)   # → StatisticsError"
+      ]
     ],
     "related": [
       "statistics.mean",
@@ -4503,11 +4661,13 @@
       "exc"
     ],
     "examples": [
-      "import dataclasses",
-      "try:",
-      "    raise dataclasses.FrozenInstanceError",
-      "except dataclasses.FrozenInstanceError as e:",
-      "    print(type(e).__name__)   # → FrozenInstanceError"
+      [
+        "import dataclasses",
+        "try:",
+        "    raise dataclasses.FrozenInstanceError",
+        "except dataclasses.FrozenInstanceError as e:",
+        "    print(type(e).__name__)   # → FrozenInstanceError"
+      ]
     ],
     "related": [
       "dataclass-frozen-true",
@@ -4558,11 +4718,13 @@
       "exc"
     ],
     "examples": [
-      "import io",
-      "try:",
-      "    raise io.UnsupportedOperation",
-      "except io.UnsupportedOperation as e:",
-      "    print(type(e).__name__)   # → UnsupportedOperation"
+      [
+        "import io",
+        "try:",
+        "    raise io.UnsupportedOperation",
+        "except io.UnsupportedOperation as e:",
+        "    print(type(e).__name__)   # → UnsupportedOperation"
+      ]
     ],
     "related": [
       "oserror",
@@ -4613,11 +4775,13 @@
       "exc"
     ],
     "examples": [
-      "import struct",
-      "try:",
-      "    raise struct.error",
-      "except struct.error as e:",
-      "    print(type(e).__name__)   # → error"
+      [
+        "import struct",
+        "try:",
+        "    raise struct.error",
+        "except struct.error as e:",
+        "    print(type(e).__name__)   # → error"
+      ]
     ],
     "related": [
       "int.to_bytes",
@@ -4666,11 +4830,13 @@
       "exc"
     ],
     "examples": [
-      "import zlib",
-      "try:",
-      "    raise zlib.error",
-      "except zlib.error as e:",
-      "    print(type(e).__name__)   # → error"
+      [
+        "import zlib",
+        "try:",
+        "    raise zlib.error",
+        "except zlib.error as e:",
+        "    print(type(e).__name__)   # → error"
+      ]
     ],
     "related": [
       "shutil.readerror",
@@ -4719,11 +4885,13 @@
       "exc"
     ],
     "examples": [
-      "import copy",
-      "try:",
-      "    raise copy.Error",
-      "except copy.Error as e:",
-      "    print(type(e).__name__)   # → Error"
+      [
+        "import copy",
+        "try:",
+        "    raise copy.Error",
+        "except copy.Error as e:",
+        "    print(type(e).__name__)   # → Error"
+      ]
     ],
     "related": [
       "copy.copy",
@@ -4773,11 +4941,13 @@
       "exc"
     ],
     "examples": [
-      "import locale",
-      "try:",
-      "    raise locale.Error",
-      "except locale.Error as e:",
-      "    print(type(e).__name__)   # → Error"
+      [
+        "import locale",
+        "try:",
+        "    raise locale.Error",
+        "except locale.Error as e:",
+        "    print(type(e).__name__)   # → Error"
+      ]
     ],
     "related": [],
     "related_errors": []
@@ -4823,11 +4993,13 @@
       "exc"
     ],
     "examples": [
-      "import argparse",
-      "try:",
-      "    raise argparse.ArgumentError(None, 'плохой аргумент')",
-      "except argparse.ArgumentError as e:",
-      "    print(type(e).__name__)   # → ArgumentError"
+      [
+        "import argparse",
+        "try:",
+        "    raise argparse.ArgumentError(None, 'плохой аргумент')",
+        "except argparse.ArgumentError as e:",
+        "    print(type(e).__name__)   # → ArgumentError"
+      ]
     ],
     "related": [
       "argparse.argumenttypeerror",
@@ -4877,11 +5049,13 @@
       "exc"
     ],
     "examples": [
-      "import argparse",
-      "try:",
-      "    raise argparse.ArgumentTypeError",
-      "except argparse.ArgumentTypeError as e:",
-      "    print(type(e).__name__)   # → ArgumentTypeError"
+      [
+        "import argparse",
+        "try:",
+        "    raise argparse.ArgumentTypeError",
+        "except argparse.ArgumentTypeError as e:",
+        "    print(type(e).__name__)   # → ArgumentTypeError"
+      ]
     ],
     "related": [
       "argparse.argumenterror",
@@ -4931,11 +5105,13 @@
       "exc"
     ],
     "examples": [
-      "import shutil",
-      "try:",
-      "    raise shutil.Error",
-      "except shutil.Error as e:",
-      "    print(type(e).__name__)   # → Error"
+      [
+        "import shutil",
+        "try:",
+        "    raise shutil.Error",
+        "except shutil.Error as e:",
+        "    print(type(e).__name__)   # → Error"
+      ]
     ],
     "related": [
       "shutil.samefileerror",
@@ -4986,11 +5162,13 @@
       "exc"
     ],
     "examples": [
-      "import shutil",
-      "try:",
-      "    raise shutil.SameFileError",
-      "except shutil.SameFileError as e:",
-      "    print(type(e).__name__)   # → SameFileError"
+      [
+        "import shutil",
+        "try:",
+        "    raise shutil.SameFileError",
+        "except shutil.SameFileError as e:",
+        "    print(type(e).__name__)   # → SameFileError"
+      ]
     ],
     "related": [
       "shutil.error",
@@ -5040,11 +5218,13 @@
       "exc"
     ],
     "examples": [
-      "import shutil",
-      "try:",
-      "    raise shutil.SpecialFileError",
-      "except shutil.SpecialFileError as e:",
-      "    print(type(e).__name__)   # → SpecialFileError"
+      [
+        "import shutil",
+        "try:",
+        "    raise shutil.SpecialFileError",
+        "except shutil.SpecialFileError as e:",
+        "    print(type(e).__name__)   # → SpecialFileError"
+      ]
     ],
     "related": [
       "shutil.error",
@@ -5094,11 +5274,13 @@
       "exc"
     ],
     "examples": [
-      "import shutil",
-      "try:",
-      "    raise shutil.ExecError",
-      "except shutil.ExecError as e:",
-      "    print(type(e).__name__)   # → ExecError"
+      [
+        "import shutil",
+        "try:",
+        "    raise shutil.ExecError",
+        "except shutil.ExecError as e:",
+        "    print(type(e).__name__)   # → ExecError"
+      ]
     ],
     "related": [
       "shutil.error",
@@ -5148,11 +5330,13 @@
       "exc"
     ],
     "examples": [
-      "import shutil",
-      "try:",
-      "    raise shutil.ReadError",
-      "except shutil.ReadError as e:",
-      "    print(type(e).__name__)   # → ReadError"
+      [
+        "import shutil",
+        "try:",
+        "    raise shutil.ReadError",
+        "except shutil.ReadError as e:",
+        "    print(type(e).__name__)   # → ReadError"
+      ]
     ],
     "related": [
       "shutil.registryerror",
@@ -5202,11 +5386,13 @@
       "exc"
     ],
     "examples": [
-      "import shutil",
-      "try:",
-      "    raise shutil.RegistryError",
-      "except shutil.RegistryError as e:",
-      "    print(type(e).__name__)   # → RegistryError"
+      [
+        "import shutil",
+        "try:",
+        "    raise shutil.RegistryError",
+        "except shutil.RegistryError as e:",
+        "    print(type(e).__name__)   # → RegistryError"
+      ]
     ],
     "related": [
       "shutil.readerror",
@@ -5256,11 +5442,13 @@
       "exc"
     ],
     "examples": [
-      "import threading",
-      "try:",
-      "    raise threading.BrokenBarrierError",
-      "except threading.BrokenBarrierError as e:",
-      "    print(type(e).__name__)   # → BrokenBarrierError"
+      [
+        "import threading",
+        "try:",
+        "    raise threading.BrokenBarrierError",
+        "except threading.BrokenBarrierError as e:",
+        "    print(type(e).__name__)   # → BrokenBarrierError"
+      ]
     ],
     "related": [
       "threading-event",
@@ -5310,11 +5498,13 @@
       "exc"
     ],
     "examples": [
-      "import tokenize",
-      "try:",
-      "    raise tokenize.TokenError",
-      "except tokenize.TokenError as e:",
-      "    print(type(e).__name__)   # → TokenError"
+      [
+        "import tokenize",
+        "try:",
+        "    raise tokenize.TokenError",
+        "except tokenize.TokenError as e:",
+        "    print(type(e).__name__)   # → TokenError"
+      ]
     ],
     "related": [
       "syntaxerror",
@@ -5364,11 +5554,13 @@
       "exc"
     ],
     "examples": [
-      "import zipimport",
-      "try:",
-      "    raise zipimport.ZipImportError",
-      "except zipimport.ZipImportError as e:",
-      "    print(type(e).__name__)   # → ZipImportError"
+      [
+        "import zipimport",
+        "try:",
+        "    raise zipimport.ZipImportError",
+        "except zipimport.ZipImportError as e:",
+        "    print(type(e).__name__)   # → ZipImportError"
+      ]
     ],
     "related": [
       "importerror",
@@ -5419,18 +5611,20 @@
       "platform:posix"
     ],
     "examples": [
-      "import signal",
-      "# signal.ItimerError есть только на Unix: setitimer/getitimer в Windows нет",
-      "# вовсе, поэтому пример проверяет наличие, а не полагается на него.",
-      "ItimerError = getattr(signal, 'ItimerError', None)",
-      "print(ItimerError is not None)  # → ?",
-      "if ItimerError is not None:",
-      "    try:",
-      "        raise ItimerError",
-      "    except ItimerError as e:",
-      "        # Имя класса — itimer_error, а не ItimerError: в signal он объявлен",
-      "        # под C-именем, и `signal.ItimerError` лишь ссылка на него.",
-      "        print(type(e).__name__)  # → ?"
+      [
+        "import signal",
+        "# signal.ItimerError есть только на Unix: setitimer/getitimer в Windows нет",
+        "# вовсе, поэтому пример проверяет наличие, а не полагается на него.",
+        "ItimerError = getattr(signal, 'ItimerError', None)",
+        "print(ItimerError is not None)  # → ?",
+        "if ItimerError is not None:",
+        "    try:",
+        "        raise ItimerError",
+        "    except ItimerError as e:",
+        "        # Имя класса — itimer_error, а не ItimerError: в signal он объявлен",
+        "        # под C-именем, и `signal.ItimerError` лишь ссылка на него.",
+        "        print(type(e).__name__)  # → ?"
+      ]
     ],
     "related": [
       "oserror",
@@ -5480,11 +5674,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.DecimalException",
-      "except decimal.DecimalException as e:",
-      "    print(type(e).__name__)   # → DecimalException"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.DecimalException",
+        "except decimal.DecimalException as e:",
+        "    print(type(e).__name__)   # → DecimalException"
+      ]
     ],
     "related": [
       "arithmeticerror",
@@ -5535,11 +5731,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.InvalidOperation",
-      "except decimal.InvalidOperation as e:",
-      "    print(type(e).__name__)   # → InvalidOperation"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.InvalidOperation",
+        "except decimal.InvalidOperation as e:",
+        "    print(type(e).__name__)   # → InvalidOperation"
+      ]
     ],
     "related": [
       "decimal.decimalexception",
@@ -5589,11 +5787,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.DivisionByZero",
-      "except decimal.DivisionByZero as e:",
-      "    print(type(e).__name__)   # → DivisionByZero"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.DivisionByZero",
+        "except decimal.DivisionByZero as e:",
+        "    print(type(e).__name__)   # → DivisionByZero"
+      ]
     ],
     "related": [
       "zerodivisionerror",
@@ -5643,11 +5843,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.DivisionImpossible",
-      "except decimal.DivisionImpossible as e:",
-      "    print(type(e).__name__)   # → DivisionImpossible"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.DivisionImpossible",
+        "except decimal.DivisionImpossible as e:",
+        "    print(type(e).__name__)   # → DivisionImpossible"
+      ]
     ],
     "related": [
       "decimal.invalidoperation",
@@ -5697,11 +5899,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.DivisionUndefined",
-      "except decimal.DivisionUndefined as e:",
-      "    print(type(e).__name__)   # → DivisionUndefined"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.DivisionUndefined",
+        "except decimal.DivisionUndefined as e:",
+        "    print(type(e).__name__)   # → DivisionUndefined"
+      ]
     ],
     "related": [
       "decimal.divisionbyzero",
@@ -5751,11 +5955,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.Overflow",
-      "except decimal.Overflow as e:",
-      "    print(type(e).__name__)   # → Overflow"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.Overflow",
+        "except decimal.Overflow as e:",
+        "    print(type(e).__name__)   # → Overflow"
+      ]
     ],
     "related": [
       "decimal.underflow",
@@ -5806,11 +6012,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.Underflow",
-      "except decimal.Underflow as e:",
-      "    print(type(e).__name__)   # → Underflow"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.Underflow",
+        "except decimal.Underflow as e:",
+        "    print(type(e).__name__)   # → Underflow"
+      ]
     ],
     "related": [
       "decimal.overflow",
@@ -5861,11 +6069,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.Inexact",
-      "except decimal.Inexact as e:",
-      "    print(type(e).__name__)   # → Inexact"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.Inexact",
+        "except decimal.Inexact as e:",
+        "    print(type(e).__name__)   # → Inexact"
+      ]
     ],
     "related": [
       "decimal.rounded",
@@ -5915,11 +6125,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.Rounded",
-      "except decimal.Rounded as e:",
-      "    print(type(e).__name__)   # → Rounded"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.Rounded",
+        "except decimal.Rounded as e:",
+        "    print(type(e).__name__)   # → Rounded"
+      ]
     ],
     "related": [
       "decimal.inexact",
@@ -5969,11 +6181,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.Subnormal",
-      "except decimal.Subnormal as e:",
-      "    print(type(e).__name__)   # → Subnormal"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.Subnormal",
+        "except decimal.Subnormal as e:",
+        "    print(type(e).__name__)   # → Subnormal"
+      ]
     ],
     "related": [
       "decimal.underflow",
@@ -6023,11 +6237,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.Clamped",
-      "except decimal.Clamped as e:",
-      "    print(type(e).__name__)   # → Clamped"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.Clamped",
+        "except decimal.Clamped as e:",
+        "    print(type(e).__name__)   # → Clamped"
+      ]
     ],
     "related": [
       "decimal.decimalexception",
@@ -6077,11 +6293,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.ConversionSyntax",
-      "except decimal.ConversionSyntax as e:",
-      "    print(type(e).__name__)   # → ConversionSyntax"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.ConversionSyntax",
+        "except decimal.ConversionSyntax as e:",
+        "    print(type(e).__name__)   # → ConversionSyntax"
+      ]
     ],
     "related": [
       "decimal.invalidoperation",
@@ -6131,11 +6349,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.FloatOperation",
-      "except decimal.FloatOperation as e:",
-      "    print(type(e).__name__)   # → FloatOperation"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.FloatOperation",
+        "except decimal.FloatOperation as e:",
+        "    print(type(e).__name__)   # → FloatOperation"
+      ]
     ],
     "related": [
       "decimal.decimal",
@@ -6185,11 +6405,13 @@
       "exc"
     ],
     "examples": [
-      "import decimal",
-      "try:",
-      "    raise decimal.InvalidContext",
-      "except decimal.InvalidContext as e:",
-      "    print(type(e).__name__)   # → InvalidContext"
+      [
+        "import decimal",
+        "try:",
+        "    raise decimal.InvalidContext",
+        "except decimal.InvalidContext as e:",
+        "    print(type(e).__name__)   # → InvalidContext"
+      ]
     ],
     "related": [
       "decimal.getcontext",
@@ -6239,12 +6461,14 @@
       "encodings"
     ],
     "examples": [
-      "import encodings",
-      "print(issubclass(encodings.CodecRegistryError, Exception))   # → True",
-      "print(issubclass(encodings.CodecRegistryError, LookupError))   # → True",
-      "print(issubclass(encodings.CodecRegistryError, SystemError))   # → True",
-      "print(encodings.CodecRegistryError('bad search function'))   # → bad search function",
-      "print('abc'.encode('nosuchcodec'))   # → LookupError"
+      [
+        "import encodings",
+        "print(issubclass(encodings.CodecRegistryError, Exception))   # → True",
+        "print(issubclass(encodings.CodecRegistryError, LookupError))   # → True",
+        "print(issubclass(encodings.CodecRegistryError, SystemError))   # → True",
+        "print(encodings.CodecRegistryError('bad search function'))   # → bad search function",
+        "print('abc'.encode('nosuchcodec'))   # → LookupError"
+      ]
     ],
     "related": [
       "lookuperror",

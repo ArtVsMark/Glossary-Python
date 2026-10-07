@@ -51,6 +51,11 @@ def make_entry(**overrides: Any) -> Entry:
     for name in ("title", "subcat"):
         if isinstance(merged[name], str):
             merged[name] = Text(ru=merged[name], en=merged[name])
+    # Примеры — блоки со схемы v6; плоский кортеж строк тесту удобнее, и он
+    # читается одним блоком, как и в Entry.from_dict.
+    examples = merged["examples"]
+    if examples and all(isinstance(line, str) for line in examples):
+        merged["examples"] = (tuple(examples),)
     return Entry(**merged)
 
 

@@ -33,7 +33,7 @@ __all__ = [
     "Text",
 ]
 
-SCHEMA_VERSION: Final = 5
+SCHEMA_VERSION: Final = 6
 """Версия формата ``data/glossary.json``.
 
 Версия 1 хранила одноязычную карточку с полями ``name``/``group``/
@@ -45,7 +45,9 @@ SCHEMA_VERSION: Final = 5
 Версия 4 добавила ``platforms`` — на каких системах возможность есть (#83).
 Версия 5 заменила ``version`` тремя полями жизненного цикла: ``added`` — с какой
 версии возможность есть (``<3.0`` — ещё с Python 2), ``deprecated`` и
-``removed`` — с какой устарела и до какой работает (#122).
+``removed`` — с какой устарела и до какой работает (#122). Версия 6 сделала
+``examples`` списком самостоятельных блоков: каждый читается и исполняется
+отдельно, а не сливается с соседями в одну простыню (#125).
 """
 
 Language = Literal["ru", "en"]
@@ -119,6 +121,21 @@ def _tuple(raw: object) -> tuple[str, ...]:
     return ()
 
 
+def _blocks(raw: object) -> tuple[tuple[str, ...], ...]:
+    """Блоки примеров из сырого значения.
+
+    Плоский список строк — прежняя форма и форма базы знаний грейдера — читается
+    одним блоком: импорт из грейдера (``scripts/import_from_grader.py``) приносит
+    именно её. Пустые блоки отбрасываются, как и пустые строки внутри.
+    """
+    if not isinstance(raw, list | tuple):
+        return ()
+    if all(isinstance(item, str) for item in raw):
+        flat = _tuple(raw)
+        return (flat,) if flat else ()
+    return tuple(block for item in raw if (block := _tuple(item)))
+
+
 @dataclass(frozen=True, slots=True)
 class Entry:
     """Одна карточка глоссария.
@@ -145,7 +162,7 @@ class Entry:
     aliases: tuple[str, ...] = ()
     keywords: tuple[str, ...] = ()
     tags: tuple[str, ...] = ()
-    examples: tuple[str, ...] = ()
+    examples: tuple[tuple[str, ...], ...] = ()
     related: tuple[str, ...] = ()
     related_errors: tuple[str, ...] = ()
 
@@ -175,7 +192,7 @@ class Entry:
             aliases=_tuple(raw.get("aliases")),
             keywords=_tuple(raw.get("keywords")),
             tags=_tuple(raw.get("tags")),
-            examples=_tuple(raw.get("examples")),
+            examples=_blocks(raw.get("examples")),
             related=_tuple(raw.get("related")),
             related_errors=_tuple(raw.get("related_errors")),
         )
@@ -188,7 +205,9 @@ class Entry:
             if isinstance(value, Text):
                 payload[spec.name] = value.to_dict()
             elif isinstance(value, tuple):
-                payload[spec.name] = list(value)
+                payload[spec.name] = [
+                    list(item) if isinstance(item, tuple) else item for item in value
+                ]
             else:
                 payload[spec.name] = value
         return payload

@@ -39,15 +39,17 @@
       "builtin"
     ],
     "examples": [
-      "math = __import__('math')",
-      "print(math.pi)  # → 3.14159...",
-      "os = __import__('os')",
-      "print(os.sep)  # → /",
-      "json = __import__('json')",
-      "print(json.dumps({'a':1}))  # → {\"a\":1}",
-      "import importlib",
-      "re = importlib.import_module('re')",
-      "print(re.match(r'\\d+','123').group())  # → 123"
+      [
+        "math = __import__('math')",
+        "print(math.pi)  # → 3.14159...",
+        "os = __import__('os')",
+        "print(os.sep)  # → /",
+        "json = __import__('json')",
+        "print(json.dumps({'a':1}))  # → {\"a\":1}",
+        "import importlib",
+        "re = importlib.import_module('re')",
+        "print(re.match(r'\\d+','123').group())  # → 123"
+      ]
     ],
     "related": [
       "sys.modules",
@@ -97,11 +99,13 @@
       "builtin"
     ],
     "examples": [
-      "print(all([True,True,True]))  # → True",
-      "print(all([True,False,True]))  # → False",
-      "print(all([]))  # → True (пустой)",
-      "print(all(x>0 for x in [1,2,3]))  # → True",
-      "print(all(x>0 for x in [1,-1,3]))  # → False"
+      [
+        "print(all([True,True,True]))  # → True",
+        "print(all([True,False,True]))  # → False",
+        "print(all([]))  # → True (пустой)",
+        "print(all(x>0 for x in [1,2,3]))  # → True",
+        "print(all(x>0 for x in [1,-1,3]))  # → False"
+      ]
     ],
     "related": [
       "any"
@@ -149,13 +153,15 @@
       "builtin"
     ],
     "examples": [
-      "print(any([False,True,False]))  # → True",
-      "print(any([False,False]))  # → False",
-      "print(any([]))  # → False",
-      "print(any(x<0 for x in [1,-1,3]))  # → True",
-      "print(any(x==5 for x in range(10)))  # → True",
-      "# ленивое вычисление — остановится на первом True",
-      "print(any(x > 100 for x in range(10**6)))  # → True"
+      [
+        "print(any([False,True,False]))  # → True",
+        "print(any([False,False]))  # → False",
+        "print(any([]))  # → False",
+        "print(any(x<0 for x in [1,-1,3]))  # → True",
+        "print(any(x==5 for x in range(10)))  # → True",
+        "# ленивое вычисление — остановится на первом True",
+        "print(any(x > 100 for x in range(10**6)))  # → True"
+      ]
     ],
     "related": [
       "all"
@@ -202,11 +208,13 @@
       "builtin"
     ],
     "examples": [
-      "print(ascii('hello'))  # → 'hello'",
-      "print(ascii('привет'))  # → '\\u043f\\u0440...' (экранировано)",
-      "print(ascii([1,'a']))  # → [1, 'a']",
-      "print(ascii('café'))  # → 'caf\\xe9'",
-      "print(ascii(None))  # → None"
+      [
+        "print(ascii('hello'))  # → 'hello'",
+        "print(ascii('привет'))  # → '\\u043f\\u0440...' (экранировано)",
+        "print(ascii([1,'a']))  # → [1, 'a']",
+        "print(ascii('café'))  # → 'caf\\xe9'",
+        "print(ascii(None))  # → None"
+      ]
     ],
     "related": [
       "repr",
@@ -256,11 +264,13 @@
       "builtin"
     ],
     "examples": [
-      "print(bin(10))   # → 0b1010",
-      "print(bin(255))  # → 0b11111111",
-      "print(bin(-5))   # → -0b101",
-      "print(bin(0))    # → 0b0",
-      "print(int(bin(42),2))  # → 42"
+      [
+        "print(bin(10))   # → 0b1010",
+        "print(bin(255))  # → 0b11111111",
+        "print(bin(-5))   # → -0b101",
+        "print(bin(0))    # → 0b0",
+        "print(int(bin(42),2))  # → 42"
+      ]
     ],
     "related": [
       "hex",
@@ -311,12 +321,14 @@
       "builtin"
     ],
     "examples": [
-      "# breakpoint() — вставляет точку останова",
-      "# Устанавливается через PYTHONBREAKPOINT env",
-      "import os",
-      "os.environ['PYTHONBREAKPOINT']='0'  # отключить",
-      "# breakpoint()  # → войти в pdb",
-      "print('Debugging would start here')  # → debug point"
+      [
+        "# breakpoint() — вставляет точку останова",
+        "# Устанавливается через PYTHONBREAKPOINT env",
+        "import os",
+        "os.environ['PYTHONBREAKPOINT']='0'  # отключить",
+        "# breakpoint()  # → войти в pdb",
+        "print('Debugging would start here')  # → debug point"
+      ]
     ],
     "related": [
       "print",
@@ -365,13 +377,15 @@
       "builtin"
     ],
     "examples": [
-      "print(callable(print))    # → True",
-      "print(callable(len))      # → True",
-      "print(callable(42))       # → False",
-      "print(callable(lambda: 0))  # → True",
-      "class A:",
-      "    def __call__(self): pass",
-      "print(callable(A()))  # → True"
+      [
+        "print(callable(print))    # → True",
+        "print(callable(len))      # → True",
+        "print(callable(42))       # → False",
+        "print(callable(lambda: 0))  # → True",
+        "class A:",
+        "    def __call__(self): pass",
+        "print(callable(A()))  # → True"
+      ]
     ],
     "related": [
       "вызываемые-объекты-__call__",
@@ -421,11 +435,13 @@
       "builtin"
     ],
     "examples": [
-      "print(chr(65))   # → A",
-      "print(chr(97))   # → a",
-      "print(chr(1072)) # → а (кириллица)",
-      "print(chr(9829)) # → ♥",
-      "print(''.join(chr(i) for i in range(65,70)))  # → ABCDE"
+      [
+        "print(chr(65))   # → A",
+        "print(chr(97))   # → a",
+        "print(chr(1072)) # → а (кириллица)",
+        "print(chr(9829)) # → ♥",
+        "print(''.join(chr(i) for i in range(65,70)))  # → ABCDE"
+      ]
     ],
     "related": [
       "ord",
@@ -474,13 +490,15 @@
       "builtin"
     ],
     "examples": [
-      "code = compile('1+2', '<string>', 'eval')",
-      "print(eval(code))  # → 3",
-      "stmt = compile('x=5\\nprint(x)', '<s>', 'exec')",
-      "exec(stmt)  # → 5",
-      "code2 = compile('[x**2 for x in range(5)]','<s>','eval')",
-      "print(eval(code2))  # → [0,1,4,9,16]",
-      "print(type(code))  # → <class 'code'>"
+      [
+        "code = compile('1+2', '<string>', 'eval')",
+        "print(eval(code))  # → 3",
+        "stmt = compile('x=5\\nprint(x)', '<s>', 'exec')",
+        "exec(stmt)  # → 5",
+        "code2 = compile('[x**2 for x in range(5)]','<s>','eval')",
+        "print(eval(code2))  # → [0,1,4,9,16]",
+        "print(type(code))  # → <class 'code'>"
+      ]
     ],
     "related": [
       "eval",
@@ -529,17 +547,19 @@
       "builtin"
     ],
     "examples": [
-      "class A:",
-      "    x = 1",
-      "    def __init__(self): self.y = 2",
-      "a = A()",
-      "delattr(a,'y')",
-      "print(hasattr(a,'y'))  # → False",
-      "delattr(A,'x')",
-      "print(hasattr(A,'x'))  # → False",
-      "try:",
-      "    delattr(a,'z')",
-      "except AttributeError as e: print(e)"
+      [
+        "class A:",
+        "    x = 1",
+        "    def __init__(self): self.y = 2",
+        "a = A()",
+        "delattr(a,'y')",
+        "print(hasattr(a,'y'))  # → False",
+        "delattr(A,'x')",
+        "print(hasattr(A,'x'))  # → False",
+        "try:",
+        "    delattr(a,'z')",
+        "except AttributeError as e: print(e)"
+      ]
     ],
     "related": [
       "setattr",
@@ -589,12 +609,14 @@
       "builtin"
     ],
     "examples": [
-      "print(dict(a=1,b=2))  # → {'a':1,'b':2}",
-      "print(dict([('x',1),('y',2)]))  # → {'x':1,'y':2}",
-      "print(dict.fromkeys(['a','b'],0))  # → {'a':0,'b':0}",
-      "d=dict(zip('abc',[1,2,3]))",
-      "print(d)  # → {'a':1,'b':2,'c':3}",
-      "print(dict({'a':1},b=2))  # → {'a':1,'b':2}"
+      [
+        "print(dict(a=1,b=2))  # → {'a':1,'b':2}",
+        "print(dict([('x',1),('y',2)]))  # → {'x':1,'y':2}",
+        "print(dict.fromkeys(['a','b'],0))  # → {'a':0,'b':0}",
+        "d=dict(zip('abc',[1,2,3]))",
+        "print(d)  # → {'a':1,'b':2,'c':3}",
+        "print(dict({'a':1},b=2))  # → {'a':1,'b':2}"
+      ]
     ],
     "related": [
       "создание-словаря",
@@ -645,14 +667,16 @@
       "builtin"
     ],
     "examples": [
-      "print(dir([])[:5])  # → ? первые пять атрибутов списка (состав зависит от версии Python)",
-      "print('append' in dir([]))  # → True",
-      "class A:",
-      "    x = 1",
-      "    def f(self): pass",
-      "print('x' in dir(A))  # → True",
-      "print('f' in dir(A))  # → True",
-      "print(type(dir([])))  # → <class 'list'>"
+      [
+        "print(dir([])[:5])  # → ? первые пять атрибутов списка (состав зависит от версии Python)",
+        "print('append' in dir([]))  # → True",
+        "class A:",
+        "    x = 1",
+        "    def f(self): pass",
+        "print('x' in dir(A))  # → True",
+        "print('f' in dir(A))  # → True",
+        "print(type(dir([])))  # → <class 'list'>"
+      ]
     ],
     "related": [
       "vars",
@@ -703,11 +727,13 @@
       "builtin"
     ],
     "examples": [
-      "print(\"Загрузка\", end=\"...\"); print(\"готово\")  # → Загрузка...готово",
-      "for i in range(5): print(i, end=\" \")  # → 0 1 2 3 4",
-      "print(\"строка без переноса\", end=\"\")  # курсор остаётся на той же строке",
-      "print(\"раз\", end=\"\\t\"); print(\"два\")  # → раз\tдва",
-      "print(\"конец\", end=\"!\\n\")  # → конец!"
+      [
+        "print(\"Загрузка\", end=\"...\"); print(\"готово\")  # → Загрузка...готово",
+        "for i in range(5): print(i, end=\" \")  # → 0 1 2 3 4",
+        "print(\"строка без переноса\", end=\"\")  # курсор остаётся на той же строке",
+        "print(\"раз\", end=\"\\t\"); print(\"два\")  # → раз\tдва",
+        "print(\"конец\", end=\"!\\n\")  # → конец!"
+      ]
     ],
     "related": [
       "sep",
@@ -757,12 +783,14 @@
       "builtin"
     ],
     "examples": [
-      "print(eval('2**10'))  # → 1024",
-      "print(eval('[x**2 for x in range(5)]'))  # → [0,1,4,9,16]",
-      "x = 10",
-      "print(eval('x + 5'))  # → 15",
-      "print(eval('1+2', {}))  # → 3 (пустой globals)",
-      "print(eval('abs(-5)', {'abs':abs}))  # → 5"
+      [
+        "print(eval('2**10'))  # → 1024",
+        "print(eval('[x**2 for x in range(5)]'))  # → [0,1,4,9,16]",
+        "x = 10",
+        "print(eval('x + 5'))  # → 15",
+        "print(eval('1+2', {}))  # → 3 (пустой globals)",
+        "print(eval('abs(-5)', {'abs':abs}))  # → 5"
+      ]
     ],
     "related": [
       "exec",
@@ -812,16 +840,18 @@
       "builtin"
     ],
     "examples": [
-      "exec('x = 1 + 2')",
-      "# print(x)  # x есть в локальном пространстве?",
-      "g = {}",
-      "exec('y = 42', g)",
-      "print(g['y'])  # → 42",
-      "exec('for i in range(3): print(i)')  # → 0 1 2",
-      "def make_func(name):",
-      "    exec(f'def {name}(): return \"{name}\"', globals())",
-      "make_func('hello')",
-      "print(hello())  # → hello"
+      [
+        "exec('x = 1 + 2')",
+        "# print(x)  # x есть в локальном пространстве?",
+        "g = {}",
+        "exec('y = 42', g)",
+        "print(g['y'])  # → 42",
+        "exec('for i in range(3): print(i)')  # → 0 1 2",
+        "def make_func(name):",
+        "    exec(f'def {name}(): return \"{name}\"', globals())",
+        "make_func('hello')",
+        "print(hello())  # → hello"
+      ]
     ],
     "related": [
       "eval",
@@ -872,11 +902,13 @@
       "builtin"
     ],
     "examples": [
-      "print(format(3.14159, '.2f'))  # → 3.14",
-      "print(format(42, '08b'))  # → 00101010",
-      "print(format(1000000, ','))  # → 1,000,000",
-      "print(format('hello', '^10'))  # →   hello",
-      "print(format(0.25, '%'))  # → 25.000000%"
+      [
+        "print(format(3.14159, '.2f'))  # → 3.14",
+        "print(format(42, '08b'))  # → 00101010",
+        "print(format(1000000, ','))  # → 1,000,000",
+        "print(format('hello', '^10'))  # →   hello",
+        "print(format(0.25, '%'))  # → 25.000000%"
+      ]
     ],
     "related": [
       "format-метод-форматирования",
@@ -927,13 +959,15 @@
       "builtin"
     ],
     "examples": [
-      "fs = frozenset([1,2,3,2,1])",
-      "print(fs)  # → frozenset({1, 2, 3})",
-      "print(sorted(frozenset('hello')))  # → ['e', 'h', 'l', 'o'] (порядок множества не определён, поэтому сортируем)",
-      "d = {frozenset([1,2]): 'value'}",
-      "print(d)  # → {frozenset({1, 2}): 'value'}",
-      "print(1 in fs)  # → True",
-      "print(fs & frozenset([2,3,4]))  # → frozenset({2, 3})"
+      [
+        "fs = frozenset([1,2,3,2,1])",
+        "print(fs)  # → frozenset({1, 2, 3})",
+        "print(sorted(frozenset('hello')))  # → ['e', 'h', 'l', 'o'] (порядок множества не определён, поэтому сортируем)",
+        "d = {frozenset([1,2]): 'value'}",
+        "print(d)  # → {frozenset({1, 2}): 'value'}",
+        "print(1 in fs)  # → True",
+        "print(fs & frozenset([2,3,4]))  # → frozenset({2, 3})"
+      ]
     ],
     "related": [
       "frozenset-неизменяемое-множество",
@@ -983,14 +1017,16 @@
       "builtin"
     ],
     "examples": [
-      "class A:",
-      "    x = 42",
-      "a = A()",
-      "print(getattr(a,'x'))  # → 42",
-      "print(getattr(a,'y',None))  # → None",
-      "getattr([1,2,3],'append')(4)  # → [1,2,3,4]",
-      "print(getattr('hello','upper')())  # → HELLO",
-      "name = 'x'; print(getattr(a, name))  # → 42"
+      [
+        "class A:",
+        "    x = 42",
+        "a = A()",
+        "print(getattr(a,'x'))  # → 42",
+        "print(getattr(a,'y',None))  # → None",
+        "getattr([1,2,3],'append')(4)  # → [1,2,3,4]",
+        "print(getattr('hello','upper')())  # → HELLO",
+        "name = 'x'; print(getattr(a, name))  # → 42"
+      ]
     ],
     "related": [
       "setattr",
@@ -1041,13 +1077,15 @@
       "builtin"
     ],
     "examples": [
-      "x = 42",
-      "print('x' in globals())  # → True",
-      "print(globals()['x'])  # → 42",
-      "globals()['new_var'] = 99",
-      "print(new_var)  # → 99",
-      "print(type(globals()))  # → dict",
-      "print('print' in dir(__builtins__))  # → True"
+      [
+        "x = 42",
+        "print('x' in globals())  # → True",
+        "print(globals()['x'])  # → 42",
+        "globals()['new_var'] = 99",
+        "print(new_var)  # → 99",
+        "print(type(globals()))  # → dict",
+        "print('print' in dir(__builtins__))  # → True"
+      ]
     ],
     "related": [
       "locals",
@@ -1098,14 +1136,16 @@
       "builtin"
     ],
     "examples": [
-      "class A:",
-      "    x = 1",
-      "a = A()",
-      "print(hasattr(a,'x'))  # → True",
-      "print(hasattr(a,'y'))  # → False",
-      "print(hasattr([],'append'))  # → True",
-      "print(hasattr([],'nonexistent'))  # → False",
-      "print(hasattr('str','upper'))  # → True"
+      [
+        "class A:",
+        "    x = 1",
+        "a = A()",
+        "print(hasattr(a,'x'))  # → True",
+        "print(hasattr(a,'y'))  # → False",
+        "print(hasattr([],'append'))  # → True",
+        "print(hasattr([],'nonexistent'))  # → False",
+        "print(hasattr('str','upper'))  # → True"
+      ]
     ],
     "related": [
       "getattr",
@@ -1155,13 +1195,15 @@
       "builtin"
     ],
     "examples": [
-      "print(hash(42))      # → 42",
-      "print(hash('hello')) # → ? хеш строки солится PYTHONHASHSEED и меняется от запуска",
-      "print(hash((1,2,3))) # → ? хеш кортежа считается из хешей элементов",
-      "try:",
-      "    hash([1,2,3])  # список нехешируем — будет TypeError",
-      "except TypeError as e: print(e)  # → unhashable type: 'list'",
-      "print(hash(42) == hash(42.0))  # → True (равные объекты)"
+      [
+        "print(hash(42))      # → 42",
+        "print(hash('hello')) # → ? хеш строки солится PYTHONHASHSEED и меняется от запуска",
+        "print(hash((1,2,3))) # → ? хеш кортежа считается из хешей элементов",
+        "try:",
+        "    hash([1,2,3])  # список нехешируем — будет TypeError",
+        "except TypeError as e: print(e)  # → unhashable type: 'list'",
+        "print(hash(42) == hash(42.0))  # → True (равные объекты)"
+      ]
     ],
     "related": [
       "collections.abc.Hashable",
@@ -1212,11 +1254,13 @@
       "builtin"
     ],
     "examples": [
-      "help(len)  # → выводит справку о len",
-      "help(str.upper)  # → справка о методе",
-      "help(list)  # → все методы списка",
-      "print(len.__doc__[:30])  # → Return the number of items...",
-      "import math; help(math.sqrt)  # → sqrt справка"
+      [
+        "help(len)  # → выводит справку о len",
+        "help(str.upper)  # → справка о методе",
+        "help(list)  # → все методы списка",
+        "print(len.__doc__[:30])  # → Return the number of items...",
+        "import math; help(math.sqrt)  # → sqrt справка"
+      ]
     ],
     "related": [
       "dir",
@@ -1264,11 +1308,13 @@
       "builtin"
     ],
     "examples": [
-      "print(hex(255))  # → 0xff",
-      "print(hex(16))   # → 0x10",
-      "print(hex(-42))  # → -0x2a",
-      "print(hex(0))    # → 0x0",
-      "print(int(hex(255), 16))  # → 255"
+      [
+        "print(hex(255))  # → 0xff",
+        "print(hex(16))   # → 0x10",
+        "print(hex(-42))  # → -0x2a",
+        "print(hex(0))    # → 0x0",
+        "print(int(hex(255), 16))  # → 255"
+      ]
     ],
     "related": [
       "bin",
@@ -1319,18 +1365,20 @@
       "builtin"
     ],
     "examples": [
-      "x = 42",
-      "y = x",
-      "print(id(x) == id(y))  # → True (одно и то же имя, один объект)",
-      "print(id(42) == id(42))  # → True (маленькие целые интернированы)",
-      "a = 'hello'; b = 'hello'",
-      "print(id(a) == id(b))  # → True (интернирование строк)",
-      "# Ловушка: id([]) == id([]) даёт True, и это НЕ значит «один объект».",
-      "# Первый список освобождается сразу после вычисления id, и второй получает",
-      "# тот же адрес. Сравнивать так нельзя — объекты должны быть ЖИВЫ:",
-      "first, second = [], []",
-      "print(id(first) == id(second))  # → False (два живых списка — разные объекты)",
-      "print(first is second)  # → False (is сравнивает по id, но держит ссылки)"
+      [
+        "x = 42",
+        "y = x",
+        "print(id(x) == id(y))  # → True (одно и то же имя, один объект)",
+        "print(id(42) == id(42))  # → True (маленькие целые интернированы)",
+        "a = 'hello'; b = 'hello'",
+        "print(id(a) == id(b))  # → True (интернирование строк)",
+        "# Ловушка: id([]) == id([]) даёт True, и это НЕ значит «один объект».",
+        "# Первый список освобождается сразу после вычисления id, и второй получает",
+        "# тот же адрес. Сравнивать так нельзя — объекты должны быть ЖИВЫ:",
+        "first, second = [], []",
+        "print(id(first) == id(second))  # → False (два живых списка — разные объекты)",
+        "print(first is second)  # → False (is сравнивает по id, но держит ссылки)"
+      ]
     ],
     "related": [
       "is-is-not",
@@ -1380,17 +1428,19 @@
       "builtin"
     ],
     "examples": [
-      "# name = input(\"Введите имя: \")  # пользователь вводит строку",
-      "# age = int(input(\"Возраст: \"))  # → преобразование в int",
-      "# price = float(input(\"Цена: \"))  # → преобразование в float",
-      "# Проверка: x = int(input()) if input().isdigit() else 0",
-      "# line1 = input(\"Строка 1: \"); line2 = input(\"Строка 2: \")",
-      "# s = input(\"  hello  \").strip()  # → \"hello\" (убирает пробелы)",
-      "# Симуляция ввода без клавиатуры:",
-      "import io, sys",
-      "sys.stdin = io.StringIO('Alice\\n')",
-      "print(input())  # → Alice",
-      "sys.stdin = sys.__stdin__"
+      [
+        "# name = input(\"Введите имя: \")  # пользователь вводит строку",
+        "# age = int(input(\"Возраст: \"))  # → преобразование в int",
+        "# price = float(input(\"Цена: \"))  # → преобразование в float",
+        "# Проверка: x = int(input()) if input().isdigit() else 0",
+        "# line1 = input(\"Строка 1: \"); line2 = input(\"Строка 2: \")",
+        "# s = input(\"  hello  \").strip()  # → \"hello\" (убирает пробелы)",
+        "# Симуляция ввода без клавиатуры:",
+        "import io, sys",
+        "sys.stdin = io.StringIO('Alice\\n')",
+        "print(input())  # → Alice",
+        "sys.stdin = sys.__stdin__"
+      ]
     ],
     "related": [
       "print",
@@ -1443,13 +1493,15 @@
       "builtin"
     ],
     "examples": [
-      "print(issubclass(bool, int))   # → True",
-      "print(issubclass(int, object))  # → True",
-      "print(issubclass(list, (list,tuple)))  # → True",
-      "class A: pass",
-      "class B(A): pass",
-      "print(issubclass(B, A))  # → True",
-      "print(issubclass(A, B))  # → False"
+      [
+        "print(issubclass(bool, int))   # → True",
+        "print(issubclass(int, object))  # → True",
+        "print(issubclass(list, (list,tuple)))  # → True",
+        "class A: pass",
+        "class B(A): pass",
+        "print(issubclass(B, A))  # → True",
+        "print(issubclass(A, B))  # → False"
+      ]
     ],
     "related": [
       "isinstance",
@@ -1500,16 +1552,18 @@
       "builtin"
     ],
     "examples": [
-      "it = iter([1,2,3])",
-      "print(next(it), next(it))  # → 1 2",
-      "it2 = iter('hello')",
-      "print(list(it2))  # → ['h','e','l','l','o']",
-      "# sentinel-вариант",
-      "from io import StringIO",
-      "f = StringIO('a\\nb\\nc')",
-      "for line in iter(f.readline, ''):",
-      "    print(line.strip())",
-      "    print(list(iter(range(5))))  # → [0,1,2,3,4]"
+      [
+        "it = iter([1,2,3])",
+        "print(next(it), next(it))  # → 1 2",
+        "it2 = iter('hello')",
+        "print(list(it2))  # → ['h','e','l','l','o']",
+        "# sentinel-вариант",
+        "from io import StringIO",
+        "f = StringIO('a\\nb\\nc')",
+        "for line in iter(f.readline, ''):",
+        "    print(line.strip())",
+        "    print(list(iter(range(5))))  # → [0,1,2,3,4]"
+      ]
     ],
     "related": [
       "next",
@@ -1560,11 +1614,13 @@
       "builtin"
     ],
     "examples": [
-      "print(list('hello'))  # → ['h','e','l','l','o']",
-      "print(list(range(5)))  # → [0,1,2,3,4]",
-      "print(list({1,2,3}))  # → [1,2,3]",
-      "print(list({'a':1,'b':2}))  # → ['a','b']",
-      "print(list(zip([1,2],[3,4])))  # → [(1,3),(2,4)]"
+      [
+        "print(list('hello'))  # → ['h','e','l','l','o']",
+        "print(list(range(5)))  # → [0,1,2,3,4]",
+        "print(list({1,2,3}))  # → [1,2,3]",
+        "print(list({'a':1,'b':2}))  # → ['a','b']",
+        "print(list(zip([1,2],[3,4])))  # → [(1,3),(2,4)]"
+      ]
     ],
     "related": [
       "создание-списка",
@@ -1615,16 +1671,18 @@
       "builtin"
     ],
     "examples": [
-      "def f():",
-      "    x = 10; y = 20",
-      "    return locals()",
-      "print(f())  # → {'x':10,'y':20}",
-      "def g(a, b):",
-      "    c = a+b",
-      "    print('c' in locals())  # → True",
-      "    return locals()",
-      "print(g(1,2))  # → {'a':1,'b':2,'c':3}",
-      "print(type(locals()))  # → <class 'dict'>"
+      [
+        "def f():",
+        "    x = 10; y = 20",
+        "    return locals()",
+        "print(f())  # → {'x':10,'y':20}",
+        "def g(a, b):",
+        "    c = a+b",
+        "    print('c' in locals())  # → True",
+        "    return locals()",
+        "print(g(1,2))  # → {'a':1,'b':2,'c':3}",
+        "print(type(locals()))  # → <class 'dict'>"
+      ]
     ],
     "related": [
       "globals",
@@ -1675,11 +1733,13 @@
       "builtin"
     ],
     "examples": [
-      "print(max(3,1,4,1,5))  # → 5",
-      "print(max([10,20,5]))  # → 20",
-      "print(max('apple','banana','cherry'))  # → cherry",
-      "print(max([1,2,3], key=lambda x:-x))  # → 1",
-      "print(max([], default=0))  # → 0"
+      [
+        "print(max(3,1,4,1,5))  # → 5",
+        "print(max([10,20,5]))  # → 20",
+        "print(max('apple','banana','cherry'))  # → cherry",
+        "print(max([1,2,3], key=lambda x:-x))  # → 1",
+        "print(max([], default=0))  # → 0"
+      ]
     ],
     "related": [
       "min",
@@ -1729,14 +1789,16 @@
       "builtin"
     ],
     "examples": [
-      "b = bytearray(b'hello world')",
-      "mv = memoryview(b)",
-      "print(bytes(mv[6:11]))  # → b'world'",
-      "mv[0] = ord('H')",
-      "print(b)  # → bytearray(b'Hello world')",
-      "print(mv.format)  # → B (unsigned char)",
-      "print(mv.itemsize)  # → 1",
-      "print(len(mv))  # → 11"
+      [
+        "b = bytearray(b'hello world')",
+        "mv = memoryview(b)",
+        "print(bytes(mv[6:11]))  # → b'world'",
+        "mv[0] = ord('H')",
+        "print(b)  # → bytearray(b'Hello world')",
+        "print(mv.format)  # → B (unsigned char)",
+        "print(mv.itemsize)  # → 1",
+        "print(len(mv))  # → 11"
+      ]
     ],
     "related": [
       "bytearray",
@@ -1787,11 +1849,13 @@
       "builtin"
     ],
     "examples": [
-      "print(min(3,1,4,1,5))  # → 1",
-      "print(min([10,20,5]))  # → 5",
-      "print(min('apple','banana','cherry'))  # → apple",
-      "print(min([1,2,3], key=lambda x:-x))  # → 3",
-      "print(min([], default=0))  # → 0"
+      [
+        "print(min(3,1,4,1,5))  # → 1",
+        "print(min([10,20,5]))  # → 5",
+        "print(min('apple','banana','cherry'))  # → apple",
+        "print(min([1,2,3], key=lambda x:-x))  # → 3",
+        "print(min([], default=0))  # → 0"
+      ]
     ],
     "related": [
       "max",
@@ -1841,13 +1905,15 @@
       "builtin"
     ],
     "examples": [
-      "it = iter([1,2,3])",
-      "print(next(it))  # → 1",
-      "print(next(it))  # → 2",
-      "print(next(it))  # → 3",
-      "print(next(it, 'end'))  # → end",
-      "g = (x**2 for x in range(5))",
-      "print(next(g), next(g))  # → 0 1"
+      [
+        "it = iter([1,2,3])",
+        "print(next(it))  # → 1",
+        "print(next(it))  # → 2",
+        "print(next(it))  # → 3",
+        "print(next(it, 'end'))  # → end",
+        "g = (x**2 for x in range(5))",
+        "print(next(g), next(g))  # → 0 1"
+      ]
     ],
     "related": [
       "iter",
@@ -1897,13 +1963,15 @@
       "builtin"
     ],
     "examples": [
-      "o = object()",
-      "print(type(o))  # → <class 'object'>",
-      "print(isinstance(42, object))  # → True",
-      "print(isinstance('hi', object))  # → True",
-      "class A(object): pass  # явно наследуется",
-      "print(A.__bases__)  # → (<class 'object'>,)",
-      "print(dir(object())[:2])  # → ['__class__', '__delattr__']"
+      [
+        "o = object()",
+        "print(type(o))  # → <class 'object'>",
+        "print(isinstance(42, object))  # → True",
+        "print(isinstance('hi', object))  # → True",
+        "class A(object): pass  # явно наследуется",
+        "print(A.__bases__)  # → (<class 'object'>,)",
+        "print(dir(object())[:2])  # → ['__class__', '__delattr__']"
+      ]
     ],
     "related": [
       "class",
@@ -1953,11 +2021,13 @@
       "builtin"
     ],
     "examples": [
-      "print(oct(8))    # → 0o10",
-      "print(oct(255))  # → 0o377",
-      "print(oct(64))   # → 0o100",
-      "print(oct(-8))   # → -0o10",
-      "print(int(oct(8),8))  # → 8"
+      [
+        "print(oct(8))    # → 0o10",
+        "print(oct(255))  # → 0o377",
+        "print(oct(64))   # → 0o100",
+        "print(oct(-8))   # → -0o10",
+        "print(int(oct(8),8))  # → 8"
+      ]
     ],
     "related": [
       "bin",
@@ -2008,11 +2078,13 @@
       "builtin"
     ],
     "examples": [
-      "print(ord('A'))   # → 65",
-      "print(ord('a'))   # → 97",
-      "print(ord('а'))   # → 1072 (кириллица)",
-      "print(ord('0'))   # → 48",
-      "print([ord(c) for c in 'ABC'])  # → [65,66,67]"
+      [
+        "print(ord('A'))   # → 65",
+        "print(ord('a'))   # → 97",
+        "print(ord('а'))   # → 1072 (кириллица)",
+        "print(ord('0'))   # → 48",
+        "print([ord(c) for c in 'ABC'])  # → [65,66,67]"
+      ]
     ],
     "related": [
       "chr",
@@ -2062,17 +2134,19 @@
       "builtin"
     ],
     "examples": [
-      "print(\"Hello, World!\")  # → Hello, World!",
-      "print(\"a\", \"b\", \"c\", sep=\"-\")  # → a-b-c",
-      "print(\"Нет переноса\", end=\"\")  # → Нет переноса",
-      "print(\"x =\", 42, \"y =\", 3.14)  # → x = 42 y = 3.14",
-      "name = \"Анна\"; age = 25",
-      "print(f\"{name} — {age} лет\")  # → Анна — 25 лет",
-      "print(f\"{3.14159:.2f}\")  # → 3.14",
-      "with open(\"_test.txt\", \"w\") as f:",
-      "    print(\"в файл\", file=f)  # записывает строку в файл",
-      "    import sys; print(\"!\", flush=True, end=\"\", file=sys.stdout)  # → !",
-      "    import sys; print(\"ошибка\", file=sys.stderr)  # → в поток ошибок"
+      [
+        "print(\"Hello, World!\")  # → Hello, World!",
+        "print(\"a\", \"b\", \"c\", sep=\"-\")  # → a-b-c",
+        "print(\"Нет переноса\", end=\"\")  # → Нет переноса",
+        "print(\"x =\", 42, \"y =\", 3.14)  # → x = 42 y = 3.14",
+        "name = \"Анна\"; age = 25",
+        "print(f\"{name} — {age} лет\")  # → Анна — 25 лет",
+        "print(f\"{3.14159:.2f}\")  # → 3.14",
+        "with open(\"_test.txt\", \"w\") as f:",
+        "    print(\"в файл\", file=f)  # записывает строку в файл",
+        "    import sys; print(\"!\", flush=True, end=\"\", file=sys.stdout)  # → !",
+        "    import sys; print(\"ошибка\", file=sys.stderr)  # → в поток ошибок"
+      ]
     ],
     "related": [
       "input",
@@ -2127,14 +2201,16 @@
       "builtin"
     ],
     "examples": [
-      "import sys",
-      "print(\"ошибка!\", file=sys.stderr)  # → выводит в stderr",
-      "print(\".\", end=\"\", flush=True)  # → без буфера, без переноса строки",
-      "with open(\"_gloss_test.txt\", \"w\") as f:",
-      "    print(\"запись\", file=f)  # → пишет строку в файл",
-      "    import io; buf = io.StringIO()",
-      "    print(\"в буфер\", file=buf); print(buf.getvalue())  # → в буфер",
-      "    print(1, 2, 3, sep=\"-\", file=sys.stdout, flush=True)  # → 1-2-3"
+      [
+        "import sys",
+        "print(\"ошибка!\", file=sys.stderr)  # → выводит в stderr",
+        "print(\".\", end=\"\", flush=True)  # → без буфера, без переноса строки",
+        "with open(\"_gloss_test.txt\", \"w\") as f:",
+        "    print(\"запись\", file=f)  # → пишет строку в файл",
+        "    import io; buf = io.StringIO()",
+        "    print(\"в буфер\", file=buf); print(buf.getvalue())  # → в буфер",
+        "    print(1, 2, 3, sep=\"-\", file=sys.stdout, flush=True)  # → 1-2-3"
+      ]
     ],
     "related": [
       "print",
@@ -2185,11 +2261,13 @@
       "builtin"
     ],
     "examples": [
-      "print(repr('hello'))  # → \"'hello'\"",
-      "print(repr([1,2,3]))  # → '[1, 2, 3]'",
-      "print(repr(None))     # → 'None'",
-      "print(repr(3.14))     # → '3.14'",
-      "print(repr({'a':1}))  # → \"{'a': 1}\""
+      [
+        "print(repr('hello'))  # → \"'hello'\"",
+        "print(repr([1,2,3]))  # → '[1, 2, 3]'",
+        "print(repr(None))     # → 'None'",
+        "print(repr(3.14))     # → '3.14'",
+        "print(repr({'a':1}))  # → \"{'a': 1}\""
+      ]
     ],
     "related": [
       "repr-vs-str",
@@ -2244,12 +2322,14 @@
       "builtin"
     ],
     "examples": [
-      "print(str(\"привет\"))    # → привет",
-      "print(repr(\"привет\"))   # → 'привет'",
-      "print(str(None))        # → None",
-      "print(repr(None))       # → None",
-      "print(str([1, 2]))      # → [1, 2]",
-      "print(repr([1, 2]))     # → [1, 2]"
+      [
+        "print(str(\"привет\"))    # → привет",
+        "print(repr(\"привет\"))   # → 'привет'",
+        "print(str(None))        # → None",
+        "print(repr(None))       # → None",
+        "print(str([1, 2]))      # → [1, 2]",
+        "print(repr([1, 2]))     # → [1, 2]"
+      ]
     ],
     "related": [
       "repr",
@@ -2300,12 +2380,14 @@
       "builtin"
     ],
     "examples": [
-      "print(list(reversed([1,2,3,4,5])))  # → [5,4,3,2,1]",
-      "print(list(reversed('hello')))  # → ['o','l','l','e','h']",
-      "print(list(reversed(range(5))))  # → [4,3,2,1,0]",
-      "for x in reversed([1,2,3]):",
-      "    print(x, end=' ')  # → 3 2 1",
-      "    print(''.join(reversed('hello')))  # → olleh"
+      [
+        "print(list(reversed([1,2,3,4,5])))  # → [5,4,3,2,1]",
+        "print(list(reversed('hello')))  # → ['o','l','l','e','h']",
+        "print(list(reversed(range(5))))  # → [4,3,2,1,0]",
+        "for x in reversed([1,2,3]):",
+        "    print(x, end=' ')  # → 3 2 1",
+        "    print(''.join(reversed('hello')))  # → olleh"
+      ]
     ],
     "related": [
       "zip",
@@ -2355,11 +2437,13 @@
       "builtin"
     ],
     "examples": [
-      "print(1, 2, 3, sep=\", \")  # → 1, 2, 3",
-      "print(\"a\", \"b\", \"c\", sep=\"\")  # → abc",
-      "print(\"год\", \"месяц\", \"день\", sep=\"-\")  # → год-месяц-день",
-      "print(10, 20, 30, sep=\"\\n\")  # каждое число на новой строке",
-      "print(*[1, 2, 3, 4], sep=\" | \")  # → 1 | 2 | 3 | 4"
+      [
+        "print(1, 2, 3, sep=\", \")  # → 1, 2, 3",
+        "print(\"a\", \"b\", \"c\", sep=\"\")  # → abc",
+        "print(\"год\", \"месяц\", \"день\", sep=\"-\")  # → год-месяц-день",
+        "print(10, 20, 30, sep=\"\\n\")  # каждое число на новой строке",
+        "print(*[1, 2, 3, 4], sep=\" | \")  # → 1 | 2 | 3 | 4"
+      ]
     ],
     "related": [
       "end",
@@ -2409,12 +2493,14 @@
       "builtin"
     ],
     "examples": [
-      "print(set([1,2,2,3]))  # → {1,2,3}",
-      "s1={1,2,3}; s2={2,3,4}",
-      "print(s1|s2)  # → {1,2,3,4} объединение",
-      "print(s1&s2)  # → {2,3} пересечение",
-      "print(s1-s2)  # → {1} разность",
-      "print(s1^s2)  # → {1,4} симм.разность"
+      [
+        "print(set([1,2,2,3]))  # → {1,2,3}",
+        "s1={1,2,3}; s2={2,3,4}",
+        "print(s1|s2)  # → {1,2,3,4} объединение",
+        "print(s1&s2)  # → {2,3} пересечение",
+        "print(s1-s2)  # → {1} разность",
+        "print(s1^s2)  # → {1,4} симм.разность"
+      ]
     ],
     "related": [
       "создание-множества",
@@ -2464,16 +2550,18 @@
       "builtin"
     ],
     "examples": [
-      "class A: pass",
-      "a=A()",
-      "setattr(a,'x',42)",
-      "print(a.x)  # → 42",
-      "for name,val in [('p',1),('q',2)]:",
-      "    setattr(a,name,val)",
-      "print(a.p, a.q)  # → 1 2",
-      "setattr(a,'lst',[])",
-      "a.lst.append(1)",
-      "print(a.lst)  # → [1]"
+      [
+        "class A: pass",
+        "a=A()",
+        "setattr(a,'x',42)",
+        "print(a.x)  # → 42",
+        "for name,val in [('p',1),('q',2)]:",
+        "    setattr(a,name,val)",
+        "print(a.p, a.q)  # → 1 2",
+        "setattr(a,'lst',[])",
+        "a.lst.append(1)",
+        "print(a.lst)  # → [1]"
+      ]
     ],
     "related": [
       "getattr",
@@ -2524,11 +2612,13 @@
       "builtin"
     ],
     "examples": [
-      "print(sorted([3,1,4,1,5]))  # → [1,1,3,4,5]",
-      "print(sorted('hello'))  # → ['e','h','l','l','o']",
-      "print(sorted([3,1,2],reverse=True))  # → [3,2,1]",
-      "print(sorted(['b','aaa','cc'],key=len))  # → ['b','cc','aaa']",
-      "print(sorted({'c':3,'a':1,'b':2}))  # → ['a','b','c']"
+      [
+        "print(sorted([3,1,4,1,5]))  # → [1,1,3,4,5]",
+        "print(sorted('hello'))  # → ['e','h','l','l','o']",
+        "print(sorted([3,1,2],reverse=True))  # → [3,2,1]",
+        "print(sorted(['b','aaa','cc'],key=len))  # → ['b','cc','aaa']",
+        "print(sorted({'c':3,'a':1,'b':2}))  # → ['a','b','c']"
+      ]
     ],
     "related": [
       "list.sort",
@@ -2579,11 +2669,13 @@
       "builtin"
     ],
     "examples": [
-      "print(sum([1,2,3,4,5]))  # → 15",
-      "print(sum(range(101)))  # → 5050",
-      "print(sum([[1,2],[3,4]], []))  # → [1,2,3,4]",
-      "print(sum([0.1]*10))  # → 1.0 (примерно)",
-      "print(sum({'a':1,'b':2}.values()))  # → 3"
+      [
+        "print(sum([1,2,3,4,5]))  # → 15",
+        "print(sum(range(101)))  # → 5050",
+        "print(sum([[1,2],[3,4]], []))  # → [1,2,3,4]",
+        "print(sum([0.1]*10))  # → 1.0 (примерно)",
+        "print(sum({'a':1,'b':2}.values()))  # → 3"
+      ]
     ],
     "related": [
       "min",
@@ -2633,12 +2725,14 @@
       "builtin"
     ],
     "examples": [
-      "print(tuple('abc'))    # → ('a','b','c')",
-      "print(tuple([1,2,3]))  # → (1,2,3)",
-      "t = (1,2,3)",
-      "a,b,c = t",
-      "print(a,b,c)  # → 1 2 3",
-      "print(tuple(zip([1,2],[3,4])))  # → ((1,3),(2,4))"
+      [
+        "print(tuple('abc'))    # → ('a','b','c')",
+        "print(tuple([1,2,3]))  # → (1,2,3)",
+        "t = (1,2,3)",
+        "a,b,c = t",
+        "print(a,b,c)  # → 1 2 3",
+        "print(tuple(zip([1,2],[3,4])))  # → ((1,3),(2,4))"
+      ]
     ],
     "related": [
       "создание-кортежа",
@@ -2688,14 +2782,16 @@
       "builtin"
     ],
     "examples": [
-      "class A:",
-      "    def __init__(self): self.x=1; self.y=2",
-      "a=A()",
-      "print(vars(a))  # → {'x':1,'y':2}",
-      "print('x' in vars(a))  # → True",
-      "print(vars(int)['__add__'])  # → ? слот-обёртка int.__add__ (repr содержит адрес)",
-      "print(type(vars()))  # → dict",
-      "print('print' in vars(__builtins__) if isinstance(vars(__builtins__),dict) else True)"
+      [
+        "class A:",
+        "    def __init__(self): self.x=1; self.y=2",
+        "a=A()",
+        "print(vars(a))  # → {'x':1,'y':2}",
+        "print('x' in vars(a))  # → True",
+        "print(vars(int)['__add__'])  # → ? слот-обёртка int.__add__ (repr содержит адрес)",
+        "print(type(vars()))  # → dict",
+        "print('print' in vars(__builtins__) if isinstance(vars(__builtins__),dict) else True)"
+      ]
     ],
     "related": [
       "dir",
@@ -2745,13 +2841,15 @@
       "builtin"
     ],
     "examples": [
-      "x = 10  # целое число",
-      "pi = 3.14  # float",
-      "greeting = \"Привет\"  # строка",
-      "a, b, c = 1, 2, 3  # множественное присваивание",
-      "a, b = b, a  # обмен значений без temp",
-      "x += 5  # x = x + 5 → 15 (составное присваивание)",
-      "del x  # удаление переменной"
+      [
+        "x = 10  # целое число",
+        "pi = 3.14  # float",
+        "greeting = \"Привет\"  # строка",
+        "a, b, c = 1, 2, 3  # множественное присваивание",
+        "a, b = b, a  # обмен значений без temp",
+        "x += 5  # x = x + 5 → 15 (составное присваивание)",
+        "del x  # удаление переменной"
+      ]
     ],
     "related": [
       "операторы-присваивания",
@@ -2807,12 +2905,14 @@
       "builtin"
     ],
     "examples": [
-      "print(0b1010)      # → 10",
-      "print(0o17)        # → 15",
-      "print(0xFF)        # → 255",
-      "print(1_000_000)   # → 1000000",
-      "print(1.5e3)       # → 1500.0",
-      "print(0b1111 == 15 == 0xF)  # → True"
+      [
+        "print(0b1010)      # → 10",
+        "print(0o17)        # → 15",
+        "print(0xFF)        # → 255",
+        "print(1_000_000)   # → 1000000",
+        "print(1.5e3)       # → 1500.0",
+        "print(0b1111 == 15 == 0xF)  # → True"
+      ]
     ],
     "related": [
       "системы-счисления",
@@ -2863,9 +2963,11 @@
       "builtin"
     ],
     "examples": [
-      "print(len([1, 2, 3]))     # → 3",
-      "print(len('abcd'))        # → 4",
-      "print(len({'a': 1}))      # → 1"
+      [
+        "print(len([1, 2, 3]))     # → 3",
+        "print(len('abcd'))        # → 4",
+        "print(len({'a': 1}))      # → 1"
+      ]
     ],
     "related": [
       "min",
@@ -2914,14 +3016,16 @@
       "builtin"
     ],
     "examples": [
-      "import asyncio",
-      "async def main():",
-      "    async def agen():",
-      "        yield 1",
-      "        yield 2",
-      "    it = aiter(agen())",
-      "    print(await anext(it))   # → 1",
-      "asyncio.run(main())"
+      [
+        "import asyncio",
+        "async def main():",
+        "    async def agen():",
+        "        yield 1",
+        "        yield 2",
+        "    it = aiter(agen())",
+        "    print(await anext(it))   # → 1",
+        "asyncio.run(main())"
+      ]
     ],
     "related": [
       "anext",
@@ -2973,14 +3077,16 @@
       "builtin"
     ],
     "examples": [
-      "import asyncio",
-      "async def main():",
-      "    async def agen():",
-      "        yield 10",
-      "    it = aiter(agen())",
-      "    print(await anext(it))          # → 10",
-      "    print(await anext(it, 'конец'))  # → конец",
-      "asyncio.run(main())"
+      [
+        "import asyncio",
+        "async def main():",
+        "    async def agen():",
+        "        yield 10",
+        "    it = aiter(agen())",
+        "    print(await anext(it))          # → 10",
+        "    print(await anext(it, 'конец'))  # → конец",
+        "asyncio.run(main())"
+      ]
     ],
     "related": [
       "aiter",

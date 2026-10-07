@@ -88,7 +88,7 @@ def load_glossary(path: Path | None = None) -> Glossary:
     version = payload.get("schema_version")
     if version != SCHEMA_VERSION:
         hint = ""
-        if version in {1, 2, 3, 4}:
+        if version in {1, 2, 3, 4, 5}:
             hint = (
                 f" Файл версии {version} старше нынешней формы карточки; "
                 "пересоберите его: python -m glossary assemble"

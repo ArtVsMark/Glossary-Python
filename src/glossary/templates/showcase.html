@@ -246,6 +246,8 @@ a{color:inherit}
 .card.open .details{display:block}
 .body-text{font-size:13.5px;color:var(--text);margin-bottom:13px;white-space:pre-wrap}
 .ex-head{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-bottom:4px}
+.ex-num{font-size:11px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.example + .example{margin-top:12px}
 .copy-btn{
   border:1px solid var(--border);background:var(--surface);color:var(--muted);font:inherit;
   font-size:11px;font-weight:600;height:24px;padding:0 8px;border-radius:6px;cursor:pointer;
@@ -411,7 +413,7 @@ const I18N = {
     bySection:"По разделам", kind:"Вид", group:"Раздел", moduleWord:"модуль",
     all:"Все", shown:"Показано", of:"из",
     term:"понятие", function:"функция", exception:"исключение", construct:"конструкция",
-    syntax:"Синтаксис", examples:"Примеры", copy:"Копировать", copied:"Скопировано",
+    syntax:"Синтаксис", examples:"Примеры", example:"Пример", copy:"Копировать", copied:"Скопировано",
     details:"Подробнее", collapse:"Свернуть", seeAlso:"См. также", commonErrors:"Частые ошибки",
     noTranslation:"Нет перевода на этот язык — показан русский текст",
     emptyTitle:"Ничего не найдено", emptyHint:"Попробуйте другой запрос или снимите фильтры.",
@@ -426,7 +428,7 @@ const I18N = {
     bySection:"By section", kind:"Kind", group:"Section", moduleWord:"module",
     all:"All", shown:"Showing", of:"of",
     term:"term", function:"function", exception:"exception", construct:"construct",
-    syntax:"Syntax", examples:"Examples", copy:"Copy", copied:"Copied",
+    syntax:"Syntax", examples:"Examples", example:"Example", copy:"Copy", copied:"Copied",
     details:"Details", collapse:"Collapse", seeAlso:"See also", commonErrors:"Common errors",
     noTranslation:"No translation for this language — showing Russian",
     emptyTitle:"Nothing found", emptyHint:"Try another query or clear the filters.",
@@ -608,9 +610,15 @@ function detailsHtml(d){
   const parts = [];
   if(body) parts.push(`<div class="body-text">${mark(body)}</div>`);
   if(d.examples && d.examples.length){
-    parts.push(`<div class="ex-head"><div class="field-label">${t("examples")}</div>
-      <button class="copy-btn" type="button">${ICON_COPY}<span>${t("copy")}</span></button></div>
-      <pre class="examples"><code>${highlightPy(d.examples.join("\n"))}</code></pre>`);
+    /* Каждый пример — свой блок со своей кнопкой (#125): склеенные в одну
+       простыню, они не читались, а копировать приходилось все разом. */
+    const many = d.examples.length > 1;
+    parts.push(`<div class="field-label">${t("examples")}</div>` + d.examples.map((block, i) =>
+      `<div class="example"><div class="ex-head">` +
+      `<span class="ex-num">${many ? `${t("example")} ${i + 1}` : ""}</span>` +
+      `<button class="copy-btn" type="button">${ICON_COPY}<span>${t("copy")}</span></button></div>` +
+      `<pre class="examples"><code>${highlightPy(block.join("\n"))}</code></pre></div>`
+    ).join(""));
   }
   const links = (d.related || []).map(resolve).filter(Boolean);
   if(links.length){
@@ -770,7 +778,7 @@ grid.addEventListener("click", e => {
   }
   const copy = e.target.closest(".copy-btn");
   if(copy){
-    const code = copy.closest(".details").querySelector(".examples code");
+    const code = copy.closest(".example").querySelector(".examples code");
     navigator.clipboard.writeText(code.textContent).then(() => {
       copy.classList.add("done");
       copy.querySelector("span").textContent = t("copied");

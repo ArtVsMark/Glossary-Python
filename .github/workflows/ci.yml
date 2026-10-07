@@ -146,6 +146,12 @@ jobs:
           python scripts/check_journal.py \
             --base "origin/${{ github.base_ref || 'main' }}"
 
+      # Правило 043: решение отменяет новая запись, прежняя остаётся с пометкой.
+      - name: Решение не стирается задним числом
+        run: |
+          python scripts/check_decisions.py \
+            --base "origin/${{ github.base_ref || 'main' }}"
+
   link:
     timeout-minutes: 5
     name: Связь изменения с задачей

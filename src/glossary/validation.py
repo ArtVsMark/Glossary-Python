@@ -905,11 +905,16 @@ def rule_duplicate_title(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
 
 
 def rule_section_size(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
-    """Слишком маленький раздел — признак неполного покрытия темы."""
+    """Раздел из одной карточки — классификацию применили не в ту сторону.
+
+    Спор «к какому разделу карточка» решается последствием (правило каталога
+    099), и его неверный исход виден в данных: раздел, где никто, кроме спорной
+    карточки, не живёт. Ошибка, а не предупреждение: таких разделов нет.
+    """
     for section, count in Counter(e.section for e in g.entries).items():
         if count < cfg.min_section_size:
             yield Issue(
-                Severity.WARNING,
+                Severity.ERROR,
                 "section-size",
                 f"раздел {section!r} содержит {count} карточк(и) — "
                 "тема покрыта не полностью",

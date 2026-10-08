@@ -13,8 +13,8 @@
 | :---: | :---: |
 | [![Карточек](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json) | [![Замечаний](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](docs/dev/quality.md#качество-данных) |
 
-Двуязычный справочник стандартной библиотеки Python: **<!--m:cards-->2656<!--/m:cards--> карточка**
-в **<!--m:groups-->112<!--/m:groups--> разделах**. Каждая карточка — краткая сводка и развёрнутый разбор
+Двуязычный справочник стандартной библиотеки Python: **<!--m:cards-->2814<!--/m:cards--> карточка**
+в **<!--m:groups-->131<!--/m:groups--> разделах**. Каждая карточка — краткая сводка и развёрнутый разбор
 на русском и английском, синтаксис, исполняемые примеры, синонимы для поиска,
 связи с соседними темами, версия Python и ссылка на официальную документацию.
 

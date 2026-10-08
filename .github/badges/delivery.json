@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-08T05:24:00+00:00",
+  "generated_at": "2026-10-08T05:30:01+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2656,
     "schema_version": 6,
-    "digest": "373d1843449c"
+    "digest": "d93cbab8df7f"
   },
   "groups": {
     "builtin": [
@@ -144733,8 +144733,8 @@
           "en": "Accepts any number of keyword arguments as a dictionary."
         },
         "body": {
-          "ru": "Внутри функции kwargs — обычный словарь, и начиная с Python 3.7 он хранит аргументы в порядке их передачи. В сигнатуре **kwargs идёт последним; двойная звёздочка в вызове f(**d) делает обратное — раскладывает словарь в именованные аргументы.",
-          "en": "Inside the function kwargs is a plain dict, and since Python 3.7 it preserves the order in which arguments were passed. In the signature **kwargs comes last; a double star at the call site, f(**d), does the reverse — spreading a dict into keyword arguments."
+          "ru": "Внутри функции kwargs — обычный словарь, и начиная с Python 3.6 (PEP 468) он хранит аргументы в порядке их передачи. В сигнатуре **kwargs идёт последним; двойная звёздочка в вызове f(**d) делает обратное — раскладывает словарь в именованные аргументы.",
+          "en": "Inside the function kwargs is a plain dict, and since Python 3.6 (PEP 468) it preserves the order in which arguments were passed. In the signature **kwargs comes last; a double star at the call site, f(**d), does the reverse — spreading a dict into keyword arguments."
         },
         "syntax": "def f(**kwargs): ...",
         "status": "ready",

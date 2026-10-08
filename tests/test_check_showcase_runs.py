@@ -12,6 +12,8 @@ from pathlib import Path
 import pytest
 
 import check_showcase_runs as runs
+from glossary.exporters import pages
+from glossary.models import Entry, Glossary
 
 
 def page(shown: int, total: int, ids: list[str]) -> str:
@@ -122,3 +124,39 @@ def test_card_without_its_report_link_is_a_finding():
 
 def test_empty_grid_has_no_feedback_to_check():
     assert runs.feedback_findings(page(0, 0, [])) == []
+
+
+# --------------------------------------------------------------------------- #
+# Страница карточки ведёт в витрину (#227)
+# --------------------------------------------------------------------------- #
+
+
+def test_card_page_target_prefers_a_cyrillic_id():
+    assert runs.card_page_target(["alpha", "бинарный-поиск"]) == "бинарный-поиск"
+    assert runs.card_page_target(["alpha", "beta"]) == "alpha"
+    assert runs.card_page_target([]) is None
+
+
+@pytest.mark.live_surface
+def test_live_card_page_leads_to_its_card():
+    browser = _browser()
+    entries = json.loads(runs.GLOSSARY.read_text(encoding="utf-8"))["entries"]
+    target = runs.card_page_target([e["id"] for e in entries])
+    assert target is not None
+    assert runs.card_page_findings(browser, runs.SHOWCASE, target) == []
+
+
+@pytest.mark.live_surface
+def test_live_button_to_another_card_is_caught(monkeypatch: pytest.MonkeyPatch):
+    """Кнопка, ведущая не на свою карточку, обязана дать находку."""
+    browser = _browser()
+    render = pages.render_page
+
+    def wrong(glossary: Glossary, entry: Entry, lang: str) -> str:
+        return render(glossary, entry, lang).replace('href="../#', 'href="../#x')
+
+    monkeypatch.setattr(pages, "render_page", wrong)
+    entries = json.loads(runs.GLOSSARY.read_text(encoding="utf-8"))["entries"]
+    target = runs.card_page_target([e["id"] for e in entries])
+    assert target is not None
+    assert runs.card_page_findings(browser, runs.SHOWCASE, target) != []

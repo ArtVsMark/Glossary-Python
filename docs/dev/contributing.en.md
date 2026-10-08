@@ -122,7 +122,7 @@ changelog.d/<slug>.<section>.md
 
 Inside is one line, without a leading hyphen. Sections: `added`, `changed`,
 `fixed`, `removed`, `internal`. Details are in
-[`changelog.d/README.md`](../../changelog.d/README.md).
+[`changelog.d/README.en.md`](../../changelog.d/README.en.md).
 
 Two files with different names never conflict. A shared file conflicts on
 every parallel change, and a conflicting change is left **with no checks

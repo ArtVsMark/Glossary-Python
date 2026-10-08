@@ -50,8 +50,19 @@ RUSSIAN_PROMISE = """## Связанные задачи
         ("Resolves #3", "закрывает"),
         (PART_WITH_REMAINDER, "часть"),
         ("Без задачи: правка опечатки в комментарии", "освобождено"),
+        ("Part of #25. Remaining: the export of section labels.", "часть"),
+        ("No issue: typo fix in a comment", "освобождено"),
     ],
-    ids=["closes", "нижний регистр", "fixes", "resolves", "часть", "освобождено"],
+    ids=[
+        "closes",
+        "нижний регистр",
+        "fixes",
+        "resolves",
+        "часть",
+        "освобождено",
+        "part of",
+        "no issue",
+    ],
 )
 def test_every_allowed_answer_is_read(body: str, kind: str):
     found = link.answer(body)
@@ -63,6 +74,11 @@ def test_part_without_a_remainder_is_not_an_answer():
     """Тот самый предмет: частичное изменение обязано назвать остаток."""
     assert link.answer(PART_WITHOUT_REMAINDER) is None
     assert "остаток не назван" in link.complaint(PART_WITHOUT_REMAINDER)
+
+
+def test_english_part_without_a_remainder_is_not_an_answer():
+    """Английская форма не послабление: остаток обязан быть назван и в ней."""
+    assert link.answer("## Related issues\n\nPart of #25.\n") is None
 
 
 def test_russian_promise_is_not_a_closing_word():
@@ -150,6 +166,7 @@ def test_template_offers_a_place_for_the_answer():
     assert TEMPLATE.exists(), f"формы изменения нет: {TEMPLATE}"
     text = TEMPLATE.read_text(encoding="utf-8")
     assert "Связанные задачи" in text
+    assert "Related issues" in text, "форма спрашивает связь и по-английски (065)"
     assert "Closes #" in text, "форма не показывает слова, которые площадка исполняет"
 
 
@@ -163,6 +180,8 @@ def test_template_names_all_three_answers():
             ("закрывает", "Closes #"),
             ("часть", "Часть #"),
             ("освобождено", "Без задачи:"),
+            ("part of", "Part of #"),
+            ("no issue", "No issue:"),
         )
         if needle not in text
     ]

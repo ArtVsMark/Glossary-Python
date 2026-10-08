@@ -8,18 +8,21 @@ import shutil
 import subprocess
 
 import pytest
+import yaml
 
-from glossary.contracts import PAGES_URL
+from glossary.contracts import PAGES_URL, REPOSITORY_URL
 from glossary.errors import ExportError
 from glossary.exporters import EXPORTERS, MarkdownExporter, get_exporter
 from glossary.exporters.html import (
     HEAD,
     PLACEHOLDER,
+    REPOSITORY,
     HtmlExporter,
     _count,
     head,
     load_template,
 )
+from glossary.loader import project_root
 from glossary.models import Glossary
 from tests.factories import (
     VALID_SUMMARY,
@@ -322,3 +325,50 @@ def test_head_text_cannot_close_the_script_block():
 @pytest.mark.live_surface
 def test_shipped_template_carries_the_head_point():
     assert HEAD in load_template(), "метаданным витрины некуда встать"
+
+
+# --------------------------------------------------------------------------- #
+# Ссылка на проект и обратная связь (#233)
+# --------------------------------------------------------------------------- #
+
+
+def test_repository_point_takes_the_package_address(sample_glossary: Glossary):
+    page = HtmlExporter(template=f'<a href="{REPOSITORY}">{PLACEHOLDER}</a>').render(
+        sample_glossary
+    )
+    assert REPOSITORY not in page
+    assert f'href="{REPOSITORY_URL}"' in page
+
+
+def _form_ids(name: str) -> set[str]:
+    """Id полей формы задачи — по ним GitHub подставляет параметры адреса."""
+    form = yaml.safe_load(
+        (project_root() / ".github" / "ISSUE_TEMPLATE" / name).read_text("utf-8")
+    )
+    return {field["id"] for field in form["body"] if "id" in field}
+
+
+@pytest.mark.live_surface
+def test_showcase_feedback_matches_the_issue_forms():
+    """Имена параметров витрины совпадают с id полей формы.
+
+    Переименуй поле в форме — и предзаполнение молча перестанет работать:
+    GitHub незнакомый параметр просто пропускает.
+    """
+    template = load_template()
+    assert 'template:"content_fix.yml"' in template
+    assert 'id:"entry_id"' in template
+    assert "entry_id" in _form_ids("content_fix.yml")
+    assert 'template:"term_request.yml"' in template
+    assert {"name", "group"} <= _form_ids("term_request.yml")
+    assert 'name:"name", group:"group"' in template
+    for form in ("content_fix.yml", "term_request.yml", "bug_report.yml"):
+        assert f"template={form}" in template or f'template:"{form}"' in template
+        assert (project_root() / ".github" / "ISSUE_TEMPLATE" / form).exists()
+
+
+@pytest.mark.live_surface
+def test_shipped_template_names_the_repository_by_the_point():
+    template = load_template()
+    assert REPOSITORY in template
+    assert "github.com/ArtVsMark" not in template, "адрес проекта — точкой, не строкой"

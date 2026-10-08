@@ -32,6 +32,7 @@ __all__ = [
     "PRODUCER",
     "REPOSITORY_URL",
     "SCHEMA",
+    "SITE_VERIFICATION",
     "SOURCE",
     "envelope",
     "now",
@@ -51,6 +52,15 @@ PAGES_URL: Final = "https://artvsmark.github.io/Glossary-Python/"
 проекта нет, корень ``artvsmark.github.io`` не наш."""
 
 REPOSITORY_URL: Final = f"https://github.com/{PRODUCER}"
+
+SITE_VERIFICATION: Final[dict[str, str]] = {
+    "google-site-verification": "Zk_GLh_8oDnJd0eF0OcBOK7QZzAJ3POJDwOWmmzvrOA",
+}
+"""Коды подтверждения ресурса в консолях вебмастеров (#224): имя ``meta`` → значение.
+
+Подтверждение тегом, а не файлом и не счётчиком: тег едет вместе со страницей и
+виден в дереве, а счётчик посещений витрине не нужен — она открывается офлайн.
+Коды публичны: их и так видно в исходнике опубликованной страницы."""
 """Репозиторий проекта: туда витрина ведёт за звездой и с обратной связью (#233)."""
 
 SOURCE: Final = PRODUCER

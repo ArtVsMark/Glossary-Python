@@ -10,7 +10,7 @@ import subprocess
 import pytest
 import yaml
 
-from glossary.contracts import PAGES_URL, REPOSITORY_URL
+from glossary.contracts import PAGES_URL, REPOSITORY_URL, SITE_VERIFICATION
 from glossary.errors import ExportError
 from glossary.exporters import EXPORTERS, MarkdownExporter, get_exporter
 from glossary.exporters.html import (
@@ -372,3 +372,10 @@ def test_shipped_template_names_the_repository_by_the_point():
     template = load_template()
     assert REPOSITORY in template
     assert "github.com/ArtVsMark" not in template, "адрес проекта — точкой, не строкой"
+
+
+def test_head_carries_search_console_verification(sample_glossary: Glossary):
+    """Ресурс подтверждается тегом в странице (#224): код из пакета, один раз."""
+    rendered = head(sample_glossary)
+    for name, code in SITE_VERIFICATION.items():
+        assert rendered.count(f'<meta name="{name}" content="{code}">') == 1

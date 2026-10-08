@@ -12,7 +12,7 @@ from importlib import resources
 from typing import TYPE_CHECKING, Final
 
 from glossary import taxonomy
-from glossary.contracts import PAGES_URL, REPOSITORY_URL
+from glossary.contracts import PAGES_URL, REPOSITORY_URL, SITE_VERIFICATION
 from glossary.errors import ExportError
 
 if TYPE_CHECKING:
@@ -148,6 +148,10 @@ def head(glossary: Glossary) -> str:
             '<meta property="og:locale" content="ru_RU">',
             '<meta property="og:locale:alternate" content="en_US">',
             '<meta name="twitter:card" content="summary">',
+            *(
+                f'<meta name="{attr(name)}" content="{attr(code)}">'
+                for name, code in SITE_VERIFICATION.items()
+            ),
             f'<script type="application/ld+json">{ld}</script>',
         )
     )

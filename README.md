@@ -1,5 +1,7 @@
 # Glossary Python
 
+**Русский** · [English](README.en.md)
+
 [![CI](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml)
 [![Python: основной CI, версии, ОС, покрытие, выпуск, версия](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/python.svg)](.github/workflows/python-next.yml)
 

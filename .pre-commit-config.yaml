@@ -69,7 +69,14 @@ repos:
         entry: python scripts/check_links.py
         language: system
         pass_filenames: false
-        files: ^(README\.md|CLAUDE\.md|docs/.*\.md|scripts/check_links\.py)$
+        files: ^(README\.md|README\.en\.md|CLAUDE\.md|docs/.*\.md|scripts/check_links\.py)$
+
+      - id: check-translations
+        name: Английские двойники документов повторяют устройство оригиналов
+        entry: python scripts/check_translations.py
+        language: system
+        pass_filenames: false
+        files: ^(README(\.en)?\.md|docs/.*\.md|scripts/check_translations\.py)$
 
       - id: third-outcome
         name: У каждой точки входа есть третий исход

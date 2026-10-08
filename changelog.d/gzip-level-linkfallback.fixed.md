@@ -1,1 +1,0 @@
-синтаксис gzip.open, gzip.GzipFile и gzip.compress показывает умолчание 3.15 — compresslevel=6, с оговоркой о прежних 9; tarfile.LinkFallbackError датирован фактическим появлением — 3.9 (выпуски безопасности 3.9.23–3.13.4)

@@ -30806,6 +30806,65 @@
       "related_errors": []
     },
     {
+      "id": "getopt.GetoptError",
+      "title": {
+        "ru": "getopt.GetoptError",
+        "en": "getopt.GetoptError"
+      },
+      "kind": "exception",
+      "summary": {
+        "ru": "Исключение getopt: неизвестный ключ, ключ без обязательного значения или значение у ключа, который его не принимает.",
+        "en": "The getopt exception for an unknown option, an option missing its required argument, or an argument given to an option that takes none."
+      },
+      "body": {
+        "ru": "В отличие от argparse, getopt сам ничего не печатает и программу не завершает: ошибку разбора ловите и превращайте в сообщение об использовании сами. Атрибут msg несёт текст ошибки, а opt — имя ключа без дефисов (для -x это 'x'), или пустую строку, если ключ тут ни при чём. Имя getopt.error — тот же класс, оставленный для совместимости. Наследник Exception, а не ValueError.",
+        "en": "Unlike argparse, getopt prints nothing and does not exit: catch the parse error and turn it into a usage message yourself. The msg attribute holds the error text and opt holds the option name without dashes ('x' for -x), or an empty string when no single option is to blame. The name getopt.error is the same class kept for compatibility. It derives from Exception, not ValueError."
+      },
+      "syntax": "except getopt.GetoptError as err:",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/getopt.html#getopt.GetoptError",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль argparse",
+      "subcat": {
+        "ru": "getopt — разбор в стиле C",
+        "en": "getopt — C-style parsing"
+      },
+      "color_group": "module",
+      "aliases": [
+        "getopt.error",
+        "неизвестный ключ командной строки"
+      ],
+      "keywords": [
+        "getopt.GetoptError",
+        "GetoptError",
+        "getopt.error"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import getopt",
+          "try:",
+          "    getopt.getopt(['-x'], 'a')",
+          "except getopt.GetoptError as err:",
+          "    print(err.msg)  # → option -x not recognized",
+          "    print(err.opt)  # → x",
+          "print(getopt.error is getopt.GetoptError)  # → True"
+        ]
+      ],
+      "related": [
+        "getopt.getopt",
+        "getopt.gnu_getopt"
+      ],
+      "related_errors": []
+    },
+    {
       "id": "getopt.getopt",
       "title": {
         "ru": "getopt.getopt()",
@@ -52173,6 +52232,63 @@
       "related_errors": [
         "valueerror"
       ]
+    },
+    {
+      "id": "compression.zstd.ZstdError",
+      "title": {
+        "ru": "compression.zstd.ZstdError",
+        "en": "compression.zstd.ZstdError"
+      },
+      "kind": "exception",
+      "summary": {
+        "ru": "Исключение compression.zstd: ошибка библиотеки Zstandard при сжатии или распаковке, например данные не в формате zstd.",
+        "en": "The compression.zstd exception for a Zstandard library error during compression or decompression, such as data not in zstd format."
+      },
+      "body": {
+        "ru": "Наследник Exception, а не OSError и не ValueError, поэтому общий except OSError вокруг чтения файла его пропустит. Типичная причина — передать в decompress данные другого формата (gzip, zlib) или обрезанный поток. Неверный параметр сжатия, напротив, даёт ValueError или TypeError ещё до вызова библиотеки. Модуль появился в 3.14; на более старых версиях нет и самого исключения.",
+        "en": "It derives from Exception, not OSError or ValueError, so a broad except OSError around file reading lets it through. The typical cause is passing decompress data in another format (gzip, zlib) or a truncated stream. A bad compression parameter, by contrast, gives ValueError or TypeError before the library is called. The module appeared in 3.14; older versions have neither it nor the exception."
+      },
+      "syntax": "except compression.zstd.ZstdError:",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/compression.zstd.html#compression.zstd.ZstdError",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль compression.zstd",
+      "subcat": {
+        "ru": "сжатие в памяти",
+        "en": "in-memory compression"
+      },
+      "color_group": "module",
+      "aliases": [
+        "ошибка распаковки zstd",
+        "Unknown frame descriptor"
+      ],
+      "keywords": [
+        "compression.zstd.ZstdError",
+        "ZstdError"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from compression import zstd",
+          "try:",
+          "    zstd.decompress(b'not zstd data')",
+          "except zstd.ZstdError as err:",
+          "    print(type(err).__name__)  # → ZstdError",
+          "print(issubclass(zstd.ZstdError, OSError))  # → False"
+        ]
+      ],
+      "related": [
+        "compression.zstd.decompress",
+        "compression.zstd.ZstdDecompressor"
+      ],
+      "related_errors": []
     },
     {
       "id": "compression.zstd.ZstdFile",
@@ -154640,6 +154756,63 @@
       "related_errors": [
         "typeerror"
       ]
+    },
+    {
+      "id": "webbrowser.Error",
+      "title": {
+        "ru": "webbrowser.Error",
+        "en": "webbrowser.Error"
+      },
+      "kind": "exception",
+      "summary": {
+        "ru": "Исключение webbrowser: не нашлось запускаемого браузера или контроллер не смог выполнить действие.",
+        "en": "The webbrowser exception raised when no runnable browser is found or a controller fails to perform an action."
+      },
+      "body": {
+        "ru": "Бросает его в основном webbrowser.get(), когда нужного браузера нет. А вот webbrowser.open() на машине без браузера обычно не бросает ничего — возвращает False, так что проверять стоит результат, а не только ловить исключение. На сервере и в CI браузера, как правило, нет вовсе. Наследник Exception, а не OSError.",
+        "en": "It is mostly raised by webbrowser.get() when the requested browser is not available. webbrowser.open() on a machine with no browser usually raises nothing and returns False instead, so check the result rather than only catching the exception. Servers and CI usually have no browser at all. It derives from Exception, not OSError."
+      },
+      "syntax": "except webbrowser.Error:",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/webbrowser.html#webbrowser.Error",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль webbrowser",
+      "subcat": {
+        "ru": "контроллеры браузеров",
+        "en": "browser controllers"
+      },
+      "color_group": "module",
+      "aliases": [
+        "не найден браузер",
+        "could not locate runnable browser"
+      ],
+      "keywords": [
+        "webbrowser.Error",
+        "Error"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "import webbrowser",
+          "try:",
+          "    webbrowser.get('no-such-browser')",
+          "except webbrowser.Error as err:",
+          "    print(err)  # → could not locate runnable browser",
+          "print(issubclass(webbrowser.Error, OSError))  # → False"
+        ]
+      ],
+      "related": [
+        "webbrowser.get",
+        "webbrowser.open"
+      ],
+      "related_errors": []
     },
     {
       "id": "webbrowser.get",

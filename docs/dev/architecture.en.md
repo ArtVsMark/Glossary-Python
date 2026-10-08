@@ -698,8 +698,9 @@ The slug is the `id` itself: Cyrillic goes into the URL percent-encoded, and the
 link matches the showcase anchor. A page carries the title, summary, explanation,
 syntax, examples, version, documentation link, “see also” links to neighbouring
 pages, `hreflang` between languages, JSON-LD `DefinedTerm` and an “open in the full
-glossary” link to `/#<id>`. No scripts; styles are the showcase tokens. `lastmod`
-in `sitemap.xml` is the date of the card's commit.
+glossary” link to `/#<id>`. No scripts; styles are the showcase tokens. `sitemap.xml`
+carries no `lastmod`: a card's commit date is the date of its group file, shared by
+hundreds of cards, and search engines stop trusting an inaccurate `lastmod` altogether.
 
 **Why.** On static hosting with no server, a term gets its own address only as a
 separate file. The single showcase stays what it was: a file that is downloaded

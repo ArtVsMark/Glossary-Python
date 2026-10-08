@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - python_glossary.html
+      - site/python_glossary.html
       - .github/workflows/pages.yml
   workflow_dispatch:
   # Страховка: слияние штатным токеном не будит push (см. automerge.yml), и без
@@ -37,7 +37,7 @@ jobs:
       - name: Подготовка каталога публикации
         run: |
           mkdir -p _site
-          cp python_glossary.html _site/index.html
+          cp site/python_glossary.html _site/index.html
           cp data/glossary.json _site/glossary.json
 
       # enablement: true — действие само включает Pages, если он ещё не включён.

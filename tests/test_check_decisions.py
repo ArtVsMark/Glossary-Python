@@ -134,21 +134,21 @@ def test_missing_document_is_the_third_outcome(tmp_path: Path, capsys):
 
 
 def test_document_without_decisions_is_the_third_outcome(tmp_path: Path, capsys):
-    (tmp_path / "docs").mkdir()
+    (tmp_path / decisions.DOCUMENT).parent.mkdir(parents=True)
     (tmp_path / decisions.DOCUMENT).write_text("# Пусто\n", encoding="utf-8")
     assert decisions.main(["--root", str(tmp_path)]) == decisions.NOT_RUN
     assert "записей решений не найдено" in capsys.readouterr().err
 
 
 def test_findings_return_one(tmp_path: Path, capsys):
-    (tmp_path / "docs").mkdir()
+    (tmp_path / decisions.DOCUMENT).parent.mkdir(parents=True)
     (tmp_path / decisions.DOCUMENT).write_text(WITHOUT, encoding="utf-8")
     assert decisions.main(["--root", str(tmp_path)]) == 1
     assert "неполна или стёрта" in capsys.readouterr().err
 
 
 def test_clean_tree_returns_zero(tmp_path: Path, capsys):
-    (tmp_path / "docs").mkdir()
+    (tmp_path / decisions.DOCUMENT).parent.mkdir(parents=True)
     (tmp_path / decisions.DOCUMENT).write_text(WHOLE, encoding="utf-8")
     assert decisions.main(["--root", str(tmp_path)]) == 0
     assert "записей решений: 1" in capsys.readouterr().out
@@ -217,7 +217,7 @@ def test_new_entry_is_not_an_erasure():
 
 def _repository(tmp_path: Path, text: str) -> Path:
     """Дерево с git и документом решений, закоммиченным как основа."""
-    (tmp_path / "docs").mkdir()
+    (tmp_path / decisions.DOCUMENT).parent.mkdir(parents=True)
     (tmp_path / decisions.DOCUMENT).write_text(text, encoding="utf-8")
     for command in (
         ["init", "-q"],
@@ -230,6 +230,26 @@ def _repository(tmp_path: Path, text: str) -> Path:
             timeout=30,
         )
     return tmp_path
+
+
+def test_base_older_than_the_move_is_read_at_the_former_path(tmp_path: Path, capsys):
+    """Основа хранит документ по прежнему адресу — стирание всё равно видно."""
+    root = _repository(tmp_path, TWO)
+    former = root / decisions.FORMER[0]
+    former.parent.mkdir(parents=True, exist_ok=True)
+    (root / decisions.DOCUMENT).rename(former)
+    identity = ["-c", "user.name=t", "-c", "user.email=t@t"]
+    for command in (["add", "-A"], [*identity, "commit", "-q", "-m", "до переезда"]):
+        subprocess.run(  # noqa: S603 — аргументы наши
+            ["git", "-C", str(root), *command],  # noqa: S607 — git ищется в PATH
+            check=True,
+            timeout=30,
+        )
+    (root / decisions.DOCUMENT).write_text(
+        TWO.split("### Второе", 1)[0], encoding="utf-8"
+    )
+    assert decisions.main(["--root", str(root), "--base", "HEAD"]) == 1
+    assert "Второе" in capsys.readouterr().err
 
 
 def test_erasure_against_the_base_returns_one(tmp_path: Path, capsys):

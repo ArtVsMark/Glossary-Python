@@ -45,7 +45,12 @@ if TYPE_CHECKING:
     from collections.abc import Mapping
 
 ROOT: Final = Path(__file__).resolve().parent.parent
-MARKED: Final = (ROOT / "README.md", ROOT / "CLAUDE.md")
+MARKED: Final = (
+    ROOT / "README.md",
+    ROOT / "CLAUDE.md",
+    ROOT / "docs" / "dev" / "quality.md",
+    ROOT / "docs" / "agent" / "rules.md",
+)
 """Файлы, где числа живут внутри маркеров.
 
 Список, а не один README: правило 005 не различает документы. Число «правил
@@ -320,7 +325,7 @@ def build_facts() -> dict[str, Any]:
         "tests": _tests_facts(),
         "python": _python_facts(),
         "checks_per_pr": _checks_per_pr(),
-        # Прежнее имя остаётся: опубликованное поле не удаляется (docs/contracts.md).
+        # Прежнее имя остаётся: опубликованное поле не удаляется (docs/use/contracts.md).
         # Источник у обоих один, разойтись им негде.
         "python_versions": _python_versions(),
     }

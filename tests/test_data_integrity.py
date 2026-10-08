@@ -40,7 +40,7 @@ RATCHET_PYTHON: Final = python_floor.floor(
 одной 3.14. Пропуск зеленел, и гейт исчез молча. Что опорная версия
 исполняется прогоном, держит ``test_ratchet_runs_somewhere``.
 """
-SHOWCASE_PATH = project_root() / "python_glossary.html"
+SHOWCASE_PATH = project_root() / "site" / "python_glossary.html"
 SCHEMA_PATH = project_root() / "data" / "glossary.schema.json"
 
 

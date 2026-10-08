@@ -31,7 +31,7 @@ changelog.d/<slug>.<секция>.md
 make changelog-check     # форма записей (тот же гейт, что в CI)
 make changelog-preview   # как соберётся, ничего не меняя
 make changelog-collect   # перенести в [Unreleased] и удалить фрагменты
-make changelog-rotate    # выпуски за окном — в docs/changelog-archive.md
+make changelog-rotate    # выпуски за окном — в docs/dev/changelog-archive.md
 ```
 
 Журнал держит три последних выпуска (правило каталога 108): четвёртый

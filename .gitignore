@@ -35,7 +35,7 @@ htmlcov/
 
 # --- Артефакты экспорта ---
 # data/glossary.json — источник истины, он версионируется.
-# python_glossary.html собирается из него и коммитится для GitHub Pages.
+# site/python_glossary.html собирается из него и коммитится для GitHub Pages.
 dist-export/
 
 # --- Редакторы и ОС ---

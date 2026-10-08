@@ -1,8 +1,8 @@
 """Ссылка проверяется разметкой, а не подстрокой адреса в тексте.
 
-Правило каталога 166. Проверка «есть ли в README строка ``docs/architecture.md``»
+Правило каталога 166. Проверка «есть ли в README строка ``docs/dev/architecture.md``»
 выглядит проверкой ссылки и ею не является: подстрока находится в **подписи**, и
-``[docs/architecture.md](docs/арх.md)`` проходит её зелёной, ведя в никуда.
+``[docs/dev/architecture.md](docs/арх.md)`` проходит её зелёной, ведя в никуда.
 Поэтому здесь ищется позиция цели — ``](адрес`` и ``]: адрес``, — а найденный
 адрес разрешается в файл дерева.
 
@@ -62,10 +62,18 @@ ROOT: Final = Path(__file__).resolve().parent.parent
 DOCUMENTS: Final[tuple[str, ...]] = (
     "README.md",
     "CLAUDE.md",
-    "CONTRIBUTING.md",
-    "docs/architecture.md",
+    "docs/dev/contributing.md",
+    "docs/dev/architecture.md",
     "docs/agent/roles.md",
-    "docs/contracts.md",
+    "docs/use/contracts.md",
+    "docs/README.md",
+    "docs/use/README.md",
+    "docs/use/outputs.md",
+    "docs/dev/README.md",
+    "docs/dev/getting-started.md",
+    "docs/dev/quality.md",
+    "docs/agent/README.md",
+    "docs/agent/rules.md",
 )
 """Документы, чьи ссылки держит гейт.
 
@@ -148,7 +156,7 @@ def find_links(text: str, document: str = "") -> list[Link]:
     """Найти ссылки разметкой: ``](адрес`` и ``]: адрес``.
 
     Ищется позиция цели, а не текст адреса. Поиск подстрокой («есть ли в README
-    путь ``docs/architecture.md``») остаётся зелёным при подменённой цели:
+    путь ``docs/dev/architecture.md``») остаётся зелёным при подменённой цели:
     условие выполняется на подписи ссылки.
 
     Args:

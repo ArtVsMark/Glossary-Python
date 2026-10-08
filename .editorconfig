@@ -19,7 +19,7 @@ trim_trailing_whitespace = false
 [Makefile]
 indent_style = tab
 
-[python_glossary.html]
+[site/python_glossary.html]
 # Генерируемый файл: форматирование задаёт сборщик, а не редактор.
 trim_trailing_whitespace = false
 insert_final_newline = false

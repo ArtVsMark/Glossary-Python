@@ -175,6 +175,33 @@ STDLIB_MODULES: Final[frozenset[str]] = frozenset(
         "multiprocessing",
         "socket",
         "xml.etree.ElementTree",
+        # Четвёртая волна #237: модули, которые учащийся встречает вне задач —
+        # профилирование, сжатие, локализация, отладка. Добавлены после карточек.
+        "annotationlib",
+        "bz2",
+        "cProfile",
+        "colorsys",
+        "compression.zstd",
+        "dis",
+        "faulthandler",
+        "filecmp",
+        "fileinput",
+        "getopt",
+        "gettext",
+        "html",
+        "http",
+        "http.server",
+        "importlib",
+        "keyword",
+        "linecache",
+        "lzma",
+        "mimetypes",
+        "pstats",
+        "reprlib",
+        "runpy",
+        "sched",
+        "tracemalloc",
+        "webbrowser",
     }
 )
 """Курируемый набор модулей.

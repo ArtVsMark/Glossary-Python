@@ -99329,7 +99329,7 @@
       "related": [
         "os.scandir",
         "os.walk",
-        ".iterdir",
+        "path.iterdir",
         "path.glob"
       ],
       "related_errors": [
@@ -104383,7 +104383,7 @@
         "os.DirEntry",
         "os.listdir",
         "os.walk",
-        ".iterdir",
+        "path.iterdir",
         "os.stat"
       ],
       "related_errors": [
@@ -109491,77 +109491,6 @@
       ]
     },
     {
-      "id": ".iterdir",
-      "title": {
-        "ru": ".iterdir()",
-        "en": ".iterdir()"
-      },
-      "kind": "function",
-      "summary": {
-        "ru": "Итерирует по всем файлам и поддиректориям непосредственно в данной директории (не рекурсивно).",
-        "en": "Iterates over every file and subdirectory directly inside the given directory (not recursively)."
-      },
-      "body": {
-        "ru": "Возвращает одноразовый итератор, а не список, и порядок задаёт файловая система — для предсказуемого вывода оборачивайте в sorted(). Каждый элемент — полный Path вместе с родительскими каталогами, а не голое имя (имя берётся из .name). Вглубь iterdir() не спускается: для рекурсивного обхода нужен rglob('*'), а отбор по маске удобнее сделать через glob('*.txt').",
-        "en": "You get a one-shot iterator, not a list, and the order comes from the filesystem — wrap it in sorted() when the output has to be stable. Each item is a full Path including the parent directories, not a bare filename; .name gives you the name. It never descends: use rglob('*') for a recursive walk, or glob('*.txt') when you only want a pattern."
-      },
-      "syntax": "for item in p.iterdir(): ...",
-      "status": "ready",
-      "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.iterdir",
-      "added": "3.4",
-      "deprecated": "",
-      "removed": "",
-      "platforms": [
-        "AllOS"
-      ],
-      "section": "Модуль pathlib",
-      "subcat": {
-        "ru": "обход",
-        "en": "traversal"
-      },
-      "color_group": "module",
-      "aliases": [
-        "список файлов в папке",
-        "перебрать файлы в директории",
-        "содержимое папки"
-      ],
-      "keywords": [
-        "iterdir"
-      ],
-      "tags": [
-        "module"
-      ],
-      "examples": [
-        [
-          "from pathlib import Path",
-          "# Свой каталог в текущем, а не системная временная папка: пример ничего не пишет снаружи.",
-          "base = Path('iterdir_demo')",
-          "base.mkdir(exist_ok=True)",
-          "(base / 'a.txt').write_text('a', encoding='utf-8')",
-          "(base / 'b.log').write_text('b', encoding='utf-8')",
-          "(base / 'sub').mkdir(exist_ok=True)",
-          "# Обход содержимого — не рекурсивный: только прямые дети",
-          "print(sorted((p.name, p.is_dir()) for p in base.iterdir()))",
-          "# → [('a.txt', False), ('b.log', False), ('sub', True)]",
-          "# Фильтрация",
-          "files = [p for p in base.iterdir() if p.is_file()]",
-          "dirs = [p for p in base.iterdir() if p.is_dir()]",
-          "print(len(files), len(dirs))  # → 2 1",
-          "# Рекурсивный обход — это уже rglob, а не iterdir",
-          "print(sorted(p.name for p in base.rglob('*.txt')))  # → ['a.txt']"
-        ]
-      ],
-      "related": [
-        "path.glob",
-        "path.rglob",
-        "os.listdir"
-      ],
-      "related_errors": [
-        "FileNotFoundError",
-        "NotADirectoryError"
-      ]
-    },
-    {
       "id": "path.cwd",
       "title": {
         "ru": "pathlib.Path.cwd()",
@@ -109905,6 +109834,78 @@
         "path.is_dir"
       ],
       "related_errors": []
+    },
+    {
+      "id": "path.iterdir",
+      "title": {
+        "ru": ".iterdir()",
+        "en": ".iterdir()"
+      },
+      "kind": "function",
+      "summary": {
+        "ru": "Итерирует по всем файлам и поддиректориям непосредственно в данной директории (не рекурсивно).",
+        "en": "Iterates over every file and subdirectory directly inside the given directory (not recursively)."
+      },
+      "body": {
+        "ru": "Возвращает одноразовый итератор, а не список, и порядок задаёт файловая система — для предсказуемого вывода оборачивайте в sorted(). Каждый элемент — полный Path вместе с родительскими каталогами, а не голое имя (имя берётся из .name). Вглубь iterdir() не спускается: для рекурсивного обхода нужен rglob('*'), а отбор по маске удобнее сделать через glob('*.txt').",
+        "en": "You get a one-shot iterator, not a list, and the order comes from the filesystem — wrap it in sorted() when the output has to be stable. Each item is a full Path including the parent directories, not a bare filename; .name gives you the name. It never descends: use rglob('*') for a recursive walk, or glob('*.txt') when you only want a pattern."
+      },
+      "syntax": "for item in p.iterdir(): ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/pathlib.html#pathlib.Path.iterdir",
+      "added": "3.4",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Модуль pathlib",
+      "subcat": {
+        "ru": "обход",
+        "en": "traversal"
+      },
+      "color_group": "module",
+      "aliases": [
+        "список файлов в папке",
+        "перебрать файлы в директории",
+        "содержимое папки"
+      ],
+      "keywords": [
+        "iterdir",
+        "Path.iterdir"
+      ],
+      "tags": [
+        "module"
+      ],
+      "examples": [
+        [
+          "from pathlib import Path",
+          "# Свой каталог в текущем, а не системная временная папка: пример ничего не пишет снаружи.",
+          "base = Path('iterdir_demo')",
+          "base.mkdir(exist_ok=True)",
+          "(base / 'a.txt').write_text('a', encoding='utf-8')",
+          "(base / 'b.log').write_text('b', encoding='utf-8')",
+          "(base / 'sub').mkdir(exist_ok=True)",
+          "# Обход содержимого — не рекурсивный: только прямые дети",
+          "print(sorted((p.name, p.is_dir()) for p in base.iterdir()))",
+          "# → [('a.txt', False), ('b.log', False), ('sub', True)]",
+          "# Фильтрация",
+          "files = [p for p in base.iterdir() if p.is_file()]",
+          "dirs = [p for p in base.iterdir() if p.is_dir()]",
+          "print(len(files), len(dirs))  # → 2 1",
+          "# Рекурсивный обход — это уже rglob, а не iterdir",
+          "print(sorted(p.name for p in base.rglob('*.txt')))  # → ['a.txt']"
+        ]
+      ],
+      "related": [
+        "path.glob",
+        "path.rglob",
+        "os.listdir"
+      ],
+      "related_errors": [
+        "FileNotFoundError",
+        "NotADirectoryError"
+      ]
     },
     {
       "id": "path.mkdir",

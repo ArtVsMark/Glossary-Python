@@ -45389,8 +45389,8 @@
       "en": "A help formatter that keeps whitespace and line breaks in all help text: both the description and every argument's help."
     },
     "body": {
-      "ru": "Перенос по ширине терминала для таких строк выключен целиком: длинная строка help уйдёт за край окна, поэтому разбивать её придётся самому через '\\n'. Пустые строки подряд при этом всё равно сворачиваются в одну. Если переносы нужны только в общем описании, лучше RawDescriptionHelpFormatter — он оставит автоматический перенос для аргументов.",
-      "en": "Wrapping to the terminal width is switched off for such text entirely: a long help line runs past the edge of the window, so you must split it yourself with '\\n'. Consecutive blank lines are still collapsed into one. If you only need line breaks in the overall description, prefer RawDescriptionHelpFormatter, which keeps automatic wrapping for arguments."
+      "ru": "Перенос по ширине терминала для таких строк выключен целиком: длинная строка help уйдёт за край окна, поэтому разбивать её придётся самому через '\\n'. Пустые строки подряд сворачиваются в одну только в description и epilog, а в help остаются как есть. Если переносы нужны только в общем описании, лучше RawDescriptionHelpFormatter — он оставит автоматический перенос для аргументов.",
+      "en": "Wrapping to the terminal width is switched off for such text entirely: a long help line runs past the edge of the window, so you must split it yourself with '\\n'. Consecutive blank lines are collapsed into one only in the description and epilog; in help they stay as written. If you only need line breaks in the overall description, prefer RawDescriptionHelpFormatter, which keeps automatic wrapping for arguments."
     },
     "syntax": "argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)",
     "status": "ready",
@@ -51064,8 +51064,8 @@
       "en": "The Thread object of the calling thread: find the name, ident or daemon flag of the thread the code is running in right now."
     },
     "body": {
-      "ru": "Из главного потока возвращает поток с именем MainThread, из рабочего — его собственный Thread, даже если вызов спрятан глубоко в чужой функции. Поток, запущенный в обход threading (через _thread или из C-библиотеки), получает «фиктивный» объект с именем Dummy-N: его нельзя join(), и он навсегда остаётся в enumerate(). Для логов имя потока проще взять форматом %(threadName)s. currentThread() — устаревший псевдоним.",
-      "en": "From the main thread it returns the thread named MainThread, from a worker its own Thread, even when the call is buried inside someone else's function. A thread started outside threading (via _thread or from a C library) gets a dummy object named Dummy-N: it cannot be join()ed and stays in enumerate() for good. For logs, the %(threadName)s format field is simpler. currentThread() is a deprecated alias."
+      "ru": "Из главного потока возвращает поток с именем MainThread, из рабочего — его собственный Thread, даже если вызов спрятан глубоко в чужой функции. Поток, запущенный в обход threading (через _thread или из C-библиотеки), получает «фиктивный» объект с именем Dummy-N: его нельзя join(), а в enumerate() он до 3.12 оставался навсегда; с 3.13 исчезает оттуда, когда чужой поток завершится. Для логов имя потока проще взять форматом %(threadName)s. currentThread() — устаревший псевдоним.",
+      "en": "From the main thread it returns the thread named MainThread, from a worker its own Thread, even when the call is buried inside someone else's function. A thread started outside threading (via _thread or from a C library) gets a dummy object named Dummy-N: it cannot be join()ed, and up to 3.12 it stayed in enumerate() for good; since 3.13 it disappears from there once the alien thread exits. For logs, the %(threadName)s format field is simpler. currentThread() is a deprecated alias."
     },
     "syntax": "threading.current_thread()",
     "status": "ready",
@@ -52991,8 +52991,8 @@
       "en": "A generic constructor that builds a hash object from the algorithm name as a string: hashlib.new('sha256') is the same as hashlib.sha256()."
     },
     "body": {
-      "ru": "Нужен, когда алгоритм приходит из настроек или аргумента командной строки; если имя известно заранее, именной конструктор быстрее и надёжнее. Имя не чувствительно к регистру ('SHA256' тоже работает), а неизвестное даёт ValueError unsupported hash type. Набор имён зависит от сборки OpenSSL: всегда есть только hashlib.algorithms_guaranteed, а algorithms_available на разных машинах разный — алгоритм, найденный там, на сервере может отсутствовать.",
-      "en": "It is meant for when the algorithm comes from a config file or a command-line argument; when the name is known in advance, the named constructor is faster and safer. The name is case-insensitive ('SHA256' works too), and an unknown one raises ValueError unsupported hash type. The set of names depends on the OpenSSL build: only hashlib.algorithms_guaranteed is always there, while algorithms_available differs between machines — an algorithm you found locally may be missing on the server."
+      "ru": "Нужен, когда алгоритм приходит из настроек или аргумента командной строки; если имя известно заранее, именной конструктор быстрее и надёжнее. Имя не чувствительно к регистру ('SHA256' тоже работает), а неизвестное даёт ValueError (текст сообщения зависит от версии: в 3.15 — «unsupported hash algorithm»). Набор имён зависит от сборки OpenSSL: всегда есть только hashlib.algorithms_guaranteed, а algorithms_available на разных машинах разный — алгоритм, найденный там, на сервере может отсутствовать.",
+      "en": "It is meant for when the algorithm comes from a config file or a command-line argument; when the name is known in advance, the named constructor is faster and safer. The name is case-insensitive ('SHA256' works too), and an unknown one raises ValueError (the message varies by version: in 3.15 it is “unsupported hash algorithm”). The set of names depends on the OpenSSL build: only hashlib.algorithms_guaranteed is always there, while algorithms_available differs between machines — an algorithm you found locally may be missing on the server."
     },
     "syntax": "hashlib.new(name, data=b'', *, usedforsecurity=True)",
     "status": "ready",
@@ -59097,8 +59097,8 @@
       "en": "Breaks an integer flag value into powers of two: show_flag_values(13) gives [1, 4, 8]. Helps see which bits make up a flag."
     },
     "body": {
-      "ru": "Сообщения об ошибках enum сами отсылают к этой функции: при проверке @verify(NAMED_FLAGS) ошибка говорит «use enum.show_flag_values(value) for details». Она принимает int (или значение флага) и возвращает список отдельных битов по возрастанию — по нему видно, какой бит не назван членом Flag. Для отрицательных чисел список пуст.",
-      "en": "enum's own error messages point to this function: with @verify(NAMED_FLAGS) the error says “use enum.show_flag_values(value) for details”. It takes an int (or a flag value) and returns the list of individual bits in ascending order, which shows which bit has no named Flag member. For negative numbers the list is empty."
+      "ru": "Сообщения об ошибках enum сами отсылают к этой функции: при проверке @verify(NAMED_FLAGS) ошибка говорит «use enum.show_flag_values(value) for details». Она принимает int (или значение флага) и возвращает список отдельных битов по возрастанию — по нему видно, какой бит не назван членом Flag. На отрицательное число функция не возвращает пустой список, а поднимает ValueError.",
+      "en": "enum's own error messages point to this function: with @verify(NAMED_FLAGS) the error says “use enum.show_flag_values(value) for details”. It takes an int (or a flag value) and returns the list of individual bits in ascending order, which shows which bit has no named Flag member. A negative number does not give an empty list; it raises ValueError."
     },
     "syntax": "enum.show_flag_values(value)",
     "status": "ready",
@@ -68028,8 +68028,8 @@
       "en": "A low-level warn() where the file, line and module of the warning are given explicitly — for warnings about configs, templates and other non-Python files."
     },
     "body": {
-      "ru": "warn() сам вычисляет место по стеку вызовов, а warn_explicit берёт filename и lineno из аргументов — так загрузчик конфигурации указывает на строку в settings.ini, а не на свой исходный код. Без registry каждое предупреждение считается первым: действия 'default', 'module' и 'once' работают как 'always', и повторы в цикле не схлопнутся. Чтобы повторы подавлялись, передавайте один и тот же словарь registry.",
-      "en": "warn() works out the location from the call stack, while warn_explicit takes filename and lineno from its arguments — so a config loader can point at a line in settings.ini rather than at its own source. Without registry every warning counts as the first: 'default', 'module' and 'once' behave like 'always', and repeats in a loop are not collapsed. Pass the same registry dict each time to suppress repeats."
+      "ru": "warn() сам вычисляет место по стеку вызовов, а warn_explicit берёт filename и lineno из аргументов — так загрузчик конфигурации указывает на строку в settings.ini, а не на свой исходный код. Без registry каждое предупреждение считается первым: действия 'default' и 'module' работают как 'always', и повторы в цикле не схлопнутся. Чтобы повторы подавлялись, передавайте один и тот же словарь registry.",
+      "en": "warn() works out the location from the call stack, while warn_explicit takes filename and lineno from its arguments — so a config loader can point at a line in settings.ini rather than at its own source. Without registry every warning counts as the first: 'default' and 'module' behave like 'always', and repeats in a loop are not collapsed. Pass the same registry dict each time to suppress repeats."
     },
     "syntax": "warnings.warn_explicit(message, category, filename, lineno, module=None, registry=None, module_globals=None, source=None)",
     "status": "ready",
@@ -71065,7 +71065,7 @@
       "en": "Resets the list of directories where zoneinfo looks for the time zone database (zoneinfo.TZPATH)."
     },
     "body": {
-      "ru": "Пути обязаны быть абсолютными — относительный даёт ValueError. Уже созданные и закешированные объекты ZoneInfo не меняются: новый путь влияет только на ключи, которые ещё не загружались. Нужна редко — в тестах или при своей копии базы; без аргументов возвращает путь по умолчанию.",
+      "ru": "Пути обязаны быть абсолютными — относительный даёт ValueError. Уже созданные и закешированные объекты ZoneInfo не меняются: новый путь влияет только на ключи, которые ещё не загружались. Нужна редко — в тестах или при своей копии базы; без аргументов восстанавливает путь по умолчанию.",
       "en": "Paths must be absolute; a relative one raises ValueError. ZoneInfo objects that were already created and cached do not change: the new path affects only keys not loaded yet. It is rarely needed, mostly in tests or with a private copy of the database; with no argument it restores the default path."
     },
     "syntax": "zoneinfo.reset_tzpath(to=None)",
@@ -73131,8 +73131,8 @@
       "en": "The shared part of Digest authentication for sites and proxies: instead of the password it sends a hash of the password, the server nonce and the request."
     },
     "body": {
-      "ru": "Сам пароль по сети не идёт, но алгоритм по умолчанию — MD5, поэтому Digest не заменяет HTTPS (SHA-256 поддерживается с 3.14). Это примесь: используют наследников HTTPDigestAuthHandler и ProxyDigestAuthHandler. На схему, отличную от Digest, отвечает ValueError.",
-      "en": "The password itself never crosses the network, but the default algorithm is MD5, so Digest is no substitute for HTTPS (SHA-256 is supported since 3.14). It is a mixin: use its subclasses HTTPDigestAuthHandler and ProxyDigestAuthHandler. For a scheme other than Digest it raises ValueError."
+      "ru": "Сам пароль по сети не идёт, но алгоритм по умолчанию — MD5, поэтому Digest не заменяет HTTPS (SHA-256 поддерживается с 3.14). Это примесь: используют наследников HTTPDigestAuthHandler и ProxyDigestAuthHandler. На схему, отличную от Digest и Basic, отвечает ValueError; вызов Basic молча пропускает, оставляя его HTTPBasicAuthHandler.",
+      "en": "The password itself never crosses the network, but the default algorithm is MD5, so Digest is no substitute for HTTPS (SHA-256 is supported since 3.14). It is a mixin: use its subclasses HTTPDigestAuthHandler and ProxyDigestAuthHandler. For a scheme other than Digest or Basic it raises ValueError; a Basic challenge is silently skipped and left to HTTPBasicAuthHandler."
     },
     "syntax": "class urllib.request.AbstractDigestAuthHandler(password_mgr=None)",
     "status": "ready",
@@ -75382,14 +75382,14 @@
     },
     "kind": "function",
     "summary": {
-      "ru": "Пытается определить библиотеку C и её версию, с которой собран интерпретатор: ('glibc', '2.39'); при неудаче — ('', '').",
-      "en": "Tries to detect the C library and version the interpreter is linked against: ('glibc', '2.39'); ('', '') on failure."
+      "ru": "Пытается определить библиотеку C и её версию (по умолчанию — glibc, установленную в системе): ('glibc', '2.39'); при неудаче — ('', '').",
+      "en": "Tries to detect the C library and its version (by default, the glibc installed on the system): ('glibc', '2.39'); ('', '') on failure."
     },
     "body": {
-      "ru": "Функция читает исполняемый файл и ищет в нём метки glibc, поэтому на musl (Alpine Linux), macOS и Windows обычно возвращает пустые строки. Это версия, требуемая бинарником, а не обязательно установленная в системе; для неё есть os.confstr('CS_GNU_LIBC_VERSION'). Нужна, например, чтобы понять, подойдут ли manylinux-колёса.",
-      "en": "It scans the executable for glibc markers, so on musl (Alpine Linux), macOS and Windows it usually returns empty strings. It is the version the binary requires, not necessarily the one installed; os.confstr('CS_GNU_LIBC_VERSION') reports that. It helps decide, for example, whether manylinux wheels will work."
+      "ru": "Без аргумента executable функция сначала спрашивает os.confstr('CS_GNU_LIBC_VERSION') и отвечает версией glibc, установленной в системе; исполняемый файл она читает, только если этот путь не сработал или файл передан явно. Поэтому libc_ver(sys.executable) может ответить иначе — старшей версией glibc, которую требует сам бинарник. На macOS и Windows результат обычно — пустые строки, а musl распознаётся начиная с 3.14. Нужна, например, чтобы понять, подойдут ли manylinux-колёса.",
+      "en": "Without executable it first asks os.confstr('CS_GNU_LIBC_VERSION') and answers with the glibc installed on the system; it scans the executable only if that fails or a file is passed explicitly. So libc_ver(sys.executable) may answer differently, with the highest glibc version the binary itself requires. On macOS and Windows it usually returns empty strings; musl is detected since 3.14. It helps decide, for example, whether manylinux wheels will work."
     },
-    "syntax": "lib, version = platform.libc_ver(executable=sys.executable, lib='', version='', chunksize=16384)",
+    "syntax": "lib, version = platform.libc_ver(executable=None, lib='', version='', chunksize=16384)",
     "status": "ready",
     "docs_url": "https://docs.python.org/3/library/platform.html#platform.libc_ver",
     "added": "<3.0",
@@ -76091,8 +76091,8 @@
       "en": "Translates a shell-style pattern into a regular expression string that you can compile with re.compile()."
     },
     "body": {
-      "ru": "Результат совпадает со всей строкой целиком и рассчитан на re.match(); с re.search() он тоже работает, потому что закреплён в конце. Точный текст выражения меняется между версиями (в 3.14 \\Z заменён на \\z), поэтому сравнивать его со строкой в тестах нельзя — проверяйте поведение. В отличие от glob.translate(), про '/' и скрытые файлы ничего не знает.",
-      "en": "The result matches the whole string and is meant for re.match(); it also works with re.search() because it is anchored at the end. The exact regex text changes between versions (3.14 replaced \\Z with \\z), so never compare it to a string in tests; check behaviour instead. Unlike glob.translate(), it knows nothing about '/' or hidden files."
+      "ru": "Результат совпадает со всей строкой целиком и рассчитан на re.match(); с re.search() так не выйдет: выражение закреплено только в конце, а не в начале, поэтому search найдёт совпадение и в хвосте строки. Точный текст выражения меняется между версиями (в 3.14 \\Z заменён на \\z), поэтому сравнивать его со строкой в тестах нельзя — проверяйте поведение. В отличие от glob.translate(), про '/' и скрытые файлы ничего не знает.",
+      "en": "The result matches the whole string and is meant for re.match(); re.search() is not equivalent: the regex is anchored only at the end, not at the start, so search also matches a suffix of the string. The exact regex text changes between versions (3.14 replaced \\Z with \\z), so never compare it to a string in tests; check behaviour instead. Unlike glob.translate(), it knows nothing about '/' or hidden files."
     },
     "syntax": "regex = fnmatch.translate(pat)",
     "status": "ready",
@@ -77095,8 +77095,8 @@
       "en": "Deprecated since 3.14: opens a file through a codecs stream codec. The replacement is the built-in open(path, mode, encoding=...), also known as io.open."
     },
     "body": {
-      "ru": "Функция осталась из Python 2, где встроенный open не знал кодировок. Отличия не в её пользу: файл всегда открывается в двоичном режиме, поэтому '\\r\\n' не превращается в '\\n', а вместо io.TextIOWrapper возвращается StreamReaderWriter. В старом коде её меняют на open(path, encoding='utf-8') — и заодно проверяют, не держался ли разбор строк на этом '\\r'. С 3.14 вызов выдаёт DeprecationWarning.",
-      "en": "It survives from Python 2, whose built-in open knew nothing about encodings. The differences are not in its favour: the file is always opened in binary mode, so '\\r\\n' is not turned into '\\n', and you get a StreamReaderWriter instead of an io.TextIOWrapper. In old code replace it with open(path, encoding='utf-8') and check whether line parsing relied on that '\\r'. Since 3.14 the call emits DeprecationWarning."
+      "ru": "Функция осталась из Python 2, где встроенный open не знал кодировок. Отличия не в её пользу: с заданной кодировкой файл открывается в двоичном режиме, поэтому '\\r\\n' не превращается в '\\n', а вместо io.TextIOWrapper возвращается StreamReaderWriter. В старом коде её меняют на open(path, encoding='utf-8') — и заодно проверяют, не держался ли разбор строк на этом '\\r'. С 3.14 вызов выдаёт DeprecationWarning.",
+      "en": "It survives from Python 2, whose built-in open knew nothing about encodings. The differences are not in its favour: with an encoding given, the file is opened in binary mode, so '\\r\\n' is not turned into '\\n', and you get a StreamReaderWriter instead of an io.TextIOWrapper. In old code replace it with open(path, encoding='utf-8') and check whether line parsing relied on that '\\r'. Since 3.14 the call emits DeprecationWarning."
     },
     "syntax": "codecs.open(filename, mode='r', encoding=None, errors='strict', buffering=-1)",
     "status": "ready",
@@ -83995,8 +83995,8 @@
       "en": "Decodes Base64 in the URL-safe alphabet ('-' and '_'). The counterpart of urlsafe_b64encode."
     },
     "body": {
-      "ru": "До Python 3.14 включительно строка без выравнивания '=' (как в JWT) даёт binascii.Error; в 3.15 параметр padded по умолчанию False, и такая строка проходит. Переносимый способ — дописать '=' самому: s + '=' * (-len(s) % 4). В 3.15 приём '+' и '/' здесь объявлен устаревшим и выдаёт DeprecationWarning.",
-      "en": "Up to Python 3.14 inclusive, a string without '=' padding (as in a JWT) raises binascii.Error; in 3.15 the padded parameter defaults to False and such a string passes. The portable way is to add the '=' yourself: s + '=' * (-len(s) % 4). In 3.15, accepting '+' and '/' here is deprecated and emits DeprecationWarning."
+      "ru": "До Python 3.14 включительно строка без выравнивания '=' (как в JWT) даёт binascii.Error; в 3.15 параметр padded по умолчанию False, и такая строка проходит. Переносимый способ — дописать '=' самому: s + '=' * (-len(s) % 4). В 3.15 приём '+' и '/' здесь объявлен устаревшим и выдаёт FutureWarning.",
+      "en": "Up to Python 3.14 inclusive, a string without '=' padding (as in a JWT) raises binascii.Error; in 3.15 the padded parameter defaults to False and such a string passes. The portable way is to add the '=' yourself: s + '=' * (-len(s) % 4). In 3.15, accepting '+' and '/' here is deprecated and emits FutureWarning."
     },
     "syntax": "base64.urlsafe_b64decode(s)",
     "status": "ready",
@@ -90937,8 +90937,8 @@
       "en": "A key function for sorted() that lets you order a mix of IPv4 and IPv6 addresses and networks."
     },
     "body": {
-      "ru": "Обычный sorted() на таком списке падает с TypeError «are not of the same version» или «'<' not supported»: адреса и сети разных версий друг с другом не сравниваются. С key=get_mixed_type_key IPv4 идут раньше IPv6, а сеть — раньше адресов внутри неё. Передают саму функцию, без скобок.",
-      "en": "A plain sorted() on such a list fails with TypeError ('are not of the same version' or \"'<' not supported\"): addresses and networks of different versions are not comparable. With key=get_mixed_type_key IPv4 comes before IPv6 and a network before the addresses inside it. Pass the function itself, without parentheses."
+      "ru": "Обычный sorted() на таком списке падает с TypeError «are not of the same version» или «'<' not supported»: адреса и сети разных версий друг с другом не сравниваются. С key=get_mixed_type_key IPv4 идут раньше IPv6, а сеть — раньше адресов внутри неё, кроме адреса самой сети: он идёт перед ней. Передают саму функцию, без скобок.",
+      "en": "A plain sorted() on such a list fails with TypeError ('are not of the same version' or \"'<' not supported\"): addresses and networks of different versions are not comparable. With key=get_mixed_type_key IPv4 comes before IPv6 and a network before the addresses inside it, except its own network address, which comes first. Pass the function itself, without parentheses."
     },
     "syntax": "sorted(items, key=ipaddress.get_mixed_type_key)",
     "status": "ready",
@@ -113351,8 +113351,8 @@
       "en": "Converts a 16-bit integer from host byte order to network order (big-endian); the result is again an int."
     },
     "body": {
-      "ru": "Частое недоумение: функция возвращает не bytes, а число с переставленными байтами, и на little-endian машине htons(80) равно 20480. Для упаковки в байты удобнее struct.pack('!H', n) или n.to_bytes(2, 'big') — порядок задан явно и результат сразу готов к отправке. С 3.10 число вне 0–65535 даёт OverflowError, раньше обрезалось с одним лишь DeprecationWarning.",
-      "en": "A common surprise: the function returns a number with swapped bytes, not bytes, and on a little-endian machine htons(80) equals 20480. To pack into bytes, struct.pack('!H', n) or n.to_bytes(2, 'big') is clearer: the order is explicit and the result is ready to send. Since 3.10 a value outside 0–65535 raises OverflowError; earlier it was truncated with only a DeprecationWarning."
+      "ru": "Частое недоумение: функция возвращает не bytes, а число с переставленными байтами, и на little-endian машине htons(80) равно 20480. Для упаковки в байты удобнее struct.pack('!H', n) или n.to_bytes(2, 'big') — порядок задан явно и результат сразу готов к отправке. С 3.10 число больше 65535 даёт OverflowError (раньше обрезалось с одним лишь DeprecationWarning), а отрицательное с 3.14 — ValueError.",
+      "en": "A common surprise: the function returns a number with swapped bytes, not bytes, and on a little-endian machine htons(80) equals 20480. To pack into bytes, struct.pack('!H', n) or n.to_bytes(2, 'big') is clearer: the order is explicit and the result is ready to send. Since 3.10 a value above 65535 raises OverflowError (earlier it was truncated with only a DeprecationWarning), and since 3.14 a negative one raises ValueError."
     },
     "syntax": "socket.htons(x) -> int",
     "status": "ready",
@@ -113536,8 +113536,8 @@
       "en": "Converts a 16-bit integer from network byte order (big-endian) to host order; the inverse of htons()."
     },
     "body": {
-      "ru": "Применяется к числу, а не к байтам: два байта порта из заголовка сначала превращают в int, и только потом переставляют. Короче сразу int.from_bytes(data, 'big') или struct.unpack('!H', data). С 3.10 значение вне 0–65535 поднимает OverflowError — до этого старшие биты отбрасывались лишь с DeprecationWarning, и ошибка пряталась.",
-      "en": "It applies to a number, not to bytes: the two port bytes from a header are first turned into an int and only then swapped. int.from_bytes(data, 'big') or struct.unpack('!H', data) is shorter. Since 3.10 a value outside 0–65535 raises OverflowError; before that the high bits were dropped with only a DeprecationWarning and the bug stayed hidden."
+      "ru": "Применяется к числу, а не к байтам: два байта порта из заголовка сначала превращают в int, и только потом переставляют. Короче сразу int.from_bytes(data, 'big') или struct.unpack('!H', data). С 3.10 значение больше 65535 поднимает OverflowError — до этого старшие биты отбрасывались лишь с DeprecationWarning, и ошибка пряталась; отрицательное с 3.14 даёт ValueError.",
+      "en": "It applies to a number, not to bytes: the two port bytes from a header are first turned into an int and only then swapped. int.from_bytes(data, 'big') or struct.unpack('!H', data) is shorter. Since 3.10 a value above 65535 raises OverflowError; before that the high bits were dropped with only a DeprecationWarning and the bug stayed hidden. Since 3.14 a negative value raises ValueError."
     },
     "syntax": "socket.ntohs(x) -> int",
     "status": "ready",

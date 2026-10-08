@@ -1,4 +1,4 @@
-# Выгрузка для потребителей, привязанная к выпуску (#105).
+# Выгрузка для потребителей, привязанная к выпуску (#105), и витрина выпуска (#225).
 #
 # badges/delivery.json — «последнее состояние»: свежее, но подвижное. Потребитель,
 # которому нужна стабильность (Stepik-Python-Grader), закрепляет выпуск и читает
@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   attach:
-    name: Приложить delivery.json и схему
+    name: Приложить delivery.json, схему и витрину
     runs-on: ubuntu-26.04
     timeout-minutes: 10
     env:
@@ -50,7 +50,14 @@ jobs:
           python -m glossary delivery -o release-assets/delivery.json
           python -m glossary delivery --schema -o release-assets/delivery.schema.json
 
+      # Витрина копируется из дерева тега, а не собирается заново: в дереве она уже
+      # сверена со сборкой гейтом build --check, и вторая сборка того же была бы
+      # второй реализацией одного шага. Страница выпуска индексируется поисковиком и
+      # даёт читателю файл, закреплённый за выпуском, а не за текущим main.
+      - name: Приложить витрину выпуска
+        run: cp site/python_glossary.html release-assets/python_glossary.html
+
       # --clobber: ручной перезапуск по тому же тегу заменяет файлы, а не падает.
       # Дерево выпуска то же, поэтому и содержимое то же — меняется лишь отметка времени.
       - name: Приложить к выпуску
-        run: gh release upload "$TAG" release-assets/delivery.json release-assets/delivery.schema.json --clobber
+        run: gh release upload "$TAG" release-assets/delivery.json release-assets/delivery.schema.json release-assets/python_glossary.html --clobber

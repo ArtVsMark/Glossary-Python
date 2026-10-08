@@ -18,6 +18,7 @@
 | [`badges/.github/badges/completeness-report.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/completeness-report.json) | Полнота относительно официального Python: чего в глоссарии нет вовсе |
 | [`badges/.github/badges/whatsnew.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/whatsnew.json) | Что появилось и исчезло между версиями Python — и что из нового не описано |
 | [`badges/.github/badges/delivery.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/delivery.json) | Сами карточки по группам в форме `data/cards/` — их забирает Stepik-Python-Grader |
+| [Вложения выпуска](https://github.com/ArtVsMark/Glossary-Python/releases/latest) | Закреплённое за выпуском: `delivery.json`, его схема и сама витрина `python_glossary.html` — файл того выпуска, а не текущего `main` |
 
 Это контракты, а не удобство. Глоссарий забирают выгрузкой, а не копированием
 файла из репозитория. `objections.json` — очередь работы над содержанием в

@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-07T22:09:09+00:00",
+  "generated_at": "2026-10-08T00:06:22+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2656,
     "schema_version": 6,
-    "digest": "dafabe369f39"
+    "digest": "554093e63171"
   },
   "groups": {
     "builtin": [
@@ -1188,8 +1188,8 @@
         },
         "kind": "term",
         "summary": {
-          "ru": "Возвращает целочисленный хеш объекта. Объект должен быть хешируемым (неизменяемым). Используется словарями и множествами.",
-          "en": "Returns the integer hash of an object. The object must be hashable (immutable). Used by dictionaries and sets."
+          "ru": "Возвращает целочисленный хеш объекта. Объект должен быть хешируемым: хеш не меняется за время жизни, а равные объекты дают равные хеши. Используется словарями и множествами.",
+          "en": "Returns the integer hash of an object. The object must be hashable: its hash never changes during its lifetime, and equal objects have equal hashes. Used by dictionaries and sets."
         },
         "body": {
           "ru": "У str и bytes хеш заново рандомизируется при каждом запуске интерпретатора (PYTHONHASHSEED) — это защита от атак на коллизии, а не контрольная сумма, поэтому сохранять его в файл или сравнивать между процессами нельзя; для стабильного отпечатка берите hashlib. И действует правило «равные объекты — равные хеши»: hash(1) == hash(1.0) == hash(True), а свой класс становится нехешируемым, как только вы определили __eq__ и не определили __hash__.",
@@ -1360,8 +1360,8 @@
         },
         "kind": "term",
         "summary": {
-          "ru": "Возвращает уникальный идентификатор объекта (адрес в памяти).",
-          "en": "Returns the unique identifier of an object (its address in memory)."
+          "ru": "Возвращает уникальный идентификатор объекта на время его жизни; в CPython это адрес в памяти.",
+          "en": "Returns the unique identifier of an object for its lifetime; in CPython this is its memory address."
         },
         "body": {
           "ru": "Идентификатор уникален только пока объект жив: после сборки мусора то же число может достаться новому объекту, так что запомнить id и сравнить его позже — ненадёжно. Практический смысл один — понять, один это объект или два, и для этого читабельнее a is b, тогда как равенство значений проверяют через ==. Осторожно с интернированием: CPython кеширует маленькие целые (от -5 до 256) и короткие строки, поэтому у одинаковых литералов id часто совпадает — строить на этом логику нельзя.",
@@ -6116,8 +6116,8 @@
           "en": "Bytes could not be decoded into a string, e.g. b'\\xff'.decode('utf-8')."
         },
         "body": {
-          "ru": "Почти всегда виноваты не данные, а неверно угаданная кодировка: open() без encoding= берёт кодировку системы, поэтому файл в UTF-8 спокойно читается на Linux и падает на Windows с cp1251. Ловить это исключение обычно бессмысленно — правильнее явно передать encoding='utf-8', а если битые байты действительно ожидаемы, добавить errors='replace' или 'ignore'. У объекта есть поля encoding, object, start, end и reason: они показывают точную позицию байта, на котором декодер сдался.",
-          "en": "The bytes are rarely the real problem — the guessed encoding usually is: open() without encoding= falls back to the platform default, so a UTF-8 file that reads fine on Linux blows up on a Windows box using cp1251. Catching the exception seldom helps; pass encoding='utf-8' explicitly, or errors='replace'/'ignore' when broken bytes are genuinely expected. The instance carries encoding, object, start, end and reason, which pinpoint the exact byte where the decoder gave up."
+          "ru": "Почти всегда виноваты не данные, а неверно угаданная кодировка: open() без encoding= до Python 3.15 берёт кодировку системы, поэтому файл в UTF-8 спокойно читается на Linux и падает на Windows с cp1251. Ловить это исключение обычно бессмысленно — правильнее явно передать encoding='utf-8', а если битые байты действительно ожидаемы, добавить errors='replace' или 'ignore'. У объекта есть поля encoding, object, start, end и reason: они показывают точную позицию байта, на котором декодер сдался.",
+          "en": "The bytes are rarely the real problem — the guessed encoding usually is: before Python 3.15, open() without encoding= falls back to the platform default, so a UTF-8 file that reads fine on Linux blows up on a Windows box using cp1251. Catching the exception seldom helps; pass encoding='utf-8' explicitly, or errors='replace'/'ignore' when broken bytes are genuinely expected. The instance carries encoding, object, start, end and reason, which pinpoint the exact byte where the decoder gave up."
         },
         "syntax": "raise UnicodeDecodeError",
         "status": "ready",
@@ -7743,8 +7743,8 @@
           "en": "Opening a text file without an explicit encoding (relying on the locale)."
         },
         "body": {
-          "ru": "Появилось в Python 3.10 (PEP 597) и по умолчанию молчит: чтобы увидеть его, нужен запуск с -X warn_default_encoding или переменная PYTHONWARNDEFAULTENCODING=1. Смысл предупреждения не в самом факте, а в скрытой переносимости: open(path) без encoding берёт кодировку локали, поэтому файл, прочитанный на Linux как UTF-8, на Windows может уехать в cp1251 и упасть с UnicodeDecodeError. Лечится не перехватом, а явным encoding='utf-8' в каждом открытии текстового файла.",
-          "en": "Added in Python 3.10 (PEP 597) and silent by default: you only see it when running with -X warn_default_encoding or with PYTHONWARNDEFAULTENCODING=1 set. The real issue it flags is portability — open(path) without encoding falls back to the locale encoding, so a file read as UTF-8 on Linux may be decoded as cp1251 on Windows and blow up with UnicodeDecodeError. The fix is never to catch it, but to pass encoding='utf-8' explicitly wherever you open text."
+          "ru": "Появилось в Python 3.10 (PEP 597) и по умолчанию молчит: чтобы увидеть его, нужен запуск с -X warn_default_encoding или переменная PYTHONWARNDEFAULTENCODING=1. Смысл предупреждения не в самом факте, а в скрытой переносимости: до Python 3.15 open(path) без encoding берёт кодировку локали (с 3.15 — UTF-8, PEP 686), поэтому файл, прочитанный на Linux как UTF-8, на Windows может уехать в cp1251 и упасть с UnicodeDecodeError. Лечится не перехватом, а явным encoding='utf-8' в каждом открытии текстового файла.",
+          "en": "Added in Python 3.10 (PEP 597) and silent by default: you only see it when running with -X warn_default_encoding or with PYTHONWARNDEFAULTENCODING=1 set. The real issue it flags is portability — before Python 3.15, open(path) without encoding falls back to the locale encoding (UTF-8 since 3.15, PEP 686), so a file read as UTF-8 on Linux may be decoded as cp1251 on Windows and blow up with UnicodeDecodeError. The fix is never to catch it, but to pass encoding='utf-8' explicitly wherever you open text."
         },
         "syntax": "raise EncodingWarning",
         "status": "ready",
@@ -10348,7 +10348,7 @@
           "en": "Wraps a coroutine in a Task and schedules it on the event loop: it starts at the current coroutine's next await, and you need not await its result right away."
         },
         "body": {
-          "ru": "Корутина не стартует прямо в точке вызова: задача лишь ставится в очередь event loop и начинает выполняться, когда текущая корутина сама дойдёт до ближайшего await. Вторая ловушка — ссылка: loop держит на задачу только слабую ссылку, поэтому task, никуда не сохранённый, может быть собран сборщиком мусора посреди работы; храните его в переменной или во множестве до завершения. И исключение внутри задачи молчит, пока её не заawait'или — потерянные задачи легко прячут ошибки.",
+          "ru": "Корутина не стартует прямо в точке вызова: задача лишь ставится в очередь event loop и начинает выполняться, когда текущая корутина сама дойдёт до ближайшего await. Вторая ловушка — ссылка: loop держит на задачу только слабую ссылку, поэтому task, никуда не сохранённый, может быть собран сборщиком мусора посреди работы; храните его в переменной или во множестве до завершения. И исключение внутри задачи молчит, пока её не дождались через await — потерянные задачи легко прячут ошибки.",
           "en": "Nothing runs at the call site itself: the task is queued on the event loop and only starts once the current coroutine reaches its next await. Also keep a reference — the loop holds only a weak one, so a task assigned nowhere can be garbage-collected mid-flight; park it in a variable or a set until it finishes. An exception raised inside a task stays silent until someone awaits it, which is how fire-and-forget tasks swallow bugs."
         },
         "syntax": "task = asyncio.create_task(coro())",
@@ -21265,8 +21265,8 @@
           "en": "Read the whole file into a string and close it — no open() needed; pass `encoding='utf-8'` explicitly."
         },
         "body": {
-          "ru": "Без явного encoding кодировка берётся из локали ОС — на Windows это обычно cp1251, и UTF-8 файл прочитается кракозябрами или упадёт с UnicodeDecodeError. Файл читается целиком в память: для многогигабайтного лога это не подходит, там открывают файл и идут по строкам в цикле.",
-          "en": "With no encoding argument Python falls back to the OS locale encoding — on Windows that is typically cp1251 or cp1252, so a UTF-8 file comes back as mojibake or blows up with UnicodeDecodeError. The entire file is pulled into memory at once, so for multi-gigabyte logs open the file and iterate over lines instead."
+          "ru": "До Python 3.15 без явного encoding кодировка берётся из локали ОС (с 3.15 — UTF-8, PEP 686) — на Windows это обычно cp1251, и UTF-8 файл прочитается кракозябрами или упадёт с UnicodeDecodeError. Файл читается целиком в память: для многогигабайтного лога это не подходит, там открывают файл и идут по строкам в цикле.",
+          "en": "Before Python 3.15, with no encoding argument Python falls back to the OS locale encoding (UTF-8 since 3.15, PEP 686) — on Windows that is typically cp1251 or cp1252, so a UTF-8 file comes back as mojibake or blows up with UnicodeDecodeError. The entire file is pulled into memory at once, so for multi-gigabyte logs open the file and iterate over lines instead."
         },
         "syntax": "p.read_text(encoding='utf-8')",
         "status": "ready",
@@ -26772,8 +26772,8 @@
           "en": "A handler that writes log records to a file. It supports the modes 'a' (append) and 'w' (overwrite), as well as an encoding."
         },
         "body": {
-          "ru": "Без encoding='utf-8' файл пишется в кодировке локали (на Windows это обычно cp1251): в другой системе лог покажется кракозябрами, а любой символ вне этой кодировки записан не будет — logging напечатает ошибку в stderr и потеряет строку. Режим 'w' обрезает лог при каждом запуске программы, так что для истории нужен 'a' (он и стоит по умолчанию). Файл открывается сразу при создании обработчика (если не задан delay=True) и растёт без ограничений — за размером следят RotatingFileHandler и TimedRotatingFileHandler из logging.handlers.",
-          "en": "Without encoding='utf-8' the file uses the locale encoding (cp1251 on a Russian Windows): the log turns into mojibake elsewhere, and any character outside that encoding never gets written — logging reports the failure on stderr and drops the line. Mode 'w' truncates the log on every run, so keep the default 'a' when you want history. The file is opened as soon as the handler is built (unless delay=True) and grows without limit — use RotatingFileHandler or TimedRotatingFileHandler from logging.handlers for that."
+          "ru": "До Python 3.15 без encoding='utf-8' файл пишется в кодировке локали (на Windows это обычно cp1251): в другой системе лог покажется кракозябрами, а любой символ вне этой кодировки записан не будет — logging напечатает ошибку в stderr и потеряет строку. Режим 'w' обрезает лог при каждом запуске программы, так что для истории нужен 'a' (он и стоит по умолчанию). Файл открывается сразу при создании обработчика (если не задан delay=True) и растёт без ограничений — за размером следят RotatingFileHandler и TimedRotatingFileHandler из logging.handlers.",
+          "en": "Before Python 3.15, without encoding='utf-8' the file uses the locale encoding (cp1251 on a Russian Windows): the log turns into mojibake elsewhere, and any character outside that encoding never gets written — logging reports the failure on stderr and drops the line. Mode 'w' truncates the log on every run, so keep the default 'a' when you want history. The file is opened as soon as the handler is built (unless delay=True) and grows without limit — use RotatingFileHandler or TimedRotatingFileHandler from logging.handlers for that."
         },
         "syntax": "handler = logging.FileHandler(filename, mode='a', encoding=None, delay=False)",
         "status": "ready",
@@ -32280,7 +32280,7 @@
           "en": "Runs a command and returns its stdout as bytes (or as a str with text=True). A non-zero exit code raises CalledProcessError."
         },
         "body": {
-          "ru": "Захватывается только stdout — stderr по умолчанию уходит прямо в консоль родителя, поэтому текст ошибки легко потерять; ловите CalledProcessError и смотрите e.returncode и e.output либо передавайте stderr=subprocess.STDOUT. По сути это тонкая обёртка над subprocess.run(..., check=True, stdout=PIPE), оставшаяся с доpython-3.5 времён: в новом коде документация советует run(). Без text=True вернутся bytes, и сравнение результата с обычной строкой молча даст False.",
+          "ru": "Захватывается только stdout — stderr по умолчанию уходит прямо в консоль родителя, поэтому текст ошибки легко потерять; ловите CalledProcessError и смотрите e.returncode и e.output либо передавайте stderr=subprocess.STDOUT. По сути это тонкая обёртка над subprocess.run(..., check=True, stdout=PIPE), оставшаяся со времён до Python 3.5: в новом коде документация советует run(). Без text=True вернутся bytes, и сравнение результата с обычной строкой молча даст False.",
           "en": "Only stdout is captured — stderr goes straight to the parent's console by default, so the actual error message is easy to lose; catch CalledProcessError and inspect e.returncode and e.output, or pass stderr=subprocess.STDOUT. It is a thin wrapper over subprocess.run(..., check=True, stdout=PIPE) left over from pre-3.5 days, and the docs point new code at run(). Without text=True you get bytes back, and comparing that to a normal string silently yields False."
         },
         "syntax": "subprocess.check_output(args, *, text=False, stderr=None, timeout=None, ...)",
@@ -37305,8 +37305,8 @@
           "en": "The hyperbolic tangent of x: sinh(x) / cosh(x); values lie between -1 and 1."
         },
         "body": {
-          "ru": "Единственная из гиперболических, которая не переполняется: результат всегда в пределах [-1, 1], какой бы конечный аргумент ни подали. Зато она быстро насыщается — уже при аргументе около 19 float не отличает ответ от единицы и возвращается ровно 1.0, поэтому обратный ход через math.atanh на таких значениях упадёт с ValueError.",
-          "en": "This is the one hyperbolic function that cannot overflow: for any finite argument the result stays within [-1, 1]. It saturates fast, though — by an argument of about 19 the float is indistinguishable from one and you get exactly 1.0 back, so trying to invert it with math.atanh at that point raises ValueError."
+          "ru": "Единственная из гиперболических, которая не переполняется: результат всегда в пределах [-1, 1], какой бы конечный аргумент ни подали. Зато она быстро насыщается — уже чуть дальше 19 (примерно с 19,1) float не отличает ответ от единицы и возвращается ровно 1.0, поэтому обратный ход через math.atanh на таких значениях упадёт с ValueError.",
+          "en": "This is the one hyperbolic function that cannot overflow: for any finite argument the result stays within [-1, 1]. It saturates fast, though — just past 19 (from about 19.1) the float is indistinguishable from one and you get exactly 1.0 back, so trying to invert it with math.atanh at that point raises ValueError."
         },
         "syntax": "math.tanh(...)",
         "status": "ready",
@@ -67186,8 +67186,8 @@
           "en": "Runs a command string through the system shell and returns its output (stdout merged with stderr) as one string."
         },
         "body": {
-          "ru": "Код возврата отбрасывается: упавшая команда вернёт текст ошибки как обычный результат, и отличить его нечем — для этого есть getstatusoutput(). Команда исполняется оболочкой (sh на Unix, cmd.exe на Windows), поэтому синтаксис разный, а подставленный ввод пользователя — дыра для инъекции. Завершающий перевод строки срезается, а вывод декодируется кодировкой локали, если не передан encoding.",
-          "en": "The exit status is thrown away: a failing command returns its error text as an ordinary result with no way to tell — use getstatusoutput() for that. The command goes through the shell (sh on Unix, cmd.exe on Windows), so the syntax differs, and user input pasted into it is an injection hole. One trailing newline is stripped, and the output is decoded with the locale encoding unless encoding is passed."
+          "ru": "Код возврата отбрасывается: упавшая команда вернёт текст ошибки как обычный результат, и отличить его нечем — для этого есть getstatusoutput(). Команда исполняется оболочкой (sh на Unix, cmd.exe на Windows), поэтому синтаксис разный, а подставленный ввод пользователя — дыра для инъекции. Завершающий перевод строки срезается, а вывод декодируется кодировкой локали (с 3.15 — UTF-8), если не передан encoding.",
+          "en": "The exit status is thrown away: a failing command returns its error text as an ordinary result with no way to tell — use getstatusoutput() for that. The command goes through the shell (sh on Unix, cmd.exe on Windows), so the syntax differs, and user input pasted into it is an injection hole. One trailing newline is stripped, and the output is decoded with the locale encoding (UTF-8 since 3.15) unless encoding is passed."
         },
         "syntax": "subprocess.getoutput(cmd, *, encoding=None, errors=None)",
         "status": "ready",
@@ -76304,8 +76304,8 @@
           "en": "Returns 'utf-8' — the default encoding of str.encode() and bytes.decode() with no argument. In Python 3 this value never changes."
         },
         "body": {
-          "ru": "Главная ловушка: это НЕ кодировка файлов. open() без encoding берёт кодировку локали (locale.getpreferredencoding(), на русской Windows — cp1251), поэтому файл, прочитанный «по умолчанию», бывает кракозябрами, хотя здесь написано utf-8. Функции setdefaultencoding в Python 3 нет — пишите encoding='utf-8' явно.",
-          "en": "The main trap: this is NOT the file encoding. open() without encoding uses the locale encoding (locale.getpreferredencoding(), cp1251 on a Russian Windows), so a file read 'by default' can come out as mojibake even though this says utf-8. Python 3 has no setdefaultencoding — pass encoding='utf-8' explicitly."
+          "ru": "Главная ловушка: это НЕ кодировка файлов. До Python 3.15 open() без encoding берёт кодировку локали (locale.getpreferredencoding(), на русской Windows — cp1251; с 3.15 — UTF-8, PEP 686), поэтому файл, прочитанный «по умолчанию», бывает кракозябрами, хотя здесь написано utf-8. Функции setdefaultencoding в Python 3 нет — пишите encoding='utf-8' явно.",
+          "en": "The main trap: this is NOT the file encoding. Before Python 3.15, open() without encoding uses the locale encoding (locale.getpreferredencoding(), cp1251 on a Russian Windows; UTF-8 since 3.15, PEP 686), so a file read 'by default' can come out as mojibake even though this says utf-8. Python 3 has no setdefaultencoding — pass encoding='utf-8' explicitly."
         },
         "syntax": "sys.getdefaultencoding()",
         "status": "ready",
@@ -115832,8 +115832,8 @@
           "en": "A pathlib-style object for navigating a ZIP archive: the / operator, iterdir(), read_text(), exists()."
         },
         "body": {
-          "ru": "Удобен, когда код уже написан под pathlib: те же / и read_text() работают внутри архива без распаковки. Но это не pathlib.Path: путь вне архива не существует, а создание объекта ничего не проверяет — отсутствующее имя вылезет только при чтении, поэтому сначала exists(). read_text() без encoding берёт кодировку локали, как open(); каталоги в ZIP часто неявные, и Path видит их по префиксам имён.",
-          "en": "Handy when your code is already written for pathlib: the same / and read_text() work inside the archive without extracting. But it is not a pathlib.Path: nothing outside the archive exists for it, and constructing one checks nothing — a missing name only fails on read, so call exists() first. read_text() without encoding uses the locale encoding just like open(); directories in a ZIP are often implicit, and Path infers them from name prefixes."
+          "ru": "Удобен, когда код уже написан под pathlib: те же / и read_text() работают внутри архива без распаковки. Но это не pathlib.Path: путь вне архива не существует, а создание объекта ничего не проверяет — отсутствующее имя вылезет только при чтении, поэтому сначала exists(). read_text() без encoding берёт кодировку по умолчанию, как open() (до 3.15 — кодировку локали); каталоги в ZIP часто неявные, и Path видит их по префиксам имён.",
+          "en": "Handy when your code is already written for pathlib: the same / and read_text() work inside the archive without extracting. But it is not a pathlib.Path: nothing outside the archive exists for it, and constructing one checks nothing — a missing name only fails on read, so call exists() first. read_text() without encoding uses the default encoding just like open() (the locale encoding before 3.15); directories in a ZIP are often implicit, and Path infers them from name prefixes."
         },
         "syntax": "zipfile.Path(root, at='')",
         "status": "ready",
@@ -116529,8 +116529,8 @@
           "en": "Opens a .gz file for reading or writing; binary mode works with bytes, 'rt'/'wt' with text."
         },
         "body": {
-          "ru": "Режим по умолчанию — 'rb', а не 'r' как у open(): read() вернёт bytes, и строковые операции упадут. Для текста режим указывают явно — 'rt' или 'wt' — и вместе с ним encoding, иначе возьмётся кодировка локали. 'w' тоже двоичный: запись строки даёт TypeError. Файл, оказавшийся не gzip, обнаружится не в open(), а на первом чтении — gzip.BadGzipFile.",
-          "en": "The default mode is 'rb', not 'r' as with open(): read() returns bytes, and string operations fail. For text, pass the mode explicitly — 'rt' or 'wt' — together with an encoding, or the locale encoding is used. 'w' is binary too: writing a str raises TypeError. A file that is not gzip is detected not by open() but on the first read, as gzip.BadGzipFile."
+          "ru": "Режим по умолчанию — 'rb', а не 'r' как у open(): read() вернёт bytes, и строковые операции упадут. Для текста режим указывают явно — 'rt' или 'wt' — и вместе с ним encoding, иначе возьмётся кодировка по умолчанию (до 3.15 — кодировка локали). 'w' тоже двоичный: запись строки даёт TypeError. Файл, оказавшийся не gzip, обнаружится не в open(), а на первом чтении — gzip.BadGzipFile.",
+          "en": "The default mode is 'rb', not 'r' as with open(): read() returns bytes, and string operations fail. For text, pass the mode explicitly — 'rt' or 'wt' — together with an encoding, or the default encoding is used (the locale encoding before 3.15). 'w' is binary too: writing a str raises TypeError. A file that is not gzip is detected not by open() but on the first read, as gzip.BadGzipFile."
         },
         "syntax": "gzip.open(filename, mode='rb', compresslevel=9, encoding=None, errors=None, newline=None)",
         "status": "ready",
@@ -145108,8 +145108,8 @@
           "en": "Opens a file. Modes: r (read), w (write, truncating), a (append), x (create), b (binary). Use it with with."
         },
         "body": {
-          "ru": "Всегда указывай encoding='utf-8' явно: без него текстовый режим берёт кодировку из локали системы (utf-8 — только в UTF-8 Mode, -X utf8), и файл, который спокойно читается на Linux, роняет UnicodeDecodeError на Windows с cp1251. Режим 'w' обрезает файл до нуля уже в момент открытия, до первой записи, — если нужно создать файл, но не затереть существующий, бери 'x': он бросит FileExistsError вместо потери данных.",
-          "en": "Always pass encoding='utf-8' explicitly: without it text mode falls back to the system locale (utf-8 only in UTF-8 Mode, -X utf8), so a file that reads fine on Linux blows up with UnicodeDecodeError on a Windows machine using cp1251. Mode 'w' empties the file the moment it is opened, before any write happens — if you want to create a file without clobbering an existing one, use 'x', which raises FileExistsError instead of destroying data."
+          "ru": "Всегда указывай encoding='utf-8' явно: без него до Python 3.15 текстовый режим берёт кодировку из локали системы (utf-8 — только в UTF-8 Mode, -X utf8; с 3.15 этот режим включён по умолчанию, PEP 686), и файл, который спокойно читается на Linux, роняет UnicodeDecodeError на Windows с cp1251. Режим 'w' обрезает файл до нуля уже в момент открытия, до первой записи, — если нужно создать файл, но не затереть существующий, бери 'x': он бросит FileExistsError вместо потери данных.",
+          "en": "Always pass encoding='utf-8' explicitly: without it, before Python 3.15, text mode falls back to the system locale (utf-8 only in UTF-8 Mode, -X utf8; since 3.15 that mode is on by default, PEP 686), so a file that reads fine on Linux blows up with UnicodeDecodeError on a Windows machine using cp1251. Mode 'w' empties the file the moment it is opened, before any write happens — if you want to create a file without clobbering an existing one, use 'x', which raises FileExistsError instead of destroying data."
         },
         "syntax": "open(file, mode='r', buffering=-1, encoding=None, errors=None, newline=None, closefd=True, opener=None)",
         "status": "ready",
@@ -161830,7 +161830,7 @@
           "en": "Strings are compared lexicographically by the Unicode code points of their characters."
         },
         "body": {
-          "ru": "Порядок по code point — не алфавитный: все заглавные латинские буквы идут раньше строчных, поэтому 'Zoo' < 'apple' даёт True, а кириллица и символы с диакритикой стоят вообще отдельным блоком. Для человеческой сортировки задавайте ключ, например key=str.lower или key=str.casefold. Второй típичный промах — сравнивать числа как строки: '10' < '9' истинно, потому что сопоставляется первый символ.",
+          "ru": "Порядок по code point — не алфавитный: все заглавные латинские буквы идут раньше строчных, поэтому 'Zoo' < 'apple' даёт True, а кириллица и символы с диакритикой стоят вообще отдельным блоком. Для человеческой сортировки задавайте ключ, например key=str.lower или key=str.casefold. Второй типичный промах — сравнивать числа как строки: '10' < '9' истинно, потому что сопоставляется первый символ.",
           "en": "Code point order is not alphabetical order: every uppercase ASCII letter sorts before every lowercase one, so 'Zoo' < 'apple' is True, and Cyrillic or accented letters form their own separate block. For human-friendly sorting pass a key such as key=str.lower or key=str.casefold. The other common slip is comparing numbers as text: '10' < '9' is True because only the first characters decide."
         },
         "syntax": "s1 == s2  |  s1 < s2  |  s1 > s2",

@@ -193,10 +193,10 @@ JOURNAL_ROW = re.compile(r"^\| `(?P<form>\d+\.\d+)` \|", re.MULTILINE)
 @pytest.mark.live_surface
 def test_form_journal_names_the_current_form():
     """Поднял форму — допиши журнал: по нему потребитель читает свой дрейф."""
-    text = (ROOT / "docs" / "contracts.md").read_text(encoding="utf-8")
+    text = (ROOT / "docs" / "use" / "contracts.md").read_text(encoding="utf-8")
     journal = text.split("### Журнал формы", 1)[1].split("\n## ", 1)[0]
     assert delivery.FORM in JOURNAL_ROW.findall(journal), (
-        f"в docs/contracts.md § «Журнал формы» нет строки `{delivery.FORM}`"
+        f"в docs/use/contracts.md § «Журнал формы» нет строки `{delivery.FORM}`"
     )
 
 

@@ -18,11 +18,11 @@ mypy, валидация данных и проверка синхронност
 ## Главное правило
 
 **Содержание глоссария правится в `data/cards/`.** Карточки лежат по файлу на
-цветовую группу; `data/glossary.json` собирается из них, а `python_glossary.html`
+цветовую группу; `data/glossary.json` собирается из них, а `site/python_glossary.html`
 — из сборки. Оба файла производные: правка в них живёт до первой сборки.
 
 ```
-data/cards/*.json ──► data/glossary.json ──► python_glossary.html
+data/cards/*.json ──► data/glossary.json ──► site/python_glossary.html
  (правится здесь)        (сборка)               (витрина)
 ```
 
@@ -51,7 +51,7 @@ make objections --limit 0  # полный список, когда его буд
 make assemble                                            # data/cards/ → data/glossary.json
 make validate                                            # проверить качество
 make build                                               # пересобрать витрину
-git add data/cards data/glossary.json python_glossary.html
+git add data/cards data/glossary.json site/python_glossary.html
 ```
 
 Сборка идемпотентна: один и тот же вход даёт побайтово одинаковый файл. В него
@@ -120,7 +120,7 @@ changelog.d/<slug>.<секция>.md
 
 Внутри — одна строка, без ведущего дефиса. Секции: `added`, `changed`,
 `fixed`, `removed`, `internal`. Подробности — в
-[`changelog.d/README.md`](changelog.d/README.md).
+[`changelog.d/README.md`](../../changelog.d/README.md).
 
 Два файла с разными именами не конфликтуют никогда. Общий файл конфликтует на
 каждом параллельном изменении, а конфликтное изменение остаётся **вовсе без
@@ -159,7 +159,7 @@ make links   # тот же шаг, что в CI
 
 Цель ищется **разметкой** — `](адрес` и `]: адрес`, — а не вхождением адреса
 в текст. Разница не косметическая: подстрока находится в подписи, поэтому
-`[docs/architecture.md](никуда.md)` проходит проверку подстрокой зелёной и
+`[docs/dev/architecture.md](никуда.md)` проходит проверку подстрокой зелёной и
 ведёт в никуда.
 
 Чего гейт не ловит, названо в докстринге `scripts/check_links.py`: внешние

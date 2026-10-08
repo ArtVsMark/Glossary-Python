@@ -60,7 +60,7 @@ EXIT_USAGE: Final = 2
 ответы, и склеенные они превращают пустой вход в зелёный прогон (правило 075).
 """
 
-DEFAULT_SHOWCASE: Final = "python_glossary.html"
+DEFAULT_SHOWCASE: Final = "site/python_glossary.html"
 
 # ``ValidationConfig`` объявлен со ``slots=True``: обращение к полю через класс
 # вернуло бы дескриптор слота, а не значение по умолчанию. Берём его с экземпляра.
@@ -148,7 +148,7 @@ def build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=None,
         metavar="PATH",
-        help=f"куда записать витрину (по умолчанию {DEFAULT_SHOWCASE} в корне)",
+        help=f"куда записать витрину (по умолчанию {DEFAULT_SHOWCASE} от корня проекта)",
     )
     p_build.add_argument(
         "--check",

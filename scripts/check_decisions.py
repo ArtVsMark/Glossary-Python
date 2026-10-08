@@ -8,7 +8,7 @@
 отвергнутое не видно ниоткуда, и его предлагают заново.
 
 ПРЕДМЕТ У ПРОЕКТА ЕСТЬ, и прежний ответ это отрицал. Записи решений живут в
-``docs/architecture.md`` § «Принятые решения», и форма у них своя: «Было ·
+``docs/dev/architecture.md`` § «Принятые решения», и форма у них своя: «Было ·
 Стало · Зачем · Цена · Отвергнуто». Две записи её несут целиком.
 
 ХРАПОВИК, А НЕ ЗАПРЕТ ЗАДНИМ ЧИСЛОМ. Девяти записям отвергнутая альтернатива не
@@ -57,7 +57,10 @@ from typing import Final
 
 ROOT: Final = Path(__file__).resolve().parent.parent
 
-DOCUMENT: Final = "docs/architecture.md"
+DOCUMENT: Final = "docs/dev/architecture.md"
+FORMER: Final = ("docs/architecture.md",)
+"""Прежние адреса документа. Основа, снятая до переезда, хранит его там, и без
+этого списка переезд читался бы как «основу прочитать нечем»."""
 SECTION: Final = "## Принятые решения"
 ENTRY: Final = re.compile(r"^### (?P<title>.+)$", re.MULTILINE)
 REQUIRED: Final = "**Отвергнуто.**"
@@ -186,20 +189,24 @@ def base_document(base: str, root: Path) -> str | None:
         root: Корень дерева.
 
     Returns:
-        Текст документа или ``None``, если git не ответил.
+        Текст документа — по нынешнему адресу или, если основа старше переезда,
+        по прежнему (``FORMER``); ``None``, если git не ответил ни по одному.
     """
-    try:
-        done = subprocess.run(  # noqa: S603 — аргументы наши, не чужой ввод
-            ["git", "-C", str(root), "show", f"{base}:{DOCUMENT}"],  # noqa: S607
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            check=False,
-            timeout=GIT_TIMEOUT,
-        )
-    except OSError, subprocess.TimeoutExpired:
-        return None
-    return done.stdout if done.returncode == 0 else None
+    for path in (DOCUMENT, *FORMER):
+        try:
+            done = subprocess.run(  # noqa: S603 — аргументы наши, не чужой ввод
+                ["git", "-C", str(root), "show", f"{base}:{path}"],  # noqa: S607
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                check=False,
+                timeout=GIT_TIMEOUT,
+            )
+        except OSError, subprocess.TimeoutExpired:
+            return None
+        if done.returncode == 0:
+            return done.stdout
+    return None
 
 
 def main(argv: list[str] | None = None) -> int:

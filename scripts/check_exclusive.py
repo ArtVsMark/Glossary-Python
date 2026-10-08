@@ -65,11 +65,19 @@ ROOT: Final = Path(__file__).resolve().parent.parent
 
 DOCUMENTS: Final = (
     "CLAUDE.md",
-    "CONTRIBUTING.md",
+    "docs/dev/contributing.md",
     "README.md",
-    "docs/architecture.md",
+    "docs/dev/architecture.md",
     "docs/agent/roles.md",
-    "docs/contracts.md",
+    "docs/use/contracts.md",
+    "docs/README.md",
+    "docs/use/README.md",
+    "docs/use/outputs.md",
+    "docs/dev/README.md",
+    "docs/dev/getting-started.md",
+    "docs/dev/quality.md",
+    "docs/agent/README.md",
+    "docs/agent/rules.md",
 )
 """Документы, которые ИСПОЛНЯЮТ, а не описывают.
 

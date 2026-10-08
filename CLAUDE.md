@@ -12,7 +12,7 @@
 данными производные и вручную не правятся:
 
 ```
-data/cards/*.json ──► glossary assemble ──► data/glossary.json ──► glossary build ──► python_glossary.html
+data/cards/*.json ──► glossary assemble ──► data/glossary.json ──► glossary build ──► site/python_glossary.html
                                                     │
                                                     └──► выгрузка ──► Stepik-Python-Grader (читает сам)
 ```
@@ -157,7 +157,7 @@ make test       # pytest
 | Новый отчёт с пределом выдачи | `truncate()` из `glossary.reporting` — срез и маркер обрыва одним вызовом |
 | Новый путь под наблюдением журнала | `WATCHED` в `scripts/check_journal.py` — явным изменением |
 | Новое имя порождения процесса | `SPAWNERS` в `scripts/check_deadlines.py` — явным изменением |
-| Новая запись решения | Раздел в `docs/architecture.md` с частью `**Отвергнуто.**` — иначе находка |
+| Новая запись решения | Раздел в `docs/dev/architecture.md` с частью `**Отвергнуто.**` — иначе находка |
 | Новый гейт дерева | `scripts/check_*.py` + набор с ОБЕИМИ половинами: подделки и живая, помеченная `pytest.mark.live_surface` |
 | Новая личность в истории | Строка в `.github/authors.txt` **отдельным изменением**: список берётся с основы, и тем же заходом строка в силу не входит |
 | Новое GraphQL-исключение | Строка таблицы в разделе «Работа с GitHub» — с причиной |
@@ -170,12 +170,12 @@ make test       # pytest
 
 ## Чего не делать
 
-- Не править `python_glossary.html` и `data/glossary.json` напрямую: оба
+- Не править `site/python_glossary.html` и `data/glossary.json` напрямую: оба
   производные. Содержание меняется в `data/cards/` и собирается командой.
 - Не менять содержимое карточек в рамках инфраструктурных задач — контент
   и инструменты развиваются отдельными изменениями.
 - Не добавлять runtime-зависимости в пакет без явного обсуждения: ноль
-  зависимостей — осознанное архитектурное решение (см. `docs/architecture.md`).
+  зависимостей — осознанное архитектурное решение (см. `docs/dev/architecture.md`).
 - Не писать числа в документации руками: только внутри маркера и только
   сборкой (`make facts`). Значки и `facts.json` в `main` не коммитятся.
   <!--предмет:числа в документации-->
@@ -186,7 +186,7 @@ make test       # pytest
   конкретной роли — это профиль существующей.
   <!--предмет:нет-->
 - Не проверять ссылку вхождением её адреса в текст: подстрока находится в
-  подписи, и `[docs/architecture.md](никуда.md)` проходит такую проверку
+  подписи, и `[docs/dev/architecture.md](никуда.md)` проходит такую проверку
   зелёной. Ссылка ищется разметкой — этим занят `scripts/check_links.py`.
 - Не поднимать планку в `tests/quality_baseline.json`, `tests/completeness_floor.json`
   и `tests/decisions_baseline.json`. Все три движутся только вниз.
@@ -357,8 +357,8 @@ make test       # pytest
 
 ## Ориентиры
 
-- Архитектурные решения и технический долг — `docs/architecture.md`.
-- Правила эволюции контрактов наружу — `docs/contracts.md`.
-- Процесс контрибьютинга — `CONTRIBUTING.md`.
+- Архитектурные решения и технический долг — `docs/dev/architecture.md`.
+- Правила эволюции контрактов наружу — `docs/use/contracts.md`.
+- Процесс контрибьютинга — `docs/dev/contributing.md`.
 - История изменений — `CHANGELOG.md`.
 - Свод инженерных правил — каталог, порядок подъёма — его `START.md`.

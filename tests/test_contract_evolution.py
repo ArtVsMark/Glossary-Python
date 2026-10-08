@@ -24,7 +24,7 @@ import facts
 from glossary.loader import project_root
 
 ROOT = project_root()
-DOCUMENT = ROOT / "docs" / "contracts.md"
+DOCUMENT = ROOT / "docs" / "use" / "contracts.md"
 BADGES = ROOT / ".github" / "workflows" / "badges.yml"
 
 PUBLISHED = re.compile(r"\.github/badges/([\w.-]+)\.json")
@@ -120,7 +120,7 @@ def test_every_published_contract_has_a_section():
     """Новый контракт без раздела — обещание описать его когда-нибудь."""
     missing = sorted(name for name in published() if not described(name))
     assert not missing, (
-        "публикуется контракт, у которого нет раздела в docs/contracts.md: "
+        "публикуется контракт, у которого нет раздела в docs/use/contracts.md: "
         + ", ".join(missing)
     )
 

@@ -13,11 +13,11 @@ repos:
       - id: check-toml
       - id: check-yaml
       - id: end-of-file-fixer
-        exclude: ^python_glossary\.html$
+        exclude: ^site/python_glossary\.html$
       - id: mixed-line-ending
         args: [--fix=lf]
       - id: trailing-whitespace
-        exclude: ^python_glossary\.html$
+        exclude: ^site/python_glossary\.html$
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.2
@@ -55,7 +55,7 @@ repos:
         entry: python scripts/check_exclusive.py --check
         language: system
         pass_filenames: false
-        files: ^(CLAUDE\.md|CONTRIBUTING\.md|README\.md|docs/.*\.md|scripts/check_exclusive\.py)$
+        files: ^(CLAUDE\.md|README\.md|docs/.*\.md|scripts/check_exclusive\.py)$
 
       - id: environment-defaults
         name: Умолчания окружения заданы явно
@@ -69,7 +69,7 @@ repos:
         entry: python scripts/check_links.py
         language: system
         pass_filenames: false
-        files: ^(README\.md|CLAUDE\.md|CONTRIBUTING\.md|docs/.*\.md|scripts/check_links\.py)$
+        files: ^(README\.md|CLAUDE\.md|docs/.*\.md|scripts/check_links\.py)$
 
       - id: third-outcome
         name: У каждой точки входа есть третий исход
@@ -83,4 +83,4 @@ repos:
         entry: python -m glossary build --check
         language: system
         pass_filenames: false
-        files: ^(data/glossary\.json|src/glossary/templates/.*|python_glossary\.html)$
+        files: ^(data/glossary\.json|src/glossary/templates/.*|site/python_glossary\.html)$

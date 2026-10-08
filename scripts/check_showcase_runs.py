@@ -42,7 +42,7 @@ from pathlib import Path
 from typing import Final
 
 ROOT: Final = Path(__file__).resolve().parent.parent
-SHOWCASE: Final = ROOT / "python_glossary.html"
+SHOWCASE: Final = ROOT / "site" / "python_glossary.html"
 GLOSSARY: Final = ROOT / "data" / "glossary.json"
 
 NOT_RUN: Final = 2

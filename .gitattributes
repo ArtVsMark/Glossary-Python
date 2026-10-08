@@ -4,7 +4,7 @@
 # Витрина собирается командой `glossary build` из data/glossary.json.
 # Помечена как генерируемая: GitHub сворачивает её в диффах и не учитывает
 # в языковой статистике репозитория.
-python_glossary.html linguist-generated=true
+site/python_glossary.html linguist-generated=true
 
 # Источник истины — обычные данные, диффы по нему нужны в ревью.
 data/glossary.json linguist-generated=false linguist-language=JSON

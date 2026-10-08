@@ -9,9 +9,17 @@ import subprocess
 
 import pytest
 
+from glossary.contracts import PAGES_URL
 from glossary.errors import ExportError
 from glossary.exporters import EXPORTERS, MarkdownExporter, get_exporter
-from glossary.exporters.html import PLACEHOLDER, HtmlExporter, load_template
+from glossary.exporters.html import (
+    HEAD,
+    PLACEHOLDER,
+    HtmlExporter,
+    _count,
+    head,
+    load_template,
+)
 from glossary.models import Glossary
 from tests.factories import (
     VALID_SUMMARY,
@@ -270,3 +278,47 @@ def test_lifecycle_mode_without_version_keeps_only_python3_events():
             (gone, "", "removed"),
         ]
     ) == [False, True, True, False, True, True]
+
+
+# --------------------------------------------------------------------------- #
+# Метаданные страницы (#222)
+# --------------------------------------------------------------------------- #
+
+
+@pytest.mark.parametrize(
+    "number, expected",
+    [
+        (1, "1 карточка"),
+        (2, "2 карточки"),
+        (5, "5 карточек"),
+        (11, "11 карточек"),
+        (12, "12 карточек"),
+        (21, "21 карточка"),
+        (2656, "2656 карточек"),
+    ],
+)
+def test_number_agrees_with_its_noun(number: int, expected: str):
+    assert _count(number, "карточка", "карточки", "карточек") == expected
+
+
+def test_head_names_the_published_address_and_the_count(sample_glossary: Glossary):
+    page = HtmlExporter(template=f"<head>{HEAD}</head>{PLACEHOLDER}").render(
+        sample_glossary
+    )
+    assert HEAD not in page
+    assert f'<link rel="canonical" href="{PAGES_URL}">' in page
+    assert '<meta name="description"' in page
+    assert 'property="og:title"' in page
+    block = head(sample_glossary).split('<script type="application/ld+json">', 1)[1]
+    data = json.loads(block.split("</script>", 1)[0])
+    term_set = next(n for n in data["@graph"] if n["@type"] == "DefinedTermSet")
+    assert term_set["numberOfItems"] == len(sample_glossary.entries)
+
+
+def test_head_text_cannot_close_the_script_block():
+    assert head(Glossary(entries=())).count("</script>") == 1
+
+
+@pytest.mark.live_surface
+def test_shipped_template_carries_the_head_point():
+    assert HEAD in load_template(), "метаданным витрины некуда встать"

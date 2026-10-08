@@ -27,13 +27,20 @@ from __future__ import annotations
 import datetime as dt
 from typing import Any, Final
 
-__all__ = ["PRODUCER", "SCHEMA", "SOURCE", "envelope", "now"]
+__all__ = ["PAGES_URL", "PRODUCER", "SCHEMA", "SOURCE", "envelope", "now"]
 
 SCHEMA: Final = "1.0"
 """Версия формата публикуемых контрактов. Строкой — см. модуль."""
 
 PRODUCER: Final = "ArtVsMark/Glossary-Python"
 """Кто издал файл."""
+
+PAGES_URL: Final = "https://artvsmark.github.io/Glossary-Python/"
+"""Опубликованный адрес витрины на GitHub Pages.
+
+Одна константа: его называют ``canonical`` и разметка витрины, а консоли
+вебмастеров подтверждают ресурс именно с этим префиксом (#221). Своего домена у
+проекта нет, корень ``artvsmark.github.io`` не наш."""
 
 SOURCE: Final = PRODUCER
 """Чьё содержание описано. С #76 карточки ведутся здесь же, где издаются.

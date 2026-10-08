@@ -15,6 +15,7 @@ from typing import Any
 import pytest
 import yaml
 
+from glossary.cli import DEFAULT_SHOWCASE
 from glossary.loader import project_root
 
 WORKFLOWS = project_root() / ".github" / "workflows"
@@ -555,3 +556,24 @@ def test_badges_wake_on_workflows_that_exist():
         for path in WORKFLOWS.glob("*.yml")
     }
     assert not workflow_run_problems(listed, known), (listed, known)
+
+
+RELEASE_PATH = WORKFLOWS / "release-delivery.yml"
+
+
+@pytest.mark.live_surface
+def test_release_attaches_the_showcase_from_the_tag_tree():
+    """Витрина выпуска — копия из дерева тега, и она уходит в загрузку (#225).
+
+    Копия, а не вторая сборка: в дереве витрина уже сверена со сборкой. Путь
+    источника берётся у CLI, а не повторяется строкой — переезд витрины иначе
+    сломал бы выпуск молча.
+    """
+    document: dict[str, Any] = yaml.safe_load(RELEASE_PATH.read_text(encoding="utf-8"))
+    steps = [step.get("run", "") for step in document["jobs"]["attach"]["steps"]]
+    assert any(
+        f"cp {DEFAULT_SHOWCASE} release-assets/python_glossary.html" in run
+        for run in steps
+    ), "витрина не копируется в вложения выпуска"
+    upload = next(run for run in steps if "gh release upload" in run)
+    assert "release-assets/python_glossary.html" in upload

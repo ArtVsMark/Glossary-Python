@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-08T17:29:45+00:00",
+  "generated_at": "2026-10-08T17:31:46+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2817,
     "schema_version": 6,
-    "digest": "7d92baabec6e"
+    "digest": "476e1d67af6c"
   },
   "groups": {
     "builtin": [
@@ -20814,7 +20814,7 @@
         "related_errors": []
       },
       {
-        "id": ".iterdir",
+        "id": "path.iterdir",
         "title": {
           "ru": ".iterdir()",
           "en": ".iterdir()"
@@ -20848,7 +20848,8 @@
           "содержимое папки"
         ],
         "keywords": [
-          "iterdir"
+          "iterdir",
+          "Path.iterdir"
         ],
         "tags": [
           "module"
@@ -29636,7 +29637,7 @@
         "related": [
           "os.scandir",
           "os.walk",
-          ".iterdir",
+          "path.iterdir",
           "path.glob"
         ],
         "related_errors": [
@@ -50358,7 +50359,7 @@
           "os.DirEntry",
           "os.listdir",
           "os.walk",
-          ".iterdir",
+          "path.iterdir",
           "os.stat"
         ],
         "related_errors": [
@@ -178133,6 +178134,7 @@
     ]
   },
   "moved": {
+    ".iterdir": "path.iterdir",
     ".name-.value": "enum.Enum.name",
     ".stem-.suffix-.suffixes-.name-.parent-.p": "pathlib.PurePath.stem",
     "__str__-__repr__": "repr-vs-str",

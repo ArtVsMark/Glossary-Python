@@ -75,6 +75,20 @@ DOCUMENTS: Final[tuple[str, ...]] = (
     "docs/dev/quality.md",
     "docs/agent/README.md",
     "docs/agent/rules.md",
+    "README.en.md",
+    "docs/README.en.md",
+    "docs/use/README.en.md",
+    "docs/use/status.en.md",
+    "docs/use/outputs.en.md",
+    "docs/use/contracts.en.md",
+    "docs/dev/README.en.md",
+    "docs/dev/getting-started.en.md",
+    "docs/dev/quality.en.md",
+    "docs/dev/contributing.en.md",
+    "docs/dev/architecture.en.md",
+    "docs/agent/README.en.md",
+    "docs/agent/rules.en.md",
+    "docs/agent/roles.en.md",
 )
 """Документы, чьи ссылки держит гейт.
 

@@ -230,6 +230,9 @@ jobs:
       - name: Ссылки документации разрешаются в файлы дерева
         run: python scripts/check_links.py
 
+      - name: Английские двойники документов повторяют устройство оригиналов
+        run: python scripts/check_translations.py
+
       - name: Витрина собрана из текущих данных
         run: python -m glossary build --check
 

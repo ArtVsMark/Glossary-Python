@@ -50,6 +50,9 @@ MARKED: Final = (
     ROOT / "CLAUDE.md",
     ROOT / "docs" / "dev" / "quality.md",
     ROOT / "docs" / "agent" / "rules.md",
+    ROOT / "README.en.md",
+    ROOT / "docs" / "dev" / "quality.en.md",
+    ROOT / "docs" / "agent" / "rules.en.md",
 )
 """Файлы, где числа живут внутри маркеров.
 

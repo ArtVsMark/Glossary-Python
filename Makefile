@@ -6,7 +6,7 @@ VENV   ?= .venv
 BIN    := $(VENV)/bin
 
 .DEFAULT_GOAL := help
-.PHONY: help venv install lint format typecheck test cov validate objections completeness assemble assemble-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links examples showcase facts facts-check changelog-check changelog-preview changelog-collect changelog-rotate build build-check export check clean
+.PHONY: help venv install lint format typecheck test cov validate objections completeness assemble assemble-check rules exclusives defaults outcomes attribution decisions deadlines versions journal prlink links translations examples showcase facts facts-check changelog-check changelog-preview changelog-collect changelog-rotate build build-check export check clean
 
 help: ## Показать список целей
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -98,6 +98,9 @@ prlink: ## Проверить ответ изменения задаче (тел
 links: ## Проверить, что ссылки документации разрешаются в файлы дерева
 	$(BIN)/python scripts/check_links.py
 
+translations: ## Английский двойник документа повторяет устройство оригинала
+	$(BIN)/python scripts/check_translations.py
+
 examples: ## Исполнить примеры карточек: падение обязано быть названо в примере
 	$(BIN)/python scripts/check_examples.py
 
@@ -119,7 +122,7 @@ export: ## Выгрузить глоссарий во все поддержив�
 	$(BIN)/python -m glossary export -f markdown -o dist-export/glossary.md
 	$(BIN)/python -m glossary export -f csv      -o dist-export/glossary.csv
 
-check: lint typecheck test assemble-check validate rules exclusives defaults outcomes attribution decisions deadlines versions journal links examples facts-check changelog-check build-check ## Полный набор проверок (как в CI)
+check: lint typecheck test assemble-check validate rules exclusives defaults outcomes attribution decisions deadlines versions journal links translations examples facts-check changelog-check build-check ## Полный набор проверок (как в CI)
 
 facts-check: ## Проверить, что числа в README не разъехались
 	$(BIN)/python scripts/facts.py --check

@@ -1,5 +1,7 @@
 # Каталог правил
 
+**Русский** · [English](rules.en.md)
+
 Проект подключён к каталогу правил
 [Engineering-Incidents-Playbook](https://github.com/ArtVsMark/Engineering-Incidents-Playbook)
 — своду инженерных правил, каждое из которых выросло из конкретного инцидента.
@@ -24,9 +26,9 @@
 
 | Ответ | Сколько | Что означает |
 | --- | --- | --- |
-| `active` + механизм | <!--m:rules_mechanised-->143<!--/m:rules_mechanised--> | Правило действует и держится гейтом (<!--m:rules_gate-->83<!--/m:rules_gate-->), документом (<!--m:rules_document-->44<!--/m:rules_document-->) или конвейером (<!--m:rules_pipeline-->16<!--/m:rules_pipeline-->) |
+| `active` + механизм | <!--m:rules_mechanised-->144<!--/m:rules_mechanised--> | Правило действует и держится гейтом (<!--m:rules_gate-->83<!--/m:rules_gate-->), документом (<!--m:rules_document-->45<!--/m:rules_document-->) или конвейером (<!--m:rules_pipeline-->16<!--/m:rules_pipeline-->) |
 | `active` + `none` | <!--m:rules_none-->2<!--/m:rules_none--> | Правило действует, но здесь ничем не держится — у каждого названа причина |
-| `not-applicable` | <!--m:rules_na-->70<!--/m:rules_na--> | Предмета правила в этом проекте нет — с объяснением, почему |
+| `not-applicable` | <!--m:rules_na-->69<!--/m:rules_na--> | Предмета правила в этом проекте нет — с объяснением, почему |
 
 **<!--m:rules_none-->2<!--/m:rules_none--> — это метрика, и она должна уменьшаться.** Потолок зафиксирован в
 `tests/test_rules_bindings.py` и двигается только вниз, как и храповик качества

@@ -12,6 +12,8 @@ Published addresses:
 | Address | What it serves |
 | --- | --- |
 | [`/Glossary-Python/`](https://artvsmark.github.io/Glossary-Python/) | Showcase: search, filters, dark theme |
+| [`/Glossary-Python/<id>/`](https://artvsmark.github.io/Glossary-Python/functools.reduce/), [`/Glossary-Python/en/<id>/`](https://artvsmark.github.io/Glossary-Python/en/functools.reduce/) | One card's page in Russian and in English: its own address for search and links, with a button that opens the showcase at `#id`. Built at publication from the card build and not kept in `main` (`glossary pages -o DIR`) |
+| [`/Glossary-Python/sitemap.xml`](https://artvsmark.github.io/Glossary-Python/sitemap.xml) | The sitemap: the showcase and both pages of every card — it is what gets submitted to search consoles |
 | [`/Glossary-Python/glossary.json`](https://artvsmark.github.io/Glossary-Python/glossary.json) | The card build (`data/glossary.json`) over plain HTTP — no clone, no token; for people to read and for one-off scripts, the outward contract belongs to `delivery.json` |
 | [`badges/.github/badges/facts.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/facts.json) | Numbers about the project: cards, sections, objections, the makeup of the answer to the catalogue |
 | [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Content objections: rule, level, scope, the full list of cards |

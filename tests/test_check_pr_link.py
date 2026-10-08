@@ -96,6 +96,20 @@ def test_empty_body_is_not_an_answer():
     assert "ни одним из трёх" in link.complaint("")
 
 
+@pytest.mark.parametrize(
+    "remainder",
+    [
+        "остаётся экспортёр",
+        "остаются экспортёр и шаг",
+        "осталось два шага",
+        "Остаток: шаг",
+    ],
+)
+def test_remainder_is_read_in_every_form(remainder: str):
+    """Число и регистр слова остатка ответа не меняют (замер #244)."""
+    assert link.answer(f"Часть #227 — {remainder}.\n") is not None
+
+
 def test_remainder_in_another_paragraph_does_not_count():
     """Окно — абзац: остаток из чужого абзаца к этой задаче не относится."""
     body = "Часть #25.\n\nСовсем про другое: остаётся ещё дождь за окном.\n"

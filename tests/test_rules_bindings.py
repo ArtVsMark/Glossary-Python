@@ -84,17 +84,29 @@ def test_bindings_file_exists():
     assert PROPOSALS_PATH.exists(), "канал предложений обязателен: пустой список законен"
 
 
-CONTRACT: Final = "1.7"
-"""Контракт ответа и выгрузки, под который ответы перечитаны (правило 157).
+CONTRACT: Final = "1.8"
+"""Формат ответа (``schema``), под который ответы перечитаны (правило 157).
 
 Число сдвигается вместе с перечитыванием, а не вместо него: задача-входящие
-печатает расхождение, если каталог ушёл вперёд."""
+печатает расхождение, если каталог ушёл вперёд. 1.8 добавил ``origin`` и
+``origin_kind`` — откуда взят механизм."""
+
+EXPORT: Final = "1.7"
+"""Версия выгрузки каталога (``answers_to``), по которой построены ответы.
+
+Номер отдельный от формата: в 1.7.0 каталога формат ответа сдвинулся до 1.8, а
+выгрузка осталась 1.7, и один номер на оба врал бы об одном из них."""
+
+ORIGIN: Final = re.compile(r"^[\w.-]+/[\w.-]+:[^@\s]+@[\w.-]+$")
+"""Форма ``origin`` по контракту 1.8: ``<владелец>/<репозиторий>:<путь>@<версия>``."""
+
+ORIGIN_KINDS: Final = {"called", "copied", "adapted"}
 
 
 def test_schema_and_project_declared():
     doc = load_bindings()
     assert doc["schema"] == CONTRACT
-    assert doc["answers_to"] == CONTRACT, (
+    assert doc["answers_to"] == EXPORT, (
         "answers_to — версия выгрузки, по которой построены ответы; без неё "
         "каталог считает ответы несверенными"
     )
@@ -105,6 +117,43 @@ def test_schema_and_project_declared():
 def test_answers_are_not_empty():
     """Пустой ответ — ошибка входа, а не «правил нет» (правило 075)."""
     assert rules(), "ответ не содержит ни одного правила"
+
+
+def origin_problem(answer: dict[str, Any]) -> str | None:
+    """Что не так с источником механизма по контракту 1.8; ``None`` — всё верно."""
+    origin, kind = answer.get("origin"), answer.get("origin_kind")
+    if origin is None:
+        return None if kind is None else "origin_kind без origin"
+    if answer.get("mechanism") == "none":
+        return "origin при mechanism none"
+    if not ORIGIN.match(origin):
+        return f"origin не по форме: {origin!r}"
+    if kind not in ORIGIN_KINDS:
+        return f"origin без origin_kind или с {kind!r}"
+    return None
+
+
+@pytest.mark.parametrize(
+    "answer, verdict",
+    [
+        ({"mechanism": "gate"}, None),
+        ({"mechanism": "gate", "origin": "a/b:x.yml@v1", "origin_kind": "called"}, None),
+        ({"mechanism": "gate", "origin_kind": "called"}, "origin_kind без origin"),
+        ({"mechanism": "none", "origin": "a/b:x@v1", "origin_kind": "called"}, "none"),
+        ({"mechanism": "gate", "origin": "a/b:x.yml", "origin_kind": "called"}, "форме"),
+        ({"mechanism": "gate", "origin": "a/b:x@v1"}, "без origin_kind"),
+        (
+            {"mechanism": "gate", "origin": "a/b:x@v1", "origin_kind": "borrowed"},
+            "borrowed",
+        ),
+    ],
+)
+def test_origin_form_is_checked_on_fakes(answer: dict[str, Any], verdict: str | None):
+    problem = origin_problem(answer)
+    if verdict is None:
+        assert problem is None
+    else:
+        assert problem is not None and verdict in problem
 
 
 @pytest.mark.parametrize("rule_id, answer", sorted(rules().items()))
@@ -134,6 +183,11 @@ def test_answer_follows_contract(rule_id: str, answer: dict[str, Any]):
             assert answer.get("machine_half"), f"{rule_id}: refused без замера"
     else:
         assert "awaiting" not in answer, f"{rule_id}: awaiting при {mechanism}"
+
+    # Контракт 1.8: источник механизма — разрешимый адрес с версией и способ
+    # переноса; одно без другого и источник у «ничем» каталог считает находкой.
+    problem = origin_problem(answer)
+    assert problem is None, f"{rule_id}: {problem}"
 
     if mechanism == "none":
         # Правило 154: «не держится ничем» обязано назвать причину,

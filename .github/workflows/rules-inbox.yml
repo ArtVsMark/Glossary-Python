@@ -29,6 +29,6 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
-      - uses: ArtVsMark/Engineering-Incidents-Playbook@v1.6.0
+      - uses: ArtVsMark/Engineering-Incidents-Playbook@v1.7.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

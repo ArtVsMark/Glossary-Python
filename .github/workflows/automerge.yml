@@ -24,7 +24,8 @@
 # просыпаются ни CI на main, ни публикация витрины, ни значки. Замер 07.10:
 # витрина стояла на коммите часовой давности, пока в main уехало пять
 # изменений. Поэтому токен берётся из секрета AUTOMERGE_TOKEN (PAT владельца,
-# права contents и pull requests на запись), а без него — штатный, с
+# права contents и pull requests на запись) или из MERGE_QUEUE_TOKEN — под этим
+# именем тот же PAT живёт у соседних проектов семьи, — а без них — штатный, с
 # предупреждением в прогоне: ставить в очередь он умеет, будить main — нет.
 name: automerge
 
@@ -57,7 +58,7 @@ jobs:
     timeout-minutes: 5
     # Секрет в условии шага недоступен, переменная работы — доступна.
     env:
-      OWN_TOKEN: ${{ secrets.AUTOMERGE_TOKEN }}
+      OWN_TOKEN: ${{ secrets.AUTOMERGE_TOKEN || secrets.MERGE_QUEUE_TOKEN }}
     # Черновик согласия не выражает, а метка hold его отзывает: ни то, ни другое
     # в очередь не ставится. ГРАНИЦА: hold, поставленный ПОСЛЕ постановки в
     # очередь, её не отменяет — снятие автомержа это вторая мутация GraphQL, а
@@ -79,12 +80,12 @@ jobs:
       - name: Слияние разбудит main, только если токен не штатный
         if: ${{ env.OWN_TOKEN == '' }}
         run: >
-          echo "::warning title=Слияние не разбудит main::секрета AUTOMERGE_TOKEN нет —
+          echo "::warning title=Слияние не разбудит main::нет ни AUTOMERGE_TOKEN, ни MERGE_QUEUE_TOKEN —
           изменение поставлено штатным токеном, и после слияния push-прогоны
           (CI на main, витрина, значки) не запустятся до своего расписания"
 
       - name: Включить автомерж
         env:
-          GH_TOKEN: ${{ secrets.AUTOMERGE_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.AUTOMERGE_TOKEN || secrets.MERGE_QUEUE_TOKEN || secrets.GITHUB_TOKEN }}
           NUMBER: ${{ github.event.pull_request.number || inputs.pull_request }}
         run: python scripts/automerge.py "$NUMBER"

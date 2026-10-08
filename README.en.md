@@ -13,8 +13,8 @@
 | :---: | :---: |
 | [![Cards](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fcards.json)](data/glossary.json) | [![Objections](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FArtVsMark%2FGlossary-Python%2Fbadges%2F.github%2Fbadges%2Fwarnings.json)](docs/dev/quality.en.md#data-quality) |
 
-A bilingual reference to the Python standard library: **<!--m:cards-->2656<!--/m:cards--> cards**
-in **<!--m:groups-->112<!--/m:groups--> sections**. Each card has a short summary and a full explanation
+A bilingual reference to the Python standard library: **<!--m:cards-->2814<!--/m:cards--> cards**
+in **<!--m:groups-->131<!--/m:groups--> sections**. Each card has a short summary and a full explanation
 in Russian and English, syntax, runnable examples, search synonyms, links to
 neighbouring topics, the Python version and a link to the official documentation.
 

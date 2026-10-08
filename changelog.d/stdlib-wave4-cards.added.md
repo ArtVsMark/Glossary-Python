@@ -1,0 +1,1 @@
+158 новых карточек четвёртой волны полноты (#237): html, http, http.server, importlib, keyword, reprlib, runpy, linecache, getopt, sched, webbrowser, colorsys, dis, cProfile, pstats, faulthandler, tracemalloc, fileinput, filecmp, mimetypes, gettext, bz2, lzma, annotationlib и compression.zstd — версии по документации, примеры исполнены на 3.11–3.15; 2656 → 2814

@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Вопрос или идея
+  - name: Вопрос или идея / Question or idea
     url: https://github.com/ArtVsMark/Glossary-Python/discussions
-    about: Общие вопросы и обсуждение развития глоссария — в Discussions.
-  - name: Документация Python
+    about: Общие вопросы и обсуждение развития глоссария — в Discussions. / General questions and discussion of the glossary's development go to Discussions.
+  - name: Документация Python / Python documentation
     url: https://docs.python.org/3/
-    about: Первоисточник, на который ссылаются карточки глоссария.
+    about: Первоисточник, на который ссылаются карточки глоссария. / The primary source the glossary cards link to.

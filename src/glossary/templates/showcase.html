@@ -88,6 +88,15 @@ a{color:inherit}
 .hbtn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .hbtn.primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
 .hbtn.done{background:var(--ok);border-color:var(--ok);color:#fff}
+a.hbtn{text-decoration:none}
+/* На телефоне кнопки шапки — значки: с подписями шапка шире экрана, и «Скачать»
+   уезжала за край уже до кнопки GitHub (замер на 400px, #233). Уже 480px название
+   уступает место логотипу: иначе строка не помещается и без подписей. */
+@media (max-width:600px){
+  .header-inner{gap:8px}
+  #repoLink span,#downloadBtn span{display:none}
+}
+@media (max-width:480px){.brand h1{display:none}}
 .langs{display:inline-flex;border:1px solid var(--border-strong);border-radius:var(--radius-sm);overflow:hidden;height:36px}
 .langs button{
   border:0;background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:700;
@@ -244,6 +253,10 @@ a{color:inherit}
   color:var(--muted);text-decoration:none;transition:color .16s;
 }
 .docs-link:hover{color:var(--accent)}
+/* Обратная связь — неброско: карточку читают, а не правят, но правящему путь виден. */
+.report-link{margin-left:auto;font-size:12px;color:var(--faint);text-decoration:none;transition:color .16s}
+.report-link:hover{color:var(--accent)}
+.report-link + .docs-link{margin-left:0}
 .docs-link svg{width:13px;height:13px}
 .details{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
 .card.open .details{display:block}
@@ -286,6 +299,7 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
 .empty.show{display:block}
 .empty .big{font-size:44px;margin-bottom:12px;opacity:.55}
 .empty h3{margin:0 0 5px;font-size:17px;color:var(--text)}
+.empty a{display:inline-block;margin-top:14px;color:var(--accent);font-weight:600}
 .sentinel{height:1px}
 .site-footer{
   max-width:1520px;margin:0 auto;padding:26px;border-top:1px solid var(--border);
@@ -329,6 +343,10 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
       <button type="button" data-lang="ru" aria-pressed="true">RU</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
     </div>
+    <a class="hbtn" id="repoLink" href="{{REPOSITORY}}" target="_blank" rel="noopener" data-i18n-title="repoHint" title="Исходники на GitHub — поставьте звезду, если глоссарий пригодился">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span>GitHub</span>
+    </a>
     <button class="hbtn" id="themeBtn" type="button" data-i18n-title="theme" title="Сменить тему">
       <svg class="theme-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg class="theme-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
@@ -371,6 +389,7 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
       <div class="big">🔍</div>
       <h3 data-i18n="emptyTitle">Ничего не найдено</h3>
       <p data-i18n="emptyHint">Попробуйте другой запрос или снимите фильтры.</p>
+      <a id="emptyAsk" href="{{REPOSITORY}}/issues/new?template=term_request.yml" target="_blank" rel="noopener" data-i18n="askCardEmpty">Нет нужной карточки? Предложите её</a>
     </div>
   </main>
 </div>
@@ -378,7 +397,11 @@ mark{background:var(--mark-bg);color:var(--mark-ink);border-radius:3px;padding:0
 <footer class="site-footer">
   <span id="footStats"></span>
   <span>·</span>
-  <a href="https://github.com/ArtVsMark/Glossary-Python" target="_blank" rel="noopener">ArtVsMark/Glossary-Python</a>
+  <a href="{{REPOSITORY}}" target="_blank" rel="noopener">ArtVsMark/Glossary-Python</a>
+  <span>·</span>
+  <a href="{{REPOSITORY}}/issues/new?template=term_request.yml" target="_blank" rel="noopener" data-i18n="askCard">Предложить карточку</a>
+  <span>·</span>
+  <a href="{{REPOSITORY}}/issues/new?template=bug_report.yml" target="_blank" rel="noopener" data-i18n="reportBug">Ошибка в витрине</a>
   <span>·</span>
   <button type="button" id="resetBtn" class="footer-reset"></button>
 </footer>
@@ -423,7 +446,11 @@ const I18N = {
     emptyTitle:"Ничего не найдено", emptyHint:"Попробуйте другой запрос или снимите фильтры.",
     stats:(n,s)=>`${n} карточек · ${s} разделов`,
     reset:"Сбросить настройки", resetDone:"Настройки удалены",
-    resetHint:"Удалить сохранённые тему и язык"
+    resetHint:"Удалить сохранённые тему и язык",
+    repoHint:"Исходники на GitHub — поставьте звезду, если глоссарий пригодился",
+    report:"Сообщить о неточности", reportHint:"Открыть задачу на GitHub с этой карточкой",
+    askCard:"Предложить карточку", askCardEmpty:"Нет нужной карточки? Предложите её",
+    reportBug:"Ошибка в витрине"
   },
   en:{
     title:"Python Glossary", subtitle:"Standard library reference", pyHint:"What is available in the chosen version: added no later and not yet removed", pyAdded:"added", pyAddedHint:"Only what was added in exactly the chosen version; with no version, everything", pyDeprecated:"deprecated", pyDeprecatedHint:"What was deprecated in the chosen version; with no version, everything deprecated", pyRemoved:"removed", pyRemovedHint:"What was removed in the chosen version, so it works only before it; with no version, everything removed or scheduled for removal", sinceAll:"all Python 3", sinceAllHint:"Available in every Python 3 release — it dates back to Python 2", sinceHint:"Added in this Python version and available in later ones", platformsHint:"Available on these systems only; cards without this badge work everywhere (AllOS)", deprecated:"deprecated in", deprecatedHint:"Deprecated in this Python version and may be removed", removed:"until", removedHint:"Removed, or scheduled for removal, in this Python version: works in versions before it",
@@ -438,7 +465,11 @@ const I18N = {
     emptyTitle:"Nothing found", emptyHint:"Try another query or clear the filters.",
     stats:(n,s)=>`${n} entries · ${s} sections`,
     reset:"Reset preferences", resetDone:"Preferences deleted",
-    resetHint:"Delete the saved theme and language"
+    resetHint:"Delete the saved theme and language",
+    repoHint:"Source on GitHub — star it if the glossary helped",
+    report:"Report an inaccuracy", reportHint:"Open a GitHub issue about this card",
+    askCard:"Suggest a card", askCardEmpty:"Missing a card? Suggest it",
+    reportBug:"Showcase bug"
   }
 };
 let LANG = "ru";
@@ -616,6 +647,28 @@ const ICON_CHEVRON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
 const ICON_DOC = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>';
 const ICON_COPY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
 
+/* Обратная связь (#233): адрес формы задачи с уже заполненными полями. GitHub
+   issue forms принимают значение поля в параметре с его id — имена ниже обязаны
+   совпадать с id в .github/ISSUE_TEMPLATE/*.yml, это держит тест. */
+const REPO = "{{REPOSITORY}}";
+const FORMS = {
+  fix:{ template:"content_fix.yml", title:"[Контент / Content]: ", id:"entry_id" },
+  ask:{ template:"term_request.yml", title:"[Карточка / Card]: ", name:"name", group:"group" }
+};
+function issueUrl(params){
+  return `${REPO}/issues/new?${new URLSearchParams(params).toString()}`;
+}
+function reportUrl(d){
+  const f = FORMS.fix;
+  return issueUrl({ template:f.template, title:f.title + ttl(d), [f.id]:d.id });
+}
+function askUrl(){
+  const f = FORMS.ask, name = $("#search").value.trim(), params = { template:f.template };
+  if(name){ params.title = f.title + name; params[f.name] = name; }
+  if(state.section) params[f.group] = sectionBadge(state.section);
+  return issueUrl(params);
+}
+
 function cardHtml(d){
   const cgv = CG_VAR[d.color_group] || "var(--c-op)";
   /* Жизненный цикл (#122): значок у каждой карточки. Без него «<3.0» читался как
@@ -656,6 +709,7 @@ function cardHtml(d){
   </div>
   <div class="card-foot">
     ${hasDetails ? `<button class="expand" type="button"><span>${t("details")}</span>${ICON_CHEVRON}</button>` : ""}
+    <a class="report-link" href="${esc(reportUrl(d))}" target="_blank" rel="noopener" title="${esc(t("reportHint"))}">${t("report")}</a>
     ${d.docs_url ? `<a class="docs-link" href="${esc(d.docs_url)}" target="_blank" rel="noopener">${ICON_DOC} docs.python.org</a>` : ""}
   </div>
   <div class="details" data-lazy="1"></div>
@@ -717,6 +771,7 @@ function render(){
   drawn = 0;
   drawChunk();
   empty.classList.toggle("show", visible.length === 0);
+  if(visible.length === 0) $("#emptyAsk").href = askUrl();
   counter.innerHTML = `${t("shown")}: <b>${visible.length}</b> ${t("of")} ${DATA.length}`;
   updateRail();
   buildKindFilters(); buildFamilyFilters(); buildSectionFilters(); buildPyFilters();

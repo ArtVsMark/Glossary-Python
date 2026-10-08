@@ -12,13 +12,21 @@ from importlib import resources
 from typing import TYPE_CHECKING, Final
 
 from glossary import taxonomy
-from glossary.contracts import PAGES_URL
+from glossary.contracts import PAGES_URL, REPOSITORY_URL
 from glossary.errors import ExportError
 
 if TYPE_CHECKING:
     from glossary.models import Glossary
 
-__all__ = ["HEAD", "NAVIGATION", "PLACEHOLDER", "HtmlExporter", "head", "load_template"]
+__all__ = [
+    "HEAD",
+    "NAVIGATION",
+    "PLACEHOLDER",
+    "REPOSITORY",
+    "HtmlExporter",
+    "head",
+    "load_template",
+]
 
 PLACEHOLDER: Final = "{{GLOSSARY_DATA}}"
 NAVIGATION: Final = "{{NAVIGATION}}"
@@ -34,6 +42,11 @@ HEAD: Final = "{{HEAD}}"
 Собираются кодом, а не пишутся в шаблоне: в них числа сборки, а число,
 вписанное рукой, устаревает молча. Шаблон без этой точки собирается — как и без
 таблицы фильтра."""
+REPOSITORY: Final = "{{REPOSITORY}}"
+"""Адрес репозитория: кнопка в шапке, ссылки обратной связи из карточек (#233).
+
+Подставляется из :data:`glossary.contracts.REPOSITORY_URL`, а не пишется в
+шаблоне строкой: адрес проекта назван в пакете один раз."""
 TEMPLATE_NAME: Final = "showcase.html"
 _PACKAGE: Final = "glossary.templates"
 
@@ -187,6 +200,7 @@ class HtmlExporter:
         # вторую замену, если в нём встретится имя плейсхолдера.
         return (
             self._template.replace(HEAD, head(glossary))
+            .replace(REPOSITORY, REPOSITORY_URL)
             .replace(NAVIGATION, navigation)
             .replace(PLACEHOLDER, payload)
         )

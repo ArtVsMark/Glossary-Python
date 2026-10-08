@@ -40,6 +40,7 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import Final
+from urllib.parse import urlencode
 
 ROOT: Final = Path(__file__).resolve().parent.parent
 SHOWCASE: Final = ROOT / "site" / "python_glossary.html"
@@ -141,6 +142,24 @@ def opening_findings(dom: str, total: int) -> list[str]:
     return findings
 
 
+def feedback_findings(dom: str) -> list[str]:
+    """Сценарий «сообщить о неточности» (#233): у карточки есть ссылка с её id.
+
+    Адрес формы строит скрипт страницы, поэтому смотрится отрисованный DOM, а не
+    шаблон: опечатка в имени параметра шаблон не меняет, а форму пустой делает.
+    """
+    rendered = rendered_ids(dom)
+    if not rendered:
+        return []
+    expected = urlencode({"entry_id": rendered[0]})
+    if expected not in dom:
+        return [
+            f"у карточки {rendered[0]} нет ссылки обратной связи с {expected} — "
+            "форма откроется незаполненной"
+        ]
+    return []
+
+
 def deep_target(ids: list[str], rendered: list[str]) -> str | None:
     """Первая карточка сборки, которой нет в начальной порции сетки."""
     shown = set(rendered)
@@ -150,7 +169,7 @@ def deep_target(ids: list[str], rendered: list[str]) -> str | None:
 def check(browser: Path, page: Path, ids: list[str]) -> list[str]:
     """Оба сценария читателя на настоящей странице."""
     first = dump_dom(browser, page)
-    findings = opening_findings(first, len(ids))
+    findings = opening_findings(first, len(ids)) + feedback_findings(first)
     target = deep_target(ids, rendered_ids(first))
     if target is not None and target not in rendered_ids(dump_dom(browser, page, target)):
         findings.append(f"переход по якорю #{target} не отрисовал карточку")

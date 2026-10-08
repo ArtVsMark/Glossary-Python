@@ -24,6 +24,9 @@ body:
         - Неверный маркер версии / Wrong version marker
         - Дубликат другой карточки / Duplicate of another card
         - Опечатка или оформление / Typo or formatting
+        - Не хватает функции, класса или параметра в карточке модуля / A function, class or parameter is missing from a module card
+        - Неточность в документации Python, а не в карточке / An inaccuracy in the Python documentation itself, not in the card
+        - Другое / Other
     validations:
       required: true
 

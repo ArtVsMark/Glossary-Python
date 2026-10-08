@@ -96,3 +96,29 @@ def test_live_broken_script_is_caught(tmp_path: Path):
         encoding="utf-8",
     )
     assert runs.check(browser, broken, ["a"]) != []
+
+
+# --------------------------------------------------------------------------- #
+# Обратная связь из карточки (#233)
+# --------------------------------------------------------------------------- #
+
+
+def test_card_with_its_report_link_is_silent():
+    card = "бинарный-поиск"
+    encoded = "".join(
+        f"%{byte:02X}" if byte > 127 else chr(byte) for byte in card.encode()
+    )
+    dom = page(1, 1, [card])
+    href = f"x?template=content_fix.yml&amp;entry_id={encoded}"
+    dom += f'<a class="report-link" href="{href}">'
+    assert runs.feedback_findings(dom) == []
+
+
+def test_card_without_its_report_link_is_a_finding():
+    findings = runs.feedback_findings(page(1, 1, ["a"]))
+    assert len(findings) == 1
+    assert "незаполненной" in findings[0]
+
+
+def test_empty_grid_has_no_feedback_to_check():
+    assert runs.feedback_findings(page(0, 0, [])) == []

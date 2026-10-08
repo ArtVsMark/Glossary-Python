@@ -72,6 +72,7 @@ DOCUMENTS: Final = (
     "docs/use/contracts.md",
     "docs/README.md",
     "docs/use/README.md",
+    "docs/use/status.md",
     "docs/use/outputs.md",
     "docs/dev/README.md",
     "docs/dev/getting-started.md",

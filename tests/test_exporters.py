@@ -8,10 +8,21 @@ import shutil
 import subprocess
 
 import pytest
+import yaml
 
+from glossary.contracts import PAGES_URL, REPOSITORY_URL, SITE_VERIFICATION
 from glossary.errors import ExportError
 from glossary.exporters import EXPORTERS, MarkdownExporter, get_exporter
-from glossary.exporters.html import PLACEHOLDER, HtmlExporter, load_template
+from glossary.exporters.html import (
+    HEAD,
+    PLACEHOLDER,
+    REPOSITORY,
+    HtmlExporter,
+    _count,
+    head,
+    load_template,
+)
+from glossary.loader import project_root
 from glossary.models import Glossary
 from tests.factories import (
     VALID_SUMMARY,
@@ -270,3 +281,101 @@ def test_lifecycle_mode_without_version_keeps_only_python3_events():
             (gone, "", "removed"),
         ]
     ) == [False, True, True, False, True, True]
+
+
+# --------------------------------------------------------------------------- #
+# Метаданные страницы (#222)
+# --------------------------------------------------------------------------- #
+
+
+@pytest.mark.parametrize(
+    "number, expected",
+    [
+        (1, "1 карточка"),
+        (2, "2 карточки"),
+        (5, "5 карточек"),
+        (11, "11 карточек"),
+        (12, "12 карточек"),
+        (21, "21 карточка"),
+        (2656, "2656 карточек"),
+    ],
+)
+def test_number_agrees_with_its_noun(number: int, expected: str):
+    assert _count(number, "карточка", "карточки", "карточек") == expected
+
+
+def test_head_names_the_published_address_and_the_count(sample_glossary: Glossary):
+    page = HtmlExporter(template=f"<head>{HEAD}</head>{PLACEHOLDER}").render(
+        sample_glossary
+    )
+    assert HEAD not in page
+    assert f'<link rel="canonical" href="{PAGES_URL}">' in page
+    assert '<meta name="description"' in page
+    assert 'property="og:title"' in page
+    block = head(sample_glossary).split('<script type="application/ld+json">', 1)[1]
+    data = json.loads(block.split("</script>", 1)[0])
+    term_set = next(n for n in data["@graph"] if n["@type"] == "DefinedTermSet")
+    assert term_set["numberOfItems"] == len(sample_glossary.entries)
+
+
+def test_head_text_cannot_close_the_script_block():
+    assert head(Glossary(entries=())).count("</script>") == 1
+
+
+@pytest.mark.live_surface
+def test_shipped_template_carries_the_head_point():
+    assert HEAD in load_template(), "метаданным витрины некуда встать"
+
+
+# --------------------------------------------------------------------------- #
+# Ссылка на проект и обратная связь (#233)
+# --------------------------------------------------------------------------- #
+
+
+def test_repository_point_takes_the_package_address(sample_glossary: Glossary):
+    page = HtmlExporter(template=f'<a href="{REPOSITORY}">{PLACEHOLDER}</a>').render(
+        sample_glossary
+    )
+    assert REPOSITORY not in page
+    assert f'href="{REPOSITORY_URL}"' in page
+
+
+def _form_ids(name: str) -> set[str]:
+    """Id полей формы задачи — по ним GitHub подставляет параметры адреса."""
+    form = yaml.safe_load(
+        (project_root() / ".github" / "ISSUE_TEMPLATE" / name).read_text("utf-8")
+    )
+    return {field["id"] for field in form["body"] if "id" in field}
+
+
+@pytest.mark.live_surface
+def test_showcase_feedback_matches_the_issue_forms():
+    """Имена параметров витрины совпадают с id полей формы.
+
+    Переименуй поле в форме — и предзаполнение молча перестанет работать:
+    GitHub незнакомый параметр просто пропускает.
+    """
+    template = load_template()
+    assert 'template:"content_fix.yml"' in template
+    assert 'id:"entry_id"' in template
+    assert "entry_id" in _form_ids("content_fix.yml")
+    assert 'template:"term_request.yml"' in template
+    assert {"name", "group"} <= _form_ids("term_request.yml")
+    assert 'name:"name", group:"group"' in template
+    for form in ("content_fix.yml", "term_request.yml", "bug_report.yml"):
+        assert f"template={form}" in template or f'template:"{form}"' in template
+        assert (project_root() / ".github" / "ISSUE_TEMPLATE" / form).exists()
+
+
+@pytest.mark.live_surface
+def test_shipped_template_names_the_repository_by_the_point():
+    template = load_template()
+    assert REPOSITORY in template
+    assert "github.com/ArtVsMark" not in template, "адрес проекта — точкой, не строкой"
+
+
+def test_head_carries_search_console_verification(sample_glossary: Glossary):
+    """Ресурс подтверждается тегом в странице (#224): код из пакета, один раз."""
+    rendered = head(sample_glossary)
+    for name, code in SITE_VERIFICATION.items():
+        assert rendered.count(f'<meta name="{name}" content="{code}">') == 1

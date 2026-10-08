@@ -1,13 +1,13 @@
-name: Правка содержимого
-description: Неточность, опечатка или неполнота в существующей карточке
-title: "[Контент]: "
+name: Правка содержимого / Content fix
+description: Неточность, опечатка или неполнота в существующей карточке / An inaccuracy, typo or gap in an existing card
+title: "[Контент / Content]: "
 labels: ["контент"]
 body:
   - type: input
     id: entry_id
     attributes:
-      label: Идентификатор карточки
-      description: Значение поля `id` из `data/glossary.json`.
+      label: Идентификатор карточки / Card identifier
+      description: Значение поля `id` из `data/glossary.json`. / The value of the `id` field in `data/glossary.json`.
       placeholder: "extend"
     validations:
       required: true
@@ -15,29 +15,32 @@ body:
   - type: dropdown
     id: kind
     attributes:
-      label: Что не так
+      label: Что не так / What is wrong
       options:
-        - Фактическая ошибка
-        - Неполное или неточное описание
-        - Пример не работает или устарел
-        - Неверная или слишком общая ссылка на документацию
-        - Неверный маркер версии
-        - Дубликат другой карточки
-        - Опечатка или оформление
+        - Фактическая ошибка / Factual error
+        - Неполное или неточное описание / Incomplete or inaccurate description
+        - Пример не работает или устарел / The example fails or is outdated
+        - Неверная или слишком общая ссылка на документацию / Wrong or too general documentation link
+        - Неверный маркер версии / Wrong version marker
+        - Дубликат другой карточки / Duplicate of another card
+        - Опечатка или оформление / Typo or formatting
+        - Не хватает функции, класса или параметра в карточке модуля / A function, class or parameter is missing from a module card
+        - Неточность в документации Python, а не в карточке / An inaccuracy in the Python documentation itself, not in the card
+        - Другое / Other
     validations:
       required: true
 
   - type: textarea
     id: current
     attributes:
-      label: Как сейчас
+      label: Как сейчас / Current text
     validations:
       required: true
 
   - type: textarea
     id: expected
     attributes:
-      label: Как должно быть
-      description: По возможности приложите ссылку на документацию или PEP.
+      label: Как должно быть / What it should be
+      description: По возможности приложите ссылку на документацию или PEP. / If possible, attach a link to the documentation or a PEP.
     validations:
       required: true

@@ -23,11 +23,11 @@ The set was assembled by the catalogue's `onboard_consumer.py` command, not
 copied by hand: a copy of the generator in every project means N implementations
 of one algorithm.
 
-All **<!--m:rules_total-->216<!--/m:rules_total-->** catalogue rules have been reviewed; no `unreviewed` remain:
+All **<!--m:rules_total-->217<!--/m:rules_total-->** catalogue rules have been reviewed; no `unreviewed` remain:
 
 | Answer | Count | Meaning |
 | --- | --- | --- |
-| `active` + mechanism | <!--m:rules_mechanised-->144<!--/m:rules_mechanised--> | The rule is in force and held by a gate (<!--m:rules_gate-->83<!--/m:rules_gate-->), a document (<!--m:rules_document-->45<!--/m:rules_document-->) or the pipeline (<!--m:rules_pipeline-->16<!--/m:rules_pipeline-->) |
+| `active` + mechanism | <!--m:rules_mechanised-->145<!--/m:rules_mechanised--> | The rule is in force and held by a gate (<!--m:rules_gate-->84<!--/m:rules_gate-->), a document (<!--m:rules_document-->45<!--/m:rules_document-->) or the pipeline (<!--m:rules_pipeline-->16<!--/m:rules_pipeline-->) |
 | `active` + `none` | <!--m:rules_none-->2<!--/m:rules_none--> | The rule is in force but nothing here holds it — each one names a reason |
 | `not-applicable` | <!--m:rules_na-->69<!--/m:rules_na--> | The rule's subject does not exist in this project — with an explanation of why |
 

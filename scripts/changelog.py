@@ -109,7 +109,8 @@ def read_fragments() -> tuple[list[Fragment], list[str]]:
         )
 
     for path in sorted(FRAGMENTS.iterdir()):
-        if path.name == "README.md" or path.name.startswith("."):
+        # Описание каталога и его английский двойник — не записи журнала.
+        if path.name in {"README.md", "README.en.md"} or path.name.startswith("."):
             continue
         match = NAME.match(path.name)
         if match is None:

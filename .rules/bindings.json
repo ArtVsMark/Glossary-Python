@@ -1,7 +1,7 @@
 {
-  "schema": "1.7",
+  "schema": "1.8",
   "answers_to": "1.7",
-  "_answers_to": "Версия ВЫГРУЗКИ каталога (export/rules.json → contracts.export), по которой построены ответы. Прочитана из выгрузки тега v1.4.0 02.10 и сверена заново 07.10 с выгрузкой v1.6.0 и головы main (0422203): export 1.7, bindings 1.7, proposals 1.2 — номера не двигались, а не по памяти (157).",
+  "_answers_to": "Версия ВЫГРУЗКИ каталога (export/rules.json → contracts.export), по которой построены ответы. Сверена 08.10 с выгрузкой тега v1.7.0 и головы main (f94f0f7): export 1.7, bindings 1.8, proposals 1.2 — выгрузка не двигалась, сдвинулся формат ответа, и ответы перечитаны под него (157), а не по памяти.",
   "schema_of": "формат ЭТОГО файла — ответа потребителя каталогу (templates/bindings.json). Не путать с номерами рядом: выгрузка правил каталога — answers_to, предложение правила (.rules/proposals.json) — 1.2 (правило 164).",
   "project": "ArtVsMark/Glossary-Python",
   "catalogue": "https://github.com/ArtVsMark/Engineering-Incidents-Playbook",
@@ -234,7 +234,9 @@
     "028": {
       "status": "active",
       "mechanism": "pipeline",
-      "where": ".github/workflows/rules-inbox.yml — комплексная задача проекта (задача «Правила каталога: входящие») НЕ ВЕДЁТСЯ РУКАМИ ВОВСЕ: её тело пересчитывается действием каталога из .rules/bindings.json ежедневно. Чек-лист нужен там, где состояние правят прозой и оно расходится с делом; здесь править нечего — состояние выводится из ответа, а ответ и есть предмет работы. Прежний ответ «трекера у проекта пока нет» был неверен: задача заведена 5 сентября прогоном, оба его захода зелены. ГРАНИЦА НАЗВАНА: пересчёт суточный, поэтому тело задачи отстаёт от ответа на срок до суток — это задержка расписания, а не расхождение правки с делом, против которого правило"
+      "where": ".github/workflows/rules-inbox.yml — комплексная задача проекта (задача «Правила каталога: входящие») НЕ ВЕДЁТСЯ РУКАМИ ВОВСЕ: её тело пересчитывается действием каталога из .rules/bindings.json ежедневно. Чек-лист нужен там, где состояние правят прозой и оно расходится с делом; здесь править нечего — состояние выводится из ответа, а ответ и есть предмет работы. Прежний ответ «трекера у проекта пока нет» был неверен: задача заведена 5 сентября прогоном, оба его захода зелены. ГРАНИЦА НАЗВАНА: пересчёт суточный, поэтому тело задачи отстаёт от ответа на срок до суток — это задержка расписания, а не расхождение правки с делом, против которого правило",
+      "origin": "ArtVsMark/Engineering-Incidents-Playbook:action.yml@v1.7.0",
+      "origin_kind": "called"
     },
     "029": {
       "status": "active",
@@ -358,7 +360,9 @@
     "049": {
       "status": "active",
       "mechanism": "pipeline",
-      "where": ".github/workflows/rules-inbox.yml — состояние по правилам вычисляется прогоном из .rules/bindings.json и выгрузки каталога, отдельного реестра руками не ведётся"
+      "where": ".github/workflows/rules-inbox.yml — состояние по правилам вычисляется прогоном из .rules/bindings.json и выгрузки каталога, отдельного реестра руками не ведётся",
+      "origin": "ArtVsMark/Engineering-Incidents-Playbook:action.yml@v1.7.0",
+      "origin_kind": "called"
     },
     "050": {
       "status": "active",
@@ -942,7 +946,9 @@
     "128": {
       "status": "active",
       "mechanism": "pipeline",
-      "where": ".github/workflows/rules-inbox.yml — прогон каталога проверяет полноту ответа по всем правилам, а не непустоту файла"
+      "where": ".github/workflows/rules-inbox.yml — прогон каталога проверяет полноту ответа по всем правилам, а не непустоту файла",
+      "origin": "ArtVsMark/Engineering-Incidents-Playbook:action.yml@v1.7.0",
+      "origin_kind": "called"
     },
     "129": {
       "status": "not-applicable",
@@ -1097,7 +1103,7 @@
     "152": {
       "status": "active",
       "mechanism": "gate",
-      "where": ".github/workflows/rules-inbox.yml — стороннее действие каталога закреплено тегом v1.6.0. Тег поднимается явным изменением после сверки action.yml между тегами: v1.4.0 → v1.6.0 действие не менялось (07.10)"
+      "where": ".github/workflows/rules-inbox.yml — стороннее действие каталога закреплено тегом v1.7.0. Тег поднимается явным изменением после сверки action.yml между тегами: v1.4.0 → v1.6.0 действие не менялось (07.10); v1.6.0 → v1.7.0 — Python действия 3.12 → 3.14 и синтаксис sync_inbox.py под неё, логика сверки та же (08.10)"
     },
     "153": {
       "status": "active",
@@ -1127,6 +1133,8 @@
       "status": "active",
       "mechanism": "pipeline",
       "where": ".github/workflows/rules-inbox.yml — действие каталога сверяет schema ответа и answers_to со своими номерами и печатает расхождение в задаче-входящие. Ответы перечитаны под контракт 1.7 02.10: holdable проставлен всем записям, которые машина не держит, и пять вердиктов исправлены. ВЕРДИКТ ИСПРАВЛЕН 02.10: стояло «document», а расхождение называет прогон",
+      "origin": "ArtVsMark/Engineering-Incidents-Playbook:action.yml@v1.7.0",
+      "origin_kind": "called",
       "analysed": "2026-10-02",
       "decided": "2026-10-02"
     },
@@ -1153,7 +1161,9 @@
     "162": {
       "status": "active",
       "mechanism": "pipeline",
-      "where": ".github/workflows/rules-inbox.yml — прогон каталога приносит раздел «У соседей это уже решено» с адресом чужого механизма"
+      "where": ".github/workflows/rules-inbox.yml — прогон каталога приносит раздел «У соседей это уже решено» с адресом чужого механизма",
+      "origin": "ArtVsMark/Engineering-Incidents-Playbook:action.yml@v1.7.0",
+      "origin_kind": "called"
     },
     "163": {
       "status": "not-applicable",
@@ -1594,6 +1604,13 @@
       "where": "scripts/check_python_version.py — работа CI и тот же гейт в `make check`: у каждой работы каждого прогона python вызывается только после setup-python, версия названа числом и не ниже планки requires-python (её читает scripts/python_floor.py; исключения — работы замера языка, названные в MEASUREMENT), а предварительная версия выше проверяемых. Стиль держит ruff: target-version = \"py314\" в pyproject.toml выводит требования из той же планки (PEP 695 вместо TypeVar, без from __future__), mypy в строгом режиме. Переезд на 3.14 закрыт так в #53/#69: две работы, звавшие системный python раннера раньше setup-python, нашёл именно этот гейт",
       "analysed": "2026-10-07",
       "decided": "2026-10-07"
+    },
+    "218": {
+      "status": "active",
+      "mechanism": "gate",
+      "where": "tests/test_delivery.py и src/glossary/delivery.py — предмет здесь один: снятие карточки при слиянии с дублем, и на снятой держатся две вещи. Первая — id, на который ведут ссылки грейдера: живая половина tests/test_delivery.py сверяет id каждого выпуска с выгрузкой и требует для исчезнувшего записи в data/moved.json, а moved() отказывает, если переезд ведёт в несуществующую карточку или старая ещё жива — перенос, а не молчаливое снятие. Вторая — связи «см. также» и «частые ошибки» соседних карточек: правила related-resolves и related-errors-resolve в src/glossary/validation.py, планка 0 в tests/quality_baseline.json, держит tests/test_data_integrity.py. Сборка фрагментов журнала (scripts/changelog.py --collect) снимает файлы, на которых не держится ничего, кроме перенесённой строки",
+      "analysed": "2026-10-08",
+      "decided": "2026-10-08"
     }
   }
 }

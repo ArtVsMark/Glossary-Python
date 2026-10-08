@@ -101,3 +101,16 @@ def test_live_journal_keeps_its_window():
     """Настоящий журнал укладывается в окно, и выпуск не лежит в двух местах."""
     assert changelog.check_window() == []
     assert changelog.versions(changelog.CHANGELOG.read_text("utf-8"))
+
+
+def test_directory_description_and_its_twin_are_not_fragments(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+):
+    """Описание каталога на двух языках — не запись: ``README.en`` не секция."""
+    for name in ("README.md", "README.en.md"):
+        (tmp_path / name).write_text("# Фрагменты\n", encoding="utf-8")
+    (tmp_path / "x.added.md").write_text("запись (#1)\n", encoding="utf-8")
+    monkeypatch.setattr(changelog, "FRAGMENTS", tmp_path)
+    fragments, problems = changelog.read_fragments()
+    assert problems == []
+    assert len(fragments) == 1

@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-08T05:46:22+00:00",
+  "generated_at": "2026-10-08T05:50:21+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2656,
     "schema_version": 6,
-    "digest": "9e0435fbe341"
+    "digest": "5ffde1e60653"
   },
   "groups": {
     "builtin": [
@@ -52148,8 +52148,8 @@
           "en": "Launch a program via the posix_spawn syscall; returns the PID (3.8+). Availability: Unix."
         },
         "body": {
-          "ru": "Быстрее fork плюс exec для больших процессов: не нужно копировать адресное пространство родителя. subprocess использует её сам, когда параметры это позволяют. Аргументы и окружение передаются обязательно: posix_spawn(path, argv, env), где argv начинается с имени программы, а env заменяет окружение целиком. Возвращает PID, которого нужно дождаться через waitpid.",
-          "en": "It is faster than fork plus exec for large processes, since the parent's address space need not be copied. subprocess uses it automatically when its parameters allow. Arguments and environment are mandatory: posix_spawn(path, argv, env), where argv starts with the program name and env replaces the environment entirely. It returns a PID that you must reap with waitpid."
+          "ru": "Быстрее fork плюс exec для больших процессов: не нужно копировать адресное пространство родителя. subprocess использует её сам, когда параметры это позволяют. Аргументы и окружение передаются обязательно: posix_spawn(path, argv, env), где argv начинается с имени программы, а env заменяет окружение целиком (с 3.13 вместо него можно передать None — тогда наследуется текущее). Возвращает PID, которого нужно дождаться через waitpid.",
+          "en": "It is faster than fork plus exec for large processes, since the parent's address space need not be copied. subprocess uses it automatically when its parameters allow. Arguments and environment are mandatory: posix_spawn(path, argv, env), where argv starts with the program name and env replaces the environment entirely (since 3.13 it may be None, which inherits the current one). It returns a PID that you must reap with waitpid."
         },
         "syntax": "os.posix_spawn(...)",
         "status": "ready",
@@ -54509,7 +54509,7 @@
         "syntax": "os.setresuid(...)",
         "status": "ready",
         "docs_url": "https://docs.python.org/3/library/os.html#os.setresuid",
-        "added": "<3.0",
+        "added": "3.2",
         "deprecated": "",
         "removed": "",
         "platforms": [
@@ -54569,7 +54569,7 @@
         "syntax": "os.setresgid(...)",
         "status": "ready",
         "docs_url": "https://docs.python.org/3/library/os.html#os.setresgid",
-        "added": "<3.0",
+        "added": "3.2",
         "deprecated": "",
         "removed": "",
         "platforms": [
@@ -56704,8 +56704,8 @@
           "en": "Create a named pipe (FIFO). Availability: Unix."
         },
         "body": {
-          "ru": "Именованный канал виден как файл, но данных на диске не хранит: открытие на чтение блокируется, пока кто-нибудь не откроет его на запись, и наоборот. Поэтому открыть FIFO на чтение и запись в одном потоке не получится — программа зависнет. Права, как у mkdir, проходят через umask.",
-          "en": "A named pipe looks like a file but stores no data on disk: opening it for reading blocks until someone opens it for writing, and vice versa. So you cannot open a FIFO for reading and writing in one thread — the program hangs. Permissions pass through the umask, as with mkdir."
+          "ru": "Именованный канал виден как файл, но данных на диске не хранит: открытие на чтение блокируется, пока кто-нибудь не откроет его на запись, и наоборот. Поэтому в одном потоке нельзя открыть FIFO сначала на чтение, а потом на запись — первый же open() зависнет; на Linux выручает os.open() с флагом O_RDWR, но POSIX такое поведение не определяет. Права, как у mkdir, проходят через umask.",
+          "en": "A named pipe looks like a file but stores no data on disk: opening it for reading blocks until someone opens it for writing, and vice versa. So in one thread you cannot open a FIFO for reading and then for writing — the first open() hangs; on Linux os.open() with O_RDWR works around it, but POSIX leaves that behaviour undefined. Permissions pass through the umask, as with mkdir."
         },
         "syntax": "os.mkfifo(...)",
         "status": "ready",
@@ -58453,8 +58453,8 @@
           "en": "Copy a range of bytes between files in the kernel (3.8+). Availability: Linux."
         },
         "body": {
-          "ru": "Копирует данные внутри ядра, а на файловых системах с поддержкой reflink, например Btrfs и XFS, может вовсе не копировать блоки, а сослаться на них. shutil.copyfile на Linux использует её сам, когда это возможно. Может скопировать меньше запрошенного — вызывайте в цикле до нулевого результата.",
-          "en": "It copies data inside the kernel, and on filesystems with reflink support such as Btrfs and XFS it may share blocks instead of copying them. shutil.copyfile on Linux uses it automatically when possible. It may copy less than requested — call it in a loop until it returns zero."
+          "ru": "Копирует данные внутри ядра, а на файловых системах с поддержкой reflink, например Btrfs и XFS, может вовсе не копировать блоки, а сослаться на них. С Python 3.14 shutil.copyfile на Linux использует её сам, когда это возможно. Может скопировать меньше запрошенного — вызывайте в цикле до нулевого результата.",
+          "en": "It copies data inside the kernel, and on filesystems with reflink support such as Btrfs and XFS it may share blocks instead of copying them. Since Python 3.14, shutil.copyfile on Linux uses it automatically when possible. It may copy less than requested — call it in a loop until it returns zero."
         },
         "syntax": "os.copy_file_range(...)",
         "status": "ready",
@@ -59466,12 +59466,12 @@
         },
         "kind": "function",
         "summary": {
-          "ru": "Присоединяет процесс к пространству имён (namespace) по дескриптору (Python 3.12+). Доступно на Linux.",
-          "en": "Attach the process to a namespace by file descriptor (3.12+). Availability: Linux."
+          "ru": "Присоединяет текущий поток к пространству имён (namespace) по дескриптору (Python 3.12+). Доступно на Linux.",
+          "en": "Attach the calling thread to a namespace by file descriptor (3.12+). Availability: Linux."
         },
         "body": {
-          "ru": "Присоединяет процесс к пространству имён другого процесса по дескриптору файла из /proc/PID/ns/ — так устроены инструменты вроде nsenter и docker exec. Требует прав CAP_SYS_ADMIN. Присоединение к некоторым пространствам, например PID, действует только на потомков.",
-          "en": "It joins another process's namespace via a file descriptor from /proc/PID/ns/ — how tools like nsenter and docker exec work. It requires CAP_SYS_ADMIN. Joining some namespaces, such as PID, takes effect only for children."
+          "ru": "Присоединяет текущий поток к пространству имён другого процесса по дескриптору файла из /proc/PID/ns/ — так устроены инструменты вроде nsenter и docker exec. Требует прав CAP_SYS_ADMIN. Присоединение к некоторым пространствам, например PID, действует только на потомков.",
+          "en": "It moves the calling thread into another process's namespace via a file descriptor from /proc/PID/ns/ — how tools like nsenter and docker exec work. It requires CAP_SYS_ADMIN. Joining some namespaces, such as PID, takes effect only for children."
         },
         "syntax": "os.setns(...)",
         "status": "ready",
@@ -118655,8 +118655,8 @@
           "en": "The base class of every syntax tree node: Module, expressions, statements and operators returned by ast.parse() all derive from it."
         },
         "body": {
-          "ru": "Узлы сравниваются по идентичности, а не по содержимому: ast.parse('x') == ast.parse('x') даёт False, для сравнения деревьев сравнивают ast.dump() (или ast.compare() с 3.14). Имена полей узла лежат в атрибуте класса _fields, а координаты lineno и col_offset есть только у выражений и инструкций — у операторов вроде Add их нет. Вывод repr() узла изменился в 3.14 (стал показывать поля), поэтому в тестах полагаются на конкретные поля, а не на печать узла целиком.",
-          "en": "Nodes compare by identity, not by content: ast.parse('x') == ast.parse('x') is False, so compare trees through ast.dump() (or ast.compare() since 3.14). The field names of a node live in the class attribute _fields, while the lineno and col_offset positions exist only on expressions and statements — operators such as Add have none. The repr() of a node changed in 3.14 (it now lists the fields), so tests should check specific fields rather than print a whole node."
+          "ru": "Узлы сравниваются по идентичности, а не по содержимому: ast.parse('x') == ast.parse('x') даёт False, для сравнения деревьев сравнивают ast.dump() (или ast.compare() с 3.14). Имена полей узла лежат в атрибуте класса _fields, а координаты lineno и col_offset есть у выражений, инструкций и части служебных узлов (arg, keyword, alias, except-ветки, образцы, параметры типа) — у операторов вроде Add их нет. Вывод repr() узла изменился в 3.14 (стал показывать поля), поэтому в тестах полагаются на конкретные поля, а не на печать узла целиком.",
+          "en": "Nodes compare by identity, not by content: ast.parse('x') == ast.parse('x') is False, so compare trees through ast.dump() (or ast.compare() since 3.14). The field names of a node live in the class attribute _fields, while the lineno and col_offset positions exist on expressions, statements and some helper nodes (arg, keyword, alias, except handlers, patterns, type params) — operators such as Add have none. The repr() of a node changed in 3.14 (it now lists the fields), so tests should check specific fields rather than print a whole node."
         },
         "syntax": "class ast.AST; node._fields; node.lineno, node.col_offset",
         "status": "ready",
@@ -125795,8 +125795,8 @@
           "en": "Evaluates a string that holds only Python literals: numbers, strings, lists, dicts, sets, tuples, True/False/None. The replacement for eval when parsing data."
         },
         "body": {
-          "ru": "В отличие от eval, не выполняет код: нет имён, вызовов и импорта, поэтому \"__import__('os').system(...)\" даёт ValueError, а не запуск команды. Но и арифметики нет: '2**10' и даже '1+2' падают с ValueError (разрешено только сложение для комплексных вроде '1+2j'). Безопасен от исполнения, но не от ресурсов: огромный или глубоко вложенный ввод может исчерпать память или стек, так что на чужих данных ограничивайте длину; для обмена данными удобнее json.loads.",
-          "en": "Unlike eval, it runs no code: no names, calls or imports, so \"__import__('os').system(...)\" raises ValueError instead of running a command. There is no arithmetic either: '2**10' and even '1+2' raise ValueError (only addition for complex literals like '1+2j' is allowed). It is safe from code execution but not from resource abuse: huge or deeply nested input can exhaust memory or the stack, so cap the length of untrusted input; for data exchange json.loads is usually the better fit."
+          "ru": "В отличие от eval, не выполняет код: нет имён, вызовов и импорта, поэтому \"__import__('os').system(...)\" даёт ValueError, а не запуск команды. Но и арифметики нет: '2**10' и даже '1+2' падают с ValueError (разрешены только сложение и вычитание для комплексных вроде '1+2j' и '1-2j'). Безопасен от исполнения, но не от ресурсов: огромный или глубоко вложенный ввод может исчерпать память или стек, так что на чужих данных ограничивайте длину; для обмена данными удобнее json.loads.",
+          "en": "Unlike eval, it runs no code: no names, calls or imports, so \"__import__('os').system(...)\" raises ValueError instead of running a command. There is no arithmetic either: '2**10' and even '1+2' raise ValueError (only addition and subtraction for complex literals like '1+2j' and '1-2j' are allowed). It is safe from code execution but not from resource abuse: huge or deeply nested input can exhaust memory or the stack, so cap the length of untrusted input; for data exchange json.loads is usually the better fit."
         },
         "syntax": "ast.literal_eval(node_or_string)",
         "status": "ready",
@@ -126610,8 +126610,8 @@
           "en": "The abstract base class of root nodes: Module, Expression, Interactive and FunctionType. Which root you get is decided by the mode of ast.parse."
         },
         "body": {
-          "ru": "Экземпляров самого mod не бывает: проверка isinstance(tree, ast.mod) просто отличает корень от любого другого узла. Корень зависит от режима: 'exec' → Module, 'eval' → Expression, 'single' → Interactive, 'func_type' → FunctionType. У корней нет lineno — позиции есть только у инструкций и выражений внутри.",
-          "en": "There are never instances of mod itself: isinstance(tree, ast.mod) simply tells a root apart from any other node. The root depends on the mode: 'exec' → Module, 'eval' → Expression, 'single' → Interactive, 'func_type' → FunctionType. Roots have no lineno; only the statements and expressions inside carry positions."
+          "ru": "Экземпляров самого mod не бывает: проверка isinstance(tree, ast.mod) просто отличает корень от любого другого узла. Корень зависит от режима: 'exec' → Module, 'eval' → Expression, 'single' → Interactive, 'func_type' → FunctionType. У корней нет lineno — позиции есть у инструкций, выражений и части служебных узлов внутри (arg, keyword, alias, except-ветки).",
+          "en": "There are never instances of mod itself: isinstance(tree, ast.mod) simply tells a root apart from any other node. The root depends on the mode: 'exec' → Module, 'eval' → Expression, 'single' → Interactive, 'func_type' → FunctionType. Roots have no lineno; positions are carried by the statements, expressions and some helper nodes inside (arg, keyword, alias, except handlers)."
         },
         "syntax": "isinstance(tree, ast.mod)",
         "status": "ready",

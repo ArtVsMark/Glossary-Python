@@ -62907,10 +62907,10 @@
         "en": "A wrapper class around a binary file object that compresses or decompresses gzip on the fly."
       },
       "body": {
-        "ru": "Нужен, когда сжатый поток живёт не в файле на диске, а в BytesIO, сокете или чужом открытом файле; для обычных файлов проще gzip.open(). Хвост gzip (CRC и размер) пишется только при close(): getvalue() у BytesIO до закрытия GzipFile даёт обрезанные данные. Закрытие GzipFile не закрывает переданный fileobj. Режим лучше передавать явно: запись без mode устарела с 3.9.",
-        "en": "Use it when the compressed stream lives not in a file on disk but in a BytesIO, a socket or someone else's open file; for plain files gzip.open() is simpler. The gzip trailer (CRC and size) is written only on close(): calling getvalue() on the BytesIO before the GzipFile is closed gives truncated data. Closing the GzipFile does not close the fileobj you passed. Pass mode explicitly: writing without mode is deprecated since 3.9."
+        "ru": "Нужен, когда сжатый поток живёт не в файле на диске, а в BytesIO, сокете или чужом открытом файле; для обычных файлов проще gzip.open(). Хвост gzip (CRC и размер) пишется только при close(): getvalue() у BytesIO до закрытия GzipFile даёт обрезанные данные. Закрытие GzipFile не закрывает переданный fileobj. Режим лучше передавать явно: запись без mode устарела с 3.9. С 3.15 уровень сжатия по умолчанию — 6, а не 9: сжатие быстрее, архив чуть больше; нужен прежний размер — передайте compresslevel=9 явно.",
+        "en": "Use it when the compressed stream lives not in a file on disk but in a BytesIO, a socket or someone else's open file; for plain files gzip.open() is simpler. The gzip trailer (CRC and size) is written only on close(): calling getvalue() on the BytesIO before the GzipFile is closed gives truncated data. Closing the GzipFile does not close the fileobj you passed. Pass mode explicitly: writing without mode is deprecated since 3.9. Since 3.15 the default compression level is 6, not 9: compression is faster and the archive slightly larger; pass compresslevel=9 explicitly to keep the old size."
       },
-      "syntax": "gzip.GzipFile(filename=None, mode=None, compresslevel=9, fileobj=None, mtime=None)",
+      "syntax": "gzip.GzipFile(filename=None, mode=None, compresslevel=6, fileobj=None, mtime=None)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/gzip.html#gzip.GzipFile",
       "added": "<3.0",
@@ -62975,10 +62975,10 @@
         "en": "Compresses bytes into the gzip format entirely in memory; the result is readable by gzip.open and gunzip."
       },
       "body": {
-        "ru": "В заголовок gzip пишется время mtime: до Python 3.14 по умолчанию это текущее время, и одинаковые данные, сжатые в разные секунды, дают разные байты — ломаются хеши и воспроизводимые сборки. С 3.14 умолчание стало mtime=0; передавайте mtime=0 явно, если код должен работать и на старых версиях. Как и zlib.compress, принимает только bytes.",
-        "en": "The gzip header stores an mtime: before Python 3.14 it defaulted to the current time, so identical data compressed in different seconds gave different bytes — breaking hashes and reproducible builds. Since 3.14 the default is mtime=0; pass mtime=0 explicitly if your code must also run on older versions. Like zlib.compress, it accepts only bytes."
+        "ru": "В заголовок gzip пишется время mtime: до Python 3.14 по умолчанию это текущее время, и одинаковые данные, сжатые в разные секунды, дают разные байты — ломаются хеши и воспроизводимые сборки. С 3.14 умолчание стало mtime=0; передавайте mtime=0 явно, если код должен работать и на старых версиях. Как и zlib.compress, принимает только bytes. С 3.15 уровень сжатия по умолчанию — 6, а не 9: сжатие быстрее, архив чуть больше; нужен прежний размер — передайте compresslevel=9 явно.",
+        "en": "The gzip header stores an mtime: before Python 3.14 it defaulted to the current time, so identical data compressed in different seconds gave different bytes — breaking hashes and reproducible builds. Since 3.14 the default is mtime=0; pass mtime=0 explicitly if your code must also run on older versions. Like zlib.compress, it accepts only bytes. Since 3.15 the default compression level is 6, not 9: compression is faster and the archive slightly larger; pass compresslevel=9 explicitly to keep the old size."
       },
-      "syntax": "gzip.compress(data, compresslevel=9, *, mtime=0)",
+      "syntax": "gzip.compress(data, compresslevel=6, *, mtime=0)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/gzip.html#gzip.compress",
       "added": "3.2",
@@ -63097,10 +63097,10 @@
         "en": "Opens a .gz file for reading or writing; binary mode works with bytes, 'rt'/'wt' with text."
       },
       "body": {
-        "ru": "Режим по умолчанию — 'rb', а не 'r' как у open(): read() вернёт bytes, и строковые операции упадут. Для текста режим указывают явно — 'rt' или 'wt' — и вместе с ним encoding, иначе возьмётся кодировка по умолчанию (до 3.15 — кодировка локали). 'w' тоже двоичный: запись строки даёт TypeError. Файл, оказавшийся не gzip, обнаружится не в open(), а на первом чтении — gzip.BadGzipFile.",
-        "en": "The default mode is 'rb', not 'r' as with open(): read() returns bytes, and string operations fail. For text, pass the mode explicitly — 'rt' or 'wt' — together with an encoding, or the default encoding is used (the locale encoding before 3.15). 'w' is binary too: writing a str raises TypeError. A file that is not gzip is detected not by open() but on the first read, as gzip.BadGzipFile."
+        "ru": "Режим по умолчанию — 'rb', а не 'r' как у open(): read() вернёт bytes, и строковые операции упадут. Для текста режим указывают явно — 'rt' или 'wt' — и вместе с ним encoding, иначе возьмётся кодировка по умолчанию (до 3.15 — кодировка локали). 'w' тоже двоичный: запись строки даёт TypeError. Файл, оказавшийся не gzip, обнаружится не в open(), а на первом чтении — gzip.BadGzipFile. С 3.15 уровень сжатия по умолчанию — 6, а не 9: сжатие быстрее, архив чуть больше; нужен прежний размер — передайте compresslevel=9 явно.",
+        "en": "The default mode is 'rb', not 'r' as with open(): read() returns bytes, and string operations fail. For text, pass the mode explicitly — 'rt' or 'wt' — together with an encoding, or the default encoding is used (the locale encoding before 3.15). 'w' is binary too: writing a str raises TypeError. A file that is not gzip is detected not by open() but on the first read, as gzip.BadGzipFile. Since 3.15 the default compression level is 6, not 9: compression is faster and the archive slightly larger; pass compresslevel=9 explicitly to keep the old size."
       },
-      "syntax": "gzip.open(filename, mode='rb', compresslevel=9, encoding=None, errors=None, newline=None)",
+      "syntax": "gzip.open(filename, mode='rb', compresslevel=6, encoding=None, errors=None, newline=None)",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/gzip.html#gzip.open",
       "added": "<3.0",
@@ -124963,13 +124963,13 @@
         "en": "The filter exception for a link that cannot be emulated by copying another member, because the filter would refuse that member."
       },
       "body": {
-        "ru": "Где ссылку создать нельзя (например, нет прав на symlink в Windows), tarfile подменяет её копией члена-цели. Если цель сама не проходит фильтр на новом месте, распаковка отказывает этим исключением, а исходная причина лежит в __context__. Появилось в исправлениях безопасности и добавлено в выпуски нескольких веток, так что опираться на него стоит, лишь проверив hasattr.",
-        "en": "Where a link cannot be created (say, no symlink permission on Windows), tarfile substitutes a copy of the target member. If that target would itself fail the filter at the new location, extraction refuses with this exception, and the original reason is in __context__. It came with security fixes backported to releases of several branches, so check hasattr before relying on it."
+        "ru": "Где ссылку создать нельзя (например, нет прав на symlink в Windows), tarfile подменяет её копией члена-цели. Если цель сама не проходит фильтр на новом месте, распаковка отказывает этим исключением, а исходная причина лежит в __context__. Появилось в исправлениях безопасности июня 2025 года сразу в нескольких ветках — 3.9.23, 3.10.18, 3.11.13, 3.12.11 и 3.13.4, а в 3.14 есть с первого выпуска; в более ранних выпусках этих веток его нет, поэтому опираться на него стоит, лишь проверив hasattr.",
+        "en": "Where a link cannot be created (say, no symlink permission on Windows), tarfile substitutes a copy of the target member. If that target would itself fail the filter at the new location, extraction refuses with this exception, and the original reason is in __context__. It came with the June 2025 security fixes in several branches at once — 3.9.23, 3.10.18, 3.11.13, 3.12.11 and 3.13.4 — and 3.14 has it from the first release; earlier releases of those branches lack it, so check hasattr before relying on it."
       },
       "syntax": "except tarfile.LinkFallbackError as e: e.__context__",
       "status": "ready",
       "docs_url": "https://docs.python.org/3/library/tarfile.html#tarfile.LinkFallbackError",
-      "added": "3.14",
+      "added": "3.9",
       "deprecated": "",
       "removed": "",
       "platforms": [

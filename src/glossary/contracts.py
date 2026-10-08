@@ -55,6 +55,7 @@ REPOSITORY_URL: Final = f"https://github.com/{PRODUCER}"
 
 SITE_VERIFICATION: Final[dict[str, str]] = {
     "google-site-verification": "Zk_GLh_8oDnJd0eF0OcBOK7QZzAJ3POJDwOWmmzvrOA",
+    "yandex-verification": "8da5872e5d489b96",
 }
 """Коды подтверждения ресурса в консолях вебмастеров (#224): имя ``meta`` → значение.
 

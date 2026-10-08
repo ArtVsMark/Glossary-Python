@@ -6756,8 +6756,8 @@
         "en": "Turns an awaitable into a Future: a coroutine is wrapped in a task, while a Future or Task is returned unchanged."
       },
       "body": {
-        "ru": "Для своего кода документация советует create_task: тот принимает только корутины и честно говорит, что создаёт задачу. ensure_future нужна в библиотеках, которые получают «что-то ожидаемое» и хотят единый Future. Ловушка — вызов вне работающего цикла: с 3.10 это DeprecationWarning, а сам цикл берётся неявно. Как и любую задачу, результат надо хранить, иначе её соберёт сборщик мусора.",
-        "en": "For your own code the docs recommend create_task: it accepts only coroutines and says plainly that it creates a task. ensure_future is for libraries that receive \"anything awaitable\" and want a single Future. The trap is calling it without a running loop: since 3.10 that is a DeprecationWarning and the loop is picked implicitly. As with any task, keep a reference or it may be garbage-collected."
+        "ru": "Для своего кода документация советует create_task: тот принимает только корутины и честно говорит, что создаёт задачу. ensure_future нужна в библиотеках, которые получают «что-то ожидаемое» и хотят единый Future. Ловушка — вызов вне работающего цикла: в 3.12–3.13 он даёт DeprecationWarning и берёт цикл неявно, а с 3.14 бросает RuntimeError. Как и любую задачу, результат надо хранить, иначе её соберёт сборщик мусора.",
+        "en": "For your own code the docs recommend create_task: it accepts only coroutines and says plainly that it creates a task. ensure_future is for libraries that receive \"anything awaitable\" and want a single Future. The trap is calling it without a running loop: on 3.12–3.13 that is a DeprecationWarning with the loop picked implicitly, and since 3.14 it raises RuntimeError. As with any task, keep a reference or it may be garbage-collected."
       },
       "syntax": "fut = asyncio.ensure_future(obj, *, loop=None)",
       "status": "ready",
@@ -7624,8 +7624,8 @@
         "en": "Connects to a Unix domain socket by file-system path and returns a (StreamReader, StreamWriter) pair."
       },
       "body": {
-        "ru": "Работает как open_connection, но вместо хоста и порта — путь к файлу сокета; так общаются с локальными службами вроде Docker или PostgreSQL. Путь ограничен примерно 107 байтами, и длинный абсолютный путь даёт OSError; относительный путь отсчитывается от текущего каталога. Если файла нет, бросается FileNotFoundError, если никто не слушает — ConnectionRefusedError. На Windows функции нет. Доступна только на Linux и macOS: на Windows Unix-сокетов у asyncio нет.",
-        "en": "Works like open_connection, but takes a socket file path instead of host and port; this is how you talk to local services such as Docker or PostgreSQL. The path is limited to about 107 bytes and a long absolute path raises OSError; a relative path is resolved from the current directory. A missing file raises FileNotFoundError, and nobody listening gives ConnectionRefusedError. The function does not exist on Windows. Available on Linux and macOS only: asyncio has no Unix sockets on Windows."
+        "ru": "Работает как open_connection, но вместо хоста и порта — путь к файлу сокета; так общаются с локальными службами вроде Docker или PostgreSQL. Путь ограничен примерно 107 байтами, и длинный абсолютный путь даёт OSError; относительный путь отсчитывается от текущего каталога. Если файла нет, бросается FileNotFoundError, если никто не слушает — ConnectionRefusedError. Доступна только на Linux и macOS: на Windows Unix-сокетов у asyncio нет.",
+        "en": "Works like open_connection, but takes a socket file path instead of host and port; this is how you talk to local services such as Docker or PostgreSQL. The path is limited to about 107 bytes and a long absolute path raises OSError; a relative path is resolved from the current directory. A missing file raises FileNotFoundError, and nobody listening gives ConnectionRefusedError. Available on Linux and macOS only: asyncio has no Unix sockets on Windows."
       },
       "syntax": "reader, writer = await asyncio.open_unix_connection(path=None, *, limit=2**16, **kwds)",
       "status": "ready",
@@ -136360,8 +136360,8 @@
         "en": "A helper decorator that also applies no_type_check to its target."
       },
       "body": {
-        "ru": "Помечен как устаревший с Python 3.13 и подлежит удалению в 3.15: ни один статический анализатор так и не реализовал его поддержку, поэтому на практике он ничего не даёт. В новом коде не используй — для отключения проверки бери сам @no_type_check.",
-        "en": "Deprecated since Python 3.13 and slated for removal in 3.15: no type checker ever implemented support for it, so in practice it does nothing. Don't reach for it in new code — use @no_type_check itself when you need to disable checking."
+        "ru": "Помечен как устаревший с Python 3.13 и удалён в 3.15 — там импорт даёт ImportError: ни один статический анализатор так и не реализовал его поддержку, поэтому на практике он ничего не даёт. В новом коде не используй — для отключения проверки бери сам @no_type_check.",
+        "en": "Deprecated since Python 3.13 and removed in 3.15, where importing it raises ImportError: no type checker ever implemented support for it, so in practice it does nothing. Don't reach for it in new code — use @no_type_check itself when you need to disable checking."
       },
       "syntax": "@typing.no_type_check_decorator(some_decorator)",
       "status": "ready",

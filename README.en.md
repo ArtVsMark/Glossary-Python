@@ -5,7 +5,9 @@
 [![CI](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/ci.yml)
 [![Python: main CI, versions, OS, coverage, release, version](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/python.svg)](.github/workflows/python-next.yml)
 
-### → [Open the glossary](https://artvsmark.github.io/Glossary-Python/) [![Showcase publishing](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml)
+### → [Open the glossary](https://artvsmark.github.io/Glossary-Python/)
+
+[![Showcase](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml/badge.svg)](https://github.com/ArtVsMark/Glossary-Python/actions/workflows/pages.yml)
 
 | Cards | Content objections |
 | :---: | :---: |

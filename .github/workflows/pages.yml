@@ -1,4 +1,4 @@
-name: Публикация витрины
+name: Showcase
 
 on:
   push:

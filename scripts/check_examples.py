@@ -92,6 +92,8 @@ from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import Final, Literal
 
+from glossary.models import block_since, outlives_removal, version_pair
+
 ROOT: Final = Path(__file__).resolve().parent.parent
 DATA: Final = "data/glossary.json"
 
@@ -114,8 +116,6 @@ FRAME: Final = re.compile(
 )
 MODULE_SCOPE: Final = "<module>"
 """Кадр верхнего уровня примера: пометку ставят на строку, которую видит читатель."""
-REQUIRES: Final = re.compile(r"^#\s*Python\s+(\d+)\.(\d+)\+")
-"""Первая строка блока, требующего версию новее карточки: ``# Python 3.12+``."""
 EXCEPTION_LINE: Final = re.compile(r"^(?P<name>[A-Za-z_][\w.]*)(?::|$)")
 NAME: Final = re.compile(r"[A-Za-z_][\w.]*")
 
@@ -437,14 +437,6 @@ def version_of(python: str) -> tuple[int, int]:
     return int(major), int(minor)
 
 
-def _version(text: str) -> tuple[int, int]:
-    """Версия поля карточки: ``<3.0`` раньше любой 3.x."""
-    if text.startswith("<"):
-        return (2, 7)
-    major, minor = text.split(".")
-    return int(major), int(minor)
-
-
 def applicable(
     entry: dict[str, object], block: list[str], version: tuple[int, int]
 ) -> bool:
@@ -454,14 +446,14 @@ def applicable(
     ``removed`` к нему не применяется.
     """
     added, removed = str(entry.get("added") or ""), str(entry.get("removed") or "")
-    if added and _version(added) > version:
+    if added and version_pair(added) > version:
         return False
-    marked = REQUIRES.match(block[0]) if block else None
-    since = (int(marked[1]), int(marked[2])) if marked else None
+    since = block_since(block)
     if since and since > version:
         return False
-    after_removal = bool(removed) and since is not None and since >= _version(removed)
-    return not removed or after_removal or _version(removed) > version
+    return (
+        not removed or outlives_removal(removed, block) or version_pair(removed) > version
+    )
 
 
 def unrecorded(
@@ -483,7 +475,7 @@ def unrecorded(
     for entry in payload["entries"]:
         blocks = entry.get("examples") or []
         deprecated = str(entry.get("deprecated") or "")
-        recorded = bool(deprecated) and _version(deprecated) <= version
+        recorded = bool(deprecated) and version_pair(deprecated) <= version
         for number, block in enumerate(blocks, start=1):
             label = f"{entry['id']} · пример {number}" if len(blocks) > 1 else entry["id"]
             allowed[label] = recorded or any(WARNED in line for line in block)

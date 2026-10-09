@@ -23,6 +23,7 @@ warnings form the content backlog and do not block work.
 | `version-format` | error | Versions are written as `N.N` (`added` also allows `<N.N`) and go in order `added ≤ deprecated ≤ removed` |
 | `added` | error | The Python version the feature appeared in is named |
 | `deprecated-text` | error | If the summary calls the feature deprecated or names a removal version, `deprecated` and `removed` are filled in |
+| `removal-replacement` | warning | A card with `removed` has a `# Python <removed>+` block: the replacement, or the import error, on the version where the feature is gone |
 | `inherited-summary` | error | The English summary is not the docstring of someone else's built-in exception (“Base class for arithmetic errors” on a decimal signal) |
 | `summary-length` | warning | Summary is 30 to 200 characters: it fits in a list |
 | `body-length` | warning | Body is at least 60 characters — otherwise it adds nothing to the summary |
@@ -76,6 +77,6 @@ name once collided in files, so here it is completeness, with its own badge. The
 floor is held by `tests/completeness_floor.json`: the undescribed does not grow, and
 the number can rise without a single card edit — the language grows on its own.
 
-Current state: **<!--m:errors-->0<!--/m:errors--> errors, <!--m:warnings-->0<!--/m:warnings--> warnings**. The warning count
+Current state: **<!--m:errors-->0<!--/m:errors--> errors, <!--m:warnings-->5<!--/m:warnings--> warnings**. The warning count
 is fixed in `tests/quality_baseline.json` — the ratchet keeps objections from
 growing and reminds you to lower the bar when the data gets cleaner.

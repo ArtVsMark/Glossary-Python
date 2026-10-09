@@ -292,6 +292,11 @@ jobs:
         with:
           python-version: "3.14"
 
+      # Гейт берёт разбор пометки «# Python 3.N+» из пакета (glossary.models):
+      # одна реализация на гейт примеров и правило валидации (#247, правило 214).
+      - name: Установка пакета
+        run: python -m pip install -e .
+
       - name: Примеры исполняются так, как обещают, на этой версии
         run: |
           python scripts/check_examples.py \

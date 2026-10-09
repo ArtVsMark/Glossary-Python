@@ -29,6 +29,7 @@ from glossary.models import (
     SYSTEMS,
     Entry,
     Glossary,
+    outlives_removal,
 )
 
 __all__ = [
@@ -586,6 +587,32 @@ def rule_deprecated_text(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
             )
 
 
+def rule_removal_replacement(g: Glossary, cfg: ValidationConfig) -> Iterator[Issue]:
+    """У карточки удалённого есть что показать после удаления (#247).
+
+    Блоки внутри окна карточки гейт примеров отсекает границей ``removed``, и на
+    версии, где возможности уже нет, карточке нечего показать — ровно тогда, когда
+    читатель пришёл за заменой. Нужен блок с пометкой ``# Python <removed>+``:
+    замена либо, если замены нет, ошибка импорта — она и есть явное «замены нет».
+
+    Предупреждение, а не ошибка: у карточек, чьё удаление ещё впереди, такой блок
+    сегодня не исполнит ни одна версия матрицы, и пишется он, когда версия в ней
+    появится. Число держит планка ``tests/quality_baseline.json``.
+    """
+    for entry in g.entries:
+        if entry.removed and not any(
+            outlives_removal(entry.removed, block) for block in entry.examples
+        ):
+            yield Issue(
+                Severity.WARNING,
+                "removal-replacement",
+                f"удалено в {entry.removed}, а блока «# Python {entry.removed}+» нет: "
+                "на этой версии карточке нечего показать — ни замены, ни ошибки "
+                "импорта",
+                entry.id,
+            )
+
+
 def _first_line(doc: str) -> str:
     """Первая строка docstring без завершающей точки — так её пишут в сводку."""
     return doc.strip().splitlines()[0].rstrip(".")
@@ -975,6 +1002,7 @@ RULES: Final[tuple[Rule, ...]] = (
     rule_version_format,
     rule_added,
     rule_deprecated_text,
+    rule_removal_replacement,
     rule_inherited_summary,
     rule_title_resolves,
     rule_translation_length,

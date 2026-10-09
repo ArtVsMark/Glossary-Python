@@ -3,15 +3,15 @@
   "schema_of": "полнота глоссария относительно официального Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T08:00:11+00:00",
+  "generated_at": "2026-10-09T08:03:33+00:00",
   "python_version": "3.14",
   "snapshot": {
     "cards": 2817,
     "digest": "476e1d67af6c"
   },
   "totals": {
-    "known": 2279,
-    "covered": 2278,
+    "known": 2443,
+    "covered": 2442,
     "missing": 1,
     "ratio": 0.9996
   },
@@ -32,15 +32,15 @@
     },
     {
       "name": "exceptions",
-      "total": 181,
-      "covered": 181,
+      "total": 184,
+      "covered": 184,
       "ratio": 1.0,
       "missing": []
     },
     {
       "name": "stdlib",
-      "total": 1825,
-      "covered": 1824,
+      "total": 1986,
+      "covered": 1985,
       "ratio": 0.9995,
       "missing": [
         "uuid.main"

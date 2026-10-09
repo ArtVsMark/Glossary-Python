@@ -3,7 +3,7 @@
   "schema_of": "что появилось и исчезло между версиями Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T08:00:12+00:00",
+  "generated_at": "2026-10-09T08:03:34+00:00",
   "versions": [
     "3.11",
     "3.12",
@@ -320,6 +320,12 @@
           "documented": true
         },
         {
+          "qualname": "mimetypes.guess_file_type",
+          "module": "mimetypes",
+          "kind": "function",
+          "documented": true
+        },
+        {
           "qualname": "os.grantpt",
           "module": "os",
           "kind": "function",
@@ -469,7 +475,7 @@
         "unittest.makeSuite"
       ],
       "totals": {
-        "added": 32,
+        "added": 33,
         "removed": 8,
         "undocumented": 0
       }
@@ -478,6 +484,54 @@
       "version": "3.14",
       "since": "3.13",
       "added": [
+        {
+          "qualname": "annotationlib.Format",
+          "module": "annotationlib",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "annotationlib.ForwardRef",
+          "module": "annotationlib",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "annotationlib.annotations_to_string",
+          "module": "annotationlib",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "annotationlib.call_annotate_function",
+          "module": "annotationlib",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "annotationlib.call_evaluate_function",
+          "module": "annotationlib",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "annotationlib.get_annotate_from_class_namespace",
+          "module": "annotationlib",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "annotationlib.get_annotations",
+          "module": "annotationlib",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "annotationlib.type_repr",
+          "module": "annotationlib",
+          "kind": "function",
+          "documented": true
+        },
         {
           "qualname": "ast.Interpolation",
           "module": "ast",
@@ -551,6 +605,96 @@
           "documented": true
         },
         {
+          "qualname": "compression.zstd.CompressionParameter",
+          "module": "compression.zstd",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.DecompressionParameter",
+          "module": "compression.zstd",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.Strategy",
+          "module": "compression.zstd",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.ZstdCompressor",
+          "module": "compression.zstd",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.ZstdDecompressor",
+          "module": "compression.zstd",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.ZstdDict",
+          "module": "compression.zstd",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.ZstdError",
+          "module": "compression.zstd",
+          "kind": "exception",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.ZstdFile",
+          "module": "compression.zstd",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.compress",
+          "module": "compression.zstd",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.decompress",
+          "module": "compression.zstd",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.finalize_dict",
+          "module": "compression.zstd",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.get_frame_info",
+          "module": "compression.zstd",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.get_frame_size",
+          "module": "compression.zstd",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.open",
+          "module": "compression.zstd",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "compression.zstd.train_dict",
+          "module": "compression.zstd",
+          "kind": "function",
+          "documented": true
+        },
+        {
           "qualname": "concurrent.futures.InterpreterPoolExecutor",
           "module": "concurrent.futures",
           "kind": "class",
@@ -571,6 +715,12 @@
         {
           "qualname": "decimal.IEEEContext",
           "module": "decimal",
+          "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "faulthandler.dump_c_stack",
+          "module": "faulthandler",
           "kind": "function",
           "documented": true
         },
@@ -614,6 +764,18 @@
           "qualname": "heapq.heapreplace_max",
           "module": "heapq",
           "kind": "function",
+          "documented": true
+        },
+        {
+          "qualname": "http.server.HTTPSServer",
+          "module": "http.server",
+          "kind": "class",
+          "documented": true
+        },
+        {
+          "qualname": "http.server.ThreadingHTTPSServer",
+          "module": "http.server",
+          "kind": "class",
           "documented": true
         },
         {
@@ -747,7 +909,7 @@
         "urllib.request.URLopener"
       ],
       "totals": {
-        "added": 42,
+        "added": 68,
         "removed": 13,
         "undocumented": 0
       }
@@ -999,12 +1161,13 @@
       ],
       "removed": [
         "collections.abc.ByteString",
+        "http.server.CGIHTTPRequestHandler",
         "platform.java_ver",
         "typing.no_type_check_decorator"
       ],
       "totals": {
         "added": 40,
-        "removed": 3,
+        "removed": 4,
         "undocumented": 17
       }
     }

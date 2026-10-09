@@ -3,7 +3,7 @@
   "schema_of": "вердикты глоссария по предложениям потребителя",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T16:17:08+00:00",
+  "generated_at": "2026-10-09T16:19:38+00:00",
   "answers_to": {
     "producer": "ArtVsMark/Stepik-Python-Grader",
     "generated_at": "2026-10-09T12:12:23+00:00",
@@ -17,51 +17,43 @@
     "digest": "fc8e98f53128"
   },
   "totals": {
-    "done": 98,
-    "accepted": 8,
+    "done": 106,
+    "accepted": 0,
     "rejected": 3,
     "pending": 0
   },
   "verdicts": [
     {
       "slug": "syntax-card:var_annotation",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "syntax-card:async_generator",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "syntax-card:posonly",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "syntax-card:except_star",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "syntax-card:star_index",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "syntax-card:type_statement",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "syntax-card:type_params",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "syntax-card:tstring",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:abc",

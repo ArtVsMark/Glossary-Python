@@ -2384,6 +2384,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import asyncio",
         "",
         "async def main():",
@@ -2929,6 +2930,7 @@
         "asyncio.run(main())"
       ],
       [
+        "# Python 3.11+",
         "import asyncio",
         "",
         "async def main():",
@@ -5161,6 +5163,7 @@
         "asyncio.run(main())"
       ],
       [
+        "# Python 3.11+",
         "import asyncio",
         "",
         "async def main():",
@@ -5228,6 +5231,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import asyncio",
         "",
         "async def save():",
@@ -5298,6 +5302,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import asyncio",
         "",
         "async def slow():",
@@ -6468,6 +6473,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import asyncio",
         "",
         "async def main():",

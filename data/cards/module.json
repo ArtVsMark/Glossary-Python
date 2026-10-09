@@ -65341,6 +65341,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import enum",
         "import types",
         "",
@@ -78902,6 +78903,7 @@
         "    print(e)  # → Incorrect padding"
       ],
       [
+        "# Python 3.11+",
         "import binascii",
         "try:",
         "    binascii.a2b_base64('aG k=', strict_mode=True)",
@@ -107542,6 +107544,7 @@
         "# → a POSITIONAL_ONLY / b POSITIONAL_OR_KEYWORD / args VAR_POSITIONAL / c KEYWORD_ONLY / d KEYWORD_ONLY / kw VAR_KEYWORD"
       ],
       [
+        "# Python 3.11+",
         "import inspect",
         "params = inspect.signature(lambda c, d=None: 0).parameters",
         "print(params['c'].default is inspect.Parameter.empty)  # → True",
@@ -122222,6 +122225,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import dis",
         "def f(x):",
         "    y = x * 2",
@@ -124892,6 +124896,7 @@
     ],
     "examples": [
       [
+        "# Python 3.11+",
         "import fileinput",
         "open('a.txt', 'w', encoding='utf-8').write('a1\\na2\\n')",
         "open('b.txt', 'w', encoding='utf-8').write('b1\\nb2\\n')",
@@ -125879,6 +125884,7 @@
         "print(mimetypes.guess_type('README'))  # → (None, None)"
       ],
       [
+        "# Python 3.11+",
         "import mimetypes",
         "print(mimetypes.guess_type('https://ex.com/a.json?v=2'))  # → ('application/json', None)"
       ]

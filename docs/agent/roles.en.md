@@ -69,7 +69,8 @@ export format the grader reads, not an internal matter of the glossary.
 **Question.** Is this true, and is it complete?
 
 **Artifact.** Card audit: a finding with a reproduction, a link to the Python
-documentation and a fix in `data/cards/`.
+documentation and a fix in `data/cards/`. The procedure is the
+[`card-audit`](../../.claude/skills/card-audit/SKILL.md) skill: text, examples, fields.
 
 **Objects** to the "Methodologist" role: something is presented as fact that the
 Python documentation does not say.

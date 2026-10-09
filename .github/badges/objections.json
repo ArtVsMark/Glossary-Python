@@ -3,11 +3,11 @@
   "schema_of": "замечания витрины к содержанию глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T14:58:47+00:00",
+  "generated_at": "2026-10-09T15:06:49+00:00",
   "snapshot": {
     "cards": 2817,
     "schema_version": 6,
-    "digest": "542436fe6436"
+    "digest": "5641a381661d"
   },
   "totals": {
     "errors": 0,
@@ -25,7 +25,7 @@
         "asyncio.get_event_loop_policy",
         "asyncio.iscoroutinefunction",
         "asyncio.set_event_loop_policy",
-        "shutil.execerror",
+        "shutil.ExecError",
         "collections.abc.ByteString"
       ]
     }

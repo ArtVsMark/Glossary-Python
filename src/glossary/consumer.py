@@ -37,6 +37,9 @@ from glossary.completeness import known_names
 from glossary.contracts import envelope
 from glossary.loader import digest
 
+SYNTAX_MARKER: Final = "syntax:"
+"""Префикс ключевого слова, которым карточка конструкции называет признак потребителя."""
+
 if TYPE_CHECKING:
     from pathlib import Path
 
@@ -146,6 +149,12 @@ def _done(proposal: Proposal, glossary: Glossary, names: frozenset[str]) -> bool
         return proposal.subject in ids
     if proposal.kind == "builtin-card":
         return proposal.subject.lower() in names
+    if proposal.kind == "syntax-card":
+        # У конструкции нет имени, которое знал бы язык: признак ставит сама
+        # карточка ключевым словом ``syntax:<subject>`` — по нему её ищет и
+        # проверка совместимости потребителя.
+        marker = f"{SYNTAX_MARKER}{proposal.subject}"
+        return any(marker in entry.keywords for entry in glossary)
     if proposal.kind == "id-convention":
         cards = proposal.evidence.get("cards") or []
         return bool(cards) and all(

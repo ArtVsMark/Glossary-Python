@@ -128,7 +128,7 @@
     "related_errors": []
   },
   {
-    "id": "classvar",
+    "id": "ClassVar",
     "title": {
       "ru": "ClassVar",
       "en": "ClassVar"
@@ -190,12 +190,12 @@
     "related": [
       "атрибуты-экземпляра-и-класса",
       "dataclass",
-      "final"
+      "Final"
     ],
     "related_errors": []
   },
   {
-    "id": "final",
+    "id": "Final",
     "title": {
       "ru": "Final",
       "en": "Final"
@@ -251,7 +251,7 @@
       ]
     ],
     "related": [
-      "classvar",
+      "ClassVar",
       "typing.override",
       "аннотации-типов-type-hints"
     ],
@@ -451,7 +451,7 @@
     "related": [
       "union-x-y-x-y",
       "enum",
-      "final"
+      "Final"
     ],
     "related_errors": []
   },
@@ -577,7 +577,7 @@
     ],
     "related": [
       "union-x-y-x-y",
-      "nonetype",
+      "NoneType",
       "аннотации-типов-type-hints",
       "int-str-list-dict-аннотации"
     ],
@@ -657,7 +657,7 @@
     "related_errors": []
   },
   {
-    "id": "type_checking",
+    "id": "TYPE_CHECKING",
     "title": {
       "ru": "TYPE_CHECKING",
       "en": "TYPE_CHECKING"
@@ -1100,7 +1100,7 @@
       "аннотации-типов-type-hints",
       "typing.get_origin",
       "typing.get_args",
-      "type_checking"
+      "TYPE_CHECKING"
     ],
     "related_errors": [
       "NameError"
@@ -1570,7 +1570,7 @@
     "related": [
       "typing.assert_type",
       "match-case",
-      "assertionerror"
+      "AssertionError"
     ],
     "related_errors": [
       "AssertionError"
@@ -2053,7 +2053,7 @@
     ],
     "related": [
       "typing.get_type_hints",
-      "type_checking",
+      "TYPE_CHECKING",
       "аннотации-типов-type-hints"
     ],
     "related_errors": []
@@ -2249,7 +2249,7 @@
       "typing.BinaryIO",
       "typing.IO",
       "open",
-      "io.textiowrapper"
+      "io.TextIOWrapper"
     ],
     "related_errors": []
   },
@@ -3300,7 +3300,7 @@
       "наследование"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   }
 ]

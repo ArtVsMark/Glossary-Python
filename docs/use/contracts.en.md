@@ -151,6 +151,18 @@ entitled not to know about. Every version is a row in the log below; the guard
 fresh export: when to fetch the data is the consumer's decision, and between
 publication and its import its copy lags behind.
 
+## `consumer-verdicts.json` — the answer to the consumer's proposals
+
+Stepik-Python-Grader publishes proposals for the glossary content —
+`.glossary/proposals.json` in its repository, each with a stable `slug`. The
+nightly run fetches the file over plain HTTPS and answers every slug with a
+verdict: `done` (fulfilled — visible in the data), `accepted` (with an issue
+number), `rejected` (with a reason), `pending` (not decided yet). Decisions live in
+`data/consumer_verdicts.json`; fulfilment is recognised on its own. No proposals
+file means the channel is not connected, and no verdicts are published: an empty
+answer would look like "everything is decided". The `answers_to` field names the
+consumer file this answers.
+
 ## `data/glossary.json` — the card build
 
 The showcase publishes this file as is — `/glossary.json` on Pages

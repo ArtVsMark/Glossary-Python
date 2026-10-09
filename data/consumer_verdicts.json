@@ -1,0 +1,61 @@
+{
+  "_описание": "Решения глоссария по предложениям потребителя (Stepik-Python-Grader, .glossary/proposals.json). Ключ — slug предложения или образец «вид:*»; точный ключ сильнее образца. verdict: accepted (с issue) или rejected (с why). Исполненное предложение получает done по данным само — запись решения для него не нужна. Предложение без записи и без исполнения — pending. Собирает ответ `glossary verdicts`, публикует badges.yml (#250).",
+  "source": "https://raw.githubusercontent.com/ArtVsMark/Stepik-Python-Grader/main/.glossary/proposals.json",
+  "_source": "Адрес объявлен потребителем (Stepik-Python-Grader#1623, #1624): контракт на расположение. Его читает шаг badges.yml.",
+  "decisions": {
+    "syntax-card:*": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "module-card:*": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "id-convention:builtin-names": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "builtin-card:True": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "builtin-card:False": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "builtin-card:None": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "builtin-card:EnvironmentError": {
+      "verdict": "accepted",
+      "issue": 250,
+      "why": "псевдоним OSError с 3.3 — синоним в карточке OSError, а не своя карточка"
+    },
+    "builtin-card:IOError": {
+      "verdict": "accepted",
+      "issue": 250,
+      "why": "псевдоним OSError с 3.3 — синоним в карточке OSError, а не своя карточка"
+    },
+    "builtin-card:exit": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "builtin-card:quit": {
+      "verdict": "accepted",
+      "issue": 250
+    },
+    "builtin-card:copyright": {
+      "verdict": "rejected",
+      "why": "подсказка интерактивного режима, которую добавляет модуль site; в коде решений не встречается"
+    },
+    "builtin-card:credits": {
+      "verdict": "rejected",
+      "why": "подсказка интерактивного режима, которую добавляет модуль site; в коде решений не встречается"
+    },
+    "builtin-card:license": {
+      "verdict": "rejected",
+      "why": "подсказка интерактивного режима, которую добавляет модуль site; в коде решений не встречается"
+    }
+  }
+}

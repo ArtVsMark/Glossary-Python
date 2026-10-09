@@ -20,6 +20,7 @@ from glossary import (
     __version__,
     cards,
     completeness,
+    consumer,
     delivery,
     inventory,
     measure,
@@ -66,6 +67,41 @@ DEFAULT_SHOWCASE: Final = "site/python_glossary.html"
 # ``ValidationConfig`` объявлен со ``slots=True``: обращение к полю через класс
 # вернуло бы дескриптор слота, а не значение по умолчанию. Берём его с экземпляра.
 _DEFAULTS: Final = ValidationConfig()
+
+
+def _add_verdicts(
+    sub: argparse._SubParsersAction[argparse.ArgumentParser],
+    common: argparse.ArgumentParser,
+) -> None:
+    """Подкоманда ``verdicts``: ответ потребителю по его предложениям (#250)."""
+    p_ver = sub.add_parser(
+        "verdicts",
+        help="вердикты по предложениям потребителя (proposals.json грейдера, #250)",
+        parents=[common],
+    )
+    p_ver.add_argument(
+        "--proposals",
+        type=Path,
+        required=True,
+        metavar="PATH",
+        help="скачанный proposals.json потребителя",
+    )
+    p_ver.add_argument(
+        "--decisions",
+        type=Path,
+        default=None,
+        metavar="PATH",
+        help="решения (по умолчанию data/consumer_verdicts.json)",
+    )
+    p_ver.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        default=None,
+        metavar="PATH",
+        help="файл вердиктов (по умолчанию — stdout)",
+    )
+    p_ver.set_defaults(handler=_cmd_verdicts)
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -192,6 +228,8 @@ def build_parser() -> argparse.ArgumentParser:
         help="каталог публикации; страницы ложатся рядом с витриной",
     )
     p_pages.set_defaults(handler=_cmd_pages)
+
+    _add_verdicts(sub, common)
 
     p_stats = sub.add_parser(
         "stats", help="показать статистику по глоссарию", parents=[common]
@@ -455,6 +493,42 @@ def _cmd_pages(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
         f"{pages.SITEMAP} и {pages.STYLESHEET} → {root}, {size / 1_000_000:.1f} МБ",
         file=out,
     )
+    return EXIT_OK
+
+
+def _cmd_verdicts(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Ответить потребителю вердиктами по его предложениям (#250).
+
+    Файла предложений нет — канал не подключён: это третий исход, а не «ответ
+    пустой». Пустой список в файле — законное «предлагать нечего».
+    """
+    if not args.proposals.is_file():
+        print(
+            f"Предложений нет: {args.proposals} — канал потребителя не подключён",
+            file=err,
+        )
+        return EXIT_USAGE
+    glossary = load_glossary(args.data)
+    decisions_path = args.decisions or project_root() / "data" / consumer.DECISIONS_FILE
+    try:
+        payload = json.loads(args.proposals.read_text(encoding="utf-8"))
+        answer = consumer.collect(
+            payload, glossary, consumer.load_decisions(decisions_path)
+        )
+    except (ValueError, KeyError) as error:
+        print(f"Предложения не прочитаны: {error}", file=err)
+        return EXIT_USAGE
+    rendered = json.dumps(answer, ensure_ascii=False, indent=2) + "\n"
+    pending = [v["slug"] for v in answer["verdicts"] if v["verdict"] == "pending"]
+    if args.output is None:
+        out.write(rendered)
+    else:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(rendered, encoding="utf-8")
+        totals = ", ".join(f"{k} {v}" for k, v in answer["totals"].items())
+        print(f"Вердикты: {totals} → {args.output}", file=out)
+    for slug in pending:
+        print(f"без решения: {slug}", file=err)
     return EXIT_OK
 
 

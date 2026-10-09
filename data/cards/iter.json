@@ -5072,6 +5072,16 @@
         "with warnings.catch_warnings():",
         "    warnings.simplefilter('ignore', DeprecationWarning)  # с 3.14 здесь DeprecationWarning",
         "    print(asyncio.iscoroutinefunction(fetch))  # → True"
+      ],
+      [
+        "# Python 3.16+",
+        "import functools",
+        "import inspect",
+        "",
+        "async def fetch(x):",
+        "    return x",
+        "",
+        "print(inspect.iscoroutinefunction(functools.partial(fetch, 1)))   # → True — partial тоже"
       ]
     ],
     "related": [
@@ -6565,8 +6575,8 @@
       "en": "Deprecated: returns the global event loop policy; deprecated since 3.14 with removal in 3.16. Pick the loop via loop_factory of asyncio.run()."
     },
     "body": {
-      "ru": "Политика — глобальный объект, решавший, какой цикл создаётся и какой считается текущим; её подменяли, чтобы поставить uvloop или WindowsSelectorEventLoop. Вся система политик устарела в 3.14: вместо глобальной подмены цикл передают явно — asyncio.run(main(), loop_factory=...) (3.12+) или asyncio.Runner(loop_factory=...) (3.11+). С 3.14 вызов даёт DeprecationWarning.",
-      "en": "A policy is a global object that decided which loop gets created and which counts as current; people swapped it to install uvloop or WindowsSelectorEventLoop. The whole policy system is deprecated in 3.14: instead of a global swap, pass the loop explicitly with asyncio.run(main(), loop_factory=...) (3.12+) or asyncio.Runner(loop_factory=...) (3.11+). Since 3.14 the call emits DeprecationWarning."
+      "ru": "Политика — глобальный объект, решавший, какой цикл создаётся и какой считается текущим; её подменяли, чтобы поставить uvloop или WindowsSelectorEventLoop. Вся система политик устарела в 3.14: вместо глобальной подмены цикл передают явно — asyncio.run(main(), loop_factory=...) (3.12+) или asyncio.Runner(loop_factory=...) (3.11+). С 3.14 вызов даёт DeprecationWarning. Обычная фабрика для loop_factory — asyncio.EventLoop (3.13+), лучший цикл для текущей платформы.",
+      "en": "A policy is a global object that decided which loop gets created and which counts as current; people swapped it to install uvloop or WindowsSelectorEventLoop. The whole policy system is deprecated in 3.14: instead of a global swap, pass the loop explicitly with asyncio.run(main(), loop_factory=...) (3.12+) or asyncio.Runner(loop_factory=...) (3.11+). Since 3.14 the call emits DeprecationWarning. The usual loop_factory is asyncio.EventLoop (3.13+), the best loop for the current platform."
     },
     "syntax": "policy = asyncio.get_event_loop_policy()",
     "status": "ready",
@@ -6618,6 +6628,16 @@
         "loop = policy.new_event_loop()",
         "print(loop.is_closed())  # → False",
         "loop.close()"
+      ],
+      [
+        "# Python 3.16+",
+        "import asyncio",
+        "",
+        "async def main():",
+        "    return type(asyncio.get_running_loop()) is asyncio.EventLoop",
+        "",
+        "# политик нет: цикл задают явно, на один запуск",
+        "print(asyncio.run(main(), loop_factory=asyncio.EventLoop))   # → True"
       ]
     ],
     "related": [
@@ -6692,6 +6712,18 @@
         "    warnings.simplefilter('ignore', DeprecationWarning)  # с 3.14 вызов устарел",
         "    asyncio.set_event_loop_policy(None)  # None — политика по умолчанию",
         "print(asyncio.run(asyncio.sleep(0.01, result='ок')))  # → ок"
+      ],
+      [
+        "# Python 3.16+",
+        "import asyncio",
+        "",
+        "async def main():",
+        "    await asyncio.sleep(0)",
+        "    return 'ок'",
+        "",
+        "# вместо set_event_loop_policy(...): один цикл на несколько запусков",
+        "with asyncio.Runner(loop_factory=asyncio.EventLoop) as runner:",
+        "    print(runner.run(main()), runner.run(main()))   # → ок ок"
       ]
     ],
     "related": [
@@ -7222,5 +7254,85 @@
       "asyncio.start_server"
     ],
     "related_errors": []
+  },
+  {
+    "id": "асинхронный-генератор",
+    "title": {
+      "ru": "Асинхронный генератор",
+      "en": "Asynchronous generator"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Функция async def с yield внутри: отдаёт значения по одному и между ними может ждать await. Перебирается через async for.",
+      "en": "An async def function containing yield: it produces values one by one and may await between them. It is consumed with async for."
+    },
+    "body": {
+      "ru": "Главная ловушка: обычный for такой объект не перебирает — будет TypeError, нужен async for или [x async for x in ...] внутри корутины. В отличие от обычного генератора, внутри нельзя писать yield from и return со значением — это SyntaxError. Нужно ждать ввод-вывод между значениями — берите асинхронный генератор; ждать нечего — хватит обычного.",
+      "en": "The main trap: a plain for cannot iterate such an object — you get TypeError; use async for or [x async for x in ...] inside a coroutine. Unlike a regular generator, yield from and return with a value are not allowed inside — that is a SyntaxError. Pick an async generator when you need to await I/O between values; if there is nothing to await, a regular generator is enough."
+    },
+    "syntax": "async def имя(...):\n    yield значение\n\nasync for x in имя(...): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/expressions.html#asynchronous-generator-functions",
+    "added": "3.6",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Итераторы и генераторы",
+    "subcat": {
+      "ru": "генераторы",
+      "en": "generators"
+    },
+    "aliases": [
+      "async генератор",
+      "асинхронный yield",
+      "yield в async def",
+      "async generator"
+    ],
+    "keywords": [
+      "syntax:async_generator",
+      "PEP 525",
+      "async def",
+      "yield",
+      "async for",
+      "__anext__"
+    ],
+    "tags": [
+      "iter"
+    ],
+    "examples": [
+      [
+        "import asyncio",
+        "async def countdown(n):",
+        "    while n > 0:",
+        "        yield n",
+        "        await asyncio.sleep(0)",
+        "        n -= 1",
+        "async def main():",
+        "    async for i in countdown(3):",
+        "        print(i)  # → 3 / 2 / 1",
+        "    print([i async for i in countdown(2)])  # → [2, 1]",
+        "asyncio.run(main())"
+      ],
+      [
+        "async def agen():",
+        "    yield 1",
+        "print(type(agen()).__name__)  # → async_generator",
+        "for x in agen():  # → TypeError",
+        "    pass"
+      ]
+    ],
+    "related": [
+      "generator-function-yield",
+      "async-for-async-with",
+      "async-def-await",
+      "types.AsyncGeneratorType",
+      "StopAsyncIteration"
+    ],
+    "related_errors": [
+      "TypeError",
+      "SyntaxError"
+    ]
   }
 ]

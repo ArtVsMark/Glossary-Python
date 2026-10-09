@@ -77,6 +77,6 @@ name once collided in files, so here it is completeness, with its own badge. The
 floor is held by `tests/completeness_floor.json`: the undescribed does not grow, and
 the number can rise without a single card edit — the language grows on its own.
 
-Current state: **<!--m:errors-->0<!--/m:errors--> errors, <!--m:warnings-->5<!--/m:warnings--> warnings**. The warning count
+Current state: **<!--m:errors-->0<!--/m:errors--> errors, <!--m:warnings-->0<!--/m:warnings--> warnings**. The warning count
 is fixed in `tests/quality_baseline.json` — the ratchet keeps objections from
 growing and reminds you to lower the bar when the data gets cleaner.

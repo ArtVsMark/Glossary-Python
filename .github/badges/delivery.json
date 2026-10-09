@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T14:37:47+00:00",
+  "generated_at": "2026-10-09T14:56:09+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2817,
     "schema_version": 6,
-    "digest": "75218b23d1ff"
+    "digest": "542436fe6436"
   },
   "groups": {
     "builtin": [
@@ -12583,6 +12583,7 @@
         ],
         "examples": [
           [
+            "# Python 3.11+",
             "import asyncio",
             "async def main():",
             "    await asyncio.sleep(0.01)",
@@ -13100,6 +13101,7 @@
             "asyncio.run(main())"
           ],
           [
+            "# Python 3.11+",
             "import asyncio",
             "async def main():",
             "    lock = asyncio.Lock()",
@@ -15234,6 +15236,7 @@
             "asyncio.run(main())"
           ],
           [
+            "# Python 3.11+",
             "import asyncio",
             "async def main():",
             "    coro = asyncio.sleep(0.01)",
@@ -15299,6 +15302,7 @@
         ],
         "examples": [
           [
+            "# Python 3.11+",
             "import asyncio",
             "async def save():",
             "    await asyncio.sleep(0.03)",
@@ -15366,6 +15370,7 @@
         ],
         "examples": [
           [
+            "# Python 3.11+",
             "import asyncio",
             "async def slow():",
             "    try:",
@@ -16490,6 +16495,7 @@
         ],
         "examples": [
           [
+            "# Python 3.11+",
             "import asyncio",
             "async def main():",
             "    return type(asyncio.get_running_loop()).__name__",
@@ -85787,6 +85793,7 @@
         ],
         "examples": [
           [
+            "# Python 3.11+",
             "import enum",
             "import types",
             "meta, ns, kwds = types.prepare_class('Color', (enum.Enum,))",
@@ -99318,6 +99325,7 @@
             "    print(e)  # → Incorrect padding"
           ],
           [
+            "# Python 3.11+",
             "import binascii",
             "try:",
             "    binascii.a2b_base64('aG k=', strict_mode=True)",
@@ -127958,6 +127966,7 @@
             "# → a POSITIONAL_ONLY / b POSITIONAL_OR_KEYWORD / args VAR_POSITIONAL / c KEYWORD_ONLY / d KEYWORD_ONLY / kw VAR_KEYWORD"
           ],
           [
+            "# Python 3.11+",
             "import inspect",
             "params = inspect.signature(lambda c, d=None: 0).parameters",
             "print(params['c'].default is inspect.Parameter.empty)  # → True",
@@ -142426,6 +142435,7 @@
         ],
         "examples": [
           [
+            "# Python 3.11+",
             "import dis",
             "def f(x):",
             "    y = x * 2",
@@ -145072,6 +145082,7 @@
         ],
         "examples": [
           [
+            "# Python 3.11+",
             "import fileinput",
             "open('a.txt', 'w', encoding='utf-8').write('a1\\na2\\n')",
             "open('b.txt', 'w', encoding='utf-8').write('b1\\nb2\\n')",
@@ -146048,6 +146059,7 @@
             "print(mimetypes.guess_type('README'))  # → (None, None)"
           ],
           [
+            "# Python 3.11+",
             "import mimetypes",
             "print(mimetypes.guess_type('https://ex.com/a.json?v=2'))  # → ('application/json', None)"
           ]

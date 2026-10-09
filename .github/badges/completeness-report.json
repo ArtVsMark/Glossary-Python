@@ -3,11 +3,11 @@
   "schema_of": "полнота глоссария относительно официального Python",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T14:37:46+00:00",
+  "generated_at": "2026-10-09T14:56:09+00:00",
   "python_version": "3.14",
   "snapshot": {
     "cards": 2817,
-    "digest": "75218b23d1ff"
+    "digest": "542436fe6436"
   },
   "totals": {
     "known": 2443,

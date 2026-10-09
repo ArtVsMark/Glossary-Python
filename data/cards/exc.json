@@ -78,14 +78,14 @@
       ]
     ],
     "related": [
-      "assertionerror",
+      "AssertionError",
       "raise",
       "unittest.assertRaises"
     ],
     "related_errors": []
   },
   {
-    "id": "attributeerror",
+    "id": "AttributeError",
     "title": {
       "ru": "AttributeError",
       "en": "AttributeError"
@@ -138,7 +138,7 @@
       "getattr",
       "hasattr",
       "setattr",
-      "nameerror"
+      "NameError"
     ],
     "related_errors": []
   },
@@ -244,7 +244,7 @@
     "related_errors": []
   },
   {
-    "id": "filenotfounderror",
+    "id": "FileNotFoundError",
     "title": {
       "ru": "FileNotFoundError",
       "en": "FileNotFoundError"
@@ -294,9 +294,9 @@
       ]
     ],
     "related": [
-      "oserror",
-      "permissionerror",
-      "fileexistserror",
+      "OSError",
+      "PermissionError",
+      "FileExistsError",
       "open"
     ],
     "related_errors": []
@@ -404,7 +404,7 @@
     "related_errors": []
   },
   {
-    "id": "importerror",
+    "id": "ImportError",
     "title": {
       "ru": "ImportError",
       "en": "ImportError"
@@ -453,14 +453,14 @@
       ]
     ],
     "related": [
-      "modulenotfounderror",
+      "ModuleNotFoundError",
       "sys.path",
       "sys.modules"
     ],
     "related_errors": []
   },
   {
-    "id": "indexerror",
+    "id": "IndexError",
     "title": {
       "ru": "IndexError",
       "en": "IndexError"
@@ -511,14 +511,14 @@
       ]
     ],
     "related": [
-      "lookuperror",
-      "keyerror",
+      "LookupError",
+      "KeyError",
       "индексирование-списка"
     ],
     "related_errors": []
   },
   {
-    "id": "keyerror",
+    "id": "KeyError",
     "title": {
       "ru": "KeyError",
       "en": "KeyError"
@@ -571,13 +571,13 @@
     "related": [
       "dict.get",
       "доступ-d-key",
-      "lookuperror",
-      "indexerror"
+      "LookupError",
+      "IndexError"
     ],
     "related_errors": []
   },
   {
-    "id": "modulenotfounderror",
+    "id": "ModuleNotFoundError",
     "title": {
       "ru": "ModuleNotFoundError",
       "en": "ModuleNotFoundError"
@@ -626,14 +626,14 @@
       ]
     ],
     "related": [
-      "importerror",
+      "ImportError",
       "sys.path",
       "sys.modules"
     ],
     "related_errors": []
   },
   {
-    "id": "nameerror",
+    "id": "NameError",
     "title": {
       "ru": "NameError",
       "en": "NameError"
@@ -682,14 +682,14 @@
       ]
     ],
     "related": [
-      "unboundlocalerror",
-      "attributeerror",
+      "UnboundLocalError",
+      "AttributeError",
       "локальные-и-глобальные-переменные"
     ],
     "related_errors": []
   },
   {
-    "id": "notimplementederror",
+    "id": "NotImplementedError",
     "title": {
       "ru": "NotImplementedError",
       "en": "NotImplementedError"
@@ -741,12 +741,12 @@
     "related": [
       "abc.abstractmethod",
       "абстрактные-классы",
-      "runtimeerror"
+      "RuntimeError"
     ],
     "related_errors": []
   },
   {
-    "id": "oserror",
+    "id": "OSError",
     "title": {
       "ru": "OSError",
       "en": "OSError"
@@ -795,15 +795,15 @@
       ]
     ],
     "related": [
-      "filenotfounderror",
-      "permissionerror",
+      "FileNotFoundError",
+      "PermissionError",
       "иерархия-исключений",
-      "exception"
+      "Exception"
     ],
     "related_errors": []
   },
   {
-    "id": "permissionerror",
+    "id": "PermissionError",
     "title": {
       "ru": "PermissionError",
       "en": "PermissionError"
@@ -864,8 +864,8 @@
       ]
     ],
     "related": [
-      "oserror",
-      "filenotfounderror",
+      "OSError",
+      "FileNotFoundError",
       "os.access"
     ],
     "related_errors": []
@@ -977,13 +977,13 @@
     "related": [
       "try-except",
       "пользовательские-исключения",
-      "exception",
+      "Exception",
       "assert"
     ],
     "related_errors": []
   },
   {
-    "id": "recursionerror",
+    "id": "RecursionError",
     "title": {
       "ru": "RecursionError",
       "en": "RecursionError"
@@ -1037,12 +1037,12 @@
     "related": [
       "рекурсия",
       "sys.setrecursionlimit",
-      "runtimeerror"
+      "RuntimeError"
     ],
     "related_errors": []
   },
   {
-    "id": "stopiteration",
+    "id": "StopIteration",
     "title": {
       "ru": "StopIteration",
       "en": "StopIteration"
@@ -1099,7 +1099,7 @@
       "next",
       "итератор-__iter__-__next__",
       "generator-function-yield",
-      "stopasynciteration"
+      "StopAsyncIteration"
     ],
     "related_errors": []
   },
@@ -1211,7 +1211,7 @@
     "related_errors": []
   },
   {
-    "id": "typeerror",
+    "id": "TypeError",
     "title": {
       "ru": "TypeError",
       "en": "TypeError"
@@ -1262,14 +1262,14 @@
       ]
     ],
     "related": [
-      "valueerror",
-      "attributeerror",
+      "ValueError",
+      "AttributeError",
       "преобразование-типов"
     ],
     "related_errors": []
   },
   {
-    "id": "valueerror",
+    "id": "ValueError",
     "title": {
       "ru": "ValueError",
       "en": "ValueError"
@@ -1320,8 +1320,8 @@
       ]
     ],
     "related": [
-      "typeerror",
-      "exception",
+      "TypeError",
+      "Exception",
       "try-except",
       "raise"
     ],
@@ -1393,8 +1393,8 @@
       ]
     ],
     "related": [
-      "baseexception",
-      "exception",
+      "BaseException",
+      "Exception",
       "try-except",
       "пользовательские-исключения"
     ],
@@ -1511,7 +1511,7 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "иерархия-исключений",
       "raise",
       "try-except"
@@ -1519,7 +1519,7 @@
     "related_errors": []
   },
   {
-    "id": "baseexception",
+    "id": "BaseException",
     "title": {
       "ru": "BaseException",
       "en": "BaseException"
@@ -1567,15 +1567,15 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "иерархия-исключений",
-      "keyboardinterrupt",
-      "systemexit"
+      "KeyboardInterrupt",
+      "SystemExit"
     ],
     "related_errors": []
   },
   {
-    "id": "exception",
+    "id": "Exception",
     "title": {
       "ru": "Exception",
       "en": "Exception"
@@ -1622,7 +1622,7 @@
       ]
     ],
     "related": [
-      "baseexception",
+      "BaseException",
       "иерархия-исключений",
       "try-except",
       "пользовательские-исключения"
@@ -1630,7 +1630,7 @@
     "related_errors": []
   },
   {
-    "id": "arithmeticerror",
+    "id": "ArithmeticError",
     "title": {
       "ru": "ArithmeticError",
       "en": "ArithmeticError"
@@ -1677,15 +1677,15 @@
       ]
     ],
     "related": [
-      "zerodivisionerror",
-      "overflowerror",
-      "floatingpointerror",
+      "ZeroDivisionError",
+      "OverflowError",
+      "FloatingPointError",
       "иерархия-исключений"
     ],
     "related_errors": []
   },
   {
-    "id": "zerodivisionerror",
+    "id": "ZeroDivisionError",
     "title": {
       "ru": "ZeroDivisionError",
       "en": "ZeroDivisionError"
@@ -1732,14 +1732,14 @@
       ]
     ],
     "related": [
-      "arithmeticerror",
-      "decimal.divisionbyzero",
-      "overflowerror"
+      "ArithmeticError",
+      "decimal.DivisionByZero",
+      "OverflowError"
     ],
     "related_errors": []
   },
   {
-    "id": "overflowerror",
+    "id": "OverflowError",
     "title": {
       "ru": "OverflowError",
       "en": "OverflowError"
@@ -1787,14 +1787,14 @@
       ]
     ],
     "related": [
-      "arithmeticerror",
-      "floatingpointerror",
-      "zerodivisionerror"
+      "ArithmeticError",
+      "FloatingPointError",
+      "ZeroDivisionError"
     ],
     "related_errors": []
   },
   {
-    "id": "floatingpointerror",
+    "id": "FloatingPointError",
     "title": {
       "ru": "FloatingPointError",
       "en": "FloatingPointError"
@@ -1841,14 +1841,14 @@
       ]
     ],
     "related": [
-      "arithmeticerror",
-      "zerodivisionerror",
-      "overflowerror"
+      "ArithmeticError",
+      "ZeroDivisionError",
+      "OverflowError"
     ],
     "related_errors": []
   },
   {
-    "id": "assertionerror",
+    "id": "AssertionError",
     "title": {
       "ru": "AssertionError",
       "en": "AssertionError"
@@ -1903,7 +1903,7 @@
     "related_errors": []
   },
   {
-    "id": "lookuperror",
+    "id": "LookupError",
     "title": {
       "ru": "LookupError",
       "en": "LookupError"
@@ -1950,14 +1950,14 @@
       ]
     ],
     "related": [
-      "indexerror",
-      "keyerror",
+      "IndexError",
+      "KeyError",
       "иерархия-исключений"
     ],
     "related_errors": []
   },
   {
-    "id": "runtimeerror",
+    "id": "RuntimeError",
     "title": {
       "ru": "RuntimeError",
       "en": "RuntimeError"
@@ -2004,15 +2004,15 @@
       ]
     ],
     "related": [
-      "recursionerror",
-      "notimplementederror",
-      "exception",
+      "RecursionError",
+      "NotImplementedError",
+      "Exception",
       "иерархия-исключений"
     ],
     "related_errors": []
   },
   {
-    "id": "eoferror",
+    "id": "EOFError",
     "title": {
       "ru": "EOFError",
       "en": "EOFError"
@@ -2062,12 +2062,12 @@
     "related": [
       "input",
       "sys.stdin",
-      "keyboardinterrupt"
+      "KeyboardInterrupt"
     ],
     "related_errors": []
   },
   {
-    "id": "keyboardinterrupt",
+    "id": "KeyboardInterrupt",
     "title": {
       "ru": "KeyboardInterrupt",
       "en": "KeyboardInterrupt"
@@ -2115,14 +2115,14 @@
       ]
     ],
     "related": [
-      "baseexception",
-      "systemexit",
-      "exception"
+      "BaseException",
+      "SystemExit",
+      "Exception"
     ],
     "related_errors": []
   },
   {
-    "id": "systemexit",
+    "id": "SystemExit",
     "title": {
       "ru": "SystemExit",
       "en": "SystemExit"
@@ -2170,14 +2170,14 @@
     ],
     "related": [
       "sys.exit",
-      "baseexception",
-      "keyboardinterrupt",
+      "BaseException",
+      "KeyboardInterrupt",
       "os._exit"
     ],
     "related_errors": []
   },
   {
-    "id": "generatorexit",
+    "id": "GeneratorExit",
     "title": {
       "ru": "GeneratorExit",
       "en": "GeneratorExit"
@@ -2225,13 +2225,13 @@
     ],
     "related": [
       "generator-function-yield",
-      "stopiteration",
-      "baseexception"
+      "StopIteration",
+      "BaseException"
     ],
     "related_errors": []
   },
   {
-    "id": "stopasynciteration",
+    "id": "StopAsyncIteration",
     "title": {
       "ru": "StopAsyncIteration",
       "en": "StopAsyncIteration"
@@ -2278,14 +2278,14 @@
       ]
     ],
     "related": [
-      "stopiteration",
+      "StopIteration",
       "async-for-async-with",
       "anext"
     ],
     "related_errors": []
   },
   {
-    "id": "memoryerror",
+    "id": "MemoryError",
     "title": {
       "ru": "MemoryError",
       "en": "MemoryError"
@@ -2333,12 +2333,12 @@
     ],
     "related": [
       "sys.getsizeof",
-      "recursionerror"
+      "RecursionError"
     ],
     "related_errors": []
   },
   {
-    "id": "referenceerror",
+    "id": "ReferenceError",
     "title": {
       "ru": "ReferenceError",
       "en": "ReferenceError"
@@ -2388,7 +2388,7 @@
     "related_errors": []
   },
   {
-    "id": "systemerror",
+    "id": "SystemError",
     "title": {
       "ru": "SystemError",
       "en": "SystemError"
@@ -2435,13 +2435,13 @@
       ]
     ],
     "related": [
-      "runtimeerror",
-      "exception"
+      "RuntimeError",
+      "Exception"
     ],
     "related_errors": []
   },
   {
-    "id": "buffererror",
+    "id": "BufferError",
     "title": {
       "ru": "BufferError",
       "en": "BufferError"
@@ -2495,7 +2495,7 @@
     "related_errors": []
   },
   {
-    "id": "unboundlocalerror",
+    "id": "UnboundLocalError",
     "title": {
       "ru": "UnboundLocalError",
       "en": "UnboundLocalError"
@@ -2542,14 +2542,14 @@
       ]
     ],
     "related": [
-      "nameerror",
+      "NameError",
       "локальные-и-глобальные-переменные",
       "global-nonlocal"
     ],
     "related_errors": []
   },
   {
-    "id": "syntaxerror",
+    "id": "SyntaxError",
     "title": {
       "ru": "SyntaxError",
       "en": "SyntaxError"
@@ -2597,14 +2597,14 @@
       ]
     ],
     "related": [
-      "indentationerror",
-      "taberror",
-      "syntaxwarning"
+      "IndentationError",
+      "TabError",
+      "SyntaxWarning"
     ],
     "related_errors": []
   },
   {
-    "id": "indentationerror",
+    "id": "IndentationError",
     "title": {
       "ru": "IndentationError",
       "en": "IndentationError"
@@ -2651,13 +2651,13 @@
       ]
     ],
     "related": [
-      "syntaxerror",
-      "taberror"
+      "SyntaxError",
+      "TabError"
     ],
     "related_errors": []
   },
   {
-    "id": "taberror",
+    "id": "TabError",
     "title": {
       "ru": "TabError",
       "en": "TabError"
@@ -2704,13 +2704,13 @@
       ]
     ],
     "related": [
-      "indentationerror",
-      "syntaxerror"
+      "IndentationError",
+      "SyntaxError"
     ],
     "related_errors": []
   },
   {
-    "id": "unicodeerror",
+    "id": "UnicodeError",
     "title": {
       "ru": "UnicodeError",
       "en": "UnicodeError"
@@ -2757,15 +2757,15 @@
       ]
     ],
     "related": [
-      "unicodeencodeerror",
-      "unicodedecodeerror",
-      "unicodetranslateerror",
-      "valueerror"
+      "UnicodeEncodeError",
+      "UnicodeDecodeError",
+      "UnicodeTranslateError",
+      "ValueError"
     ],
     "related_errors": []
   },
   {
-    "id": "unicodedecodeerror",
+    "id": "UnicodeDecodeError",
     "title": {
       "ru": "UnicodeDecodeError",
       "en": "UnicodeDecodeError"
@@ -2812,15 +2812,15 @@
       ]
     ],
     "related": [
-      "unicodeencodeerror",
-      "unicodeerror",
+      "UnicodeEncodeError",
+      "UnicodeError",
       "bytes.decode",
       "file-errors"
     ],
     "related_errors": []
   },
   {
-    "id": "unicodeencodeerror",
+    "id": "UnicodeEncodeError",
     "title": {
       "ru": "UnicodeEncodeError",
       "en": "UnicodeEncodeError"
@@ -2868,15 +2868,15 @@
       ]
     ],
     "related": [
-      "unicodedecodeerror",
-      "unicodeerror",
+      "UnicodeDecodeError",
+      "UnicodeError",
       "str.encode",
       "file-errors"
     ],
     "related_errors": []
   },
   {
-    "id": "unicodetranslateerror",
+    "id": "UnicodeTranslateError",
     "title": {
       "ru": "UnicodeTranslateError",
       "en": "UnicodeTranslateError"
@@ -2923,14 +2923,14 @@
       ]
     ],
     "related": [
-      "unicodeerror",
+      "UnicodeError",
       "str.translate",
-      "unicodeencodeerror"
+      "UnicodeEncodeError"
     ],
     "related_errors": []
   },
   {
-    "id": "fileexistserror",
+    "id": "FileExistsError",
     "title": {
       "ru": "FileExistsError",
       "en": "FileExistsError"
@@ -2977,14 +2977,14 @@
       ]
     ],
     "related": [
-      "filenotfounderror",
-      "oserror",
+      "FileNotFoundError",
+      "OSError",
       "path.mkdir"
     ],
     "related_errors": []
   },
   {
-    "id": "isadirectoryerror",
+    "id": "IsADirectoryError",
     "title": {
       "ru": "IsADirectoryError",
       "en": "IsADirectoryError"
@@ -3031,14 +3031,14 @@
       ]
     ],
     "related": [
-      "notadirectoryerror",
-      "oserror",
-      "filenotfounderror"
+      "NotADirectoryError",
+      "OSError",
+      "FileNotFoundError"
     ],
     "related_errors": []
   },
   {
-    "id": "notadirectoryerror",
+    "id": "NotADirectoryError",
     "title": {
       "ru": "NotADirectoryError",
       "en": "NotADirectoryError"
@@ -3085,15 +3085,15 @@
       ]
     ],
     "related": [
-      "isadirectoryerror",
-      "oserror",
-      "filenotfounderror",
+      "IsADirectoryError",
+      "OSError",
+      "FileNotFoundError",
       "os.path.isdir"
     ],
     "related_errors": []
   },
   {
-    "id": "interruptederror",
+    "id": "InterruptedError",
     "title": {
       "ru": "InterruptedError",
       "en": "InterruptedError"
@@ -3140,13 +3140,13 @@
       ]
     ],
     "related": [
-      "oserror",
-      "keyboardinterrupt"
+      "OSError",
+      "KeyboardInterrupt"
     ],
     "related_errors": []
   },
   {
-    "id": "childprocesserror",
+    "id": "ChildProcessError",
     "title": {
       "ru": "ChildProcessError",
       "en": "ChildProcessError"
@@ -3193,14 +3193,14 @@
       ]
     ],
     "related": [
-      "oserror",
+      "OSError",
       "os.waitpid",
       "subprocess-Popen"
     ],
     "related_errors": []
   },
   {
-    "id": "processlookuperror",
+    "id": "ProcessLookupError",
     "title": {
       "ru": "ProcessLookupError",
       "en": "ProcessLookupError"
@@ -3248,13 +3248,13 @@
     ],
     "related": [
       "os.kill",
-      "oserror",
-      "childprocesserror"
+      "OSError",
+      "ChildProcessError"
     ],
     "related_errors": []
   },
   {
-    "id": "timeouterror",
+    "id": "TimeoutError",
     "title": {
       "ru": "TimeoutError",
       "en": "TimeoutError"
@@ -3301,14 +3301,14 @@
       ]
     ],
     "related": [
-      "oserror",
-      "connectionerror",
-      "blockingioerror"
+      "OSError",
+      "ConnectionError",
+      "BlockingIOError"
     ],
     "related_errors": []
   },
   {
-    "id": "blockingioerror",
+    "id": "BlockingIOError",
     "title": {
       "ru": "BlockingIOError",
       "en": "BlockingIOError"
@@ -3356,14 +3356,14 @@
       ]
     ],
     "related": [
-      "oserror",
-      "interruptederror",
+      "OSError",
+      "InterruptedError",
       "os.set_blocking"
     ],
     "related_errors": []
   },
   {
-    "id": "connectionerror",
+    "id": "ConnectionError",
     "title": {
       "ru": "ConnectionError",
       "en": "ConnectionError"
@@ -3411,15 +3411,15 @@
       ]
     ],
     "related": [
-      "oserror",
-      "connectionrefusederror",
-      "connectionreseterror",
-      "connectionabortederror"
+      "OSError",
+      "ConnectionRefusedError",
+      "ConnectionResetError",
+      "ConnectionAbortedError"
     ],
     "related_errors": []
   },
   {
-    "id": "connectionreseterror",
+    "id": "ConnectionResetError",
     "title": {
       "ru": "ConnectionResetError",
       "en": "ConnectionResetError"
@@ -3466,14 +3466,14 @@
       ]
     ],
     "related": [
-      "connectionerror",
-      "connectionabortederror",
-      "brokenpipeerror"
+      "ConnectionError",
+      "ConnectionAbortedError",
+      "BrokenPipeError"
     ],
     "related_errors": []
   },
   {
-    "id": "connectionrefusederror",
+    "id": "ConnectionRefusedError",
     "title": {
       "ru": "ConnectionRefusedError",
       "en": "ConnectionRefusedError"
@@ -3520,14 +3520,14 @@
       ]
     ],
     "related": [
-      "connectionerror",
-      "connectionreseterror",
-      "timeouterror"
+      "ConnectionError",
+      "ConnectionResetError",
+      "TimeoutError"
     ],
     "related_errors": []
   },
   {
-    "id": "connectionabortederror",
+    "id": "ConnectionAbortedError",
     "title": {
       "ru": "ConnectionAbortedError",
       "en": "ConnectionAbortedError"
@@ -3574,14 +3574,14 @@
       ]
     ],
     "related": [
-      "connectionerror",
-      "connectionreseterror",
-      "connectionrefusederror"
+      "ConnectionError",
+      "ConnectionResetError",
+      "ConnectionRefusedError"
     ],
     "related_errors": []
   },
   {
-    "id": "brokenpipeerror",
+    "id": "BrokenPipeError",
     "title": {
       "ru": "BrokenPipeError",
       "en": "BrokenPipeError"
@@ -3628,14 +3628,14 @@
       ]
     ],
     "related": [
-      "connectionerror",
-      "connectionreseterror",
-      "oserror"
+      "ConnectionError",
+      "ConnectionResetError",
+      "OSError"
     ],
     "related_errors": []
   },
   {
-    "id": "exceptiongroup",
+    "id": "ExceptionGroup",
     "title": {
       "ru": "ExceptionGroup",
       "en": "ExceptionGroup"
@@ -3682,14 +3682,14 @@
       ]
     ],
     "related": [
-      "baseexceptiongroup",
-      "exception",
+      "BaseExceptionGroup",
+      "Exception",
       "try-except"
     ],
     "related_errors": []
   },
   {
-    "id": "baseexceptiongroup",
+    "id": "BaseExceptionGroup",
     "title": {
       "ru": "BaseExceptionGroup",
       "en": "BaseExceptionGroup"
@@ -3736,14 +3736,14 @@
       ]
     ],
     "related": [
-      "exceptiongroup",
-      "baseexception",
+      "ExceptionGroup",
+      "BaseException",
       "иерархия-исключений"
     ],
     "related_errors": []
   },
   {
-    "id": "pythonfinalizationerror",
+    "id": "PythonFinalizationError",
     "title": {
       "ru": "PythonFinalizationError",
       "en": "PythonFinalizationError"
@@ -3790,14 +3790,14 @@
       ]
     ],
     "related": [
-      "runtimeerror",
-      "systemexit",
+      "RuntimeError",
+      "SystemExit",
       "threading-thread"
     ],
     "related_errors": []
   },
   {
-    "id": "warning",
+    "id": "Warning",
     "title": {
       "ru": "Warning",
       "en": "Warning"
@@ -3844,15 +3844,15 @@
       ]
     ],
     "related": [
-      "userwarning",
-      "deprecationwarning",
-      "exception",
+      "UserWarning",
+      "DeprecationWarning",
+      "Exception",
       "иерархия-исключений"
     ],
     "related_errors": []
   },
   {
-    "id": "deprecationwarning",
+    "id": "DeprecationWarning",
     "title": {
       "ru": "DeprecationWarning",
       "en": "DeprecationWarning"
@@ -3899,14 +3899,14 @@
       ]
     ],
     "related": [
-      "pendingdeprecationwarning",
-      "futurewarning",
-      "warning"
+      "PendingDeprecationWarning",
+      "FutureWarning",
+      "Warning"
     ],
     "related_errors": []
   },
   {
-    "id": "pendingdeprecationwarning",
+    "id": "PendingDeprecationWarning",
     "title": {
       "ru": "PendingDeprecationWarning",
       "en": "PendingDeprecationWarning"
@@ -3953,14 +3953,14 @@
       ]
     ],
     "related": [
-      "deprecationwarning",
-      "futurewarning",
-      "warning"
+      "DeprecationWarning",
+      "FutureWarning",
+      "Warning"
     ],
     "related_errors": []
   },
   {
-    "id": "runtimewarning",
+    "id": "RuntimeWarning",
     "title": {
       "ru": "RuntimeWarning",
       "en": "RuntimeWarning"
@@ -4007,14 +4007,14 @@
       ]
     ],
     "related": [
-      "warning",
-      "userwarning",
-      "deprecationwarning"
+      "Warning",
+      "UserWarning",
+      "DeprecationWarning"
     ],
     "related_errors": []
   },
   {
-    "id": "syntaxwarning",
+    "id": "SyntaxWarning",
     "title": {
       "ru": "SyntaxWarning",
       "en": "SyntaxWarning"
@@ -4061,14 +4061,14 @@
       ]
     ],
     "related": [
-      "syntaxerror",
-      "warning",
-      "runtimewarning"
+      "SyntaxError",
+      "Warning",
+      "RuntimeWarning"
     ],
     "related_errors": []
   },
   {
-    "id": "userwarning",
+    "id": "UserWarning",
     "title": {
       "ru": "UserWarning",
       "en": "UserWarning"
@@ -4115,14 +4115,14 @@
       ]
     ],
     "related": [
-      "warning",
-      "deprecationwarning",
-      "runtimewarning"
+      "Warning",
+      "DeprecationWarning",
+      "RuntimeWarning"
     ],
     "related_errors": []
   },
   {
-    "id": "futurewarning",
+    "id": "FutureWarning",
     "title": {
       "ru": "FutureWarning",
       "en": "FutureWarning"
@@ -4169,14 +4169,14 @@
       ]
     ],
     "related": [
-      "deprecationwarning",
-      "pendingdeprecationwarning",
-      "warning"
+      "DeprecationWarning",
+      "PendingDeprecationWarning",
+      "Warning"
     ],
     "related_errors": []
   },
   {
-    "id": "importwarning",
+    "id": "ImportWarning",
     "title": {
       "ru": "ImportWarning",
       "en": "ImportWarning"
@@ -4223,14 +4223,14 @@
       ]
     ],
     "related": [
-      "importerror",
-      "modulenotfounderror",
-      "warning"
+      "ImportError",
+      "ModuleNotFoundError",
+      "Warning"
     ],
     "related_errors": []
   },
   {
-    "id": "unicodewarning",
+    "id": "UnicodeWarning",
     "title": {
       "ru": "UnicodeWarning",
       "en": "UnicodeWarning"
@@ -4277,14 +4277,14 @@
       ]
     ],
     "related": [
-      "warning",
-      "unicodeerror",
-      "encodingwarning"
+      "Warning",
+      "UnicodeError",
+      "EncodingWarning"
     ],
     "related_errors": []
   },
   {
-    "id": "byteswarning",
+    "id": "BytesWarning",
     "title": {
       "ru": "BytesWarning",
       "en": "BytesWarning"
@@ -4331,14 +4331,14 @@
       ]
     ],
     "related": [
-      "warning",
+      "Warning",
       "bytes",
       "bytearray"
     ],
     "related_errors": []
   },
   {
-    "id": "resourcewarning",
+    "id": "ResourceWarning",
     "title": {
       "ru": "ResourceWarning",
       "en": "ResourceWarning"
@@ -4387,12 +4387,12 @@
     "related": [
       "open",
       "__enter__-__exit__",
-      "warning"
+      "Warning"
     ],
     "related_errors": []
   },
   {
-    "id": "encodingwarning",
+    "id": "EncodingWarning",
     "title": {
       "ru": "EncodingWarning",
       "en": "EncodingWarning"
@@ -4441,12 +4441,12 @@
     "related": [
       "open",
       "io.text_encoding",
-      "warning"
+      "Warning"
     ],
     "related_errors": []
   },
   {
-    "id": "_incompleteinputerror",
+    "id": "_IncompleteInputError",
     "title": {
       "ru": "_IncompleteInputError",
       "en": "_IncompleteInputError"
@@ -4493,9 +4493,9 @@
       ]
     ],
     "related": [
-      "syntaxerror",
+      "SyntaxError",
       "compile",
-      "eoferror"
+      "EOFError"
     ],
     "related_errors": []
   },
@@ -4552,13 +4552,13 @@
     "related": [
       "json.loads",
       "json.load",
-      "valueerror",
+      "ValueError",
       "json.JSONDecoder"
     ],
     "related_errors": []
   },
   {
-    "id": "re.patternerror",
+    "id": "re.PatternError",
     "title": {
       "ru": "re.PatternError",
       "en": "re.PatternError"
@@ -4616,7 +4616,7 @@
     "related_errors": []
   },
   {
-    "id": "statistics.statisticserror",
+    "id": "statistics.StatisticsError",
     "title": {
       "ru": "statistics.StatisticsError",
       "en": "statistics.StatisticsError"
@@ -4667,12 +4667,12 @@
     "related": [
       "statistics.mean",
       "statistics.stdev",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": []
   },
   {
-    "id": "dataclasses.frozeninstanceerror",
+    "id": "dataclasses.FrozenInstanceError",
     "title": {
       "ru": "dataclasses.FrozenInstanceError",
       "en": "dataclasses.FrozenInstanceError"
@@ -4724,12 +4724,12 @@
     "related": [
       "dataclass-frozen-true",
       "dataclasses.replace",
-      "attributeerror"
+      "AttributeError"
     ],
     "related_errors": []
   },
   {
-    "id": "io.unsupportedoperation",
+    "id": "io.UnsupportedOperation",
     "title": {
       "ru": "io.UnsupportedOperation",
       "en": "io.UnsupportedOperation"
@@ -4779,8 +4779,8 @@
       ]
     ],
     "related": [
-      "oserror",
-      "valueerror",
+      "OSError",
+      "ValueError",
       "open"
     ],
     "related_errors": []
@@ -4891,13 +4891,13 @@
       ]
     ],
     "related": [
-      "shutil.readerror",
+      "shutil.ReadError",
       "struct.error"
     ],
     "related_errors": []
   },
   {
-    "id": "copy.error",
+    "id": "copy.Error",
     "title": {
       "ru": "copy.Error",
       "en": "copy.Error"
@@ -4953,7 +4953,7 @@
     "related_errors": []
   },
   {
-    "id": "locale.error",
+    "id": "locale.Error",
     "title": {
       "ru": "locale.Error",
       "en": "locale.Error"
@@ -5005,7 +5005,7 @@
     "related_errors": []
   },
   {
-    "id": "argparse.argumenterror",
+    "id": "argparse.ArgumentError",
     "title": {
       "ru": "argparse.ArgumentError",
       "en": "argparse.ArgumentError"
@@ -5054,14 +5054,14 @@
       ]
     ],
     "related": [
-      "argparse.argumenttypeerror",
-      "valueerror",
+      "argparse.ArgumentTypeError",
+      "ValueError",
       "sys.argv"
     ],
     "related_errors": []
   },
   {
-    "id": "argparse.argumenttypeerror",
+    "id": "argparse.ArgumentTypeError",
     "title": {
       "ru": "argparse.ArgumentTypeError",
       "en": "argparse.ArgumentTypeError"
@@ -5110,14 +5110,14 @@
       ]
     ],
     "related": [
-      "argparse.argumenterror",
-      "valueerror",
+      "argparse.ArgumentError",
+      "ValueError",
       "sys.argv"
     ],
     "related_errors": []
   },
   {
-    "id": "shutil.error",
+    "id": "shutil.Error",
     "title": {
       "ru": "shutil.Error",
       "en": "shutil.Error"
@@ -5166,15 +5166,15 @@
       ]
     ],
     "related": [
-      "shutil.samefileerror",
-      "shutil.specialfileerror",
-      "shutil.readerror",
-      "oserror"
+      "shutil.SameFileError",
+      "shutil.SpecialFileError",
+      "shutil.ReadError",
+      "OSError"
     ],
     "related_errors": []
   },
   {
-    "id": "shutil.samefileerror",
+    "id": "shutil.SameFileError",
     "title": {
       "ru": "shutil.SameFileError",
       "en": "shutil.SameFileError"
@@ -5223,14 +5223,14 @@
       ]
     ],
     "related": [
-      "shutil.error",
+      "shutil.Error",
       "os.path.samefile",
-      "shutil.specialfileerror"
+      "shutil.SpecialFileError"
     ],
     "related_errors": []
   },
   {
-    "id": "shutil.specialfileerror",
+    "id": "shutil.SpecialFileError",
     "title": {
       "ru": "shutil.SpecialFileError",
       "en": "shutil.SpecialFileError"
@@ -5279,14 +5279,14 @@
       ]
     ],
     "related": [
-      "shutil.error",
-      "shutil.samefileerror",
+      "shutil.Error",
+      "shutil.SameFileError",
       "os.stat"
     ],
     "related_errors": []
   },
   {
-    "id": "shutil.execerror",
+    "id": "shutil.ExecError",
     "title": {
       "ru": "shutil.ExecError",
       "en": "shutil.ExecError"
@@ -5336,14 +5336,14 @@
       ]
     ],
     "related": [
-      "shutil.error",
-      "shutil.readerror",
-      "shutil.registryerror"
+      "shutil.Error",
+      "shutil.ReadError",
+      "shutil.RegistryError"
     ],
     "related_errors": []
   },
   {
-    "id": "shutil.readerror",
+    "id": "shutil.ReadError",
     "title": {
       "ru": "shutil.ReadError",
       "en": "shutil.ReadError"
@@ -5392,14 +5392,14 @@
       ]
     ],
     "related": [
-      "shutil.registryerror",
-      "shutil.error",
-      "shutil.execerror"
+      "shutil.RegistryError",
+      "shutil.Error",
+      "shutil.ExecError"
     ],
     "related_errors": []
   },
   {
-    "id": "shutil.registryerror",
+    "id": "shutil.RegistryError",
     "title": {
       "ru": "shutil.RegistryError",
       "en": "shutil.RegistryError"
@@ -5448,14 +5448,14 @@
       ]
     ],
     "related": [
-      "shutil.readerror",
-      "shutil.error",
-      "shutil.execerror"
+      "shutil.ReadError",
+      "shutil.Error",
+      "shutil.ExecError"
     ],
     "related_errors": []
   },
   {
-    "id": "threading.brokenbarriererror",
+    "id": "threading.BrokenBarrierError",
     "title": {
       "ru": "threading.BrokenBarrierError",
       "en": "threading.BrokenBarrierError"
@@ -5511,7 +5511,7 @@
     "related_errors": []
   },
   {
-    "id": "tokenize.tokenerror",
+    "id": "tokenize.TokenError",
     "title": {
       "ru": "tokenize.TokenError",
       "en": "tokenize.TokenError"
@@ -5560,14 +5560,14 @@
       ]
     ],
     "related": [
-      "syntaxerror",
-      "_incompleteinputerror",
+      "SyntaxError",
+      "_IncompleteInputError",
       "compile"
     ],
     "related_errors": []
   },
   {
-    "id": "zipimport.zipimporterror",
+    "id": "zipimport.ZipImportError",
     "title": {
       "ru": "zipimport.ZipImportError",
       "en": "zipimport.ZipImportError"
@@ -5616,14 +5616,14 @@
       ]
     ],
     "related": [
-      "importerror",
-      "modulenotfounderror",
+      "ImportError",
+      "ModuleNotFoundError",
       "sys.path"
     ],
     "related_errors": []
   },
   {
-    "id": "signal.itimererror",
+    "id": "signal.ItimerError",
     "title": {
       "ru": "signal.ItimerError",
       "en": "signal.ItimerError"
@@ -5678,14 +5678,14 @@
       ]
     ],
     "related": [
-      "oserror",
-      "interruptederror",
-      "keyboardinterrupt"
+      "OSError",
+      "InterruptedError",
+      "KeyboardInterrupt"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.decimalexception",
+    "id": "decimal.DecimalException",
     "title": {
       "ru": "decimal.DecimalException",
       "en": "decimal.DecimalException"
@@ -5734,15 +5734,15 @@
       ]
     ],
     "related": [
-      "arithmeticerror",
-      "decimal.invalidoperation",
-      "decimal.divisionbyzero",
+      "ArithmeticError",
+      "decimal.InvalidOperation",
+      "decimal.DivisionByZero",
       "decimal.getcontext"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.invalidoperation",
+    "id": "decimal.InvalidOperation",
     "title": {
       "ru": "decimal.InvalidOperation",
       "en": "decimal.InvalidOperation"
@@ -5791,14 +5791,14 @@
       ]
     ],
     "related": [
-      "decimal.decimalexception",
-      "decimal.conversionsyntax",
-      "decimal.divisionundefined"
+      "decimal.DecimalException",
+      "decimal.ConversionSyntax",
+      "decimal.DivisionUndefined"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.divisionbyzero",
+    "id": "decimal.DivisionByZero",
     "title": {
       "ru": "decimal.DivisionByZero",
       "en": "decimal.DivisionByZero"
@@ -5847,14 +5847,14 @@
       ]
     ],
     "related": [
-      "zerodivisionerror",
-      "decimal.divisionundefined",
-      "decimal.decimalexception"
+      "ZeroDivisionError",
+      "decimal.DivisionUndefined",
+      "decimal.DecimalException"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.divisionimpossible",
+    "id": "decimal.DivisionImpossible",
     "title": {
       "ru": "decimal.DivisionImpossible",
       "en": "decimal.DivisionImpossible"
@@ -5903,14 +5903,14 @@
       ]
     ],
     "related": [
-      "decimal.invalidoperation",
-      "decimal.divisionundefined",
-      "decimal.divisionbyzero"
+      "decimal.InvalidOperation",
+      "decimal.DivisionUndefined",
+      "decimal.DivisionByZero"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.divisionundefined",
+    "id": "decimal.DivisionUndefined",
     "title": {
       "ru": "decimal.DivisionUndefined",
       "en": "decimal.DivisionUndefined"
@@ -5959,14 +5959,14 @@
       ]
     ],
     "related": [
-      "decimal.divisionbyzero",
-      "decimal.divisionimpossible",
-      "decimal.invalidoperation"
+      "decimal.DivisionByZero",
+      "decimal.DivisionImpossible",
+      "decimal.InvalidOperation"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.overflow",
+    "id": "decimal.Overflow",
     "title": {
       "ru": "decimal.Overflow",
       "en": "decimal.Overflow"
@@ -6015,15 +6015,15 @@
       ]
     ],
     "related": [
-      "decimal.underflow",
-      "decimal.decimalexception",
-      "overflowerror",
-      "decimal.inexact"
+      "decimal.Underflow",
+      "decimal.DecimalException",
+      "OverflowError",
+      "decimal.Inexact"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.underflow",
+    "id": "decimal.Underflow",
     "title": {
       "ru": "decimal.Underflow",
       "en": "decimal.Underflow"
@@ -6072,15 +6072,15 @@
       ]
     ],
     "related": [
-      "decimal.overflow",
-      "decimal.subnormal",
-      "decimal.decimalexception",
-      "decimal.inexact"
+      "decimal.Overflow",
+      "decimal.Subnormal",
+      "decimal.DecimalException",
+      "decimal.Inexact"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.inexact",
+    "id": "decimal.Inexact",
     "title": {
       "ru": "decimal.Inexact",
       "en": "decimal.Inexact"
@@ -6129,14 +6129,14 @@
       ]
     ],
     "related": [
-      "decimal.rounded",
-      "decimal.decimalexception",
+      "decimal.Rounded",
+      "decimal.DecimalException",
       "decimal.getcontext"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.rounded",
+    "id": "decimal.Rounded",
     "title": {
       "ru": "decimal.Rounded",
       "en": "decimal.Rounded"
@@ -6185,14 +6185,14 @@
       ]
     ],
     "related": [
-      "decimal.inexact",
-      "decimal.decimalexception",
+      "decimal.Inexact",
+      "decimal.DecimalException",
       "decimal.getcontext"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.subnormal",
+    "id": "decimal.Subnormal",
     "title": {
       "ru": "decimal.Subnormal",
       "en": "decimal.Subnormal"
@@ -6241,14 +6241,14 @@
       ]
     ],
     "related": [
-      "decimal.underflow",
-      "decimal.clamped",
-      "decimal.decimalexception"
+      "decimal.Underflow",
+      "decimal.Clamped",
+      "decimal.DecimalException"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.clamped",
+    "id": "decimal.Clamped",
     "title": {
       "ru": "decimal.Clamped",
       "en": "decimal.Clamped"
@@ -6297,14 +6297,14 @@
       ]
     ],
     "related": [
-      "decimal.decimalexception",
-      "decimal.subnormal",
-      "decimal.rounded"
+      "decimal.DecimalException",
+      "decimal.Subnormal",
+      "decimal.Rounded"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.conversionsyntax",
+    "id": "decimal.ConversionSyntax",
     "title": {
       "ru": "decimal.ConversionSyntax",
       "en": "decimal.ConversionSyntax"
@@ -6353,14 +6353,14 @@
       ]
     ],
     "related": [
-      "decimal.invalidoperation",
-      "decimal.decimal",
-      "decimal.decimalexception"
+      "decimal.InvalidOperation",
+      "decimal.Decimal",
+      "decimal.DecimalException"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.floatoperation",
+    "id": "decimal.FloatOperation",
     "title": {
       "ru": "decimal.FloatOperation",
       "en": "decimal.FloatOperation"
@@ -6409,14 +6409,14 @@
       ]
     ],
     "related": [
-      "decimal.decimal",
+      "decimal.Decimal",
       "decimal.getcontext",
       "float"
     ],
     "related_errors": []
   },
   {
-    "id": "decimal.invalidcontext",
+    "id": "decimal.InvalidContext",
     "title": {
       "ru": "decimal.InvalidContext",
       "en": "decimal.InvalidContext"
@@ -6467,7 +6467,7 @@
     "related": [
       "decimal.getcontext",
       "decimal.setcontext",
-      "decimal.invalidoperation"
+      "decimal.InvalidOperation"
     ],
     "related_errors": []
   },
@@ -6522,9 +6522,9 @@
       ]
     ],
     "related": [
-      "lookuperror",
-      "systemerror",
-      "unicodeerror"
+      "LookupError",
+      "SystemError",
+      "UnicodeError"
     ],
     "related_errors": []
   },
@@ -6596,7 +6596,7 @@
       "subprocess.SubprocessError"
     ],
     "related_errors": [
-      "filenotfounderror"
+      "FileNotFoundError"
     ]
   },
   {
@@ -6659,8 +6659,8 @@
       "subprocess-run"
     ],
     "related_errors": [
-      "oserror",
-      "filenotfounderror"
+      "OSError",
+      "FileNotFoundError"
     ]
   },
   {
@@ -6731,7 +6731,7 @@
       "subprocess.SubprocessError"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -6796,15 +6796,15 @@
     ],
     "related": [
       "sqlite3.Error",
-      "warning",
-      "exception"
+      "Warning",
+      "Exception"
     ],
     "related_errors": [
       "sqlite3.ProgrammingError"
     ]
   },
   {
-    "id": "importcycleerror",
+    "id": "ImportCycleError",
     "title": {
       "ru": "ImportCycleError",
       "en": "ImportCycleError"
@@ -6854,8 +6854,8 @@
       ]
     ],
     "related": [
-      "importerror",
-      "modulenotfounderror",
+      "ImportError",
+      "ModuleNotFoundError",
       "lazy-import",
       "import-from-import"
     ],

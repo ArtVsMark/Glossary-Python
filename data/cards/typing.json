@@ -913,6 +913,67 @@
     "related_errors": []
   },
   {
+    "id": "typing",
+    "title": {
+      "ru": "typing",
+      "en": "typing"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Средства подсказок типов: Any, Optional, TypedDict, Protocol, обобщения — для mypy, IDE и читателя кода.",
+      "en": "Type hint tools: Any, Optional, TypedDict, Protocol, generics — for mypy, IDEs and human readers."
+    },
+    "body": {
+      "ru": "typing описывает намерения, а не проверяет их: интерпретатор аннотации не сверяет, это делают mypy, pyright и IDE. С Python 3.9 вместо List[int] и Dict[str, int] пишут встроенные list[int] и dict[str, int], а с 3.10 вместо Optional[X] — X | None, так что из typing остаются в основном Any, Protocol, TypedDict, Literal и подобные. Не путайте с types: тот модуль про реальные объекты во время выполнения.",
+      "en": "typing states intent but does not enforce it: the interpreter does not check annotations; mypy, pyright and IDEs do. Since Python 3.9 the built-in list[int] and dict[str, int] replace List[int] and Dict[str, int], and since 3.10 X | None replaces Optional[X], so what remains in typing is mostly Any, Protocol, TypedDict, Literal and the like. Do not confuse it with types, which is about real objects at run time."
+    },
+    "syntax": "import typing",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/typing.html",
+    "added": "3.5",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль typing",
+    "subcat": {
+      "ru": "модуль",
+      "en": "module"
+    },
+    "aliases": [
+      "подсказки типов",
+      "аннотации типов в Python",
+      "статическая типизация"
+    ],
+    "keywords": [
+      "typing",
+      "import typing",
+      "typing.Any",
+      "typing.TypedDict"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "from typing import get_type_hints",
+        "def double(x: int) -> int:",
+        "    return x * 2",
+        "print(double(\"ab\"))  # → abab — подсказки типов при запуске не проверяются",
+        "print(get_type_hints(double))  # → {'x': <class 'int'>, 'return': <class 'int'>}"
+      ]
+    ],
+    "related": [
+      "typing.Any",
+      "optional-x-x-none",
+      "typeddict",
+      "protocol",
+      "typing.get_type_hints"
+    ],
+    "related_errors": []
+  },
+  {
     "id": "typing.get_args",
     "title": {
       "ru": "typing.get_args",

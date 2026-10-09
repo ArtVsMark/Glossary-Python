@@ -8467,6 +8467,69 @@
     ]
   },
   {
+    "id": "statistics",
+    "title": {
+      "ru": "statistics",
+      "en": "statistics"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Описательная статистика по числовым данным: среднее, медиана, мода, дисперсия, корреляция.",
+      "en": "Descriptive statistics for numeric data: mean, median, mode, variance, correlation."
+    },
+    "body": {
+      "ru": "statistics закрывает школьную и базовую прикладную статистику без сторонних библиотек и считает точно, в том числе с Fraction и Decimal. Для больших массивов он медленный — там нужен NumPy. Частая путаница: stdev и variance — выборочные (делят на n−1), а pstdev и pvariance — по генеральной совокупности; для float-данных быстрее fmean.",
+      "en": "statistics covers school-level and basic applied statistics without third-party libraries and computes exactly, including with Fraction and Decimal. It is slow on large arrays — reach for NumPy there. A frequent mix-up: stdev and variance are sample statistics (dividing by n-1), while pstdev and pvariance describe a whole population; for float data fmean is faster."
+    },
+    "syntax": "import statistics",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/statistics.html",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль statistics",
+    "subcat": {
+      "ru": "модуль",
+      "en": "module"
+    },
+    "aliases": [
+      "среднее арифметическое списка",
+      "медиана и мода",
+      "стандартное отклонение"
+    ],
+    "keywords": [
+      "statistics",
+      "import statistics",
+      "mean",
+      "median",
+      "stdev"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import statistics",
+        "data = [2, 4, 4, 4, 5, 5, 7, 9]",
+        "print(statistics.mean(data), statistics.median(data))  # → 5 4.5",
+        "print(statistics.mode(data), statistics.pstdev(data))  # → 4 2.0"
+      ]
+    ],
+    "related": [
+      "statistics.mean",
+      "statistics.median",
+      "statistics.mode",
+      "statistics.stdev",
+      "statistics.quantiles"
+    ],
+    "related_errors": [
+      "statistics.StatisticsError"
+    ]
+  },
+  {
     "id": "statistics.mean",
     "title": {
       "ru": "statistics.mean",
@@ -10638,6 +10701,120 @@
     "related_errors": [
       "ModuleNotFoundError",
       "SyntaxError"
+    ]
+  },
+  {
+    "id": "pkgutil",
+    "title": {
+      "ru": "pkgutil",
+      "en": "pkgutil"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Служебные функции для пакетов: перечислить модули пакета, прочитать файл данных из пакета.",
+      "en": "Utilities for packages: list the modules inside a package and read a data file shipped with it."
+    },
+    "body": {
+      "ru": "Главное в pkgutil сегодня — iter_modules и walk_packages: они перечисляют модули пакета, не импортируя их, и годятся для систем плагинов. Чтение ресурсов пакета (get_data) и поиск загрузчиков в новом коде делают через importlib.resources и importlib.util — find_loader и get_loader устарели и в 3.14 удалены. walk_packages, в отличие от iter_modules, импортирует подпакеты, чтобы заглянуть внутрь.",
+      "en": "Today the main use of pkgutil is iter_modules and walk_packages: they list a package's modules without importing them, which suits plugin systems. Reading package resources (get_data) and finding loaders is done in new code with importlib.resources and importlib.util; find_loader and get_loader were deprecated and removed in 3.14. Unlike iter_modules, walk_packages imports subpackages to look inside them."
+    },
+    "syntax": "import pkgutil",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/pkgutil.html",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модули и импорт",
+    "subcat": {
+      "ru": "модуль",
+      "en": "module"
+    },
+    "aliases": [
+      "список модулей пакета",
+      "найти плагины в пакете"
+    ],
+    "keywords": [
+      "pkgutil",
+      "import pkgutil",
+      "iter_modules",
+      "walk_packages"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import pkgutil, pathlib",
+        "pkg = pathlib.Path('plugins')",
+        "pkg.mkdir(exist_ok=True)",
+        "for name in ('alpha', 'beta'):",
+        "    (pkg / f'{name}.py').write_text('', encoding='utf-8')",
+        "print(sorted(m.name for m in pkgutil.iter_modules(['plugins'])))  # → ['alpha', 'beta']"
+      ]
+    ],
+    "related": [
+      "pkgutil.get_loader",
+      "pkgutil.find_loader"
+    ],
+    "related_errors": []
+  },
+  {
+    "id": "zipimport",
+    "title": {
+      "ru": "zipimport",
+      "en": "zipimport"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Импорт модулей Python прямо из ZIP-архива, добавленного в sys.path.",
+      "en": "Imports Python modules directly from a ZIP archive placed on sys.path."
+    },
+    "body": {
+      "ru": "Сам модуль обычно не вызывают: достаточно положить путь к .zip в sys.path, и import найдёт модули внутри — так работают архивы приложений из zipapp. Импортируются только .py и .pyc, а расширения на C (.so, .pyd) из архива не загрузятся. Чтобы собрать запускаемый архив программы, берите zipapp; чтобы просто читать файлы архива — zipfile.",
+      "en": "You rarely call this module directly: putting a .zip path on sys.path is enough for import to find modules inside — that is how zipapp application archives work. Only .py and .pyc files are importable; C extensions (.so, .pyd) cannot be loaded from an archive. To build a runnable program archive use zipapp; to just read files from an archive use zipfile."
+    },
+    "syntax": "import zipimport",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/zipimport.html",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модули и импорт",
+    "subcat": {
+      "ru": "модуль",
+      "en": "module"
+    },
+    "aliases": [
+      "импорт из zip-архива",
+      "модули в архиве"
+    ],
+    "keywords": [
+      "zipimport",
+      "import zipimport",
+      "zipimport.zipimporter"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import sys, zipfile",
+        "with zipfile.ZipFile(\"lib.zip\", \"w\") as zf:",
+        "    zf.writestr(\"greet.py\", \"def hi():\\n    return 'hi from zip'\\n\")",
+        "sys.path.insert(0, \"lib.zip\")",
+        "import greet",
+        "print(greet.hi(), type(greet.__loader__).__name__)  # → hi from zip zipimporter"
+      ]
+    ],
+    "related": [],
+    "related_errors": [
+      "zipimport.ZipImportError"
     ]
   }
 ]

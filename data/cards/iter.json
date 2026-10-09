@@ -133,6 +133,70 @@
     "related_errors": []
   },
   {
+    "id": "asyncio",
+    "title": {
+      "ru": "asyncio",
+      "en": "asyncio"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Асинхронный ввод-вывод на async/await: много задач в одном потоке через цикл событий.",
+      "en": "Asynchronous I/O with async/await: many tasks in a single thread driven by an event loop."
+    },
+    "body": {
+      "ru": "Модуль подходит для задач, которые в основном ждут сети или диска: тысячи соединений обслуживаются одним потоком. Для вычислений он не ускоряет ничего — тут нужны процессы (concurrent.futures, multiprocessing), а для простого параллельного ожидания с блокирующим кодом — потоки. Частая ошибка — вызвать блокирующую функцию вроде time.sleep внутри корутины: это останавливает весь цикл событий.",
+      "en": "It suits work that mostly waits on the network or disk: thousands of connections served by one thread. It does not speed up computation — use processes (concurrent.futures, multiprocessing) for that, and threads for simple waiting with blocking code. A common mistake is calling a blocking function such as time.sleep inside a coroutine: it stalls the whole event loop."
+    },
+    "syntax": "import asyncio",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/asyncio.html",
+    "added": "3.4",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Асинхронное программирование",
+    "subcat": {
+      "ru": "модуль",
+      "en": "module"
+    },
+    "aliases": [
+      "асинхронное программирование",
+      "async await корутины",
+      "цикл событий"
+    ],
+    "keywords": [
+      "asyncio",
+      "import asyncio",
+      "run",
+      "gather",
+      "create_task"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import asyncio",
+        "async def square(n):",
+        "    await asyncio.sleep(0)",
+        "    return n * n",
+        "async def main():",
+        "    return await asyncio.gather(square(2), square(3))",
+        "print(asyncio.run(main()))  # → [4, 9]"
+      ]
+    ],
+    "related": [
+      "asyncio.run",
+      "asyncio.gather",
+      "asyncio.create_task",
+      "asyncio.TaskGroup",
+      "asyncio.sleep"
+    ],
+    "related_errors": []
+  },
+  {
     "id": "asyncio.create_task",
     "title": {
       "ru": "asyncio.create_task()",
@@ -1278,6 +1342,68 @@
     "related_errors": [
       "StopIteration"
     ]
+  },
+  {
+    "id": "itertools",
+    "title": {
+      "ru": "itertools",
+      "en": "itertools"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Строительные блоки для ленивых итераторов: склейка, срезы, группировка, перестановки, бесконечные счётчики.",
+      "en": "Building blocks for lazy iterators: chaining, slicing, grouping, permutations and endless counters."
+    },
+    "body": {
+      "ru": "Функции itertools возвращают ленивые итераторы: ничего не считается, пока результат не перебрали, и перебрать его можно только один раз — второй list() даст пустой список. count и cycle бесконечны, поэтому их ограничивают islice или takewhile. Частая ошибка — groupby без сортировки: он склеивает только соседние одинаковые ключи.",
+      "en": "The functions in itertools return lazy iterators: nothing is computed until the result is consumed, and it can be consumed only once, so a second list() gives an empty list. count and cycle never end, so bound them with islice or takewhile. A common mistake is groupby on unsorted data: it only merges adjacent equal keys."
+    },
+    "syntax": "import itertools",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/itertools.html",
+    "added": "<3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Модуль itertools",
+    "subcat": {
+      "ru": "модуль",
+      "en": "module"
+    },
+    "aliases": [
+      "перебор комбинаций",
+      "бесконечный итератор",
+      "склеить несколько списков"
+    ],
+    "keywords": [
+      "itertools",
+      "import itertools",
+      "chain",
+      "islice",
+      "groupby"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import itertools",
+        "it = itertools.chain([1, 2], (3,))",
+        "print(list(it), list(it))  # → [1, 2, 3] [] — итератор одноразовый",
+        "print(list(itertools.islice(itertools.count(10), 3)))  # → [10, 11, 12]",
+        "print([k for k, _ in itertools.groupby('aabaa')])  # → ['a', 'b', 'a']"
+      ]
+    ],
+    "related": [
+      "itertools.chain",
+      "itertools.islice",
+      "itertools.groupby",
+      "itertools.product",
+      "itertools.count"
+    ],
+    "related_errors": []
   },
   {
     "id": "itertools.count",

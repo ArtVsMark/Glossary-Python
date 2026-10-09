@@ -2996,6 +2996,66 @@
     "related_errors": []
   },
   {
+    "id": "tkinter",
+    "title": {
+      "ru": "tkinter",
+      "en": "tkinter"
+    },
+    "kind": "term",
+    "summary": {
+      "ru": "Стандартный интерфейс к Tcl/Tk для оконных программ: окна, кнопки, поля ввода, холст.",
+      "en": "The standard interface to Tcl/Tk for desktop GUI programs: windows, buttons, entry fields, canvas."
+    },
+    "body": {
+      "ru": "tkinter — единственный набор виджетов, который идёт вместе с Python, поэтому для простого окна или учебной игры ничего ставить не нужно; виджеты в современном стиле лежат в tkinter.ttk. В Python 2 модуль назывался Tkinter, с заглавной буквы. На некоторых сборках Linux и в облачных средах он отсутствует или не может открыть окно без дисплея, а программа замирает в mainloop(), пока окно не закроют.",
+      "en": "tkinter is the only widget toolkit shipped with Python, so a simple window or a classroom game needs no extra installs; modern-looking widgets live in tkinter.ttk. In Python 2 the module was called Tkinter, with a capital letter. Some Linux builds and cloud environments lack it or cannot open a window without a display, and the program blocks in mainloop() until the window is closed."
+    },
+    "syntax": "import tkinter",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/library/tkinter.html",
+    "added": "3.0",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Ввод и вывод",
+    "subcat": {
+      "ru": "модуль",
+      "en": "module"
+    },
+    "aliases": [
+      "графический интерфейс на Python",
+      "окно с кнопками",
+      "Tkinter в Python 2"
+    ],
+    "keywords": [
+      "tkinter",
+      "import tkinter",
+      "tkinter.Tk",
+      "tkinter.ttk"
+    ],
+    "tags": [
+      "module"
+    ],
+    "examples": [
+      [
+        "import importlib.util",
+        "has_tk = importlib.util.find_spec(\"tkinter\") is not None",
+        "print(has_tk)  # → ? True, если Python собран с Tk",
+        "try:",
+        "    import tkinter",
+        "    print(tkinter.TkVersion >= 8.5)  # → ? True, если библиотека Tk на месте",
+        "except ImportError:",
+        "    print(\"Tk не установлен\")  # → ? пакет есть, а _tkinter нет"
+      ]
+    ],
+    "related": [
+      "tkinter.tix"
+    ],
+    "related_errors": []
+  },
+  {
     "id": "len",
     "title": {
       "ru": "len()",

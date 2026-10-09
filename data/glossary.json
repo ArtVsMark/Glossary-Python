@@ -146161,6 +146161,15 @@
           "def perimeter(w: int, h: int) -> int: return 2 * (w + h)",
           "print(hasattr(perimeter, '__no_type_check__'))   # → False",
           "print(marking.__name__)   # → logged"
+        ],
+        [
+          "# Python 3.15+",
+          "from typing import no_type_check",
+          "@no_type_check",
+          "def area(w: int, h: int) -> int:",
+          "    return w * h",
+          "print(area(3, 4))              # → 12",
+          "print(area.__no_type_check__)  # → True"
         ]
       ],
       "related": [

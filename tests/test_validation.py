@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from glossary import validation
-from glossary.models import Glossary, Text
+from glossary.models import Glossary, Text, outlives_removal, version_pair
 from glossary.validation import (
     RULES,
     Issue,
@@ -34,6 +34,7 @@ from glossary.validation import (
     rule_platforms_summary,
     rule_related_errors_resolve,
     rule_related_resolves,
+    rule_removal_replacement,
     rule_required_fields,
     rule_section_size,
     rule_summary_length,
@@ -747,6 +748,7 @@ def test_all_rules_are_registered():
         rule_platforms_summary,
         rule_related_errors_resolve,
         rule_related_resolves,
+        rule_removal_replacement,
         rule_required_fields,
         rule_section_size,
         rule_summary_length,
@@ -906,3 +908,53 @@ def test_mixed_script_reads_the_english_half_and_the_title_too():
     )
     issues = list(rule_mixed_script(glossary, CFG))
     assert [i.message.split("'")[1] for i in issues] == ["title"]
+
+
+# --------------------------------------------------------------------------- #
+# Жизнь после удаления (#247)
+# --------------------------------------------------------------------------- #
+
+
+def _removed(*blocks: tuple[str, ...]) -> Glossary:
+    """Карточка, удалённая в 3.15, с заданными блоками примеров."""
+    return make_glossary(
+        make_entry(id="gone", added="3.5", removed="3.15", examples=blocks)
+    )
+
+
+def test_removed_card_with_after_removal_block_is_silent():
+    blocks = (("x = 1",), ("# Python 3.15+", "print('замена')"))
+    assert list(rule_removal_replacement(_removed(*blocks), CFG)) == []
+
+
+def test_later_marker_also_lives_after_removal():
+    assert not list(rule_removal_replacement(_removed(("# Python 3.16+", "y = 2")), CFG))
+
+
+def test_removed_card_without_it_is_a_warning_naming_the_version():
+    issues = list(rule_removal_replacement(_removed(("# Python 3.12+", "x = 1")), CFG))
+    assert [i.severity for i in issues] == [Severity.WARNING]
+    assert issues[0].entry_id == "gone"
+    assert "# Python 3.15+" in issues[0].message
+
+
+def test_card_that_is_not_removed_needs_no_such_block():
+    assert not list(rule_removal_replacement(make_glossary(make_entry()), CFG))
+
+
+@pytest.mark.parametrize(
+    ("removed", "first", "expected"),
+    [
+        ("3.15", "# Python 3.15+", True),
+        ("3.15", "#Python 3.16+", True),
+        ("3.15", "# Python 3.14+", False),
+        ("3.15", "print(1)", False),
+        ("", "# Python 3.15+", False),
+    ],
+)
+def test_outlives_removal(removed: str, first: str, expected: bool):
+    assert outlives_removal(removed, (first, "x = 1")) is expected
+
+
+def test_version_pair_reads_python_two_as_older_than_any_three():
+    assert version_pair("<3.0") < version_pair("3.0") < version_pair("3.15")

@@ -8,6 +8,7 @@
 мутируется. Это исключает расхождение между экспортёрами.
 """
 
+import re
 from collections import Counter
 from dataclasses import dataclass, field, fields
 from typing import TYPE_CHECKING, Any, Final, Literal, Self, get_args
@@ -31,6 +32,9 @@ __all__ = [
     "Language",
     "Platform",
     "Text",
+    "block_since",
+    "outlives_removal",
+    "version_pair",
 ]
 
 SCHEMA_VERSION: Final = 6
@@ -85,6 +89,47 @@ Android``): учащийся спрашивает «заработает ли у
 PLATFORMS: Final[tuple[Platform, ...]] = get_args(Platform)
 ALL_OS: Final = "AllOS"
 SYSTEMS: Final = ("Linux", "macOS", "Windows")
+
+
+REQUIRES: Final = re.compile(r"^#\s*Python\s+(\d+)\.(\d+)\+")
+"""Пометка блока примеров первой строкой: ``# Python 3.12+`` — работает с 3.12."""
+
+
+def version_pair(text: str) -> tuple[int, int]:
+    """Версия поля жизненного цикла как пара: ``<3.0`` раньше любой 3.x.
+
+    Args:
+        text: Значение ``added``, ``deprecated`` или ``removed``.
+
+    Returns:
+        ``(major, minor)``.
+    """
+    if text.startswith("<"):
+        return (2, 7)
+    major, minor = text.split(".")[:2]
+    return int(major), int(minor)
+
+
+def block_since(block: tuple[str, ...] | list[str]) -> tuple[int, int] | None:
+    """С какой версии блок примеров обещает работать — по пометке первой строки.
+
+    Returns:
+        Версия из ``# Python 3.N+`` либо ``None``, если пометки нет.
+    """
+    marked = REQUIRES.match(block[0]) if block else None
+    return (int(marked[1]), int(marked[2])) if marked else None
+
+
+def outlives_removal(removed: str, block: tuple[str, ...] | list[str]) -> bool:
+    """Описывает ли блок жизнь после удаления возможности (#164, #167).
+
+    Блок с пометкой не раньше ``removed`` показывает замену или ошибку импорта
+    на версии, где возможности уже нет; граница ``removed`` его не отсекает.
+    Одна реализация на двоих: гейт примеров решает по ней, исполнять ли блок, а
+    правило валидации — есть ли у удалённой карточки что показать (#247).
+    """
+    since = block_since(block)
+    return bool(removed) and since is not None and since >= version_pair(removed)
 
 
 @dataclass(frozen=True, slots=True)

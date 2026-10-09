@@ -684,6 +684,39 @@ than between files. A `docs/en/` folder with a mirrored tree is rejected too:
 relative links would have to run through two roots, while a pair side by side is
 visible in any listing.
 
+### A page per card — a derivative of the Pages artifact, not a second site
+
+**Before.** All cards lived under one showcase address, and a card was opened by
+the `#id` anchor. A search engine drops the URL fragment, so an individual term did
+not exist for it: a person with an error in the terminal found the home page at
+best (#221).
+
+**After.** The `pages.yml` step puts lightweight card pages into the Pages
+artifact next to the showcase: `/Glossary-Python/<id>/` in Russian and
+`/Glossary-Python/en/<id>/` in English, plus a `sitemap.xml` under the same path.
+The slug is the `id` itself: Cyrillic goes into the URL percent-encoded, and the
+link matches the showcase anchor. A page carries the title, summary, explanation,
+syntax, examples, version, documentation link, “see also” links to neighbouring
+pages, `hreflang` between languages, JSON-LD `DefinedTerm` and an “open in the full
+glossary” link to `/#<id>`. No scripts; styles are the showcase tokens. `sitemap.xml`
+carries no `lastmod`: a card's commit date is the date of its group file, shared by
+hundreds of cards, and search engines stop trusting an inaccurate `lastmod` altogether.
+
+**Why.** On static hosting with no server, a term gets its own address only as a
+separate file. The single showcase stays what it was: a file that is downloaded
+and opened offline.
+
+**Cost.** A new exporter and a publishing step, a Pages artifact of tens of
+megabytes, a page-count check in CI. The pages do not live in `main`, so they can
+only be seen in the published artifact or by building them with the command.
+
+**Rejected.** Splitting the showcase itself into pages: it breaks downloading as
+one file, which is the reason the showcase is a single page. A `404.html` that
+redirects `/<id>` to `/#<id>`: search engines do not index a 404 response.
+Committing the pages to `main`: thousands of derived files in history on every
+text edit. A Latin slug from the English title: more readable, but a second
+identifier for the card, whose uniqueness would have to be held separately.
+
 ## Current technical debt
 
 | What | Why it is debt | When to address |

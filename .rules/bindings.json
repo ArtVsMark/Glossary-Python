@@ -376,7 +376,20 @@
     },
     "048": {
       "status": "not-applicable",
-      "why": "скрытых порогов по внешнему индикатору проект не выводит"
+      "why": "Скрытых порогов проект по-прежнему не выводит: квоту GitHub он не калибрует, а лишь распознаёт её исчерпание по тексту отказа (scripts/automerge.py, третий отказ). Калибровки по внешнему сигналу в коде и прогонах нет.",
+      "refuted_by": {
+        "globs": [
+          "scripts/*.py",
+          "src/glossary/**/*.py",
+          ".github/workflows/*.yml"
+        ],
+        "contains": [
+          "калибр",
+          "calibrat"
+        ],
+        "why": "появилась калибровка по внешнему индикатору: полнота входа стала предметом"
+      },
+      "analysed": "2026-10-09"
     },
     "049": {
       "status": "active",
@@ -482,7 +495,23 @@
     },
     "063": {
       "status": "not-applicable",
-      "why": "автоматики, правящей чужое, у проекта нет"
+      "why": "Автоматики, вмешивающейся в чужую работу без согласия, нет: automerge.yml ставит в очередь лишь по согласию (снят черновик и нет метки hold, решает площадка по зелёным проверкам), тревоги next_alarm/schedule_alarm закрывают только свою задачу. Ремонтника или уборщика веток в дереве нет.",
+      "refuted_by": {
+        "globs": [
+          ".github/workflows/*.yml",
+          "scripts/*.py"
+        ],
+        "contains": [
+          "брошен",
+          "abandoned",
+          "close-issue",
+          "delete-branch",
+          "git push --delete",
+          "git push origin --delete"
+        ],
+        "why": "появилась автоматика, закрывающая или удаляющая чужое: критерий вмешательства обязан стать конъюнкцией"
+      },
+      "analysed": "2026-10-09"
     },
     "064": {
       "status": "active",
@@ -586,12 +615,31 @@
       "origin_kind": "own"
     },
     "078": {
-      "status": "not-applicable",
-      "why": "прерываемых пользователем работ у проекта нет"
+      "status": "active",
+      "mechanism": "gate",
+      "where": "scripts/next_alarm.py и scripts/schedule_alarm.py — отменённый прогон (cancelled) читается третьим исходом, а не «зелёным» или «красным», и задачу-тревогу не трогает; стерегут tests/test_next_alarm.py и tests/test_schedule_alarm.py. Прежний ответ «прерываемых работ нет» был неверен: прогоны отменяются cancel-in-progress (card-review.yml, ci.yml)",
+      "origin_kind": "own",
+      "analysed": "2026-10-09",
+      "decided": "2026-10-09"
     },
     "079": {
       "status": "not-applicable",
-      "why": "реестров фоновых задач у проекта нет"
+      "why": "Собственных реестров и кэшей со сроком у проекта нет: хранение артефактов (retention-days: 7) и порог свежести витрины считает площадка и чужая витрина, а не код дерева.",
+      "refuted_by": {
+        "globs": [
+          "scripts/*.py",
+          "src/glossary/**/*.py"
+        ],
+        "contains": [
+          "TTL",
+          "expires",
+          "max_age",
+          "max-age",
+          "срок хранения"
+        ],
+        "why": "в коде появился срок хранения: точка отсчёта стала предметом"
+      },
+      "analysed": "2026-10-09"
     },
     "080": {
       "status": "active",
@@ -640,8 +688,12 @@
       }
     },
     "084": {
-      "status": "not-applicable",
-      "why": "необязательных каналов у продукта нет"
+      "status": "active",
+      "mechanism": "pipeline",
+      "where": ".github/workflows/badges.yml — необязательные каналы публикацию не роняют: работа preview (инвентарь предварительной версии) и шаг «Значок Python» под continue-on-error с предупреждением, вердикты потребителю без его файла — ::warning::, а не провал. Прежний ответ «необязательных каналов нет» был неверен",
+      "origin_kind": "own",
+      "analysed": "2026-10-09",
+      "decided": "2026-10-09"
     },
     "085": {
       "status": "not-applicable",
@@ -805,7 +857,24 @@
     },
     "101": {
       "status": "not-applicable",
-      "why": "повторяемых отказов у проекта нет"
+      "why": "Сетевые вызовы есть (scripts/automerge.py, curl в badges.yml), но повторов нет ни одного — автомерж прямо пишет «ни повторов, ни опроса»; повторять неисцелимое нечему. Перезапуск упавшей проверки — ручной и по правилу 124.",
+      "refuted_by": {
+        "globs": [
+          "scripts/*.py",
+          "src/glossary/**/*.py",
+          ".github/workflows/*.yml"
+        ],
+        "contains": [
+          "retry",
+          "Retry",
+          "backoff",
+          "--retry",
+          "max_attempts",
+          "attempts"
+        ],
+        "why": "появились повторы: какие отказы могут пройти сами, стало предметом"
+      },
+      "analysed": "2026-10-09"
     },
     "102": {
       "status": "not-applicable",
@@ -813,7 +882,21 @@
     },
     "103": {
       "status": "not-applicable",
-      "why": "сторожей побочных эффектов у проекта нет"
+      "why": "Сторожа побочных эффектов в наборах нет: tests/conftest.py лишь добавляет scripts/ в путь, временный каталог и окружение никто не сверяет до и после.",
+      "refuted_by": {
+        "globs": [
+          "tests/*.py",
+          "tests/**/*.py"
+        ],
+        "contains": [
+          "addaudithook",
+          "gettempdir",
+          "TMPDIR",
+          "os.listdir(tempfile"
+        ],
+        "why": "в наборах появился сторож побочных эффектов: виновника и исключения надо задавать формой"
+      },
+      "analysed": "2026-10-09"
     },
     "104": {
       "status": "active",
@@ -879,7 +962,25 @@
     },
     "110": {
       "status": "not-applicable",
-      "why": "подмены глобального состояния в коде нет"
+      "why": "Подмены глобального состояния в коде нет: примеры исполняются отдельным процессом с пустым окружением (scripts/check_examples.py), замер импортирует модули без перехвата stdout/окружения; sys.path.insert в tests/conftest.py — настройка набора, а не захват ресурса.",
+      "refuted_by": {
+        "globs": [
+          "scripts/*.py",
+          "src/glossary/**/*.py"
+        ],
+        "contains": [
+          "sys.stdout =",
+          "sys.stderr =",
+          "sys.stdin =",
+          "os.chdir(",
+          "setlocale(",
+          "redirect_stdout",
+          "signal.signal(",
+          "os.environ["
+        ],
+        "why": "код начал подменять глобальное состояние: всё, что может отказать, обязано идти до подмены"
+      },
+      "analysed": "2026-10-09"
     },
     "111": {
       "status": "active",
@@ -985,7 +1086,20 @@
     },
     "126": {
       "status": "not-applicable",
-      "why": "замораживающей автоматики у проекта нет"
+      "why": "Замораживающей автоматики нет: своя очередь с остановкой на красной main отвергнута (scripts/automerge.py, «ПОЧЕМУ РОДНОЙ АВТОМЕРЖ»), площадка держит лишь обязательные проверки изменения, а не общей ветки.",
+      "refuted_by": {
+        "globs": [
+          ".github/workflows/*.yml",
+          "scripts/*.py"
+        ],
+        "contains": [
+          "freeze",
+          "заморожен",
+          "размороз"
+        ],
+        "why": "появилась замораживающая автоматика: путь разморозки мимо замороженного действия стал предметом"
+      },
+      "analysed": "2026-10-09"
     },
     "127": {
       "status": "active",
@@ -1151,7 +1265,23 @@
     },
     "149": {
       "status": "not-applicable",
-      "why": "сторожей, шумящих из-за общего ресурса, у проекта нет"
+      "why": "Предмет правила — сторож набора с терпимыми именами; такого сторожа нет (см. 103), и площадку набор не забирает и не сверяет.",
+      "refuted_by": {
+        "globs": [
+          "tests/*.py",
+          "tests/**/*.py",
+          "pyproject.toml"
+        ],
+        "contains": [
+          "addaudithook",
+          "gettempdir",
+          "TMPDIR",
+          "XDG_CACHE_HOME",
+          "PIP_CACHE_DIR"
+        ],
+        "why": "набор стал сторожить общую площадку: её надо забрать себе, а не вносить в исключения"
+      },
+      "analysed": "2026-10-09"
     },
     "150": {
       "status": "active",
@@ -1189,7 +1319,20 @@
     },
     "155": {
       "status": "not-applicable",
-      "why": "заготовок наружу проект не раздаёт"
+      "why": "Наружу проект отдаёт данные (badges, delivery.json со схемой, витрину), а не заготовки; .github/ISSUE_TEMPLATE/* служат самому репозиторию, а src/glossary/templates/showcase.html проект собирает сам.",
+      "refuted_by": {
+        "globs": [
+          "templates/*",
+          "examples/*",
+          "docs/**/*template*",
+          "docs/**/*шаблон*",
+          "*.example",
+          "*.template"
+        ],
+        "contains": [],
+        "why": "появилась раздаваемая заготовка: расхождение с собственной практикой стало предметом"
+      },
+      "analysed": "2026-10-09"
     },
     "156": {
       "status": "active",
@@ -1239,7 +1382,23 @@
     },
     "163": {
       "status": "not-applicable",
-      "why": "механизмов наружу проект не отдаёт"
+      "why": "Наружу уходят файлы данных (ветка badges, приложения выпуска в release-delivery.yml), а не инструменты: CLI glossary в pyproject.toml не публикуется в реестр и потребителю не нужен — грейдер читает JSON сам.",
+      "refuted_by": {
+        "globs": [
+          ".github/workflows/*.yml",
+          "action.yml",
+          "README.md"
+        ],
+        "contains": [
+          "gh-action-pypi-publish",
+          "twine upload",
+          "using: composite",
+          "pip install glossary-python",
+          "uses: ArtVsMark/Glossary-Python"
+        ],
+        "why": "проект начал отдавать наружу механизм: его надо назвать на входе"
+      },
+      "analysed": "2026-10-09"
     },
     "164": {
       "status": "active",
@@ -1311,7 +1470,24 @@
     },
     "172": {
       "status": "not-applicable",
-      "why": "заглушек, которые держит площадка, у проекта нет"
+      "why": "Репозиторий и пакет не переименовывались, домена нет; переезды id карточек (data/moved.json) — наш собственный слой, отказаться от которого можем мы, — это предмет 094, а не 172.",
+      "refuted_by": {
+        "globs": [
+          "README.md",
+          "CLAUDE.md",
+          "docs/**/*.md",
+          "pyproject.toml"
+        ],
+        "contains": [
+          "переименован в",
+          "переименовали репозиторий",
+          "старое имя репозитория",
+          "renamed from",
+          "formerly known as"
+        ],
+        "why": "проект пережил переименование, от которого нельзя отказаться: нужна перепись мест старого имени"
+      },
+      "analysed": "2026-10-09"
     },
     "173": {
       "status": "active",
@@ -1396,9 +1572,21 @@
     },
     "186": {
       "status": "not-applicable",
-      "why": "кода, переиспользованного между режимами, нет: режимы записи (scripts/facts.py --render и --badges, python -m glossary build) отвечают 0 — сделано — или 2 — не отработало; находки, код 1, отдают одни проверочные режимы. Свидетельство работы с ненулевым кодом не печатает ни одна точка входа",
-      "analysed": "2026-10-02",
-      "decided": "2026-10-02"
+      "why": "Перепроверено: режимы записи, зовущиеся из прогонов (facts.py --badges, glossary build/delivery/verdicts, family_manifest.py, whatsnew.py), отвечают 0 или 2. Единственное сочетание «записал и вернул 1» — make facts (facts.py --render --check) и changelog.py --collect — зовёт только человек, ни один .github/workflows/*.yml их не вызывает.",
+      "analysed": "2026-10-09",
+      "decided": "2026-10-02",
+      "refuted_by": {
+        "globs": [
+          ".github/workflows/*.yml"
+        ],
+        "contains": [
+          "facts.py --render",
+          "changelog.py --collect",
+          "changelog.py --rotate",
+          "make facts"
+        ],
+        "why": "прогон начал звать режим записи, способный вернуть 1 после работы: код надо читать вместе с режимом"
+      }
     },
     "187": {
       "status": "active",

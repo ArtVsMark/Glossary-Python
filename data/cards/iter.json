@@ -255,7 +255,7 @@
     "related_errors": []
   },
   {
-    "id": "asyncio.queue",
+    "id": "asyncio.Queue",
     "title": {
       "ru": "asyncio.Queue",
       "en": "asyncio.Queue"
@@ -547,7 +547,7 @@
       "yield-from",
       "генераторное-выражение",
       "iter",
-      "stopiteration"
+      "StopIteration"
     ],
     "related_errors": []
   },
@@ -781,7 +781,7 @@
     ],
     "related": [
       "sorted-с-key",
-      "collections.counter",
+      "collections.Counter",
       "collections.defaultdict"
     ],
     "related_errors": []
@@ -1142,7 +1142,7 @@
       "__iter__",
       "__next__",
       "iter",
-      "stopiteration",
+      "StopIteration",
       "generator-function-yield",
       "collections.abc.Iterator"
     ],
@@ -1273,10 +1273,10 @@
       "итератор-__iter__-__next__",
       "__iter__",
       "next",
-      "stopiteration"
+      "StopIteration"
     ],
     "related_errors": [
-      "stopiteration"
+      "StopIteration"
     ]
   },
   {
@@ -2857,11 +2857,11 @@
     "related": [
       "asyncio.gather",
       "asyncio.create_task",
-      "exceptiongroup",
+      "ExceptionGroup",
       "asyncio.Task"
     ],
     "related_errors": [
-      "exceptiongroup"
+      "ExceptionGroup"
     ]
   },
   {
@@ -3247,7 +3247,7 @@
     "related": [
       "asyncio.Event",
       "asyncio.Lock",
-      "asyncio.queue"
+      "asyncio.Queue"
     ],
     "related_errors": []
   },
@@ -3381,7 +3381,7 @@
       ]
     ],
     "related": [
-      "asyncio.queue",
+      "asyncio.Queue",
       "asyncio.PriorityQueue"
     ],
     "related_errors": []
@@ -3459,7 +3459,7 @@
       ]
     ],
     "related": [
-      "asyncio.queue",
+      "asyncio.Queue",
       "asyncio.LifoQueue",
       "куча-как-приоритетная-очередь",
       "heapq.heappush"
@@ -4736,7 +4736,7 @@
       "asyncio.gather"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -4804,7 +4804,7 @@
       "asyncio.run"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -5097,7 +5097,7 @@
       "as-completed"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -5251,7 +5251,7 @@
       "asyncio.timeout"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -5322,7 +5322,7 @@
       "asyncio.shield"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -5414,7 +5414,7 @@
       "async-for-async-with"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -5484,7 +5484,7 @@
       "asyncio.sleep"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -6228,7 +6228,7 @@
       "asyncio.new_event_loop"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -6291,7 +6291,7 @@
       "asyncio.run"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {

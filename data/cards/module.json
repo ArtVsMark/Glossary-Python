@@ -721,7 +721,7 @@
       "auto"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -1242,7 +1242,7 @@
     "related": [
       "pathlib.PurePath.parts",
       "pathlib.PurePath.name",
-      "pathlib.path"
+      "pathlib.Path"
     ],
     "related_errors": []
   },
@@ -1908,7 +1908,7 @@
     "related": [
       "enum",
       "enum.Enum.name",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": [
       "ValueError"
@@ -2313,7 +2313,7 @@
     "related_errors": []
   },
   {
-    "id": "collections.chainmap",
+    "id": "collections.ChainMap",
     "title": {
       "ru": "collections.ChainMap",
       "en": "collections.ChainMap"
@@ -2377,7 +2377,7 @@
     "related_errors": []
   },
   {
-    "id": "collections.counter",
+    "id": "collections.Counter",
     "title": {
       "ru": "collections.Counter",
       "en": "collections.Counter"
@@ -2545,7 +2545,7 @@
     ],
     "related": [
       "dict.setdefault",
-      "collections.counter",
+      "collections.Counter",
       "dict.get"
     ],
     "related_errors": []
@@ -2700,7 +2700,7 @@
     "related_errors": []
   },
   {
-    "id": "collections.ordereddict",
+    "id": "collections.OrderedDict",
     "title": {
       "ru": "collections.OrderedDict",
       "en": "collections.OrderedDict"
@@ -2758,7 +2758,7 @@
     ],
     "related": [
       "collections.defaultdict",
-      "collections.counter",
+      "collections.Counter",
       "dict.popitem",
       "создание-словаря",
       "сортировка-словаря"
@@ -2820,7 +2820,7 @@
     ],
     "related": [
       "contextlib.aclosing",
-      "contextlib.exitstack",
+      "contextlib.ExitStack",
       "__enter__-__exit__",
       "open"
     ],
@@ -2903,7 +2903,7 @@
     "related_errors": []
   },
   {
-    "id": "contextlib.exitstack",
+    "id": "contextlib.ExitStack",
     "title": {
       "ru": "contextlib.ExitStack",
       "en": "contextlib.ExitStack"
@@ -3018,7 +3018,7 @@
       ]
     ],
     "related": [
-      "contextlib.exitstack",
+      "contextlib.ExitStack",
       "contextlib.contextmanager",
       "__enter__-__exit__"
     ],
@@ -3091,7 +3091,7 @@
     ],
     "related": [
       "try-except",
-      "filenotfounderror",
+      "FileNotFoundError",
       "contextlib.contextmanager"
     ],
     "related_errors": []
@@ -4840,7 +4840,7 @@
     ],
     "related": [
       "open",
-      "unicodedecodeerror",
+      "UnicodeDecodeError",
       "file-buffering"
     ],
     "related_errors": []
@@ -6044,7 +6044,7 @@
     ]
   },
   {
-    "id": "io.bytesio",
+    "id": "io.BytesIO",
     "title": {
       "ru": "io.BytesIO",
       "en": "io.BytesIO"
@@ -6098,14 +6098,14 @@
       ]
     ],
     "related": [
-      "io.stringio",
+      "io.StringIO",
       "bytes",
       "open"
     ],
     "related_errors": []
   },
   {
-    "id": "io.stringio",
+    "id": "io.StringIO",
     "title": {
       "ru": "io.StringIO",
       "en": "io.StringIO"
@@ -6159,15 +6159,15 @@
       ]
     ],
     "related": [
-      "io.bytesio",
-      "io.textiowrapper",
+      "io.BytesIO",
+      "io.TextIOWrapper",
       "open",
       "sys.stdin"
     ],
     "related_errors": []
   },
   {
-    "id": "io.textiowrapper",
+    "id": "io.TextIOWrapper",
     "title": {
       "ru": "io.TextIOWrapper",
       "en": "io.TextIOWrapper"
@@ -6227,7 +6227,7 @@
       "io.TextIOBase",
       "open",
       "io.BufferedReader",
-      "io.stringio"
+      "io.StringIO"
     ],
     "related_errors": []
   },
@@ -7706,7 +7706,7 @@
     ],
     "related": [
       "math.lcm",
-      "fractions.fraction"
+      "fractions.Fraction"
     ],
     "related_errors": []
   },
@@ -7882,7 +7882,7 @@
     "related": [
       "float",
       "операторы-сравнения",
-      "decimal.decimal"
+      "decimal.Decimal"
     ],
     "related_errors": []
   },
@@ -8116,7 +8116,7 @@
     ],
     "related": [
       "math.gcd",
-      "fractions.fraction"
+      "fractions.Fraction"
     ],
     "related_errors": []
   },
@@ -10264,7 +10264,7 @@
     "related_errors": []
   },
   {
-    "id": "random.systemrandom",
+    "id": "random.SystemRandom",
     "title": {
       "ru": "random.SystemRandom",
       "en": "random.SystemRandom"
@@ -11500,7 +11500,7 @@
     "related_errors": []
   },
   {
-    "id": "string.template",
+    "id": "string.Template",
     "title": {
       "ru": "string.Template",
       "en": "string.Template"
@@ -11977,7 +11977,7 @@
       ]
     ],
     "related": [
-      "systemexit",
+      "SystemExit",
       "os._exit",
       "sys.argv"
     ],
@@ -12278,7 +12278,7 @@
     "related": [
       "sys.path",
       "__import__",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": []
   },
@@ -12335,7 +12335,7 @@
     "related": [
       "sys.modules",
       "__import__",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": []
   },
@@ -13262,7 +13262,7 @@
     "related": [
       "enum.verify",
       "enum.EnumCheck",
-      "valueerror",
+      "ValueError",
       "enum"
     ],
     "related_errors": []
@@ -14183,7 +14183,7 @@
     ],
     "related": [
       "os.path.join",
-      "pathlib.path",
+      "pathlib.Path",
       "pathlib.PurePath.stem"
     ],
     "related_errors": []
@@ -17933,7 +17933,7 @@
     "related": [
       "contextlib.redirect_stderr",
       "sys.stdin",
-      "io.stringio",
+      "io.StringIO",
       "print"
     ],
     "related_errors": []
@@ -17990,7 +17990,7 @@
     "related": [
       "contextlib.redirect_stdout",
       "sys.stdin",
-      "io.stringio"
+      "io.StringIO"
     ],
     "related_errors": []
   },
@@ -18281,7 +18281,7 @@
       ]
     ],
     "related": [
-      "contextlib.exitstack",
+      "contextlib.ExitStack",
       "contextlib.asynccontextmanager",
       "async-for-async-with"
     ],
@@ -18580,7 +18580,7 @@
     "related": [
       "abc.ABC",
       "абстрактные-классы",
-      "notimplementederror",
+      "NotImplementedError",
       "abc.ABCMeta"
     ],
     "related_errors": [
@@ -18943,7 +18943,7 @@
     ],
     "related": [
       "format-метод-форматирования",
-      "string.template",
+      "string.Template",
       "f-строки",
       "str.format_map"
     ],
@@ -20709,8 +20709,8 @@
       ]
     ],
     "related": [
-      "io.stringio",
-      "io.textiowrapper",
+      "io.StringIO",
+      "io.TextIOWrapper",
       "io.IOBase",
       "io.BufferedIOBase"
     ],
@@ -21074,7 +21074,7 @@
       ]
     ],
     "related": [
-      "io.textiowrapper",
+      "io.TextIOWrapper",
       "open",
       "io.TextIOBase"
     ],
@@ -21132,8 +21132,8 @@
     ],
     "related": [
       "open",
-      "encodingwarning",
-      "io.textiowrapper",
+      "EncodingWarning",
+      "io.TextIOWrapper",
       "file-errors"
     ],
     "related_errors": []
@@ -21897,7 +21897,7 @@
     "related": [
       "random.getrandbits",
       "os.urandom",
-      "random.systemrandom"
+      "random.SystemRandom"
     ],
     "related_errors": []
   },
@@ -27545,7 +27545,7 @@
     "related": [
       "os.fsencode",
       "os.fsdecode",
-      "pathlib.path"
+      "pathlib.Path"
     ],
     "related_errors": [
       "TypeError"
@@ -28187,7 +28187,7 @@
     ],
     "related": [
       "os.getrandom",
-      "random.systemrandom",
+      "random.SystemRandom",
       "random.randbytes"
     ],
     "related_errors": []
@@ -28243,9 +28243,9 @@
       ]
     ],
     "related": [
-      "oserror",
+      "OSError",
       "иерархия-исключений",
-      "filenotfounderror"
+      "FileNotFoundError"
     ],
     "related_errors": []
   },
@@ -32156,7 +32156,7 @@
       "os.killpg",
       "os.getpid",
       "os.waitpid",
-      "processlookuperror"
+      "ProcessLookupError"
     ],
     "related_errors": [
       "ProcessLookupError",
@@ -39284,7 +39284,7 @@
     ],
     "related": [
       "os.get_blocking",
-      "blockingioerror",
+      "BlockingIOError",
       "os.pipe2",
       "os.read"
     ],
@@ -39343,8 +39343,8 @@
     ],
     "related": [
       "os.urandom",
-      "random.systemrandom",
-      "blockingioerror"
+      "random.SystemRandom",
+      "BlockingIOError"
     ],
     "related_errors": []
   },
@@ -39984,7 +39984,7 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "GIL",
       "threading-thread",
       "ThreadPoolExecutor"
@@ -40049,7 +40049,7 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "иерархия-исключений",
       "GIL",
       "threading-thread"
@@ -40113,7 +40113,7 @@
       ]
     ],
     "related": [
-      "typeerror",
+      "TypeError",
       "pickle",
       "GIL",
       "ThreadPoolExecutor"
@@ -40171,9 +40171,9 @@
       ]
     ],
     "related": [
-      "typeerror",
-      "valueerror",
-      "exception",
+      "TypeError",
+      "ValueError",
+      "Exception",
       "struct.error"
     ],
     "related_errors": []
@@ -40229,7 +40229,7 @@
     ],
     "related": [
       "io.IOBase",
-      "io.stringio",
+      "io.StringIO",
       "protocol",
       "typing.runtime_checkable"
     ],
@@ -40412,7 +40412,7 @@
     "related": [
       "operator.is_",
       "operator.is_not",
-      "nonetype",
+      "NoneType",
       "is-is-not"
     ],
     "related_errors": [
@@ -40472,7 +40472,7 @@
     "related": [
       "operator.is_not",
       "operator.is_",
-      "nonetype",
+      "NoneType",
       "filter"
     ],
     "related_errors": [
@@ -41163,7 +41163,7 @@
     "related": [
       "pathlib.PosixPath",
       "pathlib.WindowsPath",
-      "notimplementederror",
+      "NotImplementedError",
       "os.symlink"
     ],
     "related_errors": []
@@ -41220,9 +41220,9 @@
       ]
     ],
     "related": [
-      "valueerror",
-      "overflowerror",
-      "shutil.error",
+      "ValueError",
+      "OverflowError",
+      "shutil.Error",
       "иерархия-исключений"
     ],
     "related_errors": []
@@ -41278,7 +41278,7 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except"
     ],
     "related_errors": []
@@ -41334,7 +41334,7 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except",
       "raise"
     ],
@@ -41393,7 +41393,7 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except"
     ],
     "related_errors": []
@@ -41450,9 +41450,9 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except",
-      "argparse.argumenterror",
+      "argparse.ArgumentError",
       "json.decoder.jsondecodeerror"
     ],
     "related_errors": []
@@ -41509,10 +41509,10 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except",
-      "runtimeerror",
-      "decimal.decimalexception"
+      "RuntimeError",
+      "decimal.DecimalException"
     ],
     "related_errors": []
   },
@@ -41568,9 +41568,9 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except",
-      "notimplementederror",
+      "NotImplementedError",
       "json.decoder.jsondecodeerror"
     ],
     "related_errors": []
@@ -41627,7 +41627,7 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except",
       "raise"
     ],
@@ -41685,14 +41685,14 @@
       ]
     ],
     "related": [
-      "exception",
+      "Exception",
       "try-except",
-      "typeerror"
+      "TypeError"
     ],
     "related_errors": []
   },
   {
-    "id": "notimplemented",
+    "id": "NotImplemented",
     "title": {
       "ru": "NotImplemented",
       "en": "NotImplemented"
@@ -41753,13 +41753,13 @@
       ]
     ],
     "related": [
-      "notimplementederror",
+      "NotImplementedError",
       "__add__-__mul__-__eq__-__lt__-и-оператор",
       "functools.total_ordering",
       "operator.eq"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -41824,7 +41824,7 @@
       "isinstance"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -41952,7 +41952,7 @@
       "ctypes.ArgumentError"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -42017,7 +42017,7 @@
       "ctypes.Structure"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -42082,7 +42082,7 @@
       "struct.error"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -42146,7 +42146,7 @@
       "ctypes.Structure"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -42667,7 +42667,7 @@
     "related": [
       "logging-basicConfig",
       "logging-warning",
-      "deprecationwarning"
+      "DeprecationWarning"
     ],
     "related_errors": []
   },
@@ -43306,7 +43306,7 @@
       "logging-info"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -43501,7 +43501,7 @@
       "logging-getLogger"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -43618,7 +43618,7 @@
     ],
     "related": [
       "logging-warning",
-      "deprecationwarning",
+      "DeprecationWarning",
       "logging-basicConfig"
     ],
     "related_errors": []
@@ -43687,7 +43687,7 @@
       "unittest.TestResult"
     ],
     "related_errors": [
-      "assertionerror"
+      "AssertionError"
     ]
   },
   {
@@ -43759,7 +43759,7 @@
       "unittest.setUp"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -43909,7 +43909,7 @@
       "unittest.TestSuite"
     ],
     "related_errors": [
-      "assertionerror"
+      "AssertionError"
     ]
   },
   {
@@ -43987,7 +43987,7 @@
       "unittest.TextTestRunner"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -44247,7 +44247,7 @@
       "unittest.enterModuleContext"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -44312,7 +44312,7 @@
       "unittest.addModuleCleanup",
       "unittest.doModuleCleanups",
       "contextlib.contextmanager",
-      "contextlib.exitstack"
+      "contextlib.ExitStack"
     ],
     "related_errors": []
   },
@@ -44447,7 +44447,7 @@
     "related": [
       "unittest.registerResult",
       "unittest.removeHandler",
-      "keyboardinterrupt"
+      "KeyboardInterrupt"
     ],
     "related_errors": []
   },
@@ -44519,7 +44519,7 @@
       "sys.exit"
     ],
     "related_errors": [
-      "systemexit"
+      "SystemExit"
     ]
   },
   {
@@ -44641,7 +44641,7 @@
     "related": [
       "unittest.installHandler",
       "unittest.registerResult",
-      "keyboardinterrupt"
+      "KeyboardInterrupt"
     ],
     "related_errors": []
   },
@@ -44899,10 +44899,10 @@
     "related": [
       "unittest.skipIf",
       "unittest.skip",
-      "importerror"
+      "ImportError"
     ],
     "related_errors": [
-      "importerror"
+      "ImportError"
     ]
   },
   {
@@ -44982,11 +44982,11 @@
     "related": [
       "argparse.Namespace",
       "sys.argv",
-      "systemexit",
+      "SystemExit",
       "argparse.Action"
     ],
     "related_errors": [
-      "argparse.argumenterror"
+      "argparse.ArgumentError"
     ]
   },
   {
@@ -45057,7 +45057,7 @@
       "getattr"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -45256,7 +45256,7 @@
     "related": [
       "argparse.ArgumentParser",
       "open",
-      "pathlib.path"
+      "pathlib.Path"
     ],
     "related_errors": []
   },
@@ -45632,7 +45632,7 @@
       "csv.DictReader",
       "csv.writer",
       "csv",
-      "io.stringio"
+      "io.StringIO"
     ],
     "related_errors": []
   },
@@ -45701,7 +45701,7 @@
       "csv.DictWriter",
       "csv.reader",
       "csv",
-      "io.stringio"
+      "io.StringIO"
     ],
     "related_errors": []
   },
@@ -45835,10 +45835,10 @@
     "related": [
       "csv.DictReader",
       "csv.writer",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -45978,7 +45978,7 @@
       "csv.writer"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -46585,7 +46585,7 @@
       "os.system"
     ],
     "related_errors": [
-      "filenotfounderror"
+      "FileNotFoundError"
     ]
   },
   {
@@ -46848,7 +46848,7 @@
       "Future-cf"
     ],
     "related_errors": [
-      "zerodivisionerror"
+      "ZeroDivisionError"
     ]
   },
   {
@@ -47320,7 +47320,7 @@
     ],
     "related_errors": [
       "struct.error",
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -47523,7 +47523,7 @@
       "datetime.time"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -48114,7 +48114,7 @@
       "time.clock_getres"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -48178,11 +48178,11 @@
     "related": [
       "asyncio.sleep",
       "time.monotonic",
-      "keyboardinterrupt"
+      "KeyboardInterrupt"
     ],
     "related_errors": [
-      "valueerror",
-      "keyboardinterrupt"
+      "ValueError",
+      "KeyboardInterrupt"
     ]
   },
   {
@@ -48251,7 +48251,7 @@
       "dt-timetuple"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -48371,8 +48371,8 @@
       "datetime.now"
     ],
     "related_errors": [
-      "overflowerror",
-      "oserror"
+      "OverflowError",
+      "OSError"
     ]
   },
   {
@@ -48432,8 +48432,8 @@
       "dt-timestamp"
     ],
     "related_errors": [
-      "overflowerror",
-      "valueerror"
+      "OverflowError",
+      "ValueError"
     ]
   },
   {
@@ -48672,7 +48672,7 @@
       "time.struct_time"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -48733,7 +48733,7 @@
       "time.monotonic"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -48796,7 +48796,7 @@
       "time.clock_getres"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -48857,7 +48857,7 @@
       "time.time_ns"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -48915,11 +48915,11 @@
     "related": [
       "time.clock_settime_ns",
       "time.clock_gettime",
-      "permissionerror"
+      "PermissionError"
     ],
     "related_errors": [
-      "permissionerror",
-      "oserror"
+      "PermissionError",
+      "OSError"
     ]
   },
   {
@@ -48988,9 +48988,9 @@
       "time.time_ns"
     ],
     "related_errors": [
-      "permissionerror",
-      "oserror",
-      "typeerror"
+      "PermissionError",
+      "OSError",
+      "TypeError"
     ]
   },
   {
@@ -49050,7 +49050,7 @@
       "threading-thread"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -49115,7 +49115,7 @@
       "datetime.timezone"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -49263,7 +49263,7 @@
       "shutil.copyfileobj"
     ],
     "related_errors": [
-      "shutil.samefileerror"
+      "shutil.SameFileError"
     ]
   },
   {
@@ -49458,7 +49458,7 @@
       "shutil.copytree"
     ],
     "related_errors": [
-      "shutil.samefileerror"
+      "shutil.SameFileError"
     ]
   },
   {
@@ -49522,7 +49522,7 @@
       "shutil.copytree"
     ],
     "related_errors": [
-      "shutil.samefileerror"
+      "shutil.SameFileError"
     ]
   },
   {
@@ -49658,7 +49658,7 @@
       "os.walk"
     ],
     "related_errors": [
-      "shutil.error"
+      "shutil.Error"
     ]
   },
   {
@@ -49803,7 +49803,7 @@
       "shutil.rmtree"
     ],
     "related_errors": [
-      "shutil.error"
+      "shutil.Error"
     ]
   },
   {
@@ -50132,7 +50132,7 @@
       "shutil.register_unpack_format"
     ],
     "related_errors": [
-      "shutil.readerror"
+      "shutil.ReadError"
     ]
   },
   {
@@ -50263,7 +50263,7 @@
       "shutil.register_archive_format"
     ],
     "related_errors": [
-      "shutil.registryerror"
+      "shutil.RegistryError"
     ]
   },
   {
@@ -50671,7 +50671,7 @@
       "threading-thread"
     ],
     "related_errors": [
-      "threading.brokenbarriererror"
+      "threading.BrokenBarrierError"
     ]
   },
   {
@@ -50758,7 +50758,7 @@
       "threading.Barrier"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -50844,7 +50844,7 @@
       "очередь-queue"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -52009,8 +52009,8 @@
       "threading.Timer"
     ],
     "related_errors": [
-      "valueerror",
-      "runtimeerror"
+      "ValueError",
+      "RuntimeError"
     ]
   },
   {
@@ -52082,7 +52082,7 @@
     ],
     "related": [
       "sqlite3.Connection",
-      "io.bytesio",
+      "io.BytesIO",
       "memoryview"
     ],
     "related_errors": []
@@ -53044,7 +53044,7 @@
       "hashlib.sha512"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -53626,7 +53626,7 @@
       "hashlib.blake2b"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -53818,7 +53818,7 @@
       "hashlib.sha224"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -53892,7 +53892,7 @@
       "hashlib.new"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -53963,7 +53963,7 @@
       "hashlib.sha512"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -54039,8 +54039,8 @@
       "uuid.SafeUUID"
     ],
     "related_errors": [
-      "valueerror",
-      "typeerror"
+      "ValueError",
+      "TypeError"
     ]
   },
   {
@@ -54464,7 +54464,7 @@
       "uuid.getnode"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -54788,7 +54788,7 @@
       "sys.exit"
     ],
     "related_errors": [
-      "systemexit"
+      "SystemExit"
     ]
   },
   {
@@ -54858,7 +54858,7 @@
       "try-except"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -54997,7 +54997,7 @@
       "sys.excepthook"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -55655,7 +55655,7 @@
       "sys.setprofile"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -56026,7 +56026,7 @@
       "str"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -56100,7 +56100,7 @@
       "sys.setrecursionlimit"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -56218,7 +56218,7 @@
       "threading-thread"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -56587,7 +56587,7 @@
       "asyncio.run"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -56956,7 +56956,7 @@
       "heapq.heappush_max"
     ],
     "related_errors": [
-      "indexerror"
+      "IndexError"
     ]
   },
   {
@@ -57138,7 +57138,7 @@
       "heapq.heappop_max"
     ],
     "related_errors": [
-      "indexerror"
+      "IndexError"
     ]
   },
   {
@@ -57266,7 +57266,7 @@
       "decimal.getcontext",
       "decimal.setcontext",
       "decimal.localcontext",
-      "decimal.decimal"
+      "decimal.Decimal"
     ],
     "related_errors": []
   },
@@ -57330,7 +57330,7 @@
       ]
     ],
     "related": [
-      "decimal.decimal",
+      "decimal.Decimal",
       "наименованный-кортеж-namedtuple",
       "decimal.Context"
     ],
@@ -57399,11 +57399,11 @@
     ],
     "related": [
       "decimal.Context",
-      "decimal.divisionbyzero",
+      "decimal.DivisionByZero",
       "decimal.setcontext"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -57596,7 +57596,7 @@
       "math.pow"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -57818,7 +57818,7 @@
       ]
     ],
     "related": [
-      "final",
+      "Final",
       "typing.override",
       "typing.overload"
     ],
@@ -58709,7 +58709,7 @@
       "генераторное-выражение"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -58843,7 +58843,7 @@
       "threading.synchronized_iterator"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -58907,7 +58907,7 @@
       "os.lstat"
     ],
     "related_errors": [
-      "filenotfounderror"
+      "FileNotFoundError"
     ]
   },
   {
@@ -59281,7 +59281,7 @@
       "array.array.fromstring"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59359,7 +59359,7 @@
       "str.encode"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59437,7 +59437,7 @@
       "threading.current_thread"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59507,10 +59507,10 @@
     "related": [
       "math.gcd",
       "math.lcm",
-      "fractions.fraction"
+      "fractions.Fraction"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59581,7 +59581,7 @@
       "bytes"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59651,7 +59651,7 @@
       "bytes"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59726,7 +59726,7 @@
       "iter"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59800,7 +59800,7 @@
       "iter"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -59876,8 +59876,8 @@
       "collections.abc.Callable"
     ],
     "related_errors": [
-      "importerror",
-      "attributeerror"
+      "ImportError",
+      "AttributeError"
     ]
   },
   {
@@ -59963,7 +59963,7 @@
       "yield-from"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -60038,10 +60038,10 @@
     ],
     "related": [
       "bytes",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -60123,8 +60123,8 @@
       "functools.wraps"
     ],
     "related_errors": [
-      "attributeerror",
-      "valueerror"
+      "AttributeError",
+      "ValueError"
     ]
   },
   {
@@ -60204,7 +60204,7 @@
       "functools.wraps"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -60287,11 +60287,11 @@
       "sys.modules",
       "import-from-import",
       "__import__",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -60359,10 +60359,10 @@
     "related": [
       "shutil.which",
       "shutil.copytree",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -60439,10 +60439,10 @@
       "asyncio.run",
       "async-def-await",
       "asynchat",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -60519,10 +60519,10 @@
       "asyncore",
       "asyncio.run",
       "async-def-await",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -60608,10 +60608,10 @@
       "asyncore",
       "asyncio.run",
       "asyncio.create_task",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -60684,7 +60684,7 @@
       "configparser.RawConfigParser.readfp"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -60758,10 +60758,10 @@
     ],
     "related": [
       "configparser.SafeConfigParser",
-      "io.stringio"
+      "io.StringIO"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -60827,11 +60827,11 @@
       ]
     ],
     "related": [
-      "locale.error",
+      "locale.Error",
       "format"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -60905,7 +60905,7 @@
     ],
     "related": [],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -60990,7 +60990,7 @@
       "unittest.assertRaises"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -61069,11 +61069,11 @@
       ]
     ],
     "related": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61144,11 +61144,11 @@
     ],
     "related": [
       "struct.unpack",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61221,11 +61221,11 @@
       ]
     ],
     "related": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61301,11 +61301,11 @@
     "related": [
       "sys.excepthook",
       "logging.exception",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61376,12 +61376,12 @@
     ],
     "related": [
       "struct.unpack",
-      "io.bytesio",
-      "modulenotfounderror"
+      "io.BytesIO",
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61451,11 +61451,11 @@
     "related": [
       "hashlib.scrypt",
       "hashlib.pbkdf2_hmac",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61530,11 +61530,11 @@
     ],
     "related": [
       "bytes.startswith",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61604,11 +61604,11 @@
     ],
     "related": [
       "os.startfile",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61673,11 +61673,11 @@
       ]
     ],
     "related": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61741,11 +61741,11 @@
       ]
     ],
     "related": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61810,11 +61810,11 @@
       ]
     ],
     "related": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61883,11 +61883,11 @@
     ],
     "related": [
       "struct.pack",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -61960,11 +61960,11 @@
       "subprocess-run",
       "subprocess-Popen",
       "subprocess-PIPE",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62041,11 +62041,11 @@
     ],
     "related": [
       "bytes.startswith",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62109,12 +62109,12 @@
       ]
     ],
     "related": [
-      "modulenotfounderror",
-      "permissionerror"
+      "ModuleNotFoundError",
+      "PermissionError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62191,11 +62191,11 @@
       ]
     ],
     "related": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62270,11 +62270,11 @@
     ],
     "related": [
       "asyncio.run",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62348,12 +62348,12 @@
       ]
     ],
     "related": [
-      "io.bytesio",
-      "modulenotfounderror"
+      "io.BytesIO",
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62429,11 +62429,11 @@
       "struct.pack",
       "struct.unpack",
       "bytes.hex",
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62498,11 +62498,11 @@
       ]
     ],
     "related": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62570,10 +62570,10 @@
       ]
     ],
     "related": [
-      "locale.error"
+      "locale.Error"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -62652,8 +62652,8 @@
       "re.Pattern"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -62734,7 +62734,7 @@
       "unittest.TextTestRunner"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -62818,7 +62818,7 @@
       "unittest.main"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -62896,7 +62896,7 @@
       "unittest-TestCase"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -62959,8 +62959,8 @@
     ],
     "related": [],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -63038,7 +63038,7 @@
     ],
     "related": [],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63118,7 +63118,7 @@
       "urllib.request.FancyURLopener"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63196,7 +63196,7 @@
       "urllib.request.URLopener"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63269,7 +63269,7 @@
       "import-from-import"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63345,7 +63345,7 @@
       "pkgutil.find_loader"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63415,7 +63415,7 @@
       "sqlite3.connect"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63484,7 +63484,7 @@
       "sqlite3.connect"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63557,13 +63557,13 @@
     ],
     "related": [
       "re.compile",
-      "re.patternerror",
+      "re.PatternError",
       "re.Pattern",
       "re.RegexFlag"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -63636,7 +63636,7 @@
       "pathlib.PurePath"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63706,7 +63706,7 @@
       "sys.platform"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -63782,7 +63782,7 @@
       "cgi"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -64179,7 +64179,7 @@
       "types.WrapperDescriptorType"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -64305,7 +64305,7 @@
       "types.FunctionType"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -64372,7 +64372,7 @@
       "weakref.ref"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -64439,7 +64439,7 @@
       "enum.EnumType"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -64642,7 +64642,7 @@
       "contextlib.aclosing"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -65228,7 +65228,7 @@
       "vars"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -65557,7 +65557,7 @@
       "__slots__"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -65625,7 +65625,7 @@
       "weakref.CallableProxyType"
     ],
     "related_errors": [
-      "referenceerror"
+      "ReferenceError"
     ]
   },
   {
@@ -65882,7 +65882,7 @@
       "dict"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -66337,7 +66337,7 @@
       "traceback.FrameSummary",
       "traceback.extract_tb",
       "traceback.walk_tb",
-      "recursionerror"
+      "RecursionError"
     ],
     "related_errors": []
   },
@@ -66603,7 +66603,7 @@
       "traceback.extract_stack"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -67162,7 +67162,7 @@
       "sys.exception"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -67542,7 +67542,7 @@
       "warnings.warn"
     ],
     "related_errors": [
-      "userwarning"
+      "UserWarning"
     ]
   },
   {
@@ -67604,11 +67604,11 @@
     ],
     "related": [
       "warnings.warn",
-      "deprecationwarning",
+      "DeprecationWarning",
       "warnings.catch_warnings"
     ],
     "related_errors": [
-      "deprecationwarning"
+      "DeprecationWarning"
     ]
   },
   {
@@ -67799,7 +67799,7 @@
     "related": [
       "warnings.simplefilter",
       "warnings.catch_warnings",
-      "deprecationwarning"
+      "DeprecationWarning"
     ],
     "related_errors": []
   },
@@ -67934,10 +67934,10 @@
     "related": [
       "warnings.filterwarnings",
       "warnings.catch_warnings",
-      "deprecationwarning"
+      "DeprecationWarning"
     ],
     "related_errors": [
-      "deprecationwarning"
+      "DeprecationWarning"
     ]
   },
   {
@@ -68010,11 +68010,11 @@
       "warnings.simplefilter",
       "raise",
       "logging-warning",
-      "userwarning"
+      "UserWarning"
     ],
     "related_errors": [
-      "userwarning",
-      "deprecationwarning"
+      "UserWarning",
+      "DeprecationWarning"
     ]
   },
   {
@@ -68370,7 +68370,7 @@
       "json.dump"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -68502,7 +68502,7 @@
       "json.load"
     ],
     "related_errors": [
-      "eoferror"
+      "EOFError"
     ]
   },
   {
@@ -68745,7 +68745,7 @@
     "related": [
       "pprint.isreadable",
       "pprint.saferepr",
-      "recursionerror"
+      "RecursionError"
     ],
     "related_errors": []
   },
@@ -69048,7 +69048,7 @@
       "open"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -69175,7 +69175,7 @@
     ],
     "related": [
       "tempfile.TemporaryFile",
-      "io.bytesio",
+      "io.BytesIO",
       "tempfile.NamedTemporaryFile"
     ],
     "related_errors": []
@@ -69236,7 +69236,7 @@
     "related": [
       "tempfile.mkdtemp",
       "shutil.rmtree",
-      "pathlib.path"
+      "pathlib.Path"
     ],
     "related_errors": []
   },
@@ -69471,7 +69471,7 @@
       "os.fsencode"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -69871,7 +69871,7 @@
       "secrets.token_urlsafe"
     ],
     "related_errors": [
-      "indexerror"
+      "IndexError"
     ]
   },
   {
@@ -69931,7 +69931,7 @@
       "random.randrange"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -70050,7 +70050,7 @@
       "secrets.token_urlsafe"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -70126,7 +70126,7 @@
       ]
     ],
     "related": [
-      "asyncio.queue",
+      "asyncio.Queue",
       "collections.deque",
       "queue.SimpleQueue",
       "queue.PriorityQueue"
@@ -70259,7 +70259,7 @@
       "queue.Queue"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -70317,7 +70317,7 @@
     "related": [
       "queue.Queue",
       "collections.deque",
-      "asyncio.queue"
+      "asyncio.Queue"
     ],
     "related_errors": []
   },
@@ -70440,7 +70440,7 @@
     "related": [
       "queue.Queue",
       "queue.Full",
-      "asyncio.queue"
+      "asyncio.Queue"
     ],
     "related_errors": []
   },
@@ -70743,7 +70743,7 @@
       "time.perf_counter"
     ],
     "related_errors": [
-      "nameerror"
+      "NameError"
     ]
   },
   {
@@ -70994,7 +70994,7 @@
       "zoneinfo.available_timezones"
     ],
     "related_errors": [
-      "keyerror"
+      "KeyError"
     ]
   },
   {
@@ -71112,7 +71112,7 @@
       "zoneinfo.available_timezones"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -71184,7 +71184,7 @@
     ],
     "related_errors": [
       "tomllib.TOMLDecodeError",
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -71317,11 +71317,11 @@
     ],
     "related": [
       "tomllib.loads",
-      "valueerror",
+      "ValueError",
       "json.decoder.jsondecodeerror"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -71390,7 +71390,7 @@
       "urllib.request.urlretrieve"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -71887,7 +71887,7 @@
       "urllib.request.urlopen"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -71958,7 +71958,7 @@
       "urllib.request.build_opener"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -72968,7 +72968,7 @@
       "urllib.request.AbstractDigestAuthHandler"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -73176,7 +73176,7 @@
       "urllib.request.AbstractBasicAuthHandler"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -73256,7 +73256,7 @@
       "urllib.request.HTTPPasswordMgrWithDefaultRealm"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -73572,7 +73572,7 @@
     ],
     "related": [
       "getpass.getpass",
-      "userwarning",
+      "UserWarning",
       "warnings.simplefilter"
     ],
     "related_errors": []
@@ -73637,7 +73637,7 @@
       "getpass.getpass"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -73707,7 +73707,7 @@
       "secrets.compare_digest"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -75492,10 +75492,10 @@
     "related": [
       "platform.release",
       "platform.libc_ver",
-      "oserror"
+      "OSError"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -75675,7 +75675,7 @@
       "subprocess-run"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -76261,10 +76261,10 @@
     ],
     "related": [
       "graphlib.TopologicalSorter",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -76333,7 +76333,7 @@
       "codecs.lookup"
     ],
     "related_errors": [
-      "lookuperror"
+      "LookupError"
     ]
   },
   {
@@ -76399,7 +76399,7 @@
       "codecs.lookup"
     ],
     "related_errors": [
-      "unicodedecodeerror"
+      "UnicodeDecodeError"
     ]
   },
   {
@@ -76467,7 +76467,7 @@
       "str.encode"
     ],
     "related_errors": [
-      "lookuperror"
+      "LookupError"
     ]
   },
   {
@@ -76713,7 +76713,7 @@
       "bytes.decode"
     ],
     "related_errors": [
-      "unicodedecodeerror"
+      "UnicodeDecodeError"
     ]
   },
   {
@@ -76784,7 +76784,7 @@
       "bytes.decode"
     ],
     "related_errors": [
-      "unicodedecodeerror"
+      "UnicodeDecodeError"
     ]
   },
   {
@@ -76901,7 +76901,7 @@
     ],
     "related": [
       "codecs.getincrementaldecoder",
-      "io.textiowrapper",
+      "io.TextIOWrapper",
       "io.IncrementalNewlineDecoder"
     ],
     "related_errors": []
@@ -77145,7 +77145,7 @@
     ],
     "related": [
       "open",
-      "io.textiowrapper",
+      "io.TextIOWrapper",
       "codecs.StreamReaderWriter"
     ],
     "related_errors": []
@@ -77208,10 +77208,10 @@
     "related": [
       "codecs.StreamRecoder",
       "open",
-      "io.textiowrapper"
+      "io.TextIOWrapper"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -77269,7 +77269,7 @@
     ],
     "related": [
       "codecs.getreader",
-      "io.textiowrapper",
+      "io.TextIOWrapper",
       "codecs.StreamWriter"
     ],
     "related_errors": []
@@ -77328,7 +77328,7 @@
     ],
     "related": [
       "codecs.getwriter",
-      "io.textiowrapper",
+      "io.TextIOWrapper",
       "codecs.StreamReader"
     ],
     "related_errors": []
@@ -77388,7 +77388,7 @@
     "related": [
       "codecs.StreamReader",
       "codecs.getwriter",
-      "io.textiowrapper"
+      "io.TextIOWrapper"
     ],
     "related_errors": []
   },
@@ -77447,7 +77447,7 @@
     "related": [
       "codecs.StreamWriter",
       "codecs.getreader",
-      "io.bytesio"
+      "io.BytesIO"
     ],
     "related_errors": []
   },
@@ -77631,8 +77631,8 @@
       "str.encode"
     ],
     "related_errors": [
-      "unicodeencodeerror",
-      "unicodedecodeerror"
+      "UnicodeEncodeError",
+      "UnicodeDecodeError"
     ]
   },
   {
@@ -77694,7 +77694,7 @@
       "codecs.strict_errors"
     ],
     "related_errors": [
-      "lookuperror"
+      "LookupError"
     ]
   },
   {
@@ -77757,11 +77757,11 @@
     "related": [
       "codecs.register_error",
       "codecs.lookup_error",
-      "unicodeerror"
+      "UnicodeError"
     ],
     "related_errors": [
-      "unicodeencodeerror",
-      "unicodedecodeerror"
+      "UnicodeEncodeError",
+      "UnicodeDecodeError"
     ]
   },
   {
@@ -77997,7 +77997,7 @@
       "str.encode"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -78660,7 +78660,7 @@
       "bytes.hex"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -79344,10 +79344,10 @@
     "related": [
       "binascii.Incomplete",
       "binascii.a2b_base64",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -79401,7 +79401,7 @@
     ],
     "related": [
       "binascii.Error",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": []
   },
@@ -79476,7 +79476,7 @@
       "signal.getsignal",
       "signal.raise_signal",
       "signal.Handlers",
-      "keyboardinterrupt"
+      "KeyboardInterrupt"
     ],
     "related_errors": []
   },
@@ -79595,12 +79595,12 @@
       ]
     ],
     "related": [
-      "keyboardinterrupt",
+      "KeyboardInterrupt",
       "signal.signal",
       "signal.getsignal"
     ],
     "related_errors": [
-      "keyboardinterrupt"
+      "KeyboardInterrupt"
     ]
   },
   {
@@ -79843,7 +79843,7 @@
     "related": [
       "signal.setitimer",
       "signal.signal",
-      "timeouterror"
+      "TimeoutError"
     ],
     "related_errors": []
   },
@@ -79921,7 +79921,7 @@
       "signal.pause"
     ],
     "related_errors": [
-      "signal.itimererror"
+      "signal.ItimerError"
     ]
   },
   {
@@ -79981,7 +79981,7 @@
       "signal.alarm"
     ],
     "related_errors": [
-      "signal.itimererror"
+      "signal.ItimerError"
     ]
   },
   {
@@ -80227,7 +80227,7 @@
       "signal.raise_signal"
     ],
     "related_errors": [
-      "processlookuperror"
+      "ProcessLookupError"
     ]
   },
   {
@@ -80719,11 +80719,11 @@
     ],
     "related": [
       "signal.signal",
-      "interruptederror",
+      "InterruptedError",
       "time.sleep"
     ],
     "related_errors": [
-      "interruptederror"
+      "InterruptedError"
     ]
   },
   {
@@ -81980,7 +81980,7 @@
       "cmath.polar"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -82047,7 +82047,7 @@
       "cmath.rect"
     ],
     "related_errors": [
-      "overflowerror"
+      "OverflowError"
     ]
   },
   {
@@ -82113,7 +82113,7 @@
       "cmath.phase"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -82595,7 +82595,7 @@
       "cmath.sin"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -82711,7 +82711,7 @@
       "cmath.tan"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -82826,7 +82826,7 @@
       "cmath.cosh"
     ],
     "related_errors": [
-      "overflowerror"
+      "OverflowError"
     ]
   },
   {
@@ -82943,7 +82943,7 @@
       "cmath.asinh"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -83060,7 +83060,7 @@
       "cmath.atan"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -83745,7 +83745,7 @@
       "bytes.decode"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -83817,7 +83817,7 @@
       "bytes.decode"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -84040,7 +84040,7 @@
       "secrets.token_urlsafe"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -84161,7 +84161,7 @@
       "base64.b64decode"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -84271,7 +84271,7 @@
       "base64.b32decode"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -84385,7 +84385,7 @@
       "bytes.hex"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -84502,7 +84502,7 @@
       "base64.b85decode"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -84616,7 +84616,7 @@
       "base64.z85decode"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -84782,7 +84782,7 @@
       "base64.b64encode"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -84953,7 +84953,7 @@
       "base64.decodestring"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -85228,10 +85228,10 @@
     "related": [
       "calendar.TextCalendar",
       "calendar.LocaleHTMLCalendar",
-      "locale.error"
+      "locale.Error"
     ],
     "related_errors": [
-      "locale.error"
+      "locale.Error"
     ]
   },
   {
@@ -85296,10 +85296,10 @@
     "related": [
       "calendar.HTMLCalendar",
       "calendar.LocaleTextCalendar",
-      "locale.error"
+      "locale.Error"
     ],
     "related_errors": [
-      "locale.error"
+      "locale.Error"
     ]
   },
   {
@@ -85503,11 +85503,11 @@
     "related": [
       "calendar.IllegalWeekdayError",
       "calendar.monthrange",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": [
-      "valueerror",
-      "indexerror"
+      "ValueError",
+      "IndexError"
     ]
   },
   {
@@ -85568,7 +85568,7 @@
       "calendar.Day"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -86276,7 +86276,7 @@
       "calendar.monthrange"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -86524,7 +86524,7 @@
       "urllib.parse.ParseResultBytes"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -86945,7 +86945,7 @@
       "str.encode"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -87497,7 +87497,7 @@
       "urllib.parse.parse_qs"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -87563,7 +87563,7 @@
       "urllib.parse.urlencode"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -90306,7 +90306,7 @@
       "ipaddress.IPv6Address"
     ],
     "related_errors": [
-      "valueerror",
+      "ValueError",
       "ipaddress.AddressValueError"
     ]
   },
@@ -90368,7 +90368,7 @@
       "ipaddress.ip_address"
     ],
     "related_errors": [
-      "valueerror",
+      "ValueError",
       "ipaddress.NetmaskValueError"
     ]
   },
@@ -90428,7 +90428,7 @@
       "ipaddress.IPv6Interface"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -90619,7 +90619,7 @@
     ],
     "related_errors": [
       "ipaddress.NetmaskValueError",
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -90680,7 +90680,7 @@
     ],
     "related_errors": [
       "ipaddress.NetmaskValueError",
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -90862,7 +90862,7 @@
       "ipaddress.ip_network"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -90922,8 +90922,8 @@
       "ipaddress.IPv4Address"
     ],
     "related_errors": [
-      "valueerror",
-      "typeerror"
+      "ValueError",
+      "TypeError"
     ]
   },
   {
@@ -90984,7 +90984,7 @@
       "ipaddress.ip_network"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -91043,7 +91043,7 @@
       "struct.pack"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -91102,7 +91102,7 @@
       "bytes.hex"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -91167,7 +91167,7 @@
       "ipaddress.NetmaskValueError"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -91230,7 +91230,7 @@
       "ipaddress.AddressValueError"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -91302,7 +91302,7 @@
       "locale.atof"
     ],
     "related_errors": [
-      "locale.error"
+      "locale.Error"
     ]
   },
   {
@@ -91360,8 +91360,8 @@
       "locale.getencoding"
     ],
     "related_errors": [
-      "locale.error",
-      "typeerror"
+      "locale.Error",
+      "TypeError"
     ]
   },
   {
@@ -91475,7 +91475,7 @@
     "related": [
       "locale.setlocale",
       "locale.getlocale",
-      "locale.error"
+      "locale.Error"
     ],
     "related_errors": []
   },
@@ -91650,7 +91650,7 @@
     ],
     "related": [
       "locale.getencoding",
-      "io.textiowrapper",
+      "io.TextIOWrapper",
       "sys.getfilesystemencoding"
     ],
     "related_errors": []
@@ -91712,7 +91712,7 @@
       "float"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -91769,7 +91769,7 @@
       "locale.setlocale"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -91947,8 +91947,8 @@
       "locale.format_string"
     ],
     "related_errors": [
-      "valueerror",
-      "locale.error"
+      "ValueError",
+      "locale.Error"
     ]
   },
   {
@@ -92121,7 +92121,7 @@
       "unicodedata.category"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -92176,10 +92176,10 @@
     "related": [
       "unicodedata.name",
       "chr",
-      "keyerror"
+      "KeyError"
     ],
     "related_errors": [
-      "keyerror"
+      "KeyError"
     ]
   },
   {
@@ -92524,7 +92524,7 @@
       "str.isdecimal"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -92585,7 +92585,7 @@
       "str.isdigit"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -92643,7 +92643,7 @@
       "str.isnumeric"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -92889,7 +92889,7 @@
       "unicodedata.name"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -94563,7 +94563,7 @@
       "eval"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -94767,7 +94767,7 @@
       "sys.exception"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -94828,7 +94828,7 @@
       "traceback.print_last"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -94891,7 +94891,7 @@
       "sys.settrace"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -95127,11 +95127,11 @@
     ],
     "related": [
       "numbers.Rational",
-      "decimal.decimal",
+      "decimal.Decimal",
       "float"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -95187,7 +95187,7 @@
     ],
     "related": [
       "numbers.Integral",
-      "fractions.fraction",
+      "fractions.Fraction",
       "numbers.Real"
     ],
     "related_errors": []
@@ -98363,7 +98363,7 @@
       "compile"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -99887,7 +99887,7 @@
       "ast.AugStore"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -99943,7 +99943,7 @@
     ],
     "related": [
       "assert",
-      "assertionerror",
+      "AssertionError",
       "ast.Compare"
     ],
     "related_errors": []
@@ -100128,7 +100128,7 @@
       "compile"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -100190,7 +100190,7 @@
       "ast.For"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -100252,7 +100252,7 @@
     "related": [
       "try-except",
       "raise",
-      "exceptiongroup"
+      "ExceptionGroup"
     ],
     "related_errors": []
   },
@@ -100446,7 +100446,7 @@
       "ast.Expr"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -103573,7 +103573,7 @@
       "ast.Store"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -104649,11 +104649,11 @@
     ],
     "related": [
       "ast.Try",
-      "exceptiongroup",
+      "ExceptionGroup",
       "try-except"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -104834,7 +104834,7 @@
       "ast.Return"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -104900,7 +104900,7 @@
       "кортеж-в-return-функции"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -105365,7 +105365,7 @@
       "ast.NodeVisitor"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -105434,8 +105434,8 @@
       "ast.Constant"
     ],
     "related_errors": [
-      "valueerror",
-      "syntaxerror"
+      "ValueError",
+      "SyntaxError"
     ]
   },
   {
@@ -105498,7 +105498,7 @@
       "ast.fix_missing_locations"
     ],
     "related_errors": [
-      "recursionerror"
+      "RecursionError"
     ]
   },
   {
@@ -105805,7 +105805,7 @@
       "ast.walk"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -105931,7 +105931,7 @@
       "ast.NodeTransformer"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -107390,7 +107390,7 @@
       "ast.expr"
     ],
     "related_errors": [
-      "syntaxerror"
+      "SyntaxError"
     ]
   },
   {
@@ -109466,7 +109466,7 @@
       "traceback.walk_stack"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -110064,7 +110064,7 @@
       "type"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -110270,8 +110270,8 @@
       "functools.wraps"
     ],
     "related_errors": [
-      "oserror",
-      "typeerror"
+      "OSError",
+      "TypeError"
     ]
   },
   {
@@ -110338,8 +110338,8 @@
       "types.CodeType"
     ],
     "related_errors": [
-      "oserror",
-      "typeerror"
+      "OSError",
+      "TypeError"
     ]
   },
   {
@@ -110409,7 +110409,7 @@
       "inspect.getsourcelines"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -110509,9 +110509,9 @@
       "callable"
     ],
     "related_errors": [
-      "typeerror",
-      "valueerror",
-      "nameerror"
+      "TypeError",
+      "ValueError",
+      "NameError"
     ]
   },
   {
@@ -110599,7 +110599,7 @@
       "декораторы"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -110662,7 +110662,7 @@
       "types.GenericAlias"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -111488,7 +111488,7 @@
       "contextlib.aclosing"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -111555,7 +111555,7 @@
       "декораторы"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -111696,7 +111696,7 @@
       "inspect.ismemberdescriptor"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -111823,7 +111823,7 @@
       "inspect.isgetsetdescriptor"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -111974,10 +111974,10 @@
       "socket.socketpair"
     ],
     "related_errors": [
-      "oserror",
-      "timeouterror",
-      "connectionrefusederror",
-      "brokenpipeerror"
+      "OSError",
+      "TimeoutError",
+      "ConnectionRefusedError",
+      "BrokenPipeError"
     ]
   },
   {
@@ -112051,7 +112051,7 @@
       "socket.SocketType"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -112136,8 +112136,8 @@
       "socket.setdefaulttimeout"
     ],
     "related_errors": [
-      "connectionrefusederror",
-      "timeouterror",
+      "ConnectionRefusedError",
+      "TimeoutError",
       "socket.gaierror"
     ]
   },
@@ -112213,7 +112213,7 @@
       "socket.socket"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -112585,7 +112585,7 @@
       "socket.socket"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -112661,7 +112661,7 @@
       "socket.socket"
     ],
     "related_errors": [
-      "timeouterror"
+      "TimeoutError"
     ]
   },
   {
@@ -113153,7 +113153,7 @@
       "socket.socket"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113213,7 +113213,7 @@
       "socket.getaddrinfo"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113275,7 +113275,7 @@
       "socket.getnameinfo"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113337,7 +113337,7 @@
       "socket.getfqdn"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113645,7 +113645,7 @@
       "ipaddress.ip_address"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113704,7 +113704,7 @@
       "ipaddress.IPv4Address"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113764,7 +113764,7 @@
       "ipaddress.ip_address"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113827,7 +113827,7 @@
       "ipaddress.IPv6Address"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113887,7 +113887,7 @@
       "socket.getaddrinfo"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -113945,7 +113945,7 @@
       "socket.if_indextoname"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -114004,7 +114004,7 @@
       "socket.if_nametoindex"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -114266,7 +114266,7 @@
       "socket.socketpair"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -114335,7 +114335,7 @@
       "socket.socketpair"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -114394,11 +114394,11 @@
     "related": [
       "socket.getaddrinfo",
       "socket.herror",
-      "oserror"
+      "OSError"
     ],
     "related_errors": [
-      "oserror",
-      "connectionerror"
+      "OSError",
+      "ConnectionError"
     ]
   },
   {
@@ -114458,10 +114458,10 @@
     "related": [
       "socket.gethostbyaddr",
       "socket.gaierror",
-      "oserror"
+      "OSError"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -116163,11 +116163,11 @@
     ],
     "related": [
       "threading.Barrier",
-      "threading.brokenbarriererror",
+      "threading.BrokenBarrierError",
       "multiprocessing.Event"
     ],
     "related_errors": [
-      "threading.brokenbarriererror"
+      "threading.BrokenBarrierError"
     ]
   },
   {
@@ -119258,7 +119258,7 @@
     "related": [
       "xml.etree.ElementTree.fromstring",
       "xml.etree.ElementTree.parse",
-      "syntaxerror"
+      "SyntaxError"
     ],
     "related_errors": []
   },
@@ -119811,7 +119811,7 @@
       "ssl.wrap_socket"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -120097,7 +120097,7 @@
       "importlib.reload"
     ],
     "related_errors": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -120165,7 +120165,7 @@
       "importlib.invalidate_caches"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -120229,7 +120229,7 @@
       "sys.path"
     ],
     "related_errors": [
-      "modulenotfounderror"
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -120541,7 +120541,7 @@
       "functools.wraps"
     ],
     "related_errors": [
-      "recursionerror"
+      "RecursionError"
     ]
   },
   {
@@ -122052,7 +122052,7 @@
       "dis.disco"
     ],
     "related_errors": [
-      "attributeerror"
+      "AttributeError"
     ]
   },
   {
@@ -122175,7 +122175,7 @@
       "sys.exc_info"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -122300,7 +122300,7 @@
       "dis.get_instructions"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -122610,7 +122610,7 @@
       "dis.Instruction"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -122682,7 +122682,7 @@
       "timeit.timeit"
     ],
     "related_errors": [
-      "nameerror"
+      "NameError"
     ]
   },
   {
@@ -122951,7 +122951,7 @@
       "enum.StrEnum"
     ],
     "related_errors": [
-      "keyerror"
+      "KeyError"
     ]
   },
   {
@@ -123016,7 +123016,7 @@
       "dataclass"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -123146,7 +123146,7 @@
       "sys.excepthook"
     ],
     "related_errors": [
-      "io.unsupportedoperation"
+      "io.UnsupportedOperation"
     ]
   },
   {
@@ -123574,7 +123574,7 @@
       "faulthandler.enable"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -124252,7 +124252,7 @@
       "tracemalloc.Statistic"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -124324,7 +124324,7 @@
       "pickle.dump"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -124845,7 +124845,7 @@
       "open"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -124910,7 +124910,7 @@
       "open"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -124973,7 +124973,7 @@
       "fileinput.FileInput"
     ],
     "related_errors": [
-      "runtimeerror"
+      "RuntimeError"
     ]
   },
   {
@@ -125571,7 +125571,7 @@
       "os.stat"
     ],
     "related_errors": [
-      "filenotfounderror"
+      "FileNotFoundError"
     ]
   },
   {
@@ -126559,7 +126559,7 @@
       "gettext.find"
     ],
     "related_errors": [
-      "filenotfounderror"
+      "FileNotFoundError"
     ]
   },
   {
@@ -127220,7 +127220,7 @@
       "gettext.dngettext"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -127287,7 +127287,7 @@
       "lzma.LZMAFile"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -127350,7 +127350,7 @@
       "zlib.compressobj"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -127411,7 +127411,7 @@
       "zlib.decompressobj"
     ],
     "related_errors": [
-      "eoferror"
+      "EOFError"
     ]
   },
   {
@@ -127531,7 +127531,7 @@
       "gzip.compress"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -127590,7 +127590,7 @@
       "zlib.decompress"
     ],
     "related_errors": [
-      "oserror"
+      "OSError"
     ]
   },
   {
@@ -127651,7 +127651,7 @@
       "bz2.BZ2Compressor"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -127713,7 +127713,7 @@
       "bz2.BZ2Decompressor"
     ],
     "related_errors": [
-      "eoferror"
+      "EOFError"
     ]
   },
   {
@@ -128073,7 +128073,7 @@
       "аннотации-типов-type-hints"
     ],
     "related_errors": [
-      "nameerror"
+      "NameError"
     ]
   },
   {
@@ -128147,7 +128147,7 @@
       "annotationlib.get_annotations"
     ],
     "related_errors": [
-      "nameerror"
+      "NameError"
     ]
   },
   {
@@ -128208,7 +128208,7 @@
       "annotationlib.get_annotate_from_class_namespace"
     ],
     "related_errors": [
-      "notimplementederror"
+      "NotImplementedError"
     ]
   },
   {
@@ -128272,7 +128272,7 @@
       "annotationlib.Format"
     ],
     "related_errors": [
-      "nameerror"
+      "NameError"
     ]
   },
   {
@@ -128415,8 +128415,8 @@
       "annotationlib.ForwardRef"
     ],
     "related_errors": [
-      "nameerror",
-      "typeerror"
+      "NameError",
+      "TypeError"
     ]
   },
   {
@@ -128606,8 +128606,8 @@
       "zlib.compress"
     ],
     "related_errors": [
-      "typeerror",
-      "valueerror"
+      "TypeError",
+      "ValueError"
     ]
   },
   {
@@ -128676,7 +128676,7 @@
       "compression.zstd.DecompressionParameter"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -129188,7 +129188,7 @@
       "compression.zstd.ZstdDecompressor"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {
@@ -129386,7 +129386,7 @@
       "zlib.decompressobj"
     ],
     "related_errors": [
-      "eoferror"
+      "EOFError"
     ]
   },
   {
@@ -129450,7 +129450,7 @@
       "compression.zstd.compress"
     ],
     "related_errors": [
-      "valueerror"
+      "ValueError"
     ]
   },
   {

@@ -501,7 +501,7 @@
       "срезы-строк",
       "len-для-строк",
       "индексирование-списка",
-      "indexerror"
+      "IndexError"
     ],
     "related_errors": []
   },
@@ -1081,7 +1081,7 @@
     "related": [
       "f-строки",
       "format-метод-форматирования",
-      "string.template"
+      "string.Template"
     ],
     "related_errors": [
       "TypeError",
@@ -2221,7 +2221,7 @@
     "related": [
       "str.find",
       "str.rindex",
-      "valueerror",
+      "ValueError",
       "list.index"
     ],
     "related_errors": [
@@ -2278,7 +2278,7 @@
     "related": [
       "str.rfind",
       "str.index",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": [
       "ValueError"
@@ -2335,7 +2335,7 @@
     "related": [
       "str.find",
       "in-not-in-для-строк",
-      "collections.counter",
+      "collections.Counter",
       "list.count"
     ],
     "related_errors": []
@@ -3547,7 +3547,7 @@
     "related": [
       "bytes.decode",
       "b-...-байт-строки",
-      "unicodeencodeerror"
+      "UnicodeEncodeError"
     ],
     "related_errors": [
       "UnicodeEncodeError",
@@ -3604,7 +3604,7 @@
     "related": [
       "format-метод-форматирования",
       "f-строки",
-      "string.template"
+      "string.Template"
     ],
     "related_errors": [
       "KeyError"

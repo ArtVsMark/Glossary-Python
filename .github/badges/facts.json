@@ -1,7 +1,7 @@
 {
   "schema": "1.5",
   "schema_of": "факты о проекте-витрине глоссария по договору фактов витрины 1.5: по каждому показателю значение или причина в none",
-  "generated_at": "2026-10-09T16:11:13+00:00",
+  "generated_at": "2026-10-09T16:13:57+00:00",
   "repo": "ArtVsMark/Glossary-Python",
   "commit": "d3b39f68fb83ae8751cd6f385715a72939e4ef06",
   "ci": {
@@ -41,17 +41,17 @@
   },
   "coverage_percent": 97.7,
   "release": "1.4",
-  "version": "1.4.33",
+  "version": "1.4.34",
   "exchange": {
     "glossary": {
       "schema": "1.0",
       "schema_of": "карточки глоссария: число, разделы, замечания валидации и полнота относительно инвентаря Python",
       "producer": "ArtVsMark/Glossary-Python",
       "source": "ArtVsMark/Glossary-Python",
-      "cards": 2907,
+      "cards": 2920,
       "groups": 131,
       "errors": 0,
-      "warnings": 5,
+      "warnings": 0,
       "completeness_percent": 100.0,
       "completeness_missing": 1,
       "completeness_python": "3.14"

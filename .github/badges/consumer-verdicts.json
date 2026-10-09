@@ -3,7 +3,7 @@
   "schema_of": "вердикты глоссария по предложениям потребителя",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T16:11:23+00:00",
+  "generated_at": "2026-10-09T16:14:07+00:00",
   "answers_to": {
     "producer": "ArtVsMark/Stepik-Python-Grader",
     "generated_at": "2026-10-09T12:12:23+00:00",
@@ -13,12 +13,12 @@
     }
   },
   "snapshot": {
-    "cards": 2907,
-    "digest": "050216508da6"
+    "cards": 2920,
+    "digest": "fc8e98f53128"
   },
   "totals": {
-    "done": 91,
-    "accepted": 15,
+    "done": 98,
+    "accepted": 8,
     "rejected": 3,
     "pending": 0
   },
@@ -425,30 +425,23 @@
     },
     {
       "slug": "builtin-card:EnvironmentError",
-      "verdict": "accepted",
-      "issue": 250,
-      "why": "псевдоним OSError с 3.3 — синоним в карточке OSError, а не своя карточка"
+      "verdict": "done"
     },
     {
       "slug": "builtin-card:False",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "builtin-card:IOError",
-      "verdict": "accepted",
-      "issue": 250,
-      "why": "псевдоним OSError с 3.3 — синоним в карточке OSError, а не своя карточка"
+      "verdict": "done"
     },
     {
       "slug": "builtin-card:None",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "builtin-card:True",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "builtin-card:copyright",
@@ -462,8 +455,7 @@
     },
     {
       "slug": "builtin-card:exit",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "builtin-card:license",
@@ -472,8 +464,7 @@
     },
     {
       "slug": "builtin-card:quit",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "id-convention:builtin-names",

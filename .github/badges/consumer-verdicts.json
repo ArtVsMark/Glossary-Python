@@ -3,7 +3,7 @@
   "schema_of": "вердикты глоссария по предложениям потребителя",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T15:29:58+00:00",
+  "generated_at": "2026-10-09T15:32:38+00:00",
   "answers_to": {
     "producer": "ArtVsMark/Stepik-Python-Grader",
     "generated_at": "2026-10-09T12:12:23+00:00",
@@ -13,12 +13,12 @@
     }
   },
   "snapshot": {
-    "cards": 2817,
-    "digest": "5641a381661d"
+    "cards": 2907,
+    "digest": "050216508da6"
   },
   "totals": {
-    "done": 1,
-    "accepted": 105,
+    "done": 91,
+    "accepted": 15,
     "rejected": 3,
     "pending": 0
   },
@@ -65,453 +65,363 @@
     },
     {
       "slug": "module-card:abc",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:argparse",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:array",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:ast",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:asyncio",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:atexit",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:base64",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:binascii",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:bisect",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:calendar",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:codecs",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:collections",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:concurrent",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:configparser",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:contextlib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:contextvars",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:copy",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:ctypes",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:dataclasses",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:datetime",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:decimal",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:difflib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:doctest",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:encodings",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:fnmatch",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:fractions",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:functools",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:gc",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:getpass",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:glob",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:graphlib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:gzip",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:hashlib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:heapq",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:hmac",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:http",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:inspect",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:io",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:ipaddress",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:itertools",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:locale",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:logging",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:math",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:multiprocessing",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:numbers",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:operator",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:pathlib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:pdb",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:pkgutil",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:platform",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:pprint",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:queue",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:random",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:re",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:secrets",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:shlex",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:shutil",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:signal",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:socket",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:sqlite3",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:ssl",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:stat",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:statistics",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:string",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:struct",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:subprocess",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:sys",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:tarfile",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:tempfile",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:textwrap",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:threading",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:time",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:timeit",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:tkinter",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:tokenize",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:tomllib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:traceback",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:types",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:typing",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:unicodedata",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:unittest",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:urllib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:uuid",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:warnings",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:weakref",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:xml",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:zipfile",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:zipimport",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:zlib",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "module-card:zoneinfo",
-      "verdict": "accepted",
-      "issue": 250
+      "verdict": "done"
     },
     {
       "slug": "builtin-card:EnvironmentError",

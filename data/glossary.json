@@ -2353,6 +2353,311 @@
       "related_errors": []
     },
     {
+      "id": "аннотация-переменной",
+      "title": {
+        "ru": "Аннотация переменной",
+        "en": "Variable annotation"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Запись x: int = 1 — подсказка типа для переменной или атрибута класса. Интерпретатор её не проверяет, читают её mypy, IDE и dataclass.",
+        "en": "Writing x: int = 1 attaches a type hint to a variable or class attribute. The interpreter does not check it; mypy, IDEs and dataclass read it."
+      },
+      "body": {
+        "ru": "Главная ловушка: аннотация не проверяется во время выполнения — x: int = \"abc\" отработает без ошибки, ловит такое только mypy или IDE. Вторая: x: int без = ничего не присваивает, и обращение к x даёт NameError. В классе аннотация без значения попадает в __annotations__, но атрибутом не становится — именно эти записи читает @dataclass, чтобы построить поля.",
+        "en": "The main trap: the annotation is not checked at runtime — x: int = \"abc\" runs without error, and only mypy or an IDE will flag it. The second one: x: int without = assigns nothing, so reading x raises NameError. In a class, an annotation without a value lands in __annotations__ but does not become an attribute — these are exactly the entries @dataclass reads to build its fields."
+      },
+      "syntax": "имя: тип = значение\nимя: тип",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#annotated-assignment-statements",
+      "added": "3.6",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Аннотации и typing",
+      "subcat": {
+        "ru": "синтаксис",
+        "en": "syntax"
+      },
+      "color_group": "typing",
+      "aliases": [
+        "аннотация типа переменной",
+        "подсказка типа переменной",
+        "тип переменной через двоеточие",
+        "variable type hint"
+      ],
+      "keywords": [
+        "syntax:var_annotation",
+        "PEP 526",
+        "x: int",
+        "__annotations__",
+        "annotated assignment"
+      ],
+      "tags": [
+        "typing"
+      ],
+      "examples": [
+        [
+          "x: int = 'abc'",
+          "print(x)  # → abc — тип не проверяется",
+          "count: int",
+          "print(count)  # → NameError"
+        ],
+        [
+          "class Point:",
+          "    x: int",
+          "    y: int = 0",
+          "print(Point.__annotations__)  # → {'x': <class 'int'>, 'y': <class 'int'>}",
+          "print(hasattr(Point, 'x'), Point.y)  # → False 0"
+        ]
+      ],
+      "related": [
+        "аннотации-типов-type-hints",
+        "int-str-list-dict-аннотации",
+        "ClassVar",
+        "Final"
+      ],
+      "related_errors": [
+        "NameError"
+      ]
+    },
+    {
+      "id": "оператор-type",
+      "title": {
+        "ru": "Оператор type",
+        "en": "The type statement"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "type X = ... объявляет псевдоним типа (Python 3.12+). Правая часть вычисляется лениво, поэтому может ссылаться на ещё не определённые имена.",
+        "en": "type X = ... declares a type alias (Python 3.12+). The right-hand side is evaluated lazily, so it may refer to names that are not defined yet."
+      },
+      "body": {
+        "ru": "Главная ловушка: type создаёт не сам тип, а объект TypeAliasType — isinstance(x, Point) даёт TypeError, а сам тип лежит в Point.__value__. Правая часть вычисляется лениво, при первом обращении к __value__, поэтому опечатка в ней всплывёт NameError не на строке type, а позже. Простое присваивание Point = tuple[...] даёт обычный объект, пригодный в isinstance для классов; type нужен для явных, рекурсивных и обобщённых псевдонимов.",
+        "en": "The main trap: type does not create the type itself but a TypeAliasType object — isinstance(x, Point) raises TypeError, and the type itself lives in Point.__value__. The right-hand side is evaluated lazily, on the first access to __value__, so a typo in it surfaces as NameError later, not on the type line. A plain assignment Point = tuple[...] gives an ordinary object usable in isinstance for classes; type is for explicit, recursive and generic aliases."
+      },
+      "syntax": "type Имя = выражение\ntype Имя[T] = выражение",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-type-statement",
+      "added": "3.12",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Аннотации и typing",
+      "subcat": {
+        "ru": "синтаксис",
+        "en": "syntax"
+      },
+      "color_group": "typing",
+      "aliases": [
+        "псевдоним типа",
+        "type alias",
+        "алиас типа",
+        "объявить свой тип"
+      ],
+      "keywords": [
+        "syntax:type_statement",
+        "PEP 695",
+        "type",
+        "TypeAliasType",
+        "__value__"
+      ],
+      "tags": [
+        "typing"
+      ],
+      "examples": [
+        [
+          "# Python 3.12+",
+          "type Point = tuple[float, float]",
+          "print(type(Point).__name__)  # → TypeAliasType",
+          "print(Point.__value__)  # → tuple[float, float]",
+          "isinstance((1.0, 2.0), Point)  # → TypeError"
+        ],
+        [
+          "# Python 3.12+",
+          "type Later = Undefined",
+          "print(Later.__name__)  # → Later",
+          "print(Later.__value__)  # → NameError"
+        ],
+        [
+          "# Python 3.12+",
+          "type Tree = list[Tree] | int",
+          "print(Tree.__value__ == (list[Tree] | int))  # → True"
+        ]
+      ],
+      "related": [
+        "typing.TypeAliasType",
+        "generic-t",
+        "union-x-y-x-y",
+        "аннотации-типов-type-hints"
+      ],
+      "related_errors": [
+        "TypeError",
+        "NameError"
+      ]
+    },
+    {
+      "id": "параметры-типа",
+      "title": {
+        "ru": "Параметры типа [T]",
+        "en": "Type parameters [T]"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "def f[T](x: T) -> T и class Box[T] объявляют обобщённые функции и классы прямо в заголовке, без TypeVar и Generic (Python 3.12+).",
+        "en": "def f[T](x: T) -> T and class Box[T] declare generic functions and classes right in the header, without TypeVar or Generic (Python 3.12+)."
+      },
+      "body": {
+        "ru": "Главная ловушка: T видно только внутри своей функции или класса — снаружи это NameError, а не общая переменная модуля, как при T = TypeVar('T'). Тип во время выполнения не проверяется: first(['a']) отработает, как бы ни была аннотирована функция. Значения по умолчанию [T = int] появились только в 3.13; для старых версий остаются TypeVar и Generic[T].",
+        "en": "The main trap: T is visible only inside its own function or class — outside it is a NameError, not a shared module variable as with T = TypeVar('T'). The type is not checked at runtime: first(['a']) runs however the function is annotated. Defaults [T = int] arrived only in 3.13; older versions still need TypeVar and Generic[T]."
+      },
+      "syntax": "def имя[T](x: T) -> T: ...\nclass Имя[T]: ...\nclass Имя[T: Ограничение, *Ts, **P]: ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#type-params",
+      "added": "3.12",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Аннотации и typing",
+      "subcat": {
+        "ru": "синтаксис",
+        "en": "syntax"
+      },
+      "color_group": "typing",
+      "aliases": [
+        "обобщённая функция",
+        "дженерик без TypeVar",
+        "generic class",
+        "параметр типа в квадратных скобках"
+      ],
+      "keywords": [
+        "syntax:type_params",
+        "PEP 695",
+        "def f[T]",
+        "class C[T]",
+        "__type_params__",
+        "TypeVar"
+      ],
+      "tags": [
+        "typing"
+      ],
+      "examples": [
+        [
+          "# Python 3.12+",
+          "def first[T](items: list[T]) -> T:",
+          "    return items[0]",
+          "print(first([3, 1]))  # → 3",
+          "print(first.__type_params__)  # → (T,)",
+          "print(T)  # → NameError"
+        ],
+        [
+          "# Python 3.12+",
+          "class Box[T]:",
+          "    def __init__(self, item: T):",
+          "        self.item = item",
+          "print(Box[int])  # → __main__.Box[int]",
+          "print(Box('a').item)  # → a — тип не проверяется"
+        ],
+        [
+          "# Python 3.13+",
+          "class Box[T = int]:",
+          "    pass",
+          "print(Box.__type_params__[0].__default__)  # → <class 'int'>"
+        ]
+      ],
+      "related": [
+        "typevar",
+        "generic-t",
+        "typing.TypeAliasType",
+        "typing.TypeVarTuple"
+      ],
+      "related_errors": [
+        "NameError"
+      ]
+    },
+    {
+      "id": "распаковка-в-индексе",
+      "title": {
+        "ru": "Распаковка * в индексе",
+        "en": "Starred expression in a subscript"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "a[*b] разворачивает b в кортеж индексов: a[*b] — то же, что a[tuple(b)]. Главное применение — tuple[int, *Ts] в аннотациях (Python 3.11+).",
+        "en": "a[*b] unpacks b into a tuple of indices: a[*b] is the same as a[tuple(b)]. Its main use is tuple[int, *Ts] in annotations (Python 3.11+)."
+      },
+      "body": {
+        "ru": "Главная ловушка: __getitem__ всегда получает кортеж — даже a[*[5]] передаёт (5,), а не 5, поэтому список так индексировать нельзя: lst[*idx] даёт TypeError. Конструкция нужна для многомерных объектов и обобщённых типов с TypeVarTuple, а не для обычных последовательностей. До 3.11 та же запись — SyntaxError.",
+        "en": "The main trap: __getitem__ always receives a tuple — even a[*[5]] passes (5,), not 5, so you cannot index a list this way: lst[*idx] raises TypeError. The construct is meant for multi-dimensional objects and generic types with TypeVarTuple, not for ordinary sequences. Before 3.11 the same code is a SyntaxError."
+      },
+      "syntax": "объект[*итерируемое]\nобъект[x, *итерируемое]",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/expressions.html#subscriptions",
+      "added": "3.11",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Аннотации и typing",
+      "subcat": {
+        "ru": "синтаксис",
+        "en": "syntax"
+      },
+      "color_group": "typing",
+      "aliases": [
+        "звёздочка в квадратных скобках",
+        "распаковка в подписке",
+        "starred subscript"
+      ],
+      "keywords": [
+        "syntax:star_index",
+        "PEP 646",
+        "a[*b]",
+        "*",
+        "TypeVarTuple",
+        "__getitem__"
+      ],
+      "tags": [
+        "typing"
+      ],
+      "examples": [
+        [
+          "# Python 3.11+",
+          "class Show:",
+          "    def __getitem__(self, key):",
+          "        return key",
+          "s = Show()",
+          "idx = (1, 2)",
+          "print(s[*idx])  # → (1, 2)",
+          "print(s[0, *idx])  # → (0, 1, 2)",
+          "print(s[*[5]])  # → (5,)"
+        ],
+        [
+          "# Python 3.11+",
+          "print(tuple[int, *tuple[str, ...]])  # → tuple[int, *tuple[str, ...]]",
+          "lst = [10, 20, 30]",
+          "idx = [1]",
+          "print(lst[*idx])  # → TypeError"
+        ]
+      ],
+      "related": [
+        "typing.TypeVarTuple",
+        "распаковка-списка",
+        "generic-t",
+        "args"
+      ],
+      "related_errors": [
+        "TypeError"
+      ]
+    },
+    {
       "id": "abs",
       "title": {
         "ru": "abs()",
@@ -7271,8 +7576,8 @@
         "en": "Deprecated: returns the global event loop policy; deprecated since 3.14 with removal in 3.16. Pick the loop via loop_factory of asyncio.run()."
       },
       "body": {
-        "ru": "Политика — глобальный объект, решавший, какой цикл создаётся и какой считается текущим; её подменяли, чтобы поставить uvloop или WindowsSelectorEventLoop. Вся система политик устарела в 3.14: вместо глобальной подмены цикл передают явно — asyncio.run(main(), loop_factory=...) (3.12+) или asyncio.Runner(loop_factory=...) (3.11+). С 3.14 вызов даёт DeprecationWarning.",
-        "en": "A policy is a global object that decided which loop gets created and which counts as current; people swapped it to install uvloop or WindowsSelectorEventLoop. The whole policy system is deprecated in 3.14: instead of a global swap, pass the loop explicitly with asyncio.run(main(), loop_factory=...) (3.12+) or asyncio.Runner(loop_factory=...) (3.11+). Since 3.14 the call emits DeprecationWarning."
+        "ru": "Политика — глобальный объект, решавший, какой цикл создаётся и какой считается текущим; её подменяли, чтобы поставить uvloop или WindowsSelectorEventLoop. Вся система политик устарела в 3.14: вместо глобальной подмены цикл передают явно — asyncio.run(main(), loop_factory=...) (3.12+) или asyncio.Runner(loop_factory=...) (3.11+). С 3.14 вызов даёт DeprecationWarning. Обычная фабрика для loop_factory — asyncio.EventLoop (3.13+), лучший цикл для текущей платформы.",
+        "en": "A policy is a global object that decided which loop gets created and which counts as current; people swapped it to install uvloop or WindowsSelectorEventLoop. The whole policy system is deprecated in 3.14: instead of a global swap, pass the loop explicitly with asyncio.run(main(), loop_factory=...) (3.12+) or asyncio.Runner(loop_factory=...) (3.11+). Since 3.14 the call emits DeprecationWarning. The usual loop_factory is asyncio.EventLoop (3.13+), the best loop for the current platform."
       },
       "syntax": "policy = asyncio.get_event_loop_policy()",
       "status": "ready",
@@ -7322,6 +7627,14 @@
           "loop = policy.new_event_loop()",
           "print(loop.is_closed())  # → False",
           "loop.close()"
+        ],
+        [
+          "# Python 3.16+",
+          "import asyncio",
+          "async def main():",
+          "    return type(asyncio.get_running_loop()) is asyncio.EventLoop",
+          "# политик нет: цикл задают явно, на один запуск",
+          "print(asyncio.run(main(), loop_factory=asyncio.EventLoop))   # → True"
         ]
       ],
       "related": [
@@ -7530,6 +7843,14 @@
           "with warnings.catch_warnings():",
           "    warnings.simplefilter('ignore', DeprecationWarning)  # с 3.14 здесь DeprecationWarning",
           "    print(asyncio.iscoroutinefunction(fetch))  # → True"
+        ],
+        [
+          "# Python 3.16+",
+          "import functools",
+          "import inspect",
+          "async def fetch(x):",
+          "    return x",
+          "print(inspect.iscoroutinefunction(functools.partial(fetch, 1)))   # → True — partial тоже"
         ]
       ],
       "related": [
@@ -8145,6 +8466,16 @@
           "    warnings.simplefilter('ignore', DeprecationWarning)  # с 3.14 вызов устарел",
           "    asyncio.set_event_loop_policy(None)  # None — политика по умолчанию",
           "print(asyncio.run(asyncio.sleep(0.01, result='ок')))  # → ок"
+        ],
+        [
+          "# Python 3.16+",
+          "import asyncio",
+          "async def main():",
+          "    await asyncio.sleep(0)",
+          "    return 'ок'",
+          "# вместо set_event_loop_policy(...): один цикл на несколько запусков",
+          "with asyncio.Runner(loop_factory=asyncio.EventLoop) as runner:",
+          "    print(runner.run(main()), runner.run(main()))   # → ок ок"
         ]
       ],
       "related": [
@@ -15092,6 +15423,145 @@
       "related_errors": []
     },
     {
+      "id": "False",
+      "title": {
+        "ru": "False",
+        "en": "False"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Логическая ложь — второй экземпляр bool, равный 0. Ложны и 0, '', [], None, но равны False только нули.",
+        "en": "Boolean falsehood, the other instance of bool, equal to 0. 0, '', [] and None are falsy too, but only zeros equal False."
+      },
+      "body": {
+        "ru": "False — встроенная константа, которой нельзя присвоить значение; как подкласс int она равна 0 и совпадает с ним как ключ словаря. Главная ловушка — путать «ложно» и «равно False»: [] == False и None == False дают False, хотя в if оба значения ложны. Пустоту проверяйте через if not x:, отсутствие значения — через x is None, а сравнение x == False почти всегда ошибка.",
+        "en": "False is a built-in constant you cannot assign to; as an int subclass it equals 0 and is the same dict key as 0. The main trap is mixing up \"falsy\" and \"equal to False\": [] == False and None == False are both False, even though both values are falsy in an if. Test emptiness with if not x:, a missing value with x is None, and treat x == False as almost always a bug."
+      },
+      "syntax": "False",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/constants.html#False",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Встроенные типы",
+      "subcat": {
+        "ru": "особые значения",
+        "en": "special values"
+      },
+      "color_group": "module",
+      "aliases": [
+        "ложь",
+        "логическая ложь",
+        "булево значение ложь",
+        "почему [] == False ложно"
+      ],
+      "keywords": [
+        "False"
+      ],
+      "tags": [
+        "constants",
+        "builtin"
+      ],
+      "examples": [
+        [
+          "print(False == 0, False + 1)   # → True 1",
+          "print(bool([]), [] == False)   # → False False — ложно, но не равно False",
+          "print(None == False, not None)   # → False True"
+        ],
+        [
+          "d = {0: 'ноль'}",
+          "d[False] = 'ложь'   # тот же ключ, что и 0",
+          "print(d)   # → {0: 'ложь'}"
+        ]
+      ],
+      "related": [
+        "bool",
+        "True",
+        "and-or-not",
+        "операторы-сравнения"
+      ],
+      "related_errors": []
+    },
+    {
+      "id": "None",
+      "title": {
+        "ru": "None",
+        "en": "None"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Единственный экземпляр NoneType — «значения нет». Его возвращает функция без return, его берут значением по умолчанию; сравнивают через is.",
+        "en": "The sole instance of NoneType, meaning \"no value\". A function without return gives it back, it serves as a default value, and it is compared with is."
+      },
+      "body": {
+        "ru": "None нельзя переприсвоить, и он один на весь процесс, поэтому x is None точен, а x == None зависит от чужого __eq__. Частая ловушка — методы, меняющие объект на месте: a = a.sort() кладёт в a None, и следующий a.append() падает с AttributeError «'NoneType' object has no attribute». Не путайте None с ложью: if not x: сработает и на 0, и на пустую строку — если нужен именно None, пишите is None.",
+        "en": "None cannot be reassigned and there is exactly one per process, so x is None is exact while x == None depends on someone else's __eq__. A common trap is methods that change an object in place: a = a.sort() stores None in a, and the next a.append() fails with AttributeError \"'NoneType' object has no attribute\". Do not confuse None with falsehood: if not x: also fires on 0 and on an empty string — if you mean None specifically, write is None."
+      },
+      "syntax": "None",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/constants.html#None",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Встроенные типы",
+      "subcat": {
+        "ru": "особые значения",
+        "en": "special values"
+      },
+      "color_group": "module",
+      "aliases": [
+        "ничего",
+        "пустое значение",
+        "'NoneType' object has no attribute",
+        "функция вернула None"
+      ],
+      "keywords": [
+        "None"
+      ],
+      "tags": [
+        "constants",
+        "builtin"
+      ],
+      "examples": [
+        [
+          "def f():",
+          "    pass",
+          "print(f() is None)   # → True — функция без return",
+          "a = [3, 1, 2]",
+          "a = a.sort()",
+          "print(a)   # → None — sort() меняет список на месте",
+          "a.append(4)   # → AttributeError"
+        ],
+        [
+          "class Always:",
+          "    def __eq__(self, other):",
+          "        return True",
+          "x = Always()",
+          "print(x == None, x is None)   # → True False — == можно переопределить"
+        ],
+        [
+          "print(type(None).__name__)   # → NoneType",
+          "print(None < 1)   # → TypeError"
+        ]
+      ],
+      "related": [
+        "NoneType",
+        "is-is-not",
+        "optional-x-x-none",
+        "return"
+      ],
+      "related_errors": [
+        "AttributeError",
+        "TypeError"
+      ]
+    },
+    {
       "id": "NotImplemented",
       "title": {
         "ru": "NotImplemented",
@@ -15161,6 +15631,222 @@
       ],
       "related_errors": [
         "TypeError"
+      ]
+    },
+    {
+      "id": "True",
+      "title": {
+        "ru": "True",
+        "en": "True"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Логическая истина — один из двух экземпляров bool. Так как bool — подкласс int, True ведёт себя как 1: True + True == 2.",
+        "en": "Boolean truth, one of the two instances of bool. Since bool subclasses int, True behaves like 1: True + True == 2."
+      },
+      "body": {
+        "ru": "True — встроенная константа: присвоить ей значение нельзя, это SyntaxError. Раз bool наследует int, True == 1, поэтому sum() по списку флагов считает истинные, а ключи True и 1 в словаре совпадают. Ловушка — проверки x == True и x is True: первая спрашивает «равно ли единице», вторая — «тот ли это самый объект True», и обе отвергают истинное 2 или непустой список; чтобы спросить «истинно ли», пишите просто if x:.",
+        "en": "True is a built-in constant: assigning to it is a SyntaxError. Because bool subclasses int, True == 1, so sum() over a list of flags counts the true ones, and True and 1 are the same dict key. The trap is x == True versus x is True: the first asks \"does it equal one\", the second \"is it the very True object\", and both reject a truthy 2 or a non-empty list; to ask \"is it true\", just write if x:."
+      },
+      "syntax": "True",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/constants.html#True",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Встроенные типы",
+      "subcat": {
+        "ru": "особые значения",
+        "en": "special values"
+      },
+      "color_group": "module",
+      "aliases": [
+        "истина",
+        "логическая истина",
+        "булево значение истина",
+        "is True или == True"
+      ],
+      "keywords": [
+        "True"
+      ],
+      "tags": [
+        "constants",
+        "builtin"
+      ],
+      "examples": [
+        [
+          "print(type(True).__name__, isinstance(True, int))   # → bool True",
+          "print(True + True)   # → 2",
+          "print(sum([True, False, True]))   # → 2 — считает истинные"
+        ],
+        [
+          "x = 1",
+          "print(x == True, x is True)   # → True False — равно, но не тот объект",
+          "y = 2",
+          "print(y == True, bool(y))   # → False True — истинно, но не равно True"
+        ],
+        [
+          "exec('True = 1')   # → SyntaxError"
+        ]
+      ],
+      "related": [
+        "bool",
+        "False",
+        "and-or-not",
+        "is-is-not",
+        "int"
+      ],
+      "related_errors": [
+        "SyntaxError"
+      ]
+    },
+    {
+      "id": "exit",
+      "title": {
+        "ru": "exit",
+        "en": "exit"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Объект модуля site для интерактивной оболочки: exit() поднимает SystemExit. Это не встроенная функция в строгом смысле; в программах пишите sys.exit().",
+        "en": "An object the site module adds for the interactive shell: exit() raises SystemExit. It is not a built-in function proper; in programs use sys.exit()."
+      },
+      "body": {
+        "ru": "Имена exit и quit кладёт во встроенное пространство имён модуль site при старте; при запуске python -S его нет, и скрипт с exit() падает с NameError. Это экземпляр класса Quitter: вызов закрывает sys.stdin и поднимает SystemExit с переданным кодом, а print(exit) лишь печатает подсказку. Документация прямо говорит не использовать его в программах — там нужен sys.exit(), который есть всегда; с 3.13 новый REPL понимает exit и без скобок.",
+        "en": "The names exit and quit are put into the built-in namespace by the site module at startup; run python -S and they are gone, so a script calling exit() dies with NameError. It is an instance of the Quitter class: calling it closes sys.stdin and raises SystemExit with the given code, while print(exit) only prints a hint. The docs say outright not to use it in programs — use sys.exit(), which is always there; since 3.13 the new REPL also accepts exit without parentheses."
+      },
+      "syntax": "exit(code=None)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/constants.html#exit",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Встроенные типы",
+      "subcat": {
+        "ru": "особые значения",
+        "en": "special values"
+      },
+      "color_group": "module",
+      "aliases": [
+        "выйти из интерпретатора",
+        "выход из REPL",
+        "exit или sys.exit",
+        "name 'exit' is not defined"
+      ],
+      "keywords": [
+        "exit",
+        "Quitter",
+        "site"
+      ],
+      "tags": [
+        "constants",
+        "builtin"
+      ],
+      "examples": [
+        [
+          "import sys",
+          "print(type(exit).__name__, type(exit).__module__)   # → Quitter _sitebuiltins",
+          "try:",
+          "    exit(3)   # → SystemExit",
+          "except SystemExit as e:",
+          "    print(e.code)   # → 3",
+          "print(sys.stdin.closed)   # → True — exit() закрыл stdin"
+        ],
+        [
+          "import subprocess",
+          "import sys",
+          "code = 'import builtins; print(hasattr(builtins, \"exit\"))'",
+          "r = subprocess.run([sys.executable, '-S', '-c', code],",
+          "                   capture_output=True, text=True)",
+          "print(r.stdout.strip())   # → False — без site имени exit нет"
+        ]
+      ],
+      "related": [
+        "sys.exit",
+        "SystemExit",
+        "quit",
+        "os._exit"
+      ],
+      "related_errors": [
+        "SystemExit",
+        "NameError"
+      ]
+    },
+    {
+      "id": "quit",
+      "title": {
+        "ru": "quit",
+        "en": "quit"
+      },
+      "kind": "term",
+      "summary": {
+        "ru": "Близнец exit из модуля site: quit() поднимает SystemExit и нужен для интерактивной оболочки. В программах его может не быть — пишите sys.exit().",
+        "en": "The twin of exit from the site module: quit() raises SystemExit and is meant for the interactive shell. Programs may not have it, so use sys.exit()."
+      },
+      "body": {
+        "ru": "quit и exit — два разных объекта одного класса Quitter, и ведут себя одинаково: вызов закрывает sys.stdin и поднимает SystemExit, по умолчанию с кодом None, то есть успешным. Оба появляются только благодаря модулю site, поэтому под python -S или во встраиваемом интерпретаторе quit() — это NameError. В скриптах и решениях задач завершайтесь через sys.exit() или просто доходите до конца файла.",
+        "en": "quit and exit are two distinct objects of the same Quitter class and behave the same: a call closes sys.stdin and raises SystemExit, with code None by default, which means success. Both exist only thanks to the site module, so under python -S or in an embedded interpreter quit() is a NameError. In scripts and exercise solutions, finish with sys.exit() or simply reach the end of the file."
+      },
+      "syntax": "quit(code=None)",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/library/constants.html#quit",
+      "added": "<3.0",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Встроенные типы",
+      "subcat": {
+        "ru": "особые значения",
+        "en": "special values"
+      },
+      "color_group": "module",
+      "aliases": [
+        "выйти из оболочки",
+        "выход из интерпретатора",
+        "quit или exit",
+        "name 'quit' is not defined"
+      ],
+      "keywords": [
+        "quit",
+        "Quitter",
+        "site"
+      ],
+      "tags": [
+        "constants",
+        "builtin"
+      ],
+      "examples": [
+        [
+          "print(type(quit) is type(exit), quit is exit)   # → True False",
+          "try:",
+          "    quit()   # → SystemExit",
+          "except SystemExit as e:",
+          "    print(e.code)   # → None — код успеха"
+        ],
+        [
+          "import subprocess",
+          "import sys",
+          "r = subprocess.run([sys.executable, '-S', '-c', 'quit()'],",
+          "                   capture_output=True, text=True)",
+          "print(r.returncode, 'NameError' in r.stderr)   # → 1 True"
+        ]
+      ],
+      "related": [
+        "exit",
+        "sys.exit",
+        "SystemExit"
+      ],
+      "related_errors": [
+        "SystemExit",
+        "NameError"
       ]
     },
     {
@@ -20433,10 +21119,16 @@
       "color_group": "exc",
       "aliases": [
         "ошибка операционной системы",
-        "системная ошибка ввода-вывода"
+        "системная ошибка ввода-вывода",
+        "IOError",
+        "EnvironmentError",
+        "ошибка ввода-вывода IOError",
+        "чем IOError отличается от OSError"
       ],
       "keywords": [
-        "OSError"
+        "OSError",
+        "IOError",
+        "EnvironmentError"
       ],
       "tags": [
         "exc"
@@ -23425,6 +24117,85 @@
       "related_errors": []
     },
     {
+      "id": "except-star",
+      "title": {
+        "ru": "except* и группы исключений",
+        "en": "except* and exception groups"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "except* ловит исключения внутри ExceptionGroup по типу: каждый обработчик получает свою подгруппу, необработанное летит дальше (Python 3.11+).",
+        "en": "except* catches exceptions inside an ExceptionGroup by type: each handler gets its own subgroup, and whatever is unhandled propagates (Python 3.11+)."
+      },
+      "body": {
+        "ru": "Главная ловушка: в одном try нельзя смешивать except и except* — это SyntaxError, как и голый except* без типа. В отличие от except, сработать может несколько обработчиков подряд, а в переменную всегда попадает группа, а не само исключение: одиночная ошибка тоже заворачивается в ExceptionGroup, поэтому смотрят eg.exceptions. Внутри except* запрещены break, continue и return.",
+        "en": "The main trap: a single try cannot mix except and except* — that is a SyntaxError, as is a bare except* without a type. Unlike except, several handlers may run in a row, and the target always gets a group, not the exception itself: even a single error is wrapped in an ExceptionGroup, so you look at eg.exceptions. break, continue and return are not allowed inside except*."
+      },
+      "syntax": "try:\n    ...\nexcept* ТипОшибки as eg:\n    ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#except-star",
+      "added": "3.11",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Исключения",
+      "subcat": {
+        "ru": "обработка",
+        "en": "handling"
+      },
+      "color_group": "exc",
+      "aliases": [
+        "except со звёздочкой",
+        "обработка группы исключений",
+        "несколько исключений сразу"
+      ],
+      "keywords": [
+        "syntax:except_star",
+        "PEP 654",
+        "except*",
+        "ExceptionGroup",
+        "BaseExceptionGroup"
+      ],
+      "tags": [
+        "exc"
+      ],
+      "examples": [
+        [
+          "# Python 3.11+",
+          "try:",
+          "    raise ExceptionGroup('eg', [ValueError(1), TypeError(2), ValueError(3)])",
+          "except* ValueError as eg:",
+          "    print(eg.exceptions)  # → (ValueError(1), ValueError(3))",
+          "except* TypeError as eg:",
+          "    print(eg.exceptions)  # → (TypeError(2),)"
+        ],
+        [
+          "# Python 3.11+",
+          "try:",
+          "    raise KeyError('k')",
+          "except* KeyError as eg:",
+          "    print(repr(eg))  # → ExceptionGroup('', (KeyError('k'),))"
+        ],
+        [
+          "# Python 3.11+",
+          "src = 'try:\\n    pass\\nexcept ValueError:\\n    pass\\n' 'except* TypeError:\\n    pass\\n'",
+          "compile(src, 'demo', 'exec')  # → SyntaxError"
+        ]
+      ],
+      "related": [
+        "try-except",
+        "ExceptionGroup",
+        "BaseExceptionGroup",
+        "raise"
+      ],
+      "related_errors": [
+        "SyntaxError",
+        "TypeError"
+      ]
+    },
+    {
       "id": "finally",
       "title": {
         "ru": "finally",
@@ -23976,6 +24747,11 @@
           "    raise shutil.ExecError",
           "except RuntimeError as e:",
           "    print(type(e).__name__)  # → RuntimeError — с 3.14 ExecError лишь псевдоним"
+        ],
+        [
+          "# Python 3.16+",
+          "import shutil",
+          "print(hasattr(shutil, 'ExecError'))   # → False"
         ]
       ],
       "related": [
@@ -25763,6 +26539,87 @@
         "генераторное-выражение"
       ],
       "related_errors": []
+    },
+    {
+      "id": "асинхронный-генератор",
+      "title": {
+        "ru": "Асинхронный генератор",
+        "en": "Asynchronous generator"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Функция async def с yield внутри: отдаёт значения по одному и между ними может ждать await. Перебирается через async for.",
+        "en": "An async def function containing yield: it produces values one by one and may await between them. It is consumed with async for."
+      },
+      "body": {
+        "ru": "Главная ловушка: обычный for такой объект не перебирает — будет TypeError, нужен async for или [x async for x in ...] внутри корутины. В отличие от обычного генератора, внутри нельзя писать yield from и return со значением — это SyntaxError. Нужно ждать ввод-вывод между значениями — берите асинхронный генератор; ждать нечего — хватит обычного.",
+        "en": "The main trap: a plain for cannot iterate such an object — you get TypeError; use async for or [x async for x in ...] inside a coroutine. Unlike a regular generator, yield from and return with a value are not allowed inside — that is a SyntaxError. Pick an async generator when you need to await I/O between values; if there is nothing to await, a regular generator is enough."
+      },
+      "syntax": "async def имя(...):\n    yield значение\n\nasync for x in имя(...): ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/expressions.html#asynchronous-generator-functions",
+      "added": "3.6",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Итераторы и генераторы",
+      "subcat": {
+        "ru": "генераторы",
+        "en": "generators"
+      },
+      "color_group": "iter",
+      "aliases": [
+        "async генератор",
+        "асинхронный yield",
+        "yield в async def",
+        "async generator"
+      ],
+      "keywords": [
+        "syntax:async_generator",
+        "PEP 525",
+        "async def",
+        "yield",
+        "async for",
+        "__anext__"
+      ],
+      "tags": [
+        "iter"
+      ],
+      "examples": [
+        [
+          "import asyncio",
+          "async def countdown(n):",
+          "    while n > 0:",
+          "        yield n",
+          "        await asyncio.sleep(0)",
+          "        n -= 1",
+          "async def main():",
+          "    async for i in countdown(3):",
+          "        print(i)  # → 3 / 2 / 1",
+          "    print([i async for i in countdown(2)])  # → [2, 1]",
+          "asyncio.run(main())"
+        ],
+        [
+          "async def agen():",
+          "    yield 1",
+          "print(type(agen()).__name__)  # → async_generator",
+          "for x in agen():  # → TypeError",
+          "    pass"
+        ]
+      ],
+      "related": [
+        "generator-function-yield",
+        "async-for-async-with",
+        "async-def-await",
+        "types.AsyncGeneratorType",
+        "StopAsyncIteration"
+      ],
+      "related_errors": [
+        "TypeError",
+        "SyntaxError"
+      ]
     },
     {
       "id": "генераторное-выражение",
@@ -51094,6 +51951,13 @@
           "# Либо abc.Buffer (появился в 3.12) — он про поддержку буферного протокола:",
           "print(isinstance(b'x', abc.Buffer))   # → True",
           "print(isinstance('x', abc.Buffer))   # → False"
+        ],
+        [
+          "# Python 3.17+",
+          "from collections.abc import Buffer",
+          "def size(data: Buffer) -> int:   # вместо ByteString в аннотации",
+          "    return len(memoryview(data))",
+          "print(size(b'ab'), size(bytearray(3)), size(memoryview(b'xyz')))   # → 2 3 3"
         ]
       ],
       "related": [
@@ -172670,6 +173534,85 @@
       "related_errors": []
     },
     {
+      "id": "t-строки",
+      "title": {
+        "ru": "t-строки",
+        "en": "t-strings"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "t'...' выглядит как f-строка, но даёт объект Template, а не str: части текста и подставленные значения хранятся раздельно (Python 3.14+).",
+        "en": "t'...' looks like an f-string but produces a Template object, not a str: the text parts and interpolated values are kept apart (Python 3.14+)."
+      },
+      "body": {
+        "ru": "Главная ловушка: t-строка — не str. Её нельзя сравнить со строкой или склеить через + со str (TypeError), а str(tpl) даёт repr шаблона, а не готовый текст. Собирает строку ваш код: перебирает шаблон, получая куски текста и объекты Interpolation, и, например, экранирует значения для HTML или SQL. Нужна просто строка — берите f-строку.",
+        "en": "The main trap: a t-string is not a str. It cannot be compared with a string or joined to a str with + (TypeError), and str(tpl) gives the template's repr, not the finished text. Your code builds the string: it iterates over the template, getting text pieces and Interpolation objects, and can, for example, escape values for HTML or SQL. If you just need a string, use an f-string."
+      },
+      "syntax": "t'текст {выражение}'\nT\"текст {выражение!r:формат}\"",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#t-strings",
+      "added": "3.14",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Строки (str)",
+      "subcat": {
+        "ru": "форматирование",
+        "en": "formatting"
+      },
+      "color_group": "str",
+      "aliases": [
+        "шаблонные строки",
+        "template string",
+        "t-string",
+        "строка с префиксом t"
+      ],
+      "keywords": [
+        "syntax:tstring",
+        "PEP 750",
+        "t''",
+        "Template",
+        "Interpolation",
+        "string.templatelib"
+      ],
+      "tags": [
+        "str"
+      ],
+      "examples": [
+        [
+          "# Python 3.14+",
+          "name = 'Bob'",
+          "tpl = t'Hi {name}!'",
+          "print(type(tpl).__name__)  # → Template",
+          "print(tpl.strings, tpl.values)  # → ('Hi ', '!') ('Bob',)",
+          "print(tpl == 'Hi Bob!')  # → False",
+          "tpl + '?'  # → TypeError"
+        ],
+        [
+          "# Python 3.14+",
+          "from string.templatelib import Interpolation",
+          "name = '<b>'",
+          "tpl = t'Hi {name}!'",
+          "parts = []",
+          "for part in tpl:",
+          "    if isinstance(part, Interpolation):",
+          "        part = str(part.value).replace('<', '&lt;').replace('>', '&gt;')",
+          "    parts.append(part)",
+          "print(''.join(parts))  # → Hi &lt;b&gt;!"
+        ]
+      ],
+      "related": [
+        "f-строки",
+        "string.Template",
+        "format-метод-форматирования"
+      ],
+      "related_errors": [
+        "TypeError"
+      ]
+    },
+    {
       "id": "индексирование-строк",
       "title": {
         "ru": "Индексирование строк",
@@ -182008,6 +182951,84 @@
         "kwargs"
       ],
       "related_errors": []
+    },
+    {
+      "id": "позиционные-параметры",
+      "title": {
+        "ru": "Только позиционные параметры /",
+        "en": "Positional-only parameters /"
+      },
+      "kind": "construct",
+      "summary": {
+        "ru": "Параметры левее / в def передаются только по позиции: f(1, 2), но не f(a=1). Так устроены многие встроенные функции, например len().",
+        "en": "Parameters to the left of / in a def can be passed only by position: f(1, 2), not f(a=1). Many built-ins work this way, len() for example."
+      },
+      "body": {
+        "ru": "Главная ловушка — / и * вместе: левее / — только позиционные, правее * — только именованные, между ними — любые; def f(a, /, *, b) принимает f(1, b=2) и отвергает и f(a=1, b=2), и f(1, 2). Имя позиционного параметра не занято для **kwargs: def f(name, /, **kw) спокойно примет f('x', name='y'). Берите /, когда имя параметра не несёт смысла или вы хотите менять его, не ломая вызовы.",
+        "en": "The main trap is / and * together: left of / is positional-only, right of * is keyword-only, and in between is either; def f(a, /, *, b) accepts f(1, b=2) and rejects both f(a=1, b=2) and f(1, 2). A positional-only name is not reserved in **kwargs: def f(name, /, **kw) happily accepts f('x', name='y'). Use / when a parameter name carries no meaning or you want to rename it without breaking callers."
+      },
+      "syntax": "def f(поз_1, поз_2, /, обычный, *, именованный): ...",
+      "status": "ready",
+      "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#function-definitions",
+      "added": "3.8",
+      "deprecated": "",
+      "removed": "",
+      "platforms": [
+        "AllOS"
+      ],
+      "section": "Функции",
+      "subcat": {
+        "ru": "параметры",
+        "en": "parameters"
+      },
+      "color_group": "op",
+      "aliases": [
+        "позиционные аргументы",
+        "слеш в параметрах функции",
+        "косая черта в def",
+        "positional-only"
+      ],
+      "keywords": [
+        "syntax:posonly",
+        "PEP 570",
+        "/",
+        "def",
+        "positional-only"
+      ],
+      "tags": [
+        "op"
+      ],
+      "examples": [
+        [
+          "def power(base, exp, /, *, mod=None):",
+          "    return pow(base, exp, mod)",
+          "print(power(2, 10))  # → 1024",
+          "print(power(2, 10, mod=1000))  # → 24",
+          "power(2, 10, 1000)  # → TypeError"
+        ],
+        [
+          "def power(base, exp, /):",
+          "    return base ** exp",
+          "power(base=2, exp=10)  # → TypeError"
+        ],
+        [
+          "def tag(name, /, **attrs):",
+          "    return name, attrs",
+          "print(tag('a', name='link'))  # → ('a', {'name': 'link'})"
+        ],
+        [
+          "len(obj=[1, 2])  # → TypeError — у len() параметр только позиционный"
+        ]
+      ],
+      "related": [
+        "параметры-и-аргументы",
+        "args",
+        "kwargs",
+        "def"
+      ],
+      "related_errors": [
+        "TypeError"
+      ]
     },
     {
       "id": "рекурсия",

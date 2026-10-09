@@ -3671,5 +3671,83 @@
       "ValueError",
       "BufferError"
     ]
+  },
+  {
+    "id": "t-строки",
+    "title": {
+      "ru": "t-строки",
+      "en": "t-strings"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "t'...' выглядит как f-строка, но даёт объект Template, а не str: части текста и подставленные значения хранятся раздельно (Python 3.14+).",
+      "en": "t'...' looks like an f-string but produces a Template object, not a str: the text parts and interpolated values are kept apart (Python 3.14+)."
+    },
+    "body": {
+      "ru": "Главная ловушка: t-строка — не str. Её нельзя сравнить со строкой или склеить через + со str (TypeError), а str(tpl) даёт repr шаблона, а не готовый текст. Собирает строку ваш код: перебирает шаблон, получая куски текста и объекты Interpolation, и, например, экранирует значения для HTML или SQL. Нужна просто строка — берите f-строку.",
+      "en": "The main trap: a t-string is not a str. It cannot be compared with a string or joined to a str with + (TypeError), and str(tpl) gives the template's repr, not the finished text. Your code builds the string: it iterates over the template, getting text pieces and Interpolation objects, and can, for example, escape values for HTML or SQL. If you just need a string, use an f-string."
+    },
+    "syntax": "t'текст {выражение}'\nT\"текст {выражение!r:формат}\"",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/lexical_analysis.html#t-strings",
+    "added": "3.14",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Строки (str)",
+    "subcat": {
+      "ru": "форматирование",
+      "en": "formatting"
+    },
+    "aliases": [
+      "шаблонные строки",
+      "template string",
+      "t-string",
+      "строка с префиксом t"
+    ],
+    "keywords": [
+      "syntax:tstring",
+      "PEP 750",
+      "t''",
+      "Template",
+      "Interpolation",
+      "string.templatelib"
+    ],
+    "tags": [
+      "str"
+    ],
+    "examples": [
+      [
+        "# Python 3.14+",
+        "name = 'Bob'",
+        "tpl = t'Hi {name}!'",
+        "print(type(tpl).__name__)  # → Template",
+        "print(tpl.strings, tpl.values)  # → ('Hi ', '!') ('Bob',)",
+        "print(tpl == 'Hi Bob!')  # → False",
+        "tpl + '?'  # → TypeError"
+      ],
+      [
+        "# Python 3.14+",
+        "from string.templatelib import Interpolation",
+        "name = '<b>'",
+        "tpl = t'Hi {name}!'",
+        "parts = []",
+        "for part in tpl:",
+        "    if isinstance(part, Interpolation):",
+        "        part = str(part.value).replace('<', '&lt;').replace('>', '&gt;')",
+        "    parts.append(part)",
+        "print(''.join(parts))  # → Hi &lt;b&gt;!"
+      ]
+    ],
+    "related": [
+      "f-строки",
+      "string.Template",
+      "format-метод-форматирования"
+    ],
+    "related_errors": [
+      "TypeError"
+    ]
   }
 ]

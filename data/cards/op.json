@@ -10816,5 +10816,82 @@
     "related_errors": [
       "zipimport.ZipImportError"
     ]
+  },
+  {
+    "id": "позиционные-параметры",
+    "title": {
+      "ru": "Только позиционные параметры /",
+      "en": "Positional-only parameters /"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Параметры левее / в def передаются только по позиции: f(1, 2), но не f(a=1). Так устроены многие встроенные функции, например len().",
+      "en": "Parameters to the left of / in a def can be passed only by position: f(1, 2), not f(a=1). Many built-ins work this way, len() for example."
+    },
+    "body": {
+      "ru": "Главная ловушка — / и * вместе: левее / — только позиционные, правее * — только именованные, между ними — любые; def f(a, /, *, b) принимает f(1, b=2) и отвергает и f(a=1, b=2), и f(1, 2). Имя позиционного параметра не занято для **kwargs: def f(name, /, **kw) спокойно примет f('x', name='y'). Берите /, когда имя параметра не несёт смысла или вы хотите менять его, не ломая вызовы.",
+      "en": "The main trap is / and * together: left of / is positional-only, right of * is keyword-only, and in between is either; def f(a, /, *, b) accepts f(1, b=2) and rejects both f(a=1, b=2) and f(1, 2). A positional-only name is not reserved in **kwargs: def f(name, /, **kw) happily accepts f('x', name='y'). Use / when a parameter name carries no meaning or you want to rename it without breaking callers."
+    },
+    "syntax": "def f(поз_1, поз_2, /, обычный, *, именованный): ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#function-definitions",
+    "added": "3.8",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Функции",
+    "subcat": {
+      "ru": "параметры",
+      "en": "parameters"
+    },
+    "aliases": [
+      "позиционные аргументы",
+      "слеш в параметрах функции",
+      "косая черта в def",
+      "positional-only"
+    ],
+    "keywords": [
+      "syntax:posonly",
+      "PEP 570",
+      "/",
+      "def",
+      "positional-only"
+    ],
+    "tags": [
+      "op"
+    ],
+    "examples": [
+      [
+        "def power(base, exp, /, *, mod=None):",
+        "    return pow(base, exp, mod)",
+        "print(power(2, 10))  # → 1024",
+        "print(power(2, 10, mod=1000))  # → 24",
+        "power(2, 10, 1000)  # → TypeError"
+      ],
+      [
+        "def power(base, exp, /):",
+        "    return base ** exp",
+        "power(base=2, exp=10)  # → TypeError"
+      ],
+      [
+        "def tag(name, /, **attrs):",
+        "    return name, attrs",
+        "print(tag('a', name='link'))  # → ('a', {'name': 'link'})"
+      ],
+      [
+        "len(obj=[1, 2])  # → TypeError — у len() параметр только позиционный"
+      ]
+    ],
+    "related": [
+      "параметры-и-аргументы",
+      "args",
+      "kwargs",
+      "def"
+    ],
+    "related_errors": [
+      "TypeError"
+    ]
   }
 ]

@@ -714,7 +714,7 @@
     "related_errors": []
   },
   {
-    "id": "decimal.decimal",
+    "id": "decimal.Decimal",
     "title": {
       "ru": "decimal.Decimal",
       "en": "decimal.Decimal"
@@ -765,7 +765,7 @@
       ]
     ],
     "related": [
-      "fractions.fraction",
+      "fractions.Fraction",
       "decimal.getcontext",
       "float",
       "math.isclose"
@@ -1064,7 +1064,7 @@
       ]
     ],
     "related": [
-      "nonetype",
+      "NoneType",
       "callable-arg-ret",
       "protocol"
     ],
@@ -1351,7 +1351,7 @@
     ],
     "related": [
       "int",
-      "decimal.decimal",
+      "decimal.Decimal",
       "math.isclose",
       "float.is_integer"
     ],
@@ -1497,7 +1497,7 @@
     ]
   },
   {
-    "id": "fractions.fraction",
+    "id": "fractions.Fraction",
     "title": {
       "ru": "fractions.Fraction",
       "en": "fractions.Fraction"
@@ -1548,7 +1548,7 @@
       ]
     ],
     "related": [
-      "decimal.decimal",
+      "decimal.Decimal",
       "float.as_integer_ratio",
       "math.gcd"
     ],
@@ -1662,7 +1662,7 @@
     "related": [
       "локальные-и-глобальные-переменные",
       "замыкания",
-      "unboundlocalerror",
+      "UnboundLocalError",
       "globals"
     ],
     "related_errors": []
@@ -2072,7 +2072,7 @@
     ],
     "related": [
       "операторы-сравнения",
-      "nonetype",
+      "NoneType",
       "id"
     ],
     "related_errors": []
@@ -2546,7 +2546,7 @@
     "related_errors": []
   },
   {
-    "id": "nonetype",
+    "id": "NoneType",
     "title": {
       "ru": "NoneType",
       "en": "NoneType"
@@ -2772,7 +2772,7 @@
       ]
     ],
     "related": [
-      "pathlib.path",
+      "pathlib.Path",
       "os.listdir",
       "os.path.join",
       "os.getcwd"
@@ -2780,7 +2780,7 @@
     "related_errors": []
   },
   {
-    "id": "pathlib.path",
+    "id": "pathlib.Path",
     "title": {
       "ru": "pathlib.Path",
       "en": "pathlib.Path"
@@ -3331,7 +3331,7 @@
       "def",
       "кортеж-в-return-функции",
       "generator-function-yield",
-      "nonetype"
+      "NoneType"
     ],
     "related_errors": []
   },
@@ -4031,7 +4031,7 @@
     "related": [
       "zip",
       "itertools.zip_longest",
-      "valueerror"
+      "ValueError"
     ],
     "related_errors": [
       "ValueError"
@@ -4969,7 +4969,7 @@
       "целочисленное-деление",
       "остаток",
       "divmod",
-      "zerodivisionerror"
+      "ZeroDivisionError"
     ],
     "related_errors": []
   },
@@ -5252,7 +5252,7 @@
     "related": [
       "global-nonlocal",
       "замыкания",
-      "unboundlocalerror",
+      "UnboundLocalError",
       "globals"
     ],
     "related_errors": []
@@ -5899,7 +5899,7 @@
     ],
     "related": [
       "параметры-и-аргументы",
-      "nonetype",
+      "NoneType",
       "kwargs"
     ],
     "related_errors": []
@@ -6361,7 +6361,7 @@
       ]
     ],
     "related": [
-      "recursionerror",
+      "RecursionError",
       "sys.setrecursionlimit",
       "числа-фибоначчи",
       "functools.lru_cache"
@@ -7249,7 +7249,7 @@
       "dict",
       "dict.get",
       "hash",
-      "collections.counter"
+      "collections.Counter"
     ],
     "related_errors": [
       "KeyError"
@@ -7768,7 +7768,7 @@
     ],
     "related": [
       "float.as_integer_ratio",
-      "fractions.fraction",
+      "fractions.Fraction",
       "int.is_integer"
     ],
     "related_errors": []
@@ -7989,7 +7989,7 @@
       ]
     ],
     "related": [
-      "fractions.fraction",
+      "fractions.Fraction",
       "int.as_integer_ratio",
       "float.hex"
     ],
@@ -8984,7 +8984,7 @@
     ],
     "related": [
       "statistics.multimode",
-      "collections.counter",
+      "collections.Counter",
       "statistics.median"
     ],
     "related_errors": []
@@ -9042,7 +9042,7 @@
     ],
     "related": [
       "statistics.mode",
-      "collections.counter"
+      "collections.Counter"
     ],
     "related_errors": []
   },
@@ -9560,7 +9560,7 @@
     "related": [
       "pathlib.PurePosixPath",
       "pathlib.PureWindowsPath",
-      "pathlib.path"
+      "pathlib.Path"
     ],
     "related_errors": []
   },
@@ -9735,7 +9735,7 @@
     ],
     "related": [
       "pathlib.WindowsPath",
-      "pathlib.path",
+      "pathlib.Path",
       "pathlib.PurePosixPath"
     ],
     "related_errors": []
@@ -9793,7 +9793,7 @@
     ],
     "related": [
       "pathlib.PosixPath",
-      "pathlib.path",
+      "pathlib.Path",
       "pathlib.PureWindowsPath"
     ],
     "related_errors": []
@@ -10003,8 +10003,8 @@
       "if-name-main"
     ],
     "related_errors": [
-      "importerror",
-      "modulenotfounderror"
+      "ImportError",
+      "ModuleNotFoundError"
     ]
   },
   {
@@ -10249,8 +10249,8 @@
       "operator.delitem"
     ],
     "related_errors": [
-      "nameerror",
-      "unboundlocalerror"
+      "NameError",
+      "UnboundLocalError"
     ]
   },
   {
@@ -10327,7 +10327,7 @@
       "for"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -10476,8 +10476,8 @@
       "import-from-import"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ]
   },
   {
@@ -10563,7 +10563,7 @@
       "package-init"
     ],
     "related_errors": [
-      "importerror"
+      "ImportError"
     ]
   },
   {
@@ -10631,13 +10631,13 @@
     ],
     "related": [
       "import-from-import",
-      "importcycleerror",
+      "ImportCycleError",
       "sys.set_lazy_imports",
       "sys.modules"
     ],
     "related_errors": [
-      "modulenotfounderror",
-      "syntaxerror"
+      "ModuleNotFoundError",
+      "SyntaxError"
     ]
   }
 ]

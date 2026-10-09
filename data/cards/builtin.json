@@ -55,8 +55,8 @@
     ],
     "related": [
       "sys.modules",
-      "modulenotfounderror",
-      "importerror"
+      "ModuleNotFoundError",
+      "ImportError"
     ],
     "related_errors": []
   },
@@ -511,7 +511,7 @@
     "related": [
       "eval",
       "exec",
-      "syntaxerror"
+      "SyntaxError"
     ],
     "related_errors": []
   },
@@ -1045,7 +1045,7 @@
       "setattr",
       "hasattr",
       "delattr",
-      "attributeerror"
+      "AttributeError"
     ],
     "related_errors": []
   },
@@ -1163,7 +1163,7 @@
     "related": [
       "getattr",
       "setattr",
-      "attributeerror"
+      "AttributeError"
     ],
     "related_errors": []
   },
@@ -1617,7 +1617,7 @@
     "related": [
       "next",
       "итератор-__iter__-__next__",
-      "stopiteration",
+      "StopIteration",
       "generator-function-yield"
     ],
     "related_errors": []
@@ -1854,7 +1854,7 @@
     "related": [
       "bytearray",
       "bytes",
-      "buffererror",
+      "BufferError",
       "collections.abc.Buffer"
     ],
     "related_errors": []
@@ -1968,7 +1968,7 @@
     ],
     "related": [
       "iter",
-      "stopiteration",
+      "StopIteration",
       "anext"
     ],
     "related_errors": []
@@ -3164,7 +3164,7 @@
     "related": [
       "aiter",
       "next",
-      "stopasynciteration",
+      "StopAsyncIteration",
       "async-for-async-with"
     ],
     "related_errors": [
@@ -3247,7 +3247,7 @@
       "functools.cache"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -3319,7 +3319,7 @@
       ]
     ],
     "related": [
-      "nonetype",
+      "NoneType",
       "object",
       "is-is-not",
       "copy.deepcopy"

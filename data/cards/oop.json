@@ -216,7 +216,7 @@
       "сложение"
     ],
     "related_errors": [
-      "typeerror"
+      "TypeError"
     ]
   },
   {
@@ -534,7 +534,7 @@
       "__exit__",
       "contextlib.contextmanager",
       "open",
-      "contextlib.exitstack"
+      "contextlib.ExitStack"
     ],
     "related_errors": []
   },
@@ -1038,8 +1038,8 @@
       "__len__"
     ],
     "related_errors": [
-      "indexerror",
-      "keyerror"
+      "IndexError",
+      "KeyError"
     ]
   },
   {
@@ -1105,8 +1105,8 @@
       "__getitem__"
     ],
     "related_errors": [
-      "typeerror",
-      "valueerror"
+      "TypeError",
+      "ValueError"
     ]
   },
   {

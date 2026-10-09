@@ -46,3 +46,6 @@ dist-export/
 *.swp
 .DS_Store
 Thumbs.db
+
+# --- Ревизор карточек (только в прогоне) ---
+.review/

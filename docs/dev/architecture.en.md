@@ -717,6 +717,37 @@ Committing the pages to `main`: thousands of derived files in history on every
 text edit. A Latin slug from the English title: more readable, but a second
 identifier for the card, whose uniqueness would have to be held separately.
 
+### The card reviewer advises; it does not hold the merge
+
+**Before.** The machine checked what follows from the data: the example runs,
+the output matches, the name exists, both halves are translated. What it cannot
+see — whether the text is true to the documentation, a retelling instead of an
+explanation, halves that differ in meaning — was left to proofreading, and no one
+proofread every edit.
+
+**Now.** The `card-review.yml` run on a change touching `data/cards/` selects the
+changed cards (`scripts/review_cards.py`, compared by `id`, at most 20 per run
+with the cut named) and takes them through the `card-audit` skill — the same one
+a window audits by. Proof is a `python -c` run or a quote from `Doc/` of the 3.15
+branch. The result is one comment with a table of findings. The run is not a
+required check.
+
+**Why.** One skill serves the window and the pipeline: the audit rules are
+written once, and every content edit gets the reading the machine half cannot
+give.
+
+**Cost.** Tokens on every change with cards; a wave larger than 20 cards is
+reviewed partially. The merge does not wait for the reviewer: a finding may come
+after it and becomes an edit in the next change.
+
+**Rejected.** Making the reviewer a required check: the model's answer varies
+from run to run, and `main` would turn red on unchanged data — that is the
+"machine judge in CI" rejected in the record on card guarantees; an advisory
+comment does not meet that objection. Having the reviewer run examples on
+3.10–3.15: the `ci.yml` matrix already does it, a second implementation of one
+subject. Selecting cards by diff lines: a line of a changed example does not say
+whose card it is.
+
 ## Current technical debt
 
 | What | Why it is debt | When to address |

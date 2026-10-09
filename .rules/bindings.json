@@ -26,7 +26,8 @@
           ".github/workflows/*.yml"
         ],
         "contains": [
-          "claude/",
+          "'claude/",
+          "\"claude/",
           "feature/",
           "branches-ignore",
           "branches: [dev"

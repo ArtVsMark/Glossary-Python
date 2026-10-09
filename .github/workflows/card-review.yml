@@ -1,0 +1,122 @@
+name: Ревизор карточек
+
+# Ревизор СОВЕТУЕТ, а не держит слияние: в обязательные проверки он не входит и
+# находки оставляет комментарием. Ответ языковой модели меняется от прогона к
+# прогону, и обязательная проверка на нём краснела бы на неизменных данных —
+# это отвергнуто в docs/dev/architecture.md § «Что карточка гарантирует».
+# Машинная половина (примеры на 3.10–3.15, правила validate) остаётся в ci.yml;
+# ревизор закрывает то, чего она не видит: правду текста по документации,
+# пересказ вместо разбора, расхождение половин ru/en.
+#
+# Триггер `pull_request`, а не `pull_request_target`: второй исполняется в
+# контексте основы и отдал бы секрет прогону по чужому коду. На изменении из
+# форка секрета нет — работа пропускается явно, условием `if`.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths: ["data/cards/**"]
+  # Событие изменения теряется, а ревью нужно и тому, что уже слито: ручной
+  # запуск берёт номер изменения и выверяет его так же (правило каталога 104).
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "Номер изменения"
+        required: true
+        type: number
+
+# Одно ревью на изменение: новый толчок отменяет прежнее, иначе оно дописывало
+# бы комментарии к уже переписанному диффу.
+concurrency:
+  group: card-review-${{ github.event.pull_request.number || inputs.pr }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    name: Ревизор карточек (советует)
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.head.repo.full_name == github.repository &&
+      !github.event.pull_request.draft)
+    timeout-minutes: 25
+    runs-on: ubuntu-26.04
+    env:
+      PR: ${{ github.event.pull_request.number || inputs.pr }}
+    permissions:
+      contents: read
+      pull-requests: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.pr && format('refs/pull/{0}/head', inputs.pr) || '' }}
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Установка пакета
+        run: python -m pip install -e .
+
+      - name: Изменённые карточки
+        id: cards
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          base="${{ github.event.pull_request.base.sha }}"
+          if [ -z "$base" ]; then
+            base=$(gh pr view "$PR" --json baseRefOid --jq .baseRefOid)
+          fi
+          count=$(python scripts/review_cards.py \
+            --base "$base" \
+            --limit 20 -o .review/cards.md)
+          echo "count=$count" >> "$GITHUB_OUTPUT"
+          echo "Карточек к выверке: $count"
+
+      # Документация той версии, о которой утверждения: прокси окна её не
+      # пускает, а у раннера сеть есть. Клон разреженный — только Doc/.
+      - name: Документация CPython 3.15
+        if: steps.cards.outputs.count != '0'
+        timeout-minutes: 5
+        run: |
+          git clone --depth 1 --filter=blob:none --sparse --branch 3.15 \
+            https://github.com/python/cpython .review/cpython
+          git -C .review/cpython sparse-checkout set Doc
+
+      - name: Выверка навыком card-audit
+        if: steps.cards.outputs.count != '0'
+        uses: anthropics/claude-code-action@ed670b4cf9de2a5a570d130d2f6197b9e543cd64 # v1.0.240
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # Изменения из окна толкает бот сессии: без строки событие
+          # `synchronize` от него ревью бы отвергло. Список именной, не `*`.
+          allowed_bots: "claude"
+          # `python -c` — доказательство запуском, которого требует навык.
+          # Код изменения здесь свой (форки пропущены), права работы — чтение
+          # дерева и комментарий к изменению, записи в репозиторий нет.
+          claude_args: >-
+            --allowed-tools
+            "Read,Grep,Glob,Bash(python -c:*),Bash(python3 -c:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*)"
+          prompt: |
+            Ты — ревизор карточек глоссария Python, изменение ${{ github.repository }}#${{ env.PR }}.
+
+            1. Прочитай навык .claude/skills/card-audit/SKILL.md и работай по нему.
+            2. Список карточек к выверке — .review/cards.md. Карточку читай из
+               указанного там файла data/cards/<группа>.json, не из сборки.
+            3. Документация CPython 3.15 — .review/cpython/Doc/. Интерпретатор — python
+               (3.14); примеры на 3.10–3.15 уже исполняет CI, сам их не гоняй.
+            4. Проведи этапы 1 и 3 целиком и пункты 5–6 этапа 2 (о чём примеры и
+               безопасны ли они). Находка — только с доказательством: вывод
+               `python -c` или цитата Doc/ с путём к файлу.
+            5. Итог — ОДИН комментарий к изменению через `gh pr comment ${{ env.PR }}`: таблица
+               находок в формате навыка, по этапам; нет находок — так и написать
+               по каждому этапу. Первая строка комментария:
+               «Ревизор карточек: N находок по M карточкам (советует, слияние не держит)».
+               Последние строки: пустая строка, `---`,
+               `_Generated by [Claude Code](https://claude.ai/code)_`.
+            Карточки не правь и ничего не коммить.

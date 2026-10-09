@@ -3,7 +3,7 @@
   "schema_of": "замечания витрины к содержанию глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-09T11:47:58+00:00",
+  "generated_at": "2026-10-09T11:52:30+00:00",
   "snapshot": {
     "cards": 2817,
     "schema_version": 6,
@@ -11,8 +11,23 @@
   },
   "totals": {
     "errors": 0,
-    "warnings": 0,
-    "cards_affected": 0
+    "warnings": 5,
+    "cards_affected": 5
   },
-  "findings": []
+  "findings": [
+    {
+      "rule": "removal-replacement",
+      "severity": "warning",
+      "scope": "card",
+      "message": "удалено в 3.16, а блока «# Python 3.16+» нет: на этой версии карточке нечего показать — ни замены, ни ошибки импорта",
+      "count": 5,
+      "cards": [
+        "asyncio.get_event_loop_policy",
+        "asyncio.iscoroutinefunction",
+        "asyncio.set_event_loop_policy",
+        "shutil.execerror",
+        "collections.abc.ByteString"
+      ]
+    }
+  ]
 }

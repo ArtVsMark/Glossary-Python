@@ -106,7 +106,7 @@ jobs:
     timeout-minutes: 10
     continue-on-error: true
     # ВЕРСИЯ ЗАДАНА МАТРИЦЕЙ, А НЕ ЛИТЕРАЛОМ, И ЭТО НАЗВАННЫЙ ОБХОД. Значок
-    # Python каталога (python-badge@v1.6.0) считает предварительной ПРОВЕРКОЙ
+    # Python каталога (python-badge@v1.11.0) считает предварительной ПРОВЕРКОЙ
     # всякий шаг setup-python с allow-prereleases и литералом версии рядом и
     # красит её часть исходом этого прогона. Здесь не проверка, а замер языка:
     # литерал дал бы на значке вторую часть «3.15», окрашенную публикацией.
@@ -185,7 +185,7 @@ jobs:
       - name: Значок Python
         id: python_badge
         continue-on-error: true
-        uses: ArtVsMark/Engineering-Incidents-Playbook/.github/actions/python-badge@v1.6.0
+        uses: ArtVsMark/Engineering-Incidents-Playbook/.github/actions/python-badge@v1.11.0
         with:
           ci-workflow: ci.yml
           coverage-json: .github/badges/coverage.json
@@ -199,15 +199,24 @@ jobs:
           echo "::warning::значок Python не собран — на ветке badges остаётся прежний"
 
       # Издатель проверяет себя схемой потребителя до публикации: файл, не
-      # отвечающий договору фактов 1.2, витрина покажет прочерками. Проверка
+      # отвечающий договору фактов, витрина покажет прочерками. Проверка
       # берётся у витрины, а не копируется сюда: копия схемы разошлась бы с
-      # оригиналом на первом же миноре (правило 090).
+      # оригиналом на первом же миноре (правило 090). Шаг — дословно из
+      # договора 1.5 и прибит к его выпуску, а не к голове витрины: живая
+      # ветка сменила бы требование молча. Подъём договора — тег здесь и
+      # FACTS_SCHEMA в scripts/facts.py.
       - name: Факты отвечают договору витрины
+        env:
+          FACTS_CONTRACT: facts-v1.5.0
         run: |
-          showcase="${RUNNER_TEMP:-/tmp}/showcase"
-          git clone --quiet --depth 1 https://github.com/ArtVsMark/ArtVsMark "$showcase"
-          python "$showcase/scripts/check_facts.py" \
-            --file .github/badges/facts.json --repo "$GITHUB_REPOSITORY"
+          set -euo pipefail
+          dir="$RUNNER_TEMP/facts-contract"
+          mkdir -p "$dir"
+          for f in check_facts.py facts.schema.json facts.version; do
+            curl -fsSL -o "$dir/$f" \
+              "https://github.com/ArtVsMark/ArtVsMark/releases/download/$FACTS_CONTRACT/$f"
+          done
+          python "$dir/check_facts.py" --file .github/badges/facts.json --repo "$GITHUB_REPOSITORY"
 
       - name: Собрать замечания к содержанию
         run: >
@@ -247,6 +256,13 @@ jobs:
           else
             echo "::warning::предложений потребителя нет ($url) — канал не подключён, вердикты не публикуются"
           fi
+
+      # Манифест семьи (#258): что глоссарий отдаёт соседям — форму карточек
+      # для грейдера — и последний выпуск. Его читает сводка каталога
+      # export/family.json, и по нему грейдер окрашивает сегмент pairs
+      # семейного значка. Номер формы берётся у выгрузки, а не копией (049).
+      - name: Собрать манифест семьи
+        run: python scripts/family_manifest.py -o .github/badges/contracts.json
 
       - name: Свести разность версий
         run: >

@@ -48,7 +48,7 @@ def test_unmeasured_key_is_absent_not_zero(monkeypatch: pytest.MonkeyPatch):
 
 
 def test_contract_minimum_is_present(facts: dict[str, object]):
-    """Обязательный минимум договора 1.3: без него витрина файл не читает."""
+    """Обязательный минимум договора: без него витрина файл не читает."""
     assert facts["repo"] == contracts.PRODUCER
     assert re.fullmatch(r"[0-9a-f]{40}", str(facts["commit"])), "нужен полный SHA"
     ci = facts["ci"]
@@ -112,14 +112,32 @@ def test_tests_are_counted_from_sources(facts: dict[str, object]):
     assert tests["functions"] >= tests["modules"]
 
 
-def test_python_section_and_old_name_share_one_source(facts: dict[str, object]):
-    """Прежнее имя не удалено и не расходится с новым."""
+def test_python_section_is_measured(facts: dict[str, object]):
+    """Версии Python — из матрицы прогона, одним разделом договора."""
     python = facts["python"]
     assert isinstance(python, dict)
-    assert python["supported"] == facts["python_versions"]
+    assert python["supported"], "версии Python не названы"
     assert python["os"], "ОС прогона тестов не названа"
     assert python["experimental"], "предварительная версия не названа"
     assert not set(python["experimental"]) & set(python["supported"])
+
+
+def test_published_root_holds_only_the_contract(facts: dict[str, object]):
+    """Договор 1.5: корень — только его имена, своё — в ``exchange.<тема>``."""
+    published = facts_module.publishable(facts)
+    alien = set(published) - facts_module.CONTRACT_KEYS - {"exchange"}
+    assert not alien, f"поля вне договора в корне: {sorted(alien)}"
+    assert "rules" not in published, "доли механизмов считает каталог (090)"
+    for topic, body in published["exchange"].items():
+        assert re.fullmatch(r"[a-z0-9_-]+", topic), f"имя темы {topic!r}"
+        assert isinstance(body["schema"], str), f"у темы {topic} нет schema строкой"
+
+
+def test_exchange_glossary_carries_the_cards(facts: dict[str, object]):
+    """Карточки и шапка контрактов проекта уехали в тему, а не пропали."""
+    glossary = facts_module.publishable(facts)["exchange"]["glossary"]
+    assert glossary["cards"] == facts["glossary"]["cards"]  # type: ignore[index]
+    assert glossary["producer"] == contracts.PRODUCER
 
 
 def test_platform_names_the_commit(monkeypatch: pytest.MonkeyPatch):

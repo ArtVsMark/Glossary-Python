@@ -39,9 +39,11 @@ is read from it, not from the fact that the file exists.
 
 ## `facts.json` — how much there is
 
-**Difference.** The `rules` and `content` sections entered the contract at this
-project's suggestion: the reference had none. A key that could not be measured is
-absent from the output altogether.
+**Difference.** The file root holds only the showcase contract; the project's own
+data lives in the `exchange.glossary` topic with its own `schema` (now `1.0`):
+the number of cards, sections, validation objections, completeness and the
+project's contract header (`producer`, `source`). A key that could not be
+measured is absent from the output altogether.
 
 **The format is set by the consumer.** The file follows the facts contract of the
 profile showcase —
@@ -52,8 +54,15 @@ is either a value or a reason in `none`; the reason "no releases" lifts itself
 with the first tag. The publishing run validates the file against the showcase
 schema before publishing.
 
-**The old name is kept.** `python_versions` stays next to `python.supported`: a
-published field is not removed, and both have the same source.
+**The root was narrowed by contract 1.5, not by us.** The file format is the
+showcase's, and the rule "a published field is not removed" does not bind it:
+the showcase declared the root closed (1.4 advises, 2.0 rejects). So
+`python_versions` is gone — the same versions are in `python.supported`;
+`glossary`, `producer` and `source` moved to `exchange.glossary`; there is no
+`rules` section — the showcase takes the mechanism shares from the catalogue,
+which computes them from the project's answer with one formula for everyone
+(rule 090). The publishing run checks the file with the showcase's check pinned
+to the `facts-v1.5.0` release.
 
 **How new things are added.** A section appears together with its source in
 `scripts/facts.py`; a number that ends up in the documentation must live inside a
@@ -162,6 +171,21 @@ number), `rejected` (with a reason), `pending` (not decided yet). Decisions live
 file means the channel is not connected, and no verdicts are published: an empty
 answer would look like "everything is decided". The `answers_to` field names the
 consumer file this answers.
+
+## `contracts.json` — the family manifest
+
+**Difference.** The form is set by the rules catalogue — the `family` 1.1
+contract (the catalogue's `scripts/family.py`), not the shared
+`glossary.contracts` header: the catalogue summary `export/family.json` reads it
+together with the manifests of every family project. `release` is the latest
+`vX.Y.0` tag and its commit; `gives` is the card form in the export under the
+name `glossary-form`, its number taken from `glossary.delivery.FORM`; `takes` is
+empty — the glossary has no pairwise links; `skips` declines a link to a
+publisher, with a reason.
+
+**How new things are added.** A new contract given is a line in `gives` whose
+number is read from its own module, not rewritten; a new refusal is a line in
+`SKIPS` (`scripts/family_manifest.py`) with a reason.
 
 ## `data/glossary.json` — the card build
 

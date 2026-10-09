@@ -29,10 +29,11 @@ description: Экспертная выверка карточек глоссар
 ## Чем мерить
 
 ```bash
-python3.11 / python3.12 / python3.13 / python3.14   # интерпретаторы окна; 3.15 — только CI (python-next)
+python3.10 / python3.11 / python3.12 / python3.13 / python3.14   # интерпретаторы окна
+# 3.15 вышла 09.10.2026: её примеры исполняет матрица CI; в окне — если она установлена
 python3.14 -c "import inspect, X; print(inspect.signature(X.f))"   # сигнатура
 python3.14 -c "import X; help(X.f)"                                  # docstring той версии
-.venv/bin/python scripts/check_examples.py --python python3.11      # гейт примеров на версии
+.venv/bin/python scripts/check_examples.py --python python3.10      # гейт примеров на версии
 .venv/bin/python -m glossary validate                                # правила качества
 ```
 
@@ -40,12 +41,14 @@ python3.14 -c "import X; help(X.f)"                                  # docstring
 docs.python.org. Разреженный клон нужной ветки — только каталог `Doc/`:
 
 ```bash
-git clone --depth 1 --filter=blob:none --sparse --branch 3.14 \
-    https://github.com/python/cpython /home/user/python/cpython-3.14
-git -C /home/user/python/cpython-3.14 sparse-checkout set Doc
+git clone --depth 1 --filter=blob:none --sparse --branch 3.15 \
+    https://github.com/python/cpython /home/user/python/cpython-3.15
+git -C /home/user/python/cpython-3.15 sparse-checkout set Doc
 ```
 
-Сверять с веткой той версии, о которой утверждение. `main` CPython — это
+Проверяемый диапазон — **3.10–3.15**: младшая поддерживаемая версия (на ней же
+проверяет Stepik) и вышедшая 3.15. Сверять с веткой той версии, о которой
+утверждение. `main` CPython — это
 следующая версия, а не текущая. Пометки `versionadded` на `main` бывают неверны
 у бэкпортов: прецедент — python/cpython#159013.
 
@@ -74,7 +77,7 @@ git -C /home/user/python/cpython-3.14 sparse-checkout set Doc
 
 Поле: `examples` — список самостоятельных блоков (#125).
 
-1. **Исполняются.** Каждый блок — на всех версиях окна, где карточка живёт:
+1. **Исполняются.** Каждый блок — на всех версиях 3.10–3.15, где карточка живёт:
    `check_examples.py --python pythonX.Y`. Вывод обязан совпасть с каждым
    комментарием `# →`.
 2. **Самостоятельны.** Блок не опирается на имена из соседнего: каждый
@@ -100,7 +103,7 @@ git -C /home/user/python/cpython-3.14 sparse-checkout set Doc
 | --- | --- |
 | `id` | полное имя, как пишут в коде (`functools.reduce`, `path.glob`); методы `Path` — `path.<имя>`; без точки в начале (#244) |
 | `kind` | `function` / `term` / `exception` / `construct` — по природе объекта: класс исключения — `exception` |
-| `added` | замер: `hasattr` на 3.11…3.14 и `versionadded` в `Doc/` нужной ветки. `<3.0` — было ещё в Python 2. Бэкпорт в патч-выпуски — по ветке, в которую ушёл (`3.13.4` у LinkFallbackError) |
+| `added` | замер: `hasattr` на 3.10…3.15 и `versionadded` в `Doc/` нужной ветки. `<3.0` — было ещё в Python 2. Бэкпорт в патч-выпуски — по ветке, в которую ушёл (`3.13.4` у LinkFallbackError) |
 | `deprecated` | `deprecated` / `deprecated-removed` в `Doc/` и предупреждение при вызове |
 | `removed` | имени нет на версии `removed` и новее; будущее удаление — по `deprecated-removed` в документации, не по памяти |
 | `platforms` | пометка `Availability` в `Doc/`; `AllOS` — только если ограничений нет |
@@ -119,7 +122,7 @@ git -C /home/user/python/cpython-3.14 sparse-checkout set Doc
 | --- | --- | --- | --- | --- | --- |
 | `zlib.error` | `body.en` | 1 | утверждает, что наследует `OSError` | `python3.14 -c "import zlib; print(zlib.error.__mro__)"` → `(error, Exception, …)` | заменить на «derives from Exception» |
 
-Нет находок — так и написать по каждому этапу: «этап 2: 3 блока на 3.11–3.14,
+Нет находок — так и написать по каждому этапу: «этап 2: 3 блока на 3.10–3.15,
 расхождений 0». Пустой отчёт и непроведённый этап снаружи неразличимы.
 
 ## После находок

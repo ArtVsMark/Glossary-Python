@@ -337,7 +337,7 @@ make test       # pytest
 
 ## Что проект отдаёт наружу
 
-Пять файлов в ветке `badges`, все с общей шапкой из `glossary.contracts`
+Шесть файлов в ветке `badges`, все с общей шапкой из `glossary.contracts`
 (строковая `schema`, `schema_of`, `producer`, `source`, `generated_at`).
 Издатель считает, потребитель читает обычным HTTP — правило каталога 174.
 
@@ -348,6 +348,7 @@ make test       # pytest
 | `completeness-report.json` | Каких карточек **нет** — эталон полноты сам Python |
 | `whatsnew.json` | Что **появилось в языке** между версиями и не описано |
 | `delivery.json` | Сами **карточки** по группам — их читает грейдер (#76) |
+| `consumer-verdicts.json` | Что глоссарий **ответил** на предложения грейдера — вердикт по каждому slug (#250) |
 
 `objections.json`, `completeness-report.json` и `whatsnew.json` — очередь работы над содержанием в машинном виде: правится оно
 здесь, в `data/cards/`. Правило валидации — это список дефектных карточек, а

@@ -234,6 +234,20 @@ jobs:
           python -m glossary delivery
           -o .github/badges/delivery.json
 
+      # Обратный канал (#250): потребитель публикует предложения к содержанию,
+      # глоссарий отвечает вердиктом по каждому slug. Файл забирается обычным
+      # HTTPS; его нет — канал не подключён, и прогон говорит это вслух, а не
+      # публикует пустой ответ, неотличимый от «все решены».
+      - name: Ответить потребителю вердиктами по его предложениям
+        run: |
+          url=$(python -c "import json; print(json.load(open('data/consumer_verdicts.json'))['source'])")
+          if curl -fsSL --max-time 60 "$url" -o "${RUNNER_TEMP}/proposals.json"; then
+            python -m glossary verdicts --proposals "${RUNNER_TEMP}/proposals.json" \
+              -o .github/badges/consumer-verdicts.json
+          else
+            echo "::warning::предложений потребителя нет ($url) — канал не подключён, вердикты не публикуются"
+          fi
+
       - name: Свести разность версий
         run: >
           python scripts/whatsnew.py inventory/inventory-*.json

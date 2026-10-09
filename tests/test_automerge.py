@@ -159,6 +159,21 @@ def test_workflow_refusal_names_its_own_cause(monkeypatch: pytest.MonkeyPatch):
     assert "Allow auto-merge" not in text, "чужая причина не печатается"
 
 
+def test_rate_limit_refusal_names_the_quota(monkeypatch: pytest.MonkeyPatch):
+    """Исчерпанная квота — не выключенная настройка (замер #240)."""
+    message = "API rate limit already exceeded for user ID 86671904."
+    monkeypatch.setattr(automerge, "node_id", lambda _: "PR_1")
+    monkeypatch.setattr(
+        automerge, "_call", lambda *_, **__: {"errors": [{"message": message}]}
+    )
+    with pytest.raises(automerge.RefusedError) as refused:
+        automerge.arm(240)
+    text = str(refused.value)
+    assert "#240" in text
+    assert "квота" in text
+    assert "Allow auto-merge" not in text, "чужая причина не печатается"
+
+
 def test_armed_change_reports_when(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setattr(automerge, "node_id", lambda _: "PR_1")
     monkeypatch.setattr(

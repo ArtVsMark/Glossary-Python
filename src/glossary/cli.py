@@ -26,8 +26,9 @@ from glossary import (
     objections,
 )
 from glossary.errors import GlossaryError
-from glossary.exporters import EXPORTERS, get_exporter
+from glossary.exporters import EXPORTERS, get_exporter, pages
 from glossary.loader import default_data_path, dump_glossary, load_glossary, project_root
+from glossary.models import LANGUAGES
 from glossary.validation import Severity, ValidationConfig, validate
 
 if TYPE_CHECKING:
@@ -176,6 +177,21 @@ def build_parser() -> argparse.ArgumentParser:
         help="файл результата (по умолчанию — stdout)",
     )
     p_export.set_defaults(handler=_cmd_export)
+
+    p_pages = sub.add_parser(
+        "pages",
+        help="страницы карточек и sitemap.xml для GitHub Pages (#227)",
+        parents=[common],
+    )
+    p_pages.add_argument(
+        "-o",
+        "--output",
+        type=Path,
+        required=True,
+        metavar="DIR",
+        help="каталог публикации; страницы ложатся рядом с витриной",
+    )
+    p_pages.set_defaults(handler=_cmd_pages)
 
     p_stats = sub.add_parser(
         "stats", help="показать статистику по глоссарию", parents=[common]
@@ -403,6 +419,42 @@ def _cmd_export(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(rendered, encoding="utf-8")
         print(f"Экспортировано {len(glossary)} карточек → {args.output}", file=out)
+    return EXIT_OK
+
+
+def _cmd_pages(args: argparse.Namespace, out: TextIO, err: TextIO) -> int:
+    """Записать страницы карточек и сверить их число на диске со сборкой.
+
+    Сверка — не формальность: шаг публикации проверяет страницы до выкладки, и
+    недописанный каталог должен краснеть здесь, а не обнаружиться у читателя.
+    """
+    glossary = load_glossary(args.data)
+    files = pages.render_pages(glossary)
+    root: Path = args.output
+    for relative, text in files.items():
+        target = root / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(text, encoding="utf-8")
+
+    expected = len(glossary) * len(LANGUAGES)
+    written = sum(
+        1
+        for relative in files
+        if relative.name == "index.html" and (root / relative).is_file()
+    )
+    if written != expected:
+        print(
+            f"Страниц на диске {written}, ожидалось {expected} "
+            f"({len(glossary)} карточек × {len(LANGUAGES)} языка)",
+            file=err,
+        )
+        return EXIT_FAILED
+    size = sum((root / relative).stat().st_size for relative in files)
+    print(
+        f"Страниц карточек: {written} ({len(glossary)} × {len(LANGUAGES)}), "
+        f"{pages.SITEMAP} и {pages.STYLESHEET} → {root}, {size / 1_000_000:.1f} МБ",
+        file=out,
+    )
     return EXIT_OK
 
 

@@ -12,6 +12,8 @@
 | Адрес | Что отдаёт |
 | --- | --- |
 | [`/Glossary-Python/`](https://artvsmark.github.io/Glossary-Python/) | Витрина: поиск, фильтры, тёмная тема |
+| [`/Glossary-Python/<id>/`](https://artvsmark.github.io/Glossary-Python/functools.reduce/), [`/Glossary-Python/en/<id>/`](https://artvsmark.github.io/Glossary-Python/en/functools.reduce/) | Страница одной карточки на русском и английском: свой адрес у термина для поиска и ссылок, кнопка ведёт в витрину на `#id`. Собирается при публикации из сборки и в `main` не лежит (`glossary pages -o DIR`) |
+| [`/Glossary-Python/sitemap.xml`](https://artvsmark.github.io/Glossary-Python/sitemap.xml) | Карта сайта: витрина и обе страницы каждой карточки — её отправляют в поисковые консоли |
 | [`/Glossary-Python/glossary.json`](https://artvsmark.github.io/Glossary-Python/glossary.json) | Сборка карточек (`data/glossary.json`) обычным HTTP — без клона и без токена; для чтения людьми и разовых скриптов, договор наружу у `delivery.json` |
 | [`badges/.github/badges/facts.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/facts.json) | Числа о проекте: карточки, разделы, замечания, состав ответа каталогу |
 | [`badges/.github/badges/objections.json`](https://raw.githubusercontent.com/ArtVsMark/Glossary-Python/badges/.github/badges/objections.json) | Замечания к содержанию: правило, уровень, область, полный список карточек |

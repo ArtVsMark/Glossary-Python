@@ -284,7 +284,7 @@
     "related_errors": []
   },
   {
-    "id": ".iterdir",
+    "id": "path.iterdir",
     "title": {
       "ru": ".iterdir()",
       "en": ".iterdir()"
@@ -318,7 +318,8 @@
       "содержимое папки"
     ],
     "keywords": [
-      "iterdir"
+      "iterdir",
+      "Path.iterdir"
     ],
     "tags": [
       "module"
@@ -9106,7 +9107,7 @@
     "related": [
       "os.scandir",
       "os.walk",
-      ".iterdir",
+      "path.iterdir",
       "path.glob"
     ],
     "related_errors": [
@@ -29828,7 +29829,7 @@
       "os.DirEntry",
       "os.listdir",
       "os.walk",
-      ".iterdir",
+      "path.iterdir",
       "os.stat"
     ],
     "related_errors": [

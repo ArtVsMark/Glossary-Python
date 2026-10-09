@@ -11,7 +11,11 @@ Chromium (``--dump-dom``), и по отрисованному DOM проверя
   стоят отрисованные карточки. Упади сценарий — счётчик остался бы пустым;
 * **ссылка на карточку ведёт к ней** — берётся первая карточка, которой нет в
   начальной порции (сетка дорисовывается прокруткой), и витрина открывается
-  с её якорем: карточка обязана появиться в DOM.
+  с её якорем: карточка обязана появиться в DOM;
+* **страница карточки ведёт в витрину** (#227) — страница одной карточки
+  открывается рядом с витриной, как на Pages, и по адресу её кнопки «Открыть в
+  полном глоссарии» витрина обязана отрисовать ту же карточку. Берётся карточка
+  с кириллическим id: адрес проходит percent-encoding туда и обратно.
 
 Новой зависимости это не требует: Chrome стоит на раннерах ubuntu, браузер
 ищется в ``CHROME_BIN``, затем по известным именам в ``PATH``, затем в каталоге
@@ -22,7 +26,7 @@ Chromium (``--dump-dom``), и по отрисованному DOM проверя
 ручной половиной сценария читателя (docs/use/status.md). Вёрстку и
 читаемость он не оценивает вовсе — только что сценарий отработал.
 
-Коды возврата (правило 158): ``0`` — оба сценария прошли; ``1`` — находки;
+Коды возврата (правило 158): ``0`` — сценарии прошли; ``1`` — находки;
 ``2`` — проверка не отработала (нет браузера, нет витрины, браузер не ответил
 в срок). ``2`` не значит «витрина работает»: о витрине не известно ничего.
 
@@ -32,15 +36,20 @@ Chromium (``--dump-dom``), и по отрисованному DOM проверя
 """
 
 import argparse
+import html
 import json
 import os
 import re
 import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Final
-from urllib.parse import urlencode
+from urllib.parse import unquote, urlencode
+
+from glossary.exporters import pages
+from glossary.loader import load_glossary
 
 ROOT: Final = Path(__file__).resolve().parent.parent
 SHOWCASE: Final = ROOT / "site" / "python_glossary.html"
@@ -67,6 +76,8 @@ COUNTER: Final = re.compile(
     r'id="counter">[^<]*<b>(?P<shown>\d+)</b>\s*\S+\s*(?P<total>\d+)'
 )
 CARD: Final = re.compile(r'<article class="card" id="(?P<id>[^"]+)"')
+TO_SHOWCASE: Final = re.compile(r'<a class="primary" href="(?P<href>[^"]+)"')
+"""Кнопка «Открыть в полном глоссарии» на странице карточки (#227)."""
 
 
 class NotRunError(RuntimeError):
@@ -176,6 +187,43 @@ def check(browser: Path, page: Path, ids: list[str]) -> list[str]:
     return findings
 
 
+def card_page_target(ids: list[str]) -> str | None:
+    """Карточка для сценария страницы: с кириллицей в id, иначе первая."""
+    return next((card for card in ids if not card.isascii()), ids[0] if ids else None)
+
+
+def card_page_findings(browser: Path, showcase: Path, target: str) -> list[str]:
+    """Сценарий «страница карточки ведёт в витрину» (#227).
+
+    Каталог раскладывается так же, как на Pages: витрина — ``index.html`` в
+    корне, страница карточки — ``<id>/index.html`` рядом. Адрес берётся из
+    отрисованной страницы, а не из экспортёра: проверяется то, по чему перейдёт
+    читатель.
+    """
+    glossary = load_glossary(GLOSSARY)
+    entry = glossary.get(target)
+    if entry is None:
+        return [f"карточки {target} нет в сборке — страницу открывать нечем"]
+    with tempfile.TemporaryDirectory() as tmp:
+        root = Path(tmp)
+        shutil.copyfile(showcase, root / "index.html")
+        (root / pages.STYLESHEET).write_text(pages.STYLES, encoding="utf-8")
+        card = root / pages.page_path(entry.id, "ru")
+        card.parent.mkdir(parents=True)
+        card.write_text(pages.render_page(glossary, entry, "ru"), encoding="utf-8")
+
+        button = TO_SHOWCASE.search(dump_dom(browser, card))
+        if button is None:
+            return [f"у страницы карточки {target} нет кнопки «в полный глоссарий»"]
+        base, _, anchor = html.unescape(button.group("href")).partition("#")
+        if unquote(anchor) != target:
+            return [f"кнопка страницы {target} ведёт на #{unquote(anchor)}"]
+        landing = (card.parent / base).resolve() / "index.html"
+        if target not in rendered_ids(dump_dom(browser, landing, anchor)):
+            return [f"кнопка страницы {target} открыла витрину без этой карточки"]
+    return []
+
+
 def main(argv: list[str] | None = None) -> int:
     """Точка входа: 0 — сценарии прошли, 1 — находки, 2 — не отработало."""
     parser = argparse.ArgumentParser(description="Витрина в настоящем браузере")
@@ -187,7 +235,11 @@ def main(argv: list[str] | None = None) -> int:
             raise NotRunError(f"витрины {args.page} нет — открывать нечего")
         entries = json.loads(GLOSSARY.read_text(encoding="utf-8"))["entries"]
         browser = find_browser()
-        findings = check(browser, args.page, [entry["id"] for entry in entries])
+        ids = [entry["id"] for entry in entries]
+        findings = check(browser, args.page, ids)
+        target = card_page_target(ids)
+        if target is not None:
+            findings += card_page_findings(browser, args.page, target)
     except NotRunError as refusal:
         print(f"проверка не отработала: {refusal}", file=sys.stderr)
         return NOT_RUN
@@ -195,7 +247,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"{args.page.name}: {finding}", file=sys.stderr)
     if findings:
         return 1
-    print(f"витрина открылась в {browser.name}: {len(entries)} карточек, якорь ведёт")
+    print(
+        f"витрина открылась в {browser.name}: {len(entries)} карточек, якорь ведёт, "
+        "страница карточки ведёт в витрину"
+    )
     return 0
 
 

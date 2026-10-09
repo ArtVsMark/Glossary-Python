@@ -51,12 +51,12 @@ make decisions  # запись решения называет отвергну�
 make links      # ссылки документации разрешаются в файлы дерева
 make translations # английский двойник документа повторяет устройство оригинала
 make examples   # примеры карточек исполняются, падение названо в примере
-make showcase   # витрина открывается в браузере: счётчик и переход по якорю
+make showcase   # витрина в браузере: счётчик, якорь, страница карточки ведёт в витрину
 make build      # пересборка витрины
 make test       # pytest
 ```
 
-Прямые вызовы: `python -m glossary {assemble,validate,build,export,stats,objections,completeness,inventory}`.
+Прямые вызовы: `python -m glossary {assemble,validate,build,export,pages,stats,objections,completeness,inventory}`.
 
 ## Роли
 

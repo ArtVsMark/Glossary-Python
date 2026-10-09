@@ -20,6 +20,7 @@
     ".stem-.suffix-.suffixes-.name-.parent-.p": "pathlib.PurePath.stem",
     "sys.stdin-sys.stdout-sys.stderr": "sys.stdin",
     "stdin-stdout": "sys.stdin",
-    "sys.version-sys.platform-sys.implementat": "sys.version"
+    "sys.version-sys.platform-sys.implementat": "sys.version",
+    ".iterdir": "path.iterdir"
   }
 }

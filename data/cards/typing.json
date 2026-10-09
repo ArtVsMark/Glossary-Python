@@ -3363,5 +3363,306 @@
     "related_errors": [
       "TypeError"
     ]
+  },
+  {
+    "id": "аннотация-переменной",
+    "title": {
+      "ru": "Аннотация переменной",
+      "en": "Variable annotation"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "Запись x: int = 1 — подсказка типа для переменной или атрибута класса. Интерпретатор её не проверяет, читают её mypy, IDE и dataclass.",
+      "en": "Writing x: int = 1 attaches a type hint to a variable or class attribute. The interpreter does not check it; mypy, IDEs and dataclass read it."
+    },
+    "body": {
+      "ru": "Главная ловушка: аннотация не проверяется во время выполнения — x: int = \"abc\" отработает без ошибки, ловит такое только mypy или IDE. Вторая: x: int без = ничего не присваивает, и обращение к x даёт NameError. В классе аннотация без значения попадает в __annotations__, но атрибутом не становится — именно эти записи читает @dataclass, чтобы построить поля.",
+      "en": "The main trap: the annotation is not checked at runtime — x: int = \"abc\" runs without error, and only mypy or an IDE will flag it. The second one: x: int without = assigns nothing, so reading x raises NameError. In a class, an annotation without a value lands in __annotations__ but does not become an attribute — these are exactly the entries @dataclass reads to build its fields."
+    },
+    "syntax": "имя: тип = значение\nимя: тип",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#annotated-assignment-statements",
+    "added": "3.6",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Аннотации и typing",
+    "subcat": {
+      "ru": "синтаксис",
+      "en": "syntax"
+    },
+    "aliases": [
+      "аннотация типа переменной",
+      "подсказка типа переменной",
+      "тип переменной через двоеточие",
+      "variable type hint"
+    ],
+    "keywords": [
+      "syntax:var_annotation",
+      "PEP 526",
+      "x: int",
+      "__annotations__",
+      "annotated assignment"
+    ],
+    "tags": [
+      "typing"
+    ],
+    "examples": [
+      [
+        "x: int = 'abc'",
+        "print(x)  # → abc — тип не проверяется",
+        "count: int",
+        "print(count)  # → NameError"
+      ],
+      [
+        "class Point:",
+        "    x: int",
+        "    y: int = 0",
+        "print(Point.__annotations__)  # → {'x': <class 'int'>, 'y': <class 'int'>}",
+        "print(hasattr(Point, 'x'), Point.y)  # → False 0"
+      ]
+    ],
+    "related": [
+      "аннотации-типов-type-hints",
+      "int-str-list-dict-аннотации",
+      "ClassVar",
+      "Final"
+    ],
+    "related_errors": [
+      "NameError"
+    ]
+  },
+  {
+    "id": "распаковка-в-индексе",
+    "title": {
+      "ru": "Распаковка * в индексе",
+      "en": "Starred expression in a subscript"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "a[*b] разворачивает b в кортеж индексов: a[*b] — то же, что a[tuple(b)]. Главное применение — tuple[int, *Ts] в аннотациях (Python 3.11+).",
+      "en": "a[*b] unpacks b into a tuple of indices: a[*b] is the same as a[tuple(b)]. Its main use is tuple[int, *Ts] in annotations (Python 3.11+)."
+    },
+    "body": {
+      "ru": "Главная ловушка: __getitem__ всегда получает кортеж — даже a[*[5]] передаёт (5,), а не 5, поэтому список так индексировать нельзя: lst[*idx] даёт TypeError. Конструкция нужна для многомерных объектов и обобщённых типов с TypeVarTuple, а не для обычных последовательностей. До 3.11 та же запись — SyntaxError.",
+      "en": "The main trap: __getitem__ always receives a tuple — even a[*[5]] passes (5,), not 5, so you cannot index a list this way: lst[*idx] raises TypeError. The construct is meant for multi-dimensional objects and generic types with TypeVarTuple, not for ordinary sequences. Before 3.11 the same code is a SyntaxError."
+    },
+    "syntax": "объект[*итерируемое]\nобъект[x, *итерируемое]",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/expressions.html#subscriptions",
+    "added": "3.11",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Аннотации и typing",
+    "subcat": {
+      "ru": "синтаксис",
+      "en": "syntax"
+    },
+    "aliases": [
+      "звёздочка в квадратных скобках",
+      "распаковка в подписке",
+      "starred subscript"
+    ],
+    "keywords": [
+      "syntax:star_index",
+      "PEP 646",
+      "a[*b]",
+      "*",
+      "TypeVarTuple",
+      "__getitem__"
+    ],
+    "tags": [
+      "typing"
+    ],
+    "examples": [
+      [
+        "# Python 3.11+",
+        "class Show:",
+        "    def __getitem__(self, key):",
+        "        return key",
+        "s = Show()",
+        "idx = (1, 2)",
+        "print(s[*idx])  # → (1, 2)",
+        "print(s[0, *idx])  # → (0, 1, 2)",
+        "print(s[*[5]])  # → (5,)"
+      ],
+      [
+        "# Python 3.11+",
+        "print(tuple[int, *tuple[str, ...]])  # → tuple[int, *tuple[str, ...]]",
+        "lst = [10, 20, 30]",
+        "idx = [1]",
+        "print(lst[*idx])  # → TypeError"
+      ]
+    ],
+    "related": [
+      "typing.TypeVarTuple",
+      "распаковка-списка",
+      "generic-t",
+      "args"
+    ],
+    "related_errors": [
+      "TypeError"
+    ]
+  },
+  {
+    "id": "оператор-type",
+    "title": {
+      "ru": "Оператор type",
+      "en": "The type statement"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "type X = ... объявляет псевдоним типа (Python 3.12+). Правая часть вычисляется лениво, поэтому может ссылаться на ещё не определённые имена.",
+      "en": "type X = ... declares a type alias (Python 3.12+). The right-hand side is evaluated lazily, so it may refer to names that are not defined yet."
+    },
+    "body": {
+      "ru": "Главная ловушка: type создаёт не сам тип, а объект TypeAliasType — isinstance(x, Point) даёт TypeError, а сам тип лежит в Point.__value__. Правая часть вычисляется лениво, при первом обращении к __value__, поэтому опечатка в ней всплывёт NameError не на строке type, а позже. Простое присваивание Point = tuple[...] даёт обычный объект, пригодный в isinstance для классов; type нужен для явных, рекурсивных и обобщённых псевдонимов.",
+      "en": "The main trap: type does not create the type itself but a TypeAliasType object — isinstance(x, Point) raises TypeError, and the type itself lives in Point.__value__. The right-hand side is evaluated lazily, on the first access to __value__, so a typo in it surfaces as NameError later, not on the type line. A plain assignment Point = tuple[...] gives an ordinary object usable in isinstance for classes; type is for explicit, recursive and generic aliases."
+    },
+    "syntax": "type Имя = выражение\ntype Имя[T] = выражение",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/simple_stmts.html#the-type-statement",
+    "added": "3.12",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Аннотации и typing",
+    "subcat": {
+      "ru": "синтаксис",
+      "en": "syntax"
+    },
+    "aliases": [
+      "псевдоним типа",
+      "type alias",
+      "алиас типа",
+      "объявить свой тип"
+    ],
+    "keywords": [
+      "syntax:type_statement",
+      "PEP 695",
+      "type",
+      "TypeAliasType",
+      "__value__"
+    ],
+    "tags": [
+      "typing"
+    ],
+    "examples": [
+      [
+        "# Python 3.12+",
+        "type Point = tuple[float, float]",
+        "print(type(Point).__name__)  # → TypeAliasType",
+        "print(Point.__value__)  # → tuple[float, float]",
+        "isinstance((1.0, 2.0), Point)  # → TypeError"
+      ],
+      [
+        "# Python 3.12+",
+        "type Later = Undefined",
+        "print(Later.__name__)  # → Later",
+        "print(Later.__value__)  # → NameError"
+      ],
+      [
+        "# Python 3.12+",
+        "type Tree = list[Tree] | int",
+        "print(Tree.__value__ == (list[Tree] | int))  # → True"
+      ]
+    ],
+    "related": [
+      "typing.TypeAliasType",
+      "generic-t",
+      "union-x-y-x-y",
+      "аннотации-типов-type-hints"
+    ],
+    "related_errors": [
+      "TypeError",
+      "NameError"
+    ]
+  },
+  {
+    "id": "параметры-типа",
+    "title": {
+      "ru": "Параметры типа [T]",
+      "en": "Type parameters [T]"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "def f[T](x: T) -> T и class Box[T] объявляют обобщённые функции и классы прямо в заголовке, без TypeVar и Generic (Python 3.12+).",
+      "en": "def f[T](x: T) -> T and class Box[T] declare generic functions and classes right in the header, without TypeVar or Generic (Python 3.12+)."
+    },
+    "body": {
+      "ru": "Главная ловушка: T видно только внутри своей функции или класса — снаружи это NameError, а не общая переменная модуля, как при T = TypeVar('T'). Тип во время выполнения не проверяется: first(['a']) отработает, как бы ни была аннотирована функция. Значения по умолчанию [T = int] появились только в 3.13; для старых версий остаются TypeVar и Generic[T].",
+      "en": "The main trap: T is visible only inside its own function or class — outside it is a NameError, not a shared module variable as with T = TypeVar('T'). The type is not checked at runtime: first(['a']) runs however the function is annotated. Defaults [T = int] arrived only in 3.13; older versions still need TypeVar and Generic[T]."
+    },
+    "syntax": "def имя[T](x: T) -> T: ...\nclass Имя[T]: ...\nclass Имя[T: Ограничение, *Ts, **P]: ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#type-params",
+    "added": "3.12",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Аннотации и typing",
+    "subcat": {
+      "ru": "синтаксис",
+      "en": "syntax"
+    },
+    "aliases": [
+      "обобщённая функция",
+      "дженерик без TypeVar",
+      "generic class",
+      "параметр типа в квадратных скобках"
+    ],
+    "keywords": [
+      "syntax:type_params",
+      "PEP 695",
+      "def f[T]",
+      "class C[T]",
+      "__type_params__",
+      "TypeVar"
+    ],
+    "tags": [
+      "typing"
+    ],
+    "examples": [
+      [
+        "# Python 3.12+",
+        "def first[T](items: list[T]) -> T:",
+        "    return items[0]",
+        "print(first([3, 1]))  # → 3",
+        "print(first.__type_params__)  # → (T,)",
+        "print(T)  # → NameError"
+      ],
+      [
+        "# Python 3.12+",
+        "class Box[T]:",
+        "    def __init__(self, item: T):",
+        "        self.item = item",
+        "print(Box[int])  # → __main__.Box[int]",
+        "print(Box('a').item)  # → a — тип не проверяется"
+      ],
+      [
+        "# Python 3.13+",
+        "class Box[T = int]:",
+        "    pass",
+        "print(Box.__type_params__[0].__default__)  # → <class 'int'>"
+      ]
+    ],
+    "related": [
+      "typevar",
+      "generic-t",
+      "typing.TypeAliasType",
+      "typing.TypeVarTuple"
+    ],
+    "related_errors": [
+      "NameError"
+    ]
   }
 ]

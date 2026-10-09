@@ -776,10 +776,16 @@
     },
     "aliases": [
       "ошибка операционной системы",
-      "системная ошибка ввода-вывода"
+      "системная ошибка ввода-вывода",
+      "IOError",
+      "EnvironmentError",
+      "ошибка ввода-вывода IOError",
+      "чем IOError отличается от OSError"
     ],
     "keywords": [
-      "OSError"
+      "OSError",
+      "IOError",
+      "EnvironmentError"
     ],
     "tags": [
       "exc"
@@ -5333,6 +5339,11 @@
         "    raise shutil.ExecError",
         "except RuntimeError as e:",
         "    print(type(e).__name__)  # → RuntimeError — с 3.14 ExecError лишь псевдоним"
+      ],
+      [
+        "# Python 3.16+",
+        "import shutil",
+        "print(hasattr(shutil, 'ExecError'))   # → False"
       ]
     ],
     "related": [
@@ -6860,5 +6871,83 @@
       "import-from-import"
     ],
     "related_errors": []
+  },
+  {
+    "id": "except-star",
+    "title": {
+      "ru": "except* и группы исключений",
+      "en": "except* and exception groups"
+    },
+    "kind": "construct",
+    "summary": {
+      "ru": "except* ловит исключения внутри ExceptionGroup по типу: каждый обработчик получает свою подгруппу, необработанное летит дальше (Python 3.11+).",
+      "en": "except* catches exceptions inside an ExceptionGroup by type: each handler gets its own subgroup, and whatever is unhandled propagates (Python 3.11+)."
+    },
+    "body": {
+      "ru": "Главная ловушка: в одном try нельзя смешивать except и except* — это SyntaxError, как и голый except* без типа. В отличие от except, сработать может несколько обработчиков подряд, а в переменную всегда попадает группа, а не само исключение: одиночная ошибка тоже заворачивается в ExceptionGroup, поэтому смотрят eg.exceptions. Внутри except* запрещены break, continue и return.",
+      "en": "The main trap: a single try cannot mix except and except* — that is a SyntaxError, as is a bare except* without a type. Unlike except, several handlers may run in a row, and the target always gets a group, not the exception itself: even a single error is wrapped in an ExceptionGroup, so you look at eg.exceptions. break, continue and return are not allowed inside except*."
+    },
+    "syntax": "try:\n    ...\nexcept* ТипОшибки as eg:\n    ...",
+    "status": "ready",
+    "docs_url": "https://docs.python.org/3/reference/compound_stmts.html#except-star",
+    "added": "3.11",
+    "deprecated": "",
+    "removed": "",
+    "platforms": [
+      "AllOS"
+    ],
+    "section": "Исключения",
+    "subcat": {
+      "ru": "обработка",
+      "en": "handling"
+    },
+    "aliases": [
+      "except со звёздочкой",
+      "обработка группы исключений",
+      "несколько исключений сразу"
+    ],
+    "keywords": [
+      "syntax:except_star",
+      "PEP 654",
+      "except*",
+      "ExceptionGroup",
+      "BaseExceptionGroup"
+    ],
+    "tags": [
+      "exc"
+    ],
+    "examples": [
+      [
+        "# Python 3.11+",
+        "try:",
+        "    raise ExceptionGroup('eg', [ValueError(1), TypeError(2), ValueError(3)])",
+        "except* ValueError as eg:",
+        "    print(eg.exceptions)  # → (ValueError(1), ValueError(3))",
+        "except* TypeError as eg:",
+        "    print(eg.exceptions)  # → (TypeError(2),)"
+      ],
+      [
+        "# Python 3.11+",
+        "try:",
+        "    raise KeyError('k')",
+        "except* KeyError as eg:",
+        "    print(repr(eg))  # → ExceptionGroup('', (KeyError('k'),))"
+      ],
+      [
+        "# Python 3.11+",
+        "src = 'try:\\n    pass\\nexcept ValueError:\\n    pass\\n' 'except* TypeError:\\n    pass\\n'",
+        "compile(src, 'demo', 'exec')  # → SyntaxError"
+      ]
+    ],
+    "related": [
+      "try-except",
+      "ExceptionGroup",
+      "BaseExceptionGroup",
+      "raise"
+    ],
+    "related_errors": [
+      "SyntaxError",
+      "TypeError"
+    ]
   }
 ]

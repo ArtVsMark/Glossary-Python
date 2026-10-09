@@ -64,7 +64,7 @@ COVERAGE: Final = ROOT / "coverage.xml"
 NOT_RUN: Final = 2
 """Факты не посчитаны. Не означает «числа совпадают» — их не с чем было сверять."""
 
-FACTS_SCHEMA: Final = "1.3"
+FACTS_SCHEMA: Final = "1.5"
 """Версия договора фактов витрины профиля, которому отвечает файл.
 
 Формат ``facts.json`` задан потребителем — витриной ArtVsMark/ArtVsMark,
@@ -72,8 +72,41 @@ FACTS_SCHEMA: Final = "1.3"
 ``glossary.contracts.SCHEMA`` (Glossary-Python#49)."""
 
 FACTS_SCHEMA_OF: Final = (
-    "факты о проекте-витрине глоссария по договору фактов витрины 1.3: "
+    "факты о проекте-витрине глоссария по договору фактов витрины 1.5: "
     "по каждому показателю значение или причина в none"
+)
+
+CONTRACT_KEYS: Final = frozenset(
+    {
+        "schema",
+        "schema_of",
+        "repo",
+        "generated_at",
+        "commit",
+        "ci",
+        "version",
+        "release",
+        "coverage_percent",
+        "tests",
+        "python",
+        "checks_per_pr",
+        "none",
+    }
+)
+"""Корень ``facts.json`` по договору 1.5 — только эти имена.
+
+Своё проекта сверх договора живёт в ``exchange.<тема>`` со своей ``schema``
+(договор 1.4). Раздела ``rules`` в файле нет: доли механизмов считает каталог
+по ответу проекта одной формулой на всех, и второй источник того же числа
+разошёлся бы с первым (правило 090). Для маркеров документации и значков
+состав ответа считается здесь же, но наружу этим файлом не уходит."""
+
+EXCHANGE_GLOSSARY_SCHEMA: Final = "1.0"
+"""Номер темы ``exchange.glossary`` — маленький договор глоссария с читателями."""
+
+EXCHANGE_GLOSSARY_OF: Final = (
+    "карточки глоссария: число, разделы, замечания валидации и полнота "
+    "относительно инвентаря Python"
 )
 CI_WORKFLOW: Final = "ci.yml"
 """Прогон, статус которого витрина спрашивает у площадки."""
@@ -307,7 +340,9 @@ def _commit() -> str:
 
 
 def build_facts() -> dict[str, Any]:
-    """Собрать факты о проекте по договору фактов витрины 1.3.
+    """Собрать факты о проекте: договорные поля и то, из чего пишутся маркеры.
+
+    Это рабочий набор, а не файл: наружу уходит ``publishable()`` от него.
 
     По каждому показателю договора — значение или причина в ``none``. Покрытие
     — исключение: без ``coverage.xml`` ключа нет вовсе, потому что «не
@@ -328,9 +363,6 @@ def build_facts() -> dict[str, Any]:
         "tests": _tests_facts(),
         "python": _python_facts(),
         "checks_per_pr": _checks_per_pr(),
-        # Прежнее имя остаётся: опубликованное поле не удаляется (docs/use/contracts.md).
-        # Источник у обоих один, разойтись им негде.
-        "python_versions": _python_versions(),
     }
     coverage = _coverage_percent()
     if coverage is not None:
@@ -343,13 +375,32 @@ def build_facts() -> dict[str, Any]:
         none["release"] = NO_RELEASE
         none["version"] = NO_VERSION
     else:
-        # Договор 1.3: выпуск — серия X.Y, а не тег; буква v и нулевая третья
+        # Договор 1.3+: выпуск — серия X.Y, а не тег; буква v и нулевая третья
         # цифра — запись тега, а не выпуска.
         facts["release"] = current.release
         facts["version"] = current.full
     if none:
         facts["none"] = none
     return facts
+
+
+def publishable(facts: dict[str, Any]) -> dict[str, Any]:
+    """Файл ``facts.json`` по договору фактов витрины 1.5.
+
+    Корень — только ``CONTRACT_KEYS``; карточки глоссария и шапка контрактов
+    проекта (``producer``, ``source``) — в теме ``exchange.glossary``.
+    """
+    out = {key: value for key, value in facts.items() if key in CONTRACT_KEYS}
+    out["exchange"] = {
+        "glossary": {
+            "schema": EXCHANGE_GLOSSARY_SCHEMA,
+            "schema_of": EXCHANGE_GLOSSARY_OF,
+            "producer": facts["producer"],
+            "source": facts["source"],
+            **facts["glossary"],
+        }
+    }
+    return out
 
 
 def marker_values(facts: dict[str, Any]) -> dict[str, str]:
@@ -487,7 +538,8 @@ def write_badges(facts: dict[str, Any], target: Path) -> list[Path]:
     # способом и из того же места, что и значки (правило 174).
     facts_path = target / "facts.json"
     facts_path.write_text(
-        json.dumps(facts, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        json.dumps(publishable(facts), ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
     )
     written.append(facts_path)
 
@@ -536,7 +588,7 @@ def main(argv: list[str] | None = None) -> int:
     values = marker_values(facts)
 
     if args.json or not any((args.badges, args.render, args.check)):
-        print(json.dumps(facts, ensure_ascii=False, indent=2))
+        print(json.dumps(publishable(facts), ensure_ascii=False, indent=2))
 
     if args.badges:
         for path in write_badges(facts, args.badges):

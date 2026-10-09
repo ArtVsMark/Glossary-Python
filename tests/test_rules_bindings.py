@@ -84,12 +84,14 @@ def test_bindings_file_exists():
     assert PROPOSALS_PATH.exists(), "канал предложений обязателен: пустой список законен"
 
 
-CONTRACT: Final = "1.8"
+CONTRACT: Final = "1.9"
 """Формат ответа (``schema``), под который ответы перечитаны (правило 157).
 
 Число сдвигается вместе с перечитыванием, а не вместо него: задача-входящие
 печатает расхождение, если каталог ушёл вперёд. 1.8 добавил ``origin`` и
-``origin_kind`` — откуда взят механизм."""
+``origin_kind`` — откуда взят механизм; 1.9 сделал происхождение обязательным у
+``gate`` и ``pipeline`` (слово ``own`` — разработан здесь) и закрыл список
+ключей записи."""
 
 EXPORT: Final = "1.7"
 """Версия выгрузки каталога (``answers_to``), по которой построены ответы.
@@ -101,6 +103,35 @@ ORIGIN: Final = re.compile(r"^[\w.-]+/[\w.-]+:[^@\s]+@[\w.-]+$")
 """Форма ``origin`` по контракту 1.8: ``<владелец>/<репозиторий>:<путь>@<версия>``."""
 
 ORIGIN_KINDS: Final = {"called", "copied", "adapted"}
+"""Способы переноса чужого механизма: у каждого обязателен ``origin``."""
+
+OWN: Final = "own"
+"""Механизм разработан здесь (контракт 1.9): ``origin`` у него быть не может."""
+
+WITH_ORIGIN: Final = {"gate", "pipeline"}
+"""Механизмы, у которых происхождение обязательно с 1.9: то, что отвергает или
+замечает машинно, кто-то написал — здесь или у соседа."""
+
+FIELDS: Final = frozenset(
+    {
+        "status",
+        "mechanism",
+        "where",
+        "why",
+        "skill",
+        "holdable",
+        "machine_half",
+        "awaiting",
+        "origin",
+        "origin_kind",
+        "analysed",
+        "decided",
+        "refuted_by",
+        "note",
+        "metric",
+    }
+)
+"""Ключи записи по контракту 1.9 — список закрытый; ``_``-ключи — пояснения."""
 
 
 def test_schema_and_project_declared():
@@ -119,24 +150,43 @@ def test_answers_are_not_empty():
     assert rules(), "ответ не содержит ни одного правила"
 
 
-def origin_problem(answer: dict[str, Any]) -> str | None:
-    """Что не так с источником механизма по контракту 1.8; ``None`` — всё верно."""
-    origin, kind = answer.get("origin"), answer.get("origin_kind")
-    if origin is None:
-        return None if kind is None else "origin_kind без origin"
-    if answer.get("mechanism") == "none":
-        return "origin при mechanism none"
-    if not ORIGIN.match(origin):
-        return f"origin не по форме: {origin!r}"
-    if kind not in ORIGIN_KINDS:
-        return f"origin без origin_kind или с {kind!r}"
+def _missing_origin(answer: dict[str, Any]) -> str | None:
+    """Чего не хватает записи без ``origin``; ``None`` — ей и не нужно."""
+    if answer.get("origin_kind") is not None:
+        return "origin_kind без origin"
+    if answer.get("mechanism") in WITH_ORIGIN:
+        return "gate/pipeline без origin_kind"
     return None
+
+
+def origin_problem(answer: dict[str, Any]) -> str | None:
+    """Что не так с источником механизма по контракту 1.9; ``None`` — всё верно."""
+    origin, kind = answer.get("origin"), answer.get("origin_kind")
+    if kind == OWN:
+        problem = "origin_kind own с origin" if origin is not None else None
+    elif origin is None:
+        problem = _missing_origin(answer)
+    elif answer.get("mechanism") == "none":
+        problem = "origin при mechanism none"
+    elif not ORIGIN.match(origin):
+        problem = f"origin не по форме: {origin!r}"
+    elif kind not in ORIGIN_KINDS:
+        problem = f"origin без origin_kind или с {kind!r}"
+    else:
+        problem = None
+    return problem
 
 
 @pytest.mark.parametrize(
     "answer, verdict",
     [
-        ({"mechanism": "gate"}, None),
+        ({"mechanism": "gate"}, "без origin_kind"),
+        ({"mechanism": "gate", "origin_kind": "own"}, None),
+        ({"mechanism": "document"}, None),
+        (
+            {"mechanism": "gate", "origin": "a/b:x@v1", "origin_kind": "own"},
+            "own с origin",
+        ),
         ({"mechanism": "gate", "origin": "a/b:x.yml@v1", "origin_kind": "called"}, None),
         ({"mechanism": "gate", "origin_kind": "called"}, "origin_kind без origin"),
         ({"mechanism": "none", "origin": "a/b:x@v1", "origin_kind": "called"}, "none"),
@@ -160,6 +210,8 @@ def test_origin_form_is_checked_on_fakes(answer: dict[str, Any], verdict: str | 
 def test_answer_follows_contract(rule_id: str, answer: dict[str, Any]):
     status = answer.get("status")
     assert status in VALID_STATUSES, f"{rule_id}: неизвестный статус {status!r}"
+    alien = sorted(k for k in answer if k not in FIELDS and not k.startswith("_"))
+    assert not alien, f"{rule_id}: ключи вне контракта 1.9: {alien}"
 
     if status in NEEDS_WHY:
         assert answer.get("why"), f"{rule_id}: статус {status} требует причины"
@@ -184,8 +236,9 @@ def test_answer_follows_contract(rule_id: str, answer: dict[str, Any]):
     else:
         assert "awaiting" not in answer, f"{rule_id}: awaiting при {mechanism}"
 
-    # Контракт 1.8: источник механизма — разрешимый адрес с версией и способ
-    # переноса; одно без другого и источник у «ничем» каталог считает находкой.
+    # Контракт 1.9: у gate и pipeline происхождение обязательно — own либо
+    # разрешимый адрес с версией и способ переноса; одно без другого и источник
+    # у «ничем» каталог считает находкой.
     problem = origin_problem(answer)
     assert problem is None, f"{rule_id}: {problem}"
 

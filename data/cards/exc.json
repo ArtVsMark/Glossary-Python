@@ -6519,11 +6519,13 @@
     },
     "aliases": [
       "ошибка регистрации кодека",
-      "не удалось найти кодек"
+      "модуль кодека не зарегистрировался"
     ],
     "keywords": [
       "encodings.CodecRegistryError",
-      "CodecRegistryError"
+      "CodecRegistryError",
+      "failed to register",
+      "incompatible codecs in module"
     ],
     "tags": [
       "encodings"

@@ -26,6 +26,10 @@ defects has not yet been checked against real material (catalogue rule 106).
 - **The showcase in human hands.** Nobody has gone through what is done by hand:
   searching for a term from an error message, filters and following links — on a
   phone and offline. A headless browser does not produce taps and typing.
+- **Examples on other OSes.** The matrix runs the card examples on Linux, on six
+  Python versions; Windows and macOS are not checked — CI on them was declined on
+  purpose (rule 018). A card with `platforms: ["AllOS"]` promises more than was
+  checked.
 
 ## Condition for wide announcement
 

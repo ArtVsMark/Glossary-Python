@@ -3,11 +3,11 @@
   "schema_of": "замечания витрины к содержанию глоссария",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-10T09:18:41+00:00",
+  "generated_at": "2026-10-10T09:24:27+00:00",
   "snapshot": {
     "cards": 2920,
     "schema_version": 6,
-    "digest": "07fb2f17c81a"
+    "digest": "a3f16c142fa9"
   },
   "totals": {
     "errors": 0,

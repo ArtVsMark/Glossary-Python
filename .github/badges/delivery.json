@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-10T09:18:43+00:00",
+  "generated_at": "2026-10-10T09:24:29+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2920,
     "schema_version": 6,
-    "digest": "07fb2f17c81a"
+    "digest": "a3f16c142fa9"
   },
   "groups": {
     "builtin": [
@@ -9914,7 +9914,7 @@
         ],
         "section": "Исключения",
         "subcat": {
-          "ru": "исключения модулей",
+          "ru": "модульные исключения",
           "en": "module exceptions"
         },
         "aliases": [
@@ -180976,6 +180976,7 @@
             "print(type(tpl).__name__)  # → Template",
             "print(tpl.strings, tpl.values)  # → ('Hi ', '!') ('Bob',)",
             "print(tpl == 'Hi Bob!')  # → False",
+            "print(str(tpl)[:9])  # → Template( — repr шаблона, а не текст",
             "tpl + '?'  # → TypeError"
           ],
           [
@@ -184562,6 +184563,11 @@
             "print(type(Point).__name__)  # → TypeAliasType",
             "print(Point.__value__)  # → tuple[float, float]",
             "isinstance((1.0, 2.0), Point)  # → TypeError"
+          ],
+          [
+            "Pair = tuple[float, float]   # простое присваивание, без type",
+            "print(Pair)  # → tuple[float, float]",
+            "isinstance((1.0, 2.0), Pair)  # → TypeError — параметризованный тип проверке не годится"
           ],
           [
             "# Python 3.12+",

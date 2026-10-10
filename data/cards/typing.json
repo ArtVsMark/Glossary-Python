@@ -3563,6 +3563,11 @@
         "isinstance((1.0, 2.0), Point)  # → TypeError"
       ],
       [
+        "Pair = tuple[float, float]   # простое присваивание, без type",
+        "print(Pair)  # → tuple[float, float]",
+        "isinstance((1.0, 2.0), Pair)  # → TypeError — параметризованный тип проверке не годится"
+      ],
+      [
         "# Python 3.12+",
         "type Later = Undefined",
         "print(Later.__name__)  # → Later",

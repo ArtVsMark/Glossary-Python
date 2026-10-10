@@ -10,3 +10,4 @@ holds the documents the rulebook refers to.
 | --- | --- |
 | [Roles](roles.en.md) | the roster of roles, accepting a new role, the engagement matrix |
 | [Rule catalogue](rules.en.md) | how the project answers the Engineering-Incidents-Playbook catalogue, the tally of answers |
+| [How a window runs the work](work.en.md) | the order of work sources, the rules for agent waves |

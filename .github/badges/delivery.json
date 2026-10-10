@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-10T09:34:29+00:00",
+  "generated_at": "2026-10-10T09:36:41+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2920,
     "schema_version": 6,
-    "digest": "a3f16c142fa9"
+    "digest": "4e8271199406"
   },
   "groups": {
     "builtin": [
@@ -9896,8 +9896,8 @@
         },
         "kind": "exception",
         "summary": {
-          "ru": "Ошибка реестра кодеков: поднимается при сбое поиска/регистрации кодека в системе encodings (подкласс LookupError и SystemError).",
-          "en": "A codec registry error, raised on failures looking up or registering a codec."
+          "ru": "Ошибка реестра кодеков: модуль из пакета encodings вернул негодную или несовместимую запись кодека (подкласс LookupError и SystemError).",
+          "en": "A codec registry error: a module in the encodings package returned an invalid or incompatible codec entry (a subclass of LookupError and SystemError)."
         },
         "body": {
           "ru": "Это не про «неправильную кодировку»: неизвестное имя кодировки даёт обычный LookupError, а битые байты — UnicodeDecodeError. CodecRegistryError означает поломку самого механизма кодеков — модуль из пакета encodings зарегистрировал что-то, не годное как CodecInfo. В учебном коде почти не встречается; из-за наследования сразу от LookupError и SystemError его перехватит и except LookupError.",

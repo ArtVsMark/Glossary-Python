@@ -3,12 +3,12 @@
   "schema_of": "карточки глоссария по группам, в форме data/cards/",
   "producer": "ArtVsMark/Glossary-Python",
   "source": "ArtVsMark/Glossary-Python",
-  "generated_at": "2026-10-10T09:39:17+00:00",
+  "generated_at": "2026-10-10T09:42:02+00:00",
   "form": "6.1",
   "snapshot": {
     "cards": 2920,
     "schema_version": 6,
-    "digest": "4e8271199406"
+    "digest": "dd8723399a76"
   },
   "groups": {
     "builtin": [
@@ -9919,11 +9919,13 @@
         },
         "aliases": [
           "ошибка регистрации кодека",
-          "не удалось найти кодек"
+          "модуль кодека не зарегистрировался"
         ],
         "keywords": [
           "encodings.CodecRegistryError",
-          "CodecRegistryError"
+          "CodecRegistryError",
+          "failed to register",
+          "incompatible codecs in module"
         ],
         "tags": [
           "encodings"

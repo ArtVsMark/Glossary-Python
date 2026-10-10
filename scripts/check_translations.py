@@ -58,6 +58,7 @@ PAIRS: Final[tuple[str, ...]] = (
     "docs/agent/README.md",
     "docs/agent/rules.md",
     "docs/agent/roles.md",
+    "docs/agent/work.md",
     "changelog.d/README.md",
 )
 """Русские оригиналы, у которых обязан быть английский двойник.

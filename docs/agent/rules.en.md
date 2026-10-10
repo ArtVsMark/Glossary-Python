@@ -27,11 +27,11 @@ All **<!--m:rules_total-->217<!--/m:rules_total-->** catalogue rules have been r
 
 | Answer | Count | Meaning |
 | --- | --- | --- |
-| `active` + mechanism | <!--m:rules_mechanised-->147<!--/m:rules_mechanised--> | The rule is in force and held by a gate (<!--m:rules_gate-->85<!--/m:rules_gate-->), a document (<!--m:rules_document-->45<!--/m:rules_document-->) or the pipeline (<!--m:rules_pipeline-->17<!--/m:rules_pipeline-->) |
-| `active` + `none` | <!--m:rules_none-->2<!--/m:rules_none--> | The rule is in force but nothing here holds it — each one names a reason |
-| `not-applicable` | <!--m:rules_na-->67<!--/m:rules_na--> | The rule's subject does not exist in this project — with an explanation of why |
+| `active` + mechanism | <!--m:rules_mechanised-->161<!--/m:rules_mechanised--> | The rule is in force and held by a gate (<!--m:rules_gate-->85<!--/m:rules_gate-->), a document (<!--m:rules_document-->59<!--/m:rules_document-->) or the pipeline (<!--m:rules_pipeline-->17<!--/m:rules_pipeline-->) |
+| `active` + `none` | <!--m:rules_none-->12<!--/m:rules_none--> | The rule is in force but nothing here holds it — each one names a reason |
+| `not-applicable` | <!--m:rules_na-->43<!--/m:rules_na--> | The rule's subject does not exist in this project — with an explanation of why |
 
-**<!--m:rules_none-->2<!--/m:rules_none--> is a metric, and it must go down.** The ceiling is fixed in
+**<!--m:rules_none-->12<!--/m:rules_none--> is a metric, and it must go down.** The ceiling is fixed in
 `tests/test_rules_bindings.py` and moves only downward, like the data-quality
 ratchet. A metric dissolved in prose looks like it does not exist.
 <!--предмет:потолок правил без механизма-->

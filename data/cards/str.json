@@ -3726,6 +3726,7 @@
         "print(type(tpl).__name__)  # → Template",
         "print(tpl.strings, tpl.values)  # → ('Hi ', '!') ('Bob',)",
         "print(tpl == 'Hi Bob!')  # → False",
+        "print(str(tpl)[:9])  # → Template( — repr шаблона, а не текст",
         "tpl + '?'  # → TypeError"
       ],
       [

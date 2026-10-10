@@ -2478,6 +2478,11 @@
           "isinstance((1.0, 2.0), Point)  # → TypeError"
         ],
         [
+          "Pair = tuple[float, float]   # простое присваивание, без type",
+          "print(Pair)  # → tuple[float, float]",
+          "isinstance((1.0, 2.0), Pair)  # → TypeError — параметризованный тип проверке не годится"
+        ],
+        [
           "# Python 3.12+",
           "type Later = Undefined",
           "print(Later.__name__)  # → Later",
@@ -24090,7 +24095,7 @@
       ],
       "section": "Исключения",
       "subcat": {
-        "ru": "исключения модулей",
+        "ru": "модульные исключения",
         "en": "module exceptions"
       },
       "color_group": "exc",
@@ -173594,6 +173599,7 @@
           "print(type(tpl).__name__)  # → Template",
           "print(tpl.strings, tpl.values)  # → ('Hi ', '!') ('Bob',)",
           "print(tpl == 'Hi Bob!')  # → False",
+          "print(str(tpl)[:9])  # → Template( — repr шаблона, а не текст",
           "tpl + '?'  # → TypeError"
         ],
         [

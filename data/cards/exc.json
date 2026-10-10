@@ -792,12 +792,18 @@
     ],
     "examples": [
       [
-        "import os",
-        "os.remove('no_file')  # FileNotFoundError (подкласс OSError)",
-        "try:",
-        "    os.mkdir('/root/test')",
-        "except OSError as e:",
-        "    print(e.strerror)"
+        "import errno, os, tempfile",
+        "with tempfile.TemporaryDirectory() as d:",
+        "    box = os.path.join(d, 'box')",
+        "    os.mkdir(box)",
+        "    try:",
+        "        os.mkdir(box)",
+        "    except FileExistsError as e:   # подкласс OSError — ловим точно",
+        "        print(e.errno == errno.EEXIST, os.path.basename(e.filename))   # → True box",
+        "    try:",
+        "        os.remove(os.path.join(d, 'no_file'))",
+        "    except OSError as e:   # последняя сетка: причину различает errno, а не текст",
+        "        print(type(e).__name__, e.errno == errno.ENOENT)   # → FileNotFoundError True"
       ]
     ],
     "related": [
@@ -5303,8 +5309,8 @@
       "en": "A deprecated shutil exception: no function in the module raises it; since 3.14 it emits DeprecationWarning, and 3.16 removes the name."
     },
     "body": {
-      "ru": "Реликт тех времён, когда make_archive паковал архивы внешними tar и zip: в актуальном CPython ни одна функция shutil его не возбуждает. В Python 3.14 само обращение к shutil.ExecError даёт DeprecationWarning и возвращает обычный RuntimeError (до 3.13 это был отдельный подкласс OSError), а в 3.16 имя уберут совсем. Писать под него except в новом коде смысла нет.",
-      "en": "A leftover from the days when make_archive shelled out to external tar and zip commands: no function in today's shutil raises it. In Python 3.14 merely touching shutil.ExecError emits a DeprecationWarning and hands back plain RuntimeError (through 3.13 it was its own OSError subclass), and the name is scheduled for removal in 3.16. There is nothing worth catching here in new code."
+      "ru": "Ни одна функция shutil не возбуждает это исключение с Python 3.4. В Python 3.14 само обращение к shutil.ExecError даёт DeprecationWarning и возвращает обычный RuntimeError (до 3.13 это был отдельный подкласс OSError), а в 3.16 имя уберут совсем. Писать под него except в новом коде смысла нет.",
+      "en": "No function in shutil has raised this exception since Python 3.4. In Python 3.14 merely touching shutil.ExecError emits a DeprecationWarning and hands back plain RuntimeError (through 3.13 it was its own OSError subclass), and the name is scheduled for removal in 3.16. There is nothing worth catching here in new code."
     },
     "syntax": "raise shutil.ExecError",
     "status": "ready",

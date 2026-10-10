@@ -2435,8 +2435,8 @@
         "en": "type X = ... declares a type alias (Python 3.12+). The right-hand side is evaluated lazily, so it may refer to names that are not defined yet."
       },
       "body": {
-        "ru": "Главная ловушка: type создаёт не сам тип, а объект TypeAliasType — isinstance(x, Point) даёт TypeError, а сам тип лежит в Point.__value__. Правая часть вычисляется лениво, при первом обращении к __value__, поэтому опечатка в ней всплывёт NameError не на строке type, а позже. Простое присваивание Point = tuple[...] даёт обычный объект, пригодный в isinstance для классов; type нужен для явных, рекурсивных и обобщённых псевдонимов.",
-        "en": "The main trap: type does not create the type itself but a TypeAliasType object — isinstance(x, Point) raises TypeError, and the type itself lives in Point.__value__. The right-hand side is evaluated lazily, on the first access to __value__, so a typo in it surfaces as NameError later, not on the type line. A plain assignment Point = tuple[...] gives an ordinary object usable in isinstance for classes; type is for explicit, recursive and generic aliases."
+        "ru": "Главная ловушка: type создаёт не сам тип, а объект TypeAliasType — isinstance(x, Point) даёт TypeError, а сам тип лежит в Point.__value__. Правая часть вычисляется лениво, при первом обращении к __value__, поэтому опечатка в ней всплывёт NameError не на строке type, а позже. Простое присваивание Point = tuple[float, float] даёт обычный объект без ленивости, но и его isinstance не примет — параметризованный тип проверке экземпляра не годится; type нужен для явных, рекурсивных и обобщённых псевдонимов.",
+        "en": "The main trap: type does not create the type itself but a TypeAliasType object — isinstance(x, Point) raises TypeError, and the type itself lives in Point.__value__. The right-hand side is evaluated lazily, on the first access to __value__, so a typo in it surfaces as NameError later, not on the type line. A plain assignment Point = tuple[float, float] gives an ordinary object without the laziness, yet isinstance rejects it too — a parameterized type cannot be used for instance checks; type is for explicit, recursive and generic aliases."
       },
       "syntax": "type Имя = выражение\ntype Имя[T] = выражение",
       "status": "ready",
@@ -21135,12 +21135,18 @@
       ],
       "examples": [
         [
-          "import os",
-          "os.remove('no_file')  # FileNotFoundError (подкласс OSError)",
-          "try:",
-          "    os.mkdir('/root/test')",
-          "except OSError as e:",
-          "    print(e.strerror)"
+          "import errno, os, tempfile",
+          "with tempfile.TemporaryDirectory() as d:",
+          "    box = os.path.join(d, 'box')",
+          "    os.mkdir(box)",
+          "    try:",
+          "        os.mkdir(box)",
+          "    except FileExistsError as e:   # подкласс OSError — ловим точно",
+          "        print(e.errno == errno.EEXIST, os.path.basename(e.filename))   # → True box",
+          "    try:",
+          "        os.remove(os.path.join(d, 'no_file'))",
+          "    except OSError as e:   # последняя сетка: причину различает errno, а не текст",
+          "        print(type(e).__name__, e.errno == errno.ENOENT)   # → FileNotFoundError True"
         ]
       ],
       "related": [
@@ -24710,8 +24716,8 @@
         "en": "A deprecated shutil exception: no function in the module raises it; since 3.14 it emits DeprecationWarning, and 3.16 removes the name."
       },
       "body": {
-        "ru": "Реликт тех времён, когда make_archive паковал архивы внешними tar и zip: в актуальном CPython ни одна функция shutil его не возбуждает. В Python 3.14 само обращение к shutil.ExecError даёт DeprecationWarning и возвращает обычный RuntimeError (до 3.13 это был отдельный подкласс OSError), а в 3.16 имя уберут совсем. Писать под него except в новом коде смысла нет.",
-        "en": "A leftover from the days when make_archive shelled out to external tar and zip commands: no function in today's shutil raises it. In Python 3.14 merely touching shutil.ExecError emits a DeprecationWarning and hands back plain RuntimeError (through 3.13 it was its own OSError subclass), and the name is scheduled for removal in 3.16. There is nothing worth catching here in new code."
+        "ru": "Ни одна функция shutil не возбуждает это исключение с Python 3.4. В Python 3.14 само обращение к shutil.ExecError даёт DeprecationWarning и возвращает обычный RuntimeError (до 3.13 это был отдельный подкласс OSError), а в 3.16 имя уберут совсем. Писать под него except в новом коде смысла нет.",
+        "en": "No function in shutil has raised this exception since Python 3.4. In Python 3.14 merely touching shutil.ExecError emits a DeprecationWarning and hands back plain RuntimeError (through 3.13 it was its own OSError subclass), and the name is scheduled for removal in 3.16. There is nothing worth catching here in new code."
       },
       "syntax": "raise shutil.ExecError",
       "status": "ready",
@@ -173545,8 +173551,8 @@
         "en": "t'...' looks like an f-string but produces a Template object, not a str: the text parts and interpolated values are kept apart (Python 3.14+)."
       },
       "body": {
-        "ru": "Главная ловушка: t-строка — не str. Её нельзя сравнить со строкой или склеить через + со str (TypeError), а str(tpl) даёт repr шаблона, а не готовый текст. Собирает строку ваш код: перебирает шаблон, получая куски текста и объекты Interpolation, и, например, экранирует значения для HTML или SQL. Нужна просто строка — берите f-строку.",
-        "en": "The main trap: a t-string is not a str. It cannot be compared with a string or joined to a str with + (TypeError), and str(tpl) gives the template's repr, not the finished text. Your code builds the string: it iterates over the template, getting text pieces and Interpolation objects, and can, for example, escape values for HTML or SQL. If you just need a string, use an f-string."
+        "ru": "Главная ловушка: t-строка — не str. Она не равна строке с тем же текстом (сравнение даёт False) и не склеивается со str через + (TypeError), а str(tpl) даёт repr шаблона, а не готовый текст. Собирает строку ваш код: перебирает шаблон, получая куски текста и объекты Interpolation, и, например, экранирует значения для HTML или SQL. Нужна просто строка — берите f-строку.",
+        "en": "The main trap: a t-string is not a str. It is never equal to a string with the same text (the comparison gives False) and cannot be joined to a str with + (TypeError), and str(tpl) gives the template's repr, not the finished text. Your code builds the string: it iterates over the template, getting text pieces and Interpolation objects, and can, for example, escape values for HTML or SQL. If you just need a string, use an f-string."
       },
       "syntax": "t'текст {выражение}'\nT\"текст {выражение!r:формат}\"",
       "status": "ready",

@@ -33,6 +33,7 @@ GLOSSARY = make_glossary(
     make_entry(id="abc", title="abc"),
     make_entry(id="OSError", title="OSError", aliases=("IOError",)),
     make_entry(id="AttributeError", title="AttributeError"),
+    make_entry(id="оператор-type", title="type", keywords=("syntax:type_statement",)),
 )
 
 
@@ -56,6 +57,19 @@ def test_builtin_name_found_among_aliases_is_done():
         "subject": "IOError",
     }
     assert verdict(proposal, {}) == "done"
+
+
+@pytest.mark.parametrize(
+    ("subject", "expected"), [("type_statement", "done"), ("tstring", "pending")]
+)
+def test_syntax_card_is_done_by_its_marker_keyword(subject: str, expected: str):
+    """Конструкцию узнают по признаку ``syntax:<subject>``, а не по заголовку."""
+    proposal = {
+        "slug": f"syntax-card:{subject}",
+        "kind": "syntax-card",
+        "subject": subject,
+    }
+    assert verdict(proposal, {}) == expected
 
 
 def test_id_convention_is_done_once_every_card_is_renamed():

@@ -26,9 +26,9 @@
 
 | Ответ | Сколько | Что означает |
 | --- | --- | --- |
-| `active` + механизм | <!--m:rules_mechanised-->145<!--/m:rules_mechanised--> | Правило действует и держится гейтом (<!--m:rules_gate-->84<!--/m:rules_gate-->), документом (<!--m:rules_document-->45<!--/m:rules_document-->) или конвейером (<!--m:rules_pipeline-->16<!--/m:rules_pipeline-->) |
+| `active` + механизм | <!--m:rules_mechanised-->147<!--/m:rules_mechanised--> | Правило действует и держится гейтом (<!--m:rules_gate-->85<!--/m:rules_gate-->), документом (<!--m:rules_document-->45<!--/m:rules_document-->) или конвейером (<!--m:rules_pipeline-->17<!--/m:rules_pipeline-->) |
 | `active` + `none` | <!--m:rules_none-->2<!--/m:rules_none--> | Правило действует, но здесь ничем не держится — у каждого названа причина |
-| `not-applicable` | <!--m:rules_na-->69<!--/m:rules_na--> | Предмета правила в этом проекте нет — с объяснением, почему |
+| `not-applicable` | <!--m:rules_na-->67<!--/m:rules_na--> | Предмета правила в этом проекте нет — с объяснением, почему |
 
 **<!--m:rules_none-->2<!--/m:rules_none--> — это метрика, и она должна уменьшаться.** Потолок зафиксирован в
 `tests/test_rules_bindings.py` и двигается только вниз, как и храповик качества

@@ -1,0 +1,1 @@
+Обёртка сторожа окна `pre_tool_use.sh` зовёт интерпретатор планки, а не системный `python3`: без него толчок и heredoc закрыты кодом 2; гейт `scripts/check_hook_interpreter.py` (`make hooks`, шаг CI) держит это для всех хуков (#274)

@@ -70,6 +70,9 @@ jobs:
       - name: Код конвейера исполняется на планке Python
         run: python scripts/check_python_version.py
 
+      - name: Хуки окна исполняются интерпретатором планки
+        run: python scripts/check_hook_interpreter.py
+
   tests:
     timeout-minutes: 15
     name: Тесты (Python ${{ matrix.python-version }})

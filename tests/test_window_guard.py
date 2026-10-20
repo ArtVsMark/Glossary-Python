@@ -5,7 +5,6 @@
 без регистрации в ``.claude/settings.json`` верный разбор не защищает ничего.
 """
 
-import ast
 import json
 from pathlib import Path
 
@@ -99,10 +98,11 @@ def test_window_hook_calls_the_guard():
     assert (ROOT / "scripts" / "window_guard.py").exists()
 
 
-def test_guard_parses_on_the_oldest_window_python():
-    """Хук стартует системным python3 окна, а он бывает ниже планки проекта."""
-    source = (ROOT / "scripts" / "window_guard.py").read_text("utf-8")
-    ast.parse(source, feature_version=(3, 11))
+def test_wrapper_never_falls_back_to_system_python():
+    """Сторожа зовёт интерпретатор планки, а не системный python3 (#274, 217)."""
+    script = (ROOT / ".claude" / "hooks" / "pre_tool_use.sh").read_text("utf-8")
+    assert "floor.sh" in script
+    assert "py=python3" not in script
 
 
 def test_hook_protocol_blocks_only_on_rejection():

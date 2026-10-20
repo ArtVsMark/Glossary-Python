@@ -2015,11 +2015,11 @@
     "217": {
       "status": "active",
       "mechanism": "gate",
-      "where": "scripts/check_python_version.py — работа CI и тот же гейт в `make check`: у каждой работы каждого прогона python вызывается только после setup-python, версия названа числом и не ниже планки requires-python (её читает scripts/python_floor.py; исключения — работы замера языка, названные в MEASUREMENT), а предварительная версия выше проверяемых. Стиль держит ruff: target-version = \"py314\" в pyproject.toml выводит требования из той же планки (PEP 695 вместо TypeVar, без from __future__), mypy в строгом режиме. Переезд на 3.14 закрыт так в #53/#69: две работы, звавшие системный python раннера раньше setup-python, нашёл именно этот гейт",
+      "where": "scripts/check_python_version.py — работа CI и тот же гейт в `make check`: у каждой работы каждого прогона python вызывается только после setup-python, версия названа числом и не ниже планки requires-python (её читает scripts/python_floor.py; исключения — работы замера языка, названные в MEASUREMENT), а предварительная версия выше проверяемых. Стиль держит ruff: target-version = \"py314\" в pyproject.toml выводит требования из той же планки (PEP 695 вместо TypeVar, без from __future__), mypy в строгом режиме. Переезд на 3.14 закрыт так в #53/#69: две работы, звавшие системный python раннера раньше setup-python, нашёл именно этот гейт. Хуки окна держит scripts/check_hook_interpreter.py (работа CI, `make hooks`): обёртка .claude/hooks/pre_tool_use.sh зовёт python<планка> или .venv на ней и без них закрывает толчок и heredoc, а не откатывается на системный python3 — живой случай нашёл каталог (Glossary-Python#274)",
       "origin": "ArtVsMark/Engineering-Incidents-Playbook:scripts/check_python_version.py@06d262dfacfabd3795dd34252f4205957a4619e9",
       "origin_kind": "adapted",
-      "analysed": "2026-10-07",
-      "decided": "2026-10-07"
+      "analysed": "2026-10-20",
+      "decided": "2026-10-20"
     },
     "218": {
       "status": "active",

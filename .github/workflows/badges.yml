@@ -185,7 +185,7 @@ jobs:
       - name: Значок Python
         id: python_badge
         continue-on-error: true
-        uses: ArtVsMark/Engineering-Incidents-Playbook/.github/actions/python-badge@v1.11.0
+        uses: ArtVsMark/Engineering-Incidents-Playbook/.github/actions/python-badge@v2.2.0
         with:
           ci-workflow: ci.yml
           coverage-json: .github/badges/coverage.json
